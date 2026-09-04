@@ -1,0 +1,12 @@
+.DS_Store
+node_modules/
+dist/
+build/
+coverage/
+.cache/
+.tmp/
+# Local lead handoff retains exact machine/session attestation; never distribute.
+/HANDOFF.md
+.env
+.env.*
+!.env.example

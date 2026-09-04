@@ -1,0 +1,22 @@
+{
+  "name": "online-sourdough-method",
+  "version": "0.1.0",
+  "description": "Owner-level work, portable context, lifecycle routing and evidence-based delivery.",
+  "author": {
+    "name": "Online Sourdough"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Online Sourdough Method",
+    "shortDescription": "Portable context and reviewed owner-level work.",
+    "longDescription": "Four instruction skills for onboarding, routing work, maintaining context and checking evidence. Owner data stays outside the plugin.",
+    "developerName": "Online Sourdough",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": [
+      "Set me up for my current work."
+    ]
+  },
+  "repository": "https://github.com/onlinesourdough/Method",
+  "license": "MIT"
+}

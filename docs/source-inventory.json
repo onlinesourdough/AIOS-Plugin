@@ -1,0 +1,19 @@
+{
+  "aios": "a6f8d6063e613b9f3fdf8aac933b33c6023c8e60667651b5c988e57d2439e40d",
+  "aios-build-work": "21f206acbacc476dac24cb68740c5c25eb63f94f18a53cf1ee643f546da71ff7",
+  "aios-create-project": "85d1237bce12713ff11a85821e70f1fb110a2df4b04a03ba35a24f9f3049a19c",
+  "aios-create-system": "d50f809cad10fbc3295a8936ad015bcbe92574dff5a88cec5b815d977c8de03e",
+  "aios-evaluate-completeness": "b5cf6eef198995a99a14f346dad52d7653a91c0a4659a8b90e1dae6b92e85916",
+  "aios-evaluate-publish-safety": "14ac6960ae32481fc5446e9cfb462a73f0bf18f872494696fb970b3ae6ef8fbc",
+  "aios-evaluate-spec-work": "385c090fab05f207c0d2b3ce9d550d89a0785c5e14ca0d02d16c269a3203d104",
+  "aios-onboard": "ad98a975ad0138238b792a5861c57e28a07441dc495482b25da5fd3b1c1e8ad5",
+  "aios-review-work": "a9bf4a6d4d2b45de7aea5a34e2f1c4ca5472a1f148edb8ab4cbf3936db559e52",
+  "aios-route-agentic-content-system": "72f6c01a22264aa594b5caf64883a3098ba3b69679ceb5caefd84c11b8650179",
+  "aios-route-agentic-design-system": "ec6a17e71b8a5fd0d7233ae59a68d347274db2fd7cb7b929f2a328c4788a18a1",
+  "aios-route-business-constraint": "4a77d7a143cab6b276449ad29d031121b5eac7da05e32a450333edb8c1e03226",
+  "aios-ship-work": "d6a5bdf0233f5c63b396527251cb0293fd7211d63e3183bca3bcf4bc58323207",
+  "aios-spec-work": "8ecb0915a575b75c2d95fa02931bfac9e1b3a33b7110c709393a0e7fc9b895cb",
+  "aios-sync": "f5527d82a172faacc395f72e4a0616ebbb8b44961e82b1a40ca51f2264d86bb6",
+  "aios-triage-improvement": "c7e61a7922b20053ad29d1d9dbbd8aeb70aa5ccc87b526c9d62b23bc7e33b538",
+  "aios-update": "9d4f055fad940650a14cd7db456bd92989ba7b134bd0dee3ddae8cb30202e120"
+}

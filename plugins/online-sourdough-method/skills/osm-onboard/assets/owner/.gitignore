@@ -1,0 +1,9 @@
+# Optional Git backup excludes local recovery and nested working repositories.
+.DS_Store
+.env
+.env.*
+work/
+backups/
+checkouts/
+systems/*/
+projects/*/

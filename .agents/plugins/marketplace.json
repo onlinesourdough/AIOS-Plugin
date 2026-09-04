@@ -1,0 +1,20 @@
+{
+  "name": "online-sourdough",
+  "interface": {
+    "displayName": "Online Sourdough"
+  },
+  "plugins": [
+    {
+      "name": "online-sourdough-method",
+      "source": {
+        "source": "local",
+        "path": "./plugins/online-sourdough-method"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
