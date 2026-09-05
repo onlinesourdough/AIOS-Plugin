@@ -1,3 +1,5 @@
+![AIOS](assets/branding/aios-banner.png)
+
 # AIOS
 
 AIOS helps your AI assistant work with your context, remember useful decisions
