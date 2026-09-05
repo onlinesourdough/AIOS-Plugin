@@ -80,9 +80,14 @@ Unsupported/malformed owner format remains read-only before every owner write.
 File access and account authorization must still be available in the harness.
 Do not claim Markdown provides isolation or team RBAC.
 
+Keep this bridge global and OSM.md in the owner home. Do not add an owner-home
+or intermediate projects/systems AGENTS/override file that instructs nested
+repository tasks to load personal context. Verify inherited instructions in a
+fresh nested repository task when setup changes this boundary.
+
 ## Optional user-owned skills, registered once
 
-The canonical bodies live in OSM/skills/<name>/SKILL.md, outside the product.
+The canonical bodies live in OSM_ROOT/skills/<name>/SKILL.md, outside the product.
 Inventory existing global and package discovery before registration. Keep each
 name visible exactly once in each harness, resolving collisions before writes.
 The common ~/.agents/skills discovery root is available in Codex and Pi. One

@@ -28,7 +28,7 @@ check original bytes before replacing. Concurrent changes cause a conflict,
 not last-writer-wins. In Git mode run [sync](sync.md) at the task boundary.
 
 Learn a method only when inputs, steps, proof and repeat value are clear and
-reuse reduces ambiguity. Put an owner-specific shared method under OSM/skills,
+reuse reduces ambiguity. Put an owner-specific shared method under OSM_ROOT/skills,
 a repository method locally, and an optional external Global Skill with its
 external product. Never embed facts, credentials, outputs or history in method
 text. If reuse is uncertain, suggest at most one candidate. Preserve every

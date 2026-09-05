@@ -77,6 +77,12 @@ Local-only Projects and Projects without a remote do not need this Git gate.
 
 ## Release and verify
 
+Resolve applicable blocking security findings or record explicit owner acceptance
+of the named residual risk. Missing required evidence is not PASS. Relevant fix,
+dependency or configuration changes require affected retests on the final subject;
+authorized deployment includes verification of the affected deployed boundary.
+Deployment authority does not grant active security testing against other targets.
+
 1. Build the exact artifact from the reviewed commit.
 2. Apply configuration and compatible state changes in the documented order.
 3. Deploy or publish without activating when the platform allows separation.

@@ -2,8 +2,9 @@
 
 Inspect before writing. Resolve any requested user folder once, expanding ~
 using the active user's home and resolving existing symlinks/parent paths.
-Default to ~/OSM only when no configured or chosen home exists. Record its
-absolute path in the native bridge. A relative path is not a portable identity;
+Default to ~/.OSM only when no configured or chosen home exists. Preserve an
+existing home, including ~/OSM or a custom location, unless a move is requested.
+Record its absolute path in the native bridge. A relative path is not a portable identity;
 a move requires a deliberate bridge update on the receiving machine.
 
 Read only the existing bridge and relevant home files. If multiple bridges
@@ -25,6 +26,21 @@ including when it has its own Git repository. Independent repositories, even
 when nested under that home, retain their own local lifecycle. Unsupported or
 malformed markers keep owner data read-only; do not fall through to a generic
 repository edit. Check format before maintenance as well as onboarding writes.
+
+Keep OSM.md as the owner entrypoint and the small native global bridge as its
+route. Do not create owner-context AGENTS.md or AGENTS.override.md files in the
+home or its projects/systems directories: ancestor instructions can reach nested
+repository tasks. During setup, inspect any existing inherited instruction route;
+repair only the owned routing block under existing authority, preserving unrelated
+instructions. Unresolved personal preload is an isolation gap, not a passed setup.
+
+New authorized checkouts use OSM_ROOT/projects/<slug> or OSM_ROOT/systems/<slug>
+as physical roots, with their own .git, AGENTS.md and lifecycle. Existing chosen
+external paths remain valid. Use [creation](../../osm/references/creation.md)
+only when a needed independent owner is justified; setup does not preclone
+templates or registered repositories. Copy the [ignore asset](../assets/owner/.gitignore)
+for a new home; merge its checkout exclusions into existing rules only when needed,
+preserving other rules. Verify exclusions before owner Git staging.
 
 Only ask what changes the current result: current focus, audience or context,
 then a concrete unresolved constraint. One short question at a time; answers

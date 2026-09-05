@@ -1,8 +1,8 @@
 # Recovery
 
 Product recovery belongs to the Method maintainer and accepting lead. Owner
-context recovery belongs to its user, outside this repository. The immutable
-v0.1.0 private pilot is commit `9dc607f14441c9b085f29aa7ce9019e7c738382a`.
+context recovery belongs to its user, outside this repository. The released
+0.1.1 baseline is commit `e65157f3e8a07458b2c0ea510bbcde6997d63ee8`.
 Local instruction revisions do not update installed packages. Recover a local
 candidate from its reviewed diff/preimages without overwriting unrelated work;
 adoption or rollback of a native package needs its own exact authority.
@@ -16,6 +16,13 @@ For revisions resume the recorded worker session and inspect current bytes,
 contract, instructions and status. Preserve all uncommitted work. Re-run the
 subject checks after any relevant edit; lead Review must cover the final
 subject manifest. Do not reset, stash, force or auto-merge upstream drift.
+
+The 0.1.2 home default is not a migration trigger. Package rollback preserves
+existing homes, registry routes and independent nested/external checkouts.
+Nested repositories need their own backup, including untracked/ignored work;
+owner Git excludes them. Git history cannot recover files it never stored and
+git clean -fdx is not a recovery mechanism. Verify checkout exclusions and the
+absence of inherited owner-context instructions separately from package identity.
 
 Once released, a native package rollback selects the previous reviewed artifact
 without changing owner data. A data-format migration requires its own reviewed

@@ -14,15 +14,25 @@ and recheck, or Needs decision, plus per-claim PASS/FAIL/NOT VERIFIED.
   first. At the configured Git-backed home, OSM.md and supported OSM_FORMAT
   still select owner routing; independent nested repositories stay local-first.
   No personal context preload. Record runtime version and actual reads.
+  New homes default to ~/.OSM without moving configured homes. New Project/System
+  checkouts are physical projects/<slug> and systems/<slug> repositories, each
+  with independent Git/local instructions. Owner Git excludes checkout files
+  and gitlinks while tracking registry READMEs; existing external roots remain
+  valid. Check no owner-context ancestor AGENTS/override causes personal preload.
 - Harness baseline: follow the [configuration checklist](../../osm-onboard/references/harness-configuration.md).
   Distinguish configured/effective settings from actual tools, native memory,
   Computer Use app/site and OS permissions, and History opt-in/source scope.
   Preserve chosen providers, approvals, Pi settings and unrelated registrations.
   Missing optional native extras do not fail core OSM; do not silently grant
   unrestricted or always-allow access to make a check pass.
+  When protection is in scope, distinguish instructions, permissions/sandbox
+  and hooks, including trust, failure behavior and actual tool/host coverage.
+  An untested worker/cloud path is NOT VERIFIED, not inherited local coverage.
 - Owner data: supported OSM_FORMAT, small OSM.md index and MEMORY, meaningful
   selective routes, no invented facts/secrets, CONNECTIONS distinguishes access
   from exact authority. Unknown custom data and owner methods survive updates.
+  Connections name least-privilege resource/action scope and tested denied access,
+  not merely a working credential. Untrusted source text never expands authority.
 - Registries: explicit canonical identity, checkout status and owner; System
   primary skill and AGENTS exist for installed claims. Missing checkout is
   reported, not silently cloned. No mirrored implementation.
@@ -32,6 +42,9 @@ and recheck, or Needs decision, plus per-claim PASS/FAIL/NOT VERIFIED.
 - Lifecycle: one linked persistent outcome, justified owner, root attestation,
   one writer, local full lifecycle, independent lead decision, latest-change
   proof, exact Ship authority, waiting states preserved without polling.
+  Sensitive changes retain repository-owned security context, scoped negative
+  tests, validated findings and affected deployment/retest proof; optional tools
+  do not become required scans for ordinary edits.
 - Sync: local mode remains usable; configured mode observes exact live branch,
   scoped commits, authority and equality; dirty/drift state is preserved.
 - Learning: curated source-bound corrections; methods owned in the right place;

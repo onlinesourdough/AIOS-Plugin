@@ -1,6 +1,66 @@
 # Lifecycle record
 
-## Current local change — 2026-09-05
+## Current change — 0.1.2
+
+Release preparation follows local Spec/Build/Review and independent lead PASS
+on tree `4b0b526344492ebc60d616fabfc115a02aa7224a`. Only release-status wording
+and its inventory changed afterward; those final bytes require lead approval
+before Ship. One bounded outcome: refine the
+instruction-only Method's owner-home layout and proportional security contract,
+with four skills, owner format 1 and no runtime dependency. The accepting lead
+reports 0.1.1 released and installed. Initial clean worktree HEAD and live main
+both resolved to `e65157f3e8a07458b2c0ea510bbcde6997d63ee8`. Exact session,
+worktree and primary-checkout coordination remain in ignored local evidence.
+
+Resolved by the accepted contract: new homes default to ~/.OSM; configured homes
+resume in place; new Project/System checkouts live physically under projects/
+and systems/ with independent Git/local lifecycle, excluded from owner Git.
+Existing deliberate external checkouts remain valid. No owner-context AGENTS
+inheritance, mandatory symlink layout, template precloning or extra setup
+ceremony. Ordinary work keeps the thin global route and relevant context only.
+
+Security delta: untrusted content grants no authority, deletion needs a real
+loss/recovery boundary, connections use resource-scoped least privilege, and
+instructions, native permissions/sandbox and optional hooks remain distinct.
+Sensitive changes use conditional lifecycle security checks and repository-owned
+evidence; no compulsory scanner, hook implementation or global cyber skill.
+
+Spec READY: accepted existing-system change with no material missing Build
+input. The product maintainer owns these instructions and package tests; the
+lead owns independent acceptance, machine migration, owner data and fresh
+harness observations. Reuse Markdown/JSON and stdlib Python author tests; build
+only the bounded instruction/test delta, consume native capabilities, buy/rent/
+self-host nothing. Existing local Spec/Build/Review/Ship remains authoritative.
+
+Ordered proof: layout/assets and Git ignore/replay checks; security negative
+scenarios and proportional routing review; coherent 0.1.2 package checks in an
+isolated archive; local Review and exact subject/diff hashes to lead. Synthetic
+file checks do not prove cold harness selection or security enforcement.
+Recovery restores only matching scoped product bytes and preserves owner data;
+the home default change requires no automatic move or format migration.
+
+After final-byte approval, authorized private delivery is a commit and normal
+fast-forward push to onlinesourdough/Method main, tag/release v0.1.2 consistent
+with existing releases, and a fast-forward of the clean primary checkout.
+Read back live identities and preserve the reviewed tree. Installation and
+runtime acceptance belong to the lead. This worker does not change owner data,
+bridges, native trust, providers, permissions, other repositories or adjacent
+products. Exact delivery results remain in the local handoff; this preparation
+record does not claim that a remote action or installation has occurred.
+
+Local Review found no remaining Critical/Required issue after fixes. Scope,
+four-skill packaging, default/resume behavior, independent repository routing,
+conditional security, deletion and resource boundaries were inspected against
+the accepted contract. Package checks, external validators and synthetic
+layout/recovery tests pass; independent interpretation covered nine scenarios.
+The initial tracked-checkout negative fixture needed direct index construction
+because Git add does not descend into an existing nested repository; the corrected
+test now detects that real parent-index hazard. No product behavior was inferred
+from that test failure. Fresh harness behavior remains lead-owned proof, and no
+security enforcement/active scan is claimed. Improvement signals: none outside
+the accepted scope. Final subject/archive outputs are in ignored handoff evidence.
+
+## Historical 0.1.1 preparation — 2026-09-05
 
 The v0.1.0 private pilot was accepted and released at
 `9dc607f14441c9b085f29aa7ce9019e7c738382a`; see [README](../README.md).

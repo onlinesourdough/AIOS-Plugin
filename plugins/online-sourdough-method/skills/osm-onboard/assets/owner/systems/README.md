@@ -6,5 +6,7 @@ Canonical Agentic System Template Git URL: https://github.com/onlinesourdough/Ag
 | --- | --- | --- | --- | --- | --- | --- |
 
 No Systems registered. Registration is not installation. Verify checkout,
-AGENTS.md and primary skill before invoking. Keep System source and state in
-its own repository; never copy implementation into this owner home.
+AGENTS.md and primary skill before invoking. New checkouts use
+OSM_ROOT/systems/<slug> physically, with independent .git and local lifecycle;
+owner Git ignores them. Preserve existing deliberate external paths. Source
+and state belong to each System repository, not to shared owner context.

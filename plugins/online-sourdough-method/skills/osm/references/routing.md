@@ -21,9 +21,13 @@ Do not create a Project per content item or a wrapper per repository.
 
 Read only the relevant registry. A registered URL is a route, not an installed
 capability. Verify exact local checkout, Git identity when present, AGENTS.md,
-and the System primary skill before invocation. If missing, return the route
-and one install/verify action; do not silently clone, substitute or implement
-the capability in OSM. New ownership uses [creation](creation.md).
+and the System primary skill before invocation. If missing, clone only when the
+current task authorizes that needed repository and destination; otherwise return
+the route and one install/verify action. A new checkout uses projects/<slug> or
+systems/<slug> under OSM_ROOT, with independent local truth and owner Git exclusion;
+preserve a deliberate existing external path. Verify identity before invocation.
+Do not substitute or implement the capability in shared owner context, or seed
+an existing repository. New ownership uses [creation](creation.md).
 
 For independent repository mutation use the first-class root worker boundary
 in [lifecycle](lifecycle.md). Local truth owns implementation and proof; OSM

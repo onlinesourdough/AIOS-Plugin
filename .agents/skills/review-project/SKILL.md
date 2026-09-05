@@ -57,6 +57,10 @@ Review these gates:
   expired or replayed, and authenticated-but-forbidden behavior as applicable.
   A material gap in an applicable security responsibility or its boundary proof
   is a Required finding.
+  Reuse local SECURITY.md when present. Validate and deduplicate scanner findings;
+  a justified baseline scan and a scoped diff review provide different evidence.
+  State exclusions and unavailable checks. Neither source review nor a previous
+  scan proves the current deployed configuration safe.
 - **Operation:** important failure is visible and rollback, replay, disable,
   restore, rebuild, or reconciliation is real and has been exercised when the
   risk requires it.

@@ -19,6 +19,9 @@ contract rather than copying it into this record.
 | Implementation | This repository | Sole linked worker | Accepting lead Review |
 | Operation | Native harness packages | Installing user | Maintainer with sanitized evidence |
 | Recovery | [recovery.md](recovery.md) | Maintainer / owner of affected data | Accepting lead |
+| 0.1.2 layout and security instructions | [Lifecycle contract](lifecycle.md) | Same product worker | Independent lead Review |
+| Machine migration and installed owner state | User-owned environment, outside this repository | Accepting lead / installing user | Separate scoped verification |
+| Security enforcement and scanner operation | Native harness and affected repository | Authorized operator / repository owner | Required protection unavailable: hold affected action |
 
 ## Boundary
 

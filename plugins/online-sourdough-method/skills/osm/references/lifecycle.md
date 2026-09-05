@@ -22,6 +22,11 @@ conflicting with evidence. Resolve facts before asking one material owner
 question. Reversible bounded technical inferences may proceed; never infer
 external authority, product direction or acceptance.
 
+For sensitive data, authentication/authorization, external interfaces,
+privileged automation or deployment, use the conditional
+[security contract](security.md) through Spec/Build/Review/Ship. Keep its scope
+and evidence with the independent repository; ordinary tasks gain no scan ritual.
+
 Return exactly READY, REVISE or BLOCKED. READY contains a compact Build
 contract: outcome; proof and measurement owner; relevant context pointers;
 exact repository/worker root; scope/non-goals; authority and risk; dependencies

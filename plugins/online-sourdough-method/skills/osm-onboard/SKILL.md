@@ -10,11 +10,13 @@ Read [setup](references/setup.md). Read the applicable
 For an existing folder or migration, read [data compatibility](references/data.md)
 before writing. Blank owner assets are in [assets/owner](assets/owner/OSM.md).
 
-Resolve the requested path once (default ~/OSM) to its physical absolute
-location. Check for existing bridges, overrides, symlinks and existing data;
+Resolve the configured or requested path to its physical absolute location;
+default to ~/.OSM only for a new home. Check existing routing before creation;
 never create a second home merely because a default is absent. Resume from
 established facts with no fresh interview. Ask only the next material gap.
 
+Keep owner routing in the thin global bridge, not an owner-home AGENTS.md that
+would preload personal context into nested repository tasks.
 Create owner files from the supplied neutral assets with ordinary file tools,
 never clone AIOS-template. Keep product version and data format separate.
 Local operation works without Git. Do not install anything or change global

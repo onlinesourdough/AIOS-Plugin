@@ -93,6 +93,11 @@ isolation, or recovery must be independent.
 
 ## Resolve security proportionally
 
+For sensitive changes reuse local SECURITY.md and relevant security context.
+Create/update that document only for durable scope or invariants. Name the
+authorized isolated target for active validation; Full Access is not isolation.
+Keep code, deployment configuration and operational surfaces distinct.
+
 For every externally reachable or cross-trust interface, classify its callers,
 exposure, trust boundary, protected and intentionally public operations, data,
 side effects, and abuse or cost risk.

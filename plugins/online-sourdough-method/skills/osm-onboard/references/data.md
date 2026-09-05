@@ -17,13 +17,17 @@ skills/ contains owner methods. Registries retain name, scope/outcome, canonical
 repository or local marker, checkout path and verification status; System rows
 also retain primary skill, invoke condition and return. Legacy extra columns
 are preserved, not dropped to fit the blank assets. Unknown checkout status is
-unverified, never installed. Arbitrary repository paths are supported.
+unverified, never installed. New homes default to ~/.OSM; a default change does
+not move an existing home. New checkouts live physically at
+OSM_ROOT/projects/<slug> and OSM_ROOT/systems/<slug>. Each remains an independent
+repository with its own .git, AGENTS.md, lifecycle and recovery. Existing chosen
+external paths remain supported; no symlink farm is required.
 
 ## Plan before migration
 
 Inspect source and destination without modifying either. Inventory every file,
 symlink target, mode and content hash, including untracked/ignored work and
-nonreserved owner skills. Separate portable context, external repository
+nonreserved owner skills. Separate portable context, independent repository
 checkouts, assets, credentials, harness configuration and recovery state.
 Do not read credential contents into evidence; use secure existing credential
 stores and reauthenticate on another machine. A Git URL cannot preserve local
@@ -91,8 +95,9 @@ reconcile instead of overwriting. The legacy original remains available.
 
 ## Move to another machine
 
-Copy the whole owner folder including routed context, optional owner skills
-and required local assets using a reviewed file backup. Independently preserve
+Copy portable owner context, optional owner skills and required local assets
+using a reviewed file backup. Inventory nested checkouts separately so a folder
+copy cannot silently replace their independent recovery plan. Preserve
 repositories and uncommitted work; clone only repositories that are actually
 available and authorized, restore local work separately. Inventory/hash compare
 source and restored files, then resolve the new absolute home once and update
@@ -108,7 +113,12 @@ remove its navigation pin until lead reconciliation proves the cutover.
 Local folder operation needs no Git. If the user chooses it, initialize a
 separate private owner-data repository, not the distributable Method product.
 Inspect tracking/ignore rules before adding: credentials, work, backups and
-nested checkouts must stay outside commits. Verify private destination/account
+nested checkouts must stay outside commits. Use the
+[checkout ignore rules](../assets/owner/.gitignore) while keeping the two registry
+README files trackable. Prove exclusions with git check-ignore and inspect the
+index for already tracked checkout files or gitlinks: ignore rules do not untrack
+them. Stop unsafe staging and reconcile that state under explicit scope; do not
+silently remove index entries or repository work. Verify private destination/account
 and explicit allowed paths and branch. User configuration records authority;
 product assets leave it unset. Follow [sync](../../osm-maintain-context/references/sync.md).
 Private visibility is not permission to store secrets. Product update/uninstall

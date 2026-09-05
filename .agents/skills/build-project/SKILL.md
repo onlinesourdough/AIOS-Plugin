@@ -54,6 +54,10 @@ and cost; make side effects idempotent where required. Prove applicable permitte
 missing/invalid/expired/replayed and authenticated-but-forbidden cases, including
 misconfiguration when it could bypass protection. Use supported stack checks;
 do not invent a universal scanner.
+Use relevant maintained checks already available and authorized. A scanner is
+optional, not a mandatory tool for every edit. Keep security findings and
+synthetic regression evidence in the repository; do not run active probes
+without the Spec's authorized isolation and stop conditions.
 
 For changes to operation or infrastructure, provide failure visibility and the
 scoped disable, replay, rebuild or tested restore path required by the contract.

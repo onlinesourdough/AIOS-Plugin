@@ -9,6 +9,17 @@ proved, stop that mutation and ask the lead to reconcile. Replace only after
 explicit stop or proven failure, retaining original state and recording the
 replacement attempt under the original contract.
 
+## Deletion and recovery boundary
+
+Before an authorized destructive change, identify the exact paths/resources,
+what will be lost and which recovery source actually covers it. Git history
+does not recover untracked or ignored files: git clean -fdx can permanently
+delete them. A clean status, disposable-looking folder name or command allowlist
+is not recovery proof. Preview the affected scope, preserve necessary state and
+test restore where recovery is required; otherwise make irreversible loss
+explicit before proceeding within exact authority. Never execute destructive
+commands merely to test a guard. Use inert inputs or disposable synthetic data.
+
 ## Dirty checkout and changed upstream (#60)
 
 1. Stop durable writes. Record exact root, session, branch, HEAD, current

@@ -36,6 +36,33 @@ another user's unrestricted or always-allow setup for a new client.
    to the just-written values; preserve later edits on conflict. An identical
    replay is a no-op. Record capability proof independently of config readback.
 
+## Protection and coverage — when relevant to the requested change
+
+Instructions guide decisions. Native permissions/sandbox restrict execution;
+pre-execution hooks can intercept supported calls. These are separate controls.
+Full Access is not isolation for active security tests. No Method hook, denylist
+or adapter is installed, and optional Global Skills stay a separate product.
+
+When an existing hook or permission boundary matters, record the harness/version,
+execution host, effective tool coverage, trust state and observed deny/allow
+behavior. Use current [Codex hooks](https://learn.chatgpt.com/docs/hooks),
+[native permissions](https://learn.chatgpt.com/docs/agent-approvals-security) or
+[Pi extensions](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/extensions.md)
+and the installed implementation. Do not infer worker/cloud coverage from a
+local setup. Shell matchers do not cover every tool, interpreter, interactive
+stdin or extension execution path. Regex can miss obfuscation and block harmless
+argument text; it is an accident barrier, not a complete security boundary.
+
+Test missing files, malformed rules, handler errors/timeouts and changed trust
+with harmless probes in an authorized isolated fixture. Label whether failure
+blocks execution (fail-closed) or permits it (fail-open); never claim protection
+from a configured flag alone. If required protection is absent or fails, stop
+the affected action. Missing optional protection does not block ordinary OSM.
+Do not repair gaps by bypassing hook trust or broadening permissions. A native
+trust change needs its own existing authority and supported review flow; do not
+edit trust stores. Keep rule/code versions and affected rechecks with their owner,
+not a second Method-managed protection service.
+
 ## Codex configuration and instructions
 
 Resolve `CODEX_HOME` when configured; otherwise use `~/.codex/config.toml`.

@@ -2,7 +2,8 @@
 
 Four instruction skills for useful owner-level work, selective context, and
 reviewed delivery. Owner data lives in a separate user-owned folder, default
-`~/OSM`; this repository contains no owner profile and requires no server,
+`~/.OSM` for new homes. Existing configured homes resume in place. This repository
+contains no owner profile and requires no server,
 MCP, hooks, background process, or consumer runtime scripts.
 
 | Skill | Use |
@@ -27,16 +28,27 @@ repository isolation. Pi native resource loading passed; live Pi inference
 remains untested and requires a reachable configured model. Claude and
 Rockflow/Linux are untested. Local source revisions are not installed releases.
 
-## 0.1.1 private pilot candidate
+The [v0.1.1 private release](https://github.com/onlinesourdough/Method/releases/tag/v0.1.1)
+is released and installed according to lead acceptance, at commit
+`e65157f3e8a07458b2c0ea510bbcde6997d63ee8`. It narrowed discovery, made context
+and configuration loading conditional, and retained proportional checks and
+continued authorized implementation through review.
 
-Prepared locally for final-byte lead Review; not released or installed.
-Changes from 0.1.0: narrower skill discovery, conditional context/configuration
-loading, proportional small-fix checks, continued authorized implementation
-through review, and optional experimental Codex context-management guidance.
-The four skill identities and owner format 1 are unchanged; no owner-data
-migration or runtime dependency is introduced. Current package checks validate
-this candidate; the earlier installed pilot tests are historical evidence.
-See [proof](docs/proof.md) for the candidate inventory and capability limits.
+## 0.1.2 release content
+
+New homes default to ~/.OSM. New Project and System checkouts live physically
+under its projects/ and systems/ directories, with their own Git and local
+lifecycle, excluded from owner Git. Existing deliberate external paths remain
+supported. A thin global bridge routes to OSM.md; no owner-context AGENTS file
+is added above nested repositories. Ordinary work reads only relevant context.
+
+The security refinement distinguishes instructions, native permissions/sandbox
+and optional hooks; scopes connection access; and makes deletion/recovery limits
+explicit. Sensitive changes reuse the existing lifecycle with conditional
+security evidence. No compulsory scan, hook runtime or extra skill is added.
+The four skill identities and owner format 1 are unchanged. Updating the package
+does not move an owner home, clone repositories or alter native trust/settings.
+See [proof](docs/proof.md) for release evidence and capability limits.
 
 Contributors start with [AGENTS.md](AGENTS.md) and select the relevant
 [local Project route](.agents/skills/README.md); consult [lifecycle](docs/lifecycle.md)
@@ -47,6 +59,7 @@ this repository's development lifecycle.
 [Parity](docs/parity.md) · [Proof](docs/proof.md) · [Recovery](docs/recovery.md)
 · [Ownership](docs/ownership.md) · [License](LICENSE)
 
-Author checks (Python 3.12+): `python3 tests/validate.py` and
-`python3 tests/revision2-rehearsal.py`. Python is only a maintenance tool.
+Author checks (Python 3.12+): `python3 tests/validate.py`,
+`python3 tests/revision2-rehearsal.py` and `python3 tests/layout-rehearsal.py`.
+Python is only a maintenance tool.
 External scaffold validators and behavioral evidence are listed in the proof record.

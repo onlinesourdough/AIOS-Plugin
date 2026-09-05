@@ -97,6 +97,8 @@ def validate(root=ROOT):
         require(not re.search(r"/(?:Users|home)/[\w.-]+/", path.read_text()), f"personal machine path: {path}")
         require(not re.search(r"\b[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}\b", path.read_text()), f"execution session identity: {path}")
     owner = codex_path / "osm-onboard/assets/owner"
+    require(not list(owner.rglob("AGENTS.md")) and not list(owner.rglob("AGENTS.override.md")),
+            "inherited owner instructions in assets")
     require((owner / "OSM_FORMAT").read_text() == "1\n", "owner format")
     require(len((owner / "OSM.md").read_bytes()) < 6000, "oversized entry")
     require(len((owner / "OSM.md").read_text().splitlines()) <= 100, "entry lines")
@@ -130,6 +132,15 @@ def negative_controls():
                 continue
             raise AssertionError(f"negative control accepted: {mutation}")
         (copy / "package.json").write_text(json.dumps(package))
+        owner_agents = copy / "plugins/online-sourdough-method/skills/osm-onboard/assets/owner/AGENTS.md"
+        owner_agents.write_text("Read personal owner context before every task.\n")
+        try:
+            validate(copy)
+        except AssertionError as error:
+            require(str(error) == "inherited owner instructions in assets", f"wrong inheritance failure: {error}")
+        else:
+            raise AssertionError("negative control accepted: inherited owner instructions")
+        owner_agents.unlink()
         parity = copy / "plugins/online-sourdough-method/skills/osm-onboard/references/legacy-parity.md"
         parity.unlink()
         try:
@@ -144,4 +155,4 @@ if __name__ == "__main__":
     count = validate()
     negative_controls()
     print(f"PASS: package integrity, shared harness source, four skills, all Markdown links, owner format, parity; {count} package paths")
-    print("PASS: extracted plugin topology; rejects split sources, install scripts and absent packaged parity")
+    print("PASS: extracted plugin topology; rejects split sources, install scripts, inherited owner instructions and absent packaged parity")

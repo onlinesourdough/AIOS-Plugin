@@ -1,9 +1,12 @@
-# Optional Git backup excludes local recovery and nested working repositories.
+# Optional Git backup excludes local recovery and independent checkouts.
 .DS_Store
 .env
 .env.*
 work/
 backups/
 checkouts/
-systems/*/
-projects/*/
+# Registries belong to owner context; independent checkouts do not.
+/projects/*
+!/projects/README.md
+/systems/*
+!/systems/README.md

@@ -10,8 +10,15 @@ symbolic HEAD and main; require refs/heads/main and freeze one exact live
 40-character commit SHA. Cached refs or a remembered pin are not live evidence.
 Network failure or a changed SHA stops before transfer.
 
-No registration in an unrelated legacy home. Respect a separately chosen root;
-OSM registries may point outside OSM. Reject existing path/registry/canonical
+For new owners choose physical OSM_ROOT/projects/<slug> (Project) or
+OSM_ROOT/systems/<slug> (System). Existing deliberate external roots remain
+supported and are adopted in place; moving one is a separate authorized action.
+Before creation, the lead verifies owner Git, when used, ignores the checkout and
+that ancestor AGENTS/override files will not preload personal owner context.
+Keep independent .git, local AGENTS and lifecycle at the repository root; nesting
+is a filesystem layout, not shared implementation or authority. No symlink farm.
+
+No registration in an unrelated legacy home. Reject existing path/registry/canonical
 identity duplicates. The lead creates only the final empty unborn main repo,
 then launches the same sole first-class worker that will own implementation.
 Attest exact physical root/Git top level, branch, zero history/refs/remotes and
@@ -20,8 +27,10 @@ No temporary template clone or separate seed worker.
 
 ## New bounded Project — APT
 
-Read the single APT URL from projects/README.md. In the exact final root add
-that URL as temporary origin, fetch live main, verify FETCH_HEAD equals frozen
+APT is a Project seed, not an installed System or a preclone dependency. Acquire
+it only for an authorized new Project. Read its URL from projects/README.md.
+In the exact final root add that URL as temporary origin, fetch live main,
+verify FETCH_HEAD equals frozen
 SHA, then check out local main at it. Re-attest root, branch, exact HEAD, sole
 origin fetch/push URLs and completely clean seed. Read frozen AGENTS.md,
 README, validator and scripts/create-project.sh. Run the seed validator, then
@@ -84,4 +93,4 @@ registry. The lead runs owner-data sync when configured, rechecks absence and
 adds only that verified row, then checks routes. If registration blocks, retain
 the canonical repo and retry registration only; never recreate or transfer.
 Creation, revisions, registration evidence and authorized Ship retain the same
-worker/session and goal. No source copying from Systems into OSM.
+worker/session and goal. No System implementation belongs in shared owner context.
