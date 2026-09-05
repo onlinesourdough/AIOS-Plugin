@@ -2,7 +2,7 @@
 
 Product recovery belongs to the Method maintainer and accepting lead. Owner
 context recovery belongs to its user, outside this repository. The released
-0.1.1 baseline is commit `e65157f3e8a07458b2c0ea510bbcde6997d63ee8`.
+0.1.3 baseline is commit `3000720d17494ccb634e7f19966892cf1e8a160c`.
 Local instruction revisions do not update installed packages. Recover a local
 candidate from its reviewed diff/preimages without overwriting unrelated work;
 adoption or rollback of a native package needs its own exact authority.

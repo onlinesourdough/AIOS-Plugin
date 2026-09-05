@@ -1,6 +1,47 @@
 # Lifecycle record
 
-## Current change — 0.1.3
+## Current change — 0.1.4
+
+State: waiting-review after local Spec/Build/Review PASS.
+
+One bounded outcome: adaptive end-to-end onboarding and remaining harness
+alignment, in the restored same physical worker. Initial cwd/Git root matched;
+detached worktree was clean at released/live main
+`3000720d17494ccb634e7f19966892cf1e8a160c`. No owner data read. Exact local
+attestation stays in ignored handoff evidence.
+
+Spec READY: accepted existing-system correction. Reuse four shared instruction
+skills, owner format 1 and Markdown/JSON; no new runtime/schema/provider. Full
+onboarding covers relevant readiness outcomes adaptively; ordinary resume stays
+small. The product owns instructions and synthetic fixtures; the lead owns actual
+Mac inspection, native changes and cold acceptance. Optional UI/tool availability
+is observed, not invented. No Plan switching, assumed consent, app-control-denial
+bypass or writes through undocumented app-state keys.
+
+Build updates existing setup/harness/adapter/check/eval references, seven synthetic
+requests, 0.1.4 metadata and proof. Preserve privacy choices, active settings,
+secrets, history, custom presentation, dirty worktrees and unrelated roots.
+Separate selected Project/workspace/cwd, local/saved roots, cloud environments,
+sidebar preferences and active legacy registrations versus historical text.
+An authorized answer drives supported implementation/readback or one precise
+manual/unavailable gap. Checkpoint/resume reuses accepted answers.
+
+Proof: package/link and metadata checks, existing preservation rehearsals and
+independent instruction interpretation. These do not prove actual question UI,
+client state changes or cold routing. Local Review then exact frozen artifact
+returns to lead; hold commit/push/tag/release/install until independent PASS.
+Recovery uses preserved 0.1.3 and scoped source preimages, with no owner/harness
+mutation by this worker. Proposed version 0.1.4 is a reversible release increment.
+
+Local Review found no material contract or permission gap. Independent source
+interpretation covered all seven new scenarios without reading expected fixture
+answers and found no blocking issue; a minor reporting-scope ambiguity was
+narrowed to relevant areas. Existing preservation/layout rehearsals and package,
+link, metadata and subject checks pass. No new test engine or inferred native
+behavior. Improvement signals outside the accepted outcome: none; a separate
+legacy-capability audit is lead-owned and does not expand this candidate.
+
+## Historical 0.1.3 preparation
 
 State: waiting-review after local Spec/Build/Review PASS.
 

@@ -4,6 +4,11 @@ Check the requested scope only; no implicit global sweep. Read-only audit is
 the default. Report Healthy, Repaired only after a separate authorized repair
 and recheck, or Needs decision, plus per-claim PASS/FAIL/NOT VERIFIED.
 
+- Onboarding, when requested: assess relevant outcome/context/memory/Space,
+  connection/tool, harness, first-task and acceptance readiness. Reuse known
+  answers and chosen off states; authorized answers lead to implemented changes
+  and readback. Missing input is not consent. A checkpoint resumes unfinished
+  work without reinterview; ordinary tasks do not repeat the onboarding audit.
 - Product: normalized plugin manifest, correct skill paths and exactly four
   discoverable names; frontmatter valid, local references resolve, no consumer
   scripts/MCP/hooks/dependencies or hidden invocation disabling. Pi points to
@@ -31,6 +36,11 @@ and recheck, or Needs decision, plus per-claim PASS/FAIL/NOT VERIFIED.
 - Codex desktop cutover, when in scope: inspect actual New Chat selection and a
   fresh task's cwd/routing, plus relevant System/Project entry roots, using the
   [desktop acceptance](../../osm-onboard/references/adapters.md#codex-desktop-entry-point--when-onboarding-or-cutover-affects-it).
+  Check selected Project, active workspace roots and fresh task cwd separately;
+  null selection alone is not proof. Inspect local Projects/saved roots, cloud
+  environments and sidebar preferences as separate client surfaces. Distinguish
+  active stale settings from historical/recovery mentions. Respect app-control
+  denial; no alternate automation or internal-state mutation to bypass it.
   CLI tests do not prove GUI defaults. Include associated environment/worktree
   references and refreshed Environments selection; resolve primary/secondary
   physical roots, never label-only duplicates or assumed environment configs.

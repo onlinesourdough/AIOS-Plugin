@@ -34,7 +34,21 @@ is released and installed according to lead acceptance, at commit
 and configuration loading conditional, and retained proportional checks and
 continued authorized implementation through review.
 
-## 0.1.3 release content
+## 0.1.4 release content
+
+Adaptive onboarding reuses known answers and chooses the next material question
+or authorized action. It creates relevant sourced context, memory and Space
+routes, verifies needed tools/harness state and completes a useful first task.
+A checkpoint resumes gaps without reinterview; ordinary tasks stay scoped.
+
+Harness alignment separates selected Project, actual workspace/cwd, saved local
+roots, cloud environments and chosen sidebar presentation. Privacy opt-ins and
+explicit app-control denials remain boundaries; diagnostic state is not a writable
+settings interface. Requested changes need supported actions and actual readback.
+Four instruction skills and owner format 1 remain unchanged, with no runtime.
+This source awaits independent lead Review; no installed behavior is implied.
+
+## Historical 0.1.3 release content
 
 Codex desktop onboarding distinguishes package installation from actual New Chat
 selection and fresh-task routing. It preserves chosen sidebar organization,

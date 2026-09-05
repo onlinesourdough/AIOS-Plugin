@@ -7,6 +7,13 @@ extras, never OSM prerequisites or canonical owner context. Leave an existing
 choice unchanged unless the user asks to change it. Do not silently reproduce
 another user's unrestricted or always-allow setup for a new client.
 
+For full onboarding, assess relevant config/profile/overrides, supported features,
+context management, native Memories/History and privacy choices, tool usability,
+and client entry points. Preserve intentional off states. For a scoped repair or
+ordinary resume inspect only its affected areas. The [desktop adapter](adapters.md#codex-desktop-entry-point--when-onboarding-or-cutover-affects-it)
+separates workspace selection, saved local Projects, cloud environments and sidebar
+preferences; none is a substitute for the others.
+
 ## Inspect, patch, verify
 
 1. Identify the running harness/version, active user/config home, selected
@@ -35,6 +42,13 @@ another user's unrestricted or always-allow setup for a new client.
    effective choice in a fresh session. Restore only affected spans still equal
    to the just-written values; preserve later edits on conflict. An identical
    replay is a no-op. Record capability proof independently of config readback.
+
+Classify legacy references before any cleanup: active configuration/discovery,
+current routes, or historical/recovery text. An old name in an archive is not an
+active setting. Preserve history and recovery; change only verified active stale
+references in scope. Read-only diagnostic app state may explain disagreement,
+but an undocumented JSON key is not a supported writable setting. Use an exact
+supported mutation and readback, or retain a precise manual/unavailable gate.
 
 ## Protection and coverage — when relevant to the requested change
 
@@ -147,6 +161,14 @@ claiming availability; a configured flag alone is insufficient. If native UI
 access is unavailable, return the exact per-machine manual step and continue
 core OSM using file tools.
 
+An explicit native Computer Use denial for an app, including the Codex app, is
+an access boundary. Do not bypass it with another automation surface, changed
+app identity, OS permissions or app-database/internal-state edits. Distinguish
+that denial from an absent UI tool. Use an independently supported native action
+only within its own permissions; otherwise leave the affected UI action for the
+user with a precise step and later readback. Do not attempt equivalent automation
+to evade the denial. A permitted read-only diagnostic is not mutation authority.
+
 ## Computer History — optional, explicit personal opt-in
 
 Inspect the native Computer History control independently of Computer Use.
@@ -189,9 +211,9 @@ and [owner-method migration](data.md).
 
 ## Return a small baseline checklist
 
-Report per area: preserved or requested change; authoritative config/UI source;
+Report per relevant area: preserved or requested change; authoritative config/UI source;
 effective state; verified capability or NOT VERIFIED; rollback evidence; and
-one manual step if unavailable. Include approvals/access, memory, Computer
+one manual step if unavailable. Include the relevant approvals/access, memory, Computer
 Use app/site and OS permissions, History opt-in/sources, provider/model,
 Pi settings and legacy-registration collisions. Never include secrets or
 personal baseline values in distributable docs. Unknown optional settings do

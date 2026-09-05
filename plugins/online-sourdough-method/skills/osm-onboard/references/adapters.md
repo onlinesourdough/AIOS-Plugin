@@ -44,6 +44,9 @@ backing instructions are one surface, not two independent policies.
 
 The owner home stores data; it need not be the selected app Project. Ordinary
 owner chat should work with no selected Project, using the global bridge.
+A null selected Project does not prove the active workspace is empty or current.
+Inspect composer selection, active workspace roots and the fresh task's actual
+cwd separately; reconcile mismatches before declaring routing/cutover PASS.
 Inspect the actual New Chat composer selection and relevant saved roots through
 available native tools/UI. Do not promise a persistent default unless that
 client's supported feature and effective behavior have been verified.
@@ -51,6 +54,19 @@ client's supported feature and effective behavior have been verified.
 chat without a Project from chats within a Project starting at its primary folder;
 that does not establish a universal sticky New Chat default or make Quick chat
 an equivalent Codex entry point.
+
+Treat the following as distinct relevant surfaces: active workspace selection,
+saved roots, local Projects with physical primary/secondary roots and associated
+worktree/setup references, cloud environments, and sidebar presentation. A local
+root fix does not update a cached/remote cloud environment. Inspect its canonical
+identity/status through supported native sources and change it only under exact
+authority; cached metadata alone cannot prove current cloud state.
+
+Discover sidebar preferences when they matter: one list, priority order, custom
+sections and pins are client-specific choices, not required OSM structure.
+Reuse chosen organization and names. Apply authorized supported changes and read
+back actual state; do not map a client's display layout into owner-data taxonomy
+or force the same controls on Pi.
 
 Inventory stale saved roots separately from files and task history. Preserve
 chosen custom sections, names, active roots and history. Remove only specifically
@@ -65,6 +81,9 @@ registrations through supported interfaces. Do not edit app databases/internal
 state or infer success from a configuration file.
 
 Check whether the required native inspection/action exists before attempting it.
+Respect explicit app-control denials as described in
+[harness permissions](harness-configuration.md#computer-use--optional-several-permission-layers);
+never route around a denied app through alternative automation or internal edits.
 If unavailable, give one precise guided UI step, then obtain actual readback of
 its result. Keep desktop cutover PENDING until verified; installation may PASS
 independently. Do not substitute a CLI test or a tool-created projectless task for

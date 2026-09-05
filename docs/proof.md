@@ -1,6 +1,27 @@
 # Proof and review boundary
 
-## Current evidence boundary
+## 0.1.4 evidence boundary
+
+Released 0.1.3 and live main matched `3000720d17494ccb634e7f19966892cf1e8a160c`
+on clean-worker resumption. The current review inventory describes the 0.1.4
+candidate; previous release acceptance does not cover it. No owner Mac data,
+configuration, app UI or cloud environment was changed by this worker.
+
+Seven new request fixtures cover adaptive full setup, unsubmitted choices,
+checkpoint resume, null-selection/workspace mismatch, explicit app-control denial,
+separate client surfaces and active-versus-historical legacy references.
+Interpretation and filesystem/package checks are separate from runtime proof.
+Local Review and independent forward interpretation found no material gap in
+seven scenarios. The independent reader did not consult expected eval answers;
+this still establishes interpretation, not execution. Existing synthetic
+preservation/layout rehearsals pass. Plugin and shared-skill metadata validators
+and package/link checks pass; exact outputs accompany the frozen subject in
+ignored review evidence. No consumer scripts or dependencies were introduced.
+
+Lead-owned acceptance must observe supported mutations/readback and cold task
+routing; unavailable or denied controls cannot acquire a synthetic PASS.
+
+## Historical evidence boundary
 
 0.1.1 is released and installed per accepting lead. This worker freshly verified
 live main and the peeled v0.1.1 tag at

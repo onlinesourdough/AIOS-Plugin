@@ -5,7 +5,9 @@ description: Set up, resume or move an OSM owner home and its Codex or Pi bridge
 
 # Onboard
 
-Read [setup](references/setup.md). Read the applicable
+Use the adaptive outcomes in [setup](references/setup.md): reuse known answers,
+choose the next material question or authorized action, implement and verify it.
+Full onboarding covers relevant readiness areas; ordinary resume stays scoped. Read the applicable
 [native adapter](references/adapters.md) when installing or changing a bridge/package.
 For an existing folder or migration, read [data compatibility](references/data.md)
 before writing. Blank owner assets are in [assets/owner](assets/owner/OSM.md).
