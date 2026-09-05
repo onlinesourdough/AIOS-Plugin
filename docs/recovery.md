@@ -1,8 +1,11 @@
 # Recovery
 
 Product recovery belongs to the Method maintainer and accepting lead. Owner
-context recovery belongs to its user, outside this repository. Current state is
-unreleased, uncommitted and remote-free; there is no deployment to roll back.
+context recovery belongs to its user, outside this repository. The immutable
+v0.1.0 private pilot is commit `9dc607f14441c9b085f29aa7ce9019e7c738382a`.
+Local instruction revisions do not update installed packages. Recover a local
+candidate from its reviewed diff/preimages without overwriting unrelated work;
+adoption or rollback of a native package needs its own exact authority.
 
 The verified APT in-place transfer completed; its validator exercised wrong
 source/revision/dirty state and restoration/retained recovery. No transfer
@@ -23,5 +26,7 @@ subsequent edits and stop on conflict.
 Synthetic restore was exercised by copying the complete fixture home and
 comparing inventories, then changing restored MEMORY and verifying rollback
 must refuse overwrite. See [behavior review](behavior-review.md) and
-[hash evidence](rehearsal-results.json). Live harness rollback, Git delivery,
-new-machine restore and real owner migration remain lead-owned and unverified.
+[hash evidence](rehearsal-results.json). Live harness rollback remains unverified
+here. Private Git delivery was verified for v0.1.0; owner migration and restore
+were separately accepted by the lead. Those owner-data operations are outside
+this product repository's authority.

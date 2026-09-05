@@ -1,5 +1,23 @@
 # Lifecycle record
 
+## Current local change — 2026-09-05
+
+The v0.1.0 private pilot was accepted and released at
+`9dc607f14441c9b085f29aa7ce9019e7c738382a`; see [README](../README.md).
+This same worker now owns a bounded local instruction audit/fix: reduce
+discovery overlap and irrelevant preload, keep small edits proportional, retain
+substantive lifecycle and safety boundaries, and correct stale release truth.
+The lead accepted the instruction audit. The same worker is preparing private
+pilot 0.1.1: coherent semantic versions, release notes and fresh candidate proof.
+The [inventory](review-subject.json) now describes 0.1.1 for final-byte lead Review;
+matching hashes prove identity, not acceptance. The original inventory remains
+unchanged in Git at tag v0.1.0. No commit, push, tag, release or installation is
+permitted until the next explicit Ship instruction. Owner format 1 and four
+consumer identities remain unchanged. Exact linkage and check outputs remain
+in ignored local handoff; no global config/cache or owner-data changes.
+
+## Historical creation and revision-2 record
+
 Contract revision: 2, resumed after lead REVISE. The same first-class worker,
 repository root and bounded goal are retained. Exact native session, root,
 launch route and permission attestation are preserved in ignored local lead

@@ -1,6 +1,6 @@
 ---
 name: review-project
-description: Review and simplify a technical change against its intended outcome using concrete evidence. Use before merge or shipping, for pull requests and code review, or when checking correctness, test quality, architecture, security, operability, scope, and unnecessary complexity.
+description: Review a Project change or pull request against its contract and current evidence before acceptance. Use scoped review for small edits; use audit-project for accumulated repository drift.
 ---
 
 # Project Review
@@ -9,8 +9,9 @@ Review the actual change against the intended behavior and repository
 responsibility, not an imaginary ideal architecture.
 
 Treat Review as a gate inside the active lifecycle goal, not a new goal. For an
-AIOS-originated worker, pause its bounded goal while the AIOS lead reviews and
-resume that same goal for any required revision or authorized Ship.
+upstream-led worker, return for independent lead acceptance when its contract
+requires it, then resume the same goal for revisions or authorized Ship.
+Review does not create a new owner approval gate when authority already exists.
 
 ## Inspect
 
@@ -34,11 +35,8 @@ Review these gates:
   links and documented checks agree with the repository.
 - **Simplicity:** names are clear, modules are cohesive, interfaces are small,
   and abstractions earn their cost.
-- **Architecture:** dependencies point toward stable domain or capability
-  logic; framework and vendor clients stay at the edges; client code does not
-  own server trust; repositories, adapters, and interfaces represent real
-  boundaries instead of ceremony. SOLID, DRY, and Clean Architecture were used
-  to reduce change cost rather than to manufacture layers.
+- **Architecture:** changed boundaries have real responsibilities; dependencies
+  and trust enforcement agree with the accepted contract.
 - **Ownership:** responsibilities, data authority, and framework boundaries are
   not duplicated or blurred; project truth has one canonical owner.
 - **Lifecycle:** the repository still merits independent ownership, and it does

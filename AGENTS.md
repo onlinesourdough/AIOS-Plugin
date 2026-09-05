@@ -6,10 +6,11 @@ Build and operate the smallest independent Project that creates this outcome:
 
 ## Start
 
-Read this file, [README.md](README.md), and the canonical context for the
-Project. Confirm that this repository owns an independent lifecycle. Run the
-project-local Spec before implementation when scope, ownership, boundaries,
-proof, or contracts are not already clear.
+This repository owns its independent lifecycle. Read [README.md](README.md)
+for product context when needed, then only the local sources relevant to the
+change. Use Spec when material scope, ownership, boundaries or proof are unresolved.
+For a small mechanical edit, make the scoped change, inspect the diff and run
+the affected check; no full lifecycle record or evaluation suite is required.
 
 Ask one question only when a missing owner decision materially changes the
 Project. Keep resolved context intact and record technical inferences locally.
@@ -33,10 +34,13 @@ authorized Ship. The Project repository is canonical after creation.
 
 ## Before completion
 
-Verify behavior through the real interface or validator. Run the relevant
-format, lint, type, test, build, contract, and security checks. Check failure,
-denial, duplicate, and recovery behavior as relevant. Keep the README and
-[proof record](docs/proof.md) current with actual evidence.
+Continue through implementation, relevant verification and review within the
+task's authority; a phase transition is not a reason to stop. Fix in-scope
+findings and repeat affected checks. Substantive work retains Spec/Build/Review
+and authorized Ship. Independent lead Review, when required by the contract,
+is an acceptance gate, not a new owner permission request. Hold external actions
+outside existing authority. Keep affected documentation and [proof](docs/proof.md)
+current; never reuse acceptance from before a relevant mutation.
 
 ## Ownership and recovery
 

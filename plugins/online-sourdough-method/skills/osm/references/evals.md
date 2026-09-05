@@ -1,5 +1,10 @@
 # Evaluation checkpoints
 
+Use the checkpoint relevant to substantive work, setup or consequential delivery.
+A small mechanical fix needs its affected check and diff review, not this whole
+suite. Fixture rows are selectable cases for the changed behavior, not a mandatory
+per-task run list.
+
 Evaluate without editing. For each check record subject, checkpoint, observable
 check, actual evidence and failure action. PASS requires all applicable checks;
 missing runtime proof is NOT VERIFIED, never inferred from wording. Freeze

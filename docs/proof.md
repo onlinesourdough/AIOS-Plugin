@@ -1,5 +1,38 @@
 # Proof and review boundary
 
+## Current evidence boundary
+
+The [v0.1.0 private pilot](https://github.com/onlinesourdough/Method/releases/tag/v0.1.0)
+was delivered at `9dc607f14441c9b085f29aa7ce9019e7c738382a` after lead PASS.
+Lead verified byte-identical Codex installation, ordinary owner-chat routing
+and independent repository isolation. Native Pi resource loading passed; live
+Pi inference, Rockflow/Linux and Claude remain untested. These observations
+accept the released artifact, not later local instruction changes.
+
+## 0.1.1 candidate proof
+
+The instruction audit received lead PASS. Semantic version and release-proof
+changes require final-byte lead Review before Ship. Both package manifests now
+declare 0.1.1; owner format remains 1, with the same four skill identities.
+The [candidate inventory](review-subject.json) was explicitly regenerated for
+0.1.1 using `tests/review-subject.py`. Its check establishes current-byte identity,
+not lead acceptance. Historical 0.1.0 acceptance is preserved at
+`v0.1.0:docs/review-subject.json` in Git.
+
+Fresh checks use `tests/validate.py` (including extracted plugin topology and
+negative controls), the plugin validator and all ten skill validators. Repeat
+existing package checks from an isolated candidate archive to expose accidental
+local-only dependencies. Exact archive/inventory hashes and actual outputs live
+in the ignored handoff, separately from this changing evidence record.
+
+No 0.1.1 installed cold inference, native notes capability, Pi inference,
+Rockflow/Linux or Claude test is claimed. Earlier Codex pilot observations and
+lead's scoped independent format-denial evidence are supplementary historical
+evidence, not new runtime tests. No model/API evaluation spend is required for
+this version-only preparation. Earlier outputs below are historical observations.
+
+## Historical revision-2 pre-release evidence
+
 Revision 2 local Build/Review: PASS for the bounded revisions and author checks.
 Independent lead Review: PENDING after the prior REVISE. Delivery: NOT PERFORMED. Recovery: synthetic
 file rehearsal PASS; live harness recovery NOT VERIFIED. User/business outcome:

@@ -20,12 +20,27 @@ Start with “Set me up for my current work.” Existing users resume their fact
 there is no fresh interview or AIOS template clone.
 
 Canonical product: [onlinesourdough/Method](https://github.com/onlinesourdough/Method).
-This is an unreleased candidate. No remote, installation, or release is implied.
-Codex/Pi cold-session acceptance is pending lead verification. Claude is an
-optional documented adapter proposal, untested.
+The [v0.1.0 private prerelease](https://github.com/onlinesourdough/Method/releases/tag/v0.1.0)
+is the Codex-primary pilot at commit `9dc607f14441c9b085f29aa7ce9019e7c738382a`.
+Lead acceptance verified ordinary Codex owner-chat routing and independent
+repository isolation. Pi native resource loading passed; live Pi inference
+remains untested and requires a reachable configured model. Claude and
+Rockflow/Linux are untested. Local source revisions are not installed releases.
 
-Contributors read [AGENTS.md](AGENTS.md), the six [local Project routes](.agents/skills/README.md),
-and [lifecycle](docs/lifecycle.md). This repository owns Spec, Build, Review,
+## 0.1.1 private pilot candidate
+
+Prepared locally for final-byte lead Review; not released or installed.
+Changes from 0.1.0: narrower skill discovery, conditional context/configuration
+loading, proportional small-fix checks, continued authorized implementation
+through review, and optional experimental Codex context-management guidance.
+The four skill identities and owner format 1 are unchanged; no owner-data
+migration or runtime dependency is introduced. Current package checks validate
+this candidate; the earlier installed pilot tests are historical evidence.
+See [proof](docs/proof.md) for the candidate inventory and capability limits.
+
+Contributors start with [AGENTS.md](AGENTS.md) and select the relevant
+[local Project route](.agents/skills/README.md); consult [lifecycle](docs/lifecycle.md)
+when resuming substantive work. This repository owns Spec, Build, Review,
 recovery and authorized Ship. Consumers receive the plugin instructions, not
 this repository's development lifecycle.
 

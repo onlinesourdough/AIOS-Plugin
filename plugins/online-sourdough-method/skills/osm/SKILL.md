@@ -1,6 +1,6 @@
 ---
 name: osm
-description: Coordinate owner-level business work using relevant context and the smallest justified owner. Use for business priorities, cross-project outcomes and substantive owner work; defer repository execution to its local instructions and lifecycle.
+description: Coordinate owner-level business priorities and cross-project work using relevant context. Repository implementation follows its local lifecycle; setup and context upkeep have separate OSM skills.
 ---
 
 # Online Sourdough Method
@@ -21,12 +21,12 @@ Missing OSM must not block unrelated repository work.
 
 For owner-level work, resolve the OSM path from the native bridge, read its
 OSM.md and MEMORY.md, then only the context routes relevant to the outcome.
-Check [data compatibility](../osm-onboard/references/data.md) before writes.
 If absent, use [onboarding](../osm-onboard/SKILL.md) without interrupting a
 specific task for unrelated setup. Read CONNECTIONS only for needed access.
 Native memory/history is optional and never canonical.
 
 Choose the shortest justified workflow:
+
 - [Routing](references/routing.md): owner, Space and capability selection.
 - [Lifecycle](references/lifecycle.md): substantive Spec/Build/Review/Ship.
 - [Creation](references/creation.md): a justified new Project or System only.
@@ -34,8 +34,11 @@ Choose the shortest justified workflow:
 - [Improvement triage](references/triage.md): concrete signals during lead Review.
 - [Evals](references/evals.md): readiness, latest-change completeness and final action.
 
-Small answers and read-only mechanical tasks need no staged ceremony. For
-substantive work record one persistent outcome contract, not a goal per phase.
+Small answers and bounded mechanical edits need only relevant context, the
+scoped result and its check; no full lifecycle or eval suite. Continue within
+authority through verification and needed review rather than stopping after
+the first implementation. For substantive work record one persistent outcome
+contract, not a goal per phase.
 Use native task state only within the harness's trigger rules; the same session
 record suffices. Default model remains the user's configured choice; this
 method supplies no model policy or worker runtime.

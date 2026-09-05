@@ -34,9 +34,11 @@ for a complete business inventory or scan all accounts. Store a harness-scope
 preference only if needed for actual worker routing and not already known;
 never store a model catalog or reasoning policy.
 
-Use [harness configuration](harness-configuration.md) to inspect the chosen
-baseline and optional native extras without silently changing owner choices.
-Use [adapters](adapters.md) to install one small bridge per authorized harness.
+When setup changes harness configuration or discovery, use the relevant section
+of [harness configuration](harness-configuration.md) to preserve the chosen
+baseline. Inspect optional extras only when requested or needed for the task;
+resuming an established home does not require a machine-wide configuration audit.
+Use [adapters](adapters.md) when installing a bridge/package or repairing discovery.
 Check effective instructions including overrides and preserve unrelated bytes.
 Only connect a service needed by the first task: inspect available tools,
 confirm account and read/write capability, guide one native authentication
@@ -46,7 +48,9 @@ Missing optional tools do not block a local result.
 
 Complete one small useful artifact tied to the user's focus. Check root and
 bridge readback, format, selected routes, connection gaps and the first result.
-Then test in a fresh session with an ordinary request that does not name OSM.
-If that test is unavailable, report setup artifacts verified and activation
-NOT VERIFIED. Return configured path, concise changes, remaining gaps and the
-next useful action. Use the business-constraint route only when relevant.
+For new or changed setup, test in a fresh session with an ordinary request that
+does not name OSM. If unavailable, report setup artifacts verified and activation
+NOT VERIFIED. An unchanged resume does not require repeating cold installation
+acceptance or optional configuration checks. Return configured path, concise
+changes, remaining gaps and the next useful action. Use the business-constraint
+route only when relevant.

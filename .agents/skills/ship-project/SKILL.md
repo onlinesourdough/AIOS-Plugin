@@ -1,6 +1,6 @@
 ---
 name: ship-project
-description: Prepare, release, deploy, activate, and verify a technical solution with a real recovery path. Use after review when publishing an Application, Service, Automation, Integration, Library, or System change, or when changing CI, environments, secrets, migrations, deployment, rollback, replay, or operational ownership.
+description: Deliver a reviewed Project artifact to an authorized destination and verify live state and recovery. Use for release, deployment or activation, not local implementation alone.
 ---
 
 # Project Ship

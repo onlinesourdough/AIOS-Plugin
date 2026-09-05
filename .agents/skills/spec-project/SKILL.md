@@ -1,6 +1,6 @@
 ---
 name: spec-project
-description: Audit technical specifications of any maturity or construct the missing contract from rough input for the smallest build-ready technical solution. Use when starting or changing an Application, Service, Automation, Integration, Library, or System and readiness, ownership, boundaries, acceptance, or implementation order must be established without rewriting resolved context.
+description: Resolve material scope, ownership, contracts and proof gaps before substantive Project implementation. Preserve accepted decisions; skip mechanical edits with clear behavior and boundaries.
 ---
 
 # Project Spec
@@ -12,10 +12,10 @@ into a new Product Brief or rewrite facts that are already clear.
 
 ## Keep one lifecycle goal
 
-For substantive implementation, reuse the current task's matching goal or
-create one containing the outcome, constraints, verification, and requested
-Ship scope. Use the harness's native persistent goal/task state or the same
-contract in the current session. Spec, Build, Review, REVISE loops, and
+For substantive implementation, reuse the current task's outcome contract,
+constraints, verification and requested Ship scope. Use native persistent goal
+state only under its own invocation rules; the same session contract suffices.
+Spec, Build, Review, REVISE loops, and
 authorized Ship are states in this goal, not separate goals. Do not complete
 it at a phase boundary or narrow it to match partial progress.
 
@@ -49,9 +49,10 @@ resolved business decisions, or create another goal.
 
 ## Inspect before asking
 
-Read the request, canonical source material, repository instructions, current
-code, interfaces, existing owners, operating evidence, and recovery paths.
-Link to canonical sources instead of copying them. Resolve facts through
+Read the request and repository instructions, then inspect canonical sources
+needed to resolve the delta's material dimensions. Follow code, interface,
+operation or recovery records when that boundary is affected, not as a blanket
+preload. Link to canonical sources instead of copying them. Resolve facts through
 inspection; never ask an owner to restate discoverable repository or source
 truth.
 

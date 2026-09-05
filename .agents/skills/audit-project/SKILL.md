@@ -1,10 +1,6 @@
 ---
 name: audit-project
-description: >-
-  Use when a natural-language request asks to audit, check, maintain, repair,
-  reconcile, or investigate drift in an evolved Project's current
-  truth, documentation, proof, ownership, security, operation, or recovery.
-  Run periodically after accumulated change, not for every trivial change.
+description: Audit accumulated Project drift across documentation, ownership, behavior and recovery. Use for a holistic health audit, not an ordinary scoped fix or change review.
 ---
 
 # Project Audit
@@ -16,10 +12,9 @@ outcome and canonical truth, never parity with the original seed.
 
 ## Audit
 
-Read the current README, project instructions, relevant skills, code,
-interfaces, configuration, workflows, tests, runbooks, and operational or
-recovery records. Establish the current outcome, owner, boundaries, and
-canonical sources before judging any document.
+Establish the requested audit scope from project instructions and current
+README. Follow relevant sources for that scope; a documentation audit does not
+require preloading every runtime, workflow or recovery record.
 
 Check, as relevant to the solution:
 
@@ -84,12 +79,14 @@ correcting an obvious command path. Re-read repaired routes and verify them.
 When available, run the repository's relevant documented safe, non-mutating
 validation commands. Record each exact command and its exact result. If a
 relevant check is unavailable or unsafe to run, disclose it as an evidence gap.
-Do not run consequential or mutating commands or operations.
+Observation and validation must not perform consequential mutations; route
+separately authorized fixes through Build and relevant Review.
 
-Do not delete files or change runtime code, configuration, contracts, security
-meaning, ownership, authority, or operational behavior. Require one owner
-decision for semantic conflict, deletion, authority, or unclear canonical
-truth. Record the location, evidence, and decision needed; do not guess.
+Audit alone does not authorize changes to runtime code, configuration,
+contracts, security meaning, ownership or operational behavior. When the task
+also authorizes fixes, continue scoped implementation through Build and Review.
+Ask only for unresolved authority or material semantic conflict; a resolved
+local correction needs no renewed owner approval.
 
 ## Return
 

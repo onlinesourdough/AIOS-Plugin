@@ -1,7 +1,9 @@
 # One outcome through delivery
 
 Use this for substantive work; retain a short session record, not a compulsory
-central ledger. A goal states outcome, affected scope, observable proof,
+central ledger. Small mechanical fixes proceed directly through the scoped edit,
+affected verification and review; they do not activate this full procedure.
+A goal states outcome, affected scope, observable proof,
 boundaries and stop condition. Inspect existing state first. Reuse the matching
 nonterminal goal; reconcile a conflicting goal rather than replacing it.
 Native goal controls are optional and subject to their own invocation rules.
@@ -49,8 +51,10 @@ Use configured capable defaults. A concrete need may justify at most one
 advertised and successfully launchable override; never encode model catalogs,
 fixed reasoning or hidden chaining. Respect user harness restrictions.
 
-The worker owns local Spec, implementation, tests and local Review. Preserve
-unrelated changes. Verify the whole authorized result and update its local
+The worker owns local Spec, implementation, tests and local Review. Continue
+through all of those within the authorized task; the first working result is
+not a handoff boundary. Preserve unrelated changes. Verify the whole authorized
+result and update its local
 truth. Hand off exact changed files, artifact/content hashes, checks and their
 scope, missing evidence, recovery and `Improvement signals: none` or concrete
 sanitized observations. Enter waiting-review; send once, return, do not poll.
@@ -58,6 +62,9 @@ sanitized observations. Enter waiting-review; send once, return, do not poll.
 ## Independent lead Review
 
 Local worker review does not replace the lead's independent acceptance.
+This lead gate is not a new OWNER approval request. Existing action authority
+remains valid for its exact scope; ask the owner only for a real missing decision
+or permission. Do not stop routine in-scope repairs at intermediate phase labels.
 The lead reconstructs intent and inspects actual artifacts and latest proof,
 including success, denial, duplicates, failure/recovery and source ownership.
 Review does not mutate its subject. Return PASS, REVISE or BLOCKED. REVISE

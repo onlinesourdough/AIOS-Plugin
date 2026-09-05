@@ -1,11 +1,12 @@
 ---
 name: osm-onboard
-description: Set up or resume Online Sourdough Method with a portable user context folder and a small Codex or Pi bridge. Use for onboarding, moving machines, or configuring the method; preserve existing context and unrelated settings.
+description: Set up, resume or move an OSM owner home and its Codex or Pi bridge. Use for onboarding or method configuration, not every task in an established home.
 ---
 
 # Onboard
 
-Read [setup](references/setup.md), then the applicable [native adapter](references/adapters.md).
+Read [setup](references/setup.md). Read the applicable
+[native adapter](references/adapters.md) when installing or changing a bridge/package.
 For an existing folder or migration, read [data compatibility](references/data.md)
 before writing. Blank owner assets are in [assets/owner](assets/owner/OSM.md).
 
@@ -18,5 +19,6 @@ Create owner files from the supplied neutral assets with ordinary file tools,
 never clone AIOS-template. Keep product version and data format separate.
 Local operation works without Git. Do not install anything or change global
 settings unless the current task authorizes it. Preserve unrelated instructions,
-secrets and configuration keys. Finish with a small useful result and
-[setup acceptance](../osm/references/evals.md), reporting unavailable proof.
+secrets and configuration keys. Finish with a small useful result. For new or
+changed setup, run the relevant [setup acceptance](../osm/references/evals.md)
+checks and report unavailable proof; an unchanged resume needs only its task checks.

@@ -1,6 +1,6 @@
 ---
 name: osm-maintain-context
-description: Maintain portable OSM context, durable corrections and owner routes after useful work, or safely reconcile optional owner-data sync. Use for context upkeep and migration follow-up, not repository implementation or automatic transcript collection.
+description: Curate durable OSM owner facts and routes, or reconcile configured owner-data sync. Use for requested context upkeep; repository edits and initial setup have their own routes.
 ---
 
 # Maintain context
