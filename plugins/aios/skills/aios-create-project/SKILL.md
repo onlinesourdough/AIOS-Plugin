@@ -8,8 +8,10 @@ description: Create a justified new bounded Project at its final root using the 
 Start with a READY owner contract. Apply the
 [creation boundary and registration procedure](../aios/references/creation.md)
 before acquiring source: duplicate checks, verified seed identity, the empty
-final root and one correctly launched repository worker are required. Existing
-repositories are adopted in place and are never refreshed from a template.
+final root and one correctly launched repository worker using
+[Orchestrate workers](../aios-orchestrate-workers/SKILL.md) are required.
+Existing repositories are adopted in place and are never refreshed from a
+template.
 
 
 APT is a Project seed, not an installed System or a preclone dependency. Acquire

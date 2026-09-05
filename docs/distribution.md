@@ -10,9 +10,12 @@ contain the supported commands and source references.
 
 Update product versions together and current client documentation. Record
 version history once in [GitHub Releases](https://github.com/onlinesourdough/AIOS-Plugin/releases),
-not a separate changelog. Run package integrity, scoped onboarding,
-layout and migration rehearsals. Inspect actual skill decisions with isolated
-representative requests, including failures and collisions. Check external
+not a separate changelog. Run package integrity, scoped onboarding, layout,
+migration and worker/review policy rehearsals. Inspect actual skill decisions
+with isolated representative requests, including failures and collisions. For
+worker/review changes, include no-signal, delivery-only rework, worker and lead
+signals, correct delivery with an opportunity, duplicate issue and missing
+authority cases. Check external
 plugin/skill metadata validators, and the target native loader where available.
 Use [proof](proof.md) to separate source, synthetic and native observations.
 

@@ -5,9 +5,13 @@ description: Specify substantive AIOS work from an idea, brief or change request
 
 # Spec work
 
-Keep one accepted outcome contract in the current task. Native goal controls
-are optional and subject to their own invocation rules; do not create phase
-goals or invent a budget.
+Keep one accepted outcome contract in the current task. Inspect the actual goal
+representation and state before creating or reusing it; preserve compatible
+unfinished goals and reconcile conflicts without replacement, duplication or
+premature completion. Native state and a durable logical checkpoint are
+distinct; follow [the canonical lifecycle](../aios/references/lifecycle.md) for
+explicit native-goal requests, unavailable controls and proportional small work.
+Do not create phase goals or invent a budget.
 
 Accept rough idea, developed brief, near-complete specification or an existing
 change request. Preserve named sources and resolved wording. Construct missing
@@ -28,7 +32,9 @@ Return exactly READY, REVISE or BLOCKED. READY contains a compact Build
 contract: outcome; proof and measurement owner; relevant context pointers;
 exact repository/worker root; scope/non-goals; authority and risk; dependencies
 and immutable handoffs; expected evidence; operation/recovery and Ship scope;
-launch contract; one bounded worker goal. Other gates name only the minimal
+goal representation, stable identity, accepted contract revision, current state,
+latest evidence/blocker, exact next action; launch contract; one bounded linked
+worker goal and its required acknowledgement. Other gates name only the minimal
 patch or material blocker. An existing Project uses its local full Spec,
 Build, Review and Ship; upstream decisions are accepted input, not a second
 interview. Run [readiness evaluation](references/readiness.md) before Build.

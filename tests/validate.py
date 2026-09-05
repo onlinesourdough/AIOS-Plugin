@@ -14,6 +14,7 @@ NAMES = {
     "aios", "aios-onboard", "aios-spec-work", "aios-build-work",
     "aios-review-work", "aios-ship-work", "aios-check",
     "aios-maintain-context", "aios-create-project", "aios-create-system", "aios-update",
+    "aios-orchestrate-workers", "aios-triage-improvement",
 }
 
 
@@ -183,5 +184,5 @@ def negative_controls():
 if __name__ == "__main__":
     count = validate()
     negative_controls()
-    print(f"PASS: package integrity, 11 distinct shared skills, current Markdown links, owner format, legacy behavior map and immutable archive; {count} package paths")
+    print(f"PASS: package integrity, 13 distinct shared skills, current Markdown links, owner format, legacy behavior map and immutable archive; {count} package paths")
     print("PASS: extracted plugin topology; rejects split sources, install scripts, inherited owner instructions, absent packaged parity and rewritten historical evidence")

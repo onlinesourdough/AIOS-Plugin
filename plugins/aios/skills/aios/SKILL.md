@@ -39,15 +39,19 @@ Choose the shortest justified workflow through the installed skills and their fo
   configured Git checkpoints use its [sync procedure](../aios-maintain-context/references/sync.md).
 - Installation/acceptance inspection uses [Check](../aios-check/SKILL.md);
   package adoption uses [Update](../aios-update/SKILL.md).
-- Concrete learning is handled during [Review](../aios-review-work/SKILL.md).
+- When the lead actually plans, launches or recovers a worker, use
+  [Orchestrate workers](../aios-orchestrate-workers/SKILL.md).
+- Concrete underlying learning is handled during [Review](../aios-review-work/SKILL.md)
+  and, only when a worker or lead reports a signal, [improvement triage](../aios-triage-improvement/SKILL.md).
 
 [Owner concepts](references/routing.md), [one outcome](references/lifecycle.md)
-and [recovery](references/recovery.md) supply shared boundaries. Optional external
-Global Skills are separately installed methods, discovered only for a concrete
-need. `orchestrate-workers` may help choose a worker but cannot supply runtime
-capability, replace AIOS lifecycle or override an actual initial-root boundary.
-Its absence does not block work that the native harness can safely perform.
-Do not copy a Global library or require it before ordinary AIOS use.
+and [recovery](references/recovery.md) supply shared boundaries. Native
+orchestration is conditional: load it only for an actual worker plan, launch or
+recovery. It cannot supply a runtime capability, replace the lifecycle or
+override an actual initial-root boundary. Optional external Global Skills are
+separately installed methods, discovered only for a concrete need; clarification,
+skill-management and offer-shaping remain external. Do not copy a Global
+library or require one before ordinary AIOS use.
 For overlapping work, call the skill/reference that already owns the procedure;
 keep only the caller's trigger and required result here, not a second workflow.
 
@@ -56,9 +60,13 @@ scoped result and its check; no full lifecycle or eval suite. Continue within
 authority through verification and needed review rather than stopping after
 the first implementation. For substantive work record one persistent outcome
 contract, not a goal per phase.
-Use native task state only within the harness's trigger rules; the same session
-record suffices. Default model remains the user's configured choice; this
-method supplies no model policy or worker runtime.
+Inspect and reuse the same goal across Spec, Build, Review and Ship. When the
+task explicitly requests native goal persistence and the harness exposes it,
+verify the native goal's identity and state; otherwise retain a clearly labeled
+logical checkpoint without claiming native continuation. The lead's default
+model remains the user's configured choice.
+Worker model and reasoning are selected per assignment by [Orchestrate workers](../aios-orchestrate-workers/SKILL.md);
+AIOS supplies no model runner or worker runtime.
 
 Only Space, System and Project are first-class owner concepts. AIOS owns one-off
 owner work; Space routes context and does not execute. Independent repositories

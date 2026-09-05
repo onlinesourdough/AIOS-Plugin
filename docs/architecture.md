@@ -6,7 +6,7 @@ permission system or client account data.
 
 | Boundary | Canonical content | Responsibility |
 | --- | --- | --- |
-| `plugins/aios/skills/` | 11 skill entrypoints, focused references and neutral owner assets | Reusable methods, portable to the target harnesses |
+| `plugins/aios/skills/` | 13 skill entrypoints, focused references and neutral owner assets | Reusable methods, portable to the target harnesses |
 | `.agents/plugins/marketplace.json` and plugin manifest | `aios@online-sourdough` and shared skill path | Codex native package discovery |
 | `package.json` | `pi.skills` pointing at the same bodies | Pi native resource discovery; no extensions or dependencies |
 | Chosen owner home, new default `~/.AIOS` | AIOS.md, AIOS_FORMAT, MEMORY.md, CONNECTIONS.md and routed context/registries | Client-owned facts, decisions, access scope and pointers |
@@ -14,7 +14,7 @@ permission system or client account data.
 | Independent System/Project repositories | Local AGENTS, implementation, lifecycle, proof and recovery | Their own canonical operational truth |
 | Native harness | Tools, permissions, credentials, sessions, configuration and UI | Actual capability and execution; the package cannot grant it |
 
-AIOS_FORMAT remains the plain integer `1`; the product version is `0.2.1`.
+AIOS_FORMAT remains the plain integer `1`; the product version is `0.2.2`.
 A name migration is explicit and never inferred from a format number. The
 [compatibility map](../plugins/aios/skills/aios-onboard/references/migration.md)
 owns old OSM marker/package and template AIOS adoption.
@@ -36,7 +36,7 @@ owner-data Git while registry files remain trackable.
 
 ## Core methods and optional capabilities
 
-The [11 public skills](skills.md) are the core method surface. Detailed
+The [13 public skills](skills.md) are the core method surface. Detailed
 procedures have one canonical owner and are linked only when relevant. Spec,
 Build, Review and authorized Ship retain one outcome and one accountable
 repository writer; the native harness must prove actual initial-root capability.
@@ -45,15 +45,21 @@ repository writer; the native harness must prove actual initial-root capability.
 owns personal skill placement, registration, collisions and discovery proof.
 Onboard calls it during setup/moves; ordinary skill changes call the same
 procedure. Check observes its acceptance criteria without owning a repair copy.
-Skill authoring uses the available native Skill Creator. No twelfth entrypoint,
-background watcher or consumer helper is introduced.
+When a lead actually plans, launches or recovers a worker, native
+[worker orchestration](../plugins/aios/skills/aios-orchestrate-workers/SKILL.md)
+owns the worker prompt, route, root, one-writer, proof and handback boundary.
+When Review or the lead identifies a concrete underlying signal, native
+[improvement triage](../plugins/aios/skills/aios-triage-improvement/SKILL.md)
+owns its sanitized, deduplicated and authorized issue action. Both are
+conditional procedures; neither creates a worker or external runtime.
+Skill authoring uses the available native Skill Creator. No background watcher
+or consumer helper is introduced.
 
-External Global Skills, such as orchestration, clarification, skill management
-or offer-shaping methods, are independently owned optional capabilities. They
-were not among the 17 legacy AIOS methods and are not copied into this package.
-An orchestration skill cannot create a runtime surface or weaken the lifecycle
-boundary. Its absence alone does not block suitable native work. An optional
-clarification method does not replace adaptive onboarding with a questionnaire.
+External Global Skills, such as clarification, skill management or offer-shaping
+methods, are independently owned optional capabilities. They are not copied
+into this package. Native worker orchestration cannot create a runtime surface
+or weaken the lifecycle boundary. An optional clarification method does not
+replace adaptive onboarding with a questionnaire.
 A skill-library UI is not a worker runtime; its development skills stay local.
 
 Design and Content Systems are registered independent routes, not bundled

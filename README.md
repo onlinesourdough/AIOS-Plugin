@@ -59,7 +59,7 @@ You do not need to remember skill names. Try:
 - “Remember this decision and where it came from.”
 - “Turn this workflow into a personal skill I can reuse.”
 
-AIOS includes [11 skills](docs/skills.md) for everyday work, setup, updates and
+AIOS includes [13 skills](docs/skills.md) for everyday work, setup, updates and
 keeping your context current. Your repositories keep their own development
 instructions; unrelated code work does not need your personal context.
 

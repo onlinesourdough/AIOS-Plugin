@@ -20,7 +20,8 @@ is a filesystem layout, not shared implementation or authority. No symlink farm.
 
 No registration in an unrelated legacy home. Reject existing path/registry/canonical
 identity duplicates. The lead creates only the final empty unborn main repo,
-then launches the same sole first-class worker that will own implementation.
+then uses [Orchestrate workers](../../aios-orchestrate-workers/SKILL.md) to
+launch the same sole first-class worker that will own implementation.
 Attest exact physical root/Git top level, branch, zero history/refs/remotes and
 no tracked/untracked/ignored files; verify registry absence before source access.
 No temporary template clone or separate seed worker.

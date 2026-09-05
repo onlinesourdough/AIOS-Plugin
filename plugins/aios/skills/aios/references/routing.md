@@ -32,8 +32,10 @@ Do not substitute or implement the capability in shared owner context, or seed
 an existing repository. New ownership uses [creation](creation.md).
 
 For independent repository mutation use the first-class root worker boundary
-in [lifecycle](lifecycle.md). Local truth owns implementation and proof; AIOS
-stores only routing and genuinely shared knowledge. Existing repository work
+in [lifecycle](lifecycle.md). When a lead actually plans, launches or recovers
+that worker, use [Orchestrate workers](../../aios-orchestrate-workers/SKILL.md).
+Local truth owns implementation and proof; AIOS stores only routing and
+genuinely shared knowledge. Existing repository work
 begins locally without automatically reading owner context. Expand only for a
 named gap, to authorized relevant sources in the correct account. Brand labels
 are not access control. Verify account before relying on or exposing data.
@@ -45,8 +47,11 @@ an accepted handoff. ACS owns content judgment, its imported snapshot and
 content package; it does not acquire the upstream editable design truth.
 Either can run alone. A Project can own its own design without a reusable System.
 For design work, read back the declared portable DESIGN.md or equivalent and
-its actual reviewed exports. For content, read back the declared content package
-and its not-posted status.
+its actual reviewed exports. A design result returns that accepted design
+contract, relevant editable or tool-native source, immutable snapshot metadata,
+proof and HANDOFF.md or an owner-declared equivalent when crossing owners. For
+content, return its owned workspace, actual output or package, review proof and
+publisher handoff with explicit not-posted status.
 Use the registered primary route; never copy the System's implementation or
 instructions into AIOS. Tool names and file types do not choose ownership.
 
@@ -59,9 +64,14 @@ routing or improvised substitute work. No synchronized schema or shared live
 state. A new accepted revision requires an explicit new handoff. Completion of
 ADS or ACS never automatically creates a Project or invokes APT.
 
-Return result/proof pointers, remaining decisions, adjacent-route status and
-not-posted status for content. Publishing is separate authorized Ship. Tools
+Return the relevant result/proof pointers, remaining decisions, adjacent-route
+status and stop condition for either route; content additionally returns its
+not-posted status. Publishing is separate authorized Ship. Tools
 such as an editor, browser or workflow runner are replaceable and optional.
+
+A Skill remains a repeatable method without independent operational truth;
+length, code, trigger, schedule or automation alone does not establish System
+ownership. The actual persistent operational responsibility is the criterion.
 
 A routing decision needs only the outcome, selected owner and truth, validation
 and semantic review when material, access versus authority, failure/replay

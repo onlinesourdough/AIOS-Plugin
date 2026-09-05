@@ -10,6 +10,6 @@ const {loadSkillsFromDir} = await import(pathToFileURL(path.resolve(process.argv
 const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
 const result = loadSkillsFromDir({dir: path.resolve(root, pkg.pi.skills[0]), source: 'package'});
 assert.deepEqual(result.diagnostics, []);
-assert.deepEqual(result.skills.map(s => s.name).sort(), ['aios', 'aios-build-work', 'aios-check', 'aios-create-project', 'aios-create-system', 'aios-maintain-context', 'aios-onboard', 'aios-review-work', 'aios-ship-work', 'aios-spec-work', 'aios-update']);
+assert.deepEqual(result.skills.map(s => s.name).sort(), ['aios', 'aios-build-work', 'aios-check', 'aios-create-project', 'aios-create-system', 'aios-maintain-context', 'aios-onboard', 'aios-orchestrate-workers', 'aios-review-work', 'aios-ship-work', 'aios-spec-work', 'aios-triage-improvement', 'aios-update']);
 for (const skill of result.skills) assert.equal(skill.disableModelInvocation, false);
-console.log('PASS: native Pi discovers the 11 selected shared skills, implicit invocation enabled, no diagnostics');
+console.log('PASS: native Pi discovers the 13 selected shared skills, implicit invocation enabled, no diagnostics');

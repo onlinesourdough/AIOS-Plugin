@@ -205,7 +205,7 @@ global skill paths and project-local registrations can conflict. Classify
 which entry owns each discovered skill. Under setup authority, replace only
 the verified obsolete AIOS/legacy registration, preserving original bodies,
 nonreserved owner methods and unrelated packages. Unknown collisions require
-a decision. Re-read the effective skill list after restart: the 11 AIOS names
+a decision. Re-read the effective skill list after restart: the 13 AIOS names
 once, owner methods once, supported links intact. See [adapters](adapters.md), [identity/collision migration](migration.md)
 and [owner-method migration](data.md).
 

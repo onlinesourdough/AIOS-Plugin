@@ -37,7 +37,7 @@ For a released private repository, the authorized account can instead add
 install the same selector. A reviewed immutable commit/tag must exist first.
 Read installed marketplace identity before reusing a conflicting name. Do not
 create a personal marketplace for this repo distribution. Start a fresh task
-and verify the 11 packaged skills are discoverable once. Use the
+and verify the 13 packaged skills are discoverable once. Use the
 [identity migration](migration.md) before replacing an older Method selector or
 legacy/global registration; a matching skill name does not establish ownership.
 
@@ -114,7 +114,7 @@ Codex-specific; Pi has no compulsory sidebar acceptance step.
 ## Pi
 
 The root package.json declares only `pi.skills`, pointing to the very same
-11 plugin skill folders. No extensions or install scripts are provided.
+13 plugin skill folders. No extensions or install scripts are provided.
 Standard local and Git package routes are:
 
 ```sh

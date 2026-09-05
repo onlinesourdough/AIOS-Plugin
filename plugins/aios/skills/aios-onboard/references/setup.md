@@ -112,11 +112,17 @@ acceptance or optional configuration checks. Return configured path, concise
 changes, remaining gaps and the next useful action. Use the business-constraint
 route only when relevant.
 
+For a new or changed owner home, generated context and routes remain provisional
+until the owner confirms or corrects the concise snapshot and selected routes.
+Preserve already accepted facts and answers without asking them again. Carry a
+pending confirmation in the setup checkpoint and do not report full setup
+acceptance while that confirmation is unresolved.
+
 ## Checkpoint and resume
 
 When interrupted, retain the accepted answers/source pointers, completed changes
-and readback, chosen off states, unresolved decision/capability and next useful
-action in the existing task or owner-local setup evidence. Keep that operational
+and readback, chosen off states, unresolved decision/capability, pending owner
+confirmation and next useful action in the existing task or owner-local setup evidence. Keep that operational
 checkpoint out of always-read MEMORY and product assets. Resume from it without
 reinterview; recheck only stale facts or the affected change boundary. Installation,
 capability availability, desktop cutover and useful outcome are separate claims.

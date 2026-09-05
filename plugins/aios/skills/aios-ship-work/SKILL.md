@@ -5,8 +5,8 @@ description: Deliver an exactly reviewed AIOS result under existing action and d
 
 # Ship work
 
-Identify the immutable subject, Review PASS, destination, action, identity,
-recovery path and measurement owner. A change after PASS returns to the same
+Identify the immutable subject, Review PASS, linked goal identity and state,
+destination, action, recovery path and measurement owner. A change after PASS returns to the same
 writer and affected Review. For independent repository delivery, the local Ship
 contract applies in addition to these owner-level boundaries.
 
@@ -24,9 +24,11 @@ Keep three results distinct: delivery PASS/FAIL, recovery PASS/FAIL/NOT
 APPLICABLE and outcome PASS/FAIL/PENDING with its measurement owner/window.
 Final acceptance replays critical journeys after the last relevant mutation,
 accounts for every explicit requirement and reconciles delivered versus
-reviewed state. Missing required proof keeps the outcome open. Worker completion
-requires accepted obligations; lead completion requires the whole requested
-outcome and final evals. See [recovery](../aios/references/recovery.md) on interruptions.
+reviewed state. Missing required proof or Ship approval keeps the same goal open.
+Worker completion requires accepted obligations; lead completion requires the
+whole requested outcome and final evals. Do not treat a logical wait/block as a
+native terminal state without actual control evidence. See
+[recovery](../aios/references/recovery.md) on interruptions.
 
 Before final handback, run the proportional
 [completeness check](../aios-review-work/references/completeness.md) against the

@@ -5,10 +5,11 @@ clarifications. Do not edit the result during evaluation.
 
 | Check | Pass evidence |
 | --- | --- |
-| Requirements | Each explicit requirement maps to the actual final result |
+| Requirements | Each explicit requirement maps to the actual final result, including the goal's accepted contract and any required Ship obligation |
 | Artifacts | Every claimed file, URL or ID exists and resolves in its owning system |
 | Behavior | Relevant execution or inspection directly exercises the requested behavior; synthetic and native evidence remain distinct |
 | Inspectability | The owner has concise links, paths or a useful preview to verify the result |
+| Goal continuity | The same goal and worker have a verified identity, current state, latest evidence/blocker and next legal transition; pending approval/evidence is not marked complete |
 | Honest scope | Partial, unavailable, uncertain or flaky evidence is disclosed, with no unsupported completion claim |
 
 Return PASS only when all applicable required proof is present. Otherwise return

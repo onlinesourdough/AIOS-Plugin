@@ -20,6 +20,10 @@ default to ~/.AIOS only for a new home. Check existing routing before creation;
 never create a second home merely because a default is absent. Resume from
 established facts with no fresh interview. Ask only the next material gap.
 
+When no competing concrete task exists, trigger onboarding for a new or
+demonstrably incomplete owner home. Do not interrupt unrelated work, restart
+established onboarding, create a second home or infer installation authority.
+
 Keep owner routing in the thin global bridge, not an owner-home AGENTS.md that
 would preload personal context into nested repository tasks.
 Create owner files from the supplied neutral assets with ordinary file tools,

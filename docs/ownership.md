@@ -9,6 +9,7 @@
 | Client owner data, voice/principle sources and access decisions | The client, in the chosen AIOS home and authorized source systems |
 | Native account connections, installation and physical cutover | Authorized client/lead using supported native controls and actual readback |
 | Independent Systems and Projects | Their own repositories, primary/local skills, proof and recovery |
+| Native worker orchestration and improvement triage | AIOS maintainer, this repository; conditional procedures with no worker/runtime or issue authority |
 | Optional Global Skills and personal workflows | Their original owners; no copied payload or implicit dependency |
 
 The product repository is not an owner-data home. Its development lifecycle

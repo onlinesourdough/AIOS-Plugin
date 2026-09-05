@@ -9,7 +9,7 @@ and recheck, or Needs decision, plus per-claim PASS/FAIL/NOT VERIFIED.
   answers and chosen off states; authorized answers lead to implemented changes
   and readback. Missing input is not consent. A checkpoint resumes unfinished
   work without reinterview; ordinary tasks do not repeat the onboarding audit.
-- Product: normalized plugin manifest, correct skill paths and the 11 selected
+- Product: normalized plugin manifest, correct skill paths and the 13 selected
   discoverable names; frontmatter valid, local references resolve, no consumer
   scripts/MCP/hooks/dependencies or hidden invocation disabling. Pi points to
   the same bodies. Compare installed release identity, not just a folder name.
@@ -61,12 +61,15 @@ and recheck, or Needs decision, plus per-claim PASS/FAIL/NOT VERIFIED.
 - Lifecycle: one linked persistent outcome, justified owner, root attestation,
   one writer, local full lifecycle, independent lead decision, latest-change
   proof, exact Ship authority, waiting states preserved without polling.
+  When a lead actually plans, launches or recovers a worker, native worker
+  orchestration owns the minimum-context, route, root and handback checks.
   Sensitive changes retain repository-owned security context, scoped negative
   tests, validated findings and affected deployment/retest proof; optional tools
   do not become required scans for ordinary edits.
 - Sync: local mode remains usable; configured mode observes exact live branch,
   scoped commits, authority and equality; dirty/drift state is preserved.
 - Learning: curated source-bound corrections; methods owned in the right place;
+  native improvement triage is loaded only for a concrete worker/lead signal;
   optional external skills remain external; no native-memory dependence.
 - Personal skill discovery: inspect the acceptance evidence required by
   [Maintain context](../../aios-maintain-context/references/owner-skills.md#verify-before-saying-ready).

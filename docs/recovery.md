@@ -1,10 +1,13 @@
 # Recovery
 
-The recovery baseline for AIOS 0.2.1 is AIOS 0.2.0, commit
-`b8c7e79fa315edb9a13f0f4e16f8f56d4ab36ec5`. Preserve its tag and earlier
-artifacts. Local product recovery uses reviewed preimages without overwriting
-unrelated work. Do not reset, stash, force-push or retransfer a canonical Project
-to make a changed upstream fit the review.
+Installed/native rollback baseline is AIOS `v0.2.1`, annotated tag commit
+`010d5035e2eda4754bf0a8d4d0fdb04ef375ca3f`. The local source preimage for
+AIOS 0.2.2 preparation is
+`f28c27323f7f4a492abe537ae02a4eb975b04761`; it is not the installed release or
+the `v0.2.1` tag. Preserve both the tag and earlier artifacts.
+Local product recovery uses reviewed preimages without overwriting unrelated
+work. Do not reset, stash, force-push or retransfer a canonical Project to make
+a changed upstream fit the review.
 
 Package recovery and client-data recovery are separate. Native package rollback
 uses the prior reviewed ref and supported registration controls. Renaming the
@@ -24,6 +27,14 @@ Independent repositories, including ignored/untracked work, need their own
 inventory and recovery. Git cannot recover files it never stored; removal of a
 shortcut or registration does not authorize deleting its target. A live physical
 root move is lead-owned and must reconcile native entry points separately.
+
+Worker recovery keeps the matching active writer open through waiting-review,
+`REVISE`, `BLOCKED`, approval-pending or other actionable states. Optional
+archiving is lead-controlled housekeeping only after terminal completion,
+independent lead acceptance and any authorized Ship or handoff; it uses a
+verified native control and preserves history and linkage. An unsupported
+CLI-only surface is reported as a limitation, not simulated through internal
+state.
 
 Author rehearsals demonstrate scoped synthetic file/registration recovery and
 preserved historical artifacts. They do not prove live native rollback, a

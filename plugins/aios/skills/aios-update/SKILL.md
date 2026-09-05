@@ -37,7 +37,7 @@ skills untouched unless a separately reviewed migration explicitly includes
 those paths. Do not edit caches, native databases or the entire settings file.
 Respect app-control denials and current native permissions.
 
-Read back package source/version and start a fresh session. Verify all 11 public
+Read back package source/version and start a fresh session. Verify all 13 public
 skills are discoverable exactly once and that ordinary owner and independent
 repository requests use the intended routes. Report source installation,
 discovery, desktop entry-point cutover and model behavior separately. A failed

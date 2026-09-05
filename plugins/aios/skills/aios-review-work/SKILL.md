@@ -5,22 +5,32 @@ description: Review substantive AIOS work against its accepted outcome and curre
 
 # Review work
 
-Reconstruct the accepted request, decisions, authority, actual artifacts and
-proof before judging the result. Prefer the lead with that context; use a
+Reconstruct the accepted request, decisions, authority, actual artifacts, proof,
+and the linked goal's actual representation, identity, contract revision, state,
+latest evidence/blocker and next action before judging the result. Review the actual delivery and the affected
+workflow in proportion to the accepted contract; do not turn a scoped review
+into a broad whole-system scan. Prefer the lead with that context; use a
 bounded independent reader when it materially improves confidence and the
-harness and task authorize it. An optional orchestration method is not runtime
-capability or a replacement writer.
+harness and task authorize it. Orchestration is a native conditional procedure,
+not runtime capability or a replacement writer.
 
 
 Local worker review does not replace the lead's independent acceptance.
 This lead gate is not a new OWNER approval request. Existing action authority
 remains valid for its exact scope; ask the owner only for a real missing decision
 or permission. Do not stop routine in-scope repairs at intermediate phase labels.
-The lead reconstructs intent and inspects actual artifacts and latest proof,
-including success, denial, duplicates, failure/recovery and source ownership.
-Review does not mutate its subject. Return PASS, REVISE or BLOCKED. REVISE
-resumes the same worker/goal with a new contract revision; BLOCKED preserves
-state. Record [improvement triage](references/improvement.md) disposition independently of the work gate.
+The lead reconstructs intent and inspects the actual artifacts and latest proof
+for the delivery and affected workflow, including relevant success, denial,
+duplicates, failure/recovery and source ownership. Review does not mutate its
+subject. Return PASS, REVISE or BLOCKED. A wrong or incomplete task result is
+`REVISE` to the same worker and goal with a new contract revision; `BLOCKED`
+preserves state. Keep delivery defects and underlying improvement signals
+separate. A worker's concrete signal or a lead's independent concrete finding
+invokes [improvement triage](../aios-triage-improvement/SKILL.md) for its
+disposition; no signal
+means do not load it, search for a duplicate, take issue action or add a
+mandatory disposition workflow. A correct delivery may still have a signal,
+and `REVISE` and a signal may coexist.
 
 For skill/procedure changes, check that each shared procedure has one canonical
 owner and callers link to it with their trigger and required result. Flag copied
@@ -33,6 +43,12 @@ The same worker reruns impacted tests/evals on final bytes, then the lead
 reconciles requirements against those bytes. Test output from before a change
 cannot accept the changed result. If only an evidence record changes, hash the
 subject separately to avoid claiming self-referential proof.
+
+PASS permits worker completion only when no requested obligation remains.
+Pending approval or evidence keeps the same goal open; required Ship continues
+with that goal and worker. Review must distinguish logical wait/block state from
+native terminal state and check the actual control semantics rather than infer
+completion from a phase label or prompt wording.
 
 
 ## Conditional quality checks

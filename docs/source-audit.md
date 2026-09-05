@@ -8,8 +8,8 @@ The inspected legacy core is
 file in the archive; changed source bytes are not presented as an old audit.
 
 The [packaged map](../plugins/aios/skills/aios-onboard/references/legacy-parity.md)
-records behavior ownership and the reason to keep or merge each route. Eleven
-public entries were accepted after a value review of distinct trigger,
+records behavior ownership and the reason to keep or merge each route. Thirteen
+public entries are now accepted after a value review of distinct trigger,
 consequential behavior/proof, overlap and the simplest clear public interface.
 A legacy file count is not the acceptance target.
 
@@ -19,8 +19,9 @@ files. Client values, reference corpora and actual rendered output are required
 only when relevant to the judgment; unknown preferences are not fabricated.
 No owner-specific punctuation rule, biography or newsletter is included.
 
-The lead independently verified the optional Global boundary: orchestration,
-clarification, skill-management and offer-shaping methods were not in the 17
-core entries. They remain separately installed and owned, not copied from an
-external library or treated as a runtime. Package-native discovery does not
+The lead independently verified the optional Global boundary: clarification,
+skill-management and offer-shaping methods remain separately installed and
+owned, not copied from an external library. Worker orchestration is a native
+conditional skill, and improvement triage is a native conditional skill; neither
+provides a runtime or external authority. Package-native discovery does not
 prove account access, model availability or the ability to launch a worker.
