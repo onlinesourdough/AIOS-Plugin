@@ -28,6 +28,15 @@ and recheck, or Needs decision, plus per-claim PASS/FAIL/NOT VERIFIED.
   When protection is in scope, distinguish instructions, permissions/sandbox
   and hooks, including trust, failure behavior and actual tool/host coverage.
   An untested worker/cloud path is NOT VERIFIED, not inherited local coverage.
+- Codex desktop cutover, when in scope: inspect actual New Chat selection and a
+  fresh task's cwd/routing, plus relevant System/Project entry roots, using the
+  [desktop acceptance](../../osm-onboard/references/adapters.md#codex-desktop-entry-point--when-onboarding-or-cutover-affects-it).
+  CLI tests do not prove GUI defaults. Include associated environment/worktree
+  references and refreshed Environments selection; resolve primary/secondary
+  physical roots, never label-only duplicates or assumed environment configs.
+  Preserve valid setup/actions, credential references, dirty worktrees and custom
+  sections/history/files; do not execute setup commands to inspect them;
+  unavailable native UI proof leaves cutover PENDING even if installation PASS.
 - Owner data: supported OSM_FORMAT, small OSM.md index and MEMORY, meaningful
   selective routes, no invented facts/secrets, CONNECTIONS distinguishes access
   from exact authority. Unknown custom data and owner methods survive updates.

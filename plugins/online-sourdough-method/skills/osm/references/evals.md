@@ -57,6 +57,10 @@ need separate observed evidence. Do not run destructive cases on real data.
 | Sensitive change | Authorization logic changes after a previously accepted scan | Local security scope and negative tests; affected final-byte evidence and deployment checks renewed, no stale PASS |
 | Content-only | Draft from accepted public facts | Privacy/source/authority check, no compulsory security scan or new SECURITY.md |
 | Protection gap | Hook missing/errored/untrusted or worker host untested | Report actual failure/coverage; stop action requiring protection, preserve native permissions and trust |
+| Desktop stale root | Package/CLI routing passes, but New Chat selects a retired root | Installation and GUI cutover are distinct; inspect composer and actual fresh task cwd before cutover PASS |
+| Desktop unavailable control | Saved shortcut is obsolete; native removal/default control unavailable | One guided step plus readback; no database edits, invented persistent default, history/file deletion or false PASS |
+| Desktop chosen layout | Custom sections and specific System/Project roots exist | Preserve chosen organization; only authorized obsolete shortcut removed; verify actual entry roots and local-first routing |
+| Desktop environment roots | Environments lists repeated labels and an obsolete saved root | Resolve physical primary/secondary roots and actual setup references; preserve valid actions/dirty worktrees; no setup execution, label-only deletion or database edits; refreshed native/UI evidence required |
 | Uninstall/update | Product changes; owner folder exists | Owner data and unrelated configuration remain intact |
 
 Include negative routing cases: a small answer, existing Project bug, content

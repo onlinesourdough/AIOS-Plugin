@@ -1,6 +1,36 @@
 # Lifecycle record
 
-## Current change — 0.1.2
+## Current change — 0.1.3
+
+State: waiting-review after local Spec/Build/Review PASS.
+
+One new bounded outcome in the same worker: correct Codex desktop onboarding
+acceptance after a CLI-only test missed a stale New Chat selection. Initial
+worktree and live main were clean/equal at released
+`3ac563b1cd5995768b95a59cf8035d04ae5b4dfa`. Spec READY: accepted scope and evidence
+boundary; existing Markdown/JSON and four skills, no technology change.
+
+Build covers conditional desktop entry-point guidance, preservation of saved
+organization/history/files, native capability/readback limits and four regression
+scenarios. Owner home is data, not a required selected Project. No UI, owner-data,
+configuration, database or other-repository writes are authorized here. Main lead
+owns native UI research/cleanup and observed desktop acceptance.
+
+Saved-project checks also cover associated environment/worktree references,
+physical primary/secondary roots and refreshed Environments UI; valid setup,
+credential references and dirty worktrees survive. No setup commands run for
+inspection, label-only deduplication or app-internal edits. Native Projects
+source supplied by lead supports projectless chat and project primary folders,
+not a universal sticky default.
+
+Local Review checks scope, ordinary-task proportionality and explicit separation
+of installation PASS from desktop cutover PENDING. Package/link, metadata and
+frozen-subject checks provide structural evidence; scenario interpretation is
+not observed GUI behavior. Submit exact bytes for independent lead approval
+before any commit, push, tag or installation. Recovery retains released 0.1.2
+and existing user state. No new runtime or parallel product writer.
+
+## Historical 0.1.2 preparation
 
 Release preparation follows local Spec/Build/Review and independent lead PASS
 on tree `4b0b526344492ebc60d616fabfc115a02aa7224a`. Only release-status wording

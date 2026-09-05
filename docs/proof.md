@@ -7,7 +7,28 @@ live main and the peeled v0.1.1 tag at
 `e65157f3e8a07458b2c0ea510bbcde6997d63ee8` before 0.1.2 work. Installation
 acceptance is lead-owned evidence; it is not a new runtime test by this worker.
 
-## 0.1.2 release evidence
+## 0.1.3 local preparation
+
+Accepted defect: CLI projectless routing did not establish actual desktop New
+Chat selection. New acceptance guidance requires native composer selection,
+fresh task cwd/owner routing and relevant System/Project roots; it preserves
+custom organization, history and files. Four synthetic request states cover a
+stale root, unavailable UI control chosen entry roots and environment/worktree references. Local interpretation
+must retain cutover PENDING without observed UI proof, even if installation PASS.
+
+Local Review: PASS for the scoped instructions and four regression interpretations:
+stale composer selection cannot inherit CLI PASS; unavailable control needs a
+guided step/readback; chosen entry roots remain distinct; duplicate environment
+labels need physical-root/setup inspection before authorized cleanup. These are
+source interpretations, not executed UI tests.
+
+Package/link and metadata validation cover the instruction changes, not native
+GUI behavior. No desktop control was exercised by this worker; actual cutover
+and runtime acceptance belong to the lead. Independent final-byte approval is
+required before delivery. The current inventory identifies 0.1.3 source; prior
+0.1.2 release evidence remains historical below.
+
+## Historical 0.1.2 release evidence
 
 Local Spec/Build/Review: PASS for the bounded layout and security refinement.
 Independent lead Review: PASS on tree

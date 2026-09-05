@@ -34,6 +34,18 @@ is released and installed according to lead acceptance, at commit
 and configuration loading conditional, and retained proportional checks and
 continued authorized implementation through review.
 
+## 0.1.3 release content
+
+Codex desktop onboarding distinguishes package installation from actual New Chat
+selection and fresh-task routing. It preserves chosen sidebar organization,
+history and files, changes only authorized obsolete shortcuts, and requires
+native UI readback before claiming cutover, including associated environment/
+worktree references and physical project roots. CLI projectless tests cannot prove
+a GUI default. Unsupported controls leave one guided step and explicit pending
+evidence. No new skill, runtime or mandatory Pi sidebar procedure is added.
+This version is in local preparation for independent lead Review; installed
+desktop acceptance is a separate observation.
+
 ## 0.1.2 release content
 
 New homes default to ~/.OSM. New Project and System checkouts live physically

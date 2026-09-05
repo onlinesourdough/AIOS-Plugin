@@ -40,6 +40,48 @@ If precedence or conflicting instructions cannot be safely resolved, report
 the exact blocker instead of claiming setup passed. Personalization and its
 backing instructions are one surface, not two independent policies.
 
+## Codex desktop entry point — when onboarding or cutover affects it
+
+The owner home stores data; it need not be the selected app Project. Ordinary
+owner chat should work with no selected Project, using the global bridge.
+Inspect the actual New Chat composer selection and relevant saved roots through
+available native tools/UI. Do not promise a persistent default unless that
+client's supported feature and effective behavior have been verified.
+[Native Projects guidance](https://learn.chatgpt.com/docs/projects) distinguishes
+chat without a Project from chats within a Project starting at its primary folder;
+that does not establish a universal sticky New Chat default or make Quick chat
+an equivalent Codex entry point.
+
+Inventory stale saved roots separately from files and task history. Preserve
+chosen custom sections, names, active roots and history. Remove only specifically
+authorized obsolete shortcuts through a supported native control; never treat
+shortcut cleanup as permission to delete Projects, repositories or owner data.
+Include associated local environment/worktree setup references in this scoped
+inventory. Resolve physical primary/secondary roots; do not deduplicate by label
+or assume every displayed Project has an environment configuration. Preserve
+valid setup/actions, credential references and dirty worktrees without executing
+setup commands or exposing credentials. Correct only authorized stale native
+registrations through supported interfaces. Do not edit app databases/internal
+state or infer success from a configuration file.
+
+Check whether the required native inspection/action exists before attempting it.
+If unavailable, give one precise guided UI step, then obtain actual readback of
+its result. Keep desktop cutover PENDING until verified; installation may PASS
+independently. Do not substitute a CLI test or a tool-created projectless task for
+interaction with the real New Chat entry point.
+
+Acceptance: open New Chat, observe its selected Project (or no selection), start
+an ordinary fresh owner task and verify its actual cwd and owner routing. Also
+verify the selected root and local-first behavior of the relevant System/Project
+entry points. Record observed client/version, selection and task-root evidence;
+navigate away and back to New Chat before claiming the selection persists.
+Refresh Settings > Environments > Select a project and verify the list agrees
+with retained canonical Projects, without authorized obsolete or dangling duplicate
+roots. An unavailable UI leaves that check pending with one targeted step. A single
+correct task does not prove a persistent default. Repeat only when setup or a
+requested UI repair changes this boundary, not during ordinary work. This is
+Codex-specific; Pi has no compulsory sidebar acceptance step.
+
 ## Pi
 
 The root package.json declares only `pi.skills`, pointing to the very same

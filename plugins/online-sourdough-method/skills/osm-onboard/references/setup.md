@@ -65,7 +65,10 @@ Missing optional tools do not block a local result.
 Complete one small useful artifact tied to the user's focus. Check root and
 bridge readback, format, selected routes, connection gaps and the first result.
 For new or changed setup, test in a fresh session with an ordinary request that
-does not name OSM. If unavailable, report setup artifacts verified and activation
+does not name OSM. For Codex desktop onboarding/cutover, also verify the actual
+[New Chat entry point](adapters.md#codex-desktop-entry-point--when-onboarding-or-cutover-affects-it);
+CLI projectless evidence alone does not establish GUI selection or sidebar state.
+If unavailable, report setup artifacts verified and activation
 NOT VERIFIED. An unchanged resume does not require repeating cold installation
 acceptance or optional configuration checks. Return configured path, concise
 changes, remaining gaps and the next useful action. Use the business-constraint
