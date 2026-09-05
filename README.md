@@ -1,91 +1,107 @@
-# Online Sourdough Method
+# AIOS
 
-Four instruction skills for useful owner-level work, selective context, and
-reviewed delivery. Owner data lives in a separate user-owned folder, default
-`~/.OSM` for new homes. Existing configured homes resume in place. This repository
-contains no owner profile and requires no server,
-MCP, hooks, background process, or consumer runtime scripts.
+AIOS helps you turn an idea or a current business need into useful, reviewed
+work. It remembers the context you choose to keep, finds the right owner for a
+task, and carries substantive work through Spec, Build, Review and authorized
+Ship. Small requests stay small.
 
-| Skill | Use |
+Install it as a native Codex plugin or Pi package. Both expose the same 11 real
+skills. Your facts, preferences and working context live in your own folder,
+normally `~/.AIOS`, separately from the installed package.
+
+## Start with your invitation
+
+Open Codex and sign in using its [official getting-started guidance](https://learn.chatgpt.com/docs/app).
+Accept your invitation to the private
+[Method repository](https://github.com/onlinesourdough/Method) with the GitHub
+account that received access. If you already use Pi, the same package supports
+its native installation path.
+
+Give your agent the repository link and say:
+
+> Set up AIOS for my current work using https://github.com/onlinesourdough/Method.
+> Read its README, install the reviewed AIOS release through the supported native
+> package flow, and help me get started. My current focus is …
+
+The agent can resolve an existing reviewed AIOS release or use the exact ref
+supplied with your invitation. It should verify access, inspect existing setup,
+perform authorized supported installation, then continue adaptive onboarding.
+Unreviewed `main` is not the default. If access or an installation control is
+missing, it gives one targeted step and verifies the result; never paste a token
+into the conversation. Start a fresh conversation when native installation
+requires it, then say **“Continue setting up AIOS for my current work.”**
+
+A brief walkthrough can explain the first useful task, context and permission
+choices.
+
+If you prefer a terminal, replace `REVIEWED_REF` with that existing reviewed tag
+or exact commit. For Codex:
+
+```sh
+codex plugin marketplace add onlinesourdough/Method --ref REVIEWED_REF
+codex plugin add aios@online-sourdough
+```
+
+For Pi:
+
+```sh
+pi install git:github.com/onlinesourdough/Method@REVIEWED_REF
+```
+
+Use one installation source per harness. For an earlier Method or template AIOS
+installation, ask **“Help me adopt this AIOS release while preserving my existing
+context.”** The [migration route](plugins/aios/skills/aios-onboard/references/migration.md)
+resolves origins and overlapping registrations before activation. Detailed
+[native installation and recovery](plugins/aios/skills/aios-onboard/references/adapters.md)
+covers existing setups and client-specific controls.
+
+## What happens during setup
+
+AIOS inspects what you already have and asks only for the next useful missing
+piece. It uses an available permitted question interface or ordinary
+conversation. Known answers and existing privacy choices carry forward.
+It creates relevant sourced context and concise memory, verifies the connections
+needed for your work, and helps complete a first useful task. An interruption
+leaves a checkpoint so you can resume without another interview.
+
+You choose which information to retain and which actions to authorize. Git
+backup, external skills and native memory/history are optional. AIOS uses the
+harness's existing tools and permissions; installing instructions does not
+connect accounts or grant access to your other data.
+
+## Use it in ordinary language
+
+| You want to… | Try… |
 | --- | --- |
-| osm | Route business work to its smallest justified owner and lifecycle |
-| osm-onboard | Create or resume portable context and a thin native bridge |
-| osm-maintain-context | Curate facts, corrections, routes and optional sync |
-| osm-check | Inspect installation, compatibility and acceptance evidence |
+| Find the next useful result | “What is the main constraint on this launch, and what should we do next?” |
+| Clarify an idea | “Spec this idea using what we already know.” |
+| Get agreed work done | “Build the accepted change and carry it through review.” |
+| Inspect a result | “Review this against the original request and the actual evidence.” |
+| Deliver approved work | “Ship this reviewed version to the destination I authorized.” |
+| Keep context current | “Keep this decision and its source in my context.” |
+| Resume setup | “Continue my AIOS setup from where we stopped.” |
 
-[Installation](plugins/online-sourdough-method/skills/osm-onboard/references/adapters.md)
-uses this repository's Codex marketplace or Pi package. Both load the same
-skill bodies in `plugins/online-sourdough-method/skills/`. Ordinary language
-can select them; automatic selection must be tested in the target harness.
-Start with “Set me up for my current work.” Existing users resume their facts;
-there is no fresh interview or AIOS template clone.
+You can also select any skill explicitly. The
+[skill guide](docs/skills.md) lists the 11 workforms, including Project/System
+creation, update and installation checks. Readiness,
+completeness and publish-safety evaluations run at their owning phase gates;
+System routing and configured sync are selected when relevant.
+Independent repositories keep their own instructions, files and lifecycle.
+AIOS does not preload personal context for an unrelated repository task.
 
-Canonical product: [onlinesourdough/Method](https://github.com/onlinesourdough/Method).
-The [v0.1.0 private prerelease](https://github.com/onlinesourdough/Method/releases/tag/v0.1.0)
-is the Codex-primary pilot at commit `9dc607f14441c9b085f29aa7ce9019e7c738382a`.
-Lead acceptance verified ordinary Codex owner-chat routing and independent
-repository isolation. Pi native resource loading passed; live Pi inference
-remains untested and requires a reachable configured model. Claude and
-Rockflow/Linux are untested. Local source revisions are not installed releases.
+## What is included
 
-The [v0.1.1 private release](https://github.com/onlinesourdough/Method/releases/tag/v0.1.1)
-is released and installed according to lead acceptance, at commit
-`e65157f3e8a07458b2c0ea510bbcde6997d63ee8`. It narrowed discovery, made context
-and configuration loading conditional, and retained proportional checks and
-continued authorized implementation through review.
+The package contains instructions and neutral owner-file assets, with no server,
+MCP, hooks or consumer scripts. The [architecture](docs/architecture.md) explains
+the boundary between the package, your portable context and native configuration.
+Optional Global Skills and independent Design/Content Systems are discovered
+when a task needs them; their implementations and personal workflows are not
+bundled. A client's newsletter, voice corpus and operating principles remain
+that client's sources.
 
-## 0.1.4 release content
-
-Adaptive onboarding reuses known answers and chooses the next material question
-or authorized action. It creates relevant sourced context, memory and Space
-routes, verifies needed tools/harness state and completes a useful first task.
-A checkpoint resumes gaps without reinterview; ordinary tasks stay scoped.
-
-Harness alignment separates selected Project, actual workspace/cwd, saved local
-roots, cloud environments and chosen sidebar presentation. Privacy opt-ins and
-explicit app-control denials remain boundaries; diagnostic state is not a writable
-settings interface. Requested changes need supported actions and actual readback.
-Four instruction skills and owner format 1 remain unchanged, with no runtime.
-This source awaits independent lead Review; no installed behavior is implied.
-
-## Historical 0.1.3 release content
-
-Codex desktop onboarding distinguishes package installation from actual New Chat
-selection and fresh-task routing. It preserves chosen sidebar organization,
-history and files, changes only authorized obsolete shortcuts, and requires
-native UI readback before claiming cutover, including associated environment/
-worktree references and physical project roots. CLI projectless tests cannot prove
-a GUI default. Unsupported controls leave one guided step and explicit pending
-evidence. No new skill, runtime or mandatory Pi sidebar procedure is added.
-This version is in local preparation for independent lead Review; installed
-desktop acceptance is a separate observation.
-
-## 0.1.2 release content
-
-New homes default to ~/.OSM. New Project and System checkouts live physically
-under its projects/ and systems/ directories, with their own Git and local
-lifecycle, excluded from owner Git. Existing deliberate external paths remain
-supported. A thin global bridge routes to OSM.md; no owner-context AGENTS file
-is added above nested repositories. Ordinary work reads only relevant context.
-
-The security refinement distinguishes instructions, native permissions/sandbox
-and optional hooks; scopes connection access; and makes deletion/recovery limits
-explicit. Sensitive changes reuse the existing lifecycle with conditional
-security evidence. No compulsory scan, hook runtime or extra skill is added.
-The four skill identities and owner format 1 are unchanged. Updating the package
-does not move an owner home, clone repositories or alter native trust/settings.
-See [proof](docs/proof.md) for release evidence and capability limits.
-
-Contributors start with [AGENTS.md](AGENTS.md) and select the relevant
-[local Project route](.agents/skills/README.md); consult [lifecycle](docs/lifecycle.md)
-when resuming substantive work. This repository owns Spec, Build, Review,
-recovery and authorized Ship. Consumers receive the plugin instructions, not
-this repository's development lifecycle.
-
-[Parity](docs/parity.md) · [Proof](docs/proof.md) · [Recovery](docs/recovery.md)
-· [Ownership](docs/ownership.md) · [License](LICENSE)
-
-Author checks (Python 3.12+): `python3 tests/validate.py`,
-`python3 tests/revision2-rehearsal.py` and `python3 tests/layout-rehearsal.py`.
-Python is only a maintenance tool.
-External scaffold validators and behavioral evidence are listed in the proof record.
+Codex and Pi are the target harnesses. Actual installation and fresh-session
+behavior must be checked on the receiving client; package validation alone is
+not runtime acceptance. No Claude or Hermes compatibility is claimed.
+See [current proof and limits](docs/proof.md), [recovery](docs/recovery.md) and
+[change history](CHANGELOG.md). Contributors start with [AGENTS.md](AGENTS.md)
+and the [release procedure](docs/distribution.md).

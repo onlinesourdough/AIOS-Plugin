@@ -8,8 +8,12 @@ import shutil
 import tarfile
 
 ROOT = Path(__file__).resolve().parents[1]
-PLUGIN = ROOT / "plugins/online-sourdough-method"
-NAMES = {"osm", "osm-onboard", "osm-maintain-context", "osm-check"}
+PLUGIN = ROOT / "plugins/aios"
+NAMES = {
+    "aios", "aios-onboard", "aios-spec-work", "aios-build-work",
+    "aios-review-work", "aios-ship-work", "aios-check",
+    "aios-maintain-context", "aios-create-project", "aios-create-system", "aios-update",
+}
 
 
 def require(condition, message):
@@ -40,7 +44,7 @@ def packaged_topology(plugin, expected_reserved):
         extracted = location / "extracted" / plugin.name
         for document in extracted.rglob("*.md"):
             list(markdown_links(document, extracted))
-        entry = extracted / "skills/osm-onboard/SKILL.md"
+        entry = extracted / "skills/aios-onboard/SKILL.md"
         visited, pending = set(), [entry.resolve()]
         while pending:
             document = pending.pop()
@@ -49,7 +53,7 @@ def packaged_topology(plugin, expected_reserved):
             visited.add(document)
             pending.extend(target for target in markdown_links(document, extracted)
                            if target.is_file() and target.suffix == ".md")
-        parity = extracted / "skills/osm-onboard/references/legacy-parity.md"
+        parity = extracted / "skills/aios-onboard/references/legacy-parity.md"
         require(parity.resolve() in visited, "onboarding cannot reach packaged parity")
         rows = re.findall(r"^\| (aios[^ ]*) \|", parity.read_text(), re.M)
         require(len(rows) == len(set(rows)) and set(rows) == expected_reserved, "packaged parity coverage")
@@ -57,11 +61,11 @@ def packaged_topology(plugin, expected_reserved):
 
 
 def validate(root=ROOT):
-    plugin = root / "plugins/online-sourdough-method"
+    plugin = root / "plugins/aios"
     manifest = json.loads((plugin / ".codex-plugin/plugin.json").read_text())
     package = json.loads((root / "package.json").read_text())
     market = json.loads((root / ".agents/plugins/marketplace.json").read_text())
-    require(manifest["name"] == plugin.name, "plugin identity")
+    require(manifest["name"] == package["name"] == plugin.name, "plugin identity")
     require(manifest["version"] == package["version"], "release versions differ")
     require(re.fullmatch(r"\d+\.\d+\.\d+", manifest["version"]), "version")
     require(not {"scripts", "dependencies", "devDependencies", "peerDependencies"} & package.keys(), "consumer dependency/script")
@@ -88,24 +92,32 @@ def validate(root=ROOT):
     for path in plugin.rglob("*"):
         require(not path.is_symlink(), f"nonportable package symlink: {path}")
         if path.is_file():
-            require(path.suffix in {".md", ".json"} or path.name in {"LICENSE", "OSM_FORMAT", ".gitignore"}, f"unexpected runtime file {path}")
+            require(path.suffix in {".md", ".json"} or path.name in {"LICENSE", "AIOS_FORMAT", ".gitignore"}, f"unexpected runtime file {path}")
     for path in root.rglob("*.md"):
+        if path.is_relative_to(root / "docs/archive/0.1.x"):
+            continue  # Exact historical bytes; relative links resolve at their original release.
         if path == root / "HANDOFF.md" or any(part in {".git", ".tmp"} for part in path.relative_to(root).parts):
             continue
         require(all(line == line.rstrip() for line in path.read_text().splitlines()), f"trailing whitespace: {path}")
         list(markdown_links(path))
         require(not re.search(r"/(?:Users|home)/[\w.-]+/", path.read_text()), f"personal machine path: {path}")
         require(not re.search(r"\b[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}\b", path.read_text()), f"execution session identity: {path}")
-    owner = codex_path / "osm-onboard/assets/owner"
+    owner = codex_path / "aios-onboard/assets/owner"
     require(not list(owner.rglob("AGENTS.md")) and not list(owner.rglob("AGENTS.override.md")),
             "inherited owner instructions in assets")
-    require((owner / "OSM_FORMAT").read_text() == "1\n", "owner format")
-    require(len((owner / "OSM.md").read_bytes()) < 6000, "oversized entry")
-    require(len((owner / "OSM.md").read_text().splitlines()) <= 100, "entry lines")
+    require((owner / "AIOS_FORMAT").read_text() == "1\n", "owner format")
+    require(len((owner / "AIOS.md").read_bytes()) < 6000, "oversized entry")
+    require(len((owner / "AIOS.md").read_text().splitlines()) <= 100, "entry lines")
     expected_reserved = set(json.loads((root / "docs/source-inventory.json").read_text()))
     require(len(expected_reserved) == 17, "legacy source inventory count")
     packaged_topology(plugin, expected_reserved)
     require(not re.search(r"^\| aios", (root / "docs/parity.md").read_text(), re.M), "duplicate developer parity map")
+    archive = json.loads((root / "docs/archive/inventory.json").read_text())
+    for relative, expected in archive["files"].items():
+        archived = root / relative
+        require(archived.resolve().is_relative_to((root / "docs/archive/0.1.x").resolve()), "archive path escapes history")
+        require(hashlib.sha256(archived.read_bytes()).hexdigest() == expected,
+                f"historical bytes changed: {relative}")
     return len(list(plugin.rglob("*")))
 
 
@@ -132,7 +144,7 @@ def negative_controls():
                 continue
             raise AssertionError(f"negative control accepted: {mutation}")
         (copy / "package.json").write_text(json.dumps(package))
-        owner_agents = copy / "plugins/online-sourdough-method/skills/osm-onboard/assets/owner/AGENTS.md"
+        owner_agents = copy / "plugins/aios/skills/aios-onboard/assets/owner/AGENTS.md"
         owner_agents.write_text("Read personal owner context before every task.\n")
         try:
             validate(copy)
@@ -141,7 +153,7 @@ def negative_controls():
         else:
             raise AssertionError("negative control accepted: inherited owner instructions")
         owner_agents.unlink()
-        parity = copy / "plugins/online-sourdough-method/skills/osm-onboard/references/legacy-parity.md"
+        parity = copy / "plugins/aios/skills/aios-onboard/references/legacy-parity.md"
         parity.unlink()
         try:
             validate(copy)
@@ -149,10 +161,19 @@ def negative_controls():
             require("legacy-parity.md" in str(error), f"wrong missing-parity failure: {error}")
         else:
             raise AssertionError("negative control accepted: absent packaged parity")
+        shutil.copy2(ROOT / "plugins/aios/skills/aios-onboard/references/legacy-parity.md", parity)
+        archived = copy / "docs/archive/0.1.x/behavior-review.md"
+        archived.write_text(archived.read_text() + "\nChanged historical claim.\n")
+        try:
+            validate(copy)
+        except AssertionError as error:
+            require("historical bytes changed" in str(error), f"wrong archive failure: {error}")
+        else:
+            raise AssertionError("negative control accepted: rewritten historical evidence")
 
 
 if __name__ == "__main__":
     count = validate()
     negative_controls()
-    print(f"PASS: package integrity, shared harness source, four skills, all Markdown links, owner format, parity; {count} package paths")
-    print("PASS: extracted plugin topology; rejects split sources, install scripts, inherited owner instructions and absent packaged parity")
+    print(f"PASS: package integrity, 11 distinct shared skills, current Markdown links, owner format, legacy behavior map and immutable archive; {count} package paths")
+    print("PASS: extracted plugin topology; rejects split sources, install scripts, inherited owner instructions, absent packaged parity and rewritten historical evidence")

@@ -1,8 +1,8 @@
 [
-  {"id":"cold","request":"Set me up in the folder Client Work/OSM. I need a concise launch checklist for a pottery workshop.","state":"No home or Git; unrelated bridge instructions already present."},
+  {"id":"cold","request":"Set me up in the folder Client Work/AIOS. I need a concise launch checklist for a pottery workshop.","state":"No home or Git; unrelated bridge instructions already present."},
   {"id":"resume","request":"Continue my workshop plan.","state":"Existing custom home, focus and durable correction; no Git or native memory."},
-  {"id":"repo","request":"Fix the export filename in this repository.","state":"Repository AGENTS and local lifecycle present; global OSM bridge also installed."},
-  {"id":"schema","request":"Update my context using the new Method.","state":"OSM_FORMAT is 2; installed product supports 1."},
+  {"id":"repo","request":"Fix the export filename in this repository.","state":"Repository AGENTS and local lifecycle present; global AIOS bridge also installed."},
+  {"id":"schema","request":"Update my context using the new Method.","state":"AIOS_FORMAT is 2; installed product supports 1."},
   {"id":"legacy","request":"Migrate this context and preserve my custom quoting skill.","state":"Unversioned source, legacy registry has extra owner column, one reserved and one custom skill."},
   {"id":"conflict","request":"Resume the migration.","state":"Destination MEMORY changed since the accepted map; source MEMORY differs."},
   {"id":"final-edit","request":"Ship the accepted checklist.","state":"Acceptance names artifact A; the last edit produced B; earlier tests passed on A."},

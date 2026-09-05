@@ -5,10 +5,10 @@
   },
   "plugins": [
     {
-      "name": "online-sourdough-method",
+      "name": "aios",
       "source": {
         "source": "local",
-        "path": "./plugins/online-sourdough-method"
+        "path": "./plugins/aios"
       },
       "policy": {
         "installation": "AVAILABLE",

@@ -1,166 +1,59 @@
-# Proof and review boundary
+# AIOS 0.2.0 proof
 
-## 0.1.4 evidence boundary
+This record describes the current candidate, not an installed client. Prior
+0.1.x evidence is retained byte-for-byte in [the archive](archive/0.1.x/README.md)
+and is never reused as acceptance of changed instructions.
 
-Released 0.1.3 and live main matched `3000720d17494ccb634e7f19966892cf1e8a160c`
-on clean-worker resumption. The current review inventory describes the 0.1.4
-candidate; previous release acceptance does not cover it. No owner Mac data,
-configuration, app UI or cloud environment was changed by this worker.
-
-Seven new request fixtures cover adaptive full setup, unsubmitted choices,
-checkpoint resume, null-selection/workspace mismatch, explicit app-control denial,
-separate client surfaces and active-versus-historical legacy references.
-Interpretation and filesystem/package checks are separate from runtime proof.
-Local Review and independent forward interpretation found no material gap in
-seven scenarios. The independent reader did not consult expected eval answers;
-this still establishes interpretation, not execution. Existing synthetic
-preservation/layout rehearsals pass. Plugin and shared-skill metadata validators
-and package/link checks pass; exact outputs accompany the frozen subject in
-ignored review evidence. No consumer scripts or dependencies were introduced.
-
-Lead-owned acceptance must observe supported mutations/readback and cold task
-routing; unavailable or denied controls cannot acquire a synthetic PASS.
-
-## Historical evidence boundary
-
-0.1.1 is released and installed per accepting lead. This worker freshly verified
-live main and the peeled v0.1.1 tag at
-`e65157f3e8a07458b2c0ea510bbcde6997d63ee8` before 0.1.2 work. Installation
-acceptance is lead-owned evidence; it is not a new runtime test by this worker.
-
-## 0.1.3 local preparation
-
-Accepted defect: CLI projectless routing did not establish actual desktop New
-Chat selection. New acceptance guidance requires native composer selection,
-fresh task cwd/owner routing and relevant System/Project roots; it preserves
-custom organization, history and files. Four synthetic request states cover a
-stale root, unavailable UI control chosen entry roots and environment/worktree references. Local interpretation
-must retain cutover PENDING without observed UI proof, even if installation PASS.
-
-Local Review: PASS for the scoped instructions and four regression interpretations:
-stale composer selection cannot inherit CLI PASS; unavailable control needs a
-guided step/readback; chosen entry roots remain distinct; duplicate environment
-labels need physical-root/setup inspection before authorized cleanup. These are
-source interpretations, not executed UI tests.
-
-Package/link and metadata validation cover the instruction changes, not native
-GUI behavior. No desktop control was exercised by this worker; actual cutover
-and runtime acceptance belong to the lead. Independent final-byte approval is
-required before delivery. The current inventory identifies 0.1.3 source; prior
-0.1.2 release evidence remains historical below.
-
-## Historical 0.1.2 release evidence
-
-Local Spec/Build/Review: PASS for the bounded layout and security refinement.
-Independent lead Review: PASS on tree
-`4b0b526344492ebc60d616fabfc115a02aa7224a`, including independent package,
-layout, subject and revision checks. Subsequent changes only update release
-status and inventory; final-byte approval precedes external Ship.
-Authorized delivery then covers private Method main, v0.1.2 tag/release and
-fast-forward of the clean primary checkout, with exact live readback in the
-handoff. Installation and runtime acceptance remain lead-owned and are not
-implied by this source approval. The [inventory](review-subject.json) identifies release bytes,
-not installed protection. Manifests agree on 0.1.2; four shared skills and
-owner format 1 remain unchanged. No owner data or native configuration changed.
-
-| Check | Evidence and limit |
+| Boundary | Current evidence state |
 | --- | --- |
-| Package integrity | Shared Codex/Pi bodies, links, extracted-plugin parity, no runtime dependencies; negative controls reject split sources, install scripts, inherited owner AGENTS and missing parity |
-| Revision-2 rehearsal | Synthetic owner-method adaptation, format denial, replay/conflict and configuration preservation still pass |
-| Layout rehearsal | Real Git roots/indexes in disposable fixtures; trackable registries, ignored independent Project/System checkouts, no ancestor owner AGENTS asset; missing ignore and already tracked checkout are rejected |
-| Move and recovery | Separate synthetic context/repository copies preserve ignored/untracked bytes and modes; equal replay makes no writes; later owner edit is retained |
-| Independent forward interpretation | Nine input scenarios cover new/resumed home, nested repository, injection, deletion, read scope, sensitive change, content-only and protection gap; no material gap found |
-| External validators | Plugin and all ten local/shared skills validate using an existing author Python/PyYAML environment; no installation required |
+| Legacy source and selected skill responsibilities | Fresh 17-method source inventory; behavior/value dispositions in packaged parity map |
+| Shared Codex/Pi package and 11 public skill entrypoints | PASS: package integrity and native Pi loader observe the 11 selected shared entries with implicit invocation enabled |
+| Package references, neutral assets and historical-byte integrity | PASS: isolated plugin topology and all current links; exact historical archive hashes and negative controls |
+| Owner layout, contextual adaptation and identity migration | PASS: author-only onboarding, layout and migration after-image rehearsals; source preservation, replay, conflict and scoped restore checks |
+| Independent realistic phase/onboarding execution | Lead observed stable-source review-only and typo executions; frozen final reconciliation pending |
+| Independent lead Review | Pending frozen subject |
+| Private Git/tag/release delivery | Pending exact reviewed Ship instruction |
+| Native discovery/installation, desktop cutover and client model behavior | Lead-owned, pending; source validation is not runtime acceptance |
+| Native client rollback | Not verified by this product worker |
 
-Independent interpretation followed the skill's normal links, including its eval
-table; it is not blind prediction. Scripted after-images and missing ancestor
-files do not prove cold model behavior. Fresh projectless discovery and nested
-repository no-personal-preload are lead tests. Live migration, native hook/trust
-or sandbox coverage, active cyber scans and installed 0.1.2 behavior are not
-claimed. Security fixtures are harmless instructions/data; no destructive guard
-probe or customer/third-party test was executed.
+Author commands use Python 3.12+ and need no consumer runtime:
 
-Reproduce package checks with `python3 tests/validate.py`,
-`python3 tests/revision2-rehearsal.py`, `python3 tests/layout-rehearsal.py` and the
-external validators described below. Repeat them from an isolated candidate
-source archive, then verify `python3 tests/review-subject.py --check` and the
-reviewed diff. Exact archive/tree/subject hashes, actual outputs and independent
-interpretations remain in the ignored local handoff. A relevant mutation needs
-affected checks and fresh lead acceptance; historical evidence cannot accept it.
+```sh
+python3 tests/validate.py
+python3 tests/onboarding-rehearsal.py
+python3 tests/layout-rehearsal.py
+python3 tests/migration-rehearsal.py
+python3 tests/review-subject.py --check
+```
 
-## Historical 0.1.0 pilot
+The external plugin validator and all 11 skill quick validators passed. They
+check metadata only. System Python lacked the YAML dependency; the existing
+author validation environment ran them successfully without installation.
+A native Pi loader check, when run against a specified installed loader, observes resource loading
+without proving model decisions. Synthetic fixtures exercise local operations
+or an agent's instruction interpretation; they cannot establish native account,
+permission or desktop behavior. Report a check's actual scope with its result.
 
-The [v0.1.0 private pilot](https://github.com/onlinesourdough/Method/releases/tag/v0.1.0)
-was delivered at `9dc607f14441c9b085f29aa7ce9019e7c738382a` after lead PASS.
-Lead verified byte-identical Codex installation, ordinary owner-chat routing
-and independent repository isolation. Native Pi resource loading passed; live
-Pi inference, Rockflow/Linux and Claude remain untested. These observations
-accept the released artifact, not later local instruction changes.
+The frozen review inventory binds the current source separately from this
+changing report. A later relevant mutation requires affected checks and lead
+acceptance again. Delivery, recovery and measured outcome are independent states.
 
-## Historical 0.1.1 preparation
+## Independent synthetic observations
 
-The instruction audit received lead PASS; the version/release proof then went
-through final-byte lead Review before the now-completed 0.1.1 delivery.
-Both manifests declared 0.1.1 with owner format 1 and the same four identities.
-Its inventory is retained in Git at `v0.1.1:docs/review-subject.json`; the current
-inventory describes the later candidate. Historical 0.1.0 acceptance is preserved at
-`v0.1.0:docs/review-subject.json` in Git.
+The accepting lead executed a review-only case with a changed artifact and an
+unauthorized delivery promise: it returned REVISE with the conflicting sentence,
+rejected the old hash-bound PASS, preserved the subject and did not start Build,
+Ship or another interview. A separate typo request made only the requested
+correction and read it back without personal context or a full lifecycle. The
+lead retained the actual fixture and hashes of the nine sources read. This is
+agent execution in isolated fixtures, not native publication or discovery.
 
-Fresh checks use `tests/validate.py` (including extracted plugin topology and
-negative controls), the plugin validator and all ten skill validators. Repeat
-existing package checks from an isolated candidate archive to expose accidental
-local-only dependencies. Exact archive/inventory hashes and actual outputs live
-in the ignored handoff, separately from this changing evidence record.
+An earlier migration-conflict execution retained all original fixture files and
+both homes, and made no native writes. Its source drift prevents using that run
+as acceptance of the final migration route; the lead will replay on the frozen
+subject. No live owner data was read or changed by this product worker.
 
-That worker preparation did not claim installed cold inference, native notes,
-Pi inference, Rockflow/Linux or Claude tests. Earlier Codex pilot observations and
-lead's scoped independent format-denial evidence are supplementary historical
-evidence, not new runtime tests. No model/API evaluation spend is required for
-this version-only preparation. Earlier outputs below are historical observations.
-
-## Historical revision-2 pre-release evidence
-
-Revision 2 local Build/Review: PASS for the bounded revisions and author checks.
-Independent lead Review: PENDING after the prior REVISE. Delivery: NOT PERFORMED. Recovery: synthetic
-file rehearsal PASS; live harness recovery NOT VERIFIED. User/business outcome:
-PENDING, measured by the accepting lead during installation and pilot work.
-
-The final review subject is [SHA-256 inventory](review-subject.json). Evidence
-files are outside that subject to avoid self-referential hashes. A relevant
-subject mutation requires affected checks and renewed lead acceptance.
-
-| Check | Observed result |
-| --- | --- |
-| Live APT main and direct final-root acquisition | 02cb0e4fc63203f1afb090df8632d20d5aedb9a3; fetched SHA matched |
-| APT validator before transfer | PASS, including standalone/in-place creation and guarded recovery fixtures |
-| Actual APT in-place transfer | PASS; final root re-entered; unborn main, zero refs/remotes, six local skills, no seed-only paths |
-| Scaffold plugin validator | PASS under isolated PyYAML author environment |
-| Four skill quick validators | PASS for every shared skill |
-| python3 tests/validate.py | PASS: shared bodies, manifests, links, format, privacy scan; extracted archive reaches all 17 parity mappings without developer docs; negative controls reject split sources/install scripts/missing map |
-| python3 tests/revision2-rehearsal.py | PASS: synthetic transformed method target, recoverable originals/unknown metadata, replay/conflict, Git-backed home, invalid formats and baseline-preserving configuration decisions |
-| python3 tests/review-subject.py --check | PASS: all 53 final subject paths/hashes match; prior inventory was rejected after changes |
-| Native Pi loader | PASS: exactly four names, no diagnostics, implicit invocation enabled |
-| Synthetic behavioral dry-runs | See behavior-review and rehearsal-results; actual file preservation/restore hashes and explicit interpretation limits |
-| git diff --check | PASS; unborn untracked tree also checked by author Markdown whitespace validation |
-| Source privacy/ownership review | No private owner context in plugin; legal inherited license attribution retained; no owner facts or credentials in assets |
-| Execution-evidence separation | Earlier exact attestation archived intact in ignored local evidence; root HANDOFF.md ignored; distributable Markdown contains no personal machine paths or session UUIDs |
-| Independent forward test | Prior subject passed four scoped decision/rehearsal scenarios; not cold activation or acceptance of revision 2 |
-
-First external-validator attempt failed because system Python lacked PyYAML.
-An ignored repository-local `.tmp/validation-venv` with PyYAML 6.0.3 was used;
-this is not a product dependency and no global environment was modified.
-
-Reproduce external checks with a Python environment containing PyYAML and the
-installed plugin-creator `scripts/validate_plugin.py` plus skill-creator
-`scripts/quick_validate.py` for each skill folder. Reproduce native Pi discovery:
-`node tests/pi-discovery.mjs /path/to/installed/pi/dist/core/skills.js`.
-No install, account operation or model call is performed by that check.
-
-[Revision-2 review](revision-2-review.md) · [Initial behavior review](behavior-review.md) · [Initial observed hashes](rehearsal-results.json)
-· [Source inventory](source-inventory.json) · [Parity](parity.md)
-
-Required later proof: authorized isolated/cold Codex and Pi installation,
-ordinary owner-language activation, repository-local read trace, global override
-handling, permission denial, same native session reconnect, private delivery
-readback, and real migration inventory/restore. These are not claimed passed.
-Claude/Linux/other harnesses are not automatically supported by file portability.
+Local Review found no outstanding material defect in the selected skill
+boundaries, current docs, package topology or scoped file recovery. Historical
+records are byte-identical to their released originals. The frozen handoff and
+independent lead gate remain the next acceptance boundary.

@@ -1,6 +1,6 @@
 # Legacy-method parity
 
-The single canonical [17-method parity map](../plugins/online-sourdough-method/skills/osm-onboard/references/legacy-parity.md)
+The single canonical [17-method parity map](../plugins/aios/skills/aios-onboard/references/legacy-parity.md)
 ships inside the plugin. Installed onboarding can follow it without access to
 developer docs. Keep migration instructions and mappings there; this page is
 only the contributor route.

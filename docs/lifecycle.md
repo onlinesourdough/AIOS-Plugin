@@ -1,206 +1,68 @@
-# Lifecycle record
+# AIOS 0.2.0 lifecycle
 
-## Current change — 0.1.4
+## Accepted change and Spec READY
 
-State: waiting-review after local Spec/Build/Review PASS.
+Existing-system change from released commit
+`84e8129f64801da987c4553a6f96b768df169b45`. The owner requested the legacy AIOS
+method as a client-ready native package, replacing active OSM branding and
+recovering meaningful direct workforms. The lead accepted the behavior-derived
+skill selection after an explicit value review; preserving 17 separate entries
+is not a requirement.
 
-One bounded outcome: adaptive end-to-end onboarding and remaining harness
-alignment, in the restored same physical worker. Initial cwd/Git root matched;
-detached worktree was clean at released/live main
-`3000720d17494ccb634e7f19966892cf1e8a160c`. No owner data read. Exact local
-attestation stays in ignored handoff evidence.
+| Dimension | State and evidence |
+| --- | --- |
+| Intent and served party | RESOLVED: invited clients install a reviewed AIOS package, request setup naturally and use meaningful discoverable methods; accepted owner/lead contract |
+| Proof and measurement | RESOLVED: package/discovery integrity, behavior coverage, isolated migration/phase cases, exact independent lead Review, authorized release and separate lead-owned native cutover |
+| Result and exclusions | RESOLVED: one client-ready Method repository and shared Codex/Pi package; no owner data, personal newsletter, Global library copy, extra runtime or untested harness claims |
+| Canonical sources | RESOLVED: this repository and released baseline; inspected core template source inventory; neutral evaluator requirements supplied by the lead |
+| Ownership | RESOLVED: one product writer in this repository, independent lead acceptance; native installation and physical owner-root moves remain with the lead |
+| Authority and risk | RESOLVED: product implementation and isolated verification; no client configuration/data mutation by this worker; Ship only after exact final lead PASS |
+| Interfaces and data | RESOLVED: `aios@online-sourdough`, `plugins/aios`, shared `pi.skills`, AIOS.md/AIOS_FORMAT, explicit old-identity migration and standard bounded global AGENTS bridge |
+| Technology | RESOLVED: existing Markdown/JSON and native package interfaces; no new runtime, dependencies or external service to provision |
+| Operation and recovery | RESOLVED: reviewed immutable release; preserved earlier artifacts; content/registration map, replay and conflict-aware rollback; no destructive automatic cleanup |
+| Assumptions and gaps | INFERRED: 0.2.0 is the appropriate version for the identity/discovery change; accepted by lead. Native per-client cutover and inference remain separate observations, not inferred PASS |
 
-Spec READY: accepted existing-system correction. Reuse four shared instruction
-skills, owner format 1 and Markdown/JSON; no new runtime/schema/provider. Full
-onboarding covers relevant readiness outcomes adaptively; ordinary resume stays
-small. The product owns instructions and synthetic fixtures; the lead owns actual
-Mac inspection, native changes and cold acceptance. Optional UI/tool availability
-is observed, not invented. No Plan switching, assumed consent, app-control-denial
-bypass or writes through undocumented app-state keys.
+## Build contract
 
-Build updates existing setup/harness/adapter/check/eval references, seven synthetic
-requests, 0.1.4 metadata and proof. Preserve privacy choices, active settings,
-secrets, history, custom presentation, dirty worktrees and unrelated roots.
-Separate selected Project/workspace/cwd, local/saved roots, cloud environments,
-sidebar preferences and active legacy registrations versus historical text.
-An authorized answer drives supported implementation/readback or one precise
-manual/unavailable gap. Checkpoint/resume reuses accepted answers.
+Deliver the [11 distinct skills](skills.md) and all surviving legacy behavior
+at its [canonical phase or route](../plugins/aios/skills/aios-onboard/references/legacy-parity.md).
+Keep Spec/Build/Review/Ship directly invocable. Retain Project/System creation
+and package Update where distinct outcomes and proof justify them. Embed
+readiness, final completeness and last-action safety as explicit phase gates;
+fold overlapping routing, triage and configured sync into their owning workform.
 
-Proof: package/link and metadata checks, existing preservation rehearsals and
-independent instruction interpretation. These do not prove actual question UI,
-client state changes or cold routing. Local Review then exact frozen artifact
-returns to lead; hold commit/push/tag/release/install until independent PASS.
-Recovery uses preserved 0.1.3 and scoped source preimages, with no owner/harness
-mutation by this worker. Proposed version 0.1.4 is a reversible release increment.
+Keep principles/voice/visual judgments conditional and source-driven. Preserve
+adaptive onboarding, relevant context/memory/Spaces, native interactive questions
+when available, no implied consent, authorized implementation with readback,
+account boundaries, supported native configuration controls and hard app denials.
 
-Local Review found no material contract or permission gap. Independent source
-interpretation covered all seven new scenarios without reading expected fixture
-answers and found no blocking issue; a minor reporting-scope ambiguity was
-narrowed to relevant areas. Existing preservation/layout rehearsals and package,
-link, metadata and subject checks pass. No new test engine or inferred native
-behavior. Improvement signals outside the accepted outcome: none; a separate
-legacy-capability audit is lead-owned and does not expand this candidate.
+Rename active product identities and assets to AIOS. Preserve historical bytes
+under the archive and old names only for compatibility/history. Prepare a
+client-first README and architecture, installation, proof and release guidance.
+New clients need no template clone or optional Global Skills. Existing clients
+need identity proof before any legacy package/global registration is changed.
 
-## Historical 0.1.3 preparation
+The repository owns the reusable instructions and author verification. It
+consumes native Codex/Pi packaging and authorized relevant seed methods; it
+buys, rents and self-hosts no new runtime. Client sources and credentials remain
+external. Existing native setup provides model and tool capability; a method
+never supplies permission or a worker surface.
 
-State: waiting-review after local Spec/Build/Review PASS.
+## Ordered proof and current state
 
-One new bounded outcome in the same worker: correct Codex desktop onboarding
-acceptance after a CLI-only test missed a stale New Chat selection. Initial
-worktree and live main were clean/equal at released
-`3ac563b1cd5995768b95a59cf8035d04ae5b4dfa`. Spec READY: accepted scope and evidence
-boundary; existing Markdown/JSON and four skills, no technology change.
+1. Inspect and map source behavior, skill-value decisions and optional boundaries.
+2. Implement the cohesive package, client docs and explicit migration.
+3. Validate standalone packaging, archive integrity, discovery sources and
+   isolated success/replay/conflict/recovery fixtures.
+4. Independently execute representative instruction cases and review actual
+   outputs; correct in-scope findings and recheck final bytes.
+5. Freeze the candidate for independent lead Review. Relevant mutation after
+   PASS invalidates affected acceptance.
+6. After exact Ship instruction, deliver only the approved tree to private
+   `onlinesourdough/Method` main and the corresponding annotated tag/prerelease;
+   verify live hashes. The lead owns installation and physical cutover.
 
-Build covers conditional desktop entry-point guidance, preservation of saved
-organization/history/files, native capability/readback limits and four regression
-scenarios. Owner home is data, not a required selected Project. No UI, owner-data,
-configuration, database or other-repository writes are authorized here. Main lead
-owns native UI research/cleanup and observed desktop acceptance.
-
-Saved-project checks also cover associated environment/worktree references,
-physical primary/secondary roots and refreshed Environments UI; valid setup,
-credential references and dirty worktrees survive. No setup commands run for
-inspection, label-only deduplication or app-internal edits. Native Projects
-source supplied by lead supports projectless chat and project primary folders,
-not a universal sticky default.
-
-Local Review checks scope, ordinary-task proportionality and explicit separation
-of installation PASS from desktop cutover PENDING. Package/link, metadata and
-frozen-subject checks provide structural evidence; scenario interpretation is
-not observed GUI behavior. Submit exact bytes for independent lead approval
-before any commit, push, tag or installation. Recovery retains released 0.1.2
-and existing user state. No new runtime or parallel product writer.
-
-## Historical 0.1.2 preparation
-
-Release preparation follows local Spec/Build/Review and independent lead PASS
-on tree `4b0b526344492ebc60d616fabfc115a02aa7224a`. Only release-status wording
-and its inventory changed afterward; those final bytes require lead approval
-before Ship. One bounded outcome: refine the
-instruction-only Method's owner-home layout and proportional security contract,
-with four skills, owner format 1 and no runtime dependency. The accepting lead
-reports 0.1.1 released and installed. Initial clean worktree HEAD and live main
-both resolved to `e65157f3e8a07458b2c0ea510bbcde6997d63ee8`. Exact session,
-worktree and primary-checkout coordination remain in ignored local evidence.
-
-Resolved by the accepted contract: new homes default to ~/.OSM; configured homes
-resume in place; new Project/System checkouts live physically under projects/
-and systems/ with independent Git/local lifecycle, excluded from owner Git.
-Existing deliberate external checkouts remain valid. No owner-context AGENTS
-inheritance, mandatory symlink layout, template precloning or extra setup
-ceremony. Ordinary work keeps the thin global route and relevant context only.
-
-Security delta: untrusted content grants no authority, deletion needs a real
-loss/recovery boundary, connections use resource-scoped least privilege, and
-instructions, native permissions/sandbox and optional hooks remain distinct.
-Sensitive changes use conditional lifecycle security checks and repository-owned
-evidence; no compulsory scanner, hook implementation or global cyber skill.
-
-Spec READY: accepted existing-system change with no material missing Build
-input. The product maintainer owns these instructions and package tests; the
-lead owns independent acceptance, machine migration, owner data and fresh
-harness observations. Reuse Markdown/JSON and stdlib Python author tests; build
-only the bounded instruction/test delta, consume native capabilities, buy/rent/
-self-host nothing. Existing local Spec/Build/Review/Ship remains authoritative.
-
-Ordered proof: layout/assets and Git ignore/replay checks; security negative
-scenarios and proportional routing review; coherent 0.1.2 package checks in an
-isolated archive; local Review and exact subject/diff hashes to lead. Synthetic
-file checks do not prove cold harness selection or security enforcement.
-Recovery restores only matching scoped product bytes and preserves owner data;
-the home default change requires no automatic move or format migration.
-
-After final-byte approval, authorized private delivery is a commit and normal
-fast-forward push to onlinesourdough/Method main, tag/release v0.1.2 consistent
-with existing releases, and a fast-forward of the clean primary checkout.
-Read back live identities and preserve the reviewed tree. Installation and
-runtime acceptance belong to the lead. This worker does not change owner data,
-bridges, native trust, providers, permissions, other repositories or adjacent
-products. Exact delivery results remain in the local handoff; this preparation
-record does not claim that a remote action or installation has occurred.
-
-Local Review found no remaining Critical/Required issue after fixes. Scope,
-four-skill packaging, default/resume behavior, independent repository routing,
-conditional security, deletion and resource boundaries were inspected against
-the accepted contract. Package checks, external validators and synthetic
-layout/recovery tests pass; independent interpretation covered nine scenarios.
-The initial tracked-checkout negative fixture needed direct index construction
-because Git add does not descend into an existing nested repository; the corrected
-test now detects that real parent-index hazard. No product behavior was inferred
-from that test failure. Fresh harness behavior remains lead-owned proof, and no
-security enforcement/active scan is claimed. Improvement signals: none outside
-the accepted scope. Final subject/archive outputs are in ignored handoff evidence.
-
-## Historical 0.1.1 preparation — 2026-09-05
-
-The v0.1.0 private pilot was accepted and released at
-`9dc607f14441c9b085f29aa7ce9019e7c738382a`; see [README](../README.md).
-This same worker now owns a bounded local instruction audit/fix: reduce
-discovery overlap and irrelevant preload, keep small edits proportional, retain
-substantive lifecycle and safety boundaries, and correct stale release truth.
-The lead accepted the instruction audit. The same worker is preparing private
-pilot 0.1.1: coherent semantic versions, release notes and fresh candidate proof.
-The [inventory](review-subject.json) now describes 0.1.1 for final-byte lead Review;
-matching hashes prove identity, not acceptance. The original inventory remains
-unchanged in Git at tag v0.1.0. No commit, push, tag, release or installation is
-permitted until the next explicit Ship instruction. Owner format 1 and four
-consumer identities remain unchanged. Exact linkage and check outputs remain
-in ignored local handoff; no global config/cache or owner-data changes.
-
-## Historical creation and revision-2 record
-
-Contract revision: 2, resumed after lead REVISE. The same first-class worker,
-repository root and bounded goal are retained. Exact native session, root,
-launch route and permission attestation are preserved in ignored local lead
-evidence; they are execution facts, not distributable method configuration.
-The lead reports an active native outcome goal. This worker preserves its
-linked local lifecycle without creating a duplicate or a phase goal.
-
-One bounded goal: implement the instruction-only Method package, compatibility
-assets and isolated behavior cases at this root; retain this session for lead
-Review revisions and later authorized Ship. Stop on uncertain ownership,
-unsafe state, or unavailable required authority. No global install, owner-data
-mutation, remote creation, commit, push, or tag before lead PASS.
-Current state: waiting-review (revision 2 returned after affected checks).
-
-## Local Spec — READY
-
-Input maturity: near-complete specification (user request and lead contract).
-Resolved: intended delta and constraints, served founder/nontechnical user,
-proof and lead measurement owner, independent product repository, no consumer
-runtime, four skill entries, external owner data, Codex/Pi package interfaces,
-local-only Build authority and Review boundary. Evidence: accepted request,
-APT-generated identity, inspected source methods and research.
-Inferred: initial product version 0.1.0 and owner format version 1, reversible
-before release. Missing: none for Build. Runtime installation and measured
-business outcome remain explicit later proof, not inferred success.
-
-Build/Buy/Rent/Self-host: build focused Markdown instructions and blank assets;
-consume existing harness file tools and native package discovery; no bought,
-rented or hosted service. Optional Git uses owner's existing installation.
-Technology decision: Markdown/JSON native packaging with stdlib Python author
-checks. No consumer interpreter dependency, package scripts or dependencies.
-Security boundary: instructions are trusted only through reviewed installation;
-retrieved material is data; harness/provider enforce access. No API/server/auth
-layer is justified. Owner authority and credential references stay outside product.
-
-Ordered results: shared skills and references (route/link checks); owner assets
-and adapters (preservation/idempotence rehearsals); distribution (manifest and
-native Pi discovery); failure cases and review (observed dry-runs); handoff.
-Recovery: preserve source and current dirty work, restore only matched scoped
-bytes; product rollback independent of data schema. See recovery.md.
-Acceptance: manifests and links valid; all reserved source routes accounted for;
-isolated instruction dry-runs disclose limits; same session pauses for lead.
-
-## Local Review
-
-Initial local checks passed, but the lead returned REVISE for packaged parity,
-safe owner-method adaptation, native configuration guidance, owner-home
-identity and execution-evidence separation. Prior acceptance does not cover
-revised bytes. Repeat affected checks and return for independent lead Review.
-Revision-2 local review passes the bounded changes and recorded checks, with
-independent forward-test scope and runtime limitations disclosed. The lead's
-next PASS/REVISE remains pending. The ignored local HANDOFF.md carries exact
-execution evidence. No Ship, polling or replacement worker is authorized by
-local review. Improvement disposition remains SKIP for external issue delivery;
-the in-scope packaged-parity signal stays attached through final acceptance.
+Current state: local Build/Review PASS, preparing the frozen independent lead
+Review handoff. [Proof](proof.md) records evidence and limits.
+No commit, tag, release or native activation is implied by this source record.
+One outcome and one writer persist through Review, revisions and authorized Ship.

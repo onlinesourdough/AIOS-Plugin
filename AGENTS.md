@@ -1,4 +1,4 @@
-# Online Sourdough Method
+# AIOS
 
 Build and operate the smallest independent Project that creates this outcome:
 

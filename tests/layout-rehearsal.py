@@ -1,4 +1,4 @@
-"""Author-only filesystem/Git rehearsal of the documented 0.1.2 layout.
+"""Author-only filesystem/Git rehearsal of the documented independent-checkout layout.
 
 Exercises shipped assets, independent Git roots/indexes and a synthetic move map.
 This is not a consumer migration engine, instruction loader or model evaluator.
@@ -14,7 +14,7 @@ import subprocess
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
-ASSETS = ROOT / "plugins/online-sourdough-method/skills/osm-onboard/assets/owner"
+ASSETS = ROOT / "plugins/aios/skills/aios-onboard/assets/owner"
 
 
 def git(root, *args):
@@ -70,9 +70,9 @@ def inspect_layout(owner):
 
 def main():
     evidence = {}
-    with tempfile.TemporaryDirectory(prefix="osm-layout-") as temporary:
+    with tempfile.TemporaryDirectory(prefix="aios-layout-") as temporary:
         fixture = Path(temporary)
-        owner = fixture / "account/.OSM"
+        owner = fixture / "account/.AIOS"
         shutil.copytree(ASSETS, owner)
         git(owner, "init", "-q", "-b", "main")
         for family, slug in (("projects", "catalog"), ("systems", "reporting")):
@@ -89,7 +89,7 @@ def main():
             git(checkout, "add", "--", "AGENTS.md", "docs/lifecycle.md", ".gitignore")
             assert "draft.txt" not in git(checkout, "ls-files").splitlines()
             assert ignored(checkout, "private-fixture.txt")
-        git(owner, "add", "--", ".gitignore", "OSM.md", "OSM_FORMAT", "MEMORY.md",
+        git(owner, "add", "--", ".gitignore", "AIOS.md", "AIOS_FORMAT", "MEMORY.md",
             "CONNECTIONS.md", "projects/README.md", "systems/README.md")
         inspect_layout(owner)
         evidence["layout"] = "PASS: physical nested Git roots, local lifecycle, registry staging, checkout exclusions"

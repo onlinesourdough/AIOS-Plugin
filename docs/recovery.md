@@ -1,39 +1,31 @@
 # Recovery
 
-Product recovery belongs to the Method maintainer and accepting lead. Owner
-context recovery belongs to its user, outside this repository. The released
-0.1.3 baseline is commit `3000720d17494ccb634e7f19966892cf1e8a160c`.
-Local instruction revisions do not update installed packages. Recover a local
-candidate from its reviewed diff/preimages without overwriting unrelated work;
-adoption or rollback of a native package needs its own exact authority.
+The last released baseline before AIOS 0.2.0 is OSM 0.1.4, commit
+`84e8129f64801da987c4553a6f96b768df169b45`. Preserve its tag and earlier
+artifacts. Local product recovery uses reviewed preimages without overwriting
+unrelated work. Do not reset, stash, force-push or retransfer a canonical Project
+to make a changed upstream fit the review.
 
-The verified APT in-place transfer completed; its validator exercised wrong
-source/revision/dirty state and restoration/retained recovery. No transfer
-recovery directory was reported for this actual creation. Never retransfer this
-canonical Project to recover implementation work.
+Package recovery and client-data recovery are separate. Native package rollback
+uses the prior reviewed ref and supported registration controls. Renaming the
+plugin does not rename existing native registrations or move client files.
+Do not edit caches, internal databases, histories or entire settings files.
+A failed or uncertain native action needs readback before retrying.
 
-For revisions resume the recorded worker session and inspect current bytes,
-contract, instructions and status. Preserve all uncommitted work. Re-run the
-subject checks after any relevant edit; lead Review must cover the final
-subject manifest. Do not reset, stash, force or auto-merge upstream drift.
+[Identity migration](../plugins/aios/skills/aios-onboard/references/migration.md)
+requires original content and a protected tested backup, explicit source and
+destination hashes, proved registration ownership and a scoped map. An identical
+replay is a no-op. A changed source/destination, unexpected symlink, duplicate
+bridge or unknown skill identity stops that write while retaining both versions.
+Rollback restores only unchanged accepted outputs and preserves later owner
+edits. The original home and canonical skill bodies are not deleted.
 
-The 0.1.2 home default is not a migration trigger. Package rollback preserves
-existing homes, registry routes and independent nested/external checkouts.
-Nested repositories need their own backup, including untracked/ignored work;
-owner Git excludes them. Git history cannot recover files it never stored and
-git clean -fdx is not a recovery mechanism. Verify checkout exclusions and the
-absence of inherited owner-context instructions separately from package identity.
+Independent repositories, including ignored/untracked work, need their own
+inventory and recovery. Git cannot recover files it never stored; removal of a
+shortcut or registration does not authorize deleting its target. A live physical
+root move is lead-owned and must reconcile native entry points separately.
 
-Once released, a native package rollback selects the previous reviewed artifact
-without changing owner data. A data-format migration requires its own reviewed
-map, original backup, restore rehearsal and conditional scoped rollback.
-Uninstall removes only owned registrations/unchanged bridge blocks. Preserve
-subsequent edits and stop on conflict.
-
-Synthetic restore was exercised by copying the complete fixture home and
-comparing inventories, then changing restored MEMORY and verifying rollback
-must refuse overwrite. See [behavior review](behavior-review.md) and
-[hash evidence](rehearsal-results.json). Live harness rollback remains unverified
-here. Private Git delivery was verified for v0.1.0; owner migration and restore
-were separately accepted by the lead. Those owner-data operations are outside
-this product repository's authority.
+Author rehearsals demonstrate scoped synthetic file/registration recovery and
+preserved historical artifacts. They do not prove live native rollback, a
+client's backup or desktop cutover. The [proof matrix](proof.md) keeps those
+claims separate and names pending native evidence.
