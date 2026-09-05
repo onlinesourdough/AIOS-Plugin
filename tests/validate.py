@@ -6,6 +6,7 @@ import re
 import tempfile
 import shutil
 import tarfile
+import struct
 
 ROOT = Path(__file__).resolve().parents[1]
 PLUGIN = ROOT / "plugins/aios"
@@ -71,6 +72,12 @@ def validate(root=ROOT):
     require(not {"scripts", "dependencies", "devDependencies", "peerDependencies"} & package.keys(), "consumer dependency/script")
     require(set(package["pi"]) == {"skills"}, "unexpected Pi runtime resource")
     require(not {"hooks", "apps", "mcpServers"} & manifest.keys(), "unexpected plugin runtime")
+    interface = manifest["interface"]
+    require(interface["composerIcon"] == interface["logo"] == "./assets/icon.png", "icon source differs")
+    icon = (plugin / "assets/icon.png").read_bytes()
+    require(icon[:8] == b"\x89PNG\r\n\x1a\n" and icon[12:16] == b"IHDR", "invalid icon PNG")
+    width, height = struct.unpack(">II", icon[16:24])
+    require(width == height and 256 <= width <= 2048, "icon dimensions")
     require(len(market["plugins"]) == 1, "marketplace entry count")
     entry = market["plugins"][0]
     require((root / entry["source"]["path"]).resolve() == plugin.resolve(), "marketplace target")
@@ -92,7 +99,8 @@ def validate(root=ROOT):
     for path in plugin.rglob("*"):
         require(not path.is_symlink(), f"nonportable package symlink: {path}")
         if path.is_file():
-            require(path.suffix in {".md", ".json"} or path.name in {"LICENSE", "AIOS_FORMAT", ".gitignore"}, f"unexpected runtime file {path}")
+            require(path.suffix in {".md", ".json"} or path.name in {"LICENSE", "AIOS_FORMAT", ".gitignore"}
+                    or path == plugin / "assets/icon.png", f"unexpected runtime file {path}")
     for path in root.rglob("*.md"):
         if path.is_relative_to(root / "docs/archive/0.1.x"):
             continue  # Exact historical bytes; relative links resolve at their original release.

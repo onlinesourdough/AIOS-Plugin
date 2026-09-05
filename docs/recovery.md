@@ -1,7 +1,7 @@
 # Recovery
 
-The last released baseline before AIOS 0.2.0 is OSM 0.1.4, commit
-`84e8129f64801da987c4553a6f96b768df169b45`. Preserve its tag and earlier
+The recovery baseline for AIOS 0.2.1 is AIOS 0.2.0, commit
+`b8c7e79fa315edb9a13f0f4e16f8f56d4ab36ec5`. Preserve its tag and earlier
 artifacts. Local product recovery uses reviewed preimages without overwriting
 unrelated work. Do not reset, stash, force-push or retransfer a canonical Project
 to make a changed upstream fit the review.

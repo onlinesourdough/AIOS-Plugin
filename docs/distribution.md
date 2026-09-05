@@ -1,6 +1,6 @@
 # Review and release AIOS
 
-The release unit is one immutable Method tree with `plugins/aios`, its Codex
+The release unit is one immutable AIOS-Plugin tree with `plugins/aios`, its Codex
 marketplace and Pi declaration. This repository distributes through private
 Git access, not an npm publication or consumer installer. The client path is in
 [README](../README.md); [native adapters](../plugins/aios/skills/aios-onboard/references/adapters.md)
@@ -8,8 +8,9 @@ contain the supported commands and source references.
 
 ## Prepare the reviewed artifact
 
-Update product versions together, current client documentation and the
-[change history](../CHANGELOG.md). Run package integrity, scoped onboarding,
+Update product versions together and current client documentation. Record
+version history once in [GitHub Releases](https://github.com/onlinesourdough/AIOS-Plugin/releases),
+not a separate changelog. Run package integrity, scoped onboarding,
 layout and migration rehearsals. Inspect actual skill decisions with isolated
 representative requests, including failures and collisions. Check external
 plugin/skill metadata validators, and the target native loader where available.
@@ -25,7 +26,7 @@ returns to the same writer for affected checks and new acceptance.
 
 The local [Ship skill](../.agents/skills/ship-project/SKILL.md) owns the full
 Git gate. Pin the exact reviewed tree/commit and base, re-attest checkout and
-credential-free destination, and freshly fetch private `onlinesourdough/Method`
+credential-free destination, and freshly fetch private `onlinesourdough/AIOS-Plugin`
 main. Stop on unexpected staged/working changes or remote drift. Never rebase,
 force or merge an unreviewed integration to fit the release.
 

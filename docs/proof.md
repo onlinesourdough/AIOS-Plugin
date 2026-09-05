@@ -1,22 +1,25 @@
-# AIOS 0.2.0 proof
+# AIOS 0.2.1 proof
 
-This record describes the current candidate, not an installed client. Prior
-0.1.x evidence is retained byte-for-byte in [the archive](archive/0.1.x/README.md)
-and is never reused as acceptance of changed instructions.
+Baseline: released AIOS v0.2.0 at
+`b8c7e79fa315edb9a13f0f4e16f8f56d4ab36ec5`.
+This record concerns the changed source, not an installed client.
 
-| Boundary | Current evidence state |
+| Boundary | Evidence |
 | --- | --- |
-| Legacy source and selected skill responsibilities | Fresh 17-method source inventory; behavior/value dispositions in packaged parity map |
-| Shared Codex/Pi package and 11 public skill entrypoints | PASS: package integrity and native Pi loader observe the 11 selected shared entries with implicit invocation enabled |
-| Package references, neutral assets and historical-byte integrity | PASS: isolated plugin topology and all current links; exact historical archive hashes and negative controls |
-| Owner layout, contextual adaptation and identity migration | PASS: author-only onboarding, layout and migration after-image rehearsals; source preservation, replay, conflict and scoped restore checks |
-| Independent realistic phase/onboarding execution | Lead observed stable-source review-only and typo executions; frozen final reconciliation pending |
-| Independent lead Review | Pending frozen subject |
-| Private Git/tag/release delivery | Pending exact reviewed Ship instruction |
-| Native discovery/installation, desktop cutover and client model behavior | Lead-owned, pending; source validation is not runtime acceptance |
-| Native client rollback | Not verified by this product worker |
+| Shared package, 11 entrypoints, owner format | PASS: package validator including extracted links and preserved historical archive |
+| Icon metadata and PNG | PASS: shared native logo/composer path, square PNG and inspected 64-pixel preview |
+| Native plugin and skill metadata | PASS: external plugin validator and all 11 Skill Creator validators |
+| Native Pi resource discovery | PASS: installed Pi loader finds exactly 11 shared skills, implicit invocation enabled, no diagnostics |
+| Onboarding, layout and migration | PASS: existing isolated after-image, replay, conflict, source-preservation and recovery rehearsals |
+| Personal skill instruction decisions | PASS: independent synthetic interpretation of create, foreign-link rename collision, repo-local edit and unavailable native discovery |
+| Independent final Review | PASS: exact 88-path frozen inventory, no Critical or Required findings |
+| Private repository rename | Verified: existing repository is now onlinesourdough/AIOS-Plugin; private release history retained |
+| Candidate release and native adoption | Not performed; source changes do not update the installed package |
+| Fresh-session personal skill behavior and native rollback | NOT VERIFIED by this source task |
 
-Author commands use Python 3.12+ and need no consumer runtime:
+## Reproduce source checks
+
+Author commands use Python 3.12+; they add no consumer dependencies:
 
 ```sh
 python3 tests/validate.py
@@ -26,34 +29,38 @@ python3 tests/migration-rehearsal.py
 python3 tests/review-subject.py --check
 ```
 
-The external plugin validator and all 11 skill quick validators passed. They
-check metadata only. System Python lacked the YAML dependency; the existing
-author validation environment ran them successfully without installation.
-A native Pi loader check, when run against a specified installed loader, observes resource loading
-without proving model decisions. Synthetic fixtures exercise local operations
-or an agent's instruction interpretation; they cannot establish native account,
-permission or desktop behavior. Report a check's actual scope with its result.
+External metadata checks ran with the author-only PyYAML environment because
+system Python did not provide YAML. These checks validate metadata, not model
+behavior. A Pi loader check observes resources only, not skill execution.
 
-The frozen review inventory binds the current source separately from this
-changing report. A later relevant mutation requires affected checks and lead
-acceptance again. Delivery, recovery and measured outcome are independent states.
+## Review scope and limits
 
-## Independent synthetic observations
+The independent instruction review selected these routes: personal authoring
+uses the native Skill Creator at the canonical owner path; a foreign same-name
+link is preserved and blocks registration; repository-specific editing stays
+under local instructions without personal reads; unavailable native discovery
+is reported separately as NOT VERIFIED. No actual owner files or registrations
+were mutated for these cases. This is synthetic interpretation, not cold runtime
+acceptance.
 
-The accepting lead executed a review-only case with a changed artifact and an
-unauthorized delivery promise: it returned REVISE with the conflicting sentence,
-rejected the old hash-bound PASS, preserved the subject and did not start Build,
-Ship or another interview. A separate typo request made only the requested
-correction and read it back without personal context or a full lifecycle. The
-lead retained the actual fixture and hashes of the nine sources read. This is
-agent execution in isolated fixtures, not native publication or discovery.
+Visual inspection used the latest warm sourdough icon, including a 64-pixel
+preview: one loaf silhouette, soft cream tile and readable AIOS pixel lettering.
+The generated lettering is not asserted to be an exact font-file rendering.
+Earlier rejected image variants are not package assets.
 
-An earlier migration-conflict execution retained all original fixture files and
-both homes, and made no native writes. Its source drift prevents using that run
-as acceptance of the final migration route; the lead will replay on the frozen
-subject. No live owner data was read or changed by this product worker.
+README tone review used the owner's practical onlinesourdough mode: plain
+English, useful examples, short paragraphs and no unsupported product claims.
+The approach keeps one procedure owner and one release-history source, reuses
+existing capabilities and does not add unattended automation.
 
-Local Review found no outstanding material defect in the selected skill
-boundaries, current docs, package topology or scoped file recovery. Historical
-records are byte-identical to their released originals. The frozen handoff and
-independent lead gate remain the next acceptance boundary.
+The frozen inventory binds source independently of this report. Relevant later
+changes require affected verification and independent acceptance again. Previous
+release evidence remains in Git history and the unchanged
+[0.1.x archive](archive/0.1.x/README.md); it is not reused as current acceptance.
+
+Independent final acceptance binds review-inventory SHA-256
+`70e4f064e5ca1ac537f953e79ea6d27d0a6ca041673391948a253e207a4db96e`.
+The reviewer independently repeated package, onboarding/layout/migration,
+frozen-inventory and native Pi resource checks. External metadata and final
+owner icon approval were lead-provided evidence. No release or native client
+mutation was performed.

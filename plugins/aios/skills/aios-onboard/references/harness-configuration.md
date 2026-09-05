@@ -54,7 +54,7 @@ supported mutation and readback, or retain a precise manual/unavailable gate.
 
 Instructions guide decisions. Native permissions/sandbox restrict execution;
 pre-execution hooks can intercept supported calls. These are separate controls.
-Full Access is not isolation for active security tests. No Method hook, denylist
+Full Access is not isolation for active security tests. No AIOS hook, denylist
 or adapter is installed, and optional Global Skills stay a separate product.
 
 When an existing hook or permission boundary matters, record the harness/version,
@@ -75,7 +75,7 @@ the affected action. Missing optional protection does not block ordinary AIOS.
 Do not repair gaps by bypassing hook trust or broadening permissions. A native
 trust change needs its own existing authority and supported review flow; do not
 edit trust stores. Keep rule/code versions and affected rechecks with their owner,
-not a second Method-managed protection service.
+not a second AIOS-managed protection service.
 
 ## Codex configuration and instructions
 
@@ -92,7 +92,7 @@ all versions. Existing profiles and provider definitions are not AIOS assets.
 | --- | --- | --- |
 | Command approvals | `approval_policy` and any active approval profile/overrides | `never` changes prompting, not business authorization or OS permission. Only reproduce it when the user's chosen baseline calls for it. |
 | Filesystem/network access | `sandbox_mode` or the version's supported permission-profile mechanism | `danger-full-access` is an explicit unrestricted choice, never an onboarding default. Do not mix incompatible mechanisms or bypass managed constraints. Verify actual access to the chosen home. |
-| Models/providers | Effective model, provider, reasoning/profile and existing nonsecret definitions | Keep them. Do not install a provider, migrate credentials, infer a better model or pin a personal choice in Method. |
+| Models/providers | Effective model, provider, reasoning/profile and existing nonsecret definitions | Keep them. Do not install a provider, migrate credentials, infer a better model or pin a personal choice in AIOS. |
 
 Check key support and allowed values against the current
 [configuration reference](https://learn.chatgpt.com/docs/config-file/config-reference)
@@ -155,7 +155,7 @@ and Accessibility permissions. Inspect System Settings > Privacy & Security
 and the app's Computer Use controls using the current
 [Computer Use guide](https://learn.chatgpt.com/docs/computer-use). Do not alter
 OS permission databases or create a proxy/MCP replacement. Enabling an existing
-native integration is an optional harness action, not a new Method runtime.
+native integration is an optional harness action, not a new AIOS runtime.
 Verify the advertised tool and one authorized harmless app interaction before
 claiming availability; a configured flag alone is insufficient. If native UI
 access is unavailable, return the exact per-machine manual step and continue
@@ -200,10 +200,10 @@ and installed help for supported settings and native controls. Never read or
 export auth stores to prove provider configuration.
 
 Inventory enabled package/skill registrations before adding AIOS or owner
-skills: old AIOS paths, duplicate local/Git Method installs, stale symlinks,
+skills: old AIOS paths, duplicate local/Git AIOS installs, stale symlinks,
 global skill paths and project-local registrations can conflict. Classify
 which entry owns each discovered skill. Under setup authority, replace only
-the verified obsolete Method/legacy registration, preserving original bodies,
+the verified obsolete AIOS/legacy registration, preserving original bodies,
 nonreserved owner methods and unrelated packages. Unknown collisions require
 a decision. Re-read the effective skill list after restart: the 11 AIOS names
 once, owner methods once, supported links intact. See [adapters](adapters.md), [identity/collision migration](migration.md)

@@ -19,5 +19,5 @@ editing it; an ordinary mechanical edit does not require a Spec audit.
 Return PASS only when every required check has direct evidence. Otherwise return
 FAIL, the material gaps and the smallest correction or hold. Include subject,
 checkpoint, check results and next action. Missing proof cannot become an
-assumption about authority or success. Method changes also need representative
+assumption about authority or success. AIOS changes also need representative
 behavioral execution; frontmatter validation does not prove readiness decisions.

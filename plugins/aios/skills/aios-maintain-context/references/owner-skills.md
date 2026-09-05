@@ -1,0 +1,81 @@
+# Personal skill lifecycle and discovery
+
+Maintain context owns this procedure. Use it when an authorized conversation
+creates, imports, edits, renames or removes a personal owner skill, and when
+Onboard installs or moves an owner home. Callers link here; do not copy these
+steps into another skill. This is a task-boundary procedure, not a watcher or
+permission to audit unrelated skill libraries on every message.
+
+## Choose the owner before authoring
+
+Resolve the configured home and supported format through
+[Maintain context](../SKILL.md). Personal cross-project methods belong in
+`AIOS_ROOT/skills/<name>/`; repository-specific methods stay with that
+repository, and external/plugin skills stay with their distributor. Do not
+redirect a genuinely independent repository task into personal owner data.
+
+Use the harness's available Skill Creator for authoring and validation, giving
+it the explicit canonical destination above. Do not copy the creator into AIOS,
+accept its unrelated default directory, or create a second canonical body.
+An explicit owner-requested alternative takes precedence; report how its
+discovery and backup differ. Pass accepted task intent, not unrelated context.
+
+Prefer a reference to an existing sufficient procedure over a new skill or a
+copied workflow. A caller states its trigger and required result; the callee
+owns the steps and acceptance checks. Keep distinct responsibilities separate
+even when they share vocabulary. Personal facts remain in routed context,
+not embedded in the reusable method.
+
+## Reconcile this skill's registration
+
+1. Inspect the canonical body and the same name in relevant native, plugin and
+   user discovery locations. Compare the skill's declared name as well as its
+   folder name and resolved source. For setup/move, inventory the owner's skill
+   folders; for ordinary work, scope this to the changed skill and its old name.
+   [Sync](sync.md) owns any configured Git preflight and reviewed delivery.
+2. For Codex and Pi where supported, register one symlink
+   `~/.agents/skills/<name>` to the resolved canonical folder. An absent entry
+   may be created under the task's setup/skill-creation authority. An existing
+   link to that exact folder is a no-op. A same-name directory, foreign link,
+   unknown dangling link or conflicting package skill is a collision: preserve
+   both and stop that registration, without overwriting or uninstalling it.
+3. Repoint a moved/renamed skill's link only when the prior target and ownership
+   are proved by the accepted change map. Remove an obsolete registration only
+   under the accepted rename/removal scope and only while it still matches that
+   prior identity. Re-read immediately before changing it. A body edit at the
+   same path does not need another link. No duplicate copies in `.codex/skills`
+   or extra Pi `skills` entries for the same body.
+4. If this harness cannot load that supported link, use its documented native
+   registration for the same source and verify it. An unavailable control or
+   collision is a reported gap, not permission to invent a loader, broaden
+   access, modify caches or register a second source. Other harnesses require
+   their own verified adapter.
+
+The canonical skill files travel with owner data; links and native discovery
+settings are machine-local and are recreated on the receiving computer. Never
+sync whole harness homes or credentials. A scope-specific backup/rename map
+must retain original bodies and registration identities; rollback changes only
+the task's outputs that still match its recorded result. Preserve later edits.
+Deleting a registration does not authorize deleting its body or history.
+
+## Verify before saying ready
+
+- Validate the final skill with the available creator/validator; resolve all
+  referenced resources from its canonical location.
+- Read back the link/native registration and prove its canonical target. Replay
+  reconciliation: it must be a no-op, not another copy or registration.
+- Use supported native discovery or a fresh session to confirm the final name
+  and source appear once. After rename, confirm the obsolete name is absent;
+  after removal, confirm the registration is absent without deleting the body
+  unless that deletion was separately authorized.
+- For a new or materially changed skill, perform a bounded representative
+  read-only or synthetic invocation, verifying that the runtime reads the
+  canonical instructions and follows the intended route. Do not publish,
+  connect accounts or perform the skill's real external action merely to test
+  discovery. Native metadata alone is not behavioral proof.
+
+Report authoring, registration, runtime observation and configured Git delivery
+separately. Missing runtime proof is NOT VERIFIED, never "ready to use" based
+only on a folder or symlink. If fresh-session pickup requires user action,
+retain the completed artifact and give that one step. Only the reviewed portable
+source goes through [sync](sync.md); syncing Git alone does not install a skill.

@@ -1,6 +1,6 @@
 ---
 name: aios-maintain-context
-description: Curate durable AIOS owner facts and routes, or reconcile their configured Git sync. Use for requested context upkeep; repository edits and initial setup have their own routes.
+description: Curate AIOS owner context, maintain personal skills and their runtime discovery, or reconcile configured owner Git sync. Use when a conversation creates, imports, edits, renames or removes a personal skill; independent repository skills stay local.
 ---
 
 # Maintain context
@@ -11,6 +11,12 @@ Before any owner-data mutation, check AIOS_FORMAT at the configured home using
 formats stay read-only; a missing marker requires explicit setup/migration.
 Before a durable change to Git-backed owner data, read [sync](references/sync.md).
 For format changes or legacy import use [data compatibility](../aios-onboard/references/data.md).
+
+When an ordinary conversation creates, imports, edits, renames or removes a
+personal skill, or setup needs its registration, use the canonical
+[personal skill lifecycle](references/owner-skills.md). It owns placement,
+discovery, collision handling and acceptance; use the available native Skill
+Creator for authoring, not a new AIOS creator skill.
 
 Keep shared facts in routed context, durable corrections in MEMORY.md, access
 and recorded authority in CONNECTIONS.md, and canonical repository pointers in

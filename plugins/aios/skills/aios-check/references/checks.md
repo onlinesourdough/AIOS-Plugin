@@ -68,6 +68,9 @@ and recheck, or Needs decision, plus per-claim PASS/FAIL/NOT VERIFIED.
   scoped commits, authority and equality; dirty/drift state is preserved.
 - Learning: curated source-bound corrections; methods owned in the right place;
   optional external skills remain external; no native-memory dependence.
+- Personal skill discovery: inspect the acceptance evidence required by
+  [Maintain context](../../aios-maintain-context/references/owner-skills.md#verify-before-saying-ready).
+  This check observes the result; that procedure owns any authorized repair.
 - Migration/recovery: explicit mapping, content/mode/route preservation,
   unknown-version stop, idempotent rerun, conflicts keep both, restore tested,
   machine-specific paths adjusted without copying entire harness homes.

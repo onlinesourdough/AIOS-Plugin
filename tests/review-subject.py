@@ -13,7 +13,7 @@ def subject():
         paths.update(path for path in (ROOT / folder).rglob("*")
                      if path.is_file() and "__pycache__" not in path.parts)
     paths.update(ROOT / name for name in (
-        "AGENTS.md", "README.md", "CHANGELOG.md", "package.json", "LICENSE", ".gitignore",
+        "AGENTS.md", "README.md", "package.json", "LICENSE", ".gitignore",
         "docs/ownership.md", "docs/recovery.md", "docs/parity.md",
         "docs/lifecycle.md", "docs/source-inventory.json", "docs/architecture.md",
         "docs/skills.md", "docs/distribution.md", "docs/source-audit.md",

@@ -1,4 +1,8 @@
 [
+  {"id":"personal-create","request":"Turn this recurring workshop briefing workflow into a personal skill.","state":"Supported owner home; native Skill Creator available; no same-name registration. Author at canonical owner path, reconcile one registration, replay and verify native discovery separately."},
+  {"id":"personal-rename-collision","request":"Rename my workshop skill to launch-brief.","state":"Old registration is owned; launch-brief is a foreign link. Preserve both identities, stop colliding registration, do not claim ready."},
+  {"id":"personal-discovery-gap","request":"Finish creating this personal skill.","state":"Canonical body and registration verified; fresh native discovery unavailable. Retain work, report runtime NOT VERIFIED, no external invocation just to test."},
+  {"id":"repository-skill-edit","request":"Edit this repository-specific skill.","state":"Independent repository has local AGENTS and lifecycle. Stay local; do not read personal context or register the skill globally."},
   {"id":"cold","request":"Set me up in the folder Client Work/AIOS. I need a concise launch checklist for a pottery workshop.","state":"No home or Git; unrelated bridge instructions already present."},
   {"id":"resume","request":"Continue my workshop plan.","state":"Existing custom home, focus and durable correction; no Git or native memory."},
   {"id":"repo","request":"Fix the export filename in this repository.","state":"Repository AGENTS and local lifecycle present; global AIOS bridge also installed."},

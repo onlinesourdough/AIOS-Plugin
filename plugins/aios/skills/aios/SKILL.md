@@ -34,7 +34,8 @@ Choose the shortest justified workflow through the installed skills and their fo
 - A verified specialist need uses the relevant [System route](references/routing.md).
 - A justified new owner uses [Create Project](../aios-create-project/SKILL.md)
   or [Create System](../aios-create-system/SKILL.md).
-- Context upkeep uses [Maintain context](../aios-maintain-context/SKILL.md);
+- Context upkeep and personal skill creation/import/edit/rename/removal during
+  an ordinary conversation use [Maintain context](../aios-maintain-context/SKILL.md);
   configured Git checkpoints use its [sync procedure](../aios-maintain-context/references/sync.md).
 - Installation/acceptance inspection uses [Check](../aios-check/SKILL.md);
   package adoption uses [Update](../aios-update/SKILL.md).
@@ -47,6 +48,8 @@ need. `orchestrate-workers` may help choose a worker but cannot supply runtime
 capability, replace AIOS lifecycle or override an actual initial-root boundary.
 Its absence does not block work that the native harness can safely perform.
 Do not copy a Global library or require it before ordinary AIOS use.
+For overlapping work, call the skill/reference that already owns the procedure;
+keep only the caller's trigger and required result here, not a second workflow.
 
 Small answers and bounded mechanical edits need only relevant context, the
 scoped result and its check; no full lifecycle or eval suite. Continue within

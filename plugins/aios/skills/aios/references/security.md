@@ -15,7 +15,7 @@ context; do not add another owner, always-loaded skill or required tool stack.
 
 The repository owns SECURITY.md, findings, fixes and evidence. Maintained
 specialist scanners are optional capabilities, used when available, authorized
-and justified by the risk. Method does not install them, select a special model,
+and justified by the risk. AIOS does not install them, select a special model,
 impose a scan on every edit or promise scanner access across harnesses.
 
 Active security validation needs an explicitly authorized isolated target and

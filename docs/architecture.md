@@ -14,7 +14,7 @@ permission system or client account data.
 | Independent System/Project repositories | Local AGENTS, implementation, lifecycle, proof and recovery | Their own canonical operational truth |
 | Native harness | Tools, permissions, credentials, sessions, configuration and UI | Actual capability and execution; the package cannot grant it |
 
-AIOS_FORMAT remains the plain integer `1`; the product version is `0.2.0`.
+AIOS_FORMAT remains the plain integer `1`; the product version is `0.2.1`.
 A name migration is explicit and never inferred from a format number. The
 [compatibility map](../plugins/aios/skills/aios-onboard/references/migration.md)
 owns old OSM marker/package and template AIOS adoption.
@@ -40,6 +40,13 @@ The [11 public skills](skills.md) are the core method surface. Detailed
 procedures have one canonical owner and are linked only when relevant. Spec,
 Build, Review and authorized Ship retain one outcome and one accountable
 repository writer; the native harness must prove actual initial-root capability.
+
+[Maintain context](../plugins/aios/skills/aios-maintain-context/references/owner-skills.md)
+owns personal skill placement, registration, collisions and discovery proof.
+Onboard calls it during setup/moves; ordinary skill changes call the same
+procedure. Check observes its acceptance criteria without owning a repair copy.
+Skill authoring uses the available native Skill Creator. No twelfth entrypoint,
+background watcher or consumer helper is introduced.
 
 External Global Skills, such as orchestration, clarification, skill management
 or offer-shaping methods, are independently owned optional capabilities. They

@@ -1,6 +1,6 @@
 {
   "name": "aios",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Portable owner context, adaptive onboarding and discoverable methods for specified, reviewed work.",
   "author": {
     "name": "Online Sourdough"
@@ -8,6 +8,9 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "AIOS",
+    "brandColor": "#b86f36",
+    "composerIcon": "./assets/icon.png",
+    "logo": "./assets/icon.png",
     "shortDescription": "Your context, useful work and reviewed delivery.",
     "longDescription": "Eleven shared skills for onboarding, Spec, Build, Review, Ship, owner context and independent-owner creation. Client data stays in a separate owner-controlled home.",
     "developerName": "Online Sourdough",
@@ -17,6 +20,6 @@
       "Set up AIOS for my current work."
     ]
   },
-  "repository": "https://github.com/onlinesourdough/Method",
+  "repository": "https://github.com/onlinesourdough/AIOS-Plugin",
   "license": "MIT"
 }

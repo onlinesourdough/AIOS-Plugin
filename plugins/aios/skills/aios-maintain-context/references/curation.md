@@ -28,10 +28,9 @@ check original bytes before replacing. Concurrent changes cause a conflict,
 not last-writer-wins. In Git mode run [sync](sync.md) at the task boundary.
 
 Learn a method only when inputs, steps, proof and repeat value are clear and
-reuse reduces ambiguity. Put an owner-specific shared method under AIOS_ROOT/skills,
-a repository method locally, and an optional external Global Skill with its
-external product. Never embed facts, credentials, outputs or history in method
-text. If reuse is uncertain, suggest at most one candidate. Preserve every
-nonreserved legacy owner skill during migration. Report changes and rationale.
+reuse reduces ambiguity. For method ownership, authoring and runtime discovery,
+use [personal skill lifecycle](owner-skills.md). If reuse is uncertain, suggest
+at most one candidate. Preserve nonreserved legacy owner skills during migration.
+Report changes and rationale.
 Native memory and history can suggest retrieval; canonical corrections still
 need sourced deliberate writes. No automatic transcript harvesting.

@@ -22,6 +22,11 @@ Review does not mutate its subject. Return PASS, REVISE or BLOCKED. REVISE
 resumes the same worker/goal with a new contract revision; BLOCKED preserves
 state. Record [improvement triage](references/improvement.md) disposition independently of the work gate.
 
+For skill/procedure changes, check that each shared procedure has one canonical
+owner and callers link to it with their trigger and required result. Flag copied
+step lists, competing acceptance rules and circular delegation without an
+executable owner; do not merge distinct responsibilities just to reduce files.
+
 Bind PASS to exact artifact hashes (or commit/tree), proof and reviewed contract
 revision. Any later relevant mutation invalidates affected evidence and PASS.
 The same worker reruns impacted tests/evals on final bytes, then the lead

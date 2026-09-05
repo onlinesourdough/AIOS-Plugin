@@ -28,12 +28,12 @@ This repository contains `.agents/plugins/marketplace.json` and
 local pilot, substitute the verified repository path:
 
 ```sh
-codex plugin marketplace add /absolute/path/to/Method
+codex plugin marketplace add /absolute/path/to/AIOS-Plugin
 codex plugin add aios@online-sourdough
 ```
 
 For a released private repository, the authorized account can instead add
-`onlinesourdough/Method --ref REVIEWED_REF` as the marketplace source, then
+`onlinesourdough/AIOS-Plugin --ref REVIEWED_REF` as the marketplace source, then
 install the same selector. A reviewed immutable commit/tag must exist first.
 Read installed marketplace identity before reusing a conflicting name. Do not
 create a personal marketplace for this repo distribution. Start a fresh task
@@ -118,8 +118,8 @@ The root package.json declares only `pi.skills`, pointing to the very same
 Standard local and Git package routes are:
 
 ```sh
-pi install /absolute/path/to/Method
-pi install git:github.com/onlinesourdough/Method@REVIEWED_REF
+pi install /absolute/path/to/AIOS-Plugin
+pi install git:github.com/onlinesourdough/AIOS-Plugin@REVIEWED_REF
 ```
 
 Choose one source, not both. Local install references the repository without
@@ -156,19 +156,13 @@ or intermediate projects/systems AGENTS/override file that instructs nested
 repository tasks to load personal context. Verify inherited instructions in a
 fresh nested repository task when setup changes this boundary.
 
-## Optional user-owned skills, registered once
+## Optional user-owned skills
 
-The canonical bodies live in AIOS_ROOT/skills/<name>/SKILL.md, outside the product.
-Inventory existing global and package discovery before registration. Keep each
-name visible exactly once in each harness, resolving collisions before writes.
-The common ~/.agents/skills discovery root is available in Codex and Pi. One
-non-colliding symlink per owner skill there can point to its canonical AIOS skill
-folder; do not also add Pi's skills setting or copy it into another global root.
-If the installed harness cannot discover that supported link, use its verified
-native path registration instead, remove only the redundant owned registration
-and test again. Never duplicate bodies or create another metadata wrapper.
-Update links after a home move. Removing a registration never deletes the body.
-Optional external Global Skills remain separately installed and owned.
+During setup or a home move, use Maintain context's
+[personal skill lifecycle](../../aios-maintain-context/references/owner-skills.md)
+for the owner's existing methods and return its registration/runtime evidence.
+That is the same procedure used when a conversation creates or changes a skill;
+this adapter does not maintain a second registration workflow.
 
 ## Other harnesses
 

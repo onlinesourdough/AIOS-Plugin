@@ -9,6 +9,8 @@ Use the adaptive outcomes in [setup](references/setup.md): reuse known answers,
 choose the next material question or authorized action, implement and verify it.
 Full onboarding covers relevant readiness areas; ordinary resume stays scoped. Read the applicable
 [native adapter](references/adapters.md) when installing or changing a bridge/package.
+For personal skills during setup or a home move, call Maintain context's
+[personal skill lifecycle](../aios-maintain-context/references/owner-skills.md).
 For an existing folder or migration, read [data compatibility](references/data.md)
 before writing; use [identity migration](references/migration.md) for legacy
 OSM or template AIOS and discovery collisions. Blank owner assets are in [assets/owner](assets/owner/AIOS.md).
