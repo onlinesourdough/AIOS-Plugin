@@ -31,6 +31,16 @@ Check call those owners instead of duplicating their procedures.
 Worker orchestration and improvement triage are conditional instructions. They
 do not create a runtime, external authority, or background watcher. Optional
 Global Skills remain independently owned and are not copied into AIOS.
+Registered Systems are selected by their declared responsibility and primary
+route. Their repositories own tool choices, internal stages, artifact formats,
+schemas and natural returns; AIOS keeps only the registry and handoff boundary.
+
+Skill name/description metadata and the small owner bridge are the startup method
+layer. One clearly triggered skill body loads next; conditional procedures live
+in focused references selected by harness, operation or capability. AIOS does
+not preload cross-harness adapters, optional capabilities, owner context or every
+lifecycle phase to reduce file count. Skill count follows responsibility and
+discovery boundaries, not a context-budget target.
 
 ## Portability
 

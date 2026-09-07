@@ -1,4 +1,4 @@
-# Native adapters
+# Native adapter route
 
 These are installation instructions, not permission to change a machine.
 Inspect current harness documentation/help when versions differ. Install only
@@ -7,166 +7,19 @@ are separate. Package caches are replaceable; never put owner data there.
 No whole ~/.codex copy, copied credentials, model/provider reconfiguration,
 background service or MCP is needed.
 
-For effective config, approval/sandbox settings, memory, Computer Use/History,
-providers, Pi settings and conflicting legacy registrations, follow the
-[harness-configuration checklist](harness-configuration.md). Native extras are
-optional; preserve the chosen baseline and report unavailable per-machine UI
-steps without blocking core AIOS.
+Read this shared bridge boundary and exactly one operation route:
 
-## Codex
+- [Codex package and bridge](adapter-codex.md) for Codex installation or repair;
+- [Codex desktop entry point](adapter-codex-desktop.md) only when onboarding or
+  cutover affects New Chat, saved roots, environments or sidebar state;
+- [Pi package and discovery](adapter-pi.md) for Pi installation or repair; or
+- [portability, update and uninstall](adapter-portability.md) only for that
+  cross-harness or package-lifecycle operation.
 
-An invited client can give the agent the private repository link and a natural
-setup request. With authorized access, the agent reads the README, resolves an
-existing reviewed AIOS release, and uses an advertised permitted native install
-surface. Verify the release exists and identifies AIOS before installation;
-never substitute an unreviewed branch because a tag is absent. Missing GitHub
-access needs a native sign-in/invitation step, not a secret in chat. A fresh task
-continues onboarding after resource discovery is refreshed.
-
-This repository contains `.agents/plugins/marketplace.json` and the root
-`.codex-plugin/plugin.json`. For an authorized
-local pilot, substitute the verified repository path:
-
-```sh
-codex plugin marketplace add /absolute/path/to/AIOS-Plugin
-codex plugin add aios@online-sourdough
-```
-
-For a released private repository, the authorized account can instead add
-`onlinesourdough/AIOS-Plugin --ref REVIEWED_REF` as the marketplace source, then
-install the same selector. A reviewed immutable commit/tag must exist first.
-Read installed marketplace identity before reusing a conflicting name. Do not
-create a personal marketplace for this repo distribution. Start a fresh task
-and verify the 14 packaged skills are discoverable once. Use the
-[identity migration](migration.md) before replacing an older Method selector or
-legacy/global registration; a matching skill name does not establish ownership.
-
-Default global bridge target is ~/.codex/AGENTS.md (respect an explicitly
-configured CODEX_HOME). Inspect AGENTS.override.md: it can shadow the normal
-file. Preserve it and unrelated AGENTS instructions; do not delete or overwrite
-an override to make discovery pass. Under setup authority, propose/apply the
-same small managed block in the effective file, documenting the exception.
-If precedence or conflicting instructions cannot be safely resolved, report
-the exact blocker instead of claiming setup passed. Personalization and its
-backing instructions are one surface, not two independent policies.
-
-## Codex desktop entry point — when onboarding or cutover affects it
-
-The owner home stores data; it need not be the selected app Project. Ordinary
-owner chat should work with no selected Project, using the global bridge.
-A null selected Project does not prove the active workspace is empty or current.
-Inspect composer selection, active workspace roots and the fresh task's actual
-cwd separately; reconcile mismatches before declaring routing/cutover PASS.
-Inspect the actual New Chat composer selection and relevant saved roots through
-available native tools/UI. Do not promise a persistent default unless that
-client's supported feature and effective behavior have been verified.
-[Native Projects guidance](https://learn.chatgpt.com/docs/projects) distinguishes
-chat without a Project from chats within a Project starting at its primary folder;
-that does not establish a universal sticky New Chat default or make Quick chat
-an equivalent Codex entry point.
-
-Treat the following as distinct relevant surfaces: active workspace selection,
-saved roots, local Projects with physical primary/secondary roots and associated
-worktree/setup references, cloud environments, and sidebar presentation. A local
-root fix does not update a cached/remote cloud environment. Inspect its canonical
-identity/status through supported native sources and change it only under exact
-authority; cached metadata alone cannot prove current cloud state.
-
-Discover sidebar preferences when they matter: one list, priority order, custom
-sections and pins are client-specific choices, not required AIOS structure.
-Reuse chosen organization and names. Apply authorized supported changes and read
-back actual state; do not map a client's display layout into owner-data taxonomy
-or force the same controls on Pi.
-
-Inventory stale saved roots separately from files and task history. Preserve
-chosen custom sections, names, active roots and history. Remove only specifically
-authorized obsolete shortcuts through a supported native control; never treat
-shortcut cleanup as permission to delete Projects, repositories or owner data.
-Include associated local environment/worktree setup references in this scoped
-inventory. Resolve physical primary/secondary roots; do not deduplicate by label
-or assume every displayed Project has an environment configuration. Preserve
-valid setup/actions, credential references and dirty worktrees without executing
-setup commands or exposing credentials. Correct only authorized stale native
-registrations through supported interfaces. Do not edit app databases/internal
-state or infer success from a configuration file.
-
-Check whether the required native inspection/action exists before attempting it.
-Respect explicit app-control denials as described in
-[harness permissions](harness-configuration.md#computer-use--optional-several-permission-layers);
-never route around a denied app through alternative automation or internal edits.
-If unavailable, give one precise guided UI step, then obtain actual readback of
-its result. Keep desktop cutover PENDING until verified; installation may PASS
-independently. Do not substitute a CLI test or a tool-created projectless task for
-interaction with the real New Chat entry point.
-
-Acceptance: open New Chat, observe its selected Project (or no selection), start
-an ordinary fresh owner task and verify its actual cwd and owner routing. Also
-verify the selected root and local-first behavior of the relevant System/Project
-entry points. Record observed client/version, selection and task-root evidence;
-navigate away and back to New Chat before claiming the selection persists.
-Refresh Settings > Environments > Select a project and verify the list agrees
-with retained canonical Projects, without authorized obsolete or dangling duplicate
-roots. An unavailable UI leaves that check pending with one targeted step. A single
-correct task does not prove a persistent default. Repeat only when setup or a
-requested UI repair changes this boundary, not during ordinary work. This is
-Codex-specific; Pi has no compulsory sidebar acceptance step.
-
-## Pi
-
-The root package.json declares only `pi.skills`, pointing to the very same
-14 root `skills/` folders. No extensions or install scripts are provided.
-Standard local and Git package routes are:
-
-```sh
-pi install /absolute/path/to/AIOS-Plugin
-pi install git:github.com/onlinesourdough/AIOS-Plugin@REVIEWED_REF
-```
-
-Choose one source, not both. Local install references the repository without
-copying skill bodies. A Git install is a harness-managed package checkout;
-never use it for owner data or development work. Pi may reconcile/reset its
-managed Git cache on package update. Dependencies and lifecycle scripts are
-absent from this package. Verify `pi list`, package paths, loaded skill names
-and a fresh session. Do not manually copy skills into ~/.pi/agent/skills.
-
-Default bridge target is ~/.pi/agent/AGENTS.md; respect a configured agent home.
-Inspect AGENTS.override.md and any fallback CLAUDE.md plus effective loaded
-context. Preserve unrelated content and resolve shadowing as for Codex.
-Only patch exact owned keys/array entries if settings require a change; never
-rewrite settings.json wholesale or touch authentication stores.
-
-### Default AIOS-focused Pi discovery
-
-During authorized AIOS onboarding, use AIOS-focused global discovery as the
-product default unless an established explicit setting must be preserved or a
-concrete compatibility conflict needs a decision. This default is not authority
-for a silent settings mutation. Compute these absolute paths from the actual
-user home and resolved `AIOS_ROOT`; never package a machine-specific path:
-
-```json
-[
-  "!<actual-home>/.agents/skills/**",
-  "<AIOS_ROOT>/skills",
-  "!<AIOS_ROOT>/skills/*.md"
-]
-```
-
-Apply the array only through the supported Pi settings control and preserve all
-other settings, packages, explicit overrides and trusted repository resources.
-The first entry excludes ambient global skills, the second explicitly loads
-owner skills, and the third excludes root-level README or other Markdown that
-is not a `skills/<name>/SKILL.md` body. Explicitly selected package skills remain
-separate from that ambient directory exclusion. Do not replace the final exclusion with
-the apparently tidier `AIOS_ROOT/skills/*/SKILL.md` pattern: the tested Pi
-loader did not resolve that form. This exclusion affects the global source only;
-trusted repository-local `.agents/skills` discovery remains independent.
-
-The observed candidate fixture result was 14 AIOS skills, four owner skills and
-two explicitly selected external Global skills in an ordinary untrusted context;
-the trusted AIOS repository additionally exposed exactly six local development
-skills. No ambient shared skills or diagnostics appeared. This is version-specific
-native evidence, not a universal all-version promise. Reapply or adopt a package
-only at a separate authorized task boundary.
+For effective configuration, approval/sandbox settings, optional capabilities,
+providers, Pi settings and conflicting legacy registrations, select the one
+applicable route from [harness configuration](harness-configuration.md). Do not
+read every harness or optional-capability reference as a baseline ritual.
 
 ## The same small bridge
 
@@ -179,54 +32,21 @@ bytes outside the block unchanged, including unrelated instructions.
 
 The bridge is only the bootstrap instruction that locates the owner home; native
 package and skill registration expose the method entrypoints separately. Passing
-one boundary does not prove the other. The bridge identifies the configured AIOS owner home by physical root, AIOS.md
-and supported AIOS_FORMAT, even when Git-backed. Genuinely independent repository
-work stays local-first without personal preload. Owner-level work reads AIOS.
-Unsupported/malformed owner format remains read-only before every owner write.
-File access and account authorization must still be available in the harness.
-Do not claim Markdown provides isolation or team RBAC.
+one boundary does not prove the other. The bridge identifies the configured AIOS
+owner home by physical root, AIOS.md and supported AIOS_FORMAT, even when
+Git-backed. Genuinely independent repository work stays local-first without
+personal preload. Owner-level work reads AIOS. Unsupported/malformed owner
+format remains read-only before every owner write. File access and account
+authorization must still be available in the harness. Do not claim Markdown
+provides isolation or team RBAC.
 
 Keep this bridge global and AIOS.md in the owner home. Do not add an owner-home
 or intermediate projects/systems AGENTS/override file that instructs nested
 repository tasks to load personal context. Verify inherited instructions in a
 fresh nested repository task when setup changes this boundary.
 
-## Optional user-owned skills
-
 During setup or a home move, use Manage Skills'
 [personal skill lifecycle](../../aios-manage-skills/references/owner-skills.md)
 for the owner's existing methods and return its registration/runtime evidence.
 That is the same procedure used when a conversation creates or changes a skill;
 this adapter does not maintain a second registration workflow.
-
-## Portability to another harness
-
-AIOS portability is a product boundary: the same physical owner home and
-canonical `skills/` source should be easy to adopt later through a supported
-entrypoint for another harness. It does not mean that every harness consumes a
-global `AGENTS.md`, that this package installs every adapter, or that models
-behave identically. The current native evidence covers Codex and Pi only.
-
-When work crosses harnesses, hand off the accepted outcome, bounded relevant
-context, exact Project/System root, one-writer and action authority, evidence,
-remaining decisions and any improvement signal (or an honest none). The
-receiving harness resolves its own entrypoint, permissions, trust and runtime
-capabilities before acting. No universal loader, duplicated method body,
-background bridge or hidden permission grant is part of AIOS.
-
-## Update and uninstall
-
-Inspect the reviewed release and data compatibility before adoption. Pin the
-active task's method version; defer updates until a task boundary. Use native
-package update/reinstall targeting the reviewed ref, then a new thread and
-checks. Product rollback selects the previous reviewed package; it does not
-roll back owner data. Uninstall removes only owned package registrations and
-the unchanged managed bridge block, never owner files or unrelated settings.
-If the block changed since setup, preserve it and show a scoped removal diff.
-
-Sources checked 2026-09-05: [Codex instructions](https://learn.chatgpt.com/docs/agent-configuration/agents-md),
-[plugin packaging](https://developers.openai.com/plugins/build/plugins),
-[Pi packages](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/packages.md),
-[Pi skills](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/skills.md).
-Local CLI help and installed Pi docs informed these commands. Documentation
-support is not proof of successful installation in another environment.

@@ -1,6 +1,6 @@
 # Systems
 
-Canonical Agentic System Template Git URL: https://github.com/onlinesourdough/Agentic-System-Template.git
+Registered System seed Git URL: https://github.com/onlinesourdough/Agentic-System-Template.git
 
 | System | Checkout path | Canonical repository or local marker | Primary skill | Invoke when | Natural return | Verification |
 | --- | --- | --- | --- | --- | --- | --- |

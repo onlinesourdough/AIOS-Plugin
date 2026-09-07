@@ -9,14 +9,17 @@ Start from a READY [Spec](../aios-spec-work/SKILL.md) or an already accepted
 contract. Return to Spec only for a material gap. Preserve one outcome through
 implementation, relevant verification, local Review and authorized delivery.
 
-Before mutation, inspect the accepted goal representation, stable identity,
-contract revision, current state, latest evidence/blocker and exact next action.
-The worker acknowledges that same linked goal after root, branch, repository and
-authority attestation. Build, waiting-review, `REVISE`, approval wait, recovery
-and Ship update the same goal and worker; record evidence and the next action at
-each real boundary. Hold mutation if required native activation or this linked
-acknowledgement is missing; do not infer goal state from a launch or prompt. Do
-not complete at initial Build or local self-review.
+Before mutation, inspect the accepted lead goal representation, stable identity,
+concise todo, contract revision, current state, latest evidence/blocker and exact
+next action. After root, branch, repository and authority attestation, the worker
+follows [the canonical lifecycle](../aios/references/lifecycle.md): activate or
+reuse its narrower linked native goal when the accepted task explicitly requires
+one, otherwise acknowledge the same lead goal. Build, waiting-review, `REVISE`,
+approval wait, recovery and Ship keep the same goals and worker while updating
+the todo, evidence and next action at each real boundary. Hold mutation if
+required native activation or acknowledgement is missing; do not infer goal
+state from a launch or prompt. Do not complete at initial Build, local
+self-review or waiting-review, and do not create a Ship goal.
 
 
 Keep small owner tasks in the lead. Independent repository mutations initiated

@@ -39,10 +39,12 @@ change.
 
 ## Discover and review candidates
 
-Search without installing. Follow the current `skills.sh` CLI documentation;
-the common candidate query is `npx skills find <need>` and listing a source is
-`npx skills add <owner/repo> --list`. Prefer a reviewed project or organization
-source, then the relevant technology owner, then a community source.
+Search without installing through an available authorized catalog, native
+discovery surface, authoritative publisher source or owner-supplied repository.
+Follow that source's current documented read-only search/listing interface; no
+particular catalog, CLI or package manager is an AIOS dependency. Prefer a
+reviewed project or organization source, then the relevant technology owner,
+then a community source.
 
 Before any mutation, inspect and record the candidate publisher, repository,
 exact revision, license, maintenance, `SKILL.md`, referenced resources,

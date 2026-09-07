@@ -5,10 +5,11 @@ Existing owners are adopted in place, never refreshed from a template. The
 lead selects name, safe lowercase hyphen slug, final absolute root, optional
 canonical URL, outcome, authority, proof and accepted immutable input pointers.
 The owner registry supplies the canonical credential-free HTTPS .git seed URL.
-Validate URL has no userinfo, whitespace, query or fragment. Freshly query
-symbolic HEAD and main; require refs/heads/main and freeze one exact live
-40-character commit SHA. Cached refs or a remembered pin are not live evidence.
-Network failure or a changed SHA stops before transfer.
+Validate URL has no userinfo, whitespace, query or fragment. Freshly query its
+symbolic HEAD and the default branch required by the seed's current creation
+interface, then freeze one exact live 40-character commit SHA. Cached refs, a
+remembered pin or an assumed branch are not live evidence. Network failure or
+a changed SHA stops before transfer.
 
 For new owners choose physical AIOS_ROOT/projects/<slug> (Project) or
 AIOS_ROOT/systems/<slug> (System). Existing deliberate external roots remain
@@ -19,7 +20,7 @@ Keep independent .git, local AGENTS and lifecycle at the repository root; nestin
 is a filesystem layout, not shared implementation or authority. No symlink farm.
 
 No registration in an unrelated legacy home. Reject existing path/registry/canonical
-identity duplicates. The lead creates only the final empty unborn main repo,
+identity duplicates. The lead creates only the final empty unborn repository,
 then uses [Orchestrate workers](../../aios-orchestrate-workers/SKILL.md) to
 launch the same sole first-class worker that will own implementation.
 Attest exact physical root/Git top level, branch, zero history/refs/remotes and

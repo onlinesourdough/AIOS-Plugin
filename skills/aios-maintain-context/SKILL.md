@@ -7,10 +7,10 @@ description: Curate AIOS owner facts, memory, routes, registries and connections
 
 Read the established AIOS.md, relevant source, and [curation](references/curation.md).
 Before any owner-data mutation, check AIOS_FORMAT at the configured home using
-[data compatibility](../aios-onboard/references/data.md). Unsupported/malformed
+[data compatibility](../aios-onboard/references/data-format.md). Unsupported/malformed
 formats stay read-only; a missing marker requires explicit setup/migration.
 Before a durable change to Git-backed owner data, read [sync](references/sync.md).
-For format changes or legacy import use [data compatibility](../aios-onboard/references/data.md).
+For an actual legacy import use the separate [migration procedure](../aios-onboard/references/data.md).
 
 When an ordinary conversation creates, imports, edits, renames or removes a
 personal skill, setup needs its registration, or another capability change is

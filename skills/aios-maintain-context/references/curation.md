@@ -1,7 +1,7 @@
 # Selective durable context
 
 Before a write, verify supported AIOS_FORMAT at the configured owner root using
-[data compatibility](../../aios-onboard/references/data.md). Unsupported or
+[data compatibility](../../aios-onboard/references/data-format.md). Unsupported or
 malformed data remains read-only; missing format requires explicit migration.
 
 Use AIOS.md as the single short entry: focus snapshot plus explicit routes to

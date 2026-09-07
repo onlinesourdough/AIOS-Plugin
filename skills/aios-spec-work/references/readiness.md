@@ -11,10 +11,11 @@ editing it; an ordinary mechanical edit does not require a Spec audit.
 | Source preservation | Canonical owner and accepted wording remain intact; only an authorized minimal patch or missing specification material was added |
 | Facts before questions | Discoverable facts have been inspected; only the next material owner decision is asked |
 | One gate | Exactly READY, REVISE or BLOCKED, with no unsupported Build route |
-| READY contract | Outcome; proof and measurement owner; context links; repository/worker root; scope/non-goals; authority/risk; dependencies/handoffs; expected evidence; operation/recovery/Ship scope; goal representation, stable identity, accepted revision, current state, latest evidence/blocker, exact next action, launch contract and one bounded linked worker goal acknowledgement are present where applicable |
+| READY contract | Outcome; proof and measurement owner; context links; repository/worker root; scope/non-goals; authority/risk; dependencies/handoffs; expected evidence; operation/recovery/Ship scope; lead goal representation, stable identity, concise current todo, accepted revision, current state, latest evidence/blocker, exact next action, launch contract and required worker-goal activation or linked-goal acknowledgement are present where applicable |
 | Lifecycle continuity | The accepted outcome persists through the same goal and worker; no phase goal, premature completion, silent replacement or narrower substitute outcome |
-| Goal state | Actual native goal state is inspected and verified when explicitly requested and supported; otherwise the logical checkpoint is labeled as non-native; missing required activation or worker acknowledgement holds Build and remains visible |
+| Goal state | Actual lead and required worker native goal state is inspected and verified when explicitly requested and supported; otherwise the logical checkpoint is labeled as non-native; missing required activation or acknowledgement holds Build and remains visible; waiting-review never becomes a phase-goal completion |
 | Local invariants | Affected repository instructions, ownership and real launch/capability boundaries are respected |
+| Consequential behavior | Material real-world assumptions and representative pre-change behavior/outcomes are named; the intended post-change outcome and proof can detect regression beyond unit correctness |
 | Proportionate construction | Rough input gains enough to build; a developed source is preserved rather than reformatted into a second brief |
 
 Return PASS only when every required check has direct evidence. Otherwise return

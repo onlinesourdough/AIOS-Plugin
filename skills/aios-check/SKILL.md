@@ -6,7 +6,7 @@ description: Verify AIOS installation, owner format, discovery and relevant harn
 # Check
 
 Inspect only the requested scope using the relevant section of
-[checks](references/checks.md). Use [setup scenarios](references/scenarios.md) for the requested installation
+[checks](references/checks.md). Use [setup scenarios](references/setup-scenarios.md) for the requested installation
 boundary. Artifact quality and lifecycle gates belong to
 [Review](../aios-review-work/SKILL.md) and its owning phases, not this audit.
 During evaluation do not edit the subject. Return PASS, FAIL or NOT VERIFIED

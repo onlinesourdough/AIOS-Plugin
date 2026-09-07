@@ -1,14 +1,14 @@
 # Resume without losing work
 
 Use at reconnect, compaction, approval wait, upstream drift or uncertain effect.
-Read the existing worker and goal linkage, goal representation and identity,
-contract revision, state, last acknowledgement, artifact hashes, pending
-Review/triage brief, latest evidence/blocker and next action. A paused task is
-not failed. Resume the same native session and bounded goal at the same root.
-Lost goal handles do not justify a duplicate writer. If identity cannot be
-proved, stop that mutation and ask the lead to reconcile. Replace only after
-explicit stop or proven failure, retaining original state and recording the
-replacement attempt under the original contract.
+Read the existing worker and lead/worker goal linkage, actual representations
+and identities, concise todo, contract revision, states, last acknowledgement,
+artifact hashes, pending Review/triage brief, latest evidence/blocker and next
+action. A paused task is not failed. Resume the same native session and active
+goals at the same root. Lost goal handles do not justify a duplicate writer. If
+identity cannot be proved, stop that mutation and ask the lead to reconcile.
+Replace only after explicit stop or proven failure, retaining original state
+and recording the replacement attempt under the original contract.
 
 Logical wait or block is not proof that a native goal is terminal. Follow the
 actual control semantics and any recurrence requirement; never fabricate a

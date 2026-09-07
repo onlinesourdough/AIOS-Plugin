@@ -54,6 +54,9 @@ The launch instruction must include, without copying the whole conversation:
 
 - the concrete deliverable and the accepted outcome it serves;
 - acceptance conditions, relevant checks and the expected evidence;
+- the lead goal's actual identity/state, concise current todo and whether the
+  accepted task explicitly requires this worker to activate a narrower native
+  goal;
 - links or exact paths to the relevant sources, local AGENTS/lifecycle and
   immutable handoffs, not unrelated owner context or history;
 - the exact Project or System checkout root and repository identity, plus the
@@ -67,12 +70,19 @@ The launch instruction must include, without copying the whole conversation:
 Launch one first-class worker for one outcome. Before mutation, the worker
 attests its physical cwd and workspace/Git root, branch and repository
 identity, local instructions, stable session identity, selected route and
-exposed tools/permissions, then acknowledges the linked goal's actual
-representation, identity and state. A path supplied in the prompt or a later `cd` does
-not repair a wrongly launched root. Stop on a root, branch, identity,
-instruction, permission, route or authority mismatch; on a duplicate active
-writer; or on a request to create an unapproved UI task. Do not launch a second
-writer to work around a missing handle or slow result.
+exposed tools/permissions. It inspects its actual native goal state. When the
+accepted task explicitly requires a goal per worker, it reuses a compatible
+unfinished goal or creates one narrower goal linked to the lead goal, with no
+budget unless explicitly requested, then verifies its identity and active state.
+Otherwise it acknowledges the linked lead goal's actual representation,
+identity and state without manufacturing a worker goal. Linkage in a prompt is
+not activation; unavailable required controls hold mutation.
+
+A path supplied in the prompt or a later `cd` does not repair a wrongly launched
+root. Stop on a root, branch, identity, instruction, permission, route, goal or
+authority mismatch; on a duplicate active writer; or on a request to create an
+unapproved UI task. Do not launch a second worker to work around a missing
+handle or slow result.
 
 The worker follows its local Spec, Build, Review and recovery procedures when
 the target is an independent repository. It preserves unrelated and
@@ -83,24 +93,26 @@ the repository's local lifecycle or safety boundary.
 ## Require an honest handback
 
 The worker returns once with exact changed files/artifact hashes, checks and
-their scope, remaining or unverified evidence, current recovery/stop state and
-the next lead decision. It explicitly reports either `Improvement signals:
+their scope, remaining or unverified evidence, current lead/worker goal and todo
+state, recovery/stop state and the next lead decision. It explicitly reports
+either `Improvement signals:
 none` or concrete, sanitized underlying improvement signals. Signals are
 observations separate from deliverable defects; examples include a method,
 tooling, routing or technical gap, repeated friction, avoidable usage or
 manual work, or worthwhile reuse. Never force a worker to manufacture a signal.
 
-Enter waiting-review and do not poll. The lead independently reviews the
-actual delivery and affected workflow proportionately. A wrong or incomplete
-delivery returns `REVISE` to this same worker and outcome; a concrete
-underlying signal is handled separately by [improvement triage](../aios-triage-improvement/SKILL.md).
+Enter waiting-review with the worker session and any applicable worker goal
+still active, and do not poll. The lead independently reviews the actual
+delivery and affected workflow proportionately. A wrong or incomplete delivery
+returns `REVISE` to this same worker and outcome; a concrete underlying signal
+is handled separately by [improvement triage](../aios-triage-improvement/SKILL.md).
 
 For interruption, drift, reconnect or an uncertain effect, use the canonical
 [recovery procedure](../aios/references/recovery.md): resume the same worker,
-session and bounded goal when identity is proved, preserve state, read back an
-uncertain destination before retrying, and replace only after an explicit stop
-or proven failure. Do not turn recovery into a second writer or an implicit
-authority request.
+session and bounded lead/worker goals when identity is proved, preserve state,
+read back an uncertain destination before retrying, and replace only after an
+explicit stop or proven failure. Do not turn recovery into a second writer or
+an implicit authority request.
 
 ## Lead-controlled completion archive
 

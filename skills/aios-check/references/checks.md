@@ -35,7 +35,7 @@ and recheck, or Needs decision, plus per-claim PASS/FAIL/NOT VERIFIED.
   An untested worker/cloud path is NOT VERIFIED, not inherited local coverage.
 - Codex desktop cutover, when in scope: inspect actual New Chat selection and a
   fresh task's cwd/routing, plus relevant System/Project entry roots, using the
-  [desktop acceptance](../../aios-onboard/references/adapters.md#codex-desktop-entry-point--when-onboarding-or-cutover-affects-it).
+  [desktop acceptance](../../aios-onboard/references/adapter-codex-desktop.md).
   Check selected Project, active workspace roots and fresh task cwd separately;
   null selection alone is not proof. Inspect local Projects/saved roots, cloud
   environments and sidebar preferences as separate client surfaces. Distinguish
@@ -58,9 +58,11 @@ and recheck, or Needs decision, plus per-claim PASS/FAIL/NOT VERIFIED.
 - Creation: live canonical source, final-root attestation, same session,
   zero-history transfer/materialization, exact provenance, registration only
   after proof. Existing owners never refreshed from seeds.
-- Lifecycle: one linked persistent outcome, justified owner, root attestation,
-  one writer, local full lifecycle, independent lead decision, latest-change
-  proof, exact Ship authority, waiting states preserved without polling.
+- Lifecycle: one persistent lead goal with a concise mutable todo, justified
+  owner, root attestation, one writer, required narrower worker goal activation
+  or linked-goal acknowledgement, local full lifecycle, independent lead
+  decision, latest-change proof, exact Ship authority, and waiting states kept
+  active without polling or phase-goal replacement.
   When a lead actually plans, launches or recovers a worker, native worker
   orchestration owns the minimum-context, route, root and handback checks.
   Sensitive changes retain repository-owned security context, scoped negative
@@ -79,8 +81,9 @@ and recheck, or Needs decision, plus per-claim PASS/FAIL/NOT VERIFIED.
   machine-specific paths adjusted without copying entire harness homes.
   Original owner-method bytes remain recoverable; allow only verified mapped
   path/caller changes and test their resolved targets. Equal bytes with broken
-  legacy paths are not functional preservation. The complete 17-method map
-  must be reachable inside the extracted plugin without developer docs.
+  legacy paths are not functional preservation. The complete 17 core-method map
+  and external/independent-owner dispositions must be reachable inside the
+  extracted plugin without developer docs.
 
 Use [evals](scenarios.md) for the behavioral checkpoint. A
 release audit separates product version, owner-data format, optional Git sync,

@@ -40,34 +40,34 @@ begins locally without automatically reading owner context. Expand only for a
 named gap, to authorized relevant sources in the correct account. Brand labels
 are not access control. Verify account before relying on or exposing data.
 
-## Design and content siblings
+## Registered specialist capabilities
 
-ADS owns reusable visual judgment, editable source and reviewed exports until
-an accepted handoff. ACS owns content judgment, its imported snapshot and
-content package; it does not acquire the upstream editable design truth.
-Either can run alone. A Project can own its own design without a reusable System.
-For design work, read back the declared portable DESIGN.md or equivalent and
-its actual reviewed exports. A design result returns that accepted design
-contract, relevant editable or tool-native source, immutable snapshot metadata,
-proof and HANDOFF.md or an owner-declared equivalent when crossing owners. For
-content, return its owned workspace, actual output or package, review proof and
-publisher handoff with explicit not-posted status.
-Use the registered primary route; never copy the System's implementation or
-instructions into AIOS. Tool names and file types do not choose ownership.
+A System registry row identifies the owner, checkout or canonical source,
+primary route, invoke condition, natural return and verification state. AIOS
+owns selection and the cross-owner boundary only. The System's current local
+instructions own its tools, stages, mutable source, artifact names and formats,
+workspace layout, schemas, review and recovery. Do not encode those choices in
+AIOS or choose a route from a tool name, filename or former repository label.
 
-Pass resolved intent, audience, constraints, proof and receiving owner plus
-accepted immutable path/revision/hash/provenance/review pointers. Keep one
-coordinator and a list of visited routes. One newly found adjacent gap may
-justify one bounded sibling call; stop before revisiting a route. An unavailable
-sibling returns one material-input or installation action, not recursive
-routing or improvised substitute work. No synchronized schema or shared live
-state. A new accepted revision requires an explicit new handoff. Completion of
-ADS or ACS never automatically creates a Project or invokes APT.
+Invoke a verified registered route only when its declared condition matches the
+requested result. Pass resolved intent, only relevant accepted context and
+inputs, constraints, authority, proof need and receiving owner. Accept the
+natural return declared by the registry and current local contract. Preserve an
+accepted result's identity, revision and provenance when it crosses an owner
+boundary, using the representation that owner supports; AIOS imposes no shared
+return schema or synchronized live state.
 
-Return the relevant result/proof pointers, remaining decisions, adjacent-route
-status and stop condition for either route; content additionally returns its
-not-posted status. Publishing is separate authorized Ship. Tools
-such as an editor, browser or workflow runner are replaceable and optional.
+Capabilities remain independently usable. A newly discovered adjacent need does
+not automatically invoke a sibling or create a Project. Route one additional
+owner only when it is material to the same result, authorized and not already
+visited. If a required capability or input is unavailable, return one bounded
+verification, installation or input action instead of recursive routing or an
+improvised substitute. Publishing or any other external effect remains a
+separately authorized Ship action.
+
+Return the selected owner and route, the owner-declared result and proof
+pointers, remaining decisions or limitations, and the authority, recovery and
+stop state needed by the receiver.
 
 A Skill remains a repeatable method without independent operational truth;
 length, code, trigger, schedule or automation alone does not establish System

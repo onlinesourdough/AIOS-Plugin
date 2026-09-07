@@ -8,12 +8,15 @@ description: Set up, resume or move an AIOS owner home and its Codex or Pi bridg
 Use the adaptive outcomes in [setup](references/setup.md): reuse known answers,
 choose the next material question or authorized action, implement and verify it.
 Full onboarding covers relevant readiness areas; ordinary resume stays scoped. Read the applicable
-[native adapter](references/adapters.md) when installing or changing a bridge/package.
+[native adapter route](references/adapters.md) when installing or changing a
+bridge/package; it selects one harness/operation reference rather than a
+cross-harness preload.
 For personal skills during setup or a home move, call Manage Skills'
 [personal skill lifecycle](../aios-manage-skills/references/owner-skills.md).
-For an existing folder or migration, read [data compatibility](references/data.md)
-before writing; use [identity migration](references/migration.md) for legacy
-OSM or template AIOS and discovery collisions. Blank owner assets are in [assets/owner](assets/owner/AIOS.md).
+For an existing folder, read [data compatibility](references/data-format.md)
+before writing; an actual import also uses the [migration procedure](references/data.md)
+and [identity migration](references/migration.md) for legacy OSM or template AIOS
+and discovery collisions. Blank owner assets are in [assets/owner](assets/owner/AIOS.md).
 
 Resolve the configured or requested path to its physical absolute location;
 default to ~/.AIOS only for a new home. Check existing routing before creation;
@@ -31,5 +34,5 @@ never clone AIOS-template. Keep product version and data format separate.
 Local operation works without Git. Do not install anything or change global
 settings unless the current task authorizes it. Preserve unrelated instructions,
 secrets and configuration keys. Finish with a small useful result. For new or
-changed setup, run the relevant [setup acceptance](../aios-check/references/scenarios.md)
+changed setup, run the relevant [setup acceptance](../aios-check/references/setup-scenarios.md)
 checks and report unavailable proof; an unchanged resume needs only its task checks.

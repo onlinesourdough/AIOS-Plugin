@@ -51,7 +51,7 @@ arguments and handle spaces/non-ASCII paths.
 
 On a new home, create missing files from [owner assets](../assets/owner/AIOS.md)
 using existing file tools. Do not clone AIOS or install a runtime. Validate
-[data format](data.md), path ownership and write access with a scoped read/write
+[data format](data-format.md), path ownership and write access with a scoped read/write
 rehearsal. Do not follow unexpected symlinks to overwrite another owner. On an
 existing home, inspect format and routes, retain every established fact, and
 resume the next unfinished useful task. An empty field is not a reason for a
@@ -104,7 +104,7 @@ Complete one small useful artifact tied to the user's focus. Check root and
 bridge readback, format, selected routes, connection gaps and the first result.
 For new or changed setup, test in a fresh session with an ordinary request that
 does not name AIOS. For Codex desktop onboarding/cutover, also verify the actual
-[New Chat entry point](adapters.md#codex-desktop-entry-point--when-onboarding-or-cutover-affects-it);
+[New Chat entry point](adapter-codex-desktop.md);
 CLI projectless evidence alone does not establish GUI selection or sidebar state.
 If unavailable, report setup artifacts verified and activation
 NOT VERIFIED. An unchanged resume does not require repeating cold installation

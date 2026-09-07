@@ -1,0 +1,256 @@
+#!/usr/bin/env python3
+"""Static selected-read benchmark; not native-runtime token telemetry."""
+
+import argparse
+import hashlib
+import json
+import math
+from pathlib import Path
+import re
+import subprocess
+
+
+ROOT = Path(__file__).resolve().parents[1]
+MANIFEST = ROOT / "tests/fixtures/context-footprint-legacy.json"
+MAX_SKILL_BODY_BYTES = 8192
+MAX_DESCRIPTION_BYTES = 240
+JOB_PREFIXES = {
+    "aios": "Route ",
+    "aios-build-work": "Implement ",
+    "aios-check": "Verify ",
+    "aios-create-project": "Create a justified new bounded Project ",
+    "aios-create-system": "Create a justified reusable System ",
+    "aios-maintain-context": "Curate ",
+    "aios-manage-skills": "Manage ",
+    "aios-onboard": "Set up, resume or move ",
+    "aios-orchestrate-workers": "Plan, launch or recover ",
+    "aios-review-work": "Review ",
+    "aios-ship-work": "Deliver ",
+    "aios-spec-work": "Specify or revise ",
+    "aios-triage-improvement": "Triage ",
+    "aios-update": "Adopt or roll back ",
+}
+CURRENT_NEUTRAL_SCAFFOLD = (
+    "skills/aios-onboard/assets/bridge.md",
+    "skills/aios-onboard/assets/owner/.gitignore",
+    "skills/aios-onboard/assets/owner/AIOS.md",
+    "skills/aios-onboard/assets/owner/AIOS_FORMAT",
+    "skills/aios-onboard/assets/owner/CONNECTIONS.md",
+    "skills/aios-onboard/assets/owner/MEMORY.md",
+    "skills/aios-onboard/assets/owner/context/README.md",
+    "skills/aios-onboard/assets/owner/projects/README.md",
+    "skills/aios-onboard/assets/owner/skills/README.md",
+    "skills/aios-onboard/assets/owner/systems/README.md",
+)
+CURRENT_JOURNEYS = {
+    "independent-local-negative-preload": (),
+    "owner-business-route": (
+        "skills/aios/SKILL.md",
+        "skills/aios/references/routing.md",
+    ),
+    "spec-ready": (
+        "skills/aios/SKILL.md",
+        "skills/aios-spec-work/SKILL.md",
+        "skills/aios/references/lifecycle.md",
+        "skills/aios-spec-work/references/readiness.md",
+    ),
+    "worker-build": (
+        "skills/aios/SKILL.md",
+        "skills/aios-build-work/SKILL.md",
+        "skills/aios-orchestrate-workers/SKILL.md",
+        "skills/aios/references/lifecycle.md",
+    ),
+    "installation-check-basic": (
+        "skills/aios/SKILL.md",
+        "skills/aios-check/SKILL.md",
+        "skills/aios-check/references/checks.md",
+    ),
+    "codex-package-and-bridge-pre-verification": (
+        "skills/aios-onboard/SKILL.md",
+        "skills/aios-onboard/references/setup.md",
+        "skills/aios-onboard/references/adapters.md",
+        "skills/aios-onboard/references/adapter-codex.md",
+        "skills/aios-onboard/references/data-format.md",
+    ) + CURRENT_NEUTRAL_SCAFFOLD,
+    "codex-package-and-bridge-verification": (
+        "skills/aios-onboard/SKILL.md",
+        "skills/aios-onboard/references/setup.md",
+        "skills/aios-onboard/references/adapters.md",
+        "skills/aios-onboard/references/adapter-codex.md",
+        "skills/aios-onboard/references/data-format.md",
+        "skills/aios-check/references/scenarios.md",
+        "skills/aios-check/references/setup-scenarios.md",
+    ) + CURRENT_NEUTRAL_SCAFFOLD,
+}
+
+
+def require(condition, message):
+    if not condition:
+        raise AssertionError(message)
+
+
+def metadata_entries(skill_root, base_root):
+    entries = []
+    for path in sorted(skill_root.glob("*/SKILL.md")):
+        text = path.read_text()
+        frontmatter = text.split("---", 2)[1]
+        name = re.search(r"^name:\s*(.+)$", frontmatter, re.M).group(1)
+        description = re.search(r"^description:\s*(.+)$", frontmatter, re.M).group(1)
+        entries.append({
+            "path": path.relative_to(base_root).as_posix(),
+            "name": name,
+            "description": description,
+            "metadata": f"name: {name}\ndescription: {description}",
+        })
+    return entries
+
+
+def current_metadata_bytes():
+    entries = metadata_entries(ROOT / "skills", ROOT)
+    require(len(entries) == 14, "skill metadata inventory")
+    require(len({entry["metadata"] for entry in entries}) == 14,
+            "ambiguous skill metadata")
+    require(set(JOB_PREFIXES) == {entry["name"] for entry in entries},
+            "skill job inventory")
+    for entry in entries:
+        require(entry["description"].startswith(JOB_PREFIXES[entry["name"]]),
+                f"unclear skill job: {entry['name']}")
+        require(len(entry["description"].encode()) <= MAX_DESCRIPTION_BYTES,
+                f"unbounded skill metadata: {entry['name']}")
+    for path in (ROOT / "skills").glob("*/SKILL.md"):
+        require(path.stat().st_size <= MAX_SKILL_BODY_BYTES,
+                f"unbounded skill body: {path.relative_to(ROOT)}")
+    return sum(len(entry["metadata"].encode()) for entry in entries)
+
+
+def verify_legacy(root, manifest):
+    head = subprocess.check_output(
+        ["git", "rev-parse", "HEAD"], cwd=root, text=True).strip()
+    require(head == manifest["baseline_commit"], "legacy commit mismatch")
+    records = {manifest["startup"]["agents"]["path"]: manifest["startup"]["agents"]}
+    records.update(manifest["files"])
+    for relative, expected in records.items():
+        path = root / relative
+        require(path.stat().st_size == expected["bytes"], f"legacy bytes: {relative}")
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        require(digest == expected["sha256"], f"legacy hash: {relative}")
+
+    entries = metadata_entries(root / ".agents/skills", root)
+    metadata = manifest["startup"]["skill_metadata"]
+    require([entry["path"] for entry in entries] == metadata["source_paths"],
+            "legacy metadata paths")
+    require(sum(len(entry["metadata"].encode()) for entry in entries) == metadata["bytes"],
+            "legacy metadata bytes")
+    canonical = [{"path": entry["path"], "metadata": entry["metadata"]}
+                 for entry in entries]
+    blob = json.dumps(canonical, sort_keys=True, separators=(",", ":")).encode()
+    require(hashlib.sha256(blob).hexdigest() == metadata["canonical_json_sha256"],
+            "legacy metadata hash")
+
+
+def legacy_bytes(manifest, journey):
+    startup = manifest["startup"]["agents"]["bytes"]
+    startup += manifest["startup"]["skill_metadata"]["bytes"]
+    return startup + sum(manifest["files"][path]["bytes"]
+                         for path in journey["files"])
+
+
+def current_bytes(paths, startup):
+    total = startup
+    for relative in paths:
+        path = ROOT / relative
+        require(path.is_file(), f"missing journey source: {relative}")
+        total += path.stat().st_size
+    return total
+
+
+def validate_routes():
+    adapters = (ROOT / "skills/aios-onboard/references/adapters.md").read_text()
+    required = ("adapter-codex.md", "adapter-codex-desktop.md", "adapter-pi.md",
+                "adapter-portability.md", "harness-configuration.md")
+    require(all(target in adapters for target in required), "adapter route coverage")
+    require("exactly one operation route" in adapters, "adapter selective-read rule")
+
+    harness = (ROOT / "skills/aios-onboard/references/harness-configuration.md").read_text()
+    required = ("harness-protection.md", "harness-codex.md",
+                "harness-codex-context.md", "harness-codex-computer-use.md",
+                "harness-codex-computer-history.md", "harness-pi.md")
+    require(all(target in harness for target in required), "harness route coverage")
+    require("exactly the references relevant" in harness, "harness selective-read rule")
+
+    scenarios = (ROOT / "skills/aios-check/references/workflow-scenarios.md").read_text()
+    require("Missing System" in scenarios and "no substitution" in scenarios,
+            "negative specialist route")
+    require("Lead-local proportionality" in scenarios and "do not load orchestration" in scenarios,
+            "negative orchestration route")
+    require("Context footprint parity" in scenarios and
+            "a byte reduction fails if effective behavior narrows" in scenarios,
+            "behavior-preserving footprint route")
+    setup_scenarios = (ROOT / "skills/aios-check/references/setup-scenarios.md").read_text()
+    require("Reference isolation" in setup_scenarios and
+            "do not load Pi, desktop, protection" in setup_scenarios,
+            "onboarding reference isolation")
+
+    owner_root = ROOT / "skills/aios-onboard/assets/owner"
+    actual_owner_assets = {
+        path.relative_to(ROOT).as_posix()
+        for path in owner_root.rglob("*") if path.is_file()
+    }
+    expected_owner_assets = set(CURRENT_NEUTRAL_SCAFFOLD[1:])
+    require(actual_owner_assets == expected_owner_assets,
+            "new-home scaffold inventory drift")
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--legacy-root", type=Path,
+                        help="optional checkout used to verify the pinned manifest")
+    parser.add_argument("--observed-bridge-bytes", type=int, default=876,
+                        help="actual expanded owner bridge bytes; lead-observed default")
+    args = parser.parse_args()
+    manifest = json.loads(MANIFEST.read_text())
+    if args.legacy_root:
+        verify_legacy(args.legacy_root.resolve(), manifest)
+
+    validate_routes()
+    startup = args.observed_bridge_bytes + current_metadata_bytes()
+    old_startup = manifest["startup"]["agents"]["bytes"]
+    old_startup += manifest["startup"]["skill_metadata"]["bytes"]
+    require(startup < old_startup, "startup method regression")
+    print(f"baseline_commit={manifest['baseline_commit']}")
+    print(f"legacy_startup_method_bytes={old_startup}")
+    print(f"working_startup_method_bytes={startup}")
+    current_bodies = sum(path.stat().st_size
+                         for path in (ROOT / "skills").glob("*/SKILL.md"))
+    current_markdown = sum(path.stat().st_size
+                           for path in (ROOT / "skills").rglob("*.md"))
+    print(f"legacy_all_skill_body_bytes={manifest['aggregate']['skill_bodies_bytes']}")
+    print(f"working_all_skill_body_bytes={current_bodies}")
+    print(f"legacy_all_skill_markdown_bytes={manifest['aggregate']['all_skill_markdown_bytes']}")
+    print(f"working_all_skill_markdown_bytes={current_markdown}")
+    legacy_scaffold = sum(manifest["files"][path]["bytes"]
+                          for path in manifest["neutral_owner_scaffold"])
+    current_scaffold = sum((ROOT / path).stat().st_size
+                           for path in CURRENT_NEUTRAL_SCAFFOLD)
+    print(f"legacy_neutral_setup_scaffold_bytes={legacy_scaffold}")
+    print(f"working_neutral_setup_scaffold_bytes={current_scaffold}")
+    print("journey|stage|legacy_bytes|working_bytes|change|working_token_estimate")
+    for name, paths in CURRENT_JOURNEYS.items():
+        legacy_journey = manifest["journeys"][name]
+        legacy = legacy_bytes(manifest, legacy_journey)
+        working = current_bytes(paths, startup)
+        require(working <= legacy, f"selected-read regression: {name}")
+        change = (working / legacy - 1) * 100
+        estimate = math.ceil(working / 4)
+        print(f"{name}|{legacy_journey['stage']}|{legacy}|{working}|{change:.1f}%|~{estimate}")
+
+    owner_index = ROOT / "skills/aios-onboard/assets/owner/AIOS.md"
+    owner_memory = ROOT / "skills/aios-onboard/assets/owner/MEMORY.md"
+    print(f"neutral_current_owner_index_memory_bytes={owner_index.stat().st_size + owner_memory.stat().st_size}")
+    print("PASS: bounded skill bodies and representative positive/negative selected routes")
+    print("NOTE: token values are bytes/4 estimates; no native-runtime token telemetry was available")
+    print("NOTE: owner/task context and target-repository instructions are excluded as documented in the manifest")
+
+
+if __name__ == "__main__":
+    main()

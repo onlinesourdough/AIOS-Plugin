@@ -1,6 +1,6 @@
 ---
 name: aios-spec-work
-description: Specify substantive AIOS work from an idea, brief or change request. Preserve accepted sources and return a bounded READY, REVISE or BLOCKED contract.
+description: Specify or revise substantive AIOS work, including its persistent goal and todo, from an idea, brief or change request. Return a bounded READY, REVISE or BLOCKED contract.
 ---
 
 # Spec work
@@ -11,7 +11,8 @@ unfinished goals and reconcile conflicts without replacement, duplication or
 premature completion. Native state and a durable logical checkpoint are
 distinct; follow [the canonical lifecycle](../aios/references/lifecycle.md) for
 explicit native-goal requests, unavailable controls and proportional small work.
-Do not create phase goals or invent a budget.
+Keep one concise owner-facing todo while detailed evidence remains internal. Do
+not create phase goals or invent a budget.
 
 Accept rough idea, developed brief, near-complete specification or an existing
 change request. Preserve named sources and resolved wording. Construct missing
@@ -32,9 +33,10 @@ Return exactly READY, REVISE or BLOCKED. READY contains a compact Build
 contract: outcome; proof and measurement owner; relevant context pointers;
 exact repository/worker root; scope/non-goals; authority and risk; dependencies
 and immutable handoffs; expected evidence; operation/recovery and Ship scope;
-goal representation, stable identity, accepted contract revision, current state,
-latest evidence/blocker, exact next action; launch contract; one bounded linked
-worker goal and its required acknowledgement. Other gates name only the minimal
+lead goal representation, stable identity, current todo, accepted contract
+revision, current state, latest evidence/blocker, exact next action; launch
+contract; and the required worker-goal activation or linked-goal acknowledgement.
+Other gates name only the minimal
 patch or material blocker. An existing Project uses its local full Spec,
 Build, Review and Ship; upstream decisions are accepted input, not a second
 interview. Run [readiness evaluation](references/readiness.md) before Build.

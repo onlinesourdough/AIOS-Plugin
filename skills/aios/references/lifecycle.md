@@ -7,6 +7,13 @@ contract carries stable identity and worker linkage, outcome and scope,
 non-goals, accepted success proof, authority, current state, latest evidence or
 blocker, and the next legal transition.
 
+Keep the owner-facing control simple: one lead goal plus a concise mutable todo
+list. Use an actual native plan/todo control when the harness exposes it;
+otherwise keep a durable short checklist under the same goal and say it is not
+native UI state. Detailed evidence and authority can remain in the internal
+contract or owning repository rather than becoming a document the owner must
+maintain.
+
 ## Establish or reuse the outcome
 
 Inspect actual goal state and its representation before creation or reuse. Reuse
@@ -16,33 +23,53 @@ create a separate phase goal. A prose/session checkpoint and native goal state
 are distinct evidence types.
 
 When the harness exposes native goal controls and the current task explicitly
-requests native persistence, create or reuse the one matching goal, then verify
-the returned identity, representation, state and contract. A skill cannot make
+requests native persistence, create or reuse the one matching lead goal, then
+verify the returned identity, representation and state. A skill cannot make
 native activation discretionary after that request, and a prompt cannot prove
 that activation occurred. If activation requires an explicit request and none
-exists, make the gap visible and obtain that request at the boundary; do not
-silently substitute a note. If the runtime genuinely has no native goal
-controls, use a durable logical checkpoint and state that it does not provide
-native cross-turn continuation. Do not install helpers, require a slash command
-or fabricate pause, resume, update or terminal capabilities.
+exists, make the gap visible at the first substantive lifecycle boundary; do
+not silently substitute a note or manufacture consent. If the runtime genuinely
+has no native goal controls, use a durable logical checkpoint and state that it
+does not provide native cross-turn continuation. Do not install helpers,
+require a slash command or fabricate pause, resume, objective-update, planning
+or terminal capabilities.
+
+When the user adds obligations to the same unfinished outcome, update the todo
+and reconcile the internal contract before further mutation. Preserve every
+still-active earlier obligation, identify additions and any explicitly replaced
+wording, and recheck scope, non-goals, authority, proof, owner/root and next
+action. Keep the same native goal identity. If its actual controls cannot update
+the objective or todo, do not fabricate that behavior: the concise durable
+checklist and internal contract revision carry the expanded scope. A materially
+different or conflicting outcome requires reconciliation rather than silent
+expansion or replacement. Added scope never grants added authority.
 
 ## Carry the same goal through the lifecycle
 
 [Spec](../../aios-spec-work/SKILL.md) establishes or refines the same contract.
-READY must include evidence of the goal representation, stable identity,
-current state, accepted contract revision and exact next action. Before an
-independent worker mutates, it acknowledges that linked goal and actual state
-after root and authority attestation. Build, waiting-review, `REVISE`, approval
-wait, recovery and authorized Ship keep the same goal and worker; each real
-boundary records current evidence and next action. Review checks those facts,
-not just a prompt that says “goal”. A worker does not complete at initial Build
-or local self-review.
+READY must include evidence of the lead goal representation, stable identity,
+current state, current todo, accepted contract revision and exact next action.
+When the accepted task explicitly requires a native goal per real worker, that
+worker inspects its own actual goal state after root and authority attestation,
+reuses a compatible unfinished worker goal or creates one narrower goal linked
+to the lead goal, without a budget unless one was explicitly requested. It then
+verifies the returned representation, identity and state. Without that explicit
+requirement it acknowledges the linked lead goal rather than creating another.
+If required worker goal controls are unavailable, hold mutation and report the
+limitation rather than claiming linkage is activation.
 
-READY to Build holds mutation when required native activation or the linked
-worker acknowledgement is missing. Do not infer either from a launch, prompt or
-phase label. Existing compatible goals, including the current worker's goal,
-are reused; terminal and invocation semantics remain those of the actual
-harness.
+Build, waiting-review, `REVISE`, approval wait, recovery and authorized Ship
+keep the same lead and worker goals, worker and todo; each real boundary records
+current evidence and next action. Review checks those facts, not just a prompt
+that says “goal”. A worker goal remains active at initial Build, local self-review
+and waiting-review. It reaches terminal completion only after exact lead
+acceptance and all required authorized Ship or handoff obligations; never create
+a new phase or Ship goal.
+
+READY to Build holds mutation when required lead/worker native activation or
+the applicable linked-goal acknowledgement is missing. Do not infer any of them
+from a launch, prompt or phase label. Existing compatible goals are reused;
+terminal and invocation semantics remain those of the actual harness.
 
 Lead PASS permits completion only when no requested obligation remains. Required
 authorized Ship continues in the same goal. Lead completion requires the full

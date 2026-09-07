@@ -25,7 +25,7 @@ after installation, say “Continue setting up AIOS.”
 [Codex](https://learn.chatgpt.com/docs/app) and Pi are the currently verified
 native routes. AIOS keeps one owner home and method source so onboarding can
 later resolve another harness's supported entrypoint; that adapter still needs
-[verification](skills/aios-onboard/references/adapters.md#portability-to-another-harness).
+[verification](skills/aios-onboard/references/adapter-portability.md).
 You also need GitHub access to this repository. Never paste access tokens into
 the chat.
 

@@ -12,7 +12,7 @@ watcher or permission to audit unrelated skill libraries on every message.
 ## Choose the owner before authoring
 
 Resolve the configured home and supported format through
-[data compatibility](../../aios-onboard/references/data.md). Personal
+[data compatibility](../../aios-onboard/references/data-format.md). Personal
 cross-project methods belong in
 `AIOS_ROOT/skills/<name>/`; repository-specific methods stay with that
 repository, and external/plugin skills stay with their distributor. Do not
@@ -44,7 +44,7 @@ not embedded in the reusable method.
    link to that exact folder is a no-op. A same-name directory, foreign link,
    unknown dangling link or conflicting package skill is a collision: preserve
    both and stop that registration, without overwriting or uninstalling it.
-3. For Pi, use the bounded [default adapter](../../aios-onboard/references/adapters.md#default-aios-focused-pi-discovery)
+3. For Pi, use the bounded [default adapter](../../aios-onboard/references/adapter-pi.md#default-aios-focused-discovery)
    to load the canonical `AIOS_ROOT/skills` directory directly. Do not depend on
    the excluded ambient `~/.agents/skills` source or add a per-skill Pi path.
    An existing exact owner-root entry is a no-op; an unexpected second owner

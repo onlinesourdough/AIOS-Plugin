@@ -1,7 +1,7 @@
 # Sync owner data
 
 Before changing owner data or finalizing its delivery, verify supported
-AIOS_FORMAT using [data compatibility](../../aios-onboard/references/data.md).
+AIOS_FORMAT using [data compatibility](../../aios-onboard/references/data-format.md).
 Unsupported/malformed formats remain read-only even in a Git-backed home.
 
 Local mode: no Git preflight or remote is required. Use source-byte comparison,

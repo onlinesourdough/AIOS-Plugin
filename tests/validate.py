@@ -16,6 +16,61 @@ SKILL_NAMES = {
     "aios-ship-work", "aios-spec-work", "aios-triage-improvement",
     "aios-update",
 }
+LEGACY_ROUTE_TARGETS = {
+    "aios": ("../../aios/SKILL.md", "../SKILL.md", "../../aios-check/SKILL.md",
+             "../../aios-maintain-context/SKILL.md", "../../aios-update/SKILL.md"),
+    "aios-build-work": ("../../aios-build-work/SKILL.md",),
+    "aios-create-project": ("../../aios-create-project/SKILL.md",),
+    "aios-create-system": ("../../aios-create-system/SKILL.md",),
+    "aios-evaluate-completeness": ("../../aios-review-work/SKILL.md",
+                                   "../../aios-review-work/references/completeness.md"),
+    "aios-evaluate-publish-safety": ("../../aios-ship-work/SKILL.md",
+                                     "../../aios-ship-work/references/publish-safety.md"),
+    "aios-evaluate-spec-work": ("../../aios-spec-work/SKILL.md",
+                                "../../aios-spec-work/references/readiness.md"),
+    "aios-onboard": ("../SKILL.md",),
+    "aios-review-work": ("../../aios-review-work/SKILL.md",),
+    "aios-route-agentic-content-system": ("../../aios/SKILL.md",
+                                           "../../aios/references/routing.md"),
+    "aios-route-agentic-design-system": ("../../aios/SKILL.md",
+                                          "../../aios/references/routing.md"),
+    "aios-route-business-constraint": ("../../aios/SKILL.md",
+                                       "../../aios/references/routing.md"),
+    "aios-ship-work": ("../../aios-ship-work/SKILL.md",),
+    "aios-spec-work": ("../../aios-spec-work/SKILL.md",),
+    "aios-sync": ("../../aios-maintain-context/SKILL.md",
+                  "../../aios-maintain-context/references/sync.md"),
+    "aios-triage-improvement": ("../../aios-triage-improvement/SKILL.md",),
+    "aios-update": ("../../aios-update/SKILL.md", "migration.md"),
+}
+LEGACY_EXTERNAL_TARGETS = {
+    "clarify": "intentionally changed current job",
+    "manage-skills": "](../../aios-manage-skills/SKILL.md)",
+    "orchestrate-workers": "](../../aios-orchestrate-workers/SKILL.md)",
+    "route-models": "historical change `8b81375`",
+    "shape-offer": "Remains an independently owned Global Skill",
+}
+FORBIDDEN_BOUNDARY_TEXT = {
+    "skills/aios/references/routing.md": (
+        "ADS", "ACS", "OpenPencil", "DESIGN.md", "HANDOFF.md", ".op",
+    ),
+    "skills/aios-create-project/SKILL.md": (
+        "scripts/create-project.sh", "--in-place", "--source-url", "--source-sha",
+    ),
+    "skills/aios-create-system/SKILL.md": (
+        "agentic-system-template", "audit-system", "archive/extraction",
+    ),
+    "skills/aios-manage-skills/SKILL.md": ("skills.sh", "npx skills"),
+    "skills/aios-check/references/workflow-scenarios.md": (
+        "Design/content handoff", "content remains explicitly not posted",
+    ),
+}
+FORBIDDEN_SHIPPED_PATTERNS = (
+    r"\bOpenPencil\b", r"\bADS\b", r"\bACS\b", r"\bDESIGN\.md\b",
+    r"\bHANDOFF\.md\b", r"(?<![\w])\.op(?![\w])", r"\bnpx skills\b",
+    r"\bskills\.sh\b", r"\bscripts/create-project\.sh\b",
+    r"\barchive/extraction\b", r"\baudit-system\b",
+)
 PRODUCT_PATHS = (".codex-plugin", "skills", "assets/icon.png", "LICENSE")
 FORBIDDEN_KEYS = {"scripts", "dependencies", "devDependencies", "peerDependencies"}
 SECRET_PATTERNS = (
@@ -96,12 +151,24 @@ def validate(root=ROOT):
 
     skill_files = sorted(skill_root.glob("*/SKILL.md"))
     require({path.parent.name for path in skill_files} == SKILL_NAMES, "skill inventory")
+    skill_fields = {}
     for path in skill_files:
         fields = frontmatter(path)
+        skill_fields[path.parent.name] = fields
         require(fields.get("name") == path.parent.name, f"skill name: {path}")
         require(0 < len(fields.get("description", "")) <= 1024,
                 f"skill description: {path}")
         require("disable-model-invocation" not in fields, f"implicit invocation: {path}")
+
+    require("business constraints" in skill_fields["aios"]["description"] and
+            "registered System" in skill_fields["aios"]["description"],
+            "owner routing discovery")
+    require("persistent goal and todo" in skill_fields["aios-spec-work"]["description"],
+            "goal/todo discovery")
+    primary = (skill_root / "aios/SKILL.md").read_text()
+    require("surface that" in primary and "never silently" in primary and
+            "Only when native controls are genuinely unavailable" in primary,
+            "native goal request boundary")
 
     manager = skill_root / "aios-manage-skills"
     owner_lifecycle = manager / "references/owner-skills.md"
@@ -130,8 +197,47 @@ def validate(root=ROOT):
             "Do not preload personal AIOS context" in bridge, "bridge isolation")
 
     parity = (skill_root / "aios-onboard/references/legacy-parity.md").read_text()
-    parity_names = re.findall(r"^\| (aios[^ ]*) \|", parity, re.M)
-    require(len(parity_names) == len(set(parity_names)) == 17, "legacy behavior map")
+    parity_rows = {}
+    parity_names = []
+    for line in parity.splitlines():
+        match = re.match(r"^\| (aios[^ ]*) \|", line)
+        if match:
+            legacy_name = match.group(1)
+            parity_names.append(legacy_name)
+            parity_rows[legacy_name] = line
+    require(len(parity_names) == len(set(parity_names)) == len(LEGACY_ROUTE_TARGETS)
+            and set(parity_rows) == set(LEGACY_ROUTE_TARGETS),
+            "legacy behavior map")
+    for legacy_name, targets in LEGACY_ROUTE_TARGETS.items():
+        require(all(f"]({target})" in parity_rows[legacy_name] for target in targets),
+                f"legacy route target: {legacy_name}")
+    require("ca1ba807716d1a992889f02d41cddf94fdee9f32" in parity,
+            "legacy inventory identity")
+    for external_name, target in LEGACY_EXTERNAL_TARGETS.items():
+        require(f"| `{external_name}` |" in parity and target in parity,
+                f"legacy external disposition: {external_name}")
+
+    for relative, forbidden_values in FORBIDDEN_BOUNDARY_TEXT.items():
+        boundary_text = (root / relative).read_text()
+        require(not any(value in boundary_text for value in forbidden_values),
+                f"external owner coupling: {relative}")
+
+    shipped_text = sorted((root / "skills").rglob("*.md"))
+    shipped_text += sorted((root / "docs").glob("*.md"))
+    for path in shipped_text:
+        text = path.read_text()
+        require(not any(re.search(pattern, text, re.I)
+                        for pattern in FORBIDDEN_SHIPPED_PATTERNS),
+                f"external owner coupling: {path.relative_to(root)}")
+
+    readiness = (skill_root / "aios-spec-work/references/readiness.md").read_text()
+    completeness = (skill_root / "aios-review-work/references/completeness.md").read_text()
+    require("Material real-world assumptions" in readiness and
+            "representative pre-change behavior/outcomes" in readiness,
+            "consequential behavior contract")
+    require("representative before/after outcomes" in completeness and
+            "unit correctness alone is insufficient" in completeness,
+            "consequential behavior review")
 
     icon = (root / "assets/icon.png").read_bytes()
     require(icon[:8] == b"\x89PNG\r\n\x1a\n" and icon[12:16] == b"IHDR", "icon format")
@@ -206,15 +312,34 @@ def negative_controls():
     def runtime_script(root):
         (root / "skills/aios/unsafe.sh").write_text("echo unexpected\n")
 
+    def coupled_system_tool(root):
+        path = root / "skills/aios/references/routing.md"
+        path.write_text(path.read_text() + "\nUse OpenPencil for design.\n")
+
+    def missing_legacy_route(root):
+        path = root / "skills/aios-onboard/references/legacy-parity.md"
+        path.write_text(path.read_text().replace(
+            "](../../aios-triage-improvement/SKILL.md)", "](missing-triage.md)", 1))
+
+    def duplicate_legacy_route(root):
+        path = root / "skills/aios-onboard/references/legacy-parity.md"
+        duplicate = next(line for line in path.read_text().splitlines()
+                         if line.startswith("| aios-build-work |"))
+        path.write_text(path.read_text() + duplicate + "\n")
+
     rejected(split_source, "different skill sources")
     rejected(install_script, "consumer script or dependency")
     rejected(inherited_instructions, "inherited owner instructions")
     rejected(duplicate_owner, "duplicate personal-skill owner")
     rejected(runtime_script, "unexpected product file")
+    rejected(coupled_system_tool, "external owner coupling")
+    rejected(missing_legacy_route, "legacy route target")
+    rejected(duplicate_legacy_route, "legacy behavior map")
 
 
 if __name__ == "__main__":
     validate()
     negative_controls()
-    print("PASS: package declarations, 14 skill frontmatters, routes, links, isolation, and security checks")
+    print("PASS: package declarations, 14 skill frontmatters, complete legacy routes, links, isolation, and security checks")
+    print("PASS: discovery contracts and external-owner coupling boundaries")
     print("PASS: rejects split sources, install/runtime scripts, inherited instructions, and duplicate ownership")

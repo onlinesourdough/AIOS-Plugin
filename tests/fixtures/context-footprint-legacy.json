@@ -1,0 +1,143 @@
+{
+  "baseline_commit": "ca1ba807716d1a992889f02d41cddf94fdee9f32",
+  "aggregate": {
+    "skill_bodies_bytes": 76114,
+    "all_skill_markdown_bytes": 128980,
+    "all_skill_source_bytes": 151404
+  },
+  "startup": {
+    "agents": {
+      "path": "AGENTS.md",
+      "bytes": 9024,
+      "sha256": "b687b0dcd278c8414d477b5485e2f6020133f65766de91503b861a1b64f3b830"
+    },
+    "skill_metadata": {
+      "bytes": 3395,
+      "canonical_json_sha256": "7b1129a9a45d5d938e1d5d116384472342ba7f43328a104c9834d96e71e77ab0",
+      "source_paths": [
+        ".agents/skills/aios/SKILL.md",
+        ".agents/skills/aios-build-work/SKILL.md",
+        ".agents/skills/aios-create-project/SKILL.md",
+        ".agents/skills/aios-create-system/SKILL.md",
+        ".agents/skills/aios-evaluate-completeness/SKILL.md",
+        ".agents/skills/aios-evaluate-publish-safety/SKILL.md",
+        ".agents/skills/aios-evaluate-spec-work/SKILL.md",
+        ".agents/skills/aios-onboard/SKILL.md",
+        ".agents/skills/aios-review-work/SKILL.md",
+        ".agents/skills/aios-route-agentic-content-system/SKILL.md",
+        ".agents/skills/aios-route-agentic-design-system/SKILL.md",
+        ".agents/skills/aios-route-business-constraint/SKILL.md",
+        ".agents/skills/aios-ship-work/SKILL.md",
+        ".agents/skills/aios-spec-work/SKILL.md",
+        ".agents/skills/aios-sync/SKILL.md",
+        ".agents/skills/aios-triage-improvement/SKILL.md",
+        ".agents/skills/aios-update/SKILL.md"
+      ]
+    }
+  },
+  "files": {
+    ".agents/skills/aios/SKILL.md": {"bytes": 3401, "sha256": "5ab8fc66eb9aded7b0abb0bf519da92443ffe2a392538afbab83b848a2e3d9aa"},
+    ".agents/skills/aios-route-business-constraint/SKILL.md": {"bytes": 6934, "sha256": "4a77d7a143cab6b276449ad29d031121b5eac7da05e32a450333edb8c1e03226"},
+    ".agents/skills/aios-spec-work/SKILL.md": {"bytes": 13896, "sha256": "50f92824b169f5581dfd4eed9e10bbead82b19583d80eaac69cdf706409ffa7f"},
+    ".agents/skills/aios/references/goal-lifecycle.md": {"bytes": 18072, "sha256": "295a8a350d06454056b605d05b12944533c6f3508a2fa4281279e3d8ee2a0347"},
+    ".agents/skills/aios-evaluate-spec-work/SKILL.md": {"bytes": 3503, "sha256": "1a88706293c91dc134305f1de4fbce68a091731abd21a03769fccf90766a8075"},
+    ".agents/skills/aios-build-work/SKILL.md": {"bytes": 4207, "sha256": "0776dcaf992919795cbfd3c523ff0441b66ef4cea48a25b887d54835c7ddd3da"},
+    ".agents/skills/aios/references/checks.md": {"bytes": 6981, "sha256": "a488dc24efbf91efe5ef20db0d95326c332e1820222ed66a6bf9e87fcc688c93"},
+    ".agents/skills/aios-onboard/SKILL.md": {"bytes": 488, "sha256": "55092cdd1261149322b022de172eceb589fadbe71daece82521b4dbcb8b2e36c"},
+    ".agents/skills/aios/references/setup.md": {"bytes": 5913, "sha256": "e5adc455bd1bb15d02cbc2e32ea909799cf43581671105155fe24229e38fad07"},
+    ".aios/CONNECTIONS.md": {"bytes": 1996, "sha256": "0fc3ae28c23932c3e104f5491bb4eac01fe67895447d734f1c681377c4e0ca78"},
+    ".aios/CONTEXT.md": {"bytes": 1956, "sha256": "89557c03c6f91f1e36df5a062ef9e77583c751d58bcfbbc73838219bafee33ca"},
+    ".aios/MEMORY.md": {"bytes": 897, "sha256": "6c0d46c7cc899e3dfdc66e86a57ab7d8f0be2e60780be9a2333ed57fc533cab2"},
+    ".aios/README.md": {"bytes": 1388, "sha256": "f456843a977d98467169b27f870f9e5f6e639d19ef6893fa3b9b143d2b819103"},
+    ".aios/context/README.md": {"bytes": 245, "sha256": "3d3047f6625baf5dd6e7cb45cefaa449969d7a9fc01a0fa2ff96290370f9f92e"},
+    ".aios/context/space.md": {"bytes": 634, "sha256": "d6e15976be991a52888d22eb876e3eff2b8b0af32297000415671f6159c5ff64"},
+    ".aios/projects/README.md": {"bytes": 2882, "sha256": "ea2f20ec5c8a27eb583daa12d82ac2cbab969b59edf737aec8554682790bb910"},
+    ".aios/systems/README.md": {"bytes": 3593, "sha256": "f8acbc642cb7f1878ba110b46cfe1362a8379e244b6582921b2408669e9894f9"}
+  },
+  "neutral_owner_scaffold": [
+    ".aios/CONNECTIONS.md",
+    ".aios/CONTEXT.md",
+    ".aios/MEMORY.md",
+    ".aios/README.md",
+    ".aios/context/README.md",
+    ".aios/context/space.md",
+    ".aios/projects/README.md",
+    ".aios/systems/README.md"
+  ],
+  "journeys": {
+    "independent-local-negative-preload": {
+      "stage": "task start before any AIOS body; independent repository stays local-first",
+      "files": []
+    },
+    "owner-business-route": {
+      "stage": "owner selection through the primary route, before specialist invocation",
+      "files": [
+        ".agents/skills/aios/SKILL.md",
+        ".agents/skills/aios-route-business-constraint/SKILL.md"
+      ]
+    },
+    "spec-ready": {
+      "stage": "owner-level Spec and readiness decision, before Build",
+      "files": [
+        ".agents/skills/aios/SKILL.md",
+        ".agents/skills/aios-spec-work/SKILL.md",
+        ".agents/skills/aios/references/goal-lifecycle.md",
+        ".agents/skills/aios-evaluate-spec-work/SKILL.md"
+      ]
+    },
+    "worker-build": {
+      "stage": "owner-level worker launch and Build method selection, before target-repository local files",
+      "files": [
+        ".agents/skills/aios/SKILL.md",
+        ".agents/skills/aios-build-work/SKILL.md",
+        ".agents/skills/aios/references/goal-lifecycle.md"
+      ],
+      "note": "The optional external orchestrate-workers body was not bundled in this snapshot and is therefore not counted."
+    },
+    "installation-check-basic": {
+      "stage": "owner-level basic installation and format inspection, before changed-setup acceptance",
+      "files": [
+        ".agents/skills/aios/SKILL.md",
+        ".agents/skills/aios/references/checks.md"
+      ]
+    },
+    "codex-package-and-bridge-pre-verification": {
+      "stage": "new-home Codex package, bridge, format and complete neutral scaffold materialization, before setup acceptance",
+      "files": [
+        ".agents/skills/aios-onboard/SKILL.md",
+        ".agents/skills/aios/SKILL.md",
+        ".agents/skills/aios/references/setup.md",
+        ".aios/CONNECTIONS.md",
+        ".aios/CONTEXT.md",
+        ".aios/MEMORY.md",
+        ".aios/README.md",
+        ".aios/context/README.md",
+        ".aios/context/space.md",
+        ".aios/projects/README.md",
+        ".aios/systems/README.md"
+      ]
+    },
+    "codex-package-and-bridge-verification": {
+      "stage": "same complete new-home route through common and setup-specific acceptance",
+      "files": [
+        ".agents/skills/aios-onboard/SKILL.md",
+        ".agents/skills/aios/SKILL.md",
+        ".agents/skills/aios/references/setup.md",
+        ".agents/skills/aios/references/checks.md",
+        ".aios/CONNECTIONS.md",
+        ".aios/CONTEXT.md",
+        ".aios/MEMORY.md",
+        ".aios/README.md",
+        ".aios/context/README.md",
+        ".aios/context/space.md",
+        ".aios/projects/README.md",
+        ".aios/systems/README.md"
+      ]
+    }
+  },
+  "exclusions": [
+    "Complete shipped neutral scaffolds are included in the two new-home stages and reported separately; they are not treated as populated owner context.",
+    "Target-repository AGENTS and task-specific user context are excluded from both sides.",
+    "Counts are UTF-8 source bytes, not observed native-runtime tokens."
+  ]
+}
