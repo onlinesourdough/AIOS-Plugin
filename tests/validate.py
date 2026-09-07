@@ -161,14 +161,107 @@ def validate(root=ROOT):
         require("disable-model-invocation" not in fields, f"implicit invocation: {path}")
 
     require("business constraints" in skill_fields["aios"]["description"] and
-            "registered System" in skill_fields["aios"]["description"],
+            "registered System" in skill_fields["aios"]["description"] and
+            "scoped AIOS documentation questions" in skill_fields["aios"]["description"],
             "owner routing discovery")
     require("persistent goal and todo" in skill_fields["aios-spec-work"]["description"],
             "goal/todo discovery")
     primary = (skill_root / "aios/SKILL.md").read_text()
-    require("surface that" in primary and "never silently" in primary and
-            "Only when native controls are genuinely unavailable" in primary,
+    lifecycle = (skill_root / "aios/references/lifecycle.md").read_text()
+    require("persistent-goal request boundary" in primary and
+            re.search(r"If activation requires an explicit request and none\s+exists", lifecycle) and
+            re.search(r"do\s+not silently substitute a note", lifecycle) and
+            re.search(r"genuinely\s+has no native goal controls", lifecycle) and
+            "The lead's default model remains the user's configured choice." in lifecycle,
             "native goal request boundary")
+    require("## Native-state deadlock" in lifecycle and
+            "standing owner fallback policy" in lifecycle and
+            "native resumption\nis unavailable" in lifecycle and
+            "same truthful logical contract, session, worker and concise todo" in lifecycle and
+            "not a claim that the native goal was reactivated" in lifecycle and
+            "Do not hunt for a different worker session, delete a worker goal" in lifecycle and
+            "unresolved external, user-action or security blocker still stops" in lifecycle and
+            "explicitly requires native-only continuation" in lifecycle,
+            "native-state deadlock")
+    workflow_scenarios = (skill_root / "aios-check/references/workflow-scenarios.md").read_text()
+    require("| Native-state deadlock |" in workflow_scenarios and
+            "| Native-only continuation |" in workflow_scenarios and
+            "| No native task list |" in workflow_scenarios and
+            "without hunting a session, deleting, reactivating, replacing or duplicating a goal or worker" in workflow_scenarios and
+            "When Codex exposes its native task list/To dos control" in lifecycle and
+            "Goal metadata does not explain a missing plan control" in lifecycle,
+            "native-state deadlock scenario")
+    sync = (skill_root / "aios-maintain-context/references/sync.md").read_text()
+    require("never `git add .`" in sync and
+            "user-owned personal-skill folder identified" in sync and
+            "shared\nplugin/library tree or an unrecorded folder" in sync and
+            "symlink or nested Git repository" in sync and
+            "every reachable commit\nand ref" in sync and
+            "never silently rewrite, force-push" in sync and
+            "source machine's absolute owner root or standing push approval" in sync and
+            "verification candidates with `ask`" in sync and
+            "initialize a fresh local Git registration" in sync and
+            "Never copy\nthe source or temporary staging checkout's `.git`, config, hooks" in sync and
+            "| Continuity provenance |" in workflow_scenarios and
+            "| Continuity native behavior |" in workflow_scenarios,
+            "continuity scope and provenance")
+    maintain = (skill_root / "aios-maintain-context/SKILL.md").read_text()
+    build = (skill_root / "aios-build-work/SKILL.md").read_text()
+    readiness = (skill_root / "aios-spec-work/references/readiness.md").read_text()
+    require("For an explicit `aios sync`, read [Sync](references/sync.md) first" in maintain and
+            "missing\nor genuinely empty chosen home" in maintain and
+            "do not mistake that absence for a malformed owner home" in maintain and
+            "fallback applies only to an\nalready verified goal state" in lifecycle and
+            "does not waive initial activation" in build and
+            "canonical blocked/terminal fallback applies only after prior verified activation" in readiness,
+            "sync missing-home and native-goal gate ordering")
+    canonical_sources = skill_root / "aios/references/canonical-sources.md"
+    require(canonical_sources.is_file(), "missing canonical source route")
+    canonical_text = canonical_sources.read_text()
+    require("Answer stable method facts already stated in this loaded package directly" in primary and
+            "For\na missing, current, version, release, harness, or external canonical fact" in primary and
+            "This read-only route does not read AIOS_FORMAT, AIOS.md,\nMEMORY.md, lifecycle/Review guidance" in primary and
+            "only the directly relevant" in primary and
+            "Do not turn a guardrail into a fact" in primary and
+            "Otherwise say it is unknown" in primary and
+            "Before any owner-data mutation, setup or migration" in primary and
+            "For every actual\nowner-level task, resolve the bridge, read AIOS.md and MEMORY.md" in primary and
+            "Explaining or naming a workflow is a small answer, not executing it" in primary and
+            "explicitly required path directly rather than rediscovering it with an inventory" in primary and
+            "owner index/MEMORY establishes a needed\nsource is missing, report the gap" in primary and
+            "do not load a later phase body or search\nunrelated paths to infer it" in primary and
+            "Actual Spec, Build, Review or Ship work selects its\nfull applicable procedure" in primary and
+            "fact is missing from the accepted input and loaded package" in canonical_text and
+            "one relevant source" in canonical_text and
+            re.search(r"do not copy or sync", canonical_text) and
+            "unavailable, stale,\ninaccessible, or conflicts" in canonical_text and
+            "already-authorized native account" in canonical_text and
+            "Never inspect, copy, transport, or ask for credentials" in canonical_text and
+            "never change\nvisibility or publish" in canonical_text and
+            "AIOS-Plugin/blob/main/docs/architecture.md" in canonical_text,
+            "canonical source isolation")
+    curation = (skill_root / "aios-maintain-context/references/curation.md").read_text()
+    require("Customer or other externally owned documentation" in curation and
+            "Reading\nMEMORY alone does not invoke this procedure or grant a write" in curation and
+            "recorded or standing authority" in curation,
+            "memory read/write separation")
+
+    public_overview = root / "docs/public/aios.md"
+    require(public_overview.is_file(), "missing public AIOS overview source")
+    public_text = public_overview.read_text()
+    require("instruction-only method" in public_text and
+            "Shared method, owner context" in public_text and
+            "Customer documentation stays in its\nsource system" in public_text and
+            "Codex and Pi are AIOS's supported native routes" in public_text and
+            "never paste credentials into a chat" in public_text and
+            "release-bound public export" in public_text,
+            "public overview boundaries")
+    distribution = (root / "docs/distribution.md").read_text()
+    require("docs/public/aios.md" in distribution and
+            "only approved source artifact" in distribution and
+            "SHA-256, and byte length" in distribution and
+            "separate authorized action" in distribution,
+            "public overview export contract")
 
     manager = skill_root / "aios-manage-skills"
     owner_lifecycle = manager / "references/owner-skills.md"
@@ -195,6 +288,11 @@ def validate(root=ROOT):
             "bridge scope")
     require("local AGENTS.md and lifecycle first" in bridge and
             "Do not preload personal AIOS context" in bridge, "bridge isolation")
+    owner_skills = (owner / "skills/README.md").read_text()
+    require("For continuity, identify each transferable personal method" in owner_skills and
+            "| Personal skill | Canonical source | Owner |" in owner_skills and
+            "shared plugin/library" in owner_skills,
+            "personal-skill continuity provenance")
 
     parity = (skill_root / "aios-onboard/references/legacy-parity.md").read_text()
     parity_rows = {}
@@ -223,7 +321,7 @@ def validate(root=ROOT):
                 f"external owner coupling: {relative}")
 
     shipped_text = sorted((root / "skills").rglob("*.md"))
-    shipped_text += sorted((root / "docs").glob("*.md"))
+    shipped_text += sorted((root / "docs").rglob("*.md"))
     for path in shipped_text:
         text = path.read_text()
         require(not any(re.search(pattern, text, re.I)

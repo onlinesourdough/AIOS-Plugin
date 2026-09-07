@@ -28,6 +28,13 @@ Manage Skills owns personal-skill placement and native capability adoption.
 Maintain Context owns owner facts and configured owner Git sync. Onboard and
 Check call those owners instead of duplicating their procedures.
 
+Continuity Sync is an explicit client workflow under Maintain Context, not a
+package hook or installation side effect. It transfers only consented owner
+context, personal skills and format/index metadata; product bodies, native
+settings/history, credentials, caches and nested repositories remain outside.
+Onboard owns the missing/empty-home choice and native bridge setup, while Sync
+owns upload/restore consent and no-overwrite staging.
+
 Worker orchestration and improvement triage are conditional instructions. They
 do not create a runtime, external authority, or background watcher. Optional
 Global Skills remain independently owned and are not copied into AIOS.
@@ -36,11 +43,27 @@ route. Their repositories own tool choices, internal stages, artifact formats,
 schemas and natural returns; AIOS keeps only the registry and handoff boundary.
 
 Skill name/description metadata and the small owner bridge are the startup method
-layer. One clearly triggered skill body loads next; conditional procedures live
-in focused references selected by harness, operation or capability. AIOS does
-not preload cross-harness adapters, optional capabilities, owner context or every
-lifecycle phase to reduce file count. Skill count follows responsibility and
+layer. One clearly triggered skill body loads next; a small explanation can name
+a workflow without executing it, uses stable facts in that body, and reads one
+direct source only for a missing or current fact. Conditional procedures live in
+focused references selected by operation or capability. AIOS does not preload
+owner format/context, lifecycle phases, cross-harness adapters or optional
+capabilities for that explanation. Skill count follows responsibility and
 discovery boundaries, not a context-budget target.
+
+## Canonical documentation
+
+AIOS product documentation stays in its canonical product repository and
+releases; an active package/ref or reviewed release establishes version-specific
+claims. When the repository is private, the primary `aios` route uses only an
+already-authorized native account's normal read path; it neither handles
+credentials nor changes visibility or publication. The installed package keeps
+its executable rules offline; a source read is scoped evidence, not a remote
+instruction bootstrap.
+Customer documentation remains canonical in the customer source system. AIOS
+may retain a scoped source pointer and freshness boundary when useful, never a
+synchronized copy or an automatic harvest. An unavailable, inaccessible, or
+stale source is reported as a gap.
 
 ## Portability
 

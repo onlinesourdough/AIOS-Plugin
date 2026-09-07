@@ -118,6 +118,16 @@ Preserve already accepted facts and answers without asking them again. Carry a
 pending confirmation in the setup checkpoint and do not report full setup
 acceptance while that confirmation is unresolved.
 
+## Continuity at setup completion
+
+End a new home or move by naming its continuity state: an explicitly configured
+remote and direction, or local/deferred with the next `aios sync` action. For a
+missing or genuinely empty chosen home, ask only “Sync existing AIOS or Onboard
+new?” before the next setup action. Do not ask that question for an established,
+partial or custom-root home. [Sync](../../aios-maintain-context/references/sync.md)
+owns remote choice, private-GitHub recommendation, exact consent, safe restore
+and upload; setup does not duplicate its procedure or create a repository.
+
 ## Checkpoint and resume
 
 When interrupted, retain the accepted answers/source pointers, completed changes

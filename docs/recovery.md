@@ -24,3 +24,11 @@ registration never authorizes deleting its target.
 Worker recovery keeps actionable work open through Review, revision, approval,
 and Ship. Optional archiving is lead-controlled only after terminal acceptance
 and handoff, using a supported native control that preserves history.
+
+Blocked or terminal native-goal metadata alone does not mean its linked healthy
+worker/session failed. Under the standing owner fallback, when native resumption
+is unavailable, retain that observed state and continue the same logical
+contract without hunting a session, deleting a goal or creating a replacement.
+This neither reactivates a native control nor grants missing action authority;
+external, user-action and security blockers still stop. A native-only outcome
+without that fallback needs a narrow owner clarification.

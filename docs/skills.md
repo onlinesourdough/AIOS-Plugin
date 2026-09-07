@@ -6,12 +6,12 @@ explicit selection uses its name. Repository development methods in
 
 | Skill | Responsibility |
 | --- | --- |
-| [aios](../skills/aios/SKILL.md) | Coordinate owner-level priorities and route work |
+| [aios](../skills/aios/SKILL.md) | Coordinate owner priorities, scoped AIOS documentation questions, and route work |
 | [aios-build-work](../skills/aios-build-work/SKILL.md) | Implement specified AIOS work for lead Review |
 | [aios-check](../skills/aios-check/SKILL.md) | Inspect installation, owner format, and discovery |
 | [aios-create-project](../skills/aios-create-project/SKILL.md) | Create and register an independent Project |
 | [aios-create-system](../skills/aios-create-system/SKILL.md) | Create and register an independent System |
-| [aios-maintain-context](../skills/aios-maintain-context/SKILL.md) | Maintain owner facts, routes, connections, and configured Git sync |
+| [aios-maintain-context](../skills/aios-maintain-context/SKILL.md) | Maintain owner facts, routes, connections, and explicit continuity Sync |
 | [aios-manage-skills](../skills/aios-manage-skills/SKILL.md) | Manage personal and installed skill lifecycles |
 | [aios-onboard](../skills/aios-onboard/SKILL.md) | Set up or move an owner home and native bridge |
 | [aios-orchestrate-workers](../skills/aios-orchestrate-workers/SKILL.md) | Launch or recover a bounded repository worker |

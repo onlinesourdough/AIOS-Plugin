@@ -20,6 +20,8 @@ the todo, evidence and next action at each real boundary. Hold mutation if
 required native activation or acknowledgement is missing; do not infer goal
 state from a launch or prompt. Do not complete at initial Build, local
 self-review or waiting-review, and do not create a Ship goal.
+The canonical native-state-deadlock fallback applies only after a verified
+goal state under its standing owner policy; it does not waive initial activation.
 
 
 Keep small owner tasks in the lead. Independent repository mutations initiated

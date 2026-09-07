@@ -34,3 +34,13 @@ If reuse is uncertain, suggest at most one candidate. Preserve nonreserved
 legacy owner skills during migration. Report changes and rationale.
 Native memory and history can suggest retrieval; canonical corrections still
 need sourced deliberate writes. No automatic transcript harvesting.
+
+Customer or other externally owned documentation remains canonical in its
+source system. Do not copy, sync, summarize wholesale or automatically harvest
+it into owner context or MEMORY. When an authorized durable route is genuinely
+useful, retain only its source owner, scoped link or identifier, intended use,
+and observed version/date or freshness limit. An unavailable, stale or
+conflicting source is a visible gap, never a fabricated correction. Reading
+MEMORY alone does not invoke this procedure or grant a write. An accepted
+durable maintenance task, including a correction or scoped pointer, uses this
+existing route under its recorded or standing authority.

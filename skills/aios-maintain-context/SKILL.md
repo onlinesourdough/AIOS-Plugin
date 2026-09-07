@@ -1,15 +1,19 @@
 ---
 name: aios-maintain-context
-description: Curate AIOS owner facts, memory, routes, registries and connections, or reconcile configured owner Git sync. Personal and installed skill lifecycles use Manage Skills.
+description: Curate AIOS owner facts, memory, routes, registries and connections, or perform explicit owner-continuity Sync. Personal and installed skill lifecycles use Manage Skills.
 ---
 
 # Maintain context
 
-Read the established AIOS.md, relevant source, and [curation](references/curation.md).
+For an explicit `aios sync`, read [Sync](references/sync.md) first. At a missing
+or genuinely empty chosen home, make its one Sync-existing-versus-Onboard choice;
+do not mistake that absence for a malformed owner home. Otherwise read the
+established AIOS.md, relevant source, and [curation](references/curation.md).
 Before any owner-data mutation, check AIOS_FORMAT at the configured home using
 [data compatibility](../aios-onboard/references/data-format.md). Unsupported/malformed
 formats stay read-only; a missing marker requires explicit setup/migration.
-Before a durable change to Git-backed owner data, read [sync](references/sync.md).
+Before a durable change to Git-backed owner data, read [Sync](references/sync.md),
+the single owner-continuity procedure.
 For an actual legacy import use the separate [migration procedure](../aios-onboard/references/data.md).
 
 When an ordinary conversation creates, imports, edits, renames or removes a

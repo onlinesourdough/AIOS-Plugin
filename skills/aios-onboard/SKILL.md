@@ -23,6 +23,12 @@ default to ~/.AIOS only for a new home. Check existing routing before creation;
 never create a second home merely because a default is absent. Resume from
 established facts with no fresh interview. Ask only the next material gap.
 
+For a relevant missing or genuinely empty chosen home, ask one friendly choice:
+“Sync existing AIOS or Onboard new?” An established, partial or custom-root home
+resumes without that question or a repeat interview. Finish a new home or move
+with the explicit [Sync](../aios-maintain-context/references/sync.md) continuity
+choice; Sync remains the one procedure for remote, direction and scope consent.
+
 When no competing concrete task exists, trigger onboarding for a new or
 demonstrably incomplete owner home. Do not interrupt unrelated work, restart
 established onboarding, create a second home or infer installation authority.
