@@ -92,5 +92,5 @@ uses the tools and permissions already available in your app.
 
 [Releases](https://github.com/onlinesourdough/AIOS-Plugin/releases) contains version
 history and update notes. For technical details, see [architecture](docs/architecture.md),
-[verification and known limits](docs/proof.md), or [recovery](docs/recovery.md).
+[verification and known limits](docs/verification.md), or [recovery](docs/recovery.md).
 Contributors start with [AGENTS.md](AGENTS.md).

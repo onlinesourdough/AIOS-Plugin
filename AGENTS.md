@@ -39,12 +39,12 @@ task's authority; a phase transition is not a reason to stop. Fix in-scope
 findings and repeat affected checks. Substantive work retains Spec/Build/Review
 and authorized Ship. Independent lead Review, when required by the contract,
 is an acceptance gate, not a new owner permission request. Hold external actions
-outside existing authority. Keep affected documentation and [proof](docs/proof.md)
+outside existing authority. Keep affected documentation and verification
 current; never reuse acceptance from before a relevant mutation.
 
 ## Ownership and recovery
 
-Record current responsibility in [docs/ownership.md](docs/ownership.md),
-acceptance evidence in [docs/proof.md](docs/proof.md), and the tested recovery
-path in [docs/recovery.md](docs/recovery.md). Keep secrets and private data out
-of source, logs, exports, and client builds.
+Record durable responsibility in [docs/ownership.md](docs/ownership.md), keep
+the relevant checks in [docs/verification.md](docs/verification.md), and maintain
+the recovery path in [docs/recovery.md](docs/recovery.md). Keep secrets and
+private data out of source, logs, exports, and client builds.
