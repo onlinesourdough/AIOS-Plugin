@@ -9,11 +9,12 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def subject():
     paths = set()
-    for folder in ("plugins", ".agents", "tests"):
+    for folder in ("skills", ".agents", "tests"):
         paths.update(path for path in (ROOT / folder).rglob("*")
                      if path.is_file() and "__pycache__" not in path.parts)
     paths.update(ROOT / name for name in (
         "AGENTS.md", "README.md", "package.json", "LICENSE", ".gitignore",
+        ".codex-plugin/plugin.json", "assets/icon.png",
         "docs/ownership.md", "docs/recovery.md", "docs/parity.md",
         "docs/lifecycle.md", "docs/source-inventory.json", "docs/architecture.md",
         "docs/skills.md", "docs/distribution.md", "docs/source-audit.md",

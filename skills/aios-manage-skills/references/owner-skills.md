@@ -1,15 +1,19 @@
 # Personal skill lifecycle and discovery
 
-Maintain context owns this procedure. Use it when an authorized conversation
-creates, imports, edits, renames or removes a personal owner skill, and when
-Onboard installs or moves an owner home. Callers link here; do not copy these
-steps into another skill. This is a task-boundary procedure, not a watcher or
-permission to audit unrelated skill libraries on every message.
+Manage Skills owns this personal-owner procedure. Use it when an authorized
+conversation creates, imports, edits, renames or removes a personal owner
+skill, and when Onboard installs or moves an owner home. Callers link here; do
+not copy these steps into another skill. It keeps personal placement,
+registration and discovery in the same capability-management lifecycle as
+installation, update, removal and rollback. Owner facts and configured Git
+sync remain with Maintain context. This is a task-boundary procedure, not a
+watcher or permission to audit unrelated skill libraries on every message.
 
 ## Choose the owner before authoring
 
 Resolve the configured home and supported format through
-[Maintain context](../SKILL.md). Personal cross-project methods belong in
+[data compatibility](../../aios-onboard/references/data.md). Personal
+cross-project methods belong in
 `AIOS_ROOT/skills/<name>/`; repository-specific methods stay with that
 repository, and external/plugin skills stay with their distributor. Do not
 redirect a genuinely independent repository task into personal owner data.
@@ -32,20 +36,27 @@ not embedded in the reusable method.
    user discovery locations. Compare the skill's declared name as well as its
    folder name and resolved source. For setup/move, inventory the owner's skill
    folders; for ordinary work, scope this to the changed skill and its old name.
-   [Sync](sync.md) owns any configured Git preflight and reviewed delivery.
-2. For Codex and Pi where supported, register one symlink
+   [Sync](../../aios-maintain-context/references/sync.md) owns any configured
+   Git preflight and reviewed delivery.
+2. For Codex where supported, register one symlink
    `~/.agents/skills/<name>` to the resolved canonical folder. An absent entry
    may be created under the task's setup/skill-creation authority. An existing
    link to that exact folder is a no-op. A same-name directory, foreign link,
    unknown dangling link or conflicting package skill is a collision: preserve
    both and stop that registration, without overwriting or uninstalling it.
-3. Repoint a moved/renamed skill's link only when the prior target and ownership
+3. For Pi, use the bounded [default adapter](../../aios-onboard/references/adapters.md#default-aios-focused-pi-discovery)
+   to load the canonical `AIOS_ROOT/skills` directory directly. Do not depend on
+   the excluded ambient `~/.agents/skills` source or add a per-skill Pi path.
+   An existing exact owner-root entry is a no-op; an unexpected second owner
+   root or conflicting selected package is preserved and reported as a collision.
+4. Repoint a moved/renamed Codex link only when the prior target and ownership
    are proved by the accepted change map. Remove an obsolete registration only
    under the accepted rename/removal scope and only while it still matches that
    prior identity. Re-read immediately before changing it. A body edit at the
-   same path does not need another link. No duplicate copies in `.codex/skills`
-   or extra Pi `skills` entries for the same body.
-4. If this harness cannot load that supported link, use its documented native
+   same path does not need another link. For an owner-home move, update Pi's one
+   accepted root only after proving the prior root and move map. No duplicate
+   copies in `.codex/skills` or extra Pi `skills` entries for the same body.
+5. If this harness cannot load its supported registration, use its documented native
    registration for the same source and verify it. An unavailable control or
    collision is a reported gap, not permission to invent a loader, broaden
    access, modify caches or register a second source. Other harnesses require
@@ -78,4 +89,5 @@ Report authoring, registration, runtime observation and configured Git delivery
 separately. Missing runtime proof is NOT VERIFIED, never "ready to use" based
 only on a folder or symlink. If fresh-session pickup requires user action,
 retain the completed artifact and give that one step. Only the reviewed portable
-source goes through [sync](sync.md); syncing Git alone does not install a skill.
+source goes through [sync](../../aios-maintain-context/references/sync.md);
+syncing Git alone does not install a skill.

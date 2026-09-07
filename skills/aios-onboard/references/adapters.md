@@ -23,8 +23,8 @@ never substitute an unreviewed branch because a tag is absent. Missing GitHub
 access needs a native sign-in/invitation step, not a secret in chat. A fresh task
 continues onboarding after resource discovery is refreshed.
 
-This repository contains `.agents/plugins/marketplace.json` and
-`plugins/aios/.codex-plugin/plugin.json`. For an authorized
+This repository contains `.agents/plugins/marketplace.json` and the root
+`.codex-plugin/plugin.json`. For an authorized
 local pilot, substitute the verified repository path:
 
 ```sh
@@ -37,7 +37,7 @@ For a released private repository, the authorized account can instead add
 install the same selector. A reviewed immutable commit/tag must exist first.
 Read installed marketplace identity before reusing a conflicting name. Do not
 create a personal marketplace for this repo distribution. Start a fresh task
-and verify the 13 packaged skills are discoverable once. Use the
+and verify the 14 packaged skills are discoverable once. Use the
 [identity migration](migration.md) before replacing an older Method selector or
 legacy/global registration; a matching skill name does not establish ownership.
 
@@ -114,7 +114,7 @@ Codex-specific; Pi has no compulsory sidebar acceptance step.
 ## Pi
 
 The root package.json declares only `pi.skills`, pointing to the very same
-13 plugin skill folders. No extensions or install scripts are provided.
+14 root `skills/` folders. No extensions or install scripts are provided.
 Standard local and Git package routes are:
 
 ```sh
@@ -135,6 +135,39 @@ context. Preserve unrelated content and resolve shadowing as for Codex.
 Only patch exact owned keys/array entries if settings require a change; never
 rewrite settings.json wholesale or touch authentication stores.
 
+### Default AIOS-focused Pi discovery
+
+During authorized AIOS onboarding, use AIOS-focused global discovery as the
+product default unless an established explicit setting must be preserved or a
+concrete compatibility conflict needs a decision. This default is not authority
+for a silent settings mutation. Compute these absolute paths from the actual
+user home and resolved `AIOS_ROOT`; never package a machine-specific path:
+
+```json
+[
+  "!<actual-home>/.agents/skills/**",
+  "<AIOS_ROOT>/skills",
+  "!<AIOS_ROOT>/skills/*.md"
+]
+```
+
+Apply the array only through the supported Pi settings control and preserve all
+other settings, packages, explicit overrides and trusted repository resources.
+The first entry excludes ambient global skills, the second explicitly loads
+owner skills, and the third excludes root-level README or other Markdown that
+is not a `skills/<name>/SKILL.md` body. Explicitly selected package skills remain
+separate from that ambient directory exclusion. Do not replace the final exclusion with
+the apparently tidier `AIOS_ROOT/skills/*/SKILL.md` pattern: the tested Pi
+loader did not resolve that form. This exclusion affects the global source only;
+trusted repository-local `.agents/skills` discovery remains independent.
+
+The observed candidate fixture result was 14 AIOS skills, four owner skills and
+two explicitly selected external Global skills in an ordinary untrusted context;
+the trusted AIOS repository additionally exposed exactly six local development
+skills. No ambient shared skills or diagnostics appeared. This is version-specific
+native evidence, not a universal all-version promise. Reapply or adopt a package
+only at a separate authorized task boundary.
+
 ## The same small bridge
 
 Use [bridge asset](../assets/bridge.md). Replace AIOS_ABSOLUTE_PATH with the
@@ -144,7 +177,9 @@ an identical rerun is a no-op. Multiple/malformed blocks or an unexpected home
 are a conflict. Record the pre-edit hash; re-read before patching. Keep all
 bytes outside the block unchanged, including unrelated instructions.
 
-The bridge identifies the configured AIOS owner home by physical root, AIOS.md
+The bridge is only the bootstrap instruction that locates the owner home; native
+package and skill registration expose the method entrypoints separately. Passing
+one boundary does not prove the other. The bridge identifies the configured AIOS owner home by physical root, AIOS.md
 and supported AIOS_FORMAT, even when Git-backed. Genuinely independent repository
 work stays local-first without personal preload. Owner-level work reads AIOS.
 Unsupported/malformed owner format remains read-only before every owner write.
@@ -158,17 +193,26 @@ fresh nested repository task when setup changes this boundary.
 
 ## Optional user-owned skills
 
-During setup or a home move, use Maintain context's
-[personal skill lifecycle](../../aios-maintain-context/references/owner-skills.md)
+During setup or a home move, use Manage Skills'
+[personal skill lifecycle](../../aios-manage-skills/references/owner-skills.md)
 for the owner's existing methods and return its registration/runtime evidence.
 That is the same procedure used when a conversation creates or changes a skill;
 this adapter does not maintain a second registration workflow.
 
-## Other harnesses
+## Portability to another harness
 
-Only Codex and Pi are target adapters. No Claude or Hermes compatibility is
-claimed. Another adapter requires its own scoped design and native acceptance;
-no extra harness files are installed by this package.
+AIOS portability is a product boundary: the same physical owner home and
+canonical `skills/` source should be easy to adopt later through a supported
+entrypoint for another harness. It does not mean that every harness consumes a
+global `AGENTS.md`, that this package installs every adapter, or that models
+behave identically. The current native evidence covers Codex and Pi only.
+
+When work crosses harnesses, hand off the accepted outcome, bounded relevant
+context, exact Project/System root, one-writer and action authority, evidence,
+remaining decisions and any improvement signal (or an honest none). The
+receiving harness resolves its own entrypoint, permissions, trust and runtime
+capabilities before acting. No universal loader, duplicated method body,
+background bridge or hidden permission grant is part of AIOS.
 
 ## Update and uninstall
 

@@ -2,7 +2,7 @@
 
 This is a behavior map, not a requirement to ship one entry per old file.
 The 17 core template methods were inspected separately from optional external
-Global Skills. The current package exposes thirteen native workforms; smaller
+Global Skills. The current package exposes fourteen native workforms; smaller
 checks and conditional procedures live with the workform that owns them.
 Client facts and personal methods are not copied into this package.
 
@@ -26,21 +26,23 @@ Client facts and personal methods are not copied into this package.
 | aios-triage-improvement | [Triage improvement](../../aios-triage-improvement/SKILL.md) | Keep: concrete-signal trigger, lead disposition, sanitized deduplicated brief, authorized issue/comment and exactly-once readback without changing the primary gate |
 | aios-update | [Update](../../aios-update/SKILL.md), [identity migration](migration.md) | Keep: independent package-adoption intent, pinned release, native registration, collision proof and rollback; no legacy updater runtime |
 
-Three useful native workforms beyond the direct legacy keep rows remain public:
+Four useful native workforms beyond the direct legacy keep rows remain public:
 [Check](../../aios-check/SKILL.md) for installation/format/harness evidence and
 [Maintain context](../../aios-maintain-context/SKILL.md) for durable facts/routes,
 and [Orchestrate workers](../../aios-orchestrate-workers/SKILL.md) for an actual
-lead worker plan, launch or recovery.
+lead worker plan, launch or recovery. [Manage Skills](../../aios-manage-skills/SKILL.md)
+owns personal skill placement/discovery and reviewed capability adoption,
+update, removal and rollback.
 They are distinct from artifact Review and package Update. OSM 0.1.x's `osm`,
 `osm-onboard`, `osm-check` and `osm-maintain-context` map to those AIOS workforms;
 the old umbrella's lifecycle is now directly invocable as Spec/Build/Review/Ship.
 
 Conditional [principles, voice and visual checks](../../aios-review-work/references/contextual-quality.md)
 belong in Review. They retain observable judgment but use the selected client's
-sources, not the author's preferences. Optional clarification, skill-management
-or offer methods remain independently discoverable and are not prerequisites or
-bundled implementations. Native orchestration is conditional and is not a
-worker runtime; native triage is conditional and does not grant issue authority.
+sources, not the author's preferences. Optional clarification or offer methods
+remain independently discoverable and are not prerequisites or bundled
+implementations. Native management, orchestration and triage are conditional
+routes; none grants a worker runtime or external issue authority.
 
 ## Migration consequences
 

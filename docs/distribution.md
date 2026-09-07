@@ -1,9 +1,10 @@
 # Review and release AIOS
 
-The release unit is one immutable AIOS-Plugin tree with `plugins/aios`, its Codex
-marketplace and Pi declaration. This repository distributes through private
+The release unit is one immutable AIOS-Plugin tree with root `.codex-plugin/`,
+root `skills/`, its Codex marketplace and Pi declaration. This repository
+distributes through private
 Git access, not an npm publication or consumer installer. The client path is in
-[README](../README.md); [native adapters](../plugins/aios/skills/aios-onboard/references/adapters.md)
+[README](../README.md); [native adapters](../skills/aios-onboard/references/adapters.md)
 contain the supported commands and source references.
 
 ## Prepare the reviewed artifact

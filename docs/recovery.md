@@ -1,21 +1,21 @@
 # Recovery
 
-Installed/native rollback baseline is AIOS `v0.2.1`, annotated tag commit
-`010d5035e2eda4754bf0a8d4d0fdb04ef375ca3f`. The local source preimage for
-AIOS 0.2.2 preparation is
-`f28c27323f7f4a492abe537ae02a4eb975b04761`; it is not the installed release or
-the `v0.2.1` tag. Preserve both the tag and earlier artifacts.
+Installed/native rollback baseline is the reviewed AIOS `v0.2.2` package. The
+local source preimage for this `v0.3.0` candidate is
+`c682b051b785a9f9ab14af81692b55a45aa6905e`; it is not a published release.
+Preserve the prior tag and earlier artifacts.
 Local product recovery uses reviewed preimages without overwriting unrelated
 work. Do not reset, stash, force-push or retransfer a canonical Project to make
 a changed upstream fit the review.
 
 Package recovery and client-data recovery are separate. Native package rollback
-uses the prior reviewed ref and supported registration controls. Renaming the
-plugin does not rename existing native registrations or move client files.
+uses the prior reviewed ref and supported registration controls. Moving package
+files to the repository root does not rename existing native registrations or
+move client files.
 Do not edit caches, internal databases, histories or entire settings files.
 A failed or uncertain native action needs readback before retrying.
 
-[Identity migration](../plugins/aios/skills/aios-onboard/references/migration.md)
+[Identity migration](../skills/aios-onboard/references/migration.md)
 requires original content and a protected tested backup, explicit source and
 destination hashes, proved registration ownership and a scoped map. An identical
 replay is a no-op. A changed source/destination, unexpected symlink, duplicate
@@ -37,6 +37,8 @@ CLI-only surface is reported as a limitation, not simulated through internal
 state.
 
 Author rehearsals demonstrate scoped synthetic file/registration recovery and
-preserved historical artifacts. They do not prove live native rollback, a
-client's backup or desktop cutover. The [proof matrix](proof.md) keeps those
-claims separate and names pending native evidence.
+preserved historical artifacts. A disposable Codex control rehearsal also
+observed nested `v0.2.2` -> root `0.3.0` -> nested `v0.2.2` package rollback;
+that does not prove rollback of a real client profile, owner-data backup or
+desktop cutover. The [proof matrix](proof.md) keeps those claims separate and
+names pending native evidence.

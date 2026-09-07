@@ -8,7 +8,7 @@
       "name": "aios",
       "source": {
         "source": "local",
-        "path": "./plugins/aios"
+        "path": "./"
       },
       "policy": {
         "installation": "AVAILABLE",

@@ -1,6 +1,6 @@
 {
   "name": "aios",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "private": true,
   "description": "Portable owner context, adaptive onboarding and discoverable methods for specified, reviewed work.",
   "license": "MIT",
@@ -8,13 +8,15 @@
     "pi-package"
   ],
   "files": [
-    "plugins/aios",
+    ".codex-plugin",
+    "skills",
+    "assets/icon.png",
     "README.md",
     "LICENSE"
   ],
   "pi": {
     "skills": [
-      "./plugins/aios/skills"
+      "./skills"
     ]
   }
 }

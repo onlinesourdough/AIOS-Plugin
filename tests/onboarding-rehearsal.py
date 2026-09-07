@@ -12,7 +12,7 @@ import tempfile
 import tomllib
 
 ROOT = Path(__file__).resolve().parents[1]
-PLUGIN = ROOT / "plugins/aios"
+PLUGIN = ROOT
 
 
 def digest(path):
@@ -144,8 +144,10 @@ def rehearse():
                                          "pi": "one selected legacy registration replaced; other spans unchanged",
                                          "native_extras": "unavailable/NOT VERIFIED; no opt-in or permission write"}
 
-    evidence["subject"] = {str(p.relative_to(ROOT)): digest(p)
-                            for p in sorted(PLUGIN.rglob("*")) if p.is_file()}
+    product_paths = [PLUGIN / ".codex-plugin/plugin.json", PLUGIN / "assets/icon.png"]
+    product_paths.extend(path for path in (PLUGIN / "skills").rglob("*") if path.is_file())
+    evidence["subject"] = {str(path.relative_to(ROOT)): digest(path)
+                            for path in sorted(product_paths)}
     output = ROOT / ".tmp/review-evidence/onboarding-rehearsal.json"
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(evidence, indent=2) + "\n")

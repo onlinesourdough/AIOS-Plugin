@@ -29,8 +29,8 @@ not last-writer-wins. In Git mode run [sync](sync.md) at the task boundary.
 
 Learn a method only when inputs, steps, proof and repeat value are clear and
 reuse reduces ambiguity. For method ownership, authoring and runtime discovery,
-use [personal skill lifecycle](owner-skills.md). If reuse is uncertain, suggest
-at most one candidate. Preserve nonreserved legacy owner skills during migration.
-Report changes and rationale.
+use Manage Skills' [personal skill lifecycle](../../aios-manage-skills/references/owner-skills.md).
+If reuse is uncertain, suggest at most one candidate. Preserve nonreserved
+legacy owner skills during migration. Report changes and rationale.
 Native memory and history can suggest retrieval; canonical corrections still
 need sourced deliberate writes. No automatic transcript harvesting.

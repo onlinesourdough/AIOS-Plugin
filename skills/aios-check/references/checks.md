@@ -9,7 +9,7 @@ and recheck, or Needs decision, plus per-claim PASS/FAIL/NOT VERIFIED.
   answers and chosen off states; authorized answers lead to implemented changes
   and readback. Missing input is not consent. A checkpoint resumes unfinished
   work without reinterview; ordinary tasks do not repeat the onboarding audit.
-- Product: normalized plugin manifest, correct skill paths and the 13 selected
+- Product: normalized plugin manifest, correct skill paths and the 14 selected
   discoverable names; frontmatter valid, local references resolve, no consumer
   scripts/MCP/hooks/dependencies or hidden invocation disabling. Pi points to
   the same bodies. Compare installed release identity, not just a folder name.
@@ -72,7 +72,7 @@ and recheck, or Needs decision, plus per-claim PASS/FAIL/NOT VERIFIED.
   native improvement triage is loaded only for a concrete worker/lead signal;
   optional external skills remain external; no native-memory dependence.
 - Personal skill discovery: inspect the acceptance evidence required by
-  [Maintain context](../../aios-maintain-context/references/owner-skills.md#verify-before-saying-ready).
+  [Manage Skills](../../aios-manage-skills/references/owner-skills.md#verify-before-saying-ready).
   This check observes the result; that procedure owns any authorized repair.
 - Migration/recovery: explicit mapping, content/mode/route preservation,
   unknown-version stop, idempotent rerun, conflicts keep both, restore tested,

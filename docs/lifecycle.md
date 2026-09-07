@@ -1,23 +1,22 @@
-# AIOS 0.2.2 lifecycle
+# AIOS 0.3.0 source-candidate lifecycle
 
 ## Accepted outcome
 
-This source delta started from HEAD
-`f28c27323f7f4a492abe537ae02a4eb975b04761`. The released v0.2.0 baseline below
-remains the historical product baseline; it is not the exact source baseline for
-this delta.
+This source candidate started from clean HEAD
+`c682b051b785a9f9ab14af81692b55a45aa6905e`, with released `v0.2.2` retained as
+the installed/recovery baseline. No release or native adoption is claimed.
 
-This release-preparation delta is based on the local source preimage
-`f28c27323f7f4a492abe537ae02a4eb975b04761`. The earlier 90-path inventory
-`97952631150476e1dc68fd2f966ae1a44f1ec149d009163a40813ebe334ee599` is retained
-as historical lineage only; it does not describe the current procedural and
-parity corrections.
+The candidate makes the repository root the single package source: root
+`.codex-plugin/`, `skills/`, Pi's `./skills` declaration and the local
+marketplace all resolve to one body. `.agents/skills/`, `AGENTS.md`, `tests/`,
+and `docs/` remain author-only and are not exposed as consumer skills.
 
 Improve the existing plugin from released baseline
 `b8c7e79fa315edb9a13f0f4e16f8f56d4ab36ec5` (v0.2.0):
 
-- Give personal skill creation, import, editing, rename and removal one
-  canonical owner in Maintain context, called during ordinary work and setup.
+- Give personal skill creation, import, editing, rename, removal, placement and
+  discovery one canonical owner in Manage Skills, called during ordinary work
+  and setup. Maintain context retains owner facts and configured Git sync.
 - Reuse the native Skill Creator, preserve repository/distributor ownership,
   and keep discovery, collision, replay and recovery checks explicit.
 - Link shared procedures instead of maintaining copies in calling skills.
@@ -41,15 +40,18 @@ Improve the existing plugin from released baseline
   triage, signal disposition, design/content handoff, onboarding trigger,
   Skill/System boundary, worker default and READY-to-Build guards.
 
-The package now exposes 13 shared instruction skills with no new consumer runtime,
-watcher, dependencies or owner-format change. Personal data and real native
-registrations are outside this source change.
+The package now exposes 14 shared instruction skills with no new consumer
+runtime, watcher, dependencies or owner-format change. Portability is a
+minimal bridge to the same physical owner home and canonical skills source;
+there is no universal loader or every-harness adapter. Personal data and real
+native registrations are outside this source change.
 
 ## Build and Review
 
-The local repository is the product source. Maintain context owns personal-skill
+The local repository is the product source. Manage Skills owns personal-skill
 reconciliation; Onboard calls it, Check observes it, and Review checks shared
-procedure ownership. Distinct phase responsibilities remain separate.
+procedure ownership. Maintain context keeps owner facts and configured Git
+sync. Distinct phase responsibilities remain separate.
 
 Proof consists of package and metadata validators, extracted-package links,
 existing isolated onboarding/layout/migration rehearsals, the deterministic

@@ -34,9 +34,13 @@ Choose the shortest justified workflow through the installed skills and their fo
 - A verified specialist need uses the relevant [System route](references/routing.md).
 - A justified new owner uses [Create Project](../aios-create-project/SKILL.md)
   or [Create System](../aios-create-system/SKILL.md).
-- Context upkeep and personal skill creation/import/edit/rename/removal during
-  an ordinary conversation use [Maintain context](../aios-maintain-context/SKILL.md);
-  configured Git checkpoints use its [sync procedure](../aios-maintain-context/references/sync.md).
+- Context facts, memory, routes, registries, connections and configured Git
+  checkpoints use [Maintain context](../aios-maintain-context/SKILL.md) and its
+  [sync procedure](../aios-maintain-context/references/sync.md).
+- Personal skill creation/import/edit/rename/removal, placement and discovery,
+  plus reviewed capability installation, update and rollback, use [Manage
+  Skills](../aios-manage-skills/SKILL.md). Native Skill Creator remains the
+  authoring mechanism; Maintain context retains owner facts and Git sync.
 - Installation/acceptance inspection uses [Check](../aios-check/SKILL.md);
   package adoption uses [Update](../aios-update/SKILL.md).
 - When the lead actually plans, launches or recovers a worker, use
@@ -49,9 +53,10 @@ and [recovery](references/recovery.md) supply shared boundaries. Native
 orchestration is conditional: load it only for an actual worker plan, launch or
 recovery. It cannot supply a runtime capability, replace the lifecycle or
 override an actual initial-root boundary. Optional external Global Skills are
-separately installed methods, discovered only for a concrete need; clarification,
-skill-management and offer-shaping remain external. Do not copy a Global
-library or require one before ordinary AIOS use.
+separately installed methods, discovered only for a concrete need; clarification
+and offer-shaping remain external. AIOS Manage Skills owns personal and
+installed capability lifecycles without requiring a Global library before
+ordinary AIOS use. Do not copy external capability bodies.
 For overlapping work, call the skill/reference that already owns the procedure;
 keep only the caller's trigger and required result here, not a second workflow.
 

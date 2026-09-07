@@ -133,7 +133,7 @@ def rehearse():
         globals_root.mkdir()
         (globals_root / "aios-spec-work").symlink_to(custom, target_is_directory=True)
         registrations = snapshot(globals_root)
-        candidates = [custom / "SKILL.md", ROOT / "plugins/aios/skills/aios-spec-work/SKILL.md"]
+        candidates = [custom / "SKILL.md", ROOT / "skills/aios-spec-work/SKILL.md"]
         assert len({p.resolve() for p in candidates}) == 2
         assert candidates[0].read_bytes() != candidates[1].read_bytes()
         # No accepted identity/authority map exists for the custom registration.

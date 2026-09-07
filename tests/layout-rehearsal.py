@@ -14,7 +14,7 @@ import subprocess
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
-ASSETS = ROOT / "plugins/aios/skills/aios-onboard/assets/owner"
+ASSETS = ROOT / "skills/aios-onboard/assets/owner"
 
 
 def git(root, *args):

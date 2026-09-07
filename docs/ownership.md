@@ -10,7 +10,7 @@
 | Native account connections, installation and physical cutover | Authorized client/lead using supported native controls and actual readback |
 | Independent Systems and Projects | Their own repositories, primary/local skills, proof and recovery |
 | Native worker orchestration and improvement triage | AIOS maintainer, this repository; conditional procedures with no worker/runtime or issue authority |
-| Optional Global Skills and personal workflows | Their original owners; no copied payload or implicit dependency |
+| Optional Global Skills and personal workflows | Their original source owners; no copied payload or implicit dependency; AIOS Manage Skills owns reviewed adoption and the personal-skill lifecycle |
 
 The product repository is not an owner-data home. Its development lifecycle
 skills are local author tools, excluded from consumer discovery. Workers return

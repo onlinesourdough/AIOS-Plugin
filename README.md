@@ -22,8 +22,12 @@ Your assistant checks access and installation, asks for the context it needs
 and helps you complete a first task. If you need to start a fresh conversation
 after installation, say “Continue setting up AIOS.”
 
-You need [Codex](https://learn.chatgpt.com/docs/app) or an existing Pi setup,
-plus GitHub access to this repository. Never paste access tokens into the chat.
+[Codex](https://learn.chatgpt.com/docs/app) and Pi are the currently verified
+native routes. AIOS keeps one owner home and method source so onboarding can
+later resolve another harness's supported entrypoint; that adapter still needs
+[verification](skills/aios-onboard/references/adapters.md#portability-to-another-harness).
+You also need GitHub access to this repository. Never paste access tokens into
+the chat.
 
 ### Install from a terminal
 
@@ -45,7 +49,7 @@ pi install git:github.com/onlinesourdough/AIOS-Plugin@RELEASE_TAG
 
 Use one installation source in each app. If you already have AIOS installed,
 ask your assistant to update it while preserving your context. See the
-[installation and recovery guide](plugins/aios/skills/aios-onboard/references/adapters.md)
+[installation and recovery guide](skills/aios-onboard/references/adapters.md)
 for existing setups.
 
 ## Work in ordinary language
@@ -59,9 +63,21 @@ You do not need to remember skill names. Try:
 - “Remember this decision and where it came from.”
 - “Turn this workflow into a personal skill I can reuse.”
 
-AIOS includes [13 skills](docs/skills.md) for everyday work, setup, updates and
+AIOS includes [14 skills](docs/skills.md) for everyday work, setup, updates and
 keeping your context current. Your repositories keep their own development
 instructions; unrelated code work does not need your personal context.
+
+### Package layout
+
+```text
+skills/          14 shipped AIOS product skills shared by Codex and Pi
+.agents/skills/  six repository development methods; not exposed as product skills
+```
+
+The root `skills/` directory is the single packaged source. The developer
+methods may exist physically in a package cache with the repository, but native
+AIOS discovery does not expose or load them as product skills. Create Project
+and Create System remain separate shipped skills.
 
 ## Your context stays yours
 

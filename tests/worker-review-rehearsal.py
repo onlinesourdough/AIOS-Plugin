@@ -9,7 +9,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-PLUGIN = ROOT / "plugins/aios"
+PLUGIN = ROOT
 
 FIXTURE_IDS = {
     "worker-route-choice", "worker-root-mismatch", "worker-no-signal",

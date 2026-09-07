@@ -7,8 +7,8 @@ The inspected legacy core is
 17 direct skill bodies. The prior inventory remains an immutable historical
 file in the archive; changed source bytes are not presented as an old audit.
 
-The [packaged map](../plugins/aios/skills/aios-onboard/references/legacy-parity.md)
-records behavior ownership and the reason to keep or merge each route. Thirteen
+The [packaged map](../skills/aios-onboard/references/legacy-parity.md)
+records behavior ownership and the reason to keep or merge each route. Fourteen
 public entries are now accepted after a value review of distinct trigger,
 consequential behavior/proof, overlap and the simplest clear public interface.
 A legacy file count is not the acceptance target.
@@ -19,9 +19,11 @@ files. Client values, reference corpora and actual rendered output are required
 only when relevant to the judgment; unknown preferences are not fabricated.
 No owner-specific punctuation rule, biography or newsletter is included.
 
-The lead independently verified the optional Global boundary: clarification,
-skill-management and offer-shaping methods remain separately installed and
-owned, not copied from an external library. Worker orchestration is a native
+The lead independently verified the optional Global boundary: clarification
+and offer-shaping methods remain separately installed and owned, not copied
+from an external library. Personal and installed skill lifecycles now have one
+AIOS-owned native owner in Manage Skills; Maintain context retains owner facts
+and configured Git sync. Worker orchestration is a native
 conditional skill, and improvement triage is a native conditional skill; neither
 provides a runtime or external authority. Package-native discovery does not
 prove account access, model availability or the ability to launch a worker.
