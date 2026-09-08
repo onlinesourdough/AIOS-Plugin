@@ -225,17 +225,24 @@ def validate(root=ROOT):
             "setup-guardrails" not in SKILL_NAMES,
             "optional guardrails route boundary")
     orchestrate = (skill_root / "aios-orchestrate-workers/SKILL.md").read_text()
-    require("discover usable models, reasoning efforts, tools, context and routes" in orchestrate and
-            "decision evidence is missing or stale" in orchestrate and
-            "task quality and total context/tool/review/retry cost; speed is secondary" in orchestrate and
-            "dated comparable [Artificial Analysis](https://artificialanalysis.ai/)" in orchestrate and
-            "[DeepSWE](https://deepswe.datacurve.ai/)" in orchestrate and
-            "[LiveBench](https://livebench.ai/)" in orchestrate and
-            "benchmarks by model/effort/harness" in orchestrate and
-            "compact dated task-local rationale" in orchestrate and
-            "not every launch" in orchestrate and
-            "universal ranking or self-modifying installed skill" in orchestrate,
-            "task-local runtime selection boundary")
+    require("Choose model/reasoning from exposed routes" in orchestrate and
+            re.search(r"Dated defaults are not\s+universal", orchestrate) and
+            "Dated model working defaults — 2026-09-08" in orchestrate and
+            "`gpt-6-astra` / `low`" in orchestrate and
+            "`gpt-5.6-luna` / `max`" in orchestrate and
+            "Owner-selected defaults from user-provided experience/exposed routes" in orchestrate and
+            re.search(r"No creative\s+default: choose specialists by task fit", orchestrate) and
+            re.search(r"stale/missing\s+evidence", orchestrate) and
+            "availability/prices, task outcomes or owner input" in orchestrate and
+            "https://artificialanalysis.ai/" in orchestrate and
+            "https://deepswe.datacurve.ai/" in orchestrate and
+            "https://livebench.ai/" in orchestrate and
+            "official price/capability facts" in orchestrate and
+            "model/effort/harness" in orchestrate and
+            "No per-launch research or cache self-edit" in orchestrate and
+            "no service/config/memory/cache edit" in orchestrate and
+            "no fixed model catalog" not in orchestrate,
+            "dated task-local model snapshot")
     sync = (skill_root / "aios-maintain-context/references/sync.md").read_text()
     require("never `git add .`" in sync and
             "user-owned personal-skill folder identified" in sync and
