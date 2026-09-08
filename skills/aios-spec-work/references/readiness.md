@@ -15,7 +15,7 @@ editing it; an ordinary mechanical edit does not require a Spec audit.
 | Lifecycle continuity | The accepted outcome persists through the same goal and worker; no phase goal, premature completion, silent replacement or narrower substitute outcome |
 | Goal state | Actual lead and required worker native goal state is inspected and verified when explicitly requested and supported; otherwise the logical checkpoint is labeled as non-native; missing required activation or acknowledgement holds Build and remains visible; the canonical blocked/terminal fallback applies only after prior verified activation under standing owner policy; waiting-review never becomes a phase-goal completion |
 | Local invariants | Affected repository instructions, ownership and real launch/capability boundaries are respected |
-| Consequential behavior | Material real-world assumptions and representative pre-change behavior/outcomes are named; the intended post-change outcome and proof can detect regression beyond unit correctness |
+| Consequential behavior | When the proposed change may materially alter a real-world outcome, use [Risky Changes](../../aios-risky-changes/SKILL.md) and carry its baseline/check, recovery, and evidence-gap result into the contract; routine edits do not select it |
 | Proportionate construction | Rough input gains enough to build; a developed source is preserved rather than reformatted into a second brief |
 
 Return PASS only when every required check has direct evidence. Otherwise return

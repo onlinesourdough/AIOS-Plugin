@@ -13,6 +13,10 @@ bridge/package; it selects one harness/operation reference rather than a
 cross-harness preload.
 For personal skills during setup or a home move, call Manage Skills'
 [personal skill lifecycle](../aios-manage-skills/references/owner-skills.md).
+When an owner asks in ordinary language for local guardrails during autonomous
+use, route that request to [Manage Skills](../aios-manage-skills/SKILL.md). It
+owns candidate review/acquisition and its evidence. Normal onboarding does not
+depend on that optional Global capability.
 For an existing folder, read [data compatibility](references/data-format.md)
 before writing; an actual import also uses the [migration procedure](references/data.md)
 and [identity migration](references/migration.md) for legacy OSM or template AIOS

@@ -128,3 +128,9 @@ Use only a supported native control that preserves the session's history,
 evidence, repository/root and lead linkage; archiving is not deletion. A
 CLI-only or otherwise unsupported surface cannot prove or perform sidebar
 archival, so report that limitation briefly and leave the session state alone.
+
+Before a model/tool route, discover usable models, reasoning efforts, tools, context and routes.
+If decision evidence is missing or stale, compare relevant options on task quality and total context/tool/review/retry cost; speed is secondary.
+Separate official prices/capabilities, dated comparable [Artificial Analysis](https://artificialanalysis.ai/), [DeepSWE](https://deepswe.datacurve.ai/), and [LiveBench](https://livebench.ai/) benchmarks by model/effort/harness, and owner/task experience.
+Record a compact dated task-local rationale for lead/worker/creative specialist; refresh on availability, price/result changes, not every launch.
+Never create a universal ranking or self-modifying installed skill.

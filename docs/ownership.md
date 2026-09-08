@@ -4,6 +4,7 @@
 | --- | --- |
 | Product instructions, declarations, and neutral assets | AIOS maintainer in this repository |
 | Implementation and local verification | Accountable repository-root worker |
+| Consequential-change assessment | `aios-risky-changes`; conditionally routed by Spec and Review |
 | Independent acceptance and delivery instruction | Lead bound to an exact reviewed artifact |
 | Private Git destination and release | Authorized AIOS maintainer or Ship worker |
 | Owner context, personal facts, and access decisions | Client in the chosen AIOS home and source systems |
@@ -12,6 +13,7 @@
 | Native installation, connections, and cutover | Authorized client or lead using native controls and readback |
 | Independent Projects and Systems | Their own repositories and local lifecycle |
 | Optional Global Skills | Their original owners; AIOS Manage Skills governs only reviewed adoption |
+| Optional autonomous-use guardrails | Independently owned `setup-guardrails` Global Skill; Onboard/Manage Skills conditionally route a client request without adopting it |
 
 The product repository is not an owner-data home. Repository development skills
 stay local, and workers return proposed shared learning to the lead instead of

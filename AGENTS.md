@@ -13,7 +13,11 @@ For a small mechanical edit, make the scoped change, inspect the diff and run
 the affected check; no full lifecycle record or evaluation suite is required.
 
 Ask one question only when a missing owner decision materially changes the
-Project. Keep resolved context intact and record technical inferences locally.
+Project; preserve resolved context and record technical inferences locally.
+Return the outcome in the user's language and requested depth. Use the
+applicable local Spec or AIOS business route for material decisions; keep
+routine work proportional and leave proof, data authority, and recovery to its
+local lifecycle.
 
 ## Route
 

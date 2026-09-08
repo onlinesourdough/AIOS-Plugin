@@ -29,6 +29,10 @@ Review these gates:
   concurrency, and recovery behave as relevant.
 - **Evidence:** tests observe public behavior; mocked or static evidence is not
   claimed as runtime proof.
+- **Behavioral fixes:** a defect has representative before/after evidence at the
+  nearest safe boundary, or an explicit reproduction limitation and meaningful
+  regression. A deleted, skipped, weakened, or narrowed test cannot substitute
+  for proof; an accepted contract change has rationale and replacement coverage.
 - **Documentation truth:** every implementation-affected README, runbook,
   instruction, skill route, command, configuration, interface, operation,
   recovery, and proof statement is current or has an explicit no-change reason;

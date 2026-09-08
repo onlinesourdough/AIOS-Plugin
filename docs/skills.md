@@ -1,6 +1,6 @@
 # AIOS skills
 
-AIOS ships 14 native skills. Automatic selection uses each skill description;
+AIOS ships 15 native skills. Automatic selection uses each skill description;
 explicit selection uses its name. Repository development methods in
 `.agents/skills/` are separate and are not product skills.
 
@@ -15,6 +15,7 @@ explicit selection uses its name. Repository development methods in
 | [aios-manage-skills](../skills/aios-manage-skills/SKILL.md) | Manage personal and installed skill lifecycles |
 | [aios-onboard](../skills/aios-onboard/SKILL.md) | Set up or move an owner home and native bridge |
 | [aios-orchestrate-workers](../skills/aios-orchestrate-workers/SKILL.md) | Launch or recover a bounded repository worker |
+| [aios-risky-changes](../skills/aios-risky-changes/SKILL.md) | Assess consequential changes proportionately |
 | [aios-review-work](../skills/aios-review-work/SKILL.md) | Independently accept or revise substantive work |
 | [aios-ship-work](../skills/aios-ship-work/SKILL.md) | Deliver an exactly reviewed result under authority |
 | [aios-spec-work](../skills/aios-spec-work/SKILL.md) | Resolve a substantive AIOS work contract |

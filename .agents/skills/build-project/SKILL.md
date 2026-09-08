@@ -24,6 +24,15 @@ better evidence than a unit test that repeats the implementation's wording.
 Exercise real boundaries when mocks cannot prove them. Do not run unrelated
 suites or require Red-Green-Refactor for every edit.
 
+For a behavioral defect, reproduce the affected caller or user's behavior at
+the nearest safe representative boundary before fixing it. If that behavior
+cannot be reproduced, report the limitation and verify the strongest meaningful
+regression after the fix. Do not delete, skip, weaken, or narrow a test merely
+to obtain green; an accepted contract change records its rationale and provides
+replacement coverage. A content, design, or data System uses proportionate
+domain proof, not compulsory browser E2E, software tests, or lifecycle
+scaffolding on every edit.
+
 Implement complete results, check them, fix in-scope findings and repeat affected
 checks. Continue through [Review](../review-project/SKILL.md); do not return after
 the first implementation or successful test while requested work remains.

@@ -63,14 +63,14 @@ You do not need to remember skill names. Try:
 - “Remember this decision and where it came from.”
 - “Turn this workflow into a personal skill I can reuse.”
 
-AIOS includes [14 skills](docs/skills.md) for everyday work, setup, updates and
+AIOS includes [15 skills](docs/skills.md) for everyday work, setup, updates and
 keeping your context current. Your repositories keep their own development
 instructions; unrelated code work does not need your personal context.
 
 ### Package layout
 
 ```text
-skills/          14 shipped AIOS product skills shared by Codex and Pi
+skills/          15 shipped AIOS product skills shared by Codex and Pi
 .agents/skills/  six repository development methods; not exposed as product skills
 ```
 

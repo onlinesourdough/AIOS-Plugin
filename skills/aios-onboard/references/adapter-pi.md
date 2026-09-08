@@ -4,7 +4,7 @@ Use only for authorized Pi package installation, registration or bridge repair.
 Apply the shared [native adapter and bridge boundary](adapters.md), then the
 relevant [Pi configuration](harness-pi.md).
 
-The root package.json declares only `pi.skills`, pointing to the same 14 root
+The root package.json declares only `pi.skills`, pointing to the same 15 root
 `skills/` folders. No extensions or install scripts are provided. Standard
 local and Git package routes are:
 
@@ -53,7 +53,7 @@ tested Pi loader did not resolve that form. This exclusion affects the global
 source only; trusted repository-local `.agents/skills` discovery remains
 independent.
 
-The observed candidate fixture result was 14 AIOS skills, four owner skills and
+The observed 0.3.1 candidate fixture result was 14 AIOS skills, four owner skills and
 two explicitly selected external Global skills in an ordinary untrusted context;
 the trusted AIOS repository additionally exposed exactly six local development
 skills. No ambient shared skills or diagnostics appeared. This is version-specific

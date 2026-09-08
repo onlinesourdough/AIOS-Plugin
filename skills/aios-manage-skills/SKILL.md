@@ -37,6 +37,13 @@ change.
    sufficient capability and stop. If the gap is not concrete, report it and
    do not search or install.
 
+When an owner asks in ordinary language for local guardrails during autonomous
+use, prefer an available reviewed `setup-guardrails` Global Skill. When it
+is missing, assess only its authorized acquisition through this lifecycle. It is
+not an AIOS prerequisite or package dependency: report source identity,
+installation state, trust/configuration state, and native-active observation
+separately; a catalog entry or copied prompt proves none of them.
+
 ## Discover and review candidates
 
 Search without installing through an available authorized catalog, native

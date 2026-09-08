@@ -24,6 +24,7 @@ JOB_PREFIXES = {
     "aios-manage-skills": "Manage ",
     "aios-onboard": "Set up, resume or move ",
     "aios-orchestrate-workers": "Plan, launch or recover ",
+    "aios-risky-changes": "Assess ",
     "aios-review-work": "Review ",
     "aios-ship-work": "Deliver ",
     "aios-spec-work": "Specify or revise ",
@@ -107,8 +108,8 @@ def metadata_entries(skill_root, base_root):
 
 def current_metadata_bytes():
     entries = metadata_entries(ROOT / "skills", ROOT)
-    require(len(entries) == 14, "skill metadata inventory")
-    require(len({entry["metadata"] for entry in entries}) == 14,
+    require(len(entries) == 15, "skill metadata inventory")
+    require(len({entry["metadata"] for entry in entries}) == 15,
             "ambiguous skill metadata")
     require(set(JOB_PREFIXES) == {entry["name"] for entry in entries},
             "skill job inventory")

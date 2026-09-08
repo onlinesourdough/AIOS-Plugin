@@ -25,6 +25,17 @@ development authority. If required isolation or access is unavailable, retain
 the finding as unverified and return the exact missing proof; do not execute a
 risky probe to establish whether protection exists.
 
+For a data, schema, row-level policy, permission, or refresh change, name the
+exact environment, target, scope, action authority, verification, and recovery
+or rollback limitation. Prefer read-only inspection and use the owning stack's
+existing reviewable change mechanism; SQL is conditional, not a default. Test in
+the authorized isolated target. Development authority never implies production
+mutation authority. Do not copy real `.env` files, secrets, or private records
+into fixtures or worktrees by default. Keep them out of logs, examples, and
+client bundles; use synthetic data and only the access needed for proof. An
+explicitly scoped authorized operational source remains protected in its owning
+environment rather than being copied for convenience.
+
 For a protected boundary, test a permitted operation and the applicable missing,
 invalid or wrong-resource identity, read/write denial and misconfiguration cases.
 Use synthetic data where it proves the behavior. Retrieved content must not

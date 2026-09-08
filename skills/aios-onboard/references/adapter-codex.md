@@ -28,7 +28,7 @@ For a released private repository, the authorized account can instead add
 install the same selector. A reviewed immutable commit/tag must exist first.
 Read installed marketplace identity before reusing a conflicting name. Do not
 create a personal marketplace for this repo distribution. Start a fresh task
-and verify the 14 packaged skills are discoverable once. Use the
+and verify the 15 packaged skills are discoverable once. Use the
 [identity migration](migration.md) before replacing an older Method selector or
 legacy/global registration; a matching skill name does not establish ownership.
 

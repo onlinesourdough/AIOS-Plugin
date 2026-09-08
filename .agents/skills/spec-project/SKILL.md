@@ -72,6 +72,13 @@ low-risk, and inside the implementer's ordinary technical authority. Never
 infer product direction, external authority, trust policy, irreversible
 effects, or an outcome measurement owner.
 
+For a material business, product, architecture, or trust decision, inspect the
+actual constraints and sufficient alternatives before choosing. Record the
+chosen rationale and consequences in the existing canonical decision or
+operational source, retaining supersession context when it changes. Ask only
+when the remaining owner authority or decision materially changes the result;
+an obvious authorized step proceeds.
+
 ## Audit the required dimensions
 
 | Dimension | Evidence needed |

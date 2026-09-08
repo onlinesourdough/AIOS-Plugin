@@ -11,9 +11,11 @@ python3 tests/continuity-rehearsal.py
 
 `validate.py` checks native declarations, package inventory, skill frontmatter,
 relative links, one shared Codex/Pi skill source, the complete legacy-route map,
-discovery contracts, owner-template isolation, external-owner coupling, and
-selected security regressions. It also builds an isolated package copy so
-author-only files cannot satisfy product links.
+discovery contracts, owner-template isolation, external-owner coupling,
+conditional Risky Changes ownership/routing, optional Guardrails capability
+routing without a package dependency or installed claim, and selected security
+regressions. It also builds an isolated package copy so author-only files
+cannot satisfy product links.
 
 `context-footprint.py` compares representative selected-read paths with accepted
 legacy commit `ca1ba807716d1a992889f02d41cddf94fdee9f32`. The checked-in
@@ -28,10 +30,10 @@ cover local-first negative preload, owner routing, Spec readiness, worker Build
 and basic Check. Every current selected path must be no larger than its legacy
 package-owned comparison, and each skill body must stay at or below 8 KiB.
 
-At the current source bytes, the startup method layer is 12,419 -> 3,506 bytes;
-the representative non-startup selected paths are 17.3% to 58.1% smaller. All
-skill bodies together are 76,114 -> 47,607 bytes. Total skill Markdown is larger
-(128,980 -> 193,234 bytes) because the native plugin owns more supported
+At the current source bytes, the startup method layer is 12,419 -> 3,764 bytes;
+the representative non-startup selected paths are 16.0% to 56.3% smaller. All
+skill bodies together are 76,114 -> 51,763 bytes. Total skill Markdown is larger
+(128,980 -> 199,196 bytes) because the native plugin owns more supported
 harness/setup references; those files are split by real operation/capability and
 must not be loaded as one corpus. Aggregate package size is not claimed as a
 context saving. The complete neutral setup scaffold is 13,591 -> 5,012 bytes;

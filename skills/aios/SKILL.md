@@ -37,6 +37,12 @@ Do not turn a guardrail into a fact: report a named source, destination,
 approval, or authority only when accepted input or its scoped source establishes
 it. Otherwise say it is unknown and name the evidence gap.
 
+For a material business, product, architecture, or trust decision, use
+[business/System routing](references/routing.md), which owns the assessment and
+canonical decision record. Return the result concisely in the user's language
+and requested depth. A business answer does not acquire Project phases or
+software-test ceremony merely because it includes a decision.
+
 Choose the smallest triggered route: [business/System routing](references/routing.md),
 [Spec](../aios-spec-work/SKILL.md), [Build](../aios-build-work/SKILL.md),
 [Review](../aios-review-work/SKILL.md), authorized [Ship](../aios-ship-work/SKILL.md),

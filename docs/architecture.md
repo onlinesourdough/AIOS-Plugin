@@ -6,7 +6,7 @@ worker service, permission system, or client-data store.
 
 | Boundary | Responsibility |
 | --- | --- |
-| `.codex-plugin/`, `package.json`, `assets/`, `skills/` | Native metadata and the 14 shipped product skills |
+| `.codex-plugin/`, `package.json`, `assets/`, `skills/` | Native metadata and the 15 shipped product skills |
 | `.agents/plugins/marketplace.json` | Codex marketplace entry pointing at this repository root |
 | `.agents/skills/`, `AGENTS.md` | Repository development only; never product discovery |
 | Owner home, normally `~/.AIOS` | Client-controlled context, decisions, connections, and personal skills |
@@ -27,6 +27,10 @@ roots and are excluded from optional owner-home Git tracking.
 Manage Skills owns personal-skill placement and native capability adoption.
 Maintain Context owns owner facts and configured owner Git sync. Onboard and
 Check call those owners instead of duplicating their procedures.
+Risky Changes owns the conditional assessment of consequential-change
+assumptions, representative behavior, recovery, and residual unknowns. Spec
+and Review route to it only when that risk is material; Review retains
+independent acceptance and Ship remains the authority boundary.
 
 Continuity Sync is an explicit client workflow under Maintain Context, not a
 package hook or installation side effect. It transfers only consented owner
@@ -38,6 +42,10 @@ owns upload/restore consent and no-overwrite staging.
 Worker orchestration and improvement triage are conditional instructions. They
 do not create a runtime, external authority, or background watcher. Optional
 Global Skills remain independently owned and are not copied into AIOS.
+`setup-guardrails` is an optional Global capability selected only when an
+owner expressly wants local guardrails for autonomous use; it is not packaged,
+installed, trusted, configured, or active by implication. Onboard and Manage
+Skills route that explicit need without making core AIOS depend on it.
 Registered Systems are selected by their declared responsibility and primary
 route. Their repositories own tool choices, internal stages, artifact formats,
 schemas and natural returns; AIOS keeps only the registry and handoff boundary.

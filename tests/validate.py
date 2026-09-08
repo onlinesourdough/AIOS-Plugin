@@ -13,7 +13,7 @@ SKILL_NAMES = {
     "aios", "aios-build-work", "aios-check", "aios-create-project",
     "aios-create-system", "aios-maintain-context", "aios-manage-skills",
     "aios-onboard", "aios-orchestrate-workers", "aios-review-work",
-    "aios-ship-work", "aios-spec-work", "aios-triage-improvement",
+    "aios-risky-changes", "aios-ship-work", "aios-spec-work", "aios-triage-improvement",
     "aios-update",
 }
 LEGACY_ROUTE_TARGETS = {
@@ -166,6 +166,24 @@ def validate(root=ROOT):
             "owner routing discovery")
     require("persistent goal and todo" in skill_fields["aios-spec-work"]["description"],
             "goal/todo discovery")
+    risky_changes = (skill_root / "aios-risky-changes/SKILL.md").read_text()
+    spec_work = (skill_root / "aios-spec-work/SKILL.md").read_text()
+    review_work = (skill_root / "aios-review-work/SKILL.md").read_text()
+    require(skill_fields["aios-risky-changes"]["description"].startswith("Assess ") and
+            "not routine edits or lifecycle management" in risky_changes and
+            "Name the material real-world assumptions" in risky_changes and
+            "proportional baseline or check" in risky_changes and
+            "safe recovery or stop path" in risky_changes and
+            "unit test alone as representative proof" in risky_changes and
+            "Compare the same representative pre- and post-change" in risky_changes and
+            "residual unknowns" in risky_changes and
+            "does not create a lifecycle, goal, worker" in risky_changes,
+            "risky-change owner boundary")
+    require("[Risky Changes](../aios-risky-changes/SKILL.md)" in spec_work and
+            "Routine edits do not select it." in spec_work and
+            "[Risky Changes](../aios-risky-changes/SKILL.md)" in review_work and
+            "Review still owns acceptance and does not gain Ship authority" in review_work,
+            "risky-change caller routing")
     primary = (skill_root / "aios/SKILL.md").read_text()
     lifecycle = (skill_root / "aios/references/lifecycle.md").read_text()
     require("persistent-goal request boundary" in primary and
@@ -191,6 +209,33 @@ def validate(root=ROOT):
             "When Codex exposes its native task list/To dos control" in lifecycle and
             "Goal metadata does not explain a missing plan control" in lifecycle,
             "native-state deadlock scenario")
+    require("| Routine risky-change boundary |" in workflow_scenarios and
+            "do not load Risky Changes or create a lifecycle, goal, worker, or extra test suite" in workflow_scenarios,
+            "routine risky-change negative route")
+    onboard = (skill_root / "aios-onboard/SKILL.md").read_text()
+    manage_skills = (skill_root / "aios-manage-skills/SKILL.md").read_text()
+    require("[Manage Skills](../aios-manage-skills/SKILL.md)" in onboard and
+            re.search(r"normal onboarding does not\s+depend on that optional Global capability", onboard, re.I) and
+            "setup-guardrails" in manage_skills and
+            "setup-agent-guardrails" not in manage_skills and
+            "not an AIOS prerequisite or package dependency" in manage_skills and
+            all(term in manage_skills for term in ("source identity", "installation state",
+                                                   "trust/configuration state", "native-active observation")) and
+            "| Optional autonomous-use guardrails |" in workflow_scenarios and
+            "setup-guardrails" not in SKILL_NAMES,
+            "optional guardrails route boundary")
+    orchestrate = (skill_root / "aios-orchestrate-workers/SKILL.md").read_text()
+    require("discover usable models, reasoning efforts, tools, context and routes" in orchestrate and
+            "decision evidence is missing or stale" in orchestrate and
+            "task quality and total context/tool/review/retry cost; speed is secondary" in orchestrate and
+            "dated comparable [Artificial Analysis](https://artificialanalysis.ai/)" in orchestrate and
+            "[DeepSWE](https://deepswe.datacurve.ai/)" in orchestrate and
+            "[LiveBench](https://livebench.ai/)" in orchestrate and
+            "benchmarks by model/effort/harness" in orchestrate and
+            "compact dated task-local rationale" in orchestrate and
+            "not every launch" in orchestrate and
+            "universal ranking or self-modifying installed skill" in orchestrate,
+            "task-local runtime selection boundary")
     sync = (skill_root / "aios-maintain-context/references/sync.md").read_text()
     require("never `git add .`" in sync and
             "user-owned personal-skill folder identified" in sync and
@@ -330,11 +375,12 @@ def validate(root=ROOT):
 
     readiness = (skill_root / "aios-spec-work/references/readiness.md").read_text()
     completeness = (skill_root / "aios-review-work/references/completeness.md").read_text()
-    require("Material real-world assumptions" in readiness and
-            "representative pre-change behavior/outcomes" in readiness,
+    require("[Risky Changes](../../aios-risky-changes/SKILL.md)" in readiness and
+            "baseline/check, recovery, and evidence-gap result" in readiness and
+            "routine edits do not select it" in readiness,
             "consequential behavior contract")
-    require("representative before/after outcomes" in completeness and
-            "unit correctness alone is insufficient" in completeness,
+    require("[Risky Changes](../../aios-risky-changes/SKILL.md)" in completeness and
+            "representative before/after comparison and residual-unknown result" in completeness,
             "consequential behavior review")
 
     icon = (root / "assets/icon.png").read_bytes()
@@ -372,6 +418,8 @@ def validate(root=ROOT):
         copy_product(root, staged)
         require(not any((staged / name).exists() for name in (".agents", "docs", "tests", "AGENTS.md")),
                 "author content in product")
+        require(not (staged / "skills/setup-guardrails").exists(),
+                "optional global capability shipped")
         for path in staged.rglob("*.md"):
             list(link_targets(path, staged))
 
@@ -438,6 +486,6 @@ def negative_controls():
 if __name__ == "__main__":
     validate()
     negative_controls()
-    print("PASS: package declarations, 14 skill frontmatters, complete legacy routes, links, isolation, and security checks")
+    print("PASS: package declarations, 15 skill frontmatters, complete legacy routes, links, isolation, and security checks")
     print("PASS: discovery contracts and external-owner coupling boundaries")
     print("PASS: rejects split sources, install/runtime scripts, inherited instructions, and duplicate ownership")

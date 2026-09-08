@@ -29,6 +29,10 @@ privileged automation or deployment, use the conditional
 [security contract](../aios/references/security.md) through Spec/Build/Review/Ship. Keep its scope
 and evidence with the independent repository; ordinary tasks gain no scan ritual.
 
+When the proposed change may materially alter a real-world outcome, read
+[Risky Changes](../aios-risky-changes/SKILL.md) before READY and carry its
+compact assessment into the contract. Routine edits do not select it.
+
 Return exactly READY, REVISE or BLOCKED. READY contains a compact Build
 contract: outcome; proof and measurement owner; relevant context pointers;
 exact repository/worker root; scope/non-goals; authority and risk; dependencies

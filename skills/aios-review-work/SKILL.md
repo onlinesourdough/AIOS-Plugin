@@ -38,6 +38,12 @@ owner and callers link to it with their trigger and required result. Flag copied
 step lists, competing acceptance rules and circular delegation without an
 executable owner; do not merge distinct responsibilities just to reduce files.
 
+When the changed result may materially alter a real-world outcome, read
+[Risky Changes](../aios-risky-changes/SKILL.md). It owns the representative
+before/after comparison and residual-unknown assessment; this independent
+Review still owns acceptance and does not gain Ship authority. Routine edits do
+not select it.
+
 Bind PASS to exact artifact hashes (or commit/tree), proof and reviewed contract
 revision. Any later relevant mutation invalidates affected evidence and PASS.
 The same worker reruns impacted tests/evals on final bytes, then the lead

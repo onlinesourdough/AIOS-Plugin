@@ -9,6 +9,13 @@ Offer, Operations and Demand are diagnostic
 labels, not folders or owners. Identify the wanted freedom and economic result;
 consider Eliminate, Automate, then Delegate before adding a capability.
 
+When a business, product, architecture, or trust decision materially determines
+the result, inspect actual constraints and sufficient alternatives. Preserve the
+chosen rationale, consequences, and any superseded decision in the owning
+canonical source; ask only for missing owner authority. A bounded owner answer
+remains an answer, not a requirement to create a Project or apply software
+delivery ceremony.
+
 | Natural home | Decision |
 | --- | --- |
 | AIOS owner task | One-off answer, analysis, draft or coordination |
