@@ -119,6 +119,8 @@ interruption. [Readiness](../../aios-spec-work/references/readiness.md),
 [completeness](../../aios-review-work/references/completeness.md) and
 [publish safety](../../aios-ship-work/references/publish-safety.md) have separate
 observable checkpoints. They do not create additional lifecycle goals.
-When the lead actually plans, launches or recovers a worker, the native
+Before substantive production, [routing](routing.md) resolves owner, workflow
+and worker need. When delegation is required, a new sidebar task is explicitly
+requested, or a worker needs recovery, the native
 [orchestration procedure](../../aios-orchestrate-workers/SKILL.md) owns its
 prompt, route, root, one-writer, proof and handback boundary.

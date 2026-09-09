@@ -64,7 +64,12 @@ You do not need to remember skill names. Try:
 - “Turn this workflow into a personal skill I can reuse.”
 
 AIOS includes [15 skills](docs/skills.md) for everyday work, setup, updates and
-keeping your context current. Your repositories keep their own development
+keeping your context current. Before larger production work, AIOS selects the
+responsible workflow and worker. Design (ADS) and content Systems are optional
+independent specialist repositories, installed only when selected for real work;
+Power BI is optional and requires a matching need. System updates use the
+[System maintenance procedure](skills/aios-update/references/systems.md), separately
+from plugin updates and owner-context Sync. Your repositories keep their own development
 instructions; unrelated code work does not need your personal context.
 
 ### Package layout

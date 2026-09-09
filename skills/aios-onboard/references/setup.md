@@ -74,7 +74,11 @@ New authorized checkouts use AIOS_ROOT/projects/<slug> or AIOS_ROOT/systems/<slu
 as physical roots, with their own .git, AGENTS.md and lifecycle. Existing chosen
 external paths remain valid. Use [creation](../../aios/references/creation.md)
 only when a needed independent owner is justified; setup does not preclone
-templates or registered repositories. Copy the [ignore asset](../assets/owner/.gitignore)
+templates or registered repositories. ADS/design and content are available
+specialist routes; Power BI is optional and requires a matching user need.
+Install a selected System on first use through
+[System maintenance](../../aios-update/references/systems.md), using an
+upstream-backed checkout by default, not an automatic personal fork. Copy the [ignore asset](../assets/owner/.gitignore)
 for a new home; merge its checkout exclusions into existing rules only when needed,
 preserving other rules. Verify exclusions before owner Git staging.
 

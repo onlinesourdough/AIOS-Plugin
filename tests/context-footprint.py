@@ -23,13 +23,13 @@ JOB_PREFIXES = {
     "aios-maintain-context": "Curate ",
     "aios-manage-skills": "Manage ",
     "aios-onboard": "Set up, resume or move ",
-    "aios-orchestrate-workers": "Plan, launch or recover ",
+    "aios-orchestrate-workers": "Select, prepare, launch or recover ",
     "aios-risky-changes": "Assess ",
     "aios-review-work": "Review ",
     "aios-ship-work": "Deliver ",
     "aios-spec-work": "Specify or revise ",
     "aios-triage-improvement": "Triage ",
-    "aios-update": "Adopt or roll back ",
+    "aios-update": "Update selected installed upstream Systems ",
 }
 CURRENT_NEUTRAL_SCAFFOLD = (
     "skills/aios-onboard/assets/bridge.md",
@@ -51,12 +51,14 @@ CURRENT_JOURNEYS = {
     ),
     "spec-ready": (
         "skills/aios/SKILL.md",
+        "skills/aios/references/routing.md",
         "skills/aios-spec-work/SKILL.md",
         "skills/aios/references/lifecycle.md",
         "skills/aios-spec-work/references/readiness.md",
     ),
     "worker-build": (
         "skills/aios/SKILL.md",
+        "skills/aios/references/routing.md",
         "skills/aios-build-work/SKILL.md",
         "skills/aios-orchestrate-workers/SKILL.md",
         "skills/aios/references/lifecycle.md",

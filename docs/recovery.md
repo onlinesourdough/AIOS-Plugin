@@ -21,6 +21,12 @@ recover ignored or untracked work it never stored, so moving an owner home must
 copy and verify those checkouts independently. Removing a shortcut or
 registration never authorizes deleting its target.
 
+[System maintenance](../skills/aios-update/references/systems.md) preserves exact
+source refs and System-local storage/recovery evidence before a compatible
+fast-forward. Worktrees do not eliminate conflicts or back up data. Unknown
+artifact backup coverage, local commits, tracked user artifacts or incompatible
+updates require focused reconciliation; no automatic reset or data migration.
+
 Worker recovery keeps actionable work open through Review, revision, approval,
 and Ship. Optional archiving is lead-controlled only after terminal acceptance
 and handoff, using a supported native control that preserves history.

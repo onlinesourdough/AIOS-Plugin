@@ -5,6 +5,10 @@ description: Curate AIOS owner facts, memory, routes, registries and connections
 
 # Maintain context
 
+For an explicit System-code update, route to
+[System maintenance](../aios-update/references/systems.md); owner Sync does not
+update nested repositories.
+
 For an explicit `aios sync`, read [Sync](references/sync.md) first. At a missing
 or genuinely empty chosen home, make its one Sync-existing-versus-Onboard choice;
 do not mistake that absence for a malformed owner home. Otherwise read the

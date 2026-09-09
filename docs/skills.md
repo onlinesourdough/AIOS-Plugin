@@ -14,16 +14,17 @@ explicit selection uses its name. Repository development methods in
 | [aios-maintain-context](../skills/aios-maintain-context/SKILL.md) | Maintain owner facts, routes, connections, and explicit continuity Sync |
 | [aios-manage-skills](../skills/aios-manage-skills/SKILL.md) | Manage personal and installed skill lifecycles |
 | [aios-onboard](../skills/aios-onboard/SKILL.md) | Set up or move an owner home and native bridge |
-| [aios-orchestrate-workers](../skills/aios-orchestrate-workers/SKILL.md) | Launch or recover a bounded repository worker |
+| [aios-orchestrate-workers](../skills/aios-orchestrate-workers/SKILL.md) | Select and prepare required delegation or an explicitly requested new sidebar task; launch/recover under harness rules |
 | [aios-risky-changes](../skills/aios-risky-changes/SKILL.md) | Assess consequential changes proportionately |
 | [aios-review-work](../skills/aios-review-work/SKILL.md) | Independently accept or revise substantive work |
 | [aios-ship-work](../skills/aios-ship-work/SKILL.md) | Deliver an exactly reviewed result under authority |
 | [aios-spec-work](../skills/aios-spec-work/SKILL.md) | Resolve a substantive AIOS work contract |
 | [aios-triage-improvement](../skills/aios-triage-improvement/SKILL.md) | Route a concrete underlying improvement signal |
-| [aios-update](../skills/aios-update/SKILL.md) | Adopt or roll back a reviewed native package |
+| [aios-update](../skills/aios-update/SKILL.md) | Update selected upstream Systems or adopt/roll back a reviewed native package |
 
 Create Project and Create System remain separate because their ownership and
-handoff differ. Update owns package identity and rollback; Maintain Context owns
+handoff differ. Update owns package identity/rollback and the separate canonical System-code
+maintenance procedure; Maintain Context owns
 client facts; Check observes installed state. The shipped
 [legacy behavior map](../skills/aios-onboard/references/legacy-parity.md) records
 where retired method responsibilities moved.

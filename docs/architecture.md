@@ -49,6 +49,15 @@ Skills route that explicit need without making core AIOS depend on it.
 Registered Systems are selected by their declared responsibility and primary
 route. Their repositories own tool choices, internal stages, artifact formats,
 schemas and natural returns; AIOS keeps only the registry and handoff boundary.
+Before substantive production, select the owner, primary workflow and worker
+need. Delegation triggers orchestration before launch; internal workers and
+explicitly requested new sidebar tasks retain their different harness authority.
+Selected Systems install on first use, upstream-backed by default, never eagerly
+at onboarding. [System maintenance](../skills/aios-update/references/systems.md)
+owns compatible fast-forward updates at task boundaries under update authority.
+Customized/forked Systems remain owner-maintained; local storage contracts govern
+artifact preservation and recovery. Owner Sync transfers pointers, not System
+contents. No registry schema, runtime or automatic updater is added.
 
 Skill name/description metadata and the small owner bridge are the startup method
 layer. One clearly triggered skill body loads next; a small explanation can name

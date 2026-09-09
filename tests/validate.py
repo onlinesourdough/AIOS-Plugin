@@ -50,9 +50,10 @@ LEGACY_EXTERNAL_TARGETS = {
     "route-models": "historical change `8b81375`",
     "shape-offer": "Remains an independently owned Global Skill",
 }
+# ADS is an accepted routing label; specialist tools/formats remain external.
 FORBIDDEN_BOUNDARY_TEXT = {
     "skills/aios/references/routing.md": (
-        "ADS", "ACS", "OpenPencil", "DESIGN.md", "HANDOFF.md", ".op",
+        "ACS", "OpenPencil", "DESIGN.md", "HANDOFF.md", ".op",
     ),
     "skills/aios-create-project/SKILL.md": (
         "scripts/create-project.sh", "--in-place", "--source-url", "--source-sha",
@@ -66,7 +67,7 @@ FORBIDDEN_BOUNDARY_TEXT = {
     ),
 }
 FORBIDDEN_SHIPPED_PATTERNS = (
-    r"\bOpenPencil\b", r"\bADS\b", r"\bACS\b", r"\bDESIGN\.md\b",
+    r"\bOpenPencil\b", r"\bACS\b", r"\bDESIGN\.md\b",
     r"\bHANDOFF\.md\b", r"(?<![\w])\.op(?![\w])", r"\bnpx skills\b",
     r"\bskills\.sh\b", r"\bscripts/create-project\.sh\b",
     r"\barchive/extraction\b", r"\baudit-system\b",

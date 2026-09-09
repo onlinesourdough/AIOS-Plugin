@@ -1,14 +1,16 @@
 ---
 name: aios-orchestrate-workers
-description: Plan, launch or recover one bounded AIOS worker with the right context, route, root, authority, proof and lead handback.
+description: Select, prepare, launch or recover a bounded worker when an assignment requires delegation or the user requests a new sidebar task, including requests without model or effort. Preserve root, authority and lead handback.
 ---
 
 # Orchestrate workers
 
-Use only when the lead plans/launches/recovers a bounded worker—not a small
-lead task, ordinary Review or possible delegation. Lead owns outcome/final
-decision; this supplies no runtime/authority. Substantive work defaults
-first-class. A subagent needs a lead-assessed task-specific gain in
+Use before production when the assignment requires delegation, including a
+substantive bounded assignment or independent repository mutation, and when the
+user explicitly requests a new sidebar task even without model/effort details.
+Also use for worker recovery. Small lead tasks and ordinary Review stay small.
+Lead owns outcome/final decision; this supplies no runtime/authority.
+Substantive work defaults first-class. A subagent needs a lead-assessed task-specific gain in
 capability/context/coordination/cost/risk/verification; status alone is
 insufficient. Independent mutation keeps the root guard.
 
@@ -21,7 +23,18 @@ launch; resume the matching writer when session/root/goal match, never another
 for missing handle, slowness or clutter. Use [recovery](../aios/references/recovery.md)
 for interruption/uncertainty.
 
-Choose model/reasoning from exposed routes; compare task quality and total
+Distinguish internal orchestrated CLI/native workers from user-visible sidebar
+tasks. Codex `create_thread` requires an explicit user request for a NEW task;
+delegation need alone never authorizes it. For that tool omit model unless the
+user explicitly names one. Respect explicitly requested model and effort where
+supported; if unavailable, report the gap without silent substitution. A sidebar
+request with neither still uses this procedure to select the owner, root and
+prepare context, while respecting tool defaults. Internal workers may select
+appropriate exposed model/effort routes. Harness invocation rules always win
+over this skill and its dated defaults; never change model configuration.
+
+Choose model/reasoning from exposed routes only where the tool permits selection;
+compare task quality and total
 context/reasoning/review/retry cost before speed. Do not inherit lead
 model/history. Stop on unavailable/unsuitable routes; never invent
 savings/quotas/fallbacks or silently substitute. Dated defaults are not

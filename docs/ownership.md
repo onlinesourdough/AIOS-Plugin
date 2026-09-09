@@ -11,7 +11,8 @@
 | Owner continuity remote, direction, and allowed paths | Client under explicit Sync consent; Maintain Context owns the procedure |
 | Customer or externally owned documentation | Its source system; AIOS may retain only a scoped pointer and freshness boundary |
 | Native installation, connections, and cutover | Authorized client or lead using native controls and readback |
-| Independent Projects and Systems | Their own repositories and local lifecycle |
+| Independent Projects and Systems | Their own repositories, storage contracts and local lifecycle; customized/forked Systems are owner-maintained |
+| Selected upstream System installation/code updates | AIOS Update [System maintenance](../skills/aios-update/references/systems.md) routes authorized work; each System owns compatibility and recovery |
 | Optional Global Skills | Their original owners; AIOS Manage Skills governs only reviewed adoption |
 | Optional autonomous-use guardrails | Independently owned `setup-guardrails` Global Skill; Onboard/Manage Skills conditionally route a client request without adopting it |
 

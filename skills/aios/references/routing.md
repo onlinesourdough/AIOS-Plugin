@@ -28,21 +28,27 @@ Resources are references, Archives recovery state, Skills methods; none adds an
 owner concept. A schedule or automation alone does not justify a System.
 Do not create a Project per content item or a wrapper per repository.
 
+Before substantive production, record a concrete selection in the existing task
+contract: outcome, execution owner and canonical root, primary route, worker or
+lead execution with reason, and expected result/proof. Reuse an accepted
+selection; do not add a separate artifact or repeat this for small answers.
+
 Read only the relevant registry. A registered URL is a route, not an installed
-capability. Verify exact local checkout, Git identity when present, AGENTS.md,
-and the System primary skill before invocation. If missing, clone only when the
-current task authorizes that needed repository and destination; otherwise return
-the route and one install/verify action. A new checkout uses projects/<slug> or
-systems/<slug> under AIOS_ROOT, with independent local truth and owner Git exclusion;
-preserve a deliberate existing external path. Verify identity before invocation.
+capability. Verify an existing checkout, Git identity, AGENTS.md, primary skill
+and dependencies before invocation. For a selected missing System, use [System maintenance](../../aios-update/references/systems.md)
+to clone and verify it on first use under existing task authority. Onboarding
+does not preclone Systems. A new checkout uses projects/<slug> or systems/<slug>
+under AIOS_ROOT, with independent local truth and owner Git exclusion; preserve
+a deliberate existing external path.
 Do not substitute or implement the capability in shared owner context, or seed
 an existing repository. New ownership uses [creation](creation.md).
 
 For independent repository mutation use the first-class root worker boundary
-in [lifecycle](lifecycle.md). When a lead actually plans, launches or recovers
-that worker, use [Orchestrate workers](../../aios-orchestrate-workers/SKILL.md).
-Local truth owns implementation and proof; AIOS stores only routing and
-genuinely shared knowledge. Existing repository work
+in [lifecycle](lifecycle.md). When the assignment requires delegation, the user
+requests a new sidebar task, or a worker needs recovery, use [Orchestrate workers](../../aios-orchestrate-workers/SKILL.md).
+Orchestration selects and prepares the worker before production; it does not
+authorize silent sidebar creation. Local truth owns implementation and proof;
+AIOS stores only routing and genuinely shared knowledge. Existing repository work
 begins locally without automatically reading owner context. Expand only for a
 named gap, to authorized relevant sources in the correct account. Brand labels
 are not access control. Verify account before relying on or exposing data.
@@ -55,6 +61,16 @@ owns selection and the cross-owner boundary only. The System's current local
 instructions own its tools, stages, mutable source, artifact names and formats,
 workspace layout, schemas, review and recovery. Do not encode those choices in
 AIOS or choose a route from a tool name, filename or former repository label.
+
+ADS/design and content are available specialist routes, not bundled contents
+or required installs. Visual work matching ADS must enter its current primary
+workflow and follow its stages and review; do not merely read ADS and generate
+a loose image in the parent task. Power BI is optional: never install by default
+or select it without a matching user need. Resolve these routes from the
+relevant registry or accepted canonical source, not guessed repository URLs.
+An existing owner-selected route wins. Only for a matching missing route, consult
+the [bounded first-use catalog](../../aios-update/references/systems.md#bounded-first-use-catalog);
+its candidates require verification on use, with no preclone or auto-registration.
 
 Invoke a verified registered route only when its declared condition matches the
 requested result. Pass resolved intent, only relevant accepted context and

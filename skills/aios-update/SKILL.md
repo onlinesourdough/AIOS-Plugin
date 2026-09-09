@@ -1,9 +1,15 @@
 ---
 name: aios-update
-description: Adopt or roll back a reviewed AIOS native package at a task boundary. Plan legacy OSM or AIOS adoption without overwriting owner data or colliding skills.
+description: Update selected installed upstream Systems or adopt or roll back a reviewed AIOS native package at a task boundary. Preserve owner data and customized repositories; keep System code updates separate from owner Sync.
 ---
 
 # Update AIOS
+
+For a selected System installation or an explicit System-code update, use
+[System maintenance](references/systems.md), the single procedure for that
+boundary. A package update does not update Systems, and owner Sync transfers
+registry pointers, not their repository contents. The remaining steps here
+apply only to the AIOS package.
 
 Keep the active task on its known method version. At a suitable task boundary,
 inspect the requested immutable release, current installed identity and source,

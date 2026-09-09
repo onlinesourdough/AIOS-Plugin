@@ -26,8 +26,11 @@ goal state under its standing owner policy; it does not waive initial activation
 
 Keep small owner tasks in the lead. Independent repository mutations initiated
 from owner-level work require one first-class worker whose actual initial
-workspace is that exact repository root. When the lead plans, launches or
-recovers that worker, load [Orchestrate workers](../aios-orchestrate-workers/SKILL.md)
+workspace is that exact repository root. Before production, confirm the accepted
+execution owner and primary workflow
+from [routing](../aios/references/routing.md). When the assignment requires
+delegation, the user requests a new sidebar task, or a worker needs recovery,
+load [Orchestrate workers](../aios-orchestrate-workers/SKILL.md)
 for the launch contract, minimum context, route selection, root attestation,
 one-writer boundary and recovery. Do not load it for lead-local work. If no
 safe, actually usable launch surface exists, return a handoff and BLOCKED for

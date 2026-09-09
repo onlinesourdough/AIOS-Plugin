@@ -30,13 +30,13 @@ cover local-first negative preload, owner routing, Spec readiness, worker Build
 and basic Check. Every current selected path must be no larger than its legacy
 package-owned comparison, and each skill body must stay at or below 8 KiB.
 
-At the current source bytes, the startup method layer is 12,419 -> 3,764 bytes;
-the representative non-startup selected paths are 16.0% to 56.3% smaller. All
-skill bodies together are 76,114 -> 48,427 bytes. Total skill Markdown is larger
-(128,980 -> 195,860 bytes) because the native plugin owns more supported
+At the current source bytes, the startup method layer is 12,419 -> 3,924 bytes;
+the representative non-startup selected paths are 13.7% to 41.8% smaller. All
+skill bodies together are 76,114 -> 50,908 bytes. Total skill Markdown is larger
+(128,980 -> 207,007 bytes) because the native plugin owns more supported
 harness/setup references; those files are split by real operation/capability and
 must not be loaded as one corpus. Aggregate package size is not claimed as a
-context saving. The complete neutral setup scaffold is 13,591 -> 5,012 bytes;
+context saving. The complete neutral setup scaffold is 13,591 -> 5,560 bytes;
 this is a package-owned materialization input, not populated owner context.
 
 These are UTF-8 byte counts and explicit bytes/4 token estimates, not native
@@ -86,3 +86,14 @@ a worker, or prove desktop behavior. Native acceptance must use the target
 harness and report its own exact version, source, and limitations. Historical
 acceptance observations remain in Git history and GitHub Releases rather than
 being presented as a current automated PASS.
+
+For the routing/System-maintenance change, the accepted contract excludes
+behavioral evals, replay and model comparisons. Only `validate.py`,
+`context-footprint.py`, whitespace and scoped source consistency review were
+run; layout/continuity rehearsals and native execution were not run. Required
+routing reads are included in the affected footprint paths. Package/link
+validation permits the accepted ADS route label while continuing to exclude
+specialist tools/formats and bundled ownership. See the
+[lifecycle record](lifecycle-routing-system-maintenance.md) for scope and pending
+independent lead acceptance. Daily-use feedback belongs to the user; these
+checks do not prove workflow selection, sidebar behavior or live System updates.

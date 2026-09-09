@@ -24,6 +24,12 @@ conflicting with evidence. Resolve facts before asking one material owner
 question. Reversible bounded technical inferences may proceed; never infer
 external authority, product direction or acceptance.
 
+Before READY, use [routing](../aios/references/routing.md) to resolve the
+execution owner, primary workflow and worker need. When delegation is required
+or a new sidebar task is explicitly requested, enter
+[Orchestrate workers](../aios-orchestrate-workers/SKILL.md) to select and prepare
+the worker before production; a launch must still satisfy harness authority.
+
 For sensitive data, authentication/authorization, external interfaces,
 privileged automation or deployment, use the conditional
 [security contract](../aios/references/security.md) through Spec/Build/Review/Ship. Keep its scope

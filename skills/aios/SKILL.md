@@ -37,6 +37,12 @@ Do not turn a guardrail into a fact: report a named source, destination,
 approval, or authority only when accepted input or its scoped source establishes
 it. Otherwise say it is unknown and name the evidence gap.
 
+Before substantive production, use [business/System routing](references/routing.md)
+to record the execution owner (task, Skill, System or Project), selected route
+and whether a worker is required. Execute the selected workflow before producing
+its result; reading a specialist skill alone is not invocation. Small answers
+stay in the lead without a routing ritual.
+
 For a material business, product, architecture, or trust decision, use
 [business/System routing](references/routing.md), which owns the assessment and
 canonical decision record. Return the result concisely in the user's language
