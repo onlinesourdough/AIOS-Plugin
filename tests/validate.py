@@ -193,22 +193,23 @@ def validate(root=ROOT):
             re.search(r"genuinely\s+has no native goal controls", lifecycle) and
             "The lead's default model remains the user's configured choice." in lifecycle,
             "native goal request boundary")
-    require("## Native-state deadlock" in lifecycle and
-            "standing owner fallback policy" in lifecycle and
-            "native resumption\nis unavailable" in lifecycle and
-            "same truthful logical contract, session, worker and concise todo" in lifecycle and
-            "not a claim that the native goal was reactivated" in lifecycle and
-            "Do not hunt for a different worker session, delete a worker goal" in lifecycle and
-            "unresolved external, user-action or security blocker still stops" in lifecycle and
-            "explicitly requires native-only continuation" in lifecycle,
+    recovery = (skill_root / "aios/references/recovery.md").read_text()
+    require("## Native-state deadlock" in recovery and
+            "standing owner fallback policy" in recovery and
+            "native resumption\nis unavailable" in recovery and
+            "same truthful logical contract, session, worker and concise todo" in recovery and
+            "not a claim that the native goal was reactivated" in recovery and
+            "Do not hunt for a different worker session, delete a worker goal" in recovery and
+            "unresolved external, user-action or security blocker still stops" in recovery and
+            "explicitly requires native-only continuation" in recovery,
             "native-state deadlock")
     workflow_scenarios = (skill_root / "aios-check/references/workflow-scenarios.md").read_text()
     require("| Native-state deadlock |" in workflow_scenarios and
             "| Native-only continuation |" in workflow_scenarios and
             "| No native task list |" in workflow_scenarios and
             "without hunting a session, deleting, reactivating, replacing or duplicating a goal or worker" in workflow_scenarios and
-            "When Codex exposes its native task list/To dos control" in lifecycle and
-            "Goal metadata does not explain a missing plan control" in lifecycle,
+            "[native tracking SOP](../aios/references/lifecycle.md)" in spec_work and
+            "[native tracking SOP](../aios/references/lifecycle.md)" in review_work,
             "native-state deadlock scenario")
     require("| Routine risky-change boundary |" in workflow_scenarios and
             "do not load Risky Changes or create a lifecycle, goal, worker, or extra test suite" in workflow_scenarios,

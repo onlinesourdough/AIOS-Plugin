@@ -64,3 +64,21 @@ Keep local recovery state out of the product and portable owner core. Backups
 need a restore rehearsal; rollback must not overwrite owner edits made after
 the backup. Restore only scoped bytes whose current identity is still the
 expected post-change version, otherwise preserve both for the lead.
+
+## Native-state deadlock
+
+Blocked or terminal native-goal metadata alone is not proof that a linked
+worker/session failed when its contract remains unfinished and it is otherwise
+healthy. Under the standing owner fallback policy, if actual native resumption
+is unavailable, retain and report the native goal's real identity and state and
+continue the same truthful logical contract, session, worker and concise todo.
+This is a logical continuation, not a claim that the native goal was reactivated,
+and it needs no recurring owner permission for that metadata-only condition.
+
+Do not hunt for a different worker session, delete a worker goal, or create,
+replace or duplicate a native goal, worker or session merely to escape that
+mismatch. The fallback does not add mutation, Ship or external-effect authority:
+an unresolved external, user-action or security blocker still stops the next
+action. If the accepted outcome explicitly requires native-only continuation and
+has no standing fallback, ask one narrow clarification rather than inventing a
+replacement.

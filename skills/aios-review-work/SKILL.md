@@ -5,10 +5,10 @@ description: Review substantive AIOS work against its accepted outcome and curre
 
 # Review work
 
-Reconstruct the accepted request, decisions, authority, actual artifacts, proof,
-and the lead/applicable worker goals' actual representations, identities,
-concise todo, contract revision, states, latest evidence/blocker and next action
-before judging the result. Review the actual delivery and the affected
+Use the [native tracking SOP](../aios/references/lifecycle.md) at Review: reconstruct
+accepted requirements, carried goal authority and the actual tracking readback
+or declared fallback. Map every requirement to final evidence or unresolved
+status; pending lead approval/delivery stays pending. Review the affected
 workflow in proportion to the accepted contract; do not turn a scoped review
 into a broad whole-system scan. Prefer the lead with that context; use a
 bounded independent reader when it materially improves confidence and the
@@ -51,12 +51,8 @@ reconciles requirements against those bytes. Test output from before a change
 cannot accept the changed result. If only an evidence record changes, hash the
 subject separately to avoid claiming self-referential proof.
 
-PASS permits worker-goal completion only when no requested obligation remains.
-Pending approval or evidence keeps the same goal open; required Ship continues
-with that goal and worker. Review must distinguish logical wait/block state from
-native terminal state and check the actual control semantics rather than infer
-completion from a phase label or prompt wording.
-
+PASS does not complete pending obligations. Apply the SOP's completion gate;
+logical waiting-review is not a native terminal state.
 
 ## Conditional quality checks
 

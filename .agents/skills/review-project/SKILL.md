@@ -8,10 +8,10 @@ description: Review a Project change or pull request against its contract and cu
 Review the actual change against the intended behavior and repository
 responsibility, not an imaginary ideal architecture.
 
-Treat Review as a gate inside the active lifecycle goal, not a new goal. For an
-upstream-led worker, return for independent lead acceptance when its contract
-requires it, then resume the same goal for revisions or authorized Ship.
-Review does not create a new owner approval gate when authority already exists.
+Use the local [tracking SOP](../spec-project/references/tracking.md) at Review.
+Map accepted requirements to final evidence or unresolved status and inspect
+native readback or the declared fallback. Pending lead acceptance/approval/Ship
+stays pending; Review is not a new goal or owner permission request.
 
 ## Inspect
 

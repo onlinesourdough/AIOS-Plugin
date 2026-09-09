@@ -9,20 +9,12 @@ Start from a READY [Spec](../aios-spec-work/SKILL.md) or an already accepted
 contract. Return to Spec only for a material gap. Preserve one outcome through
 implementation, relevant verification, local Review and authorized delivery.
 
-Before mutation, inspect the accepted lead goal representation, stable identity,
-concise todo, contract revision, current state, latest evidence/blocker and exact
-next action. After root, branch, repository and authority attestation, the worker
-follows [the canonical lifecycle](../aios/references/lifecycle.md): activate or
-reuse its narrower linked native goal when the accepted task explicitly requires
-one, otherwise acknowledge the same lead goal. Build, waiting-review, `REVISE`,
-approval wait, recovery and Ship keep the same goals and worker while updating
-the todo, evidence and next action at each real boundary. Hold mutation if
-required native activation or acknowledgement is missing; do not infer goal
-state from a launch or prompt. Do not complete at initial Build, local
-self-review or waiting-review, and do not create a Ship goal.
-The canonical native-state-deadlock fallback applies only after a verified
-goal state under its standing owner policy; it does not waive initial activation.
-
+After root/branch/authority attestation and before implementation, run the
+[native tracking SOP](../aios/references/lifecycle.md). Reuse the accepted list,
+goal objective and carried authorization; update added requirements and reopen
+affected done items before work. Return tool/readback evidence or the declared
+fallback at handoff, with lead Review/approval/Ship still pending. Conditional
+recovery does not waive initial activation when the accepted work requires it.
 
 Keep small owner tasks in the lead. Independent repository mutations initiated
 from owner-level work require one first-class worker whose actual initial

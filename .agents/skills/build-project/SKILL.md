@@ -11,9 +11,11 @@ return to [Spec](../spec-project/SKILL.md) only for material unresolved scope,
 ownership, trust or proof. A new technology decision uses
 [choose-technology](../choose-technology/SKILL.md); unchanged technology does not.
 
-Keep one outcome contract through implementation, Review feedback and authorized
-Ship. Preserve unrelated work and the same worker linkage. A mechanical edit
-needs its diff and affected check, not a new specification, goal or full suite.
+Before implementation or added scope, run the local
+[tracking SOP](../spec-project/references/tracking.md): reuse the requirements
+list and carried goal authority, reopen affected done items and verify the
+native call/readback or declared fallback. Keep the same worker and contract;
+small mechanical edits need only their diff and affected check.
 
 ## Implement and verify
 

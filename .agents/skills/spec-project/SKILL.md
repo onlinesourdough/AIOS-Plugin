@@ -12,12 +12,11 @@ into a new Product Brief or rewrite facts that are already clear.
 
 ## Keep one lifecycle goal
 
-For substantive implementation, reuse the current task's outcome contract,
-constraints, verification and requested Ship scope. Use native persistent goal
-state only under its own invocation rules; the same session contract suffices.
-Spec, Build, Review, REVISE loops, and
-authorized Ship are states in this goal, not separate goals. Do not complete
-it at a phase boundary or narrow it to match partial progress.
+Before substantive Spec, use the local [tracking SOP](references/tracking.md)
+with the accepted requirements, proof and carried goal authorization. READY
+includes actual plan-call/readback evidence or a visibly declared file fallback.
+Keep the same contract through Build/Review and authorized Ship; small mechanical
+edits skip planning overhead. No AIOS dependency or personal preload is required.
 
 ## Set the audit depth from the starting mode
 

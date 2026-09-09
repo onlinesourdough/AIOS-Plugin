@@ -4,6 +4,7 @@
 | --- | --- |
 | Product instructions, declarations, and neutral assets | AIOS maintainer in this repository |
 | Implementation and local verification | Accountable repository-root worker |
+| Requirement tracking SOP | Product: `skills/aios/references/lifecycle.md`; independent local Project: `.agents/skills/spec-project/references/tracking.md`. Phase callers link to their own canonical procedure |
 | Consequential-change assessment | `aios-risky-changes`; conditionally routed by Spec and Review |
 | Independent acceptance and delivery instruction | Lead bound to an exact reviewed artifact |
 | Private Git destination and release | Authorized AIOS maintainer or Ship worker |

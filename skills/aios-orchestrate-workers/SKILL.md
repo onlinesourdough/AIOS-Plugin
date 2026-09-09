@@ -48,8 +48,9 @@ action/authority; otherwise keep it out of the goal.
 
 Pass:
 
-- outcome/checks/evidence, lead-goal identity/state/todo and explicit
-  per-worker native-goal requirement;
+- accepted requirements/proof, current plan readback or fallback pointer,
+  lead-goal identity/objective/state and carried explicit goal authorization,
+  including whether it covers a per-worker goal;
 - relevant paths, local AGENTS/lifecycle/handoffs, root/repository identity and
   required physical initial cwd/Git root;
 - route/why sufficient, allowed files/resources/actions/destinations,
@@ -57,11 +58,12 @@ Pass:
 - no unrelated owner context/history.
 
 Before mutation attest cwd/root, branch/repository, local instructions, session
-identity and exposed route/tools/permissions; inspect native goal. If
-explicitly required, reuse a compatible unfinished goal or create one narrower
-and linked to the lead, no budget unless requested; verify identity/active
-state. Otherwise acknowledge linked lead-goal state; linkage is not activation
-and missing required controls hold mutation.
+identity and exposed route/tools/permissions. Run the
+[native tracking SOP](../aios/references/lifecycle.md) in the worker's actual
+runtime before production; the lead's tool inventory does not prove the worker's.
+Return its plan call/readback or visible fallback and actual goal/linkage state.
+Do not reset carried goal authorization at a phase or handoff; obey native
+creation rules and hold dependent work if required activation is missing.
 
 A prompt path/`cd` cannot repair a wrong root. Stop on root, branch, identity,
 instruction, permission, route, goal or authority mismatch, duplicate writer or

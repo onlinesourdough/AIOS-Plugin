@@ -5,14 +5,10 @@ description: Specify or revise substantive AIOS work, including its persistent g
 
 # Spec work
 
-Keep one accepted outcome contract in the current task. Inspect the actual goal
-representation and state before creating or reusing it; preserve compatible
-unfinished goals and reconcile conflicts without replacement, duplication or
-premature completion. Native state and a durable logical checkpoint are
-distinct; follow [the canonical lifecycle](../aios/references/lifecycle.md) for
-explicit native-goal requests, unavailable controls and proportional small work.
-Keep one concise owner-facing todo while detailed evidence remains internal. Do
-not create phase goals or invent a budget.
+Before substantive Spec, run the [native tracking SOP](../aios/references/lifecycle.md)
+with accepted requirements and carried goal authorization. READY returns its
+actual tool/readback evidence or declared file fallback, alongside the contract.
+Scope changes update that same list; no phase goals or duplicate live lists.
 
 Accept rough idea, developed brief, near-complete specification or an existing
 change request. Preserve named sources and resolved wording. Construct missing

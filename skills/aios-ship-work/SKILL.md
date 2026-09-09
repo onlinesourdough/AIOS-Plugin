@@ -5,6 +5,9 @@ description: Deliver an exactly reviewed AIOS result under existing action and d
 
 # Ship work
 
+Use the [tracking SOP](../aios/references/lifecycle.md) for pending delivery and
+completion readback; carry the same requirements and goal authorization.
+
 Identify the immutable subject, Review PASS, linked lead/worker goal identities
 and states, current todo, destination, action, recovery path and measurement
 owner. A change after PASS returns to the same

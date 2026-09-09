@@ -9,7 +9,7 @@ clarifications. Do not edit the result during evaluation.
 | Artifacts | Every claimed file, URL or ID exists and resolves in its owning system |
 | Behavior | Relevant execution or inspection directly exercises the requested behavior; when [Risky Changes](../../aios-risky-changes/SKILL.md) applies, verify its representative before/after comparison and residual-unknown result; synthetic and native evidence remain distinct |
 | Inspectability | The owner has concise links, paths or a useful preview to verify the result |
-| Goal continuity | The same lead goal, worker and any required narrower worker goal have verified identities, current states, latest evidence/blocker and next legal transition; pending approval/evidence is not marked complete |
+| Tracking continuity | [Tracking SOP](../../aios/references/lifecycle.md): native plan call/readback or declared unavailable-tool fallback, carried goal authorization/objective and actual identities/states; every still-active requirement has evidence or unresolved status, with pending approval/evidence/Ship open |
 | Honest scope | Partial, unavailable, uncertain or flaky evidence is disclosed, with no unsupported completion claim |
 
 Return PASS only when all applicable required proof is present. Otherwise return
