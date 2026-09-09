@@ -97,19 +97,18 @@ cannot prove sidebar archival.
 
 ## Dated model working defaults — 2026-09-09
 
-Owner-selected working defaults from reported information and exposed routes,
+Owner-selected working defaults from operating preference and exposed routes,
 not a universal ranking. Reuse while suitable/available; reconsider only for
 stale/missing evidence, availability/prices, task outcomes or owner input.
 No creative default: choose specialists by task fit.
 
-- Lead/general or demanding work: `gpt-6-astra` / `xhigh` when task fit and the
-  exposed route permit selection under the harness rules above.
-- Small tightly bounded worker: `gpt-5.6-luna` / `max`.
-
-Owner-reported update, 2026-09-09: newly available information says Astra/xhigh
-uses fewer tokens than light/low and medium. No source or matched workload was
-supplied; treat this as a working hypothesis, not verified comparative evidence.
-Task quality and total context/reasoning/review/retry cost still decide.
+Owner operating preference, 2026-09-09: use `gpt-6-astra` / `medium` as the
+general default when task fit and the exposed route permit selection under the
+harness rules above. For lighter or tightly bounded work, `gpt-6-astra` / `low`,
+`gpt-6-astra` / `medium`, and `gpt-5.6-luna` / `max` are roughly equivalent
+practical options; choose by task fit, availability and total
+context/reasoning/review/retry cost. This is current owner preference, not a
+benchmark or universal ranking.
 
 When refreshing, separate official price/capability facts, dated [Artificial
 Analysis](https://artificialanalysis.ai/), [DeepSWE](https://deepswe.datacurve.ai/)

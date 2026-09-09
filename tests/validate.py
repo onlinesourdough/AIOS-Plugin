@@ -230,15 +230,17 @@ def validate(root=ROOT):
     require("Choose model/reasoning from exposed routes" in orchestrate and
             re.search(r"Dated defaults are not\s+universal", orchestrate) and
             "Dated model working defaults — 2026-09-09" in orchestrate and
-            "`gpt-6-astra` / `xhigh`" in orchestrate and
-            "`gpt-5.6-luna` / `max`" in orchestrate and
-            "Owner-selected working defaults from reported information and exposed routes" in orchestrate and
-            re.search(r"when task fit and the\s+exposed route permit selection under the harness rules above", orchestrate) and
-            "Owner-reported update, 2026-09-09: newly available information says Astra/xhigh" in orchestrate and
-            "uses fewer tokens than light/low and medium" in orchestrate and
-            re.search(r"No source or matched workload was\s+supplied", orchestrate) and
-            "working hypothesis, not verified comparative evidence" in orchestrate and
-            "Task quality and total context/reasoning/review/retry cost still decide" in orchestrate and
+            re.search(r"use `gpt-6-astra` / `medium` as the\s+general default", orchestrate) and
+            re.search(r"For lighter or tightly bounded work, `gpt-6-astra` / `low`,\s+"
+                      r"`gpt-6-astra` / `medium`, and `gpt-5.6-luna` / `max` are roughly equivalent\s+"
+                      r"practical options", orchestrate) and
+            "Owner-selected working defaults from operating preference and exposed routes" in orchestrate and
+            re.search(r"when task fit and the exposed route permit selection under the\s+harness rules above", orchestrate) and
+            "Owner operating preference, 2026-09-09" in orchestrate and
+            re.search(r"This is current owner preference, not a\s+benchmark or universal ranking", orchestrate) and
+            re.search(r"choose by task fit, availability and total\s+context/reasoning/review/retry cost", orchestrate) and
+            "xhigh" not in orchestrate and
+            "uses fewer tokens" not in orchestrate and
             re.search(r"No creative\s+default: choose specialists by task fit", orchestrate) and
             re.search(r"stale/missing\s+evidence", orchestrate) and
             "availability/prices, task outcomes or owner input" in orchestrate and
