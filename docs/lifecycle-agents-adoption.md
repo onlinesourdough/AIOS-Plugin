@@ -44,9 +44,9 @@ accepted lead direction. Baseline `779a9a496a6863fc4adbad55db53f61c8aa3780f`.
 Spec READY: accepted scope/proof/authority resolved; existing Markdown/toolchain
 retained, no runtime/schema or model configuration changes. This repository
 owns plugin and its own Project-local methods only. Lead owns other Systems,
-Projects, ongoing observation and later adoption. The sole live task fallback is
-[todo.md](todo.md): this worker's callable inventory has goal controls but no
-native plan/task-list control; actual worker goal readback is null. Lead's active
+Projects, ongoing observation and later adoption. At initial implementation, [todo.md](todo.md) was the sole live fallback:
+the callable inventory had goal controls but no native plan/task-list control;
+actual worker goal readback was null. Lead's active
 goal/objective are accepted handoff evidence, not this worker's native activation.
 No per-worker goal requested. Root/branch and sole known concurrent manifest
 metadata delta were verified before source mutation.
@@ -70,7 +70,7 @@ reference makes Spec/Build/Review usable without AIOS. Deadlock recovery is
 conditional. Existing source checks follow relocated safety rules; no new
 wording-mirror tests, behavioral replay, model trial or broad suite is authorized.
 Local Review and exact snapshot evidence are returned to the lead; pending
-requirements/acceptance remain visible in the one list. Static evidence cannot
+requirements/acceptance remain in the one active list. Static evidence cannot
 prove native UI or correct behavior in another runtime.
 
 Delivery scope supersedes the earlier section's no-commit boundary only for
@@ -92,4 +92,30 @@ check passes. Representative Spec path: 29,877 -> 26,421 bytes; worker Build:
 32,401 -> 28,883 bytes versus 0.3.4. These are static reads, not model proof.
 Exact staged snapshot is checked before local commit; commit/tree readback and
 preserved-metadata evidence accompany the ignored handback. Lead acceptance and
-adoption remain pending in the sole fallback list.
+adoption remain pending in the active plan.
+
+### Exposure and progress revision
+
+The [official Codex schema](https://learn.chatgpt.com/docs/config-schema.json),
+fetched 2026-09-09, maps `ToolsToml.update_plan` to `UpdatePlanToolConfig` with
+`enabled` defaulting to `false`. Lead reports enabling only that setting under
+user authority, successful TOML parse and strict-config doctor config-load;
+overall doctor failed solely its `TERM=dumb` terminal check. This worker did not
+change user configuration or rerun those diagnostics. Neither Plan mode nor
+reasoning effort is established as the cause of missing exposure.
+
+On continuation, this worker's inventory exposed `update_plan`; its actual
+invocation succeeded with `{}`. That proves call execution, not independent
+stored-state readback or visible UI. The accepted requirements and new revisions
+were submitted to the native plan tool; [todo.md](todo.md) is retired as a live list.
+Both canonical SOPs now require native updates at meaningful step start and
+completion, with done status gated on evidence. Onboarding/repair explains the
+supported setting under authority; routine work cannot silently enable it.
+This bounded revision remains local 0.3.5, with exact commit acceptance/adoption
+pending, no installation, publication or behavioral evaluation.
+
+Local static Review PASS for the exposure/progress revision. Existing package,
+link and context-footprint checks pass; source reads now total 27,056 bytes for
+Spec and 29,518 for worker Build (versus 29,877 and 32,401 in 0.3.4). No behavioral
+evaluation or installation was performed. The native plan is updated at step
+boundaries; exact final commit/tree and preserved metadata accompany handback.

@@ -1,11 +1,8 @@
-# Tracking SOP — tracking-sop-2026-09-09
+# Tracking SOP — retired fallback
 
-Native plan/task-list tool unavailable in this worker's callable inventory.
-This file is the sole fallback list, not native UI. Worker goal readback: null;
-linked lead goal active per accepted handoff, no worker goal requested.
-
-- [x] Plugin tracking, goal separation and phase/handoff routes: canonical product lifecycle and callers updated.
-- [x] Independent Project-local tracking SOP: local Spec/Build/Review reference it.
-- [x] Incident/research limits recorded in lifecycle checkpoint; package/link/footprint checks and local static Review PASS.
-- [x] Local 0.3.5 source prepared for scoped commit; version-only manifest and metadata preservation verified. Exact commit/readback goes in handback.
-- [ ] Lead acceptance and supported native adoption (lead-owned, pending).
+For `tracking-sop-2026-09-09`, the resumed worker now exposes `update_plan`.
+The accepted requirements, bounded revisions and pending lead acceptance/adoption
+were submitted to that native plan tool. This file is no longer a live task list.
+The successful call returned `{}`: call execution is observed, stored-state
+readback and visible UI are not independently verified. No duplicate checklist
+is maintained here. Contract and proof remain in the lifecycle checkpoint.

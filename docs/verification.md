@@ -31,9 +31,9 @@ and basic Check. Every current selected path must be no larger than its legacy
 package-owned comparison, and each skill body must stay at or below 8 KiB.
 
 At the current source bytes, the startup method layer is 12,419 -> 3,924 bytes;
-the representative non-startup selected paths are 13.7% to 48.5% smaller. All
+the representative non-startup selected paths are 13.7% to 47.3% smaller. All
 skill bodies together are 76,114 -> 50,223 bytes. Total skill Markdown is larger
-(128,980 -> 204,086 bytes) because the native plugin owns more supported
+(128,980 -> 206,021 bytes) because the native plugin owns more supported
 harness/setup references; those files are split by real operation/capability and
 must not be loaded as one corpus. Aggregate package size is not claimed as a
 context saving. The complete neutral setup scaffold is 13,591 -> 5,560 bytes;
@@ -100,8 +100,10 @@ checks do not prove workflow selection, sidebar behavior or live System updates.
 
 For `tracking-sop-2026-09-09`, source/package/link and context-footprint checks
 plus static Review are the accepted proof; behavioral model replay/eval and
-broad suites are excluded. The native plan tool is unavailable in this worker,
-so [todo.md](todo.md) is the sole visible fallback, not native UI evidence.
+broad suites are excluded. The initial unavailable-tool fallback [todo.md](todo.md)
+is now retired: this resumed worker exposes `update_plan` and its call succeeded
+with an empty response. This proves call execution, not independent stored-state
+readback or observed UI.
 The [lifecycle checkpoint](lifecycle-agents-adoption.md#tracking-sop-revision--2026-09-09)
 records incident/source evidence, scope, local 0.3.5 snapshot authority and lead
 adoption responsibility. Reduced instruction bytes do not prove better behavior.

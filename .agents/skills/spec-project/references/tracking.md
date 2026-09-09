@@ -8,7 +8,9 @@ this procedure; no AIOS installation or personal context is needed.
 1. Inspect callable tools once at task start, again only if the runtime changes.
    Find the actual native plan/task-list tool (`update_plan` is only an example).
    Invoke it to create/reuse one concise accepted-requirements list and inspect
-   its returned state/readback. Include pending Review, approval and delivery.
+   its response and any exposed state/readback. Successful calls do not prove
+   visible UI; that requires direct observation. Empty responses do not prove
+   stored state. Include pending Review, approval and delivery.
    A native plan is not Plan mode; do not switch mode or model configuration.
 2. If no such tool is available, say so visibly and show one existing narrow
    file fallback such as `docs/todo.md`; create one only if needed. A failed
@@ -16,7 +18,8 @@ this procedure; no AIOS installation or personal context is needed.
    fall back while the tool remains available. When availability changes,
    reconcile the same requirements and retire the other live list. Durable
    contract/proof pointers are fine, but no duplicate live file list with native
-   tracking. Goal controls are not task-list controls.
+   tracking. Goal controls are not task-list controls. Routine work must not
+   silently change global configuration to expose a tool.
 3. Inspect actual goal state and invocation rules separately. Carry explicit
    user authorization, objective, identity and scope through handoffs and
    continuation; reuse a compatible unfinished goal. Do not erase authorization
@@ -27,10 +30,15 @@ this procedure; no AIOS installation or personal context is needed.
    no invented budget/UI or activation. Missing required activation holds that
    dependent work; report unavailable controls/errors. Without a requested
    worker goal, acknowledge lead linkage rather than inventing activation.
-4. Before added work, update the same list with all still-active requirements
+4. At each meaningful step start, call the native tool to mark it in progress;
+   at completion call it again, marking done only when its evidence passes.
+   Respect supported statuses/concurrency limits and give a brief progress
+   update at both boundaries. If using the declared fallback, update that same
+   file instead.
+5. Before added work, update the same list with all still-active requirements
    and additions. Reopen affected done items and invalidate their stale proof;
    record explicit removals and preserve exact action authority.
-5. At handoff, return the observed tool state or fallback path, evidence gaps
+6. At handoff, return the observed tool state or fallback path, evidence gaps
    and next action. Before completion, map every accepted requirement to current
    evidence or explicit unresolved status. Keep pending lead Review, approval
    and authorized delivery open; finishing implementation is not completion of

@@ -14,19 +14,27 @@ pointers may persist separately. The lead's default model remains the user's con
    native planning does not require Plan mode or configuration changes.
 2. If available, invoke that tool to create/reuse a concise list covering the
    accepted requirements, statuses and pending Review/approval/Ship. Inspect its
-   returned state/readback. A tool call and observed result prove native tracking;
-   prose, a goal ID or a Markdown file do not. Do not maintain a duplicate live
+   returned result and any exposed state/readback. Success proves the call, not
+   visible UI; UI needs direct observation. An empty response does not prove
+   stored state. Report those evidence limits. Do not maintain a duplicate live
    file list while native tracking is available.
 3. If unavailable, visibly state that limitation and show one existing narrow
    file fallback (for example `docs/todo.md`), creating it only if none exists.
    If a callable tool fails, report the error and unverified state; a failed call
    is not proof of native UI or permission to silently switch to files. If it
    becomes unavailable, declare the fallback; if restored, reconcile the same
-   requirements into it and retire the file as a live list.
-4. Before acting on added scope, update the same list with all still-active
+   requirements into it and retire the file as a live list. Routine work never
+   silently changes global config to obtain a tool; an authorized Codex setup/
+   repair may use [configuration guidance](../../aios-onboard/references/harness-codex.md#native-task-list-exposure).
+4. At each meaningful step start, invoke the plan tool to mark that step in
+   progress; at step completion, invoke it again to mark completion only after
+   its evidence passes. Use supported statuses and concurrency limits. Give a
+   brief progress update at these boundaries; if using the declared fallback,
+   update that same file instead.
+5. Before acting on added scope, update the same list with all still-active
    requirements and additions; reopen affected done items and invalidate their
    old proof. Preserve explicit removals, current authority and goal linkage.
-5. At handoff, update evidence/statuses and keep pending lead Review, approval
+6. At handoff, update evidence/statuses and keep pending lead Review, approval
    and delivery unresolved. Before completion map every accepted requirement to
    current evidence or an explicit unresolved status. Worker completion alone
    cannot complete the parent outcome. Return the observed native state or the
