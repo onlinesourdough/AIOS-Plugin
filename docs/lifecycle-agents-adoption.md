@@ -119,3 +119,33 @@ link and context-footprint checks pass; source reads now total 27,056 bytes for
 Spec and 29,518 for worker Build (versus 29,877 and 32,401 in 0.3.4). No behavioral
 evaluation or installation was performed. The native plan is updated at step
 boundaries; exact final commit/tree and preserved metadata accompany handback.
+
+### Normal Codex acceptance revision
+
+Normal onboarding/setup now accounts for both checklist and goal capability
+through one focused Codex reference. Package adapter, setup, acceptance checks
+and runtime/capability-dependent Update route to it. Each check records current
+installed version/surface, dated official schema/help, actual invocation rules
+and separately config, call, state and UI evidence. Removed/renamed support is a
+gap, not permission to apply stale syntax. Explicit choices survive; goal
+inspection is read-only without real goal authorization and never creates a
+test goal. Routine work does not reconfigure globally or switch Plan mode.
+
+Read-only worker evidence on 2026-09-09: CLI version 0.153.4 and current help,
+callable plan/goal inventory, null goal readback. Official
+[0.152.0 release notes](https://github.com/openai/codex/releases/tag/rust-v0.152.0)
+confirm planning default-off. Lead reports the resumed development worker used
+`update_plan` after enabling it, while desktop leads still lacked exposure;
+this worker did not inspect those sessions. Availability is per checked runtime,
+not inferred across surfaces. Both SOPs now state start/completion tool calls,
+actual supported statuses and completed/total progress. The user cancelled
+scheduled monitoring; only lead's final bounded review remains, no automation.
+The same 0.3.5 local-only scope, preserved concurrent metadata and pending lead
+acceptance/adoption apply. Existing structural checks include the newly required
+setup reference in footprint accounting; no broad or behavioral evaluation.
+
+Local static Review PASS for the normal-acceptance revision: caller links and
+version/authority/goal/UI boundaries inspected, package/link and bounded
+footprint checks pass. The required Codex acceptance reference is counted in
+both setup paths. Exact staged proof and commit readback accompany the local
+handback; lead acceptance/adoption remain pending in the native plan.

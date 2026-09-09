@@ -27,26 +27,7 @@ publish, payment or broader destination authorization.
 
 ## Native task-list exposure
 
-During authorized onboarding or a tracking repair, inspect actual callable
-native tools first. A missing `update_plan` may be default-off: the
-[official configuration schema](https://learn.chatgpt.com/docs/config-schema.json)
-(checked 2026-09-09) defines `tools.update_plan.enabled` with default `false`.
-Verify support in the running client and effective overrides; do not infer a
-Plan-mode or model-effort cause from missing exposure.
-
-Only when setup/repair authority covers enabling this tool, apply the shared
-[configuration procedure](harness-configuration.md) to the existing table:
-
-```toml
-[tools.update_plan]
-enabled = true
-```
-
-Preserve explicit off without that authority, along with unrelated keys and
-comments; do not append a duplicate table. Routine lifecycle skills must not
-silently change global configuration. Parse the result and use the installed
-client's supported strict-config/config-load check. Report config-load success
-separately from unrelated diagnostic failures; neither proves tool exposure.
-Recheck the actual callable inventory next turn (or fresh session if required),
-then invoke the exposed tool. Report call response, available state readback and
-observed UI separately. Until the tool is available, retain the declared fallback.
+For normal Codex setup acceptance or changed tracking capability evidence, use
+[checklist and goal acceptance](codex-tracking-acceptance.md). It owns version/
+schema/help checks, authorized default-off repair and actual runtime evidence;
+configuration readback alone does not establish tool availability or visible UI.

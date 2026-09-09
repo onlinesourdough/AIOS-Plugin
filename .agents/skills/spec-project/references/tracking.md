@@ -30,11 +30,11 @@ this procedure; no AIOS installation or personal context is needed.
    no invented budget/UI or activation. Missing required activation holds that
    dependent work; report unavailable controls/errors. Without a requested
    worker goal, acknowledge lead linkage rather than inventing activation.
-4. At each meaningful step start, call the native tool to mark it in progress;
-   at completion call it again, marking done only when its evidence passes.
-   Respect supported statuses/concurrency limits and give a brief progress
-   update at both boundaries. If using the declared fallback, update that same
-   file instead.
+4. Whenever a listed step starts/completes, call the native tool with
+   `in_progress`/`completed`, marking done only after its evidence passes.
+   Unstarted/reopened steps stay `pending` where supported; otherwise use actual
+   equivalents and concurrency limits. Give completed/total progress (e.g. 2/5)
+   at both boundaries. With a declared fallback, update that same file instead.
 5. Before added work, update the same list with all still-active requirements
    and additions. Reopen affected done items and invalidate their stale proof;
    record explicit removals and preserve exact action authority.

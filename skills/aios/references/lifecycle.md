@@ -11,7 +11,7 @@ pointers may persist separately. The lead's default model remains the user's con
 1. Inspect the current callable tool inventory once at task start; recheck only
    after a runtime/capability change. Find a native plan/task-list control by its
    actual description. `update_plan` is an example, not assumed availability;
-   native planning does not require Plan mode or configuration changes.
+   native planning does not require Plan mode.
 2. If available, invoke that tool to create/reuse a concise list covering the
    accepted requirements, statuses and pending Review/approval/Ship. Inspect its
    returned result and any exposed state/readback. Success proves the call, not
@@ -26,11 +26,12 @@ pointers may persist separately. The lead's default model remains the user's con
    requirements into it and retire the file as a live list. Routine work never
    silently changes global config to obtain a tool; an authorized Codex setup/
    repair may use [configuration guidance](../../aios-onboard/references/harness-codex.md#native-task-list-exposure).
-4. At each meaningful step start, invoke the plan tool to mark that step in
-   progress; at step completion, invoke it again to mark completion only after
-   its evidence passes. Use supported statuses and concurrency limits. Give a
-   brief progress update at these boundaries; if using the declared fallback,
-   update that same file instead.
+4. Whenever a listed step starts, invoke the plan tool with `in_progress`;
+   whenever it completes with passing evidence, invoke it with `completed`.
+   Leave unstarted/reopened steps `pending` where those statuses are supported;
+   otherwise use the tool's actual equivalents and concurrency limits. Give a
+   brief completed/total progress update (for example 2/5) at each boundary.
+   With a declared fallback, update that same file instead.
 5. Before acting on added scope, update the same list with all still-active
    requirements and additions; reopen affected done items and invalidate their
    old proof. Preserve explicit removals, current authority and goal linkage.

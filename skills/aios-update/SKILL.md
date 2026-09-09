@@ -49,6 +49,9 @@ repository requests use the intended routes. Report source installation,
 discovery, desktop entry-point cutover and model behavior separately. A failed
 or unavailable native observation stays pending even if source checks passed.
 Use [Check](../aios-check/SKILL.md) for the relevant acceptance scope.
+For Codex, recheck [checklist and goal acceptance](../aios-onboard/references/codex-tracking-acceptance.md)
+only when runtime/version or capability evidence changed, is missing or uncertain;
+an unchanged method update reuses dated evidence and does not authorize config edits.
 
 ## Recover
 

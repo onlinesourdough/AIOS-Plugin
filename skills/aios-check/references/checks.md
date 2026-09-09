@@ -33,6 +33,10 @@ and recheck, or Needs decision, plus per-claim PASS/FAIL/NOT VERIFIED.
   When protection is in scope, distinguish instructions, permissions/sandbox
   and hooks, including trust, failure behavior and actual tool/host coverage.
   An untested worker/cloud path is NOT VERIFIED, not inherited local coverage.
+- Codex setup acceptance: account for both native checklist and goal controls via
+  [checklist and goal acceptance](../../aios-onboard/references/codex-tracking-acceptance.md).
+  Updates reuse dated evidence unless runtime/version or capability evidence changed,
+  is missing or uncertain. Inspect goal state read-only; no test goal.
 - Codex desktop cutover, when in scope: inspect actual New Chat selection and a
   fresh task's cwd/routing, plus relevant System/Project entry roots, using the
   [desktop acceptance](../../aios-onboard/references/adapter-codex-desktop.md).

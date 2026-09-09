@@ -106,6 +106,9 @@ Missing optional tools do not block a local result.
 
 Complete one small useful artifact tied to the user's focus. Check root and
 bridge readback, format, selected routes, connection gaps and the first result.
+Normal Codex setup acceptance includes the scoped
+[checklist and goal capability check](codex-tracking-acceptance.md); unchanged
+resumes reuse its dated evidence.
 For new or changed setup, test in a fresh session with an ordinary request that
 does not name AIOS. For Codex desktop onboarding/cutover, also verify the actual
 [New Chat entry point](adapter-codex-desktop.md);

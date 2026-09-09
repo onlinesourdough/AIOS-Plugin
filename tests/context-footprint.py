@@ -73,6 +73,7 @@ CURRENT_JOURNEYS = {
         "skills/aios-onboard/references/setup.md",
         "skills/aios-onboard/references/adapters.md",
         "skills/aios-onboard/references/adapter-codex.md",
+        "skills/aios-onboard/references/codex-tracking-acceptance.md",
         "skills/aios-onboard/references/data-format.md",
     ) + CURRENT_NEUTRAL_SCAFFOLD,
     "codex-package-and-bridge-verification": (
@@ -80,6 +81,7 @@ CURRENT_JOURNEYS = {
         "skills/aios-onboard/references/setup.md",
         "skills/aios-onboard/references/adapters.md",
         "skills/aios-onboard/references/adapter-codex.md",
+        "skills/aios-onboard/references/codex-tracking-acceptance.md",
         "skills/aios-onboard/references/data-format.md",
         "skills/aios-check/references/scenarios.md",
         "skills/aios-check/references/setup-scenarios.md",

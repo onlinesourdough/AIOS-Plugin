@@ -31,9 +31,9 @@ and basic Check. Every current selected path must be no larger than its legacy
 package-owned comparison, and each skill body must stay at or below 8 KiB.
 
 At the current source bytes, the startup method layer is 12,419 -> 3,924 bytes;
-the representative non-startup selected paths are 13.7% to 47.3% smaller. All
-skill bodies together are 76,114 -> 50,223 bytes. Total skill Markdown is larger
-(128,980 -> 206,021 bytes) because the native plugin owns more supported
+the representative non-startup selected paths are 4.5% to 47.1% smaller. All
+skill bodies together are 76,114 -> 50,500 bytes. Total skill Markdown is larger
+(128,980 -> 209,691 bytes) because the native plugin owns more supported
 harness/setup references; those files are split by real operation/capability and
 must not be loaded as one corpus. Aggregate package size is not claimed as a
 context saving. The complete neutral setup scaffold is 13,591 -> 5,560 bytes;

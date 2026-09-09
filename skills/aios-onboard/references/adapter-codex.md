@@ -5,6 +5,9 @@ repair. Apply the shared [native adapter and bridge boundary](adapters.md). Read
 [Codex configuration](harness-codex.md) only when effective settings or
 instruction precedence beyond the bridge affects the request. Desktop workspace
 and New Chat acceptance are a separate [conditional route](adapter-codex-desktop.md).
+Normal Codex setup also runs [checklist and goal acceptance](codex-tracking-acceptance.md).
+On package update/repair, reuse its dated evidence unless runtime/version or
+capability evidence changed, is missing or uncertain; do not repeat global setup.
 
 An invited client can give the agent the private repository link and a natural
 setup request. With authorized access, read the README, resolve an existing
