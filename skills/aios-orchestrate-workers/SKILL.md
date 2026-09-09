@@ -102,8 +102,16 @@ ranking. Reuse while suitable/available; reconsider only for stale/missing
 evidence, availability/prices, task outcomes or owner input. No creative
 default: choose specialists by task fit.
 
-- Lead/general work: `gpt-6-astra` / `low`.
+- Prior lead/general default (superseded below): `gpt-6-astra` / `low`.
 - Small tightly bounded worker: `gpt-5.6-luna` / `max`.
+
+2026-09-09 owner revision: prefer `gpt-6-astra` / `xhigh` for lead/general or
+demanding work when task fit and the exposed route permit selection under the
+harness rules above. In the owner's observed OS-APP work, Astra/xhigh used fewer
+tokens than light/low/medium. This is dated owner experience and a working
+hypothesis, not universal proof: no benchmark source, matched workload or measured
+percentage was supplied. Judge task quality plus total token/context/review/retry
+cost; retain Luna/max for small tightly bounded workers.
 
 When refreshing, separate official price/capability facts, dated [Artificial
 Analysis](https://artificialanalysis.ai/), [DeepSWE](https://deepswe.datacurve.ai/)
