@@ -1,100 +1,90 @@
 # Setup a useful owner home
 
-Full onboarding establishes the relevant outcomes below. Repair covers its
-affected boundary; resume continues the useful task. Reuse accepted answers
-and observed state. This is not a fixed interview or an account/device scan.
+Full onboarding covers context, capabilities, harness fit, useful work and
+continuity. Repair stays scoped; resume starts at the next gap with known answers.
+No fixed interview or account/device scan. Installation is not usable access.
 
-| Readiness area | Sufficient result |
-| --- | --- |
-| Owner and focus | Chosen home, current result, audience and material constraints |
-| Context and memory | Relevant framework areas covered by verified source routes, minimal unique local facts or explicit gaps; short AIOS.md and durable corrections in MEMORY |
-| Capabilities | Needed paths/accounts identified; access versus authority and installed versus usable distinguished |
-| Harness fit | Chosen settings/preferences preserved; requested supported changes applied and read back |
-| First useful work | One concrete result for the current outcome |
-| Acceptance and continuity | Fresh affected routing/harness evidence; gaps and next action retained |
+## Understand before choosing work
 
-## Adaptive progress
+Use Maintain Context's [framework](../../aios-maintain-context/references/curation.md)
+to track relevant answers, source/scope, confirmation and gaps in setup evidence.
+It owns source mapping, local gaps and freshness. No copied source inventory;
+inspect relevant answers before asking. Missing values stay unknown.
 
-Choose the next material question/action. Prefer a permitted native question UI
-(for example request_user_input_async in Default), otherwise concise conversation;
-do not change mode or invent tools. Reuse discoverable facts and accepted answers.
-Preselection/silence is no consent; required input waits while independent work
-continues. Optional low-risk assumptions never grant opt-in or broader authority.
-Implement authorized supported changes without asking again. Report missing
-capability/authority and one guided action. Inspect relevant capability/settings,
-not private activity, secrets or every optional feature.
+Without basic context, invite a website, LinkedIn/X profile, document, or short
+description of the person's work in their language. These are optional; no public
+presence or connector is required. Read supplied/authorized relevant sources,
+confirm identity, and distinguish public positioning from internal facts. Failed
+access permits an owner explanation/excerpt, not invented facts. Use what is
+learned to choose the next question.
 
-## Home and isolation
+If the work/source map is missing, ask where relevant communication, projects,
+knowledge or newsletters happen. Adapt categories; require no vendor or complete
+catalog. Inspect exposed connections before proposing one. Explain the useful
+read; guide one supported connection/authentication step under current authority,
+then verify the intended account and a scoped safe read. Unavailable/declined
+connections stay explicit gaps; owner answers/local work can continue. No secrets
+in chat/context. Access grants no write/send/publish authority; CONNECTIONS keeps
+capability and approval separate.
 
-Resolve the root as Onboard specifies; quote paths and never execute path text.
-Conflicting bridges need a canonical choice; check for an unavailable volume
-before creating a missing home. Preserve established/custom roots.
+With enough foundation, use sources to avoid answered questions. For founders
+and business leaders, explore Offer (what, for whom, result and
+responsibility), Operations (delivery, capacity and dependencies), and Demand
+(how suitable customers find, trust and choose the business). These connected
+lenses guide discovery, not three compulsory problems or a universal taxonomy.
+Ask what feels most difficult now, then follow a concrete recent example to
+understand where progress stalls. Reuse a clear accepted focus. Avoid demanding
+an abstract target/deadline or prescribing a remedy from a task status or first
+symptom. A suggested system is a hypothesis until the difficulty is understood.
 
-Read the bridge and relevant home files before writing. New authorized homes
-use missing [neutral owner assets](../assets/owner/AIOS.md); do not clone a template
-or install a runtime. Use [data compatibility](data-format.md), validate path
-ownership/write access with a scoped rehearsal, and stop unexpected symlink
-overwrites. Preserve established facts, structure and unknown custom fields.
+Ask one material open question in the user's words/language; optional examples
+must not restrict replies. Prefer a permitted native question UI, otherwise
+conversation. Reuse accepted answers, including new-home/restore intent. Keep
+method feedback separate from owner facts/work. Reflect a sourced snapshot and
+resolve corrections. Select a small useful result from accepted intent; clarify
+only an unresolved choice before production. Understanding can itself be the result.
 
-Keep AIOS.md the entrypoint and the thin bridge its route. Avoid owner-context
-AGENTS.md/AGENTS.override.md in home or projects/systems ancestors: independent
-repositories retain local instructions and no personal preload. Inspect inherited
-instructions; repair only the authorized owned block, preserving unrelated bytes.
-Unresolved preload fails isolation. Apply the format contract before writes.
+Silence/preselection grants no consent. Required input waits; independent work
+continues. Implement authorized changes without reasking; assumptions grant no opt-in.
 
-[Creation](../../aios/references/creation.md) owns justified new independent owners.
-Do not preclone repositories; install selected Systems on first use through
-[System maintenance](../../aios-update/references/systems.md). Preserve existing
-external roots. Copy the [ignore asset](../assets/owner/.gitignore) for a new home;
-merge needed exclusions in existing rules and verify them before owner staging.
+## Home and harness
 
-## Minimum useful context and capability
+Follow Onboard's root/bridge rules; quote paths as data. Read before writing;
+use [data compatibility](data-format.md), a scoped write rehearsal and missing
+[neutral assets](../assets/owner/AIOS.md). Check unavailable volumes before creation;
+resolve bridge conflicts. Stop symlink overwrites; preserve custom/unrelated bytes.
 
-For new or changed context use Maintain Context's
-[framework and source mapping](../../aios-maintain-context/references/curation.md).
-It owns coverage, source versus local knowledge, freshness, migration and
-deduplication. Apply it before capturing facts; show the concise sourced delta.
-A fresh harness must be able to use it without personal history. A connection
-list alone is not context readiness. Missing values remain unknown.
+Inspect inherited instructions; owner-context AGENTS must not preload independent
+repositories. Repair only authorized owned blocks; unresolved preload fails isolation.
+[Creation](../../aios/references/creation.md) owns new independent owners;
+[System maintenance](../../aios-update/references/systems.md) owns selected System
+installation. No precloning; preserve external roots. Merge needed
+[ignore exclusions](../assets/owner/.gitignore) and verify them before owner staging.
 
-Full onboarding or changed configuration/discovery uses relevant
-[harness configuration](harness-configuration.md). Preserve the baseline and
-overrides; optional extras need a request/task need. Resume needs no machine audit.
-[Adapters](adapters.md) owns package/bridge installation and discovery repair.
-
-Connect only what the first task needs under current authority. Inspect available
-tools and account/read-write capability; guide one native authentication step if
-needed, then test a safe read. Never request a secret in chat or store it in the
-home. Record verification separately from exact authority. Optional tool gaps
-do not block local work.
+Full onboarding/configuration changes use relevant [harness configuration](harness-configuration.md);
+[adapters](adapters.md) owns installation. Preserve settings/overrides; optional
+extras need a request/task need. Resume needs no machine audit.
 
 ## Acceptance and continuity
 
-Complete one useful artifact for the owner's focus. Check root/bridge readback,
-format, selected routes and gaps. Exercise a relevant source route with a safe
-read in the actual account and use needed content for that result. Source-backed
-facts stay external; verify a needed unique local fact is retrievable.
-An unavailable source remains a dated gap, not a passed route or invented summary.
+Complete the agreed useful result. Check root/bridge readback, format, selected
+routes and gaps. A source read must supply needed content, not merely a reachable
+page, title or migration placeholder. Verify a needed unique local fact is
+retrievable; external facts stay at source. Unavailable sources remain dated gaps.
 
-Codex setup includes [checklist/goal acceptance](codex-tracking-acceptance.md).
-New/changed setup needs a fresh ordinary request without naming AIOS. Desktop
-cutover also verifies [New Chat](adapter-codex-desktop.md); CLI proof establishes
-no GUI state. If unavailable report artifacts verified, activation NOT VERIFIED.
-Unchanged resumes reuse dated evidence without repeating cold/optional checks.
+Codex setup uses [checklist/goal acceptance](codex-tracking-acceptance.md).
+New/changed setup needs a fresh ordinary request without naming AIOS; desktop
+cutover also verifies [New Chat](adapter-codex-desktop.md). CLI evidence proves
+no GUI state; report unavailable activation as NOT VERIFIED. Unchanged resumes
+reuse dated proof without repeating cold/optional checks.
 
 Generated context/routes remain provisional until the owner confirms/corrects
-the concise snapshot. Reuse already accepted facts and answers; preserve pending
-confirmation in setup evidence and do not call full setup accepted while unresolved.
-Return configured path, concise changes, evidence gaps and the next useful action.
+the snapshot. Reuse accepted answers; retain unresolved confirmation and do not
+claim full setup acceptance. Return path, concise changes, gaps and next action.
 
-A new home or move finishes with a continuity choice: configured remote/direction,
-or local/deferred with the next aios sync action. For a missing/genuinely empty
-home ask only “Sync existing AIOS or Onboard new?” Established/partial/custom homes
-resume without that choice. [Sync](../../aios-maintain-context/references/sync.md)
-owns remote/direction/scope consent, safe restore and upload; setup neither
-duplicates the procedure nor creates a repository.
-
-On interruption keep coverage, answers/source pointers, changes/readback, off
-states, gaps, pending confirmation and next action in task/setup evidence outside
-always-read MEMORY/product assets. Resume without reinterview; recheck affected
-facts. Installation, access, desktop activation and useful outcome are distinct.
+A new home/move ends with an explicit remote/direction/scope or local/deferred
+continuity choice through [Sync](../../aios-maintain-context/references/sync.md),
+the sole procedure for that consent and transfer. Onboard neither duplicates it
+nor creates a repository. On interruption retain coverage, answers/source pointers,
+changes/readback, off states, pending input and next action in task evidence;
+resume without reinterview and recheck only affected/stale facts.

@@ -1,5 +1,12 @@
 # Verification
 
+For adaptive onboarding 0.6.1, all maintained source checks and unchanged footprint
+ceilings pass. Bounded French cold-start baseline/candidate and Danish resumed
+conversation probes verify optional source invitations and a sourced concrete
+follow-up. They are read-only next-response observations, not complete setup or
+live connection/authentication proof. Pi model behavior remains unverified after
+the earlier authentication failure. See the [contract and observations](lifecycle-onboarding-foundation.md).
+
 Run the maintained source checks from the repository root:
 
 ```sh

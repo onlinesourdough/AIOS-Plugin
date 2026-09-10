@@ -15,13 +15,14 @@ Start from accepted input and useful work; assume no owner facts or connections.
 | Owner/purpose | Who is served, relevant scope and wanted result |
 | Work/sources | Where priorities, records and domain facts are authoritative |
 | Decisions/constraints | Applicable choices, limits, quality and authority |
-| Preferences | Relevant communication, voice and working methods |
+| Preferences | Audience/channel, output language, angle, voice/examples and working methods; scoped exceptions to shared preferences |
 | Capabilities/ownership | Needed account, connection, Skill, System or Project |
 
 Cover relevant areas by a verified source, minimal owner-supplied local fact,
-or explicit gap/not-applicable decision. Reuse answers; inspect relevant
-authorized sources before the next material question. Coverage/confirmation stays
-in setup evidence, not a permanent questionnaire or empty topic files.
+or explicit gap/not-applicable decision. Inspect authorized answers before asking.
+Keep answer/source/scope, confirmation and remaining gaps in setup evidence,
+not a permanent questionnaire or empty topic files. The conversation's language
+does not establish an artifact's language; reuse its audience/channel context.
 Optional gaps do not prevent a useful bounded result.
 
 ## Sources and local gaps

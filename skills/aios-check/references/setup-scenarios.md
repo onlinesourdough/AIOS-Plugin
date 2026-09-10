@@ -6,7 +6,9 @@ client entry-point repair. Use the common [acceptance boundary](scenarios.md).
 | Case | Input/state | Required observable outcome |
 | --- | --- | --- |
 | Cold onboarding #25 | No home; ordinary setup request; current focus supplied | Neutral home and bridge, useful first artifact; no Git/service requirement |
-| Source-led context | Fresh harness; sources plus unique owner fact | Framework coverage, short verified routes, minimal local gap filling; no document/status mirror or empty topic inventory |
+| Source-led context | Sources plus unique owner fact; empty migration page | Verified useful content, short routes/local gaps; no mirror or readiness from title/fetch alone |
+| Empty foundation/connections | No context; absent/declined/working connections | Optional profile/document/description; guide one needed native read/setup, reuse access; no secrets or broader grants |
+| Business discovery | Founder; sources and experienced friction | Concrete open follow-up through Offer/Operations/Demand; no premature remedy; preserve audience/channel language, angle and voice |
 | Moved/ambiguous source | Old ID fails; migration evidence or same-title candidates | Verify account, replacement identity and read; ambiguity remains a gap, never title-only repair or stale fallback |
 | Source freshness/deduplication | External value changes or covers a local fact | Re-read, reconcile and retain route plus unique overrides; no duplicate body/status |
 | Resume | Existing focus, MEMORY and custom path | No repeated interview; same resolved home and sourced facts |
@@ -30,7 +32,7 @@ client entry-point repair. Use the common [acceptance boundary](scenarios.md).
 | Desktop unavailable control | Saved shortcut is obsolete; native removal/default control unavailable | One guided step plus readback; no database edits, invented persistent default, history/file deletion or false PASS |
 | Desktop chosen layout | Custom sections and roots | Preserve organization; remove only authorized obsolete shortcut; verify entry roots and local-first routing |
 | Desktop environment roots | Repeated labels and obsolete root | Verify physical roots/setup references and fresh native/UI state; preserve valid actions/dirty worktrees; no label-only deletion, setup execution or database edits |
-| Adaptive full onboarding | Accepted answers, privacy-off, remaining gaps | Next material question/action through permitted UI; authorized changes and useful work; no fixed interview or automatic opt-in |
+| Adaptive full onboarding | Accepted answers, privacy-off, gaps | Next material question in user language through permitted UI; useful work, no fixed interview or automatic opt-in |
 | Unanswered choice | Interactive option preselected but no answer returned | No consent inferred; independent authorized work may continue, dependent opt-in waits |
 | Interrupted setup | Checkpoint has verified changes and one unfinished decision | Resume next gap without reinterview or replaying completed changes; recheck only stale/affected evidence |
 | Workspace mismatch | Selected Project null while active roots still reference retired workspace | Inspect selection, roots and fresh cwd independently; no false projectless/cutover PASS |
