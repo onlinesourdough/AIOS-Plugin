@@ -39,7 +39,7 @@ it. Otherwise say it is unknown and name the evidence gap.
 
 Before substantive production, use [business/System routing](references/routing.md)
 to record the execution owner (task, Skill, System or Project), selected route
-and whether a worker is required. Execute the selected workflow before producing
+and whether delegation offers a concrete advantage. Execute the selected workflow before producing
 its result; reading a specialist skill alone is not invocation. Small answers
 stay in the lead without a routing ritual.
 
@@ -58,8 +58,12 @@ Choose the smallest triggered route: [business/System routing](references/routin
 or [improvement triage](../aios-triage-improvement/SKILL.md). Read its body
 first, then only a reference whose stated condition applies. Maintain Context is
 for durable context changes or configured sync; a read does not select its write
-procedure. Specialist bodies stay with their Systems; Global Skills remain
-independently owned.
+procedure. Spec, Build, Review and Ship are shared plugin methods also used directly in
+independent repositories, without personal preload. Specialist bodies stay
+with their Systems or Projects; Global Skills remain independently owned.
+Do not copy or wrap shared phases in local skill shelves. The current task is
+the default execution mode; a new session needs a concrete delegation benefit
+or an explicit request, as defined in the shared lifecycle.
 
 Explaining or naming a workflow is a small answer, not executing it. Read an
 explicitly required path directly rather than rediscovering it with an inventory.

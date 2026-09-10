@@ -10,8 +10,8 @@ Use the common [acceptance boundary](scenarios.md).
 | Dirty drift #60 | Same worker dirty/untracked files; upstream instruction overlap | Both states retained; same identity, no stash/reset/auto-merge; lead reconciliation |
 | Worker wait | Waiting approval or Review; reconnect | Same session resumes only on direct decision; no polling/second writer |
 | Worker route | Lead actually plans, launches or recovers a worker | Inspect the real launch control; choose a least-cost sufficient per-assignment model/reasoning route from total context/reasoning/review/retry usage and risk; pass minimum useful context |
-| Worker default | Substantive bounded assignment with a possible subagent shortcut | Use the first-class worker by default; a subagent exception needs a lead-assessed task-specific advantage, not read-only status alone |
-| Lead-local proportionality | Small, tightly coupled owner task with no independent repository mutation | Keep it in the lead and apply only its affected check; do not load orchestration or create a ceremonial worker |
+| Execution default | Substantive bounded assignment or independent repository mutation | Continue in the current task unless a separable result has a concrete delegation gain; task size and repository ownership alone do not trigger orchestration |
+| Lead-local proportionality | Small edit or closely coupled exploration in an existing task, including repository work | Keep context in the current task and apply proportionate proof; do not load orchestration or create a ceremonial worker |
 | Optional autonomous-use guardrails | Owner asks in ordinary language for local guardrails; reviewed Global Skill is available or missing | Select `setup-guardrails` only for that request, or Manage Skills may assess its authorized acquisition; normal onboarding still works and source, installation, trust, and native-active evidence remain distinct |
 | Routine risky-change boundary | Mechanical, local, or readily reversible edit with no material real-world outcome | Keep the edit in its owning task; do not load Risky Changes or create a lifecycle, goal, worker, or extra test suite |
 | Context footprint parity | Matched legacy/current journey at the same named stage | Preserve owner, result, safety stop and proof while reading only the listed complete sources; a byte reduction fails if effective behavior narrows |
@@ -57,3 +57,10 @@ item and reusable System request do not all create Projects. Record actual
 read/write decisions and artifact hashes, not a test that merely finds words.
 Lead cold-session cases should cover varied owner and repository requests and
 retain an honest tested harness/version matrix.
+
+| Direct System task | User opens a System in the sidebar and requests a substantive domain result | Start with local AGENTS and its specialist workflow; use shared phases as needed, with no personal preload, second local phase or lead launch |
+| Shared discovery | Repository with AIOS installed and specialist local skills | Resolve all 15 product skills once from the plugin and local specialists from their owner; generic phase aliases/wrappers are a regression |
+| Selective delegation | Separable deliverable with accepted inputs/proof and a concrete capability, independence or parallel-progress gain | Use orchestration after weighing transfer/review/retry cost; choose the smallest sufficient authorized launch surface |
+| Coupled iteration | New issue or visual refinement depends on the current discussion and overlapping files | Continue the same task and writer; boundedness alone is not evidence for a worker |
+| Requested delegation | User explicitly asks for a worker or a new task | Use orchestration, preserve native defaults and follow the actual launch tool's authority; a worker request alone does not authorize a new sidebar task |
+| Missing shared plugin | Independent repository has local instructions but no discoverable AIOS phases | Report the method gap, perform only locally supported work and use authorized native installation when required; do not copy a fallback phase library |

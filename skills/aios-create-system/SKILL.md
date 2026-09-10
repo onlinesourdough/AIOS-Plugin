@@ -8,8 +8,9 @@ description: Create a justified reusable System from its registered live neutral
 Start with a READY owner contract. Apply the
 [creation boundary and registration procedure](../aios/references/creation.md)
 before acquiring source: duplicate checks, verified seed identity, the empty
-final root and one correctly launched repository worker using
-[Orchestrate workers](../aios-orchestrate-workers/SKILL.md) are required.
+final root and one verified repository writer are required. Continue in the
+current task unless [shared execution](../aios/references/lifecycle.md) selects
+delegation; only then use [Orchestrate workers](../aios-orchestrate-workers/SKILL.md).
 Existing repositories are adopted in place and are never refreshed from a
 template.
 
@@ -45,7 +46,8 @@ the known temporary remote/ref. Prove history is still unborn with zero refs and
 remotes, no generic primary identity, and every support path justified.
 
 
-After proof, the worker returns the proposed registry row; the lead alone
-finalizes registration. A blocked registry write preserves the canonical new
+After proof, the current owner task finalizes the registry row. A delegated
+repository worker returns the proposed row to its caller instead of editing
+shared owner data. A blocked registry write preserves the canonical new
 repository and retries only registration. Continue its local lifecycle under
-the same worker; creating an owner does not authorize external publication.
+the same task or selected worker; creating an owner does not authorize external publication.

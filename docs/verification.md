@@ -30,14 +30,13 @@ cover local-first negative preload, owner routing, Spec readiness, worker Build
 and basic Check. Every current selected path must be no larger than its legacy
 package-owned comparison, and each skill body must stay at or below 8 KiB.
 
-At the current source bytes, the startup method layer is 12,419 -> 3,924 bytes;
-the representative non-startup selected paths are 4.5% to 47.1% smaller. All
-skill bodies together are 76,114 -> 50,500 bytes. Total skill Markdown is larger
-(128,980 -> 209,691 bytes) because the native plugin owns more supported
-harness/setup references; those files are split by real operation/capability and
-must not be loaded as one corpus. Aggregate package size is not claimed as a
-context saving. The complete neutral setup scaffold is 13,591 -> 5,560 bytes;
-this is a package-owned materialization input, not populated owner context.
+For 0.4.0, rerun the command for exact current counts; current source checks
+retain the bounded descriptions and 8 KiB skill-body ceiling. The legacy
+comparison remains useful for its stated routes. This change also removes
+43 generic local skill bodies and their supporting payloads across the selected
+repositories and seeds (62 tracked files, 329,683 bytes before replacement
+routing). Those aggregate source bytes are not a per-task context or token
+measurement: metadata is discovered first and bodies load conditionally.
 
 These are UTF-8 byte counts and explicit bytes/4 token estimates, not native
 runtime token telemetry. Populated owner context is excluded: the accepted
@@ -107,3 +106,24 @@ readback or observed UI.
 The [lifecycle checkpoint](lifecycle-agents-adoption.md#tracking-sop-revision--2026-09-09)
 records incident/source evidence, scope, local 0.3.5 snapshot authority and lead
 adoption responsibility. Reduced instruction bytes do not prove better behavior.
+
+## Shared lifecycle (0.4.0)
+
+The [accepted contract](lifecycle-shared-method.md) changes shared execution and
+repository ownership. `validate.py` additionally rejects both a copied local
+phase and a thin local wrapper in the product repository. Project Template's
+creation fixtures verify zero generated generic skills, four native shared
+routes, a payload whitelist, existing/dirty-destination rejection and atomic
+restore/retained-state behavior. The generated Project has fresh Git history
+and no remote; the test does not require plugin discovery to prove that shape.
+
+Domain review and audit methods remain local. Selected System entrypoint checks,
+changed-link inspection and the Bachelor specialist-route validator cover the
+local contracts. Independent source Review caught and corrected direct-task
+recovery's stale lead requirement and stale Bachelor README routes. Runtime
+discovery and native package adoption are measured separately after release.
+
+The source baseline demonstrates the duplicate methods and mandatory worker
+rules; it is not a matched native performance experiment. Reduced copying and
+selective delegation remove those instruction causes. Actual token savings,
+long-session quality and behavior across future tasks remain workload-dependent.

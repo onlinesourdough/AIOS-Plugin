@@ -1,6 +1,6 @@
 # Create only a justified independent owner
 
-Read [routing](routing.md) and the READY [worker contract](lifecycle.md) first.
+Read [routing](routing.md) and the READY [task contract](lifecycle.md) first.
 Existing owners are adopted in place, never refreshed from a template. The
 lead selects name, safe lowercase hyphen slug, final absolute root, optional
 canonical URL, outcome, authority, proof and accepted immutable input pointers.
@@ -20,9 +20,9 @@ Keep independent .git, local AGENTS and lifecycle at the repository root; nestin
 is a filesystem layout, not shared implementation or authority. No symlink farm.
 
 No registration in an unrelated legacy home. Reject existing path/registry/canonical
-identity duplicates. The lead creates only the final empty unborn repository,
-then uses [Orchestrate workers](../../aios-orchestrate-workers/SKILL.md) to
-launch the same sole first-class worker that will own implementation.
+identity duplicates. Create only the final empty unborn repository and use
+one verified writer. Continue in the current task unless the shared execution
+decision selects [Orchestrate workers](../../aios-orchestrate-workers/SKILL.md).
 Attest exact physical root/Git top level, branch, zero history/refs/remotes and
 no tracked/untracked/ignored files; verify registry absence before source access.
 No temporary template clone or separate seed worker.
@@ -33,11 +33,12 @@ or [Create System](../../aios-create-system/SKILL.md) for a reusable System.
 ## Registration after proof
 
 
-Worker returns one proposed row in the selected owner registry's existing
+Prepare one row in the selected owner registry's existing
 schema: name, slug, canonical URL or explicit local marker, final path, outcome
 and responsible owner, local lifecycle (Project) or primary skill/invoke/return
-(System), proof and checkout verification state. It never edits the lead's
-registry. The lead runs owner-data sync when configured, rechecks absence and
+(System), proof and checkout verification state. A delegated worker returns it
+to the caller; it never edits shared owner data. The owner task runs owner-data
+sync when configured, rechecks absence and
 adds only that verified row, then checks routes. If registration blocks, retain
 the canonical repo and retry registration only; never recreate or transfer.
 Creation, revisions, registration evidence and authorized Ship retain the same

@@ -1,22 +1,26 @@
 ---
 name: aios-orchestrate-workers
-description: Select, prepare, launch or recover a bounded worker when an assignment requires delegation or the user requests a new sidebar task, including requests without model or effort. Preserve root, authority and lead handback.
+description: Select, prepare, launch or recover a worker for explicitly requested or concretely beneficial delegation. Use for new-task requests and existing-worker recovery; ordinary repository work stays in the current task.
 ---
 
 # Orchestrate workers
 
-Use before production when the assignment requires delegation, including a
-substantive bounded assignment or independent repository mutation, and when the
-user explicitly requests a new sidebar task even without model/effort details.
-Also use for worker recovery. Small lead tasks and ordinary Review stay small.
-Lead owns outcome/final decision; this supplies no runtime/authority.
-Substantive work defaults first-class. A subagent needs a lead-assessed task-specific gain in
-capability/context/coordination/cost/risk/verification; status alone is
-insufficient. Independent mutation keeps the root guard.
+Enter only after the [shared execution decision](../aios/references/lifecycle.md)
+selects delegation, for an explicit new-task request even without model/effort,
+or for recovery of an existing worker. Continue ordinary repository work in the
+current task. A bounded assignment, specialist domain or substantial workload
+alone does not justify a worker.
+
+Before launch, name the separable result, its accepted inputs and proof, and the
+concrete benefit after transfer, coordination, review and retry cost. Closely
+coupled discovery or design iteration often belongs in the existing session.
+Use the smallest available worker/subagent surface sufficient for the result;
+there is no first-class-worker default. The caller owns final acceptance.
+This procedure supplies no runtime or authority.
 
 ## Route
 
-Inspect launch control: create/resume a first-class worker, expose
+Inspect launch control: create/resume the selected worker or subagent, expose
 tools/permissions and establish workspace. Skill/prompt/model is not proof;
 missing control means handback/stop. Inspect status/output/linkage before
 launch; resume the matching writer when session/root/goal match, never another
@@ -35,8 +39,8 @@ over this skill and its dated defaults; never change model configuration.
 
 Choose model/reasoning from exposed routes only where the tool permits selection;
 compare task quality and total
-context/reasoning/review/retry cost before speed. Do not inherit lead
-model/history. Stop on unavailable/unsuitable routes; never invent
+context/reasoning/review/retry cost before speed. Pass only needed context; preserve the tool's configured defaults when no
+explicit model choice is authorized. Stop on unavailable/unsuitable routes; never invent
 savings/quotas/fallbacks or silently substitute. Dated defaults are not
 universal.
 
@@ -65,11 +69,14 @@ Return its plan call/readback or visible fallback and actual goal/linkage state.
 Do not reset carried goal authorization at a phase or handoff; obey native
 creation rules and hold dependent work if required activation is missing.
 
-A prompt path/`cd` cannot repair a wrong root. Stop on root, branch, identity,
+For a newly launched repository writer, a prompt path alone is not root
+attestation: verify its effective workspace and Git root before mutation.
+If a launch-bound workspace is wrong, stop and correct the launch; a later
+shell `cd` does not prove its inherited instructions were corrected. Stop on root, branch, identity,
 instruction, permission, route, goal or authority mismatch, duplicate writer or
 unapproved UI task; do not replace to work around mismatch/duplicate. Recovery
 may replace after explicit stop/proven failure. An independent repository worker
-follows local Spec/Build/Review/recovery without personal preload, preserves
+uses shared Spec/Build/Review with local specialist contracts and recovery without personal preload, preserves
 unrelated/untracked/ignored work, proves final bytes, writes no shared owner memory, and
 is not overruled by orchestration.
 

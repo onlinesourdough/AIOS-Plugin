@@ -35,6 +35,16 @@ permitted mutations and preserved rollback identities. Read release notes and
 check hashes/source identity. A missing baseline or customized discovery source
 is a gap to resolve, not permission to overwrite it.
 
+## Shared-method migration (0.4.0)
+
+For an explicitly requested System/Project migration, inspect only selected
+repositories for legacy generic phases, technology choice, audit and tracking
+copies. Read their local contracts and classify each method by responsibility,
+not name alone: domain review/audit methods remain specialist-owned. Preserve
+real local constraints in AGENTS or their existing domain owner before removing
+known generic payloads and callers. Use [migration guidance](references/shared-lifecycle.md)
+for this boundary. A package-only update neither scans nor rewrites repositories.
+
 ## Apply and verify
 
 Under existing exact installation authority, use supported native actions for

@@ -43,11 +43,12 @@ a deliberate existing external path.
 Do not substitute or implement the capability in shared owner context, or seed
 an existing repository. New ownership uses [creation](creation.md).
 
-For independent repository mutation use the first-class root worker boundary
-in [lifecycle](lifecycle.md). When the assignment requires delegation, the user
-requests a new sidebar task, or a worker needs recovery, use [Orchestrate workers](../../aios-orchestrate-workers/SKILL.md).
-Orchestration selects and prepares the worker before production; it does not
-authorize silent sidebar creation. Local truth owns implementation and proof;
+Use [lifecycle](lifecycle.md) to choose execution. Continue in the current task
+by default after verifying each selected repository root and local instructions.
+Independent ownership does not require another session. When delegation has a
+concrete benefit, the user requests delegation or a new task, or a worker needs
+recovery, use [Orchestrate workers](../../aios-orchestrate-workers/SKILL.md).
+It prepares an actual handoff; it does not authorize silent sidebar creation. Local truth owns implementation and proof;
 AIOS stores only routing and genuinely shared knowledge. Existing repository work
 begins locally without automatically reading owner context. Expand only for a
 named gap, to authorized relevant sources in the correct account. Brand labels

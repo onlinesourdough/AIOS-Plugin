@@ -8,7 +8,7 @@ worker service, permission system, or client-data store.
 | --- | --- |
 | `.codex-plugin/`, `package.json`, `assets/`, `skills/` | Native metadata and the 15 shipped product skills |
 | `.agents/plugins/marketplace.json` | Codex marketplace entry pointing at this repository root |
-| `.agents/skills/`, `AGENTS.md` | Repository development only; never product discovery |
+| `AGENTS.md`, optional `.agents/skills/` | Local requirements and specialist methods; no generic lifecycle copies |
 | Owner home, normally `~/.AIOS` | Client-controlled context, decisions, connections, and personal skills |
 | Native harness | Actual models, tools, credentials, permissions, settings, and UI |
 | Independent Project/System repositories | Their own instructions, implementation, proof, and recovery |
@@ -49,9 +49,14 @@ Skills route that explicit need without making core AIOS depend on it.
 Registered Systems are selected by their declared responsibility and primary
 route. Their repositories own tool choices, internal stages, artifact formats,
 schemas and natural returns; AIOS keeps only the registry and handoff boundary.
-Before substantive production, select the owner, primary workflow and worker
-need. Delegation triggers orchestration before launch; internal workers and
-explicitly requested new sidebar tasks retain their different harness authority.
+Shared Spec, Build, Review and Ship apply across owners without copying methods
+into their repositories. Local contracts supply domain requirements and proof;
+global discovery is provided by the harness, not parent-folder inheritance.
+Continue in the current task by default. Delegate a separable result only for a
+concrete gain after context, coordination, review and retry costs, or when the
+user requests it. Internal workers and explicitly requested new sidebar tasks
+retain their different harness authority. Direct tasks need no invented lead.
+The [shared lifecycle](../skills/aios/references/lifecycle.md) owns this decision.
 Selected Systems install on first use, upstream-backed by default, never eagerly
 at onboarding. [System maintenance](../skills/aios-update/references/systems.md)
 owns compatible fast-forward updates at task boundaries under update authority.

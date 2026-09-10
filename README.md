@@ -65,24 +65,34 @@ You do not need to remember skill names. Try:
 
 AIOS includes [15 skills](docs/skills.md) for everyday work, setup, updates and
 keeping your context current. Before larger production work, AIOS selects the
-responsible workflow and worker. Design (ADS) and content Systems are optional
+responsible workflow and continues in the current task by default. Delegate
+only when a separable result benefits from another capability, independent
+review, context isolation or useful parallel work after coordination costs. Design (ADS) and content Systems are optional
 independent specialist repositories, installed only when selected for real work;
 Power BI is optional and requires a matching need. System updates use the
 [System maintenance procedure](skills/aios-update/references/systems.md), separately
 from plugin updates and owner-context Sync. Your repositories keep their own development
 instructions; unrelated code work does not need your personal context.
 
-### Package layout
+### Shared method, local expertise
+
+Spec, Build, Review and Ship come from the same 15-skill AIOS plugin in every
+System and Project. Repository `AGENTS.md` supplies local requirements, checks
+and release facts; `.agents/skills/` contains only specialist methods. Technology
+selection and generic repository audits are conditional references in Spec and
+Review. No copied lifecycle, wrappers or pinned cache paths are needed.
+
+Open a System or Project and start a task normally. Its local instructions and
+specialist workflow are sufficient to begin; AIOS's shared methods are discovered
+through the installed harness, independently of the repository's parent folder.
+A directly opened task needs no lead/worker arrangement or personal-context
+preload. The repository's product remains independent of AIOS at runtime.
 
 ```text
-skills/          15 shipped AIOS product skills shared by Codex and Pi
-.agents/skills/  six repository development methods; not exposed as product skills
+skills/          15 shared AIOS product skills for Codex and Pi
+AGENTS.md        repository requirements and shared-method routes
+.agents/skills/  specialist-only shelf; no generic development skill copies
 ```
-
-The root `skills/` directory is the single packaged source. The developer
-methods may exist physically in a package cache with the repository, but native
-AIOS discovery does not expose or load them as product skills. Create Project
-and Create System remain separate shipped skills.
 
 ## Your context stays yours
 

@@ -1,12 +1,15 @@
 # Resume without losing work
 
 Use at reconnect, compaction, approval wait, upstream drift or uncertain effect.
-Read the existing worker and lead/worker goal linkage, actual representations
-and identities, concise todo, contract revision, states, last acknowledgement,
+Read the current task state and, only when delegated, its caller/worker linkage,
+actual representations and identities, concise todo, contract revision, last acknowledgement,
 artifact hashes, pending Review/triage brief, latest evidence/blocker and next
 action. A paused task is not failed. Resume the same native session and active
 goals at the same root. Lost goal handles do not justify a duplicate writer. If
-identity cannot be proved, stop that mutation and ask the lead to reconcile.
+identity cannot be proved, stop that mutation and reconcile the existing task
+from local evidence. A delegated worker returns uncertainty to its caller;
+a direct task needs no invented lead. Ask only for a genuinely missing decision
+or authority after inspection.
 Replace only after explicit stop or proven failure, retaining original state
 and recording the replacement attempt under the original contract.
 
@@ -36,19 +39,23 @@ commands merely to test a guard. Use inert inputs or disposable synthetic data.
 2. Verify remote/account identity, then fetch the exact configured branch for
    observation. Never pull, stash, reset, clean, auto-merge, rebase or force.
    Compare base-to-live changes with local edits and the accepted contract.
-3. Instruction, authority or overlapping content drift requires lead decision.
-   Preserve base, local and upstream versions and report exact intersections.
+3. Preserve base, local and upstream versions and inspect exact intersections.
+   Resolve instruction or content drift in the current task within accepted
+   scope and authority; delegated work returns material contract conflicts to
+   its caller. Missing owner authority or an unresolved semantic decision stops
+   only the dependent change, not unrelated work.
    Non-overlapping upstream movement still needs a reviewed integration plan
    when the local Git gate requires equality; do not label it data loss or
    automatically replace the worker.
-4. With a reviewed scoped reconciliation, the same worker may integrate only
+4. With a reviewed scoped reconciliation, the same task or worker may integrate only
    the outcome's changes on the accepted base. Keep unrelated dirty files and
    their hashes untouched. A separate clean checkout is permissible only when
    isolation is necessary, the original is preserved, the runtime supports
-   reattestation and the lead records the new checkout under the same session.
+   reattestation and the current task records the new checkout under its contract.
    No second writer for this outcome.
 5. Re-read changed instructions, re-attest, rerun affected acceptance on final
-   bytes, and return to the lead for a fresh decision. If no safe integration
+   bytes, and repeat the affected Review. Delegated work also returns to its
+   caller for acceptance. If no safe integration
    is authorized, retain both versions and return a bounded blocked handoff.
 
 ## Repeated handoff or final action (#48)
@@ -63,7 +70,7 @@ not repeat. If identity or effect cannot be established, stop for reconciliation
 Keep local recovery state out of the product and portable owner core. Backups
 need a restore rehearsal; rollback must not overwrite owner edits made after
 the backup. Restore only scoped bytes whose current identity is still the
-expected post-change version, otherwise preserve both for the lead.
+expected post-change version, otherwise preserve both for scoped reconciliation.
 
 ## Native-state deadlock
 

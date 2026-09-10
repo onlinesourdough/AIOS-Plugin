@@ -152,6 +152,19 @@ def validate(root=ROOT):
 
     skill_files = sorted(skill_root.glob("*/SKILL.md"))
     require({path.parent.name for path in skill_files} == SKILL_NAMES, "skill inventory")
+
+    # Product development consumes the shared skills too. No local aliases,
+    # wrappers or copied bodies may silently become a second discovery source.
+    local_skills = list((root / ".agents/skills").rglob("SKILL.md"))
+    for local in local_skills:
+        require(local.parent.name not in SKILL_NAMES and
+                not re.fullmatch(r"(?:spec|build|review|ship|audit)-(?:project|solution)|choose-technology",
+                                 local.parent.name),
+                "duplicate generic repository skill payload")
+    for caller in (root / "AGENTS.md", root / "README.md"):
+        require(not re.search(r"\.agents/skills/(?:spec|build|review|ship|audit)-(?:project|solution)/|"
+                              r"\.agents/skills/choose-technology/", caller.read_text()),
+                "removed local phase caller")
     skill_fields = {}
     for path in skill_files:
         fields = frontmatter(path)
@@ -490,6 +503,16 @@ def negative_controls():
                          if line.startswith("| aios-build-work |"))
         path.write_text(path.read_text() + duplicate + "\n")
 
+    def local_phase_copy(root):
+        folder = root / ".agents/skills/spec-project"
+        folder.mkdir(parents=True)
+        shutil.copyfile(root / "skills/aios-spec-work/SKILL.md", folder / "SKILL.md")
+
+    def local_phase_wrapper(root):
+        folder = root / ".agents/skills/build-project"
+        folder.mkdir(parents=True)
+        (folder / "SKILL.md").write_text("---\nname: build-project\ndescription: Use shared Build.\n---\nInvoke aios-build-work.\n")
+
     rejected(split_source, "different skill sources")
     rejected(install_script, "consumer script or dependency")
     rejected(inherited_instructions, "inherited owner instructions")
@@ -498,6 +521,8 @@ def negative_controls():
     rejected(coupled_system_tool, "external owner coupling")
     rejected(missing_legacy_route, "legacy route target")
     rejected(duplicate_legacy_route, "legacy behavior map")
+    rejected(local_phase_copy, "duplicate generic repository skill payload")
+    rejected(local_phase_wrapper, "duplicate generic repository skill payload")
 
 
 if __name__ == "__main__":

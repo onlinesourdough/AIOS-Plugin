@@ -62,13 +62,14 @@ and recheck, or Needs decision, plus per-claim PASS/FAIL/NOT VERIFIED.
 - Creation: live canonical source, final-root attestation, same session,
   zero-history transfer/materialization, exact provenance, registration only
   after proof. Existing owners never refreshed from seeds.
-- Lifecycle: one persistent lead goal with a concise mutable todo, justified
-  owner, root attestation, one writer, required narrower worker goal activation
-  or linked-goal acknowledgement, local full lifecycle, independent lead
-  decision, latest-change proof, exact Ship authority, and waiting states kept
-  active without polling or phase-goal replacement.
-  When a lead actually plans, launches or recovers a worker, native worker
-  orchestration owns the minimum-context, route, root and handback checks.
+- Lifecycle: one authorized goal and concise live requirements list, justified
+  owner, verified root, one writer, shared phase methods with local specialist
+  contracts, final-byte proof and exact Ship authority. Direct repository tasks
+  continue in the current session without owner preload, local phase copies or
+  a mandatory lead. Technology and generic audit guidance have one shared owner.
+  For actual delegation only, verify the concrete benefit or user request,
+  minimum context, root, worker-goal linkage and caller acceptance through
+  Orchestrate workers; ordinary repository work does not load it.
   Sensitive changes retain repository-owned security context, scoped negative
   tests, validated findings and affected deployment/retest proof; optional tools
   do not become required scans for ordinary edits.

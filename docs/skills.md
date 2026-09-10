@@ -14,7 +14,7 @@ explicit selection uses its name. Repository development methods in
 | [aios-maintain-context](../skills/aios-maintain-context/SKILL.md) | Maintain owner facts, routes, connections, and explicit continuity Sync |
 | [aios-manage-skills](../skills/aios-manage-skills/SKILL.md) | Manage personal and installed skill lifecycles |
 | [aios-onboard](../skills/aios-onboard/SKILL.md) | Set up or move an owner home and native bridge |
-| [aios-orchestrate-workers](../skills/aios-orchestrate-workers/SKILL.md) | Select and prepare required delegation or an explicitly requested new sidebar task; launch/recover under harness rules |
+| [aios-orchestrate-workers](../skills/aios-orchestrate-workers/SKILL.md) | Prepare requested or concretely beneficial delegation and recover workers; direct repository tasks stay in their current session |
 | [aios-risky-changes](../skills/aios-risky-changes/SKILL.md) | Assess consequential changes proportionately |
 | [aios-review-work](../skills/aios-review-work/SKILL.md) | Independently accept or revise substantive work |
 | [aios-ship-work](../skills/aios-ship-work/SKILL.md) | Deliver an exactly reviewed result under authority |

@@ -59,3 +59,9 @@ the trusted AIOS repository additionally exposed exactly six local development
 skills. No ambient shared skills or diagnostics appeared. This is version-specific
 native evidence, not a universal all-version promise. Reapply or adopt a package
 only at a separate authorized task boundary.
+
+From 0.4.0 the source repository also has no generic local developer skill
+payload. Fresh discovery should expose the 15 shared product skills once, plus
+only deliberately installed personal/external or repository specialist methods.
+The six local skills in the historical observation above are not a current
+installation requirement.

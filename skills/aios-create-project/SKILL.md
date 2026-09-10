@@ -8,8 +8,9 @@ description: Create a justified new bounded Project at its final root using the 
 Start with a READY owner contract. Apply the
 [creation boundary and registration procedure](../aios/references/creation.md)
 before acquiring source: duplicate checks, verified seed identity, the empty
-final root and one correctly launched repository worker using
-[Orchestrate workers](../aios-orchestrate-workers/SKILL.md) are required.
+final root and one verified repository writer are required. Continue in the
+current task unless [shared execution](../aios/references/lifecycle.md) selects
+delegation; only then use [Orchestrate workers](../aios-orchestrate-workers/SKILL.md).
 Existing repositories are adopted in place and are never refreshed from a
 template.
 
@@ -38,14 +39,15 @@ creation worker.
 
 Immediately re-enter the exact final root in the same session. Read generated
 AGENTS and local lifecycle. Prove fresh unborn history, zero refs/remotes,
-requested identity/outcome, ownership/proof/recovery records, local lifecycle
-routes, excluded seed-only paths and exact URL@SHA provenance. Verify generated
+requested identity/outcome, ownership/proof/recovery records, shared lifecycle
+routes with no copied generic skills, excluded seed-only paths and exact URL@SHA provenance. Verify generated
 identity hashes. Add only accepted immutable handoff provenance, preserving it
 exactly. Now the Project alone is canonical; continue its full local
-Spec/Build/Review.
+contract with shared Spec/Build/Review.
 
 
-After proof, the worker returns the proposed registry row; the lead alone
-finalizes registration. A blocked registry write preserves the canonical new
+After proof, the current owner task finalizes the registry row. A delegated
+repository worker returns the proposed row to its caller instead of editing
+shared owner data. A blocked registry write preserves the canonical new
 repository and retries only registration. Continue its local lifecycle under
-the same worker; creating an owner does not authorize external publication.
+the same task or selected worker; creating an owner does not authorize external publication.

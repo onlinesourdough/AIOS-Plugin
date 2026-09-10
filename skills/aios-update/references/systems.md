@@ -40,9 +40,9 @@ Verify physical checkout/Git identity, selected ref, AGENTS.md, primary skill,
 local lifecycle and required dependencies before invocation. Inspect dependency
 instructions before any execution; install only what the task authorizes and
 verify readiness. Missing access, entrypoint or dependencies is a focused gap,
-not permission to improvise the specialist result in the lead. Use the
-[orchestrated root worker](../../aios-orchestrate-workers/SKILL.md) for independent
-repository mutation, preserving initial-root attestation and one writer.
+not permission to improvise the specialist result. Use the
+[shared execution decision](../../aios/references/lifecycle.md), verifying the
+selected root and one writer. Repository mutation alone does not require a worker.
 Record source/ref, path, primary route and verification in the existing registry
 fields under owner-data authority. Execute the selected System's actual workflow.
 

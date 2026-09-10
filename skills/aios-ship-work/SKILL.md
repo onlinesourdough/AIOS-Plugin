@@ -8,17 +8,20 @@ description: Deliver an exactly reviewed AIOS result under existing action and d
 Use the [tracking SOP](../aios/references/lifecycle.md) for pending delivery and
 completion readback; carry the same requirements and goal authorization.
 
-Identify the immutable subject, Review PASS, linked lead/worker goal identities
-and states, current todo, destination, action, recovery path and measurement
-owner. A change after PASS returns to the same
-writer and affected Review. For independent repository delivery, the local Ship
-contract applies in addition to these owner-level boundaries.
+Identify the immutable subject, Review PASS, current goal/requirements,
+destination, action, recovery path and measurement owner. Carry lead/worker
+linkage only when delegated. A change after PASS returns to the same writer
+and affected Review. For repository delivery, use local release/deployment
+facts with this shared procedure; do not load personal context or another
+local Ship skill. A local instruction or runbook supplies destination-specific
+requirements, not a second generic phase.
 
-PASS plus exact existing authorization enables Ship in the same worker.
+PASS plus exact existing authorization enables Ship in the same task.
 Capability alone is insufficient. Do not re-ask when standing/session authority
 already covers this exact destination, action and scope. No authorization
-comes from this file. Inspect recovery before the effect. For Git use
-[sync](../aios-maintain-context/references/sync.md) and local repository gates.
+comes from this file. Inspect recovery before the effect. For repository Git delivery use [Git release](references/git-release.md).
+Owner-data Git alone uses [Sync](../aios-maintain-context/references/sync.md);
+its personal-data allowlist does not govern independent product repositories.
 Before any public or customer-facing effect, including a Git publication, run
 [publish safety](references/publish-safety.md) last. Perform only the reviewed action,
 read back the actual destination and compare it with the accepted artifact.

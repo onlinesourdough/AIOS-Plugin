@@ -3,10 +3,10 @@
 | Responsibility | Owner and canonical truth |
 | --- | --- |
 | Product instructions, declarations, and neutral assets | AIOS maintainer in this repository |
-| Implementation and local verification | Accountable repository-root worker |
-| Requirement tracking SOP | Product: `skills/aios/references/lifecycle.md`; independent local Project: `.agents/skills/spec-project/references/tracking.md`. Phase callers link to their own canonical procedure |
+| Implementation and local verification | Current repository task or deliberately selected worker |
+| Requirement tracking SOP | `skills/aios/references/lifecycle.md` for all phases and repository tasks; local records hold evidence, not a copied procedure |
 | Consequential-change assessment | `aios-risky-changes`; conditionally routed by Spec and Review |
-| Independent acceptance and delivery instruction | Lead bound to an exact reviewed artifact |
+| Acceptance and delivery instruction | Reviewer bound to an exact artifact; independent caller acceptance for delegated work |
 | Private Git destination and release | Authorized AIOS maintainer or Ship worker |
 | Owner context, personal facts, and access decisions | Client in the chosen AIOS home and source systems |
 | Owner continuity remote, direction, and allowed paths | Client under explicit Sync consent; Maintain Context owns the procedure |
@@ -17,6 +17,6 @@
 | Optional Global Skills | Their original owners; AIOS Manage Skills governs only reviewed adoption |
 | Optional autonomous-use guardrails | Independently owned `setup-guardrails` Global Skill; Onboard/Manage Skills conditionally route a client request without adopting it |
 
-The product repository is not an owner-data home. Repository development skills
-stay local, and workers return proposed shared learning to the lead instead of
-writing client memory.
+The product repository is not an owner-data home. Repository specialist methods stay local; generic lifecycle
+methods are shared plugin skills. Delegated workers return proposed shared
+learning to their caller instead of writing client memory.

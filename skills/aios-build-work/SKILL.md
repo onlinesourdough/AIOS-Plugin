@@ -1,48 +1,53 @@
 ---
 name: aios-build-work
-description: Implement a specified substantive AIOS result and return verified evidence for lead Review. Independent repository changes use their own correctly rooted worker.
+description: Implement and verify an accepted AIOS, System or Project change in the current task. Use repository instructions and specialist methods; delegate only for a concrete advantage.
 ---
 
 # Build work
 
 Start from a READY [Spec](../aios-spec-work/SKILL.md) or an already accepted
-contract. Return to Spec only for a material gap. Preserve one outcome through
-implementation, relevant verification, local Review and authorized delivery.
+contract. Return to Spec only for a material gap. Deliver the whole authorized
+result through implementation, relevant verification, Review and requested Ship.
+A small mechanical edit needs its scoped diff and affected check.
 
-After root/branch/authority attestation and before implementation, run the
-[native tracking SOP](../aios/references/lifecycle.md). Reuse the accepted list,
-goal objective and carried authorization; update added requirements and reopen
-affected done items before work. Return tool/readback evidence or the declared
-fallback at handoff, with lead Review/approval/Ship still pending. Conditional
+Use the [shared lifecycle](../aios/references/lifecycle.md) before substantive
+implementation and on scope change. Reuse the current requirements, goal
+authorization and evidence; reopen affected completed items. Conditional
 recovery does not waive initial activation when the accepted work requires it.
 
-Keep small owner tasks in the lead. Independent repository mutations initiated
-from owner-level work require one first-class worker whose actual initial
-workspace is that exact repository root. Before production, confirm the accepted
-execution owner and primary workflow
-from [routing](../aios/references/routing.md). When the assignment requires
-delegation, the user requests a new sidebar task, or a worker needs recovery,
-load [Orchestrate workers](../aios-orchestrate-workers/SKILL.md)
-for the launch contract, minimum context, route selection, root attestation,
-one-writer boundary and recovery. Do not load it for lead-local work. If no
-safe, actually usable launch surface exists, return a handoff and BLOCKED for
-that mutation.
+Continue in the current task by default. For repository work, verify the exact
+root, branch, local AGENTS, accepted inputs and available tools before mutation.
+Use that repository's specialist workflow and local proof/recovery contract;
+do not preload personal owner context or look for a second local Build skill.
+Owner-level work uses [routing](../aios/references/routing.md) to select its owner.
+Use [Orchestrate workers](../aios-orchestrate-workers/SKILL.md) only after
+delegation has a concrete advantage, for an explicitly requested new task, or
+for recovery of an existing worker. Repository ownership alone does not require
+delegation. Keep one writer for each overlapping change.
 
-Workers are the default for substantive bounded assignments. A subagent
-exception needs a concrete task-specific advantage assessed by the lead;
-read-only status alone is insufficient, and routine judgment does not return to
-the user. Independent repository mutation keeps the first-class initial-root
-guard.
+## Implement and verify
 
-The worker owns local Spec, implementation, tests and local Review. Continue
-through all of those within the authorized task; the first working result is
-not a handoff boundary. Preserve unrelated changes and verify the whole
-authorized result on final bytes. Hand back the exact evidence, recovery state
-and `Improvement signals: none` or concrete sanitized observations as required
-by [Orchestrate workers](../aios-orchestrate-workers/SKILL.md). Enter
-waiting-review; send once, return, do not poll.
+Choose evidence for the changed behavior and risk. Reproduce a behavioral defect
+at the nearest safe representative boundary when practical; otherwise state the
+reproduction limit and verify the strongest meaningful regression. Do not weaken
+checks to obtain green. A changed accepted contract needs rationale and replacement
+coverage. Instruction changes may use validators or scoped rehearsals; design,
+content and data work use domain proof rather than compulsory software tests.
 
+Preserve unrelated tracked, untracked and ignored work. Use the existing working
+stack unless a material [technology decision](../aios-spec-work/references/technology.md)
+changes it. Keep affected README, routes, interfaces, runbooks and evidence
+current. Add runtime layers only for an actual responsibility. Follow the
+accepted [security contract](../aios/references/security.md) when its boundary
+applies; ordinary work gains no scan ritual.
 
-Use [lead Review](../aios-review-work/SKILL.md) for acceptance and
-[recovery](../aios/references/recovery.md) for interrupted work. Review and
-delivery remain separate from any conditional improvement triage.
+Prove the final bytes through the real interface or an appropriate validator,
+including relevant failure, denial, duplicate and recovery behavior. Fix in-scope
+findings and rerun affected checks. Report unavailable required proof honestly.
+Continue to [Review](../aios-review-work/SKILL.md) within this task; a phase label
+or the first successful test is not a completion boundary.
+
+For delegated work only, return the orchestration handback once to the caller
+and retain the same worker through any revision. Direct work has no invented
+lead or waiting-review handoff. Existing action authority carries across phases;
+it does not expand destinations or permissions.

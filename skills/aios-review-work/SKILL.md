@@ -1,6 +1,6 @@
 ---
 name: aios-review-work
-description: Review substantive AIOS work against its accepted outcome and current evidence. Return PASS, REVISE or BLOCKED without editing the subject.
+description: Review an AIOS, System or Project result against its accepted outcome and current evidence, or audit accumulated drift. Return PASS, REVISE or BLOCKED without editing the subject.
 ---
 
 # Review work
@@ -16,15 +16,19 @@ harness and task authorize it. Orchestration is a native conditional procedure,
 not runtime capability or a replacement writer.
 
 
-Local worker review does not replace the lead's independent acceptance.
-This lead gate is not a new OWNER approval request. Existing action authority
+For direct repository work, use local AGENTS, specialist criteria and evidence
+without personal context or a second local Review skill. Use the current task
+for a proportionate review pass. Delegated work still needs its caller's
+independent acceptance; an explicitly required independent reviewer remains
+required. Do not invent a lead for a directly opened task.
+This review gate is not a new OWNER approval request. Existing action authority
 remains valid for its exact scope; ask the owner only for a real missing decision
 or permission. Do not stop routine in-scope repairs at intermediate phase labels.
-The lead reconstructs intent and inspects the actual artifacts and latest proof
+The reviewer reconstructs intent and inspects the actual artifacts and latest proof
 for the delivery and affected workflow, including relevant success, denial,
 duplicates, failure/recovery and source ownership. Review does not mutate its
 subject. Return PASS, REVISE or BLOCKED. A wrong or incomplete task result is
-`REVISE` to the same worker and goals with an updated todo and contract revision; `BLOCKED`
+`REVISE` to the same writer and goal with updated requirements; `BLOCKED`
 preserves state. Keep delivery defects and underlying improvement signals
 separate. A worker's concrete signal or a lead's independent concrete finding
 invokes [improvement triage](../aios-triage-improvement/SKILL.md) for its
@@ -46,13 +50,21 @@ not select it.
 
 Bind PASS to exact artifact hashes (or commit/tree), proof and reviewed contract
 revision. Any later relevant mutation invalidates affected evidence and PASS.
-The same worker reruns impacted tests/evals on final bytes, then the lead
+The same writer reruns impacted checks on final bytes, then the reviewer
 reconciles requirements against those bytes. Test output from before a change
 cannot accept the changed result. If only an evidence record changes, hash the
 subject separately to avoid claiming self-referential proof.
 
 PASS does not complete pending obligations. Apply the SOP's completion gate;
 logical waiting-review is not a native terminal state.
+
+Inspect correctness and failure paths, documentation and command truth,
+ownership, unnecessary complexity, relevant security boundaries and recovery.
+Source checks do not prove runtime behavior. Do not accept weakened tests as
+proof of a fix; an accepted behavior change needs replacement coverage.
+For a requested whole-repository health check or accumulated drift assessment,
+use [repository audit](references/repository-audit.md). It is not an extra phase
+after ordinary changes. Domain-specific reviews and audits stay with the System.
 
 ## Conditional quality checks
 

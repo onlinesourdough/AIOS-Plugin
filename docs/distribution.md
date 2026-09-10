@@ -2,7 +2,8 @@
 
 The release unit is this repository root: `.codex-plugin/`, `package.json`,
 `assets/`, `LICENSE`, `README.md`, and `skills/`. Documentation, tests, and
-`.agents/skills/` are author material and are not product skills.
+the optional specialist shelf are author material and are not product skills.
+This repository carries no local generic lifecycle skills.
 
 ## Before delivery
 
@@ -15,7 +16,7 @@ The release unit is this repository root: `.codex-plugin/`, `package.json`,
 
 ## Git delivery
 
-Use the local [Ship method](../.agents/skills/ship-project/SKILL.md). Re-attest
+Use shared `aios-ship-work` and its Git release reference. Re-attest
 the physical root, branch, clean state, credential-free remote, reviewed commit,
 tree, and parent. Fresh-fetch the exact target branch and stop on drift.
 

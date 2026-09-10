@@ -6,6 +6,40 @@ requirements, proof, scope/action authority, current phase and lead/worker
 linkage. Keep one contract and one live requirements list; contract/evidence
 pointers may persist separately. The lead's default model remains the user's configured choice.
 
+## Shared method and execution
+
+Spec, Build, Review and Ship are shared AIOS plugin skills. The repository's
+AGENTS, specialist skills, requirements, checks and recovery records supply
+local truth. Resolve shared skills through the current harness; do not copy,
+wrap, rename, symlink or vendor them into each System or Project. Plugin
+discovery is independent of filesystem ancestry and supplies no runtime
+dependency, personal context or additional authority. Read only the active
+phase and conditional references needed for the change, once per revision.
+
+Continue in the current task by default, including substantive repository work,
+design exploration and closely coupled changes. A task opened directly in a
+System or Project is already its execution owner and needs no lead, launch
+contract or handback to begin. A current task may work across authorized roots
+sequentially after reading each root's local instructions and verifying identity.
+Use isolation where concurrent work warrants it; retain one writer per overlapping
+change. Do not confuse the canonical owner with the choice of session.
+
+Delegate only when a separable result has clear inputs, allowed scope and proof,
+and the expected gain in capability, independent evidence, context isolation or
+useful parallel progress outweighs launch, context transfer, coordination,
+review and retry cost. Task size, another repository or a bounded edit alone
+does not establish that gain. Preserve a healthy context-rich session when
+transfer would mostly repeat discovery. No universal token or performance
+advantage is claimed for either execution mode.
+
+An explicit request for delegation or a new task also selects
+[Orchestrate workers](../../aios-orchestrate-workers/SKILL.md), subject to the
+actual tool's authorization rules. Otherwise this decision stays in the current
+task and does not load orchestration. Prefer a scoped review pass in the same
+task unless a distinct reviewer is requested or materially improves confidence;
+consequential output may require independent evidence. Review remains a separate
+inspection of the final subject, even when the same session performs it.
+
 ## Native tracking SOP
 
 1. Inspect the current callable tool inventory once at task start; recheck only
@@ -35,7 +69,7 @@ pointers may persist separately. The lead's default model remains the user's con
 5. Before acting on added scope, update the same list with all still-active
    requirements and additions; reopen affected done items and invalidate their
    old proof. Preserve explicit removals, current authority and goal linkage.
-6. At handoff, update evidence/statuses and keep pending lead Review, approval
+6. At handoff, update evidence/statuses and keep any required caller Review, approval
    and delivery unresolved. Before completion map every accepted requirement to
    current evidence or an explicit unresolved status. Worker completion alone
    cannot complete the parent outcome. Return the observed native state or the
@@ -67,14 +101,14 @@ non-native; it does not provide native cross-turn continuation.
 [Build](../../aios-build-work/SKILL.md) updates it before implementation or scope
 changes; [Review](../../aios-review-work/SKILL.md) checks requirement-to-evidence
 coverage; authorized [Ship](../../aios-ship-work/SKILL.md) retains pending delivery
-until readback. Keep the same worker, root, contract and applicable goals through
+until readback. Keep the same task or selected worker, root, contract and applicable goals through
 waiting-review and revisions. Completion requires all accepted obligations and
-lead acceptance; logical waits are not native terminal states.
+any required independent acceptance; logical waits are not native terminal states.
 
 [Routing](routing.md) selects the owner/workflow before production.
 [Orchestration](../../aios-orchestrate-workers/SKILL.md) carries the tracking
 state, request authority and bounded worker requirements without widening action
-or sidebar authority. Independent repositories use their local tracking SOP.
+or sidebar authority. Independent repositories use this same tracking SOP with local evidence pointers.
 
 Only for interruption or goal-state mismatch, use [recovery](recovery.md#native-state-deadlock).
 Its fallback applies only to an

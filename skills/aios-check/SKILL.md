@@ -17,7 +17,7 @@ A manifest is not proof of activation, a registry is not proof of an installed
 System, a URL is not a backup, and a successful push is not live equality.
 If repair is already authorized, apply it through the responsible route:
 [maintenance](../aios-maintain-context/SKILL.md) for owner context,
-[onboarding](../aios-onboard/SKILL.md) for setup, or the repository's local Build.
+[onboarding](../aios-onboard/SKILL.md) for setup, or shared Build with the repository contract.
 Then evaluate the final bytes again. Otherwise report the proposed repair.
 Preserve owner decisions, authority and existing work. Never treat inspection as permission to publish,
 install, migrate or rewrite configuration.
