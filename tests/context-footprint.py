@@ -23,9 +23,10 @@ JOB_PREFIXES = {
     "aios-maintain-context": "Curate ",
     "aios-manage-skills": "Manage ",
     "aios-onboard": "Set up, resume or move ",
-    "aios-orchestrate-workers": "Select, prepare, launch or recover ",
+    "aios-orchestrate-workers": "Prepare, launch, coordinate and recover ",
     "aios-risky-changes": "Assess ",
     "aios-review-work": "Review ",
+    "aios-select-model": "Choose ",
     "aios-ship-work": "Deliver ",
     "aios-spec-work": "Specify or revise ",
     "aios-triage-improvement": "Triage ",
@@ -53,6 +54,7 @@ CURRENT_JOURNEYS = {
         "skills/aios/SKILL.md",
         "skills/aios/references/routing.md",
         "skills/aios-spec-work/SKILL.md",
+        "skills/aios-select-model/SKILL.md",
         "skills/aios/references/lifecycle.md",
         "skills/aios-spec-work/references/readiness.md",
     ),
@@ -60,6 +62,7 @@ CURRENT_JOURNEYS = {
         "skills/aios/SKILL.md",
         "skills/aios/references/routing.md",
         "skills/aios-build-work/SKILL.md",
+        "skills/aios-select-model/SKILL.md",
         "skills/aios-orchestrate-workers/SKILL.md",
         "skills/aios/references/lifecycle.md",
     ),
@@ -112,8 +115,8 @@ def metadata_entries(skill_root, base_root):
 
 def current_metadata_bytes():
     entries = metadata_entries(ROOT / "skills", ROOT)
-    require(len(entries) == 15, "skill metadata inventory")
-    require(len({entry["metadata"] for entry in entries}) == 15,
+    require(len(entries) == len(JOB_PREFIXES), "skill metadata inventory")
+    require(len({entry["metadata"] for entry in entries}) == len(JOB_PREFIXES),
             "ambiguous skill metadata")
     require(set(JOB_PREFIXES) == {entry["name"] for entry in entries},
             "skill job inventory")
@@ -252,6 +255,12 @@ def main():
     owner_index = ROOT / "skills/aios-onboard/assets/owner/AIOS.md"
     owner_memory = ROOT / "skills/aios-onboard/assets/owner/MEMORY.md"
     print(f"neutral_current_owner_index_memory_bytes={owner_index.stat().st_size + owner_memory.stat().st_size}")
+    measurement = ROOT / "skills/aios-select-model/references/measurement.md"
+    print(f"conditional_model_measurement_extra_bytes={measurement.stat().st_size}")
+    print("NOTE: performance-claim/comparison tasks add that reference; no matched legacy measurement path is claimed")
+    handoff = ROOT / "skills/aios-select-model/references/continuation.md"
+    print(f"conditional_whole_task_handoff_extra_bytes={handoff.stat().st_size}")
+    print("NOTE: portable/whole-task transfer adds that reference, not worker orchestration; no matched legacy transfer path is claimed")
     print("PASS: bounded skill bodies and representative positive/negative selected routes")
     print("NOTE: token values are bytes/4 estimates; no native-runtime token telemetry was available")
     print("NOTE: owner/task context and target-repository instructions are excluded as documented in the manifest")

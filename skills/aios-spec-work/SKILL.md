@@ -24,10 +24,9 @@ For repository work, start from local AGENTS, relevant specialist methods and
 accepted inputs. This shared Spec owns the procedure; the repository owns its
 technical truth, constraints and proof. Do not load personal owner context or
 look for another local Spec skill. Owner-level selection uses
-[routing](../aios/references/routing.md). Continue in the current task unless
-the [shared lifecycle](../aios/references/lifecycle.md) establishes a concrete
-delegation benefit or an explicit new-task request. Only then use
-[Orchestrate workers](../aios-orchestrate-workers/SKILL.md).
+[routing](../aios/references/routing.md). Continue here by default. Use
+[Orchestrate workers](../aios-orchestrate-workers/SKILL.md) for justified delegation
+with retained caller responsibility; Select Model owns whole-task transfer.
 
 Keep the existing working stack. For a new or materially changed technology
 decision, use [technology selection](references/technology.md) after the
@@ -36,6 +35,11 @@ interfaces, intentionally public and protected boundaries, compatibility,
 failure visibility, operation and recovery only where material to the delta.
 Preserve a developed brief; a rough input may become a compact local contract
 without asking the owner for a formal document.
+
+During substantive Spec, use [Select model](../aios-select-model/SKILL.md) once
+task requirements are clear. Carry its model/effort and session recommendation,
+current evidence and any real unresolved decision into READY. It owns runtime
+discovery and proportionate selection; this is not a mandatory approval gate.
 
 For sensitive data, authentication/authorization, external interfaces,
 privileged automation or deployment, use the conditional
@@ -58,7 +62,8 @@ these shared phases with its local requirements; upstream decisions are
 accepted input, not a second interview. Run
 [readiness evaluation](references/readiness.md) before Build.
 
-When READY, continue to [Build](../aios-build-work/SKILL.md) in the same task.
+When READY, follow the selected continuation: [Build](../aios-build-work/SKILL.md),
+delegation or whole-task handoff. A Spec-only request ends with the usable contract.
 For an existing independent repository, its local contract owns technical truth;
 pass resolved owner decisions without repeating discovery. Optional external
 clarification methods cannot replace adaptive questioning or ask the owner to

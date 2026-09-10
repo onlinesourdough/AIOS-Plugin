@@ -2,7 +2,7 @@
 
 This is a behavior map, not a requirement to ship one entry per old file.
 The 17 core template methods were inspected separately from optional external
-Global Skills. The current package exposes fifteen native workforms; smaller
+Global Skills. The current package exposes sixteen native workforms; smaller
 checks and conditional procedures live with the workform that owns them.
 Client facts and personal methods are not copied into this package.
 
@@ -39,7 +39,7 @@ migration evidence also accounts for the two other historical Global methods:
 | `clarify` | Remains independently owned with an intentionally changed current job; AIOS may discover it for a concrete need but claims no unchanged-body parity |
 | `manage-skills` | Its accepted responsibility moved to native [Manage Skills](../../aios-manage-skills/SKILL.md); no external body existed in the snapshot to migrate |
 | `orchestrate-workers` | Its accepted responsibility moved to native [Orchestrate workers](../../aios-orchestrate-workers/SKILL.md); no external body existed in the snapshot to migrate |
-| `route-models` | Retired from the external source before this migration at historical change `8b81375`; it is not a lost current route |
+| `route-models` | Retired at historical change `8b81375`; current runtime selection is owned by [Select model](../../aios-select-model/SKILL.md), without restoring a model catalog |
 | `shape-offer` | Remains an independently owned Global Skill; AIOS discovers it only for a concrete need and does not copy it |
 
 Four private personal methods were retained through owner migration and current

@@ -14,7 +14,7 @@ SKILL_NAMES = {
     "aios-create-system", "aios-maintain-context", "aios-manage-skills",
     "aios-onboard", "aios-orchestrate-workers", "aios-review-work",
     "aios-risky-changes", "aios-ship-work", "aios-spec-work", "aios-triage-improvement",
-    "aios-update",
+    "aios-update", "aios-select-model",
 }
 LEGACY_ROUTE_TARGETS = {
     "aios": ("../../aios/SKILL.md", "../SKILL.md", "../../aios-check/SKILL.md",
@@ -240,32 +240,17 @@ def validate(root=ROOT):
             "setup-guardrails" not in SKILL_NAMES,
             "optional guardrails route boundary")
     orchestrate = (skill_root / "aios-orchestrate-workers/SKILL.md").read_text()
-    require("Choose model/reasoning from exposed routes" in orchestrate and
-            re.search(r"Dated defaults are not\s+universal", orchestrate) and
-            "Dated model working defaults — 2026-09-09" in orchestrate and
-            re.search(r"use `gpt-6-astra` / `medium` as the\s+general default", orchestrate) and
-            re.search(r"For lighter or tightly bounded work, `gpt-6-astra` / `low`,\s+"
-                      r"`gpt-6-astra` / `medium`, and `gpt-5.6-luna` / `max` are roughly equivalent\s+"
-                      r"practical options", orchestrate) and
-            "Owner-selected working defaults from operating preference and exposed routes" in orchestrate and
-            re.search(r"when task fit and the exposed route permit selection under the\s+harness rules above", orchestrate) and
-            "Owner operating preference, 2026-09-09" in orchestrate and
-            re.search(r"This is current owner preference, not a\s+benchmark or universal ranking", orchestrate) and
-            re.search(r"choose by task fit, availability and total\s+context/reasoning/review/retry cost", orchestrate) and
-            "xhigh" not in orchestrate and
-            "uses fewer tokens" not in orchestrate and
-            re.search(r"No creative\s+default: choose specialists by task fit", orchestrate) and
-            re.search(r"stale/missing\s+evidence", orchestrate) and
-            "availability/prices, task outcomes or owner input" in orchestrate and
-            "https://artificialanalysis.ai/" in orchestrate and
-            "https://deepswe.datacurve.ai/" in orchestrate and
-            "https://livebench.ai/" in orchestrate and
-            "official price/capability facts" in orchestrate and
-            "model/effort/harness" in orchestrate and
-            "No per-launch research or cache self-edit" in orchestrate and
-            "no service/config/memory/cache edit" in orchestrate and
-            "no fixed model catalog" not in orchestrate,
-            "dated task-local model snapshot")
+    # Ownership and portability invariants; behavior needs independent model rehearsal.
+    selection = skill_root / "aios-select-model/SKILL.md"
+    for caller in ("aios-spec-work", "aios-build-work", "aios-orchestrate-workers"):
+        require(selection.resolve() in set(link_targets(skill_root / caller / "SKILL.md")),
+                f"model selection route missing: {caller}")
+    for source in (selection, skill_root / "aios-orchestrate-workers/SKILL.md"):
+        require(not re.search(r"\b(?:gpt-\d|claude-\d|gemini-\d)", source.read_text()),
+                f"nonportable model default: {source}")
+    owner_assets = skill_root / "aios-onboard/assets/owner"
+    require(not any("model" in p.name.lower() for p in owner_assets.rglob("*")),
+            "owner template carries a model inventory")
     sync = (skill_root / "aios-maintain-context/references/sync.md").read_text()
     require("never `git add .`" in sync and
             "user-owned personal-skill folder identified" in sync and
@@ -528,6 +513,6 @@ def negative_controls():
 if __name__ == "__main__":
     validate()
     negative_controls()
-    print("PASS: package declarations, 15 skill frontmatters, complete legacy routes, links, isolation, and security checks")
+    print("PASS: package declarations, 16 skill frontmatters, complete legacy routes, links, isolation, and security checks")
     print("PASS: discovery contracts and external-owner coupling boundaries")
     print("PASS: rejects split sources, install/runtime scripts, inherited instructions, and duplicate ownership")

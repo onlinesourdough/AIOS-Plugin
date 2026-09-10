@@ -1,6 +1,6 @@
 # AIOS skills
 
-AIOS ships 15 native skills. Automatic selection uses each skill description;
+AIOS ships 16 native skills. Automatic selection uses each skill description;
 explicit selection uses its name. Repository development methods in
 `.agents/skills/` are separate and are not product skills.
 
@@ -14,9 +14,10 @@ explicit selection uses its name. Repository development methods in
 | [aios-maintain-context](../skills/aios-maintain-context/SKILL.md) | Maintain owner facts, routes, connections, and explicit continuity Sync |
 | [aios-manage-skills](../skills/aios-manage-skills/SKILL.md) | Manage personal and installed skill lifecycles |
 | [aios-onboard](../skills/aios-onboard/SKILL.md) | Set up or move an owner home and native bridge |
-| [aios-orchestrate-workers](../skills/aios-orchestrate-workers/SKILL.md) | Prepare requested or concretely beneficial delegation and recover workers; direct repository tasks stay in their current session |
+| [aios-orchestrate-workers](../skills/aios-orchestrate-workers/SKILL.md) | Prepare and recover delegated workers when the caller retains coordination and acceptance |
 | [aios-risky-changes](../skills/aios-risky-changes/SKILL.md) | Assess consequential changes proportionately |
 | [aios-review-work](../skills/aios-review-work/SKILL.md) | Independently accept or revise substantive work |
+| [aios-select-model](../skills/aios-select-model/SKILL.md) | Assess remaining judgment, select model/reasoning and who continues; own portable handoff or authorized whole-task transfer |
 | [aios-ship-work](../skills/aios-ship-work/SKILL.md) | Deliver an exactly reviewed result under authority |
 | [aios-spec-work](../skills/aios-spec-work/SKILL.md) | Resolve a substantive AIOS work contract |
 | [aios-triage-improvement](../skills/aios-triage-improvement/SKILL.md) | Route a concrete underlying improvement signal |

@@ -1,6 +1,6 @@
 {
   "name": "aios",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Portable owner context, adaptive onboarding and discoverable methods for specified, reviewed work.",
   "author": {
     "name": "Online Sourdough"
@@ -12,7 +12,7 @@
     "composerIcon": "./assets/icon.png",
     "logo": "./assets/icon.png",
     "shortDescription": "Your context, useful work and reviewed delivery.",
-    "longDescription": "Fifteen shared skills for onboarding, Spec, Build, Review, risk assessment, Ship, worker orchestration, skill management, conditional improvement triage, owner context and independent-owner creation. Client data stays in a separate owner-controlled home.",
+    "longDescription": "Sixteen shared skills for onboarding, Spec, Build, Review, risk assessment, Ship, worker orchestration, runtime model selection, skill management, conditional improvement triage, owner context and independent-owner creation. Client data stays in a separate owner-controlled home.",
     "developerName": "Online Sourdough",
     "category": "Productivity",
     "capabilities": [],

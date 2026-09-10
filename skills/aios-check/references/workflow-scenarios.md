@@ -59,8 +59,10 @@ Lead cold-session cases should cover varied owner and repository requests and
 retain an honest tested harness/version matrix.
 
 | Direct System task | User opens a System in the sidebar and requests a substantive domain result | Start with local AGENTS and its specialist workflow; use shared phases as needed, with no personal preload, second local phase or lead launch |
-| Shared discovery | Repository with AIOS installed and specialist local skills | Resolve all 15 product skills once from the plugin and local specialists from their owner; generic phase aliases/wrappers are a regression |
+| Shared discovery | Repository with AIOS installed and specialist local skills | Resolve all 16 product skills once from the plugin and local specialists from their owner; generic phase aliases/wrappers are a regression |
 | Selective delegation | Separable deliverable with accepted inputs/proof and a concrete capability, independence or parallel-progress gain | Use orchestration after weighing transfer/review/retry cost; choose the smallest sufficient authorized launch surface |
 | Coupled iteration | New issue or visual refinement depends on the current discussion and overlapping files | Continue the same task and writer; boundedness alone is not evidence for a worker |
-| Requested delegation | User explicitly asks for a worker or a new task | Use orchestration, preserve native defaults and follow the actual launch tool's authority; a worker request alone does not authorize a new sidebar task |
+| Requested delegation | User asks for a worker with retained caller coordination/acceptance | Use orchestration under native launch rules; a worker request alone authorizes no new sidebar task |
+| Whole-task continuation | User takes an accepted brief onward, or an authorized new task takes the whole remainder | Select Model prepares portable context or verifies startup and ends the former lead's role; no automatic orchestration, monitoring or claim of completed production |
+| Judgment after Spec/Review | Creative choices or unexpected delivery decisions remain despite READY/PASS | Reassess suitability from actual choices and proof; phase/domain labels force neither a cheap worker nor an expensive lead |
 | Missing shared plugin | Independent repository has local instructions but no discoverable AIOS phases | Report the method gap, perform only locally supported work and use authorized native installation when required; do not copy a fallback phase library |

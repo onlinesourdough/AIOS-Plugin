@@ -9,7 +9,7 @@ and recheck, or Needs decision, plus per-claim PASS/FAIL/NOT VERIFIED.
   answers and chosen off states; authorized answers lead to implemented changes
   and readback. Missing input is not consent. A checkpoint resumes unfinished
   work without reinterview; ordinary tasks do not repeat the onboarding audit.
-- Product: normalized plugin manifest, correct skill paths and the 15 selected
+- Product: normalized plugin manifest, correct skill paths and the 16 selected
   discoverable names; frontmatter valid, local references resolve, no consumer
   scripts/MCP/hooks/dependencies or hidden invocation disabling. Pi points to
   the same bodies. Compare installed release identity, not just a folder name.

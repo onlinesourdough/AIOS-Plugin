@@ -32,10 +32,12 @@ does not establish that gain. Preserve a healthy context-rich session when
 transfer would mostly repeat discovery. No universal token or performance
 advantage is claimed for either execution mode.
 
-An explicit request for delegation or a new task also selects
-[Orchestrate workers](../../aios-orchestrate-workers/SKILL.md), subject to the
-actual tool's authorization rules. Otherwise this decision stays in the current
-task and does not load orchestration. Prefer a scoped review pass in the same
+Delegation with retained caller coordination/acceptance selects
+[Orchestrate workers](../../aios-orchestrate-workers/SKILL.md).
+[Select model](../../aios-select-model/SKILL.md) owns whole-task transfer and
+user-owned continuation, including a portable Spec/prompt. A new-task request
+alone does not select orchestration; native authorization rules still apply.
+Otherwise stay here and do not load orchestration. Prefer a scoped review pass in the same
 task unless a distinct reviewer is requested or materially improves confidence;
 consequential output may require independent evidence. Review remains a separate
 inspection of the final subject, even when the same session performs it.

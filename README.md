@@ -63,7 +63,7 @@ You do not need to remember skill names. Try:
 - “Remember this decision and where it came from.”
 - “Turn this workflow into a personal skill I can reuse.”
 
-AIOS includes [15 skills](docs/skills.md) for everyday work, setup, updates and
+AIOS includes [16 skills](docs/skills.md) for everyday work, setup, updates and
 keeping your context current. Before larger production work, AIOS selects the
 responsible workflow and continues in the current task by default. Delegate
 only when a separable result benefits from another capability, independent
@@ -76,11 +76,18 @@ instructions; unrelated code work does not need your personal context.
 
 ### Shared method, local expertise
 
-Spec, Build, Review and Ship come from the same 15-skill AIOS plugin in every
+Spec, Build, Review and Ship come from the same 16-skill AIOS plugin in every
 System and Project. Repository `AGENTS.md` supplies local requirements, checks
 and release facts; `.agents/skills/` contains only specialist methods. Technology
 selection and generic repository audits are conditional references in Spec and
 Review. No copied lifecycle, wrappers or pinned cache paths are needed.
+
+[Model selection](skills/aios-select-model/SKILL.md) uses current runtime and
+task evidence during Spec and before Build. New lead sessions normally start
+with the newest capable supported general model at high reasoning; concrete
+defaults stay in the local harness. The method preserves useful session context
+and asks only for a material decision or missing authority. No model inventory
+travels with your synced owner home.
 
 Open a System or Project and start a task normally. Its local instructions and
 specialist workflow are sufficient to begin; AIOS's shared methods are discovered
@@ -89,7 +96,7 @@ A directly opened task needs no lead/worker arrangement or personal-context
 preload. The repository's product remains independent of AIOS at runtime.
 
 ```text
-skills/          15 shared AIOS product skills for Codex and Pi
+skills/          16 shared AIOS product skills for Codex and Pi
 AGENTS.md        repository requirements and shared-method routes
 .agents/skills/  specialist-only shelf; no generic development skill copies
 ```

@@ -1,0 +1,403 @@
+[
+  {
+    "id": "routine-context",
+    "request": "Ret overskriften i README. Vi har allerede afklaret ordlyden her.",
+    "runtime": "Active: Atlas/high with a healthy useful context. Same-session switch exists. Atlas/low and Swift/medium also work. A switch and research add more work than this one-line edit; there is no task-quality gap. All routes use the authorized existing account.",
+    "expected": {
+      "ask": false,
+      "research": false,
+      "session": [
+        "stay"
+      ],
+      "apply_switch": false,
+      "write_inventory": false,
+      "write_defaults": false
+    }
+  },
+  {
+    "id": "new-lead-default",
+    "request": "Sæt min lokale standard for nye lead chats til den nyeste bedste model med højt reasoning.",
+    "runtime": "Supported native local default control exists and is authorized by this request. Current default: Prior/medium. Verified account routes: Prior supports low/medium/high; Atlas supports low/medium/high. Current official release evidence says Atlas is newest stable strongest general model; representative architecture/spec evidence supports it. Native readback is available after execution. No changes have been executed yet.",
+    "expected": {
+      "ask": false,
+      "model": [
+        "Atlas"
+      ],
+      "effort": [
+        "high"
+      ],
+      "write_defaults": true,
+      "write_inventory": false,
+      "apply_switch": false
+    }
+  },
+  {
+    "id": "bounded-build-downshift",
+    "request": "Spec er klar: udfør de 40 mekaniske omdøbninger og kør den aftalte kontrol. Vælg selv model og reasoning.",
+    "runtime": "Active Atlas/high. Current same-harness repeated task measurements meet the quality bar: Atlas/high consumes 22000 total tokens; Swift/medium consumes 5000 including tools/review/retries. Native in-session switch preserves all context, is authorized, and supports Swift/medium. Both routes are verified on the same authorized account. Spec evidence is from this task and remains current. No switch has been executed yet.",
+    "expected": {
+      "ask": false,
+      "research": false,
+      "model": [
+        "Swift"
+      ],
+      "effort": [
+        "medium"
+      ],
+      "session": [
+        "switch_here"
+      ],
+      "apply_switch": true,
+      "write_defaults": false,
+      "write_inventory": false
+    }
+  },
+  {
+    "id": "destination-runtime",
+    "request": "Kør den afgrænsede uafhængige kontrol med den interne worker på min anden maskine.",
+    "runtime": "Internal worker launch is explicitly authorized, with the same approved data/account boundary. Lead machine has Atlas/high. Destination discovery exposes only Cedar, supports the needed checks and has no reasoning parameter. Launch API accepts model but not effort. Exact destination root and read-only scope are established; current evidence proves the route sufficient. No sidebar task request.",
+    "expected": {
+      "ask": false,
+      "model": [
+        "Cedar"
+      ],
+      "effort": [
+        null
+      ],
+      "session": [
+        "worker"
+      ],
+      "launch_model_arg": [
+        "Cedar"
+      ],
+      "write_defaults": false,
+      "write_inventory": false,
+      "coordination": "orchestrator",
+      "after_startup": "coordinate"
+    }
+  },
+  {
+    "id": "missing-switch-control",
+    "request": "Analyser de vedhæftede billeder og fortsæt arbejdet her.",
+    "runtime": "Active Text/medium cannot receive images and there is no image-capable tool. A verified Vision/high route on the same authorized account can do it. Only the user can change the current model in the UI; the agent has no switch or worker control. No image analysis is possible on the active route. No change has occurred.",
+    "expected": {
+      "ask": false,
+      "model": [
+        "Vision"
+      ],
+      "session": [
+        "user_handoff"
+      ],
+      "apply_switch": false,
+      "write_defaults": false,
+      "write_inventory": false
+    }
+  },
+  {
+    "id": "explicit-unavailable",
+    "request": "Brug kun Nimbus med high til dette arbejde.",
+    "runtime": "Nimbus is absent from native account routes. Only Atlas/high is verified. No authorized way to install or access Nimbus. The user explicitly restricts model choice. No changes have occurred.",
+    "expected": {
+      "ask": true,
+      "session": [
+        "blocked"
+      ],
+      "apply_switch": false,
+      "launch_model_arg": [
+        null
+      ],
+      "write_defaults": false,
+      "write_inventory": false
+    }
+  },
+  {
+    "id": "offline-current-route",
+    "request": "Implementér den afklarede validering med de eksisterende værktøjer.",
+    "runtime": "Active Atlas/high is verified sufficient and authorized, with relevant context. Web discovery is offline and other runtime routes cannot be listed. No explicit alternative model or new-task request. Tools required for implementation and proof work normally.",
+    "expected": {
+      "ask": false,
+      "session": [
+        "stay"
+      ],
+      "apply_switch": false,
+      "write_defaults": false,
+      "write_inventory": false
+    }
+  },
+  {
+    "id": "sidebar-native-default",
+    "request": "Opret en ny task til den aftalte implementation.",
+    "runtime": "Native create_thread is callable and the request authorizes a new task. Its rules require omitting model unless the USER explicitly requests a specific model. User did not name model or effort. Configured new-task default is sufficient Atlas/high. The project and root are already verified. Current task evidence also recommends Atlas/high.",
+    "expected": {
+      "ask": false,
+      "session": [
+        "new_task"
+      ],
+      "launch_model_arg": [
+        null
+      ],
+      "write_defaults": false,
+      "write_inventory": false,
+      "coordination": "recipient",
+      "after_startup": "end_lead"
+    }
+  },
+  {
+    "id": "independent-reader",
+    "request": "Implementér ændringen her og brug en intern subagent til det uafhængige review.",
+    "runtime": "Active Atlas/high holds the accepted context and owns implementation. A read-only internal subagent is callable, sufficient and authorized. A sidebar create_thread tool also exists but requires explicit NEW task request. The requested internal review has concrete independence benefit. No new sidebar task was requested.",
+    "expected": {
+      "ask": false,
+      "session": [
+        "worker"
+      ],
+      "write_defaults": false,
+      "write_inventory": false,
+      "coordination": "orchestrator",
+      "after_startup": "coordinate"
+    }
+  },
+  {
+    "id": "benchmark-provider-gap",
+    "request": "Vælg den bedste løsning til denne kodeopgave. Kvaliteten skal holde, men spar samlede tokens hvor det giver mening.",
+    "runtime": "Current Atlas/high on authorized provider A is sufficient and has useful context. A fresh leaderboard ranks Nova on provider B higher, at a different harness/effort. Nova appears in a public catalog but no account access, tool compatibility or data authorization is known. No ability or permission to acquire provider B. Current authorized native routes are Atlas and Swift; no comparable evidence favors switching for this task.",
+    "expected": {
+      "ask": false,
+      "session": [
+        "stay"
+      ],
+      "apply_switch": false,
+      "write_defaults": false,
+      "write_inventory": false
+    }
+  },
+  {
+    "id": "changed-prebuild-scope",
+    "request": "Før Build: scopet er udvidet fra omdøbning til design af nye adgangsgrænser og recovery. Fortsæt selv med den rigtige model.",
+    "runtime": "The earlier Spec chose Swift/medium for mechanical edits, now active. New accepted scope changes consequences and uncertainty. Current official and same-harness task evidence supports Atlas/high for this work; Swift fails the quality bar for this task. Native in-session switch to Atlas/high is available and authorized, preserving context. No switch has occurred yet.",
+    "expected": {
+      "ask": false,
+      "model": [
+        "Atlas"
+      ],
+      "effort": [
+        "high"
+      ],
+      "session": [
+        "switch_here"
+      ],
+      "apply_switch": true,
+      "write_defaults": false,
+      "write_inventory": false
+    }
+  },
+  {
+    "id": "sync-portability",
+    "request": "Afklar denne større opgave og synk mit AIOS efter de eksisterende aftaler, så det kan bruges på min anden maskine.",
+    "runtime": "Current task has native runtime inventory and dated benchmark comparisons. Active Atlas/high is sufficient for Spec. Existing Sync authority covers durable owner context only, excluding native configuration. Destination machine's models/accounts are unknown. There is no default-change request.",
+    "expected": {
+      "ask": false,
+      "session": [
+        "stay"
+      ],
+      "apply_switch": false,
+      "write_defaults": false,
+      "write_inventory": false
+    }
+  },
+  {
+    "id": "explicit-default-effort",
+    "request": "Min standard for nye lead chats skal være Atlas med xhigh.",
+    "runtime": "The current local default is Atlas/high. Native local default control and readback exist. Atlas supports medium, high and xhigh on the authorized existing account. No change has occurred. No active-session switch was requested. The shared method uses a general high-reasoning starting preference.",
+    "expected": {
+      "ask": false,
+      "model": [
+        "Atlas"
+      ],
+      "effort": [
+        "xhigh"
+      ],
+      "write_defaults": true,
+      "write_inventory": false,
+      "apply_switch": false
+    }
+  },
+  {
+    "id": "creative-judgment-remains",
+    "request": "Spec er READY for en ny visuel identitet. Fortsæt arbejdet her med relevant designmetode.",
+    "runtime": "Active Atlas/xhigh holds the brand rationale. The Spec settled audience and constraints, but composition, typography, hierarchy and visual direction must still be explored and evaluated together. A cheaper Swift/max is available; current evidence shows it fails this judgment bar. Atlas/xhigh is sufficient. No separable production or independence benefit exists. No new-task request.",
+    "expected": {
+      "write_defaults": false,
+      "write_inventory": false,
+      "ask": false,
+      "session": "stay",
+      "model": "Atlas",
+      "effort": "xhigh",
+      "coordination": "current_task",
+      "apply_switch": false
+    }
+  },
+  {
+    "id": "mechanical-content-delegation",
+    "request": "Spec og tone er godkendt. Lad en intern worker anvende skabelonen på de 60 allerede godkendte tekster; du skal gennemgå handback.",
+    "runtime": "Active Atlas/xhigh. Approved content is immutable and every placement has a deterministic check. Internal worker Swift/max is verified sufficient and authorized. Repeated same-task evidence includes transfer, review and repair and favors this route. No in-session switch exists; no sidebar request. The caller retains final acceptance.",
+    "expected": {
+      "write_defaults": false,
+      "write_inventory": false,
+      "ask": false,
+      "session": "worker",
+      "coordination": "orchestrator",
+      "model": "Swift",
+      "effort": "max",
+      "launch_model_arg": "Swift",
+      "after_startup": "coordinate"
+    }
+  },
+  {
+    "id": "ship-new-judgment",
+    "request": "Review var PASS. Under den aftalte levering er der fundet inkompatible ændringer i destinationen; fortsæt inden for den eksisterende opgave.",
+    "runtime": "Active Swift/max was selected for exact delivery. Readback shows the reviewed migration no longer preserves required behavior; choosing recovery changes the reviewed artifact. Current evidence says Atlas/xhigh meets the new judgment bar and Swift does not. Authorized same-session switch preserves state. Publication authority covers only the unchanged reviewed artifact; no authority for revised delivery yet.",
+    "expected": {
+      "write_defaults": false,
+      "write_inventory": false,
+      "ask": false,
+      "session": "switch_here",
+      "model": "Atlas",
+      "effort": "xhigh",
+      "apply_switch": true,
+      "reassess_judgment": true,
+      "coordination": "current_task"
+    }
+  },
+  {
+    "id": "whole-task-authorized",
+    "request": "Hvis spec’et nu kan stå alene, så start en ny task med Swift max til hele resten og afslut dit arbejde her. Jeg tager den videre der.",
+    "runtime": "Spec is accepted, complete and portable. Remaining work is bounded with explicit checks and independent Review instructions; this caller adds no continuing value. Verified Swift/max meets the task bar with favorable full-task evidence. Native create_thread supports it and requires explicit NEW-task and explicit-model requests, both satisfied here. Project and destination are verified. No task has launched yet. Do not perform launch in this simulation.",
+    "expected": {
+      "write_defaults": false,
+      "write_inventory": false,
+      "ask": false,
+      "session": "new_task",
+      "model": "Swift",
+      "effort": "max",
+      "launch_model_arg": "Swift",
+      "coordination": "recipient",
+      "prepare_prompt": true,
+      "after_startup": "end_lead"
+    }
+  },
+  {
+    "id": "whole-task-model-not-authorized",
+    "request": "Start en ny task til resten af den afklarede opgave, hvis det giver den aftalte besparelse.",
+    "runtime": "The accepted Spec fits Swift/max; task evidence supports this cheaper full transfer. Native create_thread requires an explicit USER-named model argument. The user has never named a model for this task; the Swift suggestion was the assistant's alone. Omitting model launches the current expensive Atlas/xhigh default and defeats the stated savings condition. No in-session switch or internal worker route meets the requested full-transfer condition. No launch has occurred.",
+    "expected": {
+      "write_defaults": false,
+      "write_inventory": false,
+      "ask": true,
+      "session": ["user_handoff", "blocked"],
+      "launch_model_arg": null,
+      "prepare_prompt": true,
+      "coordination": [
+        "user",
+        "unresolved"
+      ],
+      "after_startup": "not_launching"
+    }
+  },
+  {
+    "id": "uncertain-transfer-tradeoff",
+    "request": "Se på spec’et og vurder, om jeg bør tage resten i en billigere ny chat. Hvis valget er uklart, giv mig et klart forslag og en prompt, så jeg kan vælge.",
+    "runtime": "Active Atlas/xhigh. Swift/max is accessible but available task evidence cannot resolve whether unresolved editorial judgment meets the owner's bar there. Further factual lookup cannot settle the owner's unknown tradeoff between accepting editorial rework and spending more here. Accepted Spec: draft a 500-word public article for first-time managers from two supplied approved interview summaries; preserve quotations and identify unsupported claims. Do not produce the article yet. No actual launch requested.",
+    "expected": {
+      "write_defaults": false,
+      "write_inventory": false,
+      "ask": true,
+      "session": "user_handoff",
+      "coordination": [
+        "user",
+        "unresolved"
+      ],
+      "prepare_prompt": true,
+      "after_startup": "not_launching"
+    }
+  },
+  {
+    "id": "portable-research-spec",
+    "request": "Gør kun mit researchbrief klar. Jeg vil selv starte rapporten i en anden chat; giv mig prompten.",
+    "runtime": "Accepted Spec: compare heat-pump service models for Danish housing associations with 20–80 homes; evidence since 2023; distinguish manufacturer claims from independent sources; cite primary sources; deliver a 1500-word Danish report with comparison table, uncertainties and three follow-up questions. Full report is not started. These public details are all the context needed; no attachment. A deep-research skill and browser are available here. Destination model/account is unknown. No tool or provider use is needed to prepare this brief.",
+    "expected": {
+      "write_defaults": false,
+      "write_inventory": false,
+      "ask": false,
+      "research": false,
+      "session": "user_handoff",
+      "coordination": "user",
+      "prepare_prompt": true,
+      "after_startup": "not_launching",
+      "apply_switch": false
+    }
+  },
+  {
+    "id": "portable-file-analysis-spec",
+    "request": "Lav kun en brugbar opgavebeskrivelse til analysen, så tager jeg selv filerne og prompten videre til Gemini.",
+    "runtime": "Two synthetic files are supplied for planning: sales.csv columns order_id,date,customer_id,gross_usd,refund_usd; customers.csv columns customer_id,segment. Accepted definitions: net=gross_usd-refund_usd; one row per order; UTC month. Accepted questions: monthly net sales and top 3 segments by net sales. Check missing customer matches and duplicate orders, report excluded rows, and produce a chart plus a reproducible calculation description. All files may be shared by the user. Gemini has not received them. Their full contents are unnecessary for Spec and no calculation has been run. There is a local data-analysis tool but the user wants preparation only; destination capabilities are unverified.",
+    "expected": {
+      "write_defaults": false,
+      "write_inventory": false,
+      "ask": false,
+      "research": false,
+      "session": "user_handoff",
+      "coordination": "user",
+      "prepare_prompt": true,
+      "after_startup": "not_launching",
+      "apply_switch": false
+    }
+  },
+  {
+    "id": "portable-newsletter-spec",
+    "request": "Gør spec og prompt klar til mit newsletter. Jeg vil selv bruge den videre og skrive udkastet i ChatGPT.",
+    "runtime": "Accepted brief: audience solo consultants; Danish 450–600 words; explain the practical lesson that a weekly retrospective exposed repeated client onboarding questions. Approved facts: three recurring questions were collected for four weeks; a shared welcome note now answers them; no measured time-saving exists. Voice: first person, calm, concrete, no hype. One useful reader action at the end. No client names, invented numbers or publication. These facts and voice requirements are complete in this fixture; other local newsletter skill files are inaccessible to the recipient. ChatGPT access is the user's own next action. Do not write the issue now.",
+    "expected": {
+      "write_defaults": false,
+      "write_inventory": false,
+      "ask": false,
+      "research": false,
+      "session": "user_handoff",
+      "coordination": "user",
+      "prepare_prompt": true,
+      "after_startup": "not_launching",
+      "apply_switch": false
+    }
+  },
+  {
+    "id": "explicit-production-here",
+    "request": "Skriv hele den godkendte artikel her nu; brug vores aftalte skriveproces.",
+    "runtime": "Active Atlas/xhigh is sufficient and has all accepted material. The user explicitly wants actual production in this task, not a brief or another chat. Editorial decisions remain coupled to the accepted voice. A portable handoff is possible but has no demonstrated benefit and was not requested. No separable worker benefit exists.",
+    "expected": {
+      "write_defaults": false,
+      "write_inventory": false,
+      "ask": false,
+      "research": false,
+      "session": "stay",
+      "coordination": "current_task",
+      "prepare_prompt": false,
+      "apply_switch": false
+    }
+  },
+  {
+    "id": "equivalent-runtime-role",
+    "request": "Spec’et er klart. Fortsæt på denne maskine med en passende model til de resterende analysevalg.",
+    "runtime": "Destination runtime only has Cedar with no effort control. Cedar has verified analysis tools, adequate context, current evidence meeting the residual judgment bar and the authorized existing account. The source used Atlas/xhigh; there is no reason to recreate its effort label. Current Cedar session has the accepted handoff and can finish. No new-task request.",
+    "expected": {
+      "write_defaults": false,
+      "write_inventory": false,
+      "ask": false,
+      "research": false,
+      "session": "stay",
+      "model": "Cedar",
+      "effort": null,
+      "coordination": "current_task",
+      "apply_switch": false
+    }
+  }
+]

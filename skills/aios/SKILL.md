@@ -54,7 +54,8 @@ Choose the smallest triggered route: [business/System routing](references/routin
 [Review](../aios-review-work/SKILL.md), authorized [Ship](../aios-ship-work/SKILL.md),
 [Maintain Context](../aios-maintain-context/SKILL.md), [Manage Skills](../aios-manage-skills/SKILL.md),
 [Check](../aios-check/SKILL.md), [Update](../aios-update/SKILL.md),
-[Onboard](../aios-onboard/SKILL.md), [Orchestrate workers](../aios-orchestrate-workers/SKILL.md),
+[Onboard](../aios-onboard/SKILL.md), [Select model](../aios-select-model/SKILL.md),
+[Orchestrate workers](../aios-orchestrate-workers/SKILL.md),
 or [improvement triage](../aios-triage-improvement/SKILL.md). Read its body
 first, then only a reference whose stated condition applies. Maintain Context is
 for durable context changes or configured sync; a read does not select its write
@@ -62,8 +63,8 @@ procedure. Spec, Build, Review and Ship are shared plugin methods also used dire
 independent repositories, without personal preload. Specialist bodies stay
 with their Systems or Projects; Global Skills remain independently owned.
 Do not copy or wrap shared phases in local skill shelves. The current task is
-the default execution mode; a new session needs a concrete delegation benefit
-or an explicit request, as defined in the shared lifecycle.
+the default; delegation and whole-task transfer follow the shared lifecycle
+and native authorization rules.
 
 Explaining or naming a workflow is a small answer, not executing it. Read an
 explicitly required path directly rather than rediscovering it with an inventory.

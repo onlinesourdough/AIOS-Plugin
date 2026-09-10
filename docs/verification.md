@@ -9,6 +9,28 @@ python3 tests/context-footprint.py
 python3 tests/continuity-rehearsal.py
 ```
 
+For model-selection changes, prepare synthetic decision probes with
+`python3 tests/model-selection-rehearsal.py prepare /absolute/scratch/path`.
+Run the generated prompt and schema through an authorized native evaluator in
+an isolated read-only session, then use
+`python3 tests/model-selection-rehearsal.py score /absolute/scratch/path/result.json`.
+`prepare --baseline REF` supplies the same cases against an existing source
+revision. The helper never launches a model or spends account resources itself.
+Expected decisions are withheld from the evaluator; inspect explanations as
+well as scored fields. Portable-brief cases return actual prompts for inspection
+of accepted facts, attachments, judgment and proof without doing the production.
+Cases distinguish retained orchestration, whole-task transfer, user-owned
+continuation, explicit production here and judgment still required after Spec/Review.
+Fixtures supply runtime evidence, so this measures
+instruction decisions, not live discovery, switching, installs or task savings.
+See the [model-selection record](lifecycle-model-selection.md) for actual results.
+Performance claims and authorized comparisons also select the skill's measurement
+reference. `context-footprint.py` reports that conditional extra read separately;
+the older legacy journeys have no matched measurement route. Portable/whole-task
+transfer similarly adds the conditional continuation reference and excludes worker
+orchestration when the caller retains no role. Count selected references when making
+a claim about that route, rather than treating the default path as its full cost.
+
 `validate.py` checks native declarations, package inventory, skill frontmatter,
 relative links, one shared Codex/Pi skill source, the complete legacy-route map,
 discovery contracts, owner-template isolation, external-owner coupling,

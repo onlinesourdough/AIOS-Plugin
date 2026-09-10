@@ -29,8 +29,8 @@ owner concept. A schedule or automation alone does not justify a System.
 Do not create a Project per content item or a wrapper per repository.
 
 Before substantive production, record a concrete selection in the existing task
-contract: outcome, execution owner and canonical root, primary route, worker or
-lead execution with reason, and expected result/proof. Reuse an accepted
+contract: outcome, execution owner and canonical root, primary route, who continues
+and why, and expected result/proof. Reuse an accepted
 selection; do not add a separate artifact or repeat this for small answers.
 
 Read only the relevant registry. A registered URL is a route, not an installed
@@ -43,12 +43,15 @@ a deliberate existing external path.
 Do not substitute or implement the capability in shared owner context, or seed
 an existing repository. New ownership uses [creation](creation.md).
 
-Use [lifecycle](lifecycle.md) to choose execution. Continue in the current task
-by default after verifying each selected repository root and local instructions.
-Independent ownership does not require another session. When delegation has a
-concrete benefit, the user requests delegation or a new task, or a worker needs
-recovery, use [Orchestrate workers](../../aios-orchestrate-workers/SKILL.md).
-It prepares an actual handoff; it does not authorize silent sidebar creation. Local truth owns implementation and proof;
+Use [lifecycle](lifecycle.md) for execution. Before costly specialist production,
+Spec uses [Select model](../../aios-select-model/SKILL.md) to assess remaining
+judgment and continuation. A portable brief can be the selected result; preparation
+does not invoke the full research, analysis or content workflow. For delegated
+execution with retained caller responsibility, use
+[Orchestrate workers](../../aios-orchestrate-workers/SKILL.md), also for worker recovery.
+Otherwise continue here or follow Select Model's whole-task handoff. Verify roots
+and local instructions before execution; no route authorizes silent sidebar creation.
+Local truth owns implementation and proof;
 AIOS stores only routing and genuinely shared knowledge. Existing repository work
 begins locally without automatically reading owner context. Expand only for a
 named gap, to authorized relevant sources in the correct account. Brand labels

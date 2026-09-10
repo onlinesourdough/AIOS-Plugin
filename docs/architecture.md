@@ -6,7 +6,7 @@ worker service, permission system, or client-data store.
 
 | Boundary | Responsibility |
 | --- | --- |
-| `.codex-plugin/`, `package.json`, `assets/`, `skills/` | Native metadata and the 15 shipped product skills |
+| `.codex-plugin/`, `package.json`, `assets/`, `skills/` | Native metadata and the 16 shipped product skills |
 | `.agents/plugins/marketplace.json` | Codex marketplace entry pointing at this repository root |
 | `AGENTS.md`, optional `.agents/skills/` | Local requirements and specialist methods; no generic lifecycle copies |
 | Owner home, normally `~/.AIOS` | Client-controlled context, decisions, connections, and personal skills |
@@ -42,6 +42,13 @@ owns upload/restore consent and no-overwrite staging.
 Worker orchestration and improvement triage are conditional instructions. They
 do not create a runtime, external authority, or background watcher. Optional
 Global Skills remain independently owned and are not copied into AIOS.
+Select Model assesses judgment remaining after Spec/Review, including choices
+still made during design, content production or Ship. It owns model/effort and
+continuation suitability: stay, switch, delegate or transfer. Orchestrate Workers
+owns delegated execution only when the caller retains coordination/acceptance.
+Select Model's conditional handoff reference owns user-ready portable prompts
+and authorized whole-task startup followed by the former lead's exit. It carries
+unfinished Review/delivery forward and supplies no automatic launch authority.
 `setup-guardrails` is an optional Global capability selected only when an
 owner expressly wants local guardrails for autonomous use; it is not packaged,
 installed, trusted, configured, or active by implication. Onboard and Manage

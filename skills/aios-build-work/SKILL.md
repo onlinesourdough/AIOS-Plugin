@@ -10,6 +10,12 @@ contract. Return to Spec only for a material gap. Deliver the whole authorized
 result through implementation, relevant verification, Review and requested Ship.
 A small mechanical edit needs its scoped diff and affected check.
 
+Before implementation, use [Select model](../aios-select-model/SKILL.md) to
+reconcile the Spec decision with the accepted work and current runtime. Reuse
+current task evidence; if Build starts from an accepted contract without a
+selection, make that proportionate assessment now. Continue on a sufficient
+authorized route without adding a routine confirmation.
+
 Use the [shared lifecycle](../aios/references/lifecycle.md) before substantive
 implementation and on scope change. Reuse the current requirements, goal
 authorization and evidence; reopen affected completed items. Conditional
@@ -20,10 +26,10 @@ root, branch, local AGENTS, accepted inputs and available tools before mutation.
 Use that repository's specialist workflow and local proof/recovery contract;
 do not preload personal owner context or look for a second local Build skill.
 Owner-level work uses [routing](../aios/references/routing.md) to select its owner.
-Use [Orchestrate workers](../aios-orchestrate-workers/SKILL.md) only after
-delegation has a concrete advantage, for an explicitly requested new task, or
-for recovery of an existing worker. Repository ownership alone does not require
-delegation. Keep one writer for each overlapping change.
+Use [Orchestrate workers](../aios-orchestrate-workers/SKILL.md) for justified
+delegation with retained caller responsibility or worker recovery. Select Model
+owns whole-task transfer; repository ownership alone requires no delegation.
+Keep one writer for each overlapping change.
 
 ## Implement and verify
 
