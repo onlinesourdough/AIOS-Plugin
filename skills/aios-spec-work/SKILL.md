@@ -26,7 +26,7 @@ technical truth, constraints and proof. Do not load personal owner context or
 look for another local Spec skill. Owner-level selection uses
 [routing](../aios/references/routing.md). Continue here by default. Use
 [Orchestrate workers](../aios-orchestrate-workers/SKILL.md) for justified delegation
-with retained caller responsibility; Select Model owns whole-task transfer.
+with retained caller responsibility; the shared lifecycle owns whole-task handoff.
 
 Keep the existing working stack. For a new or materially changed technology
 decision, use [technology selection](references/technology.md) after the
@@ -36,10 +36,12 @@ failure visibility, operation and recovery only where material to the delta.
 Preserve a developed brief; a rough input may become a compact local contract
 without asking the owner for a formal document.
 
-During substantive Spec, use [Select model](../aios-select-model/SKILL.md) once
-task requirements are clear. Carry its model/effort and session recommendation,
-current evidence and any real unresolved decision into READY. It owns runtime
-discovery and proportionate selection; this is not a mandatory approval gate.
+During substantive Spec, reconcile the shared task-result decision once
+requirements are clear. For model-executed work use
+[Select model](../aios-select-model/SKILL.md) for model/effort suitability; carry
+its evidence and material gaps into READY. It does not own the deliverable or
+continuation decision. A requested brief needs only the relevant preparation,
+sources and specialist guidance, followed by the lifecycle's usable handoff.
 
 For sensitive data, authentication/authorization, external interfaces,
 privileged automation or deployment, use the conditional
@@ -50,9 +52,9 @@ When the proposed change may materially alter a real-world outcome, read
 [Risky Changes](../aios-risky-changes/SKILL.md) before READY and carry its
 compact assessment into the contract. Routine edits do not select it.
 
-Return exactly READY, REVISE or BLOCKED. READY contains a compact Build
+Return exactly READY, REVISE or BLOCKED. READY contains a compact execution/handoff
 contract: outcome; proof and measurement owner; relevant context pointers;
-exact repository root; scope/non-goals; authority and risk; dependencies
+repository root when applicable; scope/non-goals; authority and risk; dependencies
 and immutable handoffs; expected evidence; operation/recovery and Ship scope;
 current goal representation and authority, stable identity, todo, accepted
 contract revision, state, latest evidence/blocker and exact next action.

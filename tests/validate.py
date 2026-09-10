@@ -301,10 +301,17 @@ def validate(root=ROOT):
             "AIOS-Plugin/blob/main/docs/architecture.md" in canonical_text,
             "canonical source isolation")
     curation = (skill_root / "aios-maintain-context/references/curation.md").read_text()
-    require("Customer or other externally owned documentation" in curation and
-            "Reading\nMEMORY alone does not invoke this procedure or grant a write" in curation and
+    require("Keep facts in one canonical source" in curation and
+            "A read of MEMORY alone neither invokes this procedure nor grants write authority" in curation and
             "recorded or standing authority" in curation,
             "memory read/write separation")
+    continuation = skill_root / "aios/references/continuation.md"
+    require(continuation.is_file() and
+            not (skill_root / "aios-select-model/references/continuation.md").exists() and
+            continuation.resolve() in set(link_targets(skill_root / "aios/references/lifecycle.md")) and
+            (skill_root / "aios-maintain-context/references/curation.md").resolve()
+            in set(link_targets(skill_root / "aios-onboard/references/setup.md")),
+            "single continuation and context framework owners")
 
     public_overview = root / "docs/public/aios.md"
     require(public_overview.is_file(), "missing public AIOS overview source")

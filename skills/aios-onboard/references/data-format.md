@@ -1,6 +1,6 @@
 # Owner format contract
 
-AIOS 0.4.x reads/writes owner format 1. `AIOS_FORMAT` is the integer `1` on one
+AIOS supports owner format 1. `AIOS_FORMAT` is the integer `1` on one
 line; it is not the product release. Files remain plain Markdown, not a rigid
 business database. Unknown custom files/fields belong to the owner and survive
 all updates. Before any owner-data mutation, including maintenance, check the

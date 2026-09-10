@@ -27,8 +27,8 @@ Use that repository's specialist workflow and local proof/recovery contract;
 do not preload personal owner context or look for a second local Build skill.
 Owner-level work uses [routing](../aios/references/routing.md) to select its owner.
 Use [Orchestrate workers](../aios-orchestrate-workers/SKILL.md) for justified
-delegation with retained caller responsibility or worker recovery. Select Model
-owns whole-task transfer; repository ownership alone requires no delegation.
+delegation with retained caller responsibility or worker recovery. The shared
+lifecycle owns whole-task handoff; repository ownership alone requires no delegation.
 Keep one writer for each overlapping change.
 
 ## Implement and verify

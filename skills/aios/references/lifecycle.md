@@ -8,6 +8,24 @@ pointers may persist separately. The lead's default model remains the user's con
 
 ## Shared method and execution
 
+Before costly production, select the useful result this conversation will deliver,
+its proof, who continues and when this task's part is done. Reuse the current
+contract; no extra artifact or gate for a small answer. Consider a direct answer,
+a usable Spec/handoff or completed production from the user's intent, relevant
+context, tools, quality, effort and responsibility. Honor explicit execution or
+preparation requests. A cheaper route cannot silently narrow the accepted outcome.
+
+Select continuation here, delegated with retained acceptance, or transferred.
+Spec clarifies it as requirements settle. Inspect enough sources/guidance to make preparation
+usable before choosing costly research, analysis or content production. Domain,
+task size or phase alone selects no destination. Resolve only a material remaining
+choice; otherwise continue under existing authority.
+
+[Select Model](../../aios-select-model/SKILL.md) supplies model/reasoning suitability
+for that work. Its capability/cost evidence may reopen this decision; it does not
+define the deliverable or take over responsibility for continuation. Keep source
+ownership distinct from the app, harness or session doing the work.
+
 Spec, Build, Review and Ship are shared AIOS plugin skills. The repository's
 AGENTS, specialist skills, requirements, checks and recovery records supply
 local truth. Resolve shared skills through the current harness; do not copy,
@@ -34,9 +52,10 @@ advantage is claimed for either execution mode.
 
 Delegation with retained caller coordination/acceptance selects
 [Orchestrate workers](../../aios-orchestrate-workers/SKILL.md).
-[Select model](../../aios-select-model/SKILL.md) owns whole-task transfer and
-user-owned continuation, including a portable Spec/prompt. A new-task request
-alone does not select orchestration; native authorization rules still apply.
+[User-owned continuation and whole-task handoff](continuation.md) belong to this
+shared lifecycle. Load that procedure only for a selected/requested handoff;
+it owns the usable prompt, receiving context and supported transfer. A new-task
+request alone does not select orchestration; native authorization rules still apply.
 Otherwise stay here and do not load orchestration. Prefer a scoped review pass in the same
 task unless a distinct reviewer is requested or materially improves confidence;
 consequential output may require independent evidence. Review remains a separate

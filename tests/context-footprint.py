@@ -74,6 +74,7 @@ CURRENT_JOURNEYS = {
     "codex-package-and-bridge-pre-verification": (
         "skills/aios-onboard/SKILL.md",
         "skills/aios-onboard/references/setup.md",
+        "skills/aios-maintain-context/references/curation.md",
         "skills/aios-onboard/references/adapters.md",
         "skills/aios-onboard/references/adapter-codex.md",
         "skills/aios-onboard/references/codex-tracking-acceptance.md",
@@ -82,6 +83,7 @@ CURRENT_JOURNEYS = {
     "codex-package-and-bridge-verification": (
         "skills/aios-onboard/SKILL.md",
         "skills/aios-onboard/references/setup.md",
+        "skills/aios-maintain-context/references/curation.md",
         "skills/aios-onboard/references/adapters.md",
         "skills/aios-onboard/references/adapter-codex.md",
         "skills/aios-onboard/references/codex-tracking-acceptance.md",
@@ -258,7 +260,7 @@ def main():
     measurement = ROOT / "skills/aios-select-model/references/measurement.md"
     print(f"conditional_model_measurement_extra_bytes={measurement.stat().st_size}")
     print("NOTE: performance-claim/comparison tasks add that reference; no matched legacy measurement path is claimed")
-    handoff = ROOT / "skills/aios-select-model/references/continuation.md"
+    handoff = ROOT / "skills/aios/references/continuation.md"
     print(f"conditional_whole_task_handoff_extra_bytes={handoff.stat().st_size}")
     print("NOTE: portable/whole-task transfer adds that reference, not worker orchestration; no matched legacy transfer path is claimed")
     print("PASS: bounded skill bodies and representative positive/negative selected routes")

@@ -37,6 +37,10 @@ When no competing concrete task exists, trigger onboarding for a new or
 demonstrably incomplete owner home. Do not interrupt unrelated work, restart
 established onboarding, create a second home or infer installation authority.
 
+Use Maintain Context's framework through setup for source routes and minimal
+local gap filling. Verify sources in the receiving account when a home moves;
+copied references and earlier availability do not prove current access.
+
 Keep owner routing in the thin global bridge, not an owner-home AGENTS.md that
 would preload personal context into nested repository tasks.
 Create owner files from the supplied neutral assets with ordinary file tools,

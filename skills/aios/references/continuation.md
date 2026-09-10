@@ -1,8 +1,9 @@
 # User-owned continuation or whole-task transfer
 
-Use only when selecting who continues, preparing a requested portable brief or
-transferring the whole task. Select Model owns this path. Orchestrate Workers
-applies only when the current caller retains coordination and acceptance.
+Use only for a selected/requested portable brief or whole-task transfer under the
+[shared task-result decision](lifecycle.md). That lifecycle owns continuation;
+[Select Model](../../aios-select-model/SKILL.md) supplies model/reasoning evidence.
+Orchestrate Workers applies only when the caller retains coordination and acceptance.
 
 ## Choose proportionately
 

@@ -1,5 +1,9 @@
 # Runtime model selection — 2026-09-10
 
+The later [context and task-result revision](lifecycle-context-routing.md)
+supersedes this record's continuation ownership. Earlier acceptance and usage
+remain historical evidence for their exact sources, not the revised entry route.
+
 Accepted contract: ship one shared instruction skill that assesses model,
 reasoning and session during substantive Spec and before Build. Discover the
 current runtime and use relevant current evidence proportionately. Quality is

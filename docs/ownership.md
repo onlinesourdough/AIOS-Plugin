@@ -5,6 +5,8 @@
 | Product instructions, declarations, and neutral assets | AIOS maintainer in this repository |
 | Implementation and local verification | Current repository task or deliberately selected worker |
 | Requirement tracking SOP | `skills/aios/references/lifecycle.md` for all phases and repository tasks; local records hold evidence, not a copied procedure |
+| Task deliverable, continuation and whole-task handoff | Shared AIOS lifecycle; Spec clarifies the contract and Select Model supplies model/reasoning evidence |
+| Context framework, source routes and unique local knowledge | Maintain Context's curation procedure; Onboard applies it and verifies useful source-routed work |
 | Consequential-change assessment | `aios-risky-changes`; conditionally routed by Spec and Review |
 | Acceptance and delivery instruction | Reviewer bound to an exact artifact; independent caller acceptance for delegated work |
 | Private Git destination and release | Authorized AIOS maintainer or Ship worker |

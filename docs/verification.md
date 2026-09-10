@@ -64,8 +64,8 @@ These are UTF-8 byte counts and explicit bytes/4 token estimates, not native
 runtime token telemetry. Populated owner context is excluded: the accepted
 snapshot has only template placeholders, not a populated historical owner
 state, and task context varies by outcome. Target-repository AGENTS instructions
-are also excluded from both sides. The neutral current AIOS.md plus MEMORY.md
-assets are 1,016 bytes, but no before/after owner-context saving is claimed.
+are also excluded from both sides. Read the command's current neutral AIOS.md plus
+MEMORY.md byte count; it is not a populated owner's context-saving measurement.
 Behavior remains separately checked by route/link assertions, positive and
 negative scenarios, and current source validation; fewer skills alone is not a
 performance result.
@@ -149,3 +149,53 @@ The source baseline demonstrates the duplicate methods and mandatory worker
 rules; it is not a matched native performance experiment. Reduced copying and
 selective delegation remove those instruction causes. Actual token savings,
 long-session quality and behavior across future tasks remain workload-dependent.
+
+
+## Context and task-result routing (0.6.0)
+
+Prepare ordinary-entry fixtures with
+`python3 tests/entry-routing-rehearsal.py /absolute/scratch/path` or add
+`--baseline REF` for a matched existing revision. This author-only helper creates
+synthetic owner/source/repository files and a read-only package snapshot. It
+never starts a model, alters a real setup or preloads skill bodies. Run ordinary
+`prompt.txt` input with native skill discovery and the thin `bridge.txt` boundary;
+isolate ambient global context and skill registrations per invocation. Record
+native selected reads, artifact mutations, source hashes, final answers, usage
+receipts, timeouts and provider errors. Tool catalogs alone prove no behavior.
+
+The 2026-09-10 bounded Codex runs exercised cold local onboarding plus a portable
+research brief, migrated source identity with a same-title decoy, changed-source
+freshness, explicit analysis completion and independent repository isolation.
+Onboarding exceeded the operator's 240-second bound on both the 0.5.0 baseline
+and 0.6.0 candidates. Local artifacts were produced; matching fresh-session
+continuations verified them and completed preparation. This is interrupted and
+resumed execution, not an uninterrupted onboarding PASS or speed comparison.
+The final context keeps source routes and the unique study-time preference;
+current source-owned operational values remain external. The actual portable
+prompt preserves service, audience, sources, caveats and the receiving next step
+without performing the market study.
+
+An initial migration probe retained a superseded operational copy as historical.
+The curation contract was tightened and the final-source rerun removed it,
+kept unique knowledge/authority and used the verified migration mapping. A later
+fresh run returned the operator-updated source value without changing files.
+The analysis returned total net 300 (Studio 140; Workshop 160), no missing
+customer IDs or duplicate order IDs. The repository run changed only app.py,
+passed the supplied checks and read no owner context. Those last two runs used
+an earlier candidate; neither selected the two later changed references
+(curation and Spec readiness), so their exercised paths are unchanged.
+
+Native discovery exposed 16 unique AIOS skills in Codex and Pi. Pi's baseline
+model request failed with an expired authentication token, both offline and on
+a supported normal-start retry. No behavioral Pi comparison is claimed; its
+zero-valued error usage is unknown, not zero cost. Native auth readiness alone
+was insufficient. No auth store was read/copied or login reset attempted.
+
+The four maintained source checks and affected skill validators pass. Existing
+selected-read ceilings are unchanged and now include mandatory context curation
+for new-home routes; conditional continuation remains separately counted.
+The old 24-case preloaded decision batch was not rerun for this revision and
+cannot substitute for these ordinary-entry observations. Exact source identity,
+independent Review and native adoption are recorded separately. See the
+[lifecycle record](lifecycle-context-routing.md). Synthetic adapter access does
+not prove live Notion, provider authentication, desktop cutover or future savings.

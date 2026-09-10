@@ -1,6 +1,9 @@
 # Owner context
 
 Current focus: not yet recorded. Capture only what helps the current task.
+Keep this an orientation and route index. External facts stay at their sources;
+local context fills useful gaps with short owner-sourced facts. Read changing
+facts when needed; a recorded link or access state is not a freshness guarantee.
 
 This configured folder is the owner-data home even when Git-backed. Check
 AIOS_FORMAT before any owner-data write; unsupported/malformed stays read-only.

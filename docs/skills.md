@@ -17,7 +17,7 @@ explicit selection uses its name. Repository development methods in
 | [aios-orchestrate-workers](../skills/aios-orchestrate-workers/SKILL.md) | Prepare and recover delegated workers when the caller retains coordination and acceptance |
 | [aios-risky-changes](../skills/aios-risky-changes/SKILL.md) | Assess consequential changes proportionately |
 | [aios-review-work](../skills/aios-review-work/SKILL.md) | Independently accept or revise substantive work |
-| [aios-select-model](../skills/aios-select-model/SKILL.md) | Assess remaining judgment, select model/reasoning and who continues; own portable handoff or authorized whole-task transfer |
+| [aios-select-model](../skills/aios-select-model/SKILL.md) | Assess remaining judgment and select model/reasoning for the accepted work; return capability/cost evidence to the shared task decision |
 | [aios-ship-work](../skills/aios-ship-work/SKILL.md) | Deliver an exactly reviewed result under authority |
 | [aios-spec-work](../skills/aios-spec-work/SKILL.md) | Resolve a substantive AIOS work contract |
 | [aios-triage-improvement](../skills/aios-triage-improvement/SKILL.md) | Route a concrete underlying improvement signal |

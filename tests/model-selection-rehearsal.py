@@ -12,7 +12,7 @@ CASES = ROOT / "tests/fixtures/model-selection-cases.json"
 SOURCES = [
     "skills/aios-select-model/SKILL.md",
     "skills/aios-select-model/references/measurement.md",
-    "skills/aios-select-model/references/continuation.md",
+    "skills/aios/references/continuation.md",
     "skills/aios/references/lifecycle.md",
     "skills/aios-spec-work/SKILL.md",
     "skills/aios-build-work/SKILL.md",
@@ -46,8 +46,12 @@ def prepare(destination, baseline):
         if baseline:
             result = subprocess.run(["git", "show", f"{baseline}:{relative}"], cwd=ROOT,
                                     text=True, capture_output=True)
+            if result.returncode and relative == "skills/aios/references/continuation.md":
+                # Before shared ownership, the same conditional procedure lived here.
+                result = subprocess.run(["git", "show", f"{baseline}:skills/aios-select-model/references/continuation.md"],
+                                        cwd=ROOT, text=True, capture_output=True)
             if result.returncode:
-                if relative.startswith("skills/aios-select-model/"):
+                if relative.startswith("skills/aios-select-model/") or relative.endswith("/continuation.md"):
                     continue  # Selection did not exist in the baseline.
                 raise RuntimeError(result.stderr)
             content = result.stdout

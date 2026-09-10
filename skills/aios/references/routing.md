@@ -28,10 +28,9 @@ Resources are references, Archives recovery state, Skills methods; none adds an
 owner concept. A schedule or automation alone does not justify a System.
 Do not create a Project per content item or a wrapper per repository.
 
-Before substantive production, record a concrete selection in the existing task
-contract: outcome, execution owner and canonical root, primary route, who continues
-and why, and expected result/proof. Reuse an accepted
-selection; do not add a separate artifact or repeat this for small answers.
+Before substantive production, use the [shared task-result decision](lifecycle.md).
+Record the selected owner/root, primary workflow and relevant source pointers in
+the same contract. Reuse accepted decisions; small answers need no routing ritual.
 
 Read only the relevant registry. A registered URL is a route, not an installed
 capability. Verify an existing checkout, Git identity, AGENTS.md, primary skill
@@ -43,14 +42,12 @@ a deliberate existing external path.
 Do not substitute or implement the capability in shared owner context, or seed
 an existing repository. New ownership uses [creation](creation.md).
 
-Use [lifecycle](lifecycle.md) for execution. Before costly specialist production,
-Spec uses [Select model](../../aios-select-model/SKILL.md) to assess remaining
-judgment and continuation. A portable brief can be the selected result; preparation
-does not invoke the full research, analysis or content workflow. For delegated
-execution with retained caller responsibility, use
+Use [lifecycle](lifecycle.md) for execution and continuation. Spec makes the chosen
+result usable; [Select model](../../aios-select-model/SKILL.md) supplies model and
+reasoning suitability. Delegation with retained acceptance selects
 [Orchestrate workers](../../aios-orchestrate-workers/SKILL.md), also for worker recovery.
-Otherwise continue here or follow Select Model's whole-task handoff. Verify roots
-and local instructions before execution; no route authorizes silent sidebar creation.
+Whole-task transfer uses the lifecycle's conditional [handoff](continuation.md).
+Verify roots and local instructions before execution; no route authorizes silent sidebar creation.
 Local truth owns implementation and proof;
 AIOS stores only routing and genuinely shared knowledge. Existing repository work
 begins locally without automatically reading owner context. Expand only for a

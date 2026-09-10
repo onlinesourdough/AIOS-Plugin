@@ -42,13 +42,14 @@ owns upload/restore consent and no-overwrite staging.
 Worker orchestration and improvement triage are conditional instructions. They
 do not create a runtime, external authority, or background watcher. Optional
 Global Skills remain independently owned and are not copied into AIOS.
-Select Model assesses judgment remaining after Spec/Review, including choices
-still made during design, content production or Ship. It owns model/effort and
-continuation suitability: stay, switch, delegate or transfer. Orchestrate Workers
+The shared lifecycle owns the task's deliverable, continuation and completion
+boundary before costly production. Spec makes that result usable. Select Model
+assesses remaining judgment and chooses model/reasoning within the accepted work;
+its capability/cost evidence can reopen the shared decision. Orchestrate Workers
 owns delegated execution only when the caller retains coordination/acceptance.
-Select Model's conditional handoff reference owns user-ready portable prompts
-and authorized whole-task startup followed by the former lead's exit. It carries
-unfinished Review/delivery forward and supplies no automatic launch authority.
+The lifecycle's conditional handoff reference owns portable prompts and authorized
+whole-task startup followed by the former lead's exit. It carries unfinished
+Review/delivery forward and supplies no automatic launch authority.
 `setup-guardrails` is an optional Global capability selected only when an
 owner expressly wants local guardrails for autonomous use; it is not packaged,
 installed, trusted, configured, or active by implication. Onboard and Manage
@@ -93,6 +94,12 @@ Customer documentation remains canonical in the customer source system. AIOS
 may retain a scoped source pointer and freshness boundary when useful, never a
 synchronized copy or an automatic harvest. An unavailable, inaccessible, or
 stale source is reported as a gap.
+Maintain Context owns the minimal context framework: relevant areas are covered
+by verified source routes, unique local facts or explicit gaps. Onboard invokes
+it for a fresh or changed home and proves one useful source-routed result.
+Account migration requires source identity and access verification; a title match
+or copied ID cannot silently replace a source. Local gap filling never invents
+missing knowledge or duplicates an already authoritative external document.
 
 ## Portability
 

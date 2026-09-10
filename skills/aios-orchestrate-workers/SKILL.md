@@ -1,19 +1,18 @@
 ---
 name: aios-orchestrate-workers
-description: Prepare, launch, coordinate and recover workers when the caller retains acceptance. Execute the route chosen by Select Model; own worker sessions, workspace isolation and recovery.
+description: Prepare, launch, coordinate and recover workers when the caller retains acceptance. Execute the shared task decision using the selected models; own sessions, workspace isolation and recovery.
 ---
 
 # Orchestrate workers
 
 Enter for [delegation](../aios/references/lifecycle.md) with retained caller
 coordination/acceptance, or worker recovery. New tasks alone do not select it:
-whole-task/user-owned continuation uses [Select model](../aios-select-model/SKILL.md).
-Scope, domain or volume alone justifies no worker. This supplies no runtime or authority.
+whole-task/user-owned continuation uses the shared lifecycle's [handoff](../aios/references/continuation.md).
 
 ## Prepare the handoff
 
-Receive Select Model's judgment, model/effort and continuation decision. Own
-execution, not model selection: define separable scope, inputs, proof and handback.
+Receive the shared task's delegation decision, Spec and Select Model's
+model/effort evidence. Define separable scope, inputs, proof and handback.
 Keep transfer/coordination/review/retry costs within the accepted rationale.
 
 Carry what Spec/Review settled, remaining decisions, worker discretion and what
@@ -30,7 +29,7 @@ Skill/prompt/model is not execution proof. Resume matching session/root/goal;
 slowness, clutter or a missing handle does not justify replacement. Missing
 control requires handoff/stop, not a claimed launch.
 
-Return to Select Model if destination runtime differs or suitability is stale.
+Return to [Select Model](../aios-select-model/SKILL.md) for changed runtime/suitability.
 Preserve tool-required defaults and explicit choices; claim no unapplied switch.
 Unavailable routes require handoff or sufficient authorized local continuation.
 

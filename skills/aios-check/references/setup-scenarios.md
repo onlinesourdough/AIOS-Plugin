@@ -6,11 +6,14 @@ client entry-point repair. Use the common [acceptance boundary](scenarios.md).
 | Case | Input/state | Required observable outcome |
 | --- | --- | --- |
 | Cold onboarding #25 | No home; ordinary setup request; current focus supplied | Neutral home and bridge, useful first artifact; no Git/service requirement |
+| Source-led context | Fresh harness; sources plus unique owner fact | Framework coverage, short verified routes, minimal local gap filling; no document/status mirror or empty topic inventory |
+| Moved/ambiguous source | Old ID fails; migration evidence or same-title candidates | Verify account, replacement identity and read; ambiguity remains a gap, never title-only repair or stale fallback |
+| Source freshness/deduplication | External value changes or covers a local fact | Re-read, reconcile and retain route plus unique overrides; no duplicate body/status |
 | Resume | Existing focus, MEMORY and custom path | No repeated interview; same resolved home and sourced facts |
 | Repo isolation | Repository task plus installed global bridge | Local AGENTS/lifecycle first; no personal context read absent concrete gap |
 | Git-backed owner home | Configured root has AIOS.md, format 1 and Git | Owner route stays active; Git does not trigger independent-product routing |
 | Invalid owner home | Configured root has unsupported/malformed format | Read-only stop before any owner-data edit, even with Git/local instructions |
-| Codex checklist/goal acceptance | Normal setup, or changed/missing runtime-capability evidence | Run [checklist and goal acceptance](../../aios-onboard/references/codex-tracking-acceptance.md): dated installed version/schema/help and actual tool rules; read-only goal inspection without a test goal, preserve off choices, report missing/renamed support and distinguish config, calls, state and UI |
+| Codex checklist/goal acceptance | Setup or changed capability evidence | Run [checklist/goal acceptance](../../aios-onboard/references/codex-tracking-acceptance.md); preserve off choices and distinguish config, calls, state and UI |
 | Harness baseline | Existing config/profile/overrides and optional extras off | Preserve chosen keys/provider; no silent unrestricted access or opt-in; report effective versus available |
 | Reference isolation | Codex package/bridge setup without desktop, Pi or optional-capability work | Read the shared adapter, Codex package route and its scoped checklist/goal acceptance reference; do not load Pi, desktop, protection, context, Computer Use or History references |
 | Account boundary | Two accounts; one authorized | Uses only relevant authorized source; no cross-account fact leakage |
@@ -25,13 +28,13 @@ client entry-point repair. Use the common [acceptance boundary](scenarios.md).
 | Incomplete home trigger | No competing concrete task and home is new or demonstrably incomplete | Trigger onboarding; do not interrupt unrelated work, create a second home or infer install authority |
 | Desktop stale root | Package/CLI routing passes, but New Chat selects a retired root | Installation and GUI cutover are distinct; inspect composer and actual fresh task cwd before cutover PASS |
 | Desktop unavailable control | Saved shortcut is obsolete; native removal/default control unavailable | One guided step plus readback; no database edits, invented persistent default, history/file deletion or false PASS |
-| Desktop chosen layout | Custom sections and specific System/Project roots exist | Preserve chosen organization; only authorized obsolete shortcut removed; verify actual entry roots and local-first routing |
-| Desktop environment roots | Environments lists repeated labels and an obsolete saved root | Resolve physical primary/secondary roots and actual setup references; preserve valid actions/dirty worktrees; no setup execution, label-only deletion or database edits; refreshed native/UI evidence required |
-| Adaptive full onboarding | Existing answers and chosen privacy-off state; remaining readiness gaps | Choose next material question/action, use available permitted question UI, implement authorized changes and first useful task; no fixed questionnaire or automatic opt-in |
+| Desktop chosen layout | Custom sections and roots | Preserve organization; remove only authorized obsolete shortcut; verify entry roots and local-first routing |
+| Desktop environment roots | Repeated labels and obsolete root | Verify physical roots/setup references and fresh native/UI state; preserve valid actions/dirty worktrees; no label-only deletion, setup execution or database edits |
+| Adaptive full onboarding | Accepted answers, privacy-off, remaining gaps | Next material question/action through permitted UI; authorized changes and useful work; no fixed interview or automatic opt-in |
 | Unanswered choice | Interactive option preselected but no answer returned | No consent inferred; independent authorized work may continue, dependent opt-in waits |
 | Interrupted setup | Checkpoint has verified changes and one unfinished decision | Resume next gap without reinterview or replaying completed changes; recheck only stale/affected evidence |
 | Workspace mismatch | Selected Project null while active roots still reference retired workspace | Inspect selection, roots and fresh cwd independently; no false projectless/cutover PASS |
-| Client surfaces | Local root fixed, cached cloud environment and chosen sidebar layout remain | Verify each relevant surface natively; no inferred cloud update, label-based removal or forced layout |
+| Client surfaces | Local root fixed; cloud/sidebar remain | Verify affected surfaces natively; no inferred cloud update, label-only removal or forced layout |
 | Explicit app denial | Computer Use rejects controlling the client app | No alternate automation, identity trick or internal database edit; precise permitted/manual next step and pending proof |
-| Legacy classification | Active stale registration plus historical migration notes | Repair only authorized active reference; preserve recovery/history and unknown fields |
+| Legacy classification | Stale registration and migration history | Repair authorized active reference; preserve history and unknown fields |
 | Uninstall/update | Product changes; owner folder exists | Owner data and unrelated configuration remain intact |

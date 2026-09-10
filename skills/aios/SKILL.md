@@ -1,6 +1,6 @@
 ---
 name: aios
-description: Route owner-level business constraints, scoped AIOS documentation questions, and cross-owner work to the smallest AIOS task, Skill, registered System, or Project. Repository implementation follows its local lifecycle.
+description: Route owner-level business constraints, scoped AIOS documentation questions and task results to relevant sources, shared workflows or a registered System/Project. Independent repositories follow their local lifecycle.
 ---
 
 # AIOS
@@ -38,10 +38,11 @@ approval, or authority only when accepted input or its scoped source establishes
 it. Otherwise say it is unknown and name the evidence gap.
 
 Before substantive production, use [business/System routing](references/routing.md)
-to record the execution owner (task, Skill, System or Project), selected route
-and whether delegation offers a concrete advantage. Execute the selected workflow before producing
-its result; reading a specialist skill alone is not invocation. Small answers
-stay in the lead without a routing ritual.
+and its shared task-result decision: what this task delivers, relevant sources,
+who continues and when this task's part is done. Scope before costly production;
+a usable Spec may be the selected result. Execute the selected workflow before
+producing its result; reading a specialist skill alone is not invocation.
+Small answers stay in the lead without a routing ritual.
 
 For a material business, product, architecture, or trust decision, use
 [business/System routing](references/routing.md), which owns the assessment and
