@@ -1,6 +1,8 @@
 ---
 name: aios-maintain-context
-description: Curate AIOS owner facts, memory, routes, registries and connections, or perform explicit owner-continuity Sync. Personal and installed skill lifecycles use Manage Skills.
+description: Curate owner facts, memory and routes, or perform explicitly requested AIOS continuity Sync.
+metadata:
+  version: "1.0.0"
 ---
 
 # Maintain context

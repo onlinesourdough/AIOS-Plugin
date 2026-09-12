@@ -1,6 +1,8 @@
 ---
 name: aios-create-system
-description: Create a justified reusable System from its registered live neutral seed, with a concrete primary route and independent ownership.
+description: Create a justified reusable System from its live neutral seed with independent operational ownership.
+metadata:
+  version: "1.0.0"
 ---
 
 # Create System

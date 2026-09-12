@@ -4,7 +4,7 @@ Use only for authorized Pi package installation, registration or bridge repair.
 Apply the shared [native adapter and bridge boundary](adapters.md), then the
 relevant [Pi configuration](harness-pi.md).
 
-The root package.json declares only `pi.skills`, pointing to the same 16 root
+The root package.json declares only `pi.skills`, pointing to the same 17 root
 `skills/` folders. No extensions or install scripts are provided. Standard
 local and Git package routes are:
 
@@ -61,7 +61,7 @@ native evidence, not a universal all-version promise. Reapply or adopt a package
 only at a separate authorized task boundary.
 
 From 0.4.0 the source repository also has no generic local developer skill
-payload. Fresh discovery should expose the 16 shared product skills once, plus
+payload. Fresh discovery should expose the 17 shared product skills once, plus
 only deliberately installed personal/external or repository specialist methods.
 The six local skills in the historical observation above are not a current
 installation requirement.

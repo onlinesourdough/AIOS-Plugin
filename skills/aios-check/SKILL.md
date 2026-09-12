@@ -1,6 +1,8 @@
 ---
 name: aios-check
-description: Verify AIOS installation, owner format, discovery and relevant harness setup evidence. Artifact quality uses Review; context edits use maintenance.
+description: Verify an AIOS installation, owner format or relevant harness discovery without changing it.
+metadata:
+  version: "1.0.0"
 ---
 
 # Check

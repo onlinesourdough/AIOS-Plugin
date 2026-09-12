@@ -1,6 +1,8 @@
 ---
 name: aios-triage-improvement
-description: Triage a concrete underlying improvement signal from worker handback or lead Review into a sanitized, deduplicated and authorized issue action.
+description: Triage a concrete underlying improvement signal into a sanitized, deduplicated and authorized issue action.
+metadata:
+  version: "1.0.0"
 ---
 
 # Triage improvement

@@ -1,11 +1,13 @@
 # AIOS skills
 
-AIOS ships 16 native skills. Automatic selection uses each skill description;
-explicit selection uses its name. Repository development methods in
+AIOS ships 17 native skills. Automatic selection uses each skill description;
+explicit selection uses its name. Each carries an independent quoted
+`metadata.version`; see [version maintenance](skill-versioning.md). Repository development methods in
 `.agents/skills/` are separate and are not product skills.
 
 | Skill | Responsibility |
 | --- | --- |
+| [human-writing](../skills/human-writing/SKILL.md) | Default prose drafting and editing that preserves facts, uncertainty and the user’s voice |
 | [aios](../skills/aios/SKILL.md) | Coordinate owner priorities, scoped AIOS documentation questions, and route work |
 | [aios-build-work](../skills/aios-build-work/SKILL.md) | Implement specified AIOS work for lead Review |
 | [aios-check](../skills/aios-check/SKILL.md) | Inspect installation, owner format, and discovery |

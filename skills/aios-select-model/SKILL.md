@@ -1,6 +1,8 @@
 ---
 name: aios-select-model
-description: Choose a sufficient model and reasoning effort for accepted work from remaining judgment and current runtime evidence. Use during Spec, before Build or when suitability changes.
+description: Choose a sufficient model and reasoning effort when remaining work or runtime evidence warrants reassessment.
+metadata:
+  version: "1.0.0"
 ---
 
 # Select model
@@ -26,8 +28,9 @@ no model. Unexpected decisions reopen suitability and affected Spec/Review.
 
 ## Discover and compare
 
-Inspect native models/providers, efforts, tools, context and controls. Separate
-active settings, new-task defaults and worker controls. Defaults do not prove the
+Reuse current runtime evidence; inspect models/providers, efforts, tools and
+controls only for an unresolved suitability gap. Separate active settings,
+new-task defaults and worker controls. Defaults do not prove the
 active model; catalogs prove neither access nor authority. Respect explicit choices.
 Do not invent equivalent reasoning tiers across providers or unsupported controls.
 

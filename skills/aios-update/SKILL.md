@@ -1,6 +1,8 @@
 ---
 name: aios-update
-description: Update selected installed upstream Systems or adopt or roll back a reviewed AIOS native package at a task boundary. Preserve owner data and customized repositories; keep System code updates separate from owner Sync.
+description: Update selected installed upstream Systems or adopt or roll back a reviewed AIOS package.
+metadata:
+  version: "1.0.0"
 ---
 
 # Update AIOS
@@ -53,7 +55,7 @@ skills untouched unless a separately reviewed migration explicitly includes
 those paths. Do not edit caches, native databases or the entire settings file.
 Respect app-control denials and current native permissions.
 
-Read back package source/version and start a fresh session. Verify all 16 public
+Read back package source/version and start a fresh session. Verify all 17 public
 skills are discoverable exactly once and that ordinary owner and independent
 repository requests use the intended routes. Report source installation,
 discovery, desktop entry-point cutover and model behavior separately. A failed

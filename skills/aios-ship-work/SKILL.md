@@ -1,6 +1,8 @@
 ---
 name: aios-ship-work
-description: Deliver an exactly reviewed AIOS result under existing action and destination authority, then verify delivery, recovery and the measured outcome.
+description: Deliver a reviewed result under existing action and destination authority, then verify readback.
+metadata:
+  version: "1.0.0"
 ---
 
 # Ship work
@@ -29,10 +31,12 @@ An uncertain result requires readback before any retry, never blind replay.
 
 Keep three results distinct: delivery PASS/FAIL, recovery PASS/FAIL/NOT
 APPLICABLE and outcome PASS/FAIL/PENDING with its measurement owner/window.
-Final acceptance replays critical journeys after the last relevant mutation,
-accounts for every explicit requirement and reconciles delivered versus
-reviewed state. Missing required proof or Ship approval keeps the applicable
-goals open. Worker completion requires accepted obligations; lead completion requires the
+Final acceptance uses current critical-journey evidence, accounts for every
+explicit requirement and reconciles delivered versus reviewed state. Repeat
+checks when delivery changes the exercised boundary or relevant evidence is
+stale; do not rerun an unchanged suite solely for a phase transition. Missing
+required proof or Ship approval keeps the applicable goals open. Worker completion
+requires accepted obligations; lead completion requires the
 whole requested outcome and final evals. Do not treat a logical wait/block as a
 native terminal state without actual control evidence. See
 [recovery](../aios/references/recovery.md) on interruptions.

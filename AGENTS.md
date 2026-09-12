@@ -41,8 +41,13 @@ local lifecycle.
 See the [local skill index](.agents/skills/README.md) for the flat layout,
 ownership boundary, and specialist-gap route.
 
-Keep one lifecycle record across Spec, Build, Review, revisions, and any
-authorized Ship. The Project repository is canonical after creation.
+Reuse one accepted contract and evidence record across Spec, Build, Review,
+revisions and authorized Ship. Use the available native plan for live progress;
+do not create a duplicate task list or require a new record at each phase.
+User instructions take precedence over method preferences within actual tool
+and system constraints. Carry existing scoped authorization forward and explain
+any real blocker with its source and affected action.
+The Project repository is canonical after creation.
 
 ## Before completion
 

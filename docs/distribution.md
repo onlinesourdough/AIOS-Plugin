@@ -8,6 +8,9 @@ This repository carries no local generic lifecycle skills.
 ## Before delivery
 
 1. Keep the versions in `.codex-plugin/plugin.json` and `package.json` equal.
+   The marketplace resolves this root's manifest; it carries no separate version.
+   Maintain each skill's independent [SemVer](skill-versioning.md) and compare
+   against the last reviewed release/commit. Prepare [release notes](../CHANGELOG.md).
 2. Run the checks in [verification](verification.md) and inspect the complete
    diff. Runtime observations stay separate from source checks.
 3. Obtain independent Review of the exact tree to be delivered. Any relevant

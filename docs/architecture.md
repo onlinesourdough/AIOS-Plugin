@@ -6,7 +6,7 @@ worker service, permission system, or client-data store.
 
 | Boundary | Responsibility |
 | --- | --- |
-| `.codex-plugin/`, `package.json`, `assets/`, `skills/` | Native metadata and the 16 shipped product skills |
+| `.codex-plugin/`, `package.json`, `assets/`, `skills/` | Native metadata and the 17 shipped product skills |
 | `.agents/plugins/marketplace.json` | Codex marketplace entry pointing at this repository root |
 | `AGENTS.md`, optional `.agents/skills/` | Local requirements and specialist methods; no generic lifecycle copies |
 | Owner home, normally `~/.AIOS` | Client-controlled context, decisions, connections, and personal skills |

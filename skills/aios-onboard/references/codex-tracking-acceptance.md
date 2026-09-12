@@ -13,8 +13,8 @@ surface; do not preload other harness or optional-feature guides.
    removed/renamed tools or keys; report an unsupported/unknown gap rather than
    apply old syntax or treat an old setting as success.
 2. Inspect both native checklist and goal controls. For the real setup task,
-   invoke the available checklist tool with the accepted steps and update each
-   step start/completion. If absent, declare one file fallback. Inspect goal
+   invoke the available checklist tool with the accepted steps and maintain it
+   as progress or scope materially changes, following its actual constraints. If absent, declare one file fallback. Inspect goal
    state read-only through an exposed read control; record unavailable controls
    or errors. Goal creation/reuse follows the actual rules and carried explicit
    goal authorization for real work only. Never create a test goal for setup.

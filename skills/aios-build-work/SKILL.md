@@ -1,6 +1,8 @@
 ---
 name: aios-build-work
-description: Implement and verify an accepted AIOS, System or Project change in the current task. Use repository instructions and specialist methods; delegate only for a concrete advantage.
+description: Implement and verify accepted work through in-scope fixes and Review.
+metadata:
+  version: "1.0.0"
 ---
 
 # Build work
@@ -49,7 +51,9 @@ applies; ordinary work gains no scan ritual.
 
 Prove the final bytes through the real interface or an appropriate validator,
 including relevant failure, denial, duplicate and recovery behavior. Fix in-scope
-findings and rerun affected checks. Report unavailable required proof honestly.
+findings and rerun affected checks. Once sufficient checks pass, repeat or broaden
+verification only for a relevant change, failure or unresolved concern. Report
+unavailable required proof honestly; continue work that does not depend on it.
 Continue to [Review](../aios-review-work/SKILL.md) within this task; a phase label
 or the first successful test is not a completion boundary.
 

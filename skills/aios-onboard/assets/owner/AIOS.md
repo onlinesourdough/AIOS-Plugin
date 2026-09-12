@@ -17,3 +17,4 @@ Optional owner methods live in [skills](skills/README.md).
 Space routes context. Systems own reusable capabilities. Projects own bounded
 outcomes. Keep repository work and proof in its repository. This folder owns
 shared context and one-off owner work. Native memories are optional aids.
+Carry accepted decisions forward; these routes grant no additional authority.

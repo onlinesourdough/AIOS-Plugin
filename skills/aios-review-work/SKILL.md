@@ -1,6 +1,8 @@
 ---
 name: aios-review-work
-description: Review an AIOS, System or Project result against its accepted outcome and current evidence, or audit accumulated drift. Return PASS, REVISE or BLOCKED without editing the subject.
+description: Review a result against its accepted outcome, or audit requested repository drift, without editing.
+metadata:
+  version: "1.0.0"
 ---
 
 # Review work

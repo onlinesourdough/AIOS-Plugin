@@ -1,0 +1,49 @@
+# Independent skill versions
+
+Every shipped `SKILL.md` carries a quoted SemVer string in `metadata.version`:
+
+```yaml
+metadata:
+  version: "1.0.0"
+```
+
+The 17 skills begin independent version histories at `1.0.0` in package `0.7.0`.
+Package version and owner `AIOS_FORMAT` are separate contracts. Preserve existing
+frontmatter and metadata when editing; never move version to a top-level field.
+
+Choose the bump from the change to that skill's discovery, instructions, owned
+references, scripts or assets: patch for compatible corrections/clarifications,
+minor for compatible new capability, major for incompatible invocation, authority,
+input/output or operational requirements. Do not bump every skill to match a
+package release. Changing an owned reference counts even when SKILL.md is unchanged.
+A linked shared procedure is versioned by its canonical owning skill; callers
+need their own bump only when their contract or owned files change. Record any
+material cross-skill impact in the release notes and Review evidence.
+
+Before delivery, run:
+
+```sh
+python3 tests/validate.py --baseline LAST_REVIEWED_COMMIT_OR_TAG
+python3 tests/skill-version-rehearsal.py
+```
+
+Use an existing local Git revision; the check neither fetches nor installs. It
+checks each skill's owned directory against that immutable baseline, rejects
+regressions and changed payloads without an increased SemVer precedence, and
+requires `1.0.0` for initial versioning. Build metadata alone is not a bump.
+Unchanged skills may retain their versions. Review judges whether patch, minor
+or major is appropriate; a file comparison cannot infer compatibility.
+
+The dependency-free author validator supports the package's deliberately small
+YAML shape: root string fields (`name`, `description`, optional `license`,
+`compatibility`, `allowed-tools`) and a `metadata` mapping of quoted strings.
+It rejects duplicate keys, malformed nesting, unsupported fields and unsupported
+YAML constructs instead of flattening them. Extra metadata strings are retained.
+If a future skill needs a richer supported schema, extend parsing and semantic
+tests together. These checks prove source shape and version transitions, not
+native discovery or model behavior.
+
+The author validator uses a conservative one-line YAML string profile. Unquoted
+root values begin with a letter; quote numeric or indicator-leading strings.
+Metadata values are quoted strings. Unsupported YAML is rejected, and native
+loader validation remains separate.

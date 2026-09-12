@@ -1,6 +1,8 @@
 ---
 name: aios-orchestrate-workers
-description: Prepare, launch, coordinate and recover workers when the caller retains acceptance. Execute the shared task decision using the selected models; own sessions, workspace isolation and recovery.
+description: Prepare, launch, coordinate and recover delegated workers while the caller retains acceptance.
+metadata:
+  version: "1.0.0"
 ---
 
 # Orchestrate workers

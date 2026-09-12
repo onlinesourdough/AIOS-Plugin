@@ -22,7 +22,7 @@ global skill paths and project-local registrations can conflict. Classify which
 entry owns each discovered skill. Under setup authority, replace only the
 verified obsolete AIOS/legacy registration, preserving original bodies,
 nonreserved owner methods and unrelated packages. Unknown collisions require a
-decision. Re-read the effective skill list after restart: the 16 AIOS names
+decision. Re-read the effective skill list after restart: the 17 AIOS names
 once, owner methods once, supported links intact. The AIOS-focused Pi array
 must exclude ambient `~/.agents/skills/**`, explicitly include the resolved
 AIOS owner root, and exclude `AIOS_ROOT/skills/*.md` without suppressing trusted

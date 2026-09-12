@@ -1,5 +1,11 @@
 # Verification
 
+For 0.7.0, see [Astra alignment](astra-alignment.md) for the final 17-skill
+inventory, individual version checks and bounded native Build/writing probes.
+Run `python3 tests/skill-version-rehearsal.py` for the additional metadata and
+version-transition tests, and `python3 tests/validate.py --baseline <commit>`
+when validating skill version progression. Existing source checks below remain.
+
 For adaptive onboarding 0.6.1, all maintained source checks and unchanged footprint
 ceilings pass. Bounded French cold-start baseline/candidate and Danish resumed
 conversation probes verify optional source invitations and a sourced concrete
@@ -206,3 +212,21 @@ cannot substitute for these ordinary-entry observations. Exact source identity,
 independent Review and native adoption are recorded separately. See the
 [lifecycle record](lifecycle-context-routing.md). Synthetic adapter access does
 not prove live Notion, provider authentication, desktop cutover or future savings.
+
+## 0.7.0 source candidate
+
+For the accepted instruction cleanup and issue #8, also run
+`python3 tests/skill-version-rehearsal.py` and
+`python3 tests/validate.py --baseline LAST_REVIEWED_COMMIT_OR_TAG`.
+See [version maintenance](skill-versioning.md) for schema scope, compatibility
+judgment and Git comparison semantics, and [the scoped evidence](astra-alignment.md)
+for actual results and limits. The package remains dependency-free; the new
+parser and transition tests are author tooling only.
+
+The Spec description no longer advertises persistent-goal creation as its job.
+The former phrase assertion is replaced by resolved links to the single tracking
+owner, readiness and Build. Existing goal-activation and recovery checks remain.
+Independent behavioral Review must verify that accepted work proceeds without a
+new goal request, carried goal requests retain their native rules, empty plan
+responses do not imply UI state or stop work, and a real blocker holds only its
+dependent action. Static link coverage does not prove these model decisions.

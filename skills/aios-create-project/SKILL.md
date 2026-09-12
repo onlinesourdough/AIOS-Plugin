@@ -1,6 +1,8 @@
 ---
 name: aios-create-project
-description: Create a justified new bounded Project at its final root using the registered live seed and register only after proof.
+description: Create a justified new bounded Project from the live seed and register it after verification.
+metadata:
+  version: "1.0.0"
 ---
 
 # Create Project

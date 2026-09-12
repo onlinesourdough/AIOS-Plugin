@@ -1,6 +1,8 @@
 """Fast source checks for the instruction package; no runtime or model claims."""
 
 from pathlib import Path
+import argparse
+from skill_metadata import parse_frontmatter, skill_version, validate_baseline
 import json
 import re
 import shutil
@@ -14,7 +16,7 @@ SKILL_NAMES = {
     "aios-create-system", "aios-maintain-context", "aios-manage-skills",
     "aios-onboard", "aios-orchestrate-workers", "aios-review-work",
     "aios-risky-changes", "aios-ship-work", "aios-spec-work", "aios-triage-improvement",
-    "aios-update", "aios-select-model",
+    "aios-update", "aios-select-model", "human-writing",
 }
 LEGACY_ROUTE_TARGETS = {
     "aios": ("../../aios/SKILL.md", "../SKILL.md", "../../aios-check/SKILL.md",
@@ -89,11 +91,10 @@ def require(condition, message):
 
 
 def frontmatter(path):
-    text = path.read_text()
-    require(text.startswith("---\n") and "\n---\n" in text[4:], f"frontmatter: {path}")
-    block = text.split("\n---\n", 1)[0][4:]
-    return {key.strip(): value.strip() for line in block.splitlines()
-            if ":" in line for key, value in [line.split(":", 1)]}
+    try:
+        return parse_frontmatter(path.read_text())
+    except AssertionError as error:
+        raise AssertionError(f"frontmatter: {path}: {error}") from error
 
 
 def link_targets(path, boundary=None):
@@ -169,6 +170,10 @@ def validate(root=ROOT):
     for path in skill_files:
         fields = frontmatter(path)
         skill_fields[path.parent.name] = fields
+        try:
+            skill_version(fields)
+        except AssertionError as error:
+            raise AssertionError(f"skill version: {path}: {error}") from error
         require(fields.get("name") == path.parent.name, f"skill name: {path}")
         require(0 < len(fields.get("description", "")) <= 1024,
                 f"skill description: {path}")
@@ -178,8 +183,13 @@ def validate(root=ROOT):
             "registered System" in skill_fields["aios"]["description"] and
             "scoped AIOS documentation questions" in skill_fields["aios"]["description"],
             "owner routing discovery")
-    require("persistent goal and todo" in skill_fields["aios-spec-work"]["description"],
-            "goal/todo discovery")
+    # Spec owns contract preparation; tracking is one linked shared owner.
+    # Native decisions require the independent behavioral probes, not wording tests.
+    spec_targets = set(link_targets(skill_root / "aios-spec-work/SKILL.md"))
+    for target in ("aios/references/lifecycle.md", "aios-spec-work/references/readiness.md",
+                   "aios-build-work/SKILL.md"):
+        require((skill_root / target).resolve() in spec_targets,
+                f"Spec contract route missing: {target}")
     risky_changes = (skill_root / "aios-risky-changes/SKILL.md").read_text()
     spec_work = (skill_root / "aios-spec-work/SKILL.md").read_text()
     review_work = (skill_root / "aios-review-work/SKILL.md").read_text()
@@ -424,7 +434,7 @@ def validate(root=ROOT):
                            path == root / "assets/icon.png")
                 require(allowed, f"unexpected product file: {path}")
 
-    documents = [root / "README.md", root / "AGENTS.md"]
+    documents = [root / "README.md", root / "AGENTS.md", root / "CHANGELOG.md"]
     for folder in (root / "docs", root / "skills", root / ".agents/skills"):
         documents.extend(folder.rglob("*.md"))
     for path in documents:
@@ -440,8 +450,10 @@ def validate(root=ROOT):
         copy_product(root, staged)
         require(not any((staged / name).exists() for name in (".agents", "docs", "tests", "AGENTS.md")),
                 "author content in product")
-        require(not (staged / "skills/setup-guardrails").exists(),
+        require(not any((staged / "skills" / name).exists()
+                        for name in ("setup-guardrails",)),
                 "optional global capability shipped")
+        require((staged / "skills/human-writing/SKILL.md").is_file(), "built-in writing capability missing")
         for path in staged.rglob("*.md"):
             list(link_targets(path, staged))
 
@@ -460,6 +472,20 @@ def rejected(mutator, expected):
 
 
 def negative_controls():
+    def missing_skill_version(root):
+        path = root / "skills/aios/SKILL.md"
+        path.write_text(re.sub(r'^  version: [^\n]*\n', '', path.read_text(), count=1, flags=re.M))
+
+    def unquoted_skill_version(root):
+        path = root / "skills/aios/SKILL.md"
+        path.write_text(re.sub(r'^  version: [^\n]*', '  version: 1.0.0',
+                               path.read_text(), count=1, flags=re.M))
+
+    def missing_spec_tracking_route(root):
+        path = root / "skills/aios-spec-work/SKILL.md"
+        path.write_text(path.read_text().replace(
+            "[native tracking SOP](../aios/references/lifecycle.md)", "tracking"))
+
     def split_source(root):
         package = json.loads((root / "package.json").read_text())
         package["pi"]["skills"] = ["./copied-skills"]
@@ -515,11 +541,20 @@ def negative_controls():
     rejected(duplicate_legacy_route, "legacy behavior map")
     rejected(local_phase_copy, "duplicate generic repository skill payload")
     rejected(local_phase_wrapper, "duplicate generic repository skill payload")
+    rejected(missing_skill_version, "missing metadata.version")
+    rejected(unquoted_skill_version, "metadata values must be quoted strings")
+    rejected(missing_spec_tracking_route, "Spec contract route missing")
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--baseline", help="local Git release/commit for per-skill SemVer maintenance")
+    args = parser.parse_args()
     validate()
     negative_controls()
-    print("PASS: package declarations, 16 skill frontmatters, complete legacy routes, links, isolation, and security checks")
+    if args.baseline:
+        commit = validate_baseline(ROOT, args.baseline, SKILL_NAMES)
+        print(f"PASS: per-skill version maintenance against {commit}")
+    print("PASS: package declarations, 17 versioned skill frontmatters, complete legacy routes, links, isolation, and security checks")
     print("PASS: discovery contracts and external-owner coupling boundaries")
     print("PASS: rejects split sources, install/runtime scripts, inherited instructions, and duplicate ownership")

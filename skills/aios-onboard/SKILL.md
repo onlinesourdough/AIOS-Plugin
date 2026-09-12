@@ -1,6 +1,8 @@
 ---
 name: aios-onboard
-description: Set up, resume or move an AIOS owner home and its Codex or Pi bridge. Use for onboarding or method configuration, not every task in an established home.
+description: Set up, resume or move an AIOS owner home and its Codex or Pi bridge.
+metadata:
+  version: "1.0.0"
 ---
 
 # Onboard

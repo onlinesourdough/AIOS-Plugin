@@ -2,7 +2,7 @@
 
 This is a behavior map, not a requirement to ship one entry per old file.
 The 17 core template methods were inspected separately from optional external
-Global Skills. The current package exposes sixteen native workforms; smaller
+Global Skills. The current package exposes seventeen native workforms; smaller
 checks and conditional procedures live with the workform that owns them.
 Client facts and personal methods are not copied into this package.
 

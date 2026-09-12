@@ -1,6 +1,8 @@
 ---
 name: aios-manage-skills
-description: Manage an authorized agent-skill lifecycle, including personal skill creation, placement, discovery, installation, update, removal, or rollback; not passive audits.
+description: Manage an authorized skill creation, edit, installation, update, removal or rollback.
+metadata:
+  version: "1.0.0"
 ---
 
 # Manage Skills
@@ -27,15 +29,13 @@ change.
 
 ## Confirm the gap
 
-1. State the task the missing capability must perform and the proof it needs.
-2. Check current project instructions and available capabilities first,
-   including ordinary reasoning. Inspect containing-AIOS, harness-native or
-   personal/installed skills only when relevant and accessible within the
-   caller's authority. Do not hardcode an inventory or preload unrelated
-   context. Independent repositories keep their own local lifecycle.
-3. Compare sufficient candidates with the task, boundaries and risk. Reuse a
-   sufficient capability and stop. If the gap is not concrete, report it and
-   do not search or install.
+Identify the capability and proof the task needs. Check relevant project and
+available capabilities, including ordinary reasoning, before searching. Reuse
+a sufficient method and continue the owning task. Inspect personal or installed
+sources only when relevant and within the caller's authority; independent
+repositories keep their local lifecycle. An unclear gap warrants no search or
+install. A request to edit a named skill already establishes the authoring task;
+do not repeat candidate acquisition review for unchanged source and access.
 
 When an owner asks in ordinary language for local guardrails during autonomous
 use, prefer an available reviewed `setup-guardrails` Global Skill. When it
@@ -53,8 +53,8 @@ particular catalog, CLI or package manager is an AIOS dependency. Prefer a
 reviewed project or organization source, then the relevant technology owner,
 then a community source.
 
-Before any mutation, inspect and record the candidate publisher, repository,
-exact revision, license, maintenance, `SKILL.md`, referenced resources,
+For acquisition or a material source/access change, inspect the candidate
+publisher, repository, exact revision, license, maintenance, `SKILL.md`, resources,
 scripts, commands, network access, affected files/services/people, harness
 compatibility, overlap, verification, update, removal and recovery paths.
 Treat popularity or an audit badge as evidence to weigh, not approval.
@@ -85,13 +85,14 @@ second payload fork or own System/Project run history.
 
 ## Verify
 
-1. Inspect the exact filesystem and version-control diff.
-2. Confirm only the selected skill and expected harness adapter changed.
-3. Validate frontmatter, referenced paths, scripts, source/version and hashes.
-4. Confirm the selected harness discovers the skill at the documented scope.
-5. Exercise one representative task without production side effects.
-6. Report source, revision/license, installed scope, version, evidence,
-   rollback state, unsupported harnesses and remaining risk.
+Inspect the scoped diff and validate frontmatter, links, changed scripts and
+source/version identity. For installation or discovery changes, verify native
+discovery at the selected scope; for material instruction changes, exercise a
+representative safe task when authorized and available. A metadata-only edit
+needs schema/inventory checks, not a production rehearsal. Report actual checks,
+source, version, changed scope, recovery and material limits.
 
-If verification fails, stop, preserve the prior version and return the
-failure. Never update skills automatically.
+Fix authorized local defects and rerun affected checks. Failed activation holds
+further activation and preserves the prior version; uncertain effects require
+readback before retry. Report any remaining required proof or authority gap.
+Never update skills automatically.

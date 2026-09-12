@@ -6,20 +6,22 @@ requirements, proof, scope/action authority, current phase and lead/worker
 linkage. Keep one contract and one live requirements list; contract/evidence
 pointers may persist separately. The lead's default model remains the user's configured choice.
 
+User instructions take precedence over this method's preferences within actual
+system/developer and tool constraints. Carry forward accepted decisions and
+scope/action authority across phases and continuation. Complete authorized
+implementation, relevant checks, fixes and Review before stopping. A phase label,
+first implementation or optional missing capability is not a blocker. If a real
+missing decision, permission or required capability holds an action, name that
+action, the requirement's source and what is needed; continue independent work.
+
 ## Shared method and execution
 
-Before costly production, select the useful result this conversation will deliver,
-its proof, who continues and when this task's part is done. Reuse the current
-contract; no extra artifact or gate for a small answer. Consider a direct answer,
-a usable Spec/handoff or completed production from the user's intent, relevant
-context, tools, quality, effort and responsibility. Honor explicit execution or
-preparation requests. A cheaper route cannot silently narrow the accepted outcome.
-
-Select continuation here, delegated with retained acceptance, or transferred.
-Spec clarifies it as requirements settle. Inspect enough sources/guidance to make preparation
-usable before choosing costly research, analysis or content production. Domain,
-task size or phase alone selects no destination. Resolve only a material remaining
-choice; otherwise continue under existing authority.
+Before costly production, identify the accepted result, proof, continuation and
+completion boundary. Honor explicit preparation or execution requests; a cheaper
+route cannot narrow the outcome. Use the existing contract and relevant sources
+to decide whether to answer here, prepare a usable handoff or complete production.
+Continue under existing authority unless a material choice remains unresolved.
+Task size, domain and phase alone select no destination or extra artifact.
 
 [Select Model](../../aios-select-model/SKILL.md) supplies model/reasoning suitability
 for that work. Its capability/cost evidence may reopen this decision; it does not
@@ -63,38 +65,31 @@ inspection of the final subject, even when the same session performs it.
 
 ## Native tracking SOP
 
-1. Inspect the current callable tool inventory once at task start; recheck only
-   after a runtime/capability change. Find a native plan/task-list control by its
-   actual description. `update_plan` is an example, not assumed availability;
-   native planning does not require Plan mode.
-2. If available, invoke that tool to create/reuse a concise list covering the
-   accepted requirements, statuses and pending Review/approval/Ship. Inspect its
-   returned result and any exposed state/readback. Success proves the call, not
-   visible UI; UI needs direct observation. An empty response does not prove
-   stored state. Report those evidence limits. Do not maintain a duplicate live
-   file list while native tracking is available.
-3. If unavailable, visibly state that limitation and show one existing narrow
-   file fallback (for example `docs/todo.md`), creating it only if none exists.
-   If a callable tool fails, report the error and unverified state; a failed call
-   is not proof of native UI or permission to silently switch to files. If it
-   becomes unavailable, declare the fallback; if restored, reconcile the same
-   requirements into it and retire the file as a live list. Routine work never
-   silently changes global config to obtain a tool; an authorized Codex setup/
-   repair may use [configuration guidance](../../aios-onboard/references/harness-codex.md#native-task-list-exposure).
-4. Whenever a listed step starts, invoke the plan tool with `in_progress`;
-   whenever it completes with passing evidence, invoke it with `completed`.
-   Leave unstarted/reopened steps `pending` where those statuses are supported;
-   otherwise use the tool's actual equivalents and concurrency limits. Give a
-   brief completed/total progress update (for example 2/5) at each boundary.
-   With a declared fallback, update that same file instead.
-5. Before acting on added scope, update the same list with all still-active
-   requirements and additions; reopen affected done items and invalidate their
-   old proof. Preserve explicit removals, current authority and goal linkage.
-6. At handoff, update evidence/statuses and keep any required caller Review, approval
-   and delivery unresolved. Before completion map every accepted requirement to
-   current evidence or an explicit unresolved status. Worker completion alone
-   cannot complete the parent outcome. Return the observed native state or the
-   fallback path, evidence gaps and next action; never fabricate UI state.
+Use an available native plan/task-list tool for substantive multi-step work;
+native planning does not require Plan mode. Inspect its actual invocation rules
+and keep one concise plan for the accepted outcome, including pending Review
+and authorized delivery. Reuse current tool
+and task evidence; recheck availability only when it changes or a call fails.
+Update the plan when progress, scope or a blocker materially changes, and at
+handoff/completion. Obey the tool's status and concurrency constraints; no
+extra call or numbered progress report is required for every substep.
+
+Inspect call results and any exposed readback. Success proves the call, not
+visible UI or independently stored state; disclose a material evidence limit
+once, without turning an empty response into a work blocker. If the tool is
+unavailable or fails, report that state and use one narrow existing file
+fallback (for example `docs/todo.md`), creating it only if needed. When native
+tracking returns, reconcile the same requirements and retire the file as a
+live list. Do not maintain duplicate live lists or silently change global
+configuration; authorized setup/repair uses [configuration guidance](../../aios-onboard/references/harness-codex.md#native-task-list-exposure).
+
+Added scope preserves still-active requirements and authority; reopen affected
+completed items and invalidate their old proof. At handoff/completion, map the
+accepted requirements to current evidence or an explicit unresolved status.
+Worker completion cannot complete pending caller Review, approval or delivery.
+Report the useful result, material gaps and next action; claim native state
+only when observed. Keep durable contract/evidence pointers where the owning
+repository needs them, without duplicating the live plan.
 
 ## Native goals are separate
 

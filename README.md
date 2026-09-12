@@ -63,7 +63,7 @@ You do not need to remember skill names. Try:
 - “Remember this decision and where it came from.”
 - “Turn this workflow into a personal skill I can reuse.”
 
-AIOS includes [16 skills](docs/skills.md) for everyday work, setup, updates and
+AIOS includes [17 skills](docs/skills.md) for everyday work, setup, updates and
 keeping your context current. Before larger production work, AIOS selects the
 responsible workflow and continues in the current task by default. Delegate
 only when a separable result benefits from another capability, independent
@@ -74,9 +74,13 @@ Power BI is optional and requires a matching need. System updates use the
 from plugin updates and owner-context Sync. Your repositories keep their own development
 instructions; unrelated code work does not need your personal context.
 
+The bundled [human-writing](skills/human-writing/SKILL.md) skill is the default
+for substantive prose drafting and editing. It follows the user’s language and
+voice, preserves facts and qualifications, and adds no separate approval step.
+
 ### Shared method, local expertise
 
-Spec, Build, Review and Ship come from the same 16-skill AIOS plugin in every
+Spec, Build, Review and Ship come from the same 17-skill AIOS plugin in every
 System and Project. Repository `AGENTS.md` supplies local requirements, checks
 and release facts; `.agents/skills/` contains only specialist methods. Technology
 selection and generic repository audits are conditional references in Spec and
@@ -96,7 +100,7 @@ A directly opened task needs no lead/worker arrangement or personal-context
 preload. The repository's product remains independent of AIOS at runtime.
 
 ```text
-skills/          16 shared AIOS product skills for Codex and Pi
+skills/          17 shared AIOS product skills for Codex and Pi
 AGENTS.md        repository requirements and shared-method routes
 .agents/skills/  specialist-only shelf; no generic development skill copies
 ```

@@ -1,6 +1,8 @@
 ---
 name: aios
-description: Route owner-level business constraints, scoped AIOS documentation questions and task results to relevant sources, shared workflows or a registered System/Project. Independent repositories follow their local lifecycle.
+description: Route owner business constraints, scoped AIOS documentation questions and task results to a registered System/Project.
+metadata:
+  version: "1.0.0"
 ---
 
 # AIOS
@@ -42,13 +44,12 @@ and its shared task-result decision: what this task delivers, relevant sources,
 who continues and when this task's part is done. Scope before costly production;
 a usable Spec may be the selected result. Execute the selected workflow before
 producing its result; reading a specialist skill alone is not invocation.
-Small answers stay in the lead without a routing ritual.
+Small answers need no routing ritual. Material business, product, architecture
+or trust decisions use the same routing source and its canonical decision record.
 
-For a material business, product, architecture, or trust decision, use
-[business/System routing](references/routing.md), which owns the assessment and
-canonical decision record. Return the result concisely in the user's language
-and requested depth. A business answer does not acquire Project phases or
-software-test ceremony merely because it includes a decision.
+Use [human-writing](../human-writing/SKILL.md) as the default for substantive
+prose deliverables, with the user's language, voice and format. It adds no
+approval gate or mandatory pass to unrelated work.
 
 Choose the smallest triggered route: [business/System routing](references/routing.md),
 [Spec](../aios-spec-work/SKILL.md), [Build](../aios-build-work/SKILL.md),

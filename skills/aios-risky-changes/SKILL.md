@@ -1,6 +1,8 @@
 ---
 name: aios-risky-changes
-description: Assess a consequential proposed or completed change when material real-world assumptions, representative behavior, recovery, or residual uncertainty need proportionate evidence; not routine edits or lifecycle management.
+description: Assess consequential changes needing representative proof and recovery, not routine edits or lifecycle management.
+metadata:
+  version: "1.0.0"
 ---
 
 # Risky changes

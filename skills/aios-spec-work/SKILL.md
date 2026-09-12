@@ -1,6 +1,8 @@
 ---
 name: aios-spec-work
-description: Specify or revise substantive AIOS, System or Project work, including its persistent goal and todo, from an idea, brief or change request. Preserve accepted decisions and resolve only material gaps.
+description: Specify or revise substantive work when its outcome, boundaries or proof need clarification.
+metadata:
+  version: "1.0.0"
 ---
 
 # Spec work
@@ -9,14 +11,16 @@ Before substantive Spec, run the [native tracking SOP](../aios/references/lifecy
 with accepted requirements and carried goal authorization. READY returns its
 actual tool/readback evidence or declared file fallback, alongside the contract.
 Scope changes update that same list; no phase goals or duplicate live lists.
+An accepted contract is sufficient input; do not recreate it for a new phase.
 
 Accept rough idea, developed brief, near-complete specification or an existing
 change request. Preserve named sources and resolved wording. Construct missing
 technical detail in the natural owner; do not rewrite a developed source into
 another form. Audit intent, served party, proof/measurement owner, result and
 non-goals, canonical sources, execution owner, authority/risk, interfaces,
-operation/recovery and unknowns. Classify each resolved, inferred, missing or
-conflicting with evidence. Resolve facts before asking one material owner
+operation/recovery and unknowns where they affect this work. Distinguish accepted
+facts, technical inferences and material gaps; no field-by-field audit for an
+unchanged contract. Resolve facts before asking one material owner
 question. Reversible bounded technical inferences may proceed; never infer
 external authority, product direction or acceptance.
 
@@ -52,14 +56,13 @@ When the proposed change may materially alter a real-world outcome, read
 [Risky Changes](../aios-risky-changes/SKILL.md) before READY and carry its
 compact assessment into the contract. Routine edits do not select it.
 
-Return exactly READY, REVISE or BLOCKED. READY contains a compact execution/handoff
-contract: outcome; proof and measurement owner; relevant context pointers;
-repository root when applicable; scope/non-goals; authority and risk; dependencies
-and immutable handoffs; expected evidence; operation/recovery and Ship scope;
-current goal representation and authority, stable identity, todo, accepted
-contract revision, state, latest evidence/blocker and exact next action.
-Add launch contract and worker-goal linkage only for actual delegation.
-Other gates name only the minimal patch or material blocker. A Project uses
+Return READY, REVISE or BLOCKED. READY identifies the outcome, scope, authority,
+proof and next action in the existing contract. Include source/root pointers,
+dependencies, recovery, measurement owner and Ship scope where material; link
+existing evidence instead of restating it. Carry actual goal identity/authority
+and plan state when present. Add launch context only for actual delegation.
+REVISE names the needed correction; BLOCKED names the affected action, missing
+requirement and its source. A Project uses
 these shared phases with its local requirements; upstream decisions are
 accepted input, not a second interview. Run
 [readiness evaluation](references/readiness.md) before Build.
