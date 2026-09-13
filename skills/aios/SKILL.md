@@ -2,7 +2,7 @@
 name: aios
 description: Apply relevant owner context and choose AIOS methods for business work, design, content, AIOS setup or documentation.
 metadata:
-  version: "2.0.0"
+  version: "2.1.0"
 ---
 
 # AIOS
@@ -28,7 +28,9 @@ For substantive work, [routing](references/routing.md) selects the relevant
 context, method and result. [Design](../design/SKILL.md) and
 [content](../content/SKILL.md) are included methods; invoke the relevant process
 through its review and usable output. Use [human-writing](../human-writing/SKILL.md)
-for prose. These methods also work directly in a project without an owner home.
+for prose and [Write code](../write-code/SKILL.md) whenever authoring or changing
+code, including scripts and automation. These methods also work directly in a
+project without an owner home.
 
 Shared [Spec](../aios-spec-work/SKILL.md), [Build](../aios-build-work/SKILL.md),
 [Review](../aios-review-work/SKILL.md) and authorized [Ship](../aios-ship-work/SKILL.md)

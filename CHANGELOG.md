@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.10.0 — source candidate
+
+- Add `write-code` 1.0.0 for code of any size, including scripts, shell snippets,
+  SQL, tests and automation. Keep code-quality criteria and proportionate
+  verification in one compact method with automatic selection enabled.
+- Route AIOS and Build code work through that method; Review applies the same
+  criteria read-only. Advance AIOS to 2.1.0, Build to 1.1.0 and Review to 1.2.0;
+  unchanged skills retain their versions. No owner-format change.
+- Require useful behavioral proof: real-interface checks for UI/UX, meaningful
+  regression tests for logic, contract checks for APIs and actual safe invocation
+  for scripts. Avoid irrelevant unit tests and unnecessary generated scaffolding.
+- Keep one 23-skill native package and update its local, versioned overview.
+  Public-site adoption remains separate from source/package delivery.
+
 ## 0.9.0 — 2026-09-13
 
 - Bundle a version-labelled overview and a short local documentation route;

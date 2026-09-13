@@ -13,7 +13,7 @@ task; AIOS has no model runner, background service or permission system.
 | Skills | Reusable methods, standards and judgment, with references and small helpers as needed |
 | Project repository | Local requirements, implementation, design and content material, proof and recovery |
 | Optional System | A separately maintained specialist with its own dependencies or operational needs |
-| Native manifests | Package identity and discovery over the same 22 skills |
+| Native manifests | Package identity and discovery over the same 23 skills |
 
 ## Work and methods
 

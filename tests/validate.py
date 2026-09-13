@@ -21,7 +21,7 @@ SKILL_NAMES = {
     "aios-create-system", "aios-maintain-context", "aios-manage-skills",
     "aios-onboard", "aios-orchestrate-workers", "aios-review-work",
     "aios-risky-changes", "aios-ship-work", "aios-spec-work", "aios-triage-improvement",
-    "aios-update", "aios-select-model", "human-writing",
+    "aios-update", "aios-select-model", "human-writing", "write-code",
     "design", "review-design", "openpencil-workbench", "content", "diffusion-studio",
 }
 LEGACY_ROUTE_TARGETS = {
@@ -186,9 +186,13 @@ def validate(root=ROOT):
         require("disable-model-invocation" not in fields, f"implicit invocation: {path}")
 
     primary_targets = set(link_targets(skill_root / "aios/SKILL.md"))
-    for name in ("design", "content", "human-writing"):
+    for name in ("design", "content", "human-writing", "write-code"):
         require((skill_root / name / "SKILL.md").resolve() in primary_targets,
                 f"built-in method route missing: {name}")
+    for caller in ("aios-build-work", "aios-review-work"):
+        require((skill_root / "write-code/SKILL.md").resolve() in
+                set(link_targets(skill_root / caller / "SKILL.md")),
+                f"shared code-quality route missing: {caller}")
     # Spec owns contract preparation; tracking is one linked shared owner.
     # Native decisions require the independent behavioral probes, not wording tests.
     spec_targets = set(link_targets(skill_root / "aios-spec-work/SKILL.md"))
@@ -587,6 +591,6 @@ if __name__ == "__main__":
     if args.baseline:
         commit = validate_baseline(ROOT, args.baseline, SKILL_NAMES)
         print(f"PASS: per-skill version maintenance against {commit}")
-    print("PASS: package declarations, 22 versioned skill frontmatters, complete legacy routes, links, isolation, and security checks")
+    print(f"PASS: package declarations, {len(SKILL_NAMES)} versioned skill frontmatters, complete legacy routes, links, isolation, and security checks")
     print("PASS: discovery contracts and external-owner coupling boundaries")
     print("PASS: rejects split sources, install hooks, misplaced helpers, inherited instructions, and duplicate ownership")

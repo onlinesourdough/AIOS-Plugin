@@ -2,7 +2,7 @@
 name: aios-review-work
 description: Review a result against its accepted outcome, or audit requested repository drift, without editing.
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # Review work
@@ -43,6 +43,11 @@ For skill/procedure changes, check that each shared procedure has one canonical
 owner and callers link to it with their trigger and required result. Flag copied
 step lists, competing acceptance rules and circular delegation without an
 executable owner; do not merge distinct responsibilities just to reduce files.
+
+For code review, including scripts, shell snippets, SQL, tests and automation,
+use [Write code](../write-code/SKILL.md) in read-only review mode. Apply its shared
+quality criteria to the actual code and current behavioral proof; feed findings
+into this gate without editing the subject or starting another Build/Review loop.
 
 When the changed result may materially alter a real-world outcome, read
 [Risky Changes](../aios-risky-changes/SKILL.md). It owns the representative
