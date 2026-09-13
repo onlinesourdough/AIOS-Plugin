@@ -9,10 +9,7 @@ import re
 import shutil
 import struct
 import tempfile
-import sys
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from public_docs import check as validate_public_docs
+from package_documentation import check as validate_documentation
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -75,7 +72,7 @@ FORBIDDEN_SHIPPED_PATTERNS = (r"\bnpx skills\b", r"\bskills\.sh\b")
 DOMAIN_SKILLS = {"design", "review-design", "openpencil-workbench", "content", "diffusion-studio"}
 PRODUCT_PATHS = ("plugin.json", ".codex-plugin", ".claude-plugin", ".cursor-plugin",
                  "gemini-extension.json", "skills", "assets/icon.png", "LICENSE",
-                 "docs/public/aios.md")
+                 "docs/aios.md")
 FORBIDDEN_KEYS = {"scripts", "dependencies", "devDependencies", "peerDependencies"}
 SECRET_PATTERNS = (
     r"AKIA[0-9A-Z]{16}",
@@ -122,10 +119,10 @@ def copy_product(root, destination):
             shutil.copy2(source, target)
 
 
-def validate(root=ROOT):
+def validate(root=ROOT, release_tag=None):
     validate_native(root, require)
     try:
-        validate_public_docs(root)
+        validate_documentation(root, release_tag)
     except ValueError as error:
         raise AssertionError(str(error)) from error
     manifest = json.loads((root / ".codex-plugin/plugin.json").read_text())
@@ -319,22 +316,21 @@ def validate(root=ROOT):
             in set(link_targets(skill_root / "aios-onboard/references/setup.md")),
             "single continuation and context framework owners")
 
-    public_overview = root / "docs/public/aios.md"
-    require(public_overview.is_file(), "missing public AIOS overview source")
-    public_text = public_overview.read_text()
-    require("portable context and skills" in public_text and
-            "Shared method, owner context" in public_text and
-            "Customer documentation stays in its\nsource system" in public_text and
-            "Install it separately in each app you choose" in public_text and
-            "never paste credentials into a chat" in public_text and
-            "release-bound public export" in public_text,
-            "public overview boundaries")
+    overview = root / "docs/aios.md"
+    require(overview.is_file(), "missing local AIOS overview")
+    overview_text = overview.read_text()
+    require("portable context and skills" in overview_text and
+            "Shared method, owner context" in overview_text and
+            "Customer documentation stays in its\nsource system" in overview_text and
+            "Install it separately in each app you choose" in overview_text and
+            "never paste credentials into a chat" in overview_text and
+            "Native package updates are separate from owner-data Sync" in overview_text,
+            "local overview boundaries")
     distribution = (root / "docs/distribution.md").read_text()
-    require("docs/public/aios.md" in distribution and
-            "only approved source artifact" in distribution and
-            "SHA-256, and byte length" in distribution and
-            "separate authorized action" in distribution,
-            "public overview export contract")
+    require("docs/aios.md" in distribution and
+            "## Local documentation" in distribution and
+            "## Release and adoption" in distribution,
+            "local documentation and release contract")
 
     manager = skill_root / "aios-manage-skills"
     owner_lifecycle = manager / "references/owner-skills.md"
@@ -454,7 +450,7 @@ def validate(root=ROOT):
         require(not any((staged / name).exists() for name in (".agents", "tests", "AGENTS.md")),
                 "author content in product")
         require({p.relative_to(staged).as_posix() for p in (staged / "docs").rglob("*")
-                 if p.is_file()} == {"docs/public/aios.md"},
+                 if p.is_file()} == {"docs/aios.md"},
                 "unapproved documentation in product")
         require(not any((staged / "skills" / name).exists()
                         for name in ("setup-guardrails",)),
@@ -585,8 +581,9 @@ def negative_controls():
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--baseline", help="local Git release/commit for per-skill SemVer maintenance")
+    parser.add_argument("--release-tag", help="version tag being promoted to a GitHub Release")
     args = parser.parse_args()
-    validate()
+    validate(release_tag=args.release_tag)
     negative_controls()
     if args.baseline:
         commit = validate_baseline(ROOT, args.baseline, SKILL_NAMES)

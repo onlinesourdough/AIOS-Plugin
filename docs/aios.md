@@ -1,6 +1,6 @@
 # AIOS
 
-AIOS version: 0.10.0
+AIOS version: 0.10.1
 
 AIOS supplies portable context and skills to help an AI assistant work from an
 owner's relevant context and carry a task from a small request to a reviewed
@@ -67,11 +67,10 @@ a separate authorized setup action.
 Start with a small real task and the context you want the assistant to use.
 If you have AIOS package access, use the reviewed release and its included
 setup and recovery guidance; never paste credentials into a chat. Technical
-procedures remain with their owning documentation so this overview can stay a
-short public orientation rather than a copy of the executable skill library.
+procedures remain with their owning documentation so this overview stays short.
 
 This overview ships with the AIOS version named above and is read only when
-needed. The public copy is a release-bound public export; its
-[source record](https://resources.onlinesourdough.com/aios.meta.json) identifies
-the package version, exact source commit, source date, SHA-256 and byte length.
-The website may describe a different version from an installed plugin.
+needed. Its version travels with the shared methods in the installed package.
+Native package updates are separate from owner-data Sync. There is no AIOS
+documentation or skill runtime on the Resources domain. A newer upstream
+release does not replace instructions already read into an active conversation.

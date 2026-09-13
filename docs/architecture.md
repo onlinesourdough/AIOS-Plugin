@@ -74,7 +74,7 @@ merely because a route mentions it.
 ## Documentation and native installation
 
 The product repository owns AIOS documentation. Its approved overview at
-`docs/public/aios.md` ships in the native package and states the matching package
+`docs/aios.md` ships in the native package and states the matching package
 version. The primary AIOS skill points to a small
 [documentation route](../skills/aios/references/documentation.md), which selects
 only the local overview or method reference needed for a question. Including a
@@ -82,16 +82,20 @@ file in the package does not preload it into conversation context.
 
 Current releases, changed external facts and gaps in local documentation use the
 [canonical source route](../skills/aios/references/canonical-sources.md).
-The installed version stays distinct from upstream `main` and the public site.
+The installed version stays distinct from upstream `main` and newer releases.
 Private source reads use already-authorized access. Local documentation and
 methods remain usable without that access or website availability.
 
-The [public export](distribution.md#public-aios-overview-export) contains only
-the approved overview and generated version/commit/hash metadata. Source and
-release checks prepare it; Resources owns its import, review, deployment and
-readback. Customer documentation remains in its source system, and AIOS retains
-only useful pointers, unique facts or explicit gaps. Owner context and private
-author records are outside the public export.
+There is no separate public AIOS documentation export or Resources runtime.
+The [release procedure](distribution.md#release-and-adoption) checks package,
+overview and tag versions together before publishing a GitHub Release. Customer
+documentation remains in its source system; AIOS retains only useful pointers,
+unique facts or explicit gaps. Private owner continuity remains a separate flow.
+
+The technical plugin identity remains `aios`. Earlier OSM packages already
+required an identity migration to AIOS; renaming it back would change native
+registrations and invocation names without improving distribution. The README
+distinguishes the shared AIOS plugin from the owner's personal AIOS home.
 
 Codex, Pi, Claude Code, Gemini CLI, Copilot CLI and Cursor have native metadata
 for the same source. Installation affects only the chosen harness. It creates

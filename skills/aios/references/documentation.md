@@ -8,7 +8,7 @@ Reading a method to explain it does not start that workflow or load owner data.
 
 | Question | Local source |
 | --- | --- |
-| What AIOS is, its concepts and boundaries | [AIOS overview](../../../docs/public/aios.md) |
+| What AIOS is, its concepts and boundaries | [AIOS overview](../../../docs/aios.md) |
 | Which AIOS version is installed | [Package identity](../../../plugin.json); the overview states the same version |
 | How work is selected and carried through | [Routing](routing.md) and the relevant part of [the lifecycle](lifecycle.md) |
 | How installation, updates or removal work in a selected app | [Native adapters](../../aios-onboard/references/adapters.md) |
@@ -18,6 +18,7 @@ Reading a method to explain it does not start that workflow or load owner data.
 Use already available skill descriptions to select a particular method; open its
 instructions only when the question needs them. For a current release, changed
 external fact or a gap in the local documentation, use [canonical sources](canonical-sources.md).
-Keep the installed version distinct from upstream `main` or the public website.
-The public overview is an export of one source revision and may describe a
-different version; its version label and public source record make that visible.
+Keep the installed version distinct from upstream `main` and newer releases.
+The overview and methods travel together in the local package. Native package
+updates are separate from owner-data Sync; there is no Resources-hosted copy
+to fetch. Already-read instructions are not replaced by a later package update.

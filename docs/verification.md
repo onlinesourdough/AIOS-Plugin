@@ -241,29 +241,26 @@ new goal request, carried goal requests retain their native rules, empty plan
 responses do not imply UI state or stop work, and a real blocker holds only its
 dependent action. Static link coverage does not prove these model decisions.
 
-## Versioned documentation
+## Versioned local documentation and releases
 
-The package validator checks that the overview is explicitly shipped, its
-version matches the package, and the documentation route resolves from an
-isolated minimal package without author-only documentation. Run:
+The package validator checks that `docs/aios.md` is explicitly shipped, has one
+version label matching the package, and resolves from the installed documentation
+route in an isolated minimal package. Run:
 
 ```sh
-python3 scripts/public_docs.py check
-python3 tests/public-docs-rehearsal.py
+python3 tests/validate.py --release-tag v0.10.1 --baseline eca5ca6
+python3 tests/documentation-rehearsal.py
 ```
 
-Export tests cover exact committed bytes despite a dirty worktree, version and
-release-tag mismatch, origin mismatch, symlinks, the public-file allowlist and
-preservation of prior exports. A matching version/hash does not replace review
-of the prose. The documentation workflow prepares only the overview and metadata.
+The documentation rehearsal rejects version drift, a missing package entry,
+missing or repeated version labels, symlinks, a mismatched release tag and a
+missing changelog entry. Native Claude and Gemini fixtures check installed
+overview bytes across synthetic updates; Pi checks its registered local source.
+These checks make no model-behavior claim. The ordinary-entry fixture retains
+the documentation question for selected reads, owner isolation and reported
+installed version; retain actual traces separately from static footprint counts.
 
-The native Claude and Gemini fixtures check installed overview bytes and their
-changes during a synthetic update. Pi checks the overview in its registered
-local-source package. These installation checks make no model-behavior claim.
-The ordinary-entry fixture includes a documentation question: run it with native
-skill discovery and its synthetic boundary to inspect selected reads, owner
-isolation and the reported installed version. Retain actual traces separately
-from static footprint counts.
-
-Resources owns import tests, offline CI and deployed-route readback. An exported
-artifact or source PASS never proves the public site was updated.
+Tag-triggered CI must complete and the GitHub Release's resolved tag must match
+the accepted commit. Native installed version and discovery are separate readback
+steps. The Resources deployment separately verifies that retired AIOS URLs no
+longer serve the overview or metadata and that the remaining site still works.

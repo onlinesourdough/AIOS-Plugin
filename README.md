@@ -106,6 +106,49 @@ detail. It adds no separate approval step.
 
 ## What is shared
 
+The **AIOS plugin** is Online Sourdough's shared method. **Your AIOS home**,
+normally `~/.AIOS`, is your own context and personal skills. They have separate
+owners, locations and update paths.
+
+```mermaid
+flowchart TB
+    upstream["Online Sourdough / AIOS-Plugin<br/>Reviewed GitHub releases"]
+    installed["Each app's local plugin installation<br/>Shared skills + references + overview"]
+    agent["Your agent in Codex, Pi or another app<br/>Reads the relevant local files when needed"]
+    personal["Your AIOS home: ~/.AIOS<br/>Context + personal skills + source pointers"]
+    backup["Optional private GitHub owner repository<br/>Approved owner files only"]
+    project["Independent projects and Systems<br/>Own code, instructions and Git history"]
+    projectremote["Each project's or System's own remote"]
+    upstream -->|"Native install or update in each app"| installed
+    installed -->|"Selected method and references"| agent
+    personal -->|"Relevant owner context and personal methods"| agent
+    personal <-->|"Explicit, approved continuity Sync"| backup
+    personal -.->|"Optional source pointers"| project
+    project -->|"Local instructions and accepted inputs"| agent
+    project <-->|"That repository's own Git workflow"| projectremote
+```
+
+| What | Where it belongs | How it moves or updates |
+| --- | --- | --- |
+| Shared AIOS skills, supporting files and overview | The selected app's plugin installation/cache | Install or update through that app. A fixed tag/commit stays fixed until another is selected. |
+| Your facts, memory and connection pointers | `~/.AIOS/AIOS.md`, `MEMORY.md`, `CONNECTIONS.md`, `AIOS_FORMAT` and routed `context/` | Optional continuity Sync to the chosen private repository, within the approved scope. |
+| Skills you create and own | Canonical personal folders in `~/.AIOS/skills/`, recorded in the owner skill index | Eligible for owner Sync after review. Each app's discovery registration is configured separately; it is not copied as owner data. |
+| Other installed plugins and shared skill libraries | Their native installation or their own source | Their own update route. They do not become personal skills just because a folder is named `skills`. |
+| Independent projects and optional Systems | Their own repository, inside or outside the owner home | Their own Git workflow and remote. Owner Sync can carry agreed source indexes, never their nested code/history. |
+| Sessions, app settings, credentials and caches | The native app or credential store | Outside owner Sync. Reconnect/configure the destination app through its supported setup. |
+
+**When does owner Sync happen?** When you explicitly request continuity work,
+for example “Sync my AIOS to my private GitHub repository,” under the agreed
+account, remote, branch, direction and file scope. Existing standing permission
+is reused. Plugin installation, ordinary conversations and local edits do not
+start a background upload. A local home without Git is fully supported.
+
+Onboarding helps choose new setup or restore and a continuity destination.
+Creating a private repository and the first upload need that action's approval.
+On another machine, install the plugin in the chosen app, restore the approved
+owner files into an absent or empty home, then register personal skills there.
+Existing homes are preserved. See the [Sync procedure](skills/aios-maintain-context/references/sync.md).
+
 Installing AIOS in one app activates it there. It does not install into your
 other apps, hide their skills, change your model or connect accounts.
 
@@ -162,14 +205,17 @@ is not removed by the package manager.
 
 ## More
 
-The [AIOS overview](docs/public/aios.md) ships with the plugin and states the
+The [AIOS overview](docs/aios.md) ships with the plugin and states the
 version it describes. The AIOS skill's [documentation route](skills/aios/references/documentation.md)
 selects only the local topic needed for a question. These references are not
-loaded into every session. The public Resources copy has its own visible source
-record and is updated through the [documentation export](docs/distribution.md#public-aios-overview-export).
+loaded into every session. AIOS has no documentation or skill runtime on the
+Resources domain. Selective reading saves context whether the file is local or
+remote; hosting alone does not reduce the tokens of content actually read.
+Future standards-based discovery and updates are tracked in [issue #12](https://github.com/onlinesourdough/AIOS-Plugin/issues/12).
 
 Read about the [23 skills](docs/skills.md), [architecture](docs/architecture.md),
 [verification](docs/verification.md), [recovery](docs/recovery.md) and
 [version history](CHANGELOG.md). GitHub [Releases](https://github.com/onlinesourdough/AIOS-Plugin/releases)
-lists published releases; a source version alone does not create a release tag.
+lists published releases. The [release procedure](docs/distribution.md#release-and-adoption)
+validates a reviewed version tag before publishing its matching release.
 Contributors start with [AGENTS.md](AGENTS.md).
