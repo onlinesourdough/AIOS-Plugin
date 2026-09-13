@@ -44,11 +44,13 @@ not embedded in the reusable method.
    link to that exact folder is a no-op. A same-name directory, foreign link,
    unknown dangling link or conflicting package skill is a collision: preserve
    both and stop that registration, without overwriting or uninstalling it.
-3. For Pi, use the bounded [default adapter](../../aios-onboard/references/adapter-pi.md#default-aios-focused-discovery)
-   to load the canonical `AIOS_ROOT/skills` directory directly. Do not depend on
-   the excluded ambient `~/.agents/skills` source or add a per-skill Pi path.
-   An existing exact owner-root entry is a no-op; an unexpected second owner
-   root or conflicting selected package is preserved and reported as a collision.
+3. For separately selected Pi owner-skill setup, follow the
+   [Pi adapter](../../aios-onboard/references/adapter-pi.md#preserve-existing-discovery).
+   Inspect current discovery first; keep an existing route that loads the
+   canonical skills once. If needed, register `AIOS_ROOT/skills` directly
+   through Pi's supported skill-path setting, preserving ambient skills and
+   unrelated selections. An exact existing entry is a no-op. Preserve and
+   report conflicting owner roots or packages; do not add a duplicate route.
 4. Repoint a moved/renamed Codex link only when the prior target and ownership
    are proved by the accepted change map. Remove an obsolete registration only
    under the accepted rename/removal scope and only while it still matches that

@@ -12,6 +12,8 @@
   Distinguish verified CLI behavior from documented and untested routes.
 - Advance `aios`, `aios-onboard` and `aios-check` to 1.1.0. Human writing remains
   1.0.1 and applies across prose formats. No owner-data format change.
+- Correct Manage Skills' Pi owner-registration reference to preserve ambient
+  discovery and existing routes; advance that skill to 1.0.1.
 
 ## 0.7.1 — source candidate
 
