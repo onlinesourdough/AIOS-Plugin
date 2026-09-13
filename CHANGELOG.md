@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.10.1 — 2026-09-13
+
+- Keep the versioned overview at `docs/aios.md` with the installed plugin.
+  Remove the public export scripts, artifact workflow and Resources dependency.
+  Advance only the AIOS routing skill to 2.1.1 for the corrected documentation
+  route; the other 22 skills retain their versions. No owner-format change.
+- Add a tag-triggered GitHub Release workflow. Validate the package, local
+  overview, changelog entry and tag version before publishing a prerelease.
+- Explain native plugin updates, explicit private owner Sync and independent
+  project/System repositories in the README diagram and ownership table.
+  Preserve the `aios` installation identity and clarify active-session limits.
+
 ## 0.10.0 — source candidate
 
 - Add `write-code` 1.0.0 for code of any size, including scripts, shell snippets,

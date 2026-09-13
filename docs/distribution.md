@@ -2,7 +2,7 @@
 
 The release unit is this repository root: `plugin.json`, the native compatibility
 manifests, `package.json`, `gemini-extension.json`, `assets/`, `LICENSE`,
-`README.md`, the single `skills/` source and `docs/public/aios.md`. The overview
+`README.md`, the single `skills/` source and `docs/aios.md`. The overview
 is package documentation, read only when needed. Other documentation, tests and
 the optional specialist shelf remain author material, not product skills.
 This repository carries no local generic lifecycle skills.
@@ -33,63 +33,58 @@ are separate actions and require their own applicable authority.
 
 ## Release and adoption
 
-Use [GitHub Releases](https://github.com/onlinesourdough/AIOS-Plugin/releases)
-for version history. A tag or release is not implied by a source version or
-branch push. Native adoption follows the
-[adapter guide](../skills/aios-onboard/references/adapters.md), preserves owner
-data and unrelated settings, and verifies the actual installed source.
-
-Keep delivery, recovery, and observed outcome distinct. Package listing or
-resource discovery does not prove model behavior, account access, desktop
-cutover, or owner-data migration.
-
-## Public AIOS overview export
-
-`docs/public/aios.md` is the only approved source artifact for public AIOS
-orientation. It ships in the package and visibly states the matching AIOS
-version. It is not the full skill library, customer documentation or an
-installation endpoint. No other documentation becomes public by implication.
-
-When the package version changes, review the overview and update its version
-line. `python3 scripts/public_docs.py check` and the normal package validator
-reject a missing, unshipped or mismatched version. The content review establishes
-accuracy; a matching version alone does not prove the prose is correct.
-
-After reviewing an immutable source revision, prepare its export:
+A source version on `main` is a candidate until its reviewed tag and GitHub
+Release exist. Promote the exact reviewed main-branch commit after the checks
+above. Bump every native package declaration together, update `docs/aios.md`,
+and add the matching `## VERSION` entry in CHANGELOG. Run the release check:
 
 ```sh
-python3 scripts/public_docs.py export --ref REVIEWED_REF --output /new/export-directory
+python3 tests/validate.py --release-tag vVERSION --baseline PREVIOUS_REVIEWED_REF
+python3 tests/documentation-rehearsal.py
 ```
 
-The author-only command reads the committed source, checks the package identity
-and version, and produces exactly `aios.md` plus `aios.meta.json` in a new
-directory. The metadata records package version, immutable commit, source date,
-canonical path, SHA-256, and byte length. It contains no credentials or owner
-context. An existing export directory is never overwritten.
-
-[Versioned documentation](../.github/workflows/documentation.yml) runs these
-checks and prepares the same two-file workflow artifact for pull requests,
-`main` updates, published releases and explicit dispatch. Release events also
-require the tag's version to match the package. The workflow has read-only
-repository permissions and does not publish the site or add a consumer runtime.
-
-Resources owns public adoption. Its maintainer imports the reviewed export:
+Replace both placeholders with the actual reviewed versions. Under the accepted
+release authority, create and push only that version tag:
 
 ```sh
-npm run update:aios -- /export-directory REVIEWED_COMMIT
-npm run ci
+git tag -a vVERSION REVIEWED_COMMIT -m "AIOS VERSION"
+git push origin refs/tags/vVERSION
 ```
 
-Those commands run in Resources. The reviewed commit must be selected from the
-accepted source/release, rather than trusted solely from imported metadata.
-Resources checks both files before replacement and serves `/aios.md` and
-`/aios.meta.json`. Its existing review/merge/deploy path publishes the copy;
-verify the public version, source and bytes against the reviewed export after
-deployment. A source delivery is not completion of a requested public-site update.
-The site deployment, release, tag or visibility change remains a separate authorized action.
+[Package and release CI](../.github/workflows/release.yml) runs package checks
+for pull requests, main updates and version tags. On a tag, it also checks that
+the tag commit belongs to main, that its version matches the package and local
+overview, and that its changelog entry exists. Only then does it create the
+matching GitHub prerelease. AIOS remains an invited pilot; this workflow does
+not promote it to a stable/public release or change repository visibility.
 
-Retain the previous source revision and Resources commit for recovery. A failed
-website update leaves the plugin's local documentation available. Reverting a
-public update restores the document and metadata together through Resources'
-normal delivery path. The installed version and public-site version remain
-explicitly distinct.
+Verify workflow completion and the GitHub Release's tag and resolved commit.
+A failed run means release delivery is incomplete. Fix the cause and rerun;
+an existing release for the validated tag is not recreated. Never move a
+published tag to repair a failed version. Retain earlier immutable tags for
+recovery. A package listing or source push is not release readback.
+
+Native adoption follows the [installation guide](native-installation.md),
+preserving owner data and unrelated settings. A tracking source can adopt
+upstream through its app's update controls. A pinned source must select the new
+reviewed tag/commit explicitly. Verify the installed source, version and actual
+skill discovery in every app included in the task. An update in Codex does not
+update Pi or another app, and package discovery does not prove model behavior
+or replacement of instructions already read into an active conversation.
+
+Owner-data continuity is a separate, explicit Sync operation. Plugin releases
+never upload, restore or migrate an owner's home.
+
+## Local documentation
+
+`docs/aios.md` is the version-matched overview included in every native package.
+The AIOS skill's documentation route reads only the needed overview or method
+reference. Package validation checks its regular file, package inventory and
+single version label; release validation also checks the tag and changelog.
+Content review establishes accuracy; matching numbers alone do not prove prose.
+
+AIOS no longer exports documentation for the Resources domain. The package
+contains its own references and needs no documentation server, installer hook,
+custom CLI or background updater. Customer sources and owner data stay with
+their existing owners. The Resources rollback is delivered through that
+repository's normal review, merge and production deployment.

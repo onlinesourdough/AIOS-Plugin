@@ -1,6 +1,6 @@
 # Native installation
 
-AIOS 0.10.0 packages the same 23 skills for several agent apps. Install through
+AIOS 0.10.1 packages the same 23 skills for several agent apps. Install through
 the selected app's package manager. No AIOS installer program runs, and no other
 app is configured as a side effect. Owner setup is a separate conversation.
 
@@ -78,6 +78,14 @@ Rollback selects the previous reviewed package through the same native controls.
 It does not restore owner data. After update or rollback, start a fresh session
 and verify the installed version, source and declared skills.
 
+For a released version, select an existing tag from GitHub Releases and verify
+the installed manifest against that release. A fixed pin does not advance when
+upstream publishes a newer release. A tracking registration still needs the
+app's native update to adopt it; AIOS adds no updater or background sync.
+Some apps refresh discovery between turns or provide reload controls, but an
+update cannot erase instructions already read into a conversation. Do not
+promise immediate adoption by every active session or another installed app.
+
 Native uninstall removes the selected package registration. It leaves the owner
 home, other apps and separately configured bridges intact. Some clients retain
 old caches. Explicit bridge cleanup uses only its unchanged managed block;
@@ -88,7 +96,7 @@ the plugin.
 
 | File | Native role |
 | --- | --- |
-| `docs/public/aios.md` | Version-matched local overview, selected through the AIOS documentation route |
+| `docs/aios.md` | Version-matched local overview, selected through the AIOS documentation route |
 | `plugin.json` | Portable Agent Plugins 1.0.0 identity; root `skills/` discovery |
 | `.codex-plugin/plugin.json` | Compatible Codex manifest and interface metadata |
 | `.agents/plugins/marketplace.json` | Codex repository marketplace |

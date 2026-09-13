@@ -144,9 +144,9 @@ def rehearse(base, claude, install, names):
     for name in (".claude-plugin", "skills"):
         shutil.copytree(ROOT / name, source / name)
     shutil.copy2(ROOT / "plugin.json", source / "plugin.json")
-    overview = source / "docs/public/aios.md"
+    overview = source / "docs/aios.md"
     overview.parent.mkdir(parents=True)
-    shutil.copy2(ROOT / "docs/public/aios.md", overview)
+    shutil.copy2(ROOT / "docs/aios.md", overview)
     sentinel = config / "skills" / "fixture-sentinel" / "SKILL.md"
     sentinel.parent.mkdir(parents=True)
     sentinel.write_text("---\nname: fixture-sentinel\ndescription: Fixture only.\n---\nFixture.\n")
@@ -168,7 +168,7 @@ def rehearse(base, claude, install, names):
         cache = Path(row["installPath"]).resolve()
         require(cache.is_relative_to(config.resolve()), "Cache escaped isolated config")
         require(payload_hashes(cache) == payload_hashes(source), "Cached skill bytes differ")
-        require((cache / "docs/public/aios.md").read_bytes() == overview.read_bytes(),
+        require((cache / "docs/aios.md").read_bytes() == overview.read_bytes(),
                 "Cached documentation differs")
         require(f"AIOS version: {version}\n" in overview.read_text(),
                 "Installed documentation version differs")
