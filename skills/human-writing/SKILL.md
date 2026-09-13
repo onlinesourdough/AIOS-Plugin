@@ -1,13 +1,14 @@
 ---
 name: human-writing
-description: Draft or revise reader-facing prose when natural voice, clarity, or removal of formulaic language is the task.
+description: Draft or revise prose for clear, concise, natural communication suited to its intended reader.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Human writing
 
-Return prose that helps its intended reader understand the point. Use this
+Make the intended meaning easy to understand on a first reading. Apply this
+across prose formats and genres, adapting to the audience and purpose. Use this
 method for a writing or editing deliverable; ordinary coding, data extraction
 and routine conversation do not need a separate writing pass.
 
@@ -17,6 +18,18 @@ ask only when an unresolved choice would materially change the message.
 Existing brand or author guidance governs its scope. Do not load personal
 context or another writing skill merely because one is available.
 
+## Make understanding easy
+
+Prefer familiar words and short, direct sentences. Give each paragraph a clear
+focus. Prefer one main idea per sentence; split dense sentences when that makes them easier to
+follow. Explain necessary unfamiliar terms for the intended reader. Use the
+same term for the same concept rather than varying words for decoration.
+
+Keep the text as short as understanding allows. Preserve the requested depth,
+necessary explanations and connections between ideas. An extra explanatory
+sentence can be clearer than a compressed phrase. Do not shorten away reasoning,
+precision or qualifications; clarity matters more than minimum word count.
+
 ## Edit for meaning and voice
 
 Lead with the useful point. Connect sentences in the order a reader needs them.
@@ -24,8 +37,8 @@ Prefer concrete subjects and active verbs; remove repetition, throat-clearing,
 unsupported praise and conclusions that add nothing. Replace abstract claims
 with supplied specifics, or narrow the claim when specifics are absent.
 
-Vary sentence length where it improves rhythm. Retain distinctive phrasing,
-humor and emotion when the source or requested voice supports them. Do not
+Vary sentence length where it improves readability and rhythm. Retain distinctive
+phrasing, humor and emotion when the source or requested voice supports them. Do not
 invent personal experience, opinions, quotations or feelings for the author.
 
 Treat familiar stock phrases, forced contrasts, decorative emphasis and
@@ -46,7 +59,8 @@ For example, given “The pilot may reduce waiting time. It has not been tested
 with customers,” a concise edit can be “The pilot may shorten waits, but it
 has not been tested with customers.” It cannot promise faster service.
 
-Read the finished text once for meaning drift and fit, then return the requested
+Read the finished text once for ease of understanding, unnecessary complexity,
+meaning drift and fit, then return the requested
 draft or revision. Include an editorial note only when a material ambiguity or
 change needs the reader's attention. A writing request authorizes the draft;
 it supplies no sending or publishing authority. Do not claim that wording proves

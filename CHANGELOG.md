@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.7.1 — source candidate
+
+- Clarify human-writing's general priority: familiar words, direct sentences
+  and easy understanding across prose formats and genres.
+- Keep text as short as understanding allows while preserving requested depth,
+  necessary explanations, consistent terminology, precision and qualifications.
+- Bump only human-writing to `metadata.version: "1.0.1"`; the other 16 skills
+  retain their independent versions. No format-specific focus or new workflow.
+
 ## 0.7.0 — source candidate
 
 - Simplify shared tracking and Spec bookkeeping while preserving native goal
