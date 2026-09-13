@@ -123,6 +123,7 @@ def main():
         loaded = pi_skills()
         own = [c for c in loaded if str(source / 'skills') in c.get('sourceInfo', {}).get('path', '')]
         assert len(own) == len(expected) and {Path(c['sourceInfo']['path']).parent.name for c in own} == expected
+        assert (source / 'docs/public/aios.md').read_bytes() == (ROOT / 'docs/public/aios.md').read_bytes()
         assert any('fixture-sentinel' in c.get('sourceInfo', {}).get('path', '') for c in loaded)
         unchanged()
         run('update', '--extension', source, '--no-approve')
@@ -140,6 +141,8 @@ def main():
         discovered = run('skills', 'list')
         cache = settings_root / 'extensions' / 'aios'
         assert hashes(cache / 'skills') == hashes(source / 'skills'), 'Installed bytes differ'
+        overview = source / 'docs/public/aios.md'
+        assert (cache / 'docs/public/aios.md').read_bytes() == overview.read_bytes(), 'Installed documentation differs'
         for name in expected:
             assert str(cache / 'skills' / name / 'SKILL.md') in discovered, 'Undiscovered: ' + name
         assert str(sentinel) in discovered, 'Unrelated skill not discoverable'
@@ -148,9 +151,12 @@ def main():
         data = json.loads(manifest.read_text())
         data['version'] = '99.0.0-rehearsal'
         manifest.write_text(json.dumps(data) + '\n')
+        overview.write_text(overview.read_text().replace(f'AIOS version: {package_version}\n',
+                                                        'AIOS version: 99.0.0-rehearsal\n'))
         run('extensions', 'update', 'aios')
         listing = run('extensions', 'list')
         assert '99.0.0-rehearsal' in listing, 'Gemini version transition not observed'
+        assert (cache / 'docs/public/aios.md').read_bytes() == overview.read_bytes(), 'Updated documentation differs'
         update_proof = 'Version transition'
         run('skills', 'list')
         unchanged()

@@ -2,6 +2,11 @@
 
 ## 0.9.0 — 2026-09-13
 
+- Bundle a version-labelled overview and a short local documentation route;
+  references load only for the selected question.
+- Check documentation against the package version and prepare public exports
+  with immutable source, version and checksum metadata during CI/release.
+
 - Include design and content as five focused skills with portable helpers,
   preserving source judgment, review, provenance and optional editor routes.
 - Use the native app's project and workspace. Remove mandatory AIOS project

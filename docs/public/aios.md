@@ -1,5 +1,7 @@
 # AIOS
 
+AIOS version: 0.9.0
+
 AIOS supplies portable context and skills to help an AI assistant work from an
 owner's relevant context and carry a task from a small request to a reviewed
 result. It is not a model, a hosted service, or a replacement for the tools and
@@ -66,7 +68,8 @@ setup and recovery guidance; never paste credentials into a chat. Technical
 procedures remain with their owning documentation so this overview can stay a
 short public orientation rather than a copy of the executable skill library.
 
-This document is intended for a release-bound public export. Its export record
-identifies the exact source commit or release tag, SHA-256, and byte length so
-readers can distinguish this overview from a live product or installation
-claim.
+This overview ships with the AIOS version named above and is read only when
+needed. The public copy is a release-bound public export; its
+[source record](https://resources.onlinesourdough.com/aios.meta.json) identifies
+the package version, exact source commit, source date, SHA-256 and byte length.
+The website may describe a different version from an installed plugin.

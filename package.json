@@ -16,7 +16,8 @@
     "skills",
     "assets/icon.png",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "docs/public/aios.md"
   ],
   "pi": {
     "skills": [
