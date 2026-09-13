@@ -26,7 +26,11 @@ installation hooks, misplaced executable files, split skill sources, duplicate
 lifecycle methods, lost built-in routes and compulsory owner registries.
 Selected-read ceilings are unchanged; byte counts are not runtime token usage.
 
-Domain tests run copied helpers against external synthetic working folders.
+The domain suites pass 18 design tests, 27 Node content tests and 14 Python
+content tests. Run `python3 -B -m unittest discover -s tests/design`,
+`node --test tests/content/*.test.mjs`, and
+`python3 -B -m unittest discover -s tests/content`.
+They run copied helpers against external synthetic working folders.
 They cover their documented operations, preservation and path boundaries.
 They do not prove installation or operation of OpenPencil, Diffusion Studio,
 Whisper, Windows or a publishing account. Use a selected tool's real acceptance
@@ -34,12 +38,33 @@ procedure when a task needs it.
 
 ## Native and behavioral evidence
 
-The isolated Pi and Claude package lifecycle checks discover all 22 skills,
+The isolated Pi, Claude and Gemini package lifecycle checks discover all 22 skills,
 preserve unrelated fixture settings/skills and remove only AIOS registration.
-Claude also verifies a fixture-only version transition and installed skill
-byte equality. These initial runs use the integration candidate; final source
+Claude and Gemini also verify a fixture-only version transition and installed
+skill byte equality. These initial runs use the integration candidate; final source
 identity and any necessary affected reruns are recorded before delivery.
 They make no model calls and establish no cross-harness performance claim.
 
-Final domain helper counts, Gemini results, independent Review and scoped
-native behavior observations remain pending while integration is in progress.
+A bounded Codex execution selected the candidate content, human-writing, design
+and review-design skills explicitly. It produced a 191-word Danish article and
+a concrete direction-only DESIGN.md in project-local folders. The synthetic
+facts and caveats were preserved. Existing sentinel/README/instructions stayed
+byte-identical, and emitted commands show no owner-context reads. This is an
+execution observation with an ambient native catalog, not a cold-discovery,
+matched-model or cross-harness comparison. No visual rendering was requested.
+
+Independent review found that nested transcript output was incompatible with
+the existing Video Use packer. The correction retains its flat transcript
+contract and rejects ambiguous clip stems before transcription. A regression
+fixture uses flat discovery, and the actual installed packer (SHA-256
+`f9e419def5f0a014d5e1fd16fdad801013ae068854c1d474c3492297e2304f4b`)
+packed both recursive inputs with synthetic ASR and media extraction. This
+proves packer integration; it does not claim speech-recognition quality.
+
+Legacy ADS/ACS retirement removes duplicate native skill discovery and obsolete
+CI entrypoints. Existing workspace files remain untouched; previous complete
+public source revisions remain linked for recovery and users without AIOS
+access. APT and AST validators pass on their final candidates. Actual owner
+cleanup, final source Review, delivery and native adoption have separate exact
+identity/readback records in the task's delivery evidence. Source checks do
+not stand in for those actions.

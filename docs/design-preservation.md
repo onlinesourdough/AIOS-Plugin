@@ -1,10 +1,8 @@
 # Design integration preservation
 
-Accepted scope: the design portion of AIOS integration, from read-only ADS
-commit `52322edeb796bfc47e65b0f2561a90305b998557`. The target is branch
-`codex/aios-integration-20260913`. This worker owns only the three new design
-skill folders, `tests/design/`, and this document. Lead owns core routing,
-manifests, global validation, independent acceptance and delivery.
+The design portion of AIOS 0.9.0 preserves the methods from ADS commit
+`52322edeb796bfc47e65b0f2561a90305b998557` in three built-in skill folders.
+The shared package owns core routing, native manifests and validation.
 
 The result is three skills, each metadata version **1.0.0**. The primary
 [design](../skills/design/SKILL.md) body is 3,011 UTF-8 bytes. Conditional
@@ -95,8 +93,7 @@ immutable snapshots, selected derivatives, path/collision denial, loopback HTTP,
 audit outcomes and no mutation, and OpenPencil fake-daemon isolation, locale,
 CanvasKit aliases, output limits/timeouts, source drift and cleanup.
 
-Final worker evidence records the exact run, file hashes and count in
-`work/integration/design-report.md` outside this repository. All retained
+The suite passes 18 tests. All retained
 Markdown links and relative script imports resolve; no retained resource
 instructs use of the old System root. Compatibility labels, protocol routes
 and source notices are intentional historical identifiers.
@@ -104,5 +101,4 @@ and source notices are intentional historical identifiers.
 No live OpenPencil canvas, native browser download, real Google exporter, visual
 artifact review, accessibility conformance, native harness installation or model
 behavior was tested. Independent lead Review and integrated routing/manifests/
-validators remain pending. No commit, push, release, source/owner-data write or
-new external action was performed.
+validators are covered in [integration proof](integration-proof.md).

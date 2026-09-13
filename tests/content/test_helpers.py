@@ -203,24 +203,53 @@ assert base == pathlib.Path.cwd()
             self.assertIn(reason, result.stderr)
         self.assertFalse(self.stub_log.exists())
 
-    def test_transcription_preserves_recursive_paths_and_supports_explicit_external_packer(self):
-        self.media('sources/first/clip.wav')
-        self.media('sources/second/clip.wav')
+    def test_recursive_transcription_works_with_flat_directory_packer(self):
+        self.media('sources/first/clip-first.wav')
+        self.media('sources/second/clip-second.wav')
+        self.media('sources/clip-flat.wav')
         edit = self.work / 'transcripts output'
         packer = self.tool('pack_transcripts.py', '''
 import json, pathlib, sys
 root = pathlib.Path(sys.argv[2]); assert root == pathlib.Path.cwd()
-(root/'takes_packed.md').write_text('packed '+str(len(list((root/'transcripts').rglob('*.json')))))
+(root/'takes_packed.md').write_text('packed '+str(len(list((root/'transcripts').glob('*.json')))))
 ''')
         self.call('transcribe-local-whisper.py', self.work / 'sources', '--recursive', '--edit-dir', edit, '--pack', '--packer', packer)
-        self.assertEqual((edit / 'takes_packed.md').read_text(), 'packed 2')
+        self.assertEqual((edit / 'takes_packed.md').read_text(), 'packed 3')
         for name in ['first', 'second']:
-            transcript = json.loads((edit / 'transcripts' / name / 'clip.json').read_text())
-            self.assertEqual(transcript['metadata']['source'], str(self.work / 'sources' / name / 'clip.wav'))
+            transcript = json.loads((edit / 'transcripts' / f'clip-{name}.json').read_text())
+            self.assertEqual(transcript['metadata']['source'], str(self.work / 'sources' / name / f'clip-{name}.wav'))
             self.assertEqual(transcript['words'][0]['start'], 0.1)
         before = digest_tree(edit)
         self.call('transcribe-local-whisper.py', self.work / 'sources', '--recursive', '--edit-dir', edit)
         self.assertEqual(digest_tree(edit), before)
+
+    def test_recursive_duplicate_stem_fails_before_model_or_file_write(self):
+        self.media('sources/first/clip.wav'); self.media('sources/second/clip.wav')
+        result = self.call('transcribe-local-whisper.py', self.work / 'sources', '--recursive',
+                           '--edit-dir', self.work / 'edit', ok=False)
+        self.assertIn('filename collision', result.stderr)
+        self.assertFalse(self.stub_log.exists())
+        self.assertFalse((self.work / 'edit').exists())
+
+    def test_recursive_case_only_stem_collision_is_preserved(self):
+        self.media('sources/first/Clip.wav'); self.media('sources/second/clip.wav')
+        result = self.call('transcribe-local-whisper.py', self.work / 'sources', '--recursive',
+                           '--edit-dir', self.work / 'edit', ok=False)
+        self.assertIn('filename collision', result.stderr)
+        self.assertFalse(self.stub_log.exists())
+        self.assertFalse((self.work / 'edit').exists())
+
+    def test_packer_refuses_output_symlink_outside_edit_directory(self):
+        media = self.media('sources/clip.wav')
+        edit = self.work / 'edit'
+        self.call('transcribe-local-whisper.py', media, '--edit-dir', edit)
+        sentinel = self.work / 'outside.md'; sentinel.write_text('preserve')
+        (edit / 'takes_packed.md').symlink_to(sentinel)
+        packer = self.tool('packer.py', "raise SystemExit('packer must not run')")
+        result = self.call('transcribe-local-whisper.py', media, '--edit-dir', edit,
+                           '--pack', '--packer', packer, ok=False)
+        self.assertNotIn('packer must not run', result.stderr)
+        self.assertEqual(sentinel.read_text(), 'preserve')
 
     def test_same_stem_extension_collision_fails_before_transcription(self):
         self.media('sources/clip.mp4'); self.media('sources/clip.wav')

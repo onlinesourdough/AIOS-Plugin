@@ -31,8 +31,9 @@ under the output boundary and is cleaned on completion/failure. No bytecode
 cache is written beside skill code. Third-party runtimes stay external too.
 
 JSON retains text, detected language, word start/end times, engine and original
-source path. Recursive inputs preserve relative subdirectories; same-name,
-different-extension collisions fail before transcription. `speaker_0` is a
+source path. Recursive inputs keep flat transcript filenames for editor-packer compatibility.
+Duplicate clip stems, including across subdirectories, fail before transcription;
+select distinct output directories or rename the inputs before retrying. `speaker_0` is a
 placeholder, not verified diarization. Existing transcripts are reused;
 `--force` deliberately replaces them, so inspect source changes before reuse.
 The default model remains `large`; `--model`, `--device`, `--fp16` and language

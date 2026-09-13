@@ -80,8 +80,9 @@ for macOS/Linux/Windows, while physical Electron parity is not newly claimed.
 
 Reference preparation requires `--out-root`, refuses existing analysis leaves
 and traversal, and uses its skill-local template/sibling transcriber. Local
-transcription requires `--edit-dir`, uses external cache/temp paths, preserves
-recursive source directories and rejects same-stem extension collisions.
+transcription requires `--edit-dir`, uses external cache/temp paths, keeps
+flat transcript filenames compatible with the existing editor packer and rejects
+duplicate stems across directories or extensions before writing.
 The optional packer takes an explicit external path. A real external virtualenv
 test verifies that interpreter symlinks preserve the selected environment.
 No imports generate package-local bytecode.
@@ -98,7 +99,7 @@ The Node suite passes 27 tests: all 19 migrated tests plus external-root/CLI
 denials, package-overlap/symlink checks, real child-process cwd/argument behavior,
 relocated read-only package execution, read-only Git mismatch inspection,
 changed bytes/stale handoffs, graph path containment and incomplete templates.
-The Python suite passes 11 tests, including actual FFmpeg frame extraction, synthetic ASR/media/URL-caption
+The Python suite passes 14 tests, including actual FFmpeg frame extraction, synthetic ASR/media/URL-caption
 subprocesses, preserved external venv identity, explicit packer execution,
 read-only checks, overwrite/collision denials and all migrated relative links.
 Each relocated package is compared byte-for-byte before/after execution.
@@ -111,5 +112,5 @@ No dependency was installed to run metadata checks.
 These checks do not claim live Whisper recognition/model download, remote
 reference download, Diffusion install/build/launch/export/browser acceptance,
 new Linux/Windows physical parity, native skill-discovery behavior or publishing.
-Independent integration acceptance and all core routing/manifests/validators
-remain with the lead; this content worker made no commits or external service writes.
+See [integration proof](integration-proof.md) for the combined package, native
+checks and remaining evidence limits.

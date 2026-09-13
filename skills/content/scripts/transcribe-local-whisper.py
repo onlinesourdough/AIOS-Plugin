@@ -3,7 +3,7 @@
 
 Outputs agent-readable cached transcripts at:
 
-    <explicit-edit-dir>/transcripts/<relative-clip-path>.json
+    <explicit-edit-dir>/transcripts/<clip-stem>.json
 
 The JSON preserves the word-list shape used by the existing optional editor
 packer, while keeping transcription fully local.
@@ -178,6 +178,7 @@ def pack_transcripts(edit_dir: Path, helper: Path) -> None:
     helper = external_path(helper, "Transcript packer")
     if not helper.is_file():
         sys.exit(f"Transcript packer not found: {helper}")
+    contained_output(edit_dir, edit_dir / "takes_packed.md")
     subprocess.run([sys.executable, str(helper), "--edit-dir", str(edit_dir)],
                    cwd=edit_dir, check=True)
 
@@ -260,11 +261,13 @@ def main() -> None:
 
     used_outputs = set()
     for media_path in media_files:
-        relative = Path(media_path.name) if input_path.is_file() else media_path.relative_to(input_path)
-        out_path = contained_output(edit_dir, transcripts_dir / relative.with_suffix(".json"))
-        if out_path in used_outputs:
+        # Existing editor packers discover a flat transcripts/*.json directory.
+        # Reject ambiguous stems before model loading instead of losing a clip.
+        out_path = contained_output(edit_dir, transcripts_dir / f"{media_path.stem}.json")
+        output_key = str(out_path).casefold()
+        if output_key in used_outputs:
             sys.exit(f"Transcript filename collision: {out_path}; select files separately with distinct output directories")
-        used_outputs.add(out_path)
+        used_outputs.add(output_key)
         if out_path.exists() and not args.force:
             print(f"cached: {out_path}")
             continue
