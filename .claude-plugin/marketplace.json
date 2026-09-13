@@ -1,0 +1,17 @@
+{
+  "name": "online-sourdough",
+  "owner": {
+    "name": "Online Sourdough"
+  },
+  "metadata": {
+    "description": "AIOS methods for portable owner context and reviewed work."
+  },
+  "plugins": [
+    {
+      "name": "aios",
+      "source": "./",
+      "version": "0.8.0",
+      "description": "Portable owner context, adaptive onboarding and discoverable methods for specified, reviewed work."
+    }
+  ]
+}

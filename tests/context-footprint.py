@@ -178,7 +178,8 @@ def current_bytes(paths, startup):
 def validate_routes():
     adapters = (ROOT / "skills/aios-onboard/references/adapters.md").read_text()
     required = ("adapter-codex.md", "adapter-codex-desktop.md", "adapter-pi.md",
-                "adapter-portability.md", "harness-configuration.md")
+                "adapter-portability.md", "adapter-claude.md", "adapter-other.md",
+                "harness-configuration.md")
     require(all(target in adapters for target in required), "adapter route coverage")
     require("exactly one operation route" in adapters, "adapter selective-read rule")
 

@@ -2,7 +2,7 @@
 name: aios
 description: Route owner business constraints, scoped AIOS documentation questions and task results to a registered System/Project.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # AIOS
@@ -24,12 +24,15 @@ and accepted input. This read-only route does not read AIOS_FORMAT, AIOS.md,
 MEMORY.md, lifecycle/Review guidance, or a directory inventory unless the task
 actually needs that boundary. An unavailable source is an evidence gap.
 
-At the configured owner root, AIOS.md plus a supported AIOS_FORMAT identify the
-home; Git alone does not. Before any owner-data mutation, setup or migration,
+For owner work, use the explicitly requested or established physical home;
+otherwise use an existing managed bridge. Only without either, inspect ~/.AIOS.
+Do not scan for homes, replace a custom root or create a second home. A native
+plugin install needs no bridge. AIOS.md plus a supported AIOS_FORMAT identify
+the home; Git alone does not. Before any owner-data mutation, setup or migration,
 read the format and use [data compatibility](../aios-onboard/references/data-format.md)
 only for that boundary. Unsupported/malformed formats remain read-only; a missing
 marker needs explicit setup, not an inferred version. For every actual
-owner-level task, resolve the bridge, read AIOS.md and MEMORY.md, then only the
+owner-level task, resolve the home, read AIOS.md and MEMORY.md, then only the
 relevant routed source; read CONNECTIONS only when the accepted task needs it.
 If the home is absent, route setup to [Onboard](../aios-onboard/SKILL.md)
 without interrupting unrelated repository work. Native memory/history is optional

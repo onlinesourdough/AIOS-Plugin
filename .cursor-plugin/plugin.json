@@ -1,0 +1,6 @@
+{
+  "name": "aios",
+  "version": "0.8.0",
+  "description": "Portable owner context, adaptive onboarding and discoverable methods for specified, reviewed work.",
+  "skills": "./skills"
+}

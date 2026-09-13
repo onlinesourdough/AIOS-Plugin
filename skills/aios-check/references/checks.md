@@ -11,9 +11,11 @@ and recheck, or Needs decision, plus per-claim PASS/FAIL/NOT VERIFIED.
   work without reinterview; ordinary tasks do not repeat the onboarding audit.
 - Product: normalized plugin manifest, correct skill paths and the 17 selected
   discoverable names; frontmatter valid, local references resolve, no consumer
-  scripts/MCP/hooks/dependencies or hidden invocation disabling. Pi points to
-  the same bodies. Compare installed release identity, not just a folder name.
-- Bridge: configured absolute home is correct; effective AGENTS/override read
+  scripts/MCP/hooks/dependencies or hidden invocation disabling. Every native
+  manifest points to the same bodies; only the selected harness is affected. Compare installed release identity, not just a folder name.
+- Owner routing: requested/established home wins, then a managed bridge, then
+  ~/.AIOS only when neither exists. Native discovery needs no bridge or home.
+  For a separately chosen bridge, the configured absolute home is correct; effective AGENTS/override read
   path is known; one managed block, unrelated bytes preserved. A fresh ordinary
   owner task activates routing; a repository task reads local instructions
   first. At the configured Git-backed home, AIOS.md and supported AIOS_FORMAT

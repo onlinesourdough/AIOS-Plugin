@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.8.0 — source candidate
+
+- Add the portable Agent Plugins manifest and native Claude Code/Copilot,
+  Cursor and Gemini metadata alongside Codex and Pi. All use the same 17 skills.
+- Make native installation independent of an owner home or global bridge.
+  Owner work reuses its established home or checks the default when none is known.
+- Keep installation scoped to the selected app. Remove Pi's ambient-skill
+  exclusion from setup defaults; preserve existing explicit configuration.
+- Rewrite getting started around native installation, update and removal.
+  Distinguish verified CLI behavior from documented and untested routes.
+- Advance `aios`, `aios-onboard` and `aios-check` to 1.1.0. Human writing remains
+  1.0.1 and applies across prose formats. No owner-data format change.
+
 ## 0.7.1 — source candidate
 
 - Clarify human-writing's general priority: familiar words, direct sentences

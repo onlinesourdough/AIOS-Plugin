@@ -3,6 +3,7 @@
 from pathlib import Path
 import argparse
 from skill_metadata import parse_frontmatter, skill_version, validate_baseline
+from native_manifests import validate_native
 import json
 import re
 import shutil
@@ -74,7 +75,8 @@ FORBIDDEN_SHIPPED_PATTERNS = (
     r"\bskills\.sh\b", r"\bscripts/create-project\.sh\b",
     r"\barchive/extraction\b", r"\baudit-system\b",
 )
-PRODUCT_PATHS = (".codex-plugin", "skills", "assets/icon.png", "LICENSE")
+PRODUCT_PATHS = ("plugin.json", ".codex-plugin", ".claude-plugin", ".cursor-plugin",
+                 "gemini-extension.json", "skills", "assets/icon.png", "LICENSE")
 FORBIDDEN_KEYS = {"scripts", "dependencies", "devDependencies", "peerDependencies"}
 SECRET_PATTERNS = (
     r"AKIA[0-9A-Z]{16}",
@@ -122,6 +124,7 @@ def copy_product(root, destination):
 
 
 def validate(root=ROOT):
+    validate_native(root, require)
     manifest = json.loads((root / ".codex-plugin/plugin.json").read_text())
     package = json.loads((root / "package.json").read_text())
     marketplace = json.loads((root / ".agents/plugins/marketplace.json").read_text())
@@ -295,7 +298,7 @@ def validate(root=ROOT):
             "Do not turn a guardrail into a fact" in primary and
             "Otherwise say it is unknown" in primary and
             "Before any owner-data mutation, setup or migration" in primary and
-            "For every actual\nowner-level task, resolve the bridge, read AIOS.md and MEMORY.md" in primary and
+            "For every actual\nowner-level task, resolve the home, read AIOS.md and MEMORY.md" in primary and
             "Explaining or naming a workflow is a small answer, not executing it" in primary and
             "explicitly required path directly rather than rediscovering it with an inventory" in primary and
             "owner index/MEMORY establishes a needed\nsource is missing, report the gap" in primary and
@@ -329,7 +332,7 @@ def validate(root=ROOT):
     require("instruction-only method" in public_text and
             "Shared method, owner context" in public_text and
             "Customer documentation stays in its\nsource system" in public_text and
-            "Codex and Pi are AIOS's supported native routes" in public_text and
+            "Install it separately in each app you choose" in public_text and
             "never paste credentials into a chat" in public_text and
             "release-bound public export" in public_text,
             "public overview boundaries")
@@ -530,6 +533,26 @@ def negative_controls():
         folder = root / ".agents/skills/build-project"
         folder.mkdir(parents=True)
         (folder / "SKILL.md").write_text("---\nname: build-project\ndescription: Use shared Build.\n---\nInvoke aios-build-work.\n")
+
+    def native_version_drift(root):
+        path = root / 'gemini-extension.json'
+        data = json.loads(path.read_text())
+        data['version'] = '99.0.0'
+        path.write_text(json.dumps(data))
+
+    def native_split_source(root):
+        path = root / '.cursor-plugin/plugin.json'
+        data = json.loads(path.read_text())
+        data['skills'] = './copied-skills'
+        path.write_text(json.dumps(data))
+
+    def implicit_hook(root):
+        (root / 'hooks').mkdir()
+        (root / 'hooks/hooks.json').write_text('{}')
+
+    rejected(native_version_drift, 'native identity/version drift')
+    rejected(native_split_source, 'native split skill source')
+    rejected(implicit_hook, 'unexpected native runtime')
 
     rejected(split_source, "different skill sources")
     rejected(install_script, "consumer script or dependency")

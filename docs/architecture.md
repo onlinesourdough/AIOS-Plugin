@@ -1,12 +1,12 @@
 # Architecture
 
-AIOS is an instruction-only package for Codex and Pi. Both native declarations
-load the same root `skills/` directory; AIOS does not provide a model runner,
+AIOS is an instruction-only package using the portable Agent Plugins format.
+Native compatibility manifests all load the same root `skills/` directory; AIOS does not provide a model runner,
 worker service, permission system, or client-data store.
 
 | Boundary | Responsibility |
 | --- | --- |
-| `.codex-plugin/`, `package.json`, `assets/`, `skills/` | Native metadata and the 17 shipped product skills |
+| `plugin.json`, native manifests, `package.json`, `assets/`, `skills/` | Portable identity, native metadata and the 17 shared product skills |
 | `.agents/plugins/marketplace.json` | Codex marketplace entry pointing at this repository root |
 | `AGENTS.md`, optional `.agents/skills/` | Local requirements and specialist methods; no generic lifecycle copies |
 | Owner home, normally `~/.AIOS` | Client-controlled context, decisions, connections, and personal skills |
@@ -103,11 +103,19 @@ missing knowledge or duplicates an already authoritative external document.
 
 ## Portability
 
-Codex and Pi are the verified native routes. Another harness may use the same
-physical owner home and canonical skill bodies through its own supported
-entrypoint, but must independently verify discovery, permissions, and behavior.
-The [adapter guide](../skills/aios-onboard/references/adapters.md) owns those
-integration details.
+The root `plugin.json` follows Agent Plugins 1.0.0. Codex uses the compatible
+`.codex-plugin` overlay for its interface. Claude Code and Copilot can use the
+`.claude-plugin` marketplace; Cursor has its native manifest; Gemini has an
+extension manifest; Pi reads `package.json`. These are metadata over one skills
+directory, without a loader, extension program or install script.
+
+Installation affects only the selected harness. Native removal leaves owner
+data and other harnesses intact. The AIOS skill can find an established or
+default owner home without a global bridge; custom persistent routing is an
+optional separate setup. Existing settings and unrelated skills are preserved.
+See [native installation and evidence](native-installation.md) for tested versus
+documented routes, and the [adapter guide](../skills/aios-onboard/references/adapters.md)
+for the selected operation. Permissions and model behavior remain client-owned.
 
 ## Repository boundary
 

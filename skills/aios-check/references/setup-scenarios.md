@@ -5,7 +5,11 @@ client entry-point repair. Use the common [acceptance boundary](scenarios.md).
 
 | Case | Input/state | Required observable outcome |
 | --- | --- | --- |
-| Cold onboarding #25 | No home; ordinary setup request; current focus supplied | Neutral home and bridge, useful first artifact; no Git/service requirement |
+| Native installation | No home or bridge; other harness settings and skills exist | 17 skills available in the selected harness; no owner files, global bridge, cross-install or discovery filter created |
+| Native removal | Selected package plus another harness install and owner data | Selected package removed; other install, settings and owner data unchanged |
+| Default owner route | Native AIOS skill selected; no bridge; valid ~/.AIOS exists | Resolve that home without a global instruction edit |
+| Custom owner route | Established custom home; default absent or populated | Reuse the established home; do not create or select a second home |
+| Cold onboarding #25 | No home; ordinary setup request; current focus supplied | Neutral home, useful first artifact and optional chosen bridge; no Git/service requirement |
 | Source-led context | Sources plus unique owner fact; empty migration page | Verified useful content, short routes/local gaps; no mirror or readiness from title/fetch alone |
 | Empty foundation/connections | No context; absent/declined/working connections | Optional profile/document/description; guide one needed native read/setup, reuse access; no secrets or broader grants |
 | Business discovery | Founder; sources and experienced friction | Concrete open follow-up through Offer/Operations/Demand; no premature remedy; preserve audience/channel language, angle and voice |

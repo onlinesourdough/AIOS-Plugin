@@ -1,5 +1,9 @@
 # Verification
 
+For 0.8.0, see [native installation](native-installation.md) for packaging,
+isolated lifecycle commands, actual observations and per-client limits.
+
+
 For 0.7.0, see [Astra alignment](astra-alignment.md) for the final 17-skill
 inventory, individual version checks and bounded native Build/writing probes.
 Run `python3 tests/skill-version-rehearsal.py` for the additional metadata and

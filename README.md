@@ -2,121 +2,146 @@
 
 # AIOS
 
-AIOS helps your AI assistant work with your context, remember useful decisions
-and carry work from an idea to a reviewed result. It works in Codex and Pi.
+AIOS helps your AI assistant plan work, build it, review the result and remember
+useful decisions. Install it in the app you use. The same 17 skills work from
+one shared source, with native packaging for Codex, Pi, Claude Code, Gemini CLI,
+Copilot CLI and Cursor.
 
-Use it to plan a launch, develop a project, review a draft or pick up where you
-left off. Small requests stay small. For larger work, AIOS helps clarify what
-you want, build it and check the result before delivery.
+Small requests stay small. Larger tasks get a clear outcome, the relevant
+specialist method and a review before delivery. Your app still provides the
+models, tools and permissions.
 
-## Get started
+## Install in your app
 
-AIOS is currently available by invitation. Accept your GitHub invitation, then
-give your assistant this message:
+AIOS is currently available by invitation. Accept your GitHub invitation and
+make sure your app can access this repository through your normal Git setup.
+Never paste access tokens into a chat.
 
-> Help me set up AIOS using https://github.com/onlinesourdough/AIOS-Plugin.
-> Use the latest release, preserve any existing setup and help me get started.
-> My current focus is …
+Choose one of the routes below. These commands follow the repository's current
+`main` branch. For a fixed version, select a reviewed tag or commit using the
+[installation guide](docs/native-installation.md).
 
-Your assistant checks access and installation, asks for the context it needs
-and helps you complete a first task. If you need to start a fresh conversation
-after installation, say “Continue setting up AIOS.”
-
-[Codex](https://learn.chatgpt.com/docs/app) and Pi are the currently verified
-native routes. AIOS keeps one owner home and method source so onboarding can
-later resolve another harness's supported entrypoint; that adapter still needs
-[verification](skills/aios-onboard/references/adapter-portability.md).
-You also need GitHub access to this repository. Never paste access tokens into
-the chat.
-
-### Install from a terminal
-
-Choose a tag from [Releases](https://github.com/onlinesourdough/AIOS-Plugin/releases)
-and replace `RELEASE_TAG` below with it.
-
-For Codex:
+### Codex
 
 ```sh
-codex plugin marketplace add onlinesourdough/AIOS-Plugin --ref RELEASE_TAG
+codex plugin marketplace add onlinesourdough/AIOS-Plugin
 codex plugin add aios@online-sourdough
 ```
 
-For Pi:
+Once the marketplace is available, you can also install AIOS from Codex's plugin
+browser. Start a fresh task after installation.
+
+### Pi
 
 ```sh
-pi install git:github.com/onlinesourdough/AIOS-Plugin@RELEASE_TAG
+pi install git:github.com/onlinesourdough/AIOS-Plugin
 ```
 
-Use one installation source in each app. If you already have AIOS installed,
-ask your assistant to update it while preserving your context. See the
-[installation and recovery guide](skills/aios-onboard/references/adapters.md)
-for existing setups.
+Start a fresh Pi session. AIOS is a native Pi package containing skills; it needs
+no executable extension.
 
-## Work in ordinary language
+### Claude Code
 
-You do not need to remember skill names. Try:
+```sh
+claude plugin marketplace add onlinesourdough/AIOS-Plugin
+claude plugin install aios@online-sourdough --scope user
+```
 
-- “What should I focus on next, given my current projects?”
+Restart Claude Code. You can use ordinary language or call
+`/aios:aios-onboard` and `/aios:human-writing` directly.
+
+### Gemini CLI
+
+```sh
+gemini extensions install https://github.com/onlinesourdough/AIOS-Plugin
+```
+
+Review Gemini's installation prompt, then start a fresh session. The extension
+contains the same skills and no executable extension code.
+
+### Copilot CLI
+
+```sh
+copilot plugin marketplace add onlinesourdough/AIOS-Plugin
+copilot plugin install aios@online-sourdough
+```
+
+This uses Copilot's documented support for Claude-compatible plugin metadata.
+It has not been tested locally.
+
+### Cursor and other apps
+
+Cursor supports AIOS's portable plugin format. For private distribution, add
+the repository through a **Teams or Enterprise marketplace**, then install AIOS
+from **Customize**. AIOS is not listed in Cursor's public marketplace, and this
+installation route has not been tested locally. See the
+[Cursor adapter](skills/aios-onboard/references/adapter-other.md#cursor).
+
+OpenCode can reference the skill directory through its native `skills.paths`
+setting. It currently has no equivalent native installer for this instruction
+package, so we do not describe that route as plug and play. See the
+[compatibility guide](skills/aios-onboard/references/adapter-other.md#opencode).
+
+## Start with a real task
+
+After installation, try:
+
 - “Help me turn this idea into a clear plan.”
 - “Build the agreed change and review the result.”
-- “Review this draft against what we wanted to achieve.”
-- “Remember this decision and where it came from.”
-- “Turn this workflow into a personal skill I can reuse.”
+- “Make this draft easier to understand without losing its meaning.”
+- “Set up AIOS for my work. My current focus is …”
 
-AIOS includes [17 skills](docs/skills.md) for everyday work, setup, updates and
-keeping your context current. Before larger production work, AIOS selects the
-responsible workflow and continues in the current task by default. Delegate
-only when a separable result benefits from another capability, independent
-review, context isolation or useful parallel work after coordination costs. Design (ADS) and content Systems are optional
-independent specialist repositories, installed only when selected for real work;
-Power BI is optional and requires a matching need. System updates use the
-[System maintenance procedure](skills/aios-update/references/systems.md), separately
-from plugin updates and owner-context Sync. Your repositories keep their own development
-instructions; unrelated code work does not need your personal context.
+You can use the shared work methods immediately. Setting up your personal
+context is a separate conversation: AIOS reuses an existing home or helps you
+create one, normally at `~/.AIOS`. A custom location is also supported. No owner
+home or global instruction edit is required just to install the plugin.
 
 The bundled [human-writing](skills/human-writing/SKILL.md) skill is the default
-for substantive prose drafting and editing. It follows the user’s language and
-voice, preserves facts and qualifications, and adds no separate approval step.
+for substantial writing and editing across formats: articles, blogs, reports,
+emails, web copy and more. It makes the meaning easy to follow, keeps the text
+as short as understanding allows, and preserves your voice, facts and necessary
+detail. It adds no separate approval step.
 
-### Shared method, local expertise
+## What is shared
 
-Spec, Build, Review and Ship come from the same 17-skill AIOS plugin in every
-System and Project. Repository `AGENTS.md` supplies local requirements, checks
-and release facts; `.agents/skills/` contains only specialist methods. Technology
-selection and generic repository audits are conditional references in Spec and
-Review. No copied lifecycle, wrappers or pinned cache paths are needed.
+Installing AIOS in one app activates it there. It does not install into your
+other apps, hide their skills, change your model or connect accounts.
 
-[Model selection](skills/aios-select-model/SKILL.md) uses current runtime and
-task evidence during Spec and before Build. New lead sessions normally start
-with the newest capable supported general model at high reasoning; concrete
-defaults stay in the local harness. The method preserves useful session context
-and asks only for a material decision or missing authority. No model inventory
-travels with your synced owner home.
+If you want AIOS in another app, install it there too. Both can use the same
+owner home when you choose it. The plugin supplies methods; your home holds
+your context and personal skills. Updates and removal leave that data intact.
+Git backup and persistent routing to a custom home are optional setup choices.
 
-Open a System or Project and start a task normally. Its local instructions and
-specialist workflow are sufficient to begin; AIOS's shared methods are discovered
-through the installed harness, independently of the repository's parent folder.
-A directly opened task needs no lead/worker arrangement or personal-context
-preload. The repository's product remains independent of AIOS at runtime.
+Projects and Systems keep their own instructions and specialist methods.
+Shared Spec, Build, Review and Ship come from AIOS. Open a repository and work
+in the current task; unrelated code work does not load personal context.
+Design and content Systems remain optional, separately owned capabilities.
+Their integration into AIOS is being considered, not included in this release.
 
-```text
-skills/          17 shared AIOS product skills for Codex and Pi
-AGENTS.md        repository requirements and shared-method routes
-.agents/skills/  specialist-only shelf; no generic development skill copies
-```
+## Update or remove
 
-## Your context stays yours
+Use the same app and installation scope you originally chose. Finish active
+work before changing its methods.
 
-Your context and personal skills live in a folder you control, normally
-`~/.AIOS`, separately from the plugin. You choose what to keep and which
-connections or actions to allow. Git backup is optional.
+| App | Update | Remove |
+| --- | --- | --- |
+| Codex | Refresh the AIOS marketplace, then reinstall its AIOS entry; see the guide below for pinned sources | `codex plugin remove aios@online-sourdough` |
+| Pi | `pi update --extension git:github.com/onlinesourdough/AIOS-Plugin` for a tracking install | `pi remove git:github.com/onlinesourdough/AIOS-Plugin` |
+| Claude Code | `claude plugin marketplace update online-sourdough`, then `claude plugin update aios@online-sourdough --scope user` | `claude plugin uninstall aios@online-sourdough --scope user` |
+| Gemini CLI | `gemini extensions update aios` | `gemini extensions uninstall aios` |
+| Copilot CLI | `copilot plugin marketplace update online-sourdough`, then `copilot plugin update aios@online-sourdough` | `copilot plugin uninstall aios@online-sourdough` |
+| Cursor | Refresh the selected marketplace and manage AIOS in Customize | Remove AIOS in Customize |
 
-Installing AIOS does not connect accounts or grant access to other data. It
-uses the tools and permissions already available in your app.
+Pinned versions and local sources need their own update selection. In Pi, use
+the exact registered source from `pi list` when removing a pinned install.
+See [native installation, recovery and tested limits](docs/native-installation.md)
+before replacing an existing registration. A separately configured owner bridge
+is not removed by the package manager.
 
 ## More
 
-[Releases](https://github.com/onlinesourdough/AIOS-Plugin/releases) contains version
-history and update notes. For technical details, see [architecture](docs/architecture.md),
-[verification and known limits](docs/verification.md), or [recovery](docs/recovery.md).
+Read about the [17 skills](docs/skills.md), [architecture](docs/architecture.md),
+[verification](docs/verification.md), [recovery](docs/recovery.md) and
+[version history](CHANGELOG.md). GitHub [Releases](https://github.com/onlinesourdough/AIOS-Plugin/releases)
+lists published releases; a source version alone does not create a release tag.
 Contributors start with [AGENTS.md](AGENTS.md).

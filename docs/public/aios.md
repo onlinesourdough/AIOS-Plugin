@@ -30,8 +30,10 @@ source, that is an evidence gap—not a reason to invent an answer from memory.
 
 ## Native harnesses and access
 
-Codex and Pi are AIOS's supported native routes; each harness needs its own
-verification of discovery, access, and behavior. The native harness owns the
+AIOS supplies one skill library with native installation metadata for several
+agent apps. Install it separately in each app you choose; installation in one
+does not configure the others. Each route needs its own verification of
+discovery, access, and behavior. The native harness owns the
 model, tools, credentials, permissions, settings, and user interface. AIOS
 neither grants access nor performs actions outside the authority already
 available to the user and task.

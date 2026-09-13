@@ -49,7 +49,7 @@ continues. Implement authorized changes without reasking; assumptions grant no o
 
 ## Home and harness
 
-Follow Onboard's root/bridge rules; quote paths as data. Read before writing;
+Follow Onboard's home resolution and optional bridge rules; quote paths as data. Read before writing;
 use [data compatibility](data-format.md), a scoped write rehearsal and missing
 [neutral assets](../assets/owner/AIOS.md). Check unavailable volumes before creation;
 resolve bridge conflicts. Stop symlink overwrites; preserve custom/unrelated bytes.
@@ -67,7 +67,7 @@ extras need a request/task need. Resume needs no machine audit.
 
 ## Acceptance and continuity
 
-Complete the agreed useful result. Check root/bridge readback, format, selected
+Complete the agreed useful result. Check home and any chosen bridge readback, format, selected
 routes and gaps. A source read must supply needed content, not merely a reachable
 page, title or migration placeholder. Verify a needed unique local fact is
 retrievable; external facts stay at source. Unavailable sources remain dated gaps.

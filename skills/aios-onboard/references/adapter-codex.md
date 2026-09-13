@@ -9,16 +9,15 @@ Normal Codex setup also runs [checklist and goal acceptance](codex-tracking-acce
 On package update/repair, reuse its dated evidence unless runtime/version or
 capability evidence changed, is missing or uncertain; do not repeat global setup.
 
-An invited client can give the agent the private repository link and a natural
-setup request. With authorized access, read the README, resolve an existing
-reviewed AIOS release, and use an advertised permitted native install surface.
-Verify the release exists and identifies AIOS before installation; never
-substitute an unreviewed branch because a tag is absent. Missing GitHub access
-needs a native sign-in/invitation step, not a secret in chat. A fresh task
-continues onboarding after resource discovery is refreshed.
+Install through Codex's plugin UI or native CLI. The repository's marketplace
+selects AIOS; no agent bootstrap script is needed. Missing GitHub access needs
+a native sign-in/invitation step, not a secret in chat. Select the intended
+source: current main for a tracking install, or a reviewed immutable tag/commit
+for a fixed version. Do not substitute a branch for a requested fixed release.
 
-This repository contains `.agents/plugins/marketplace.json` and the root
-`.codex-plugin/plugin.json`. For an authorized local pilot, substitute the
+The root `plugin.json` uses Agent Plugins 1.0.0 and discovers `skills/` directly.
+`.codex-plugin/plugin.json` supplies the compatible Codex interface metadata;
+`.agents/plugins/marketplace.json` points to this same package root. For an authorized local pilot, substitute the
 verified repository path:
 
 ```sh
@@ -35,7 +34,7 @@ and verify the 17 packaged skills are discoverable once. Use the
 [identity migration](migration.md) before replacing an older Method selector or
 legacy/global registration; a matching skill name does not establish ownership.
 
-Default global bridge target is ~/.codex/AGENTS.md (respect an explicitly
+Only when persistent owner routing is requested, the default bridge target is ~/.codex/AGENTS.md (respect an explicitly
 configured CODEX_HOME). Inspect AGENTS.override.md: it can shadow the normal
 file. Preserve it and unrelated AGENTS instructions; do not delete or overwrite
 an override to make discovery pass. Under setup authority, propose/apply the

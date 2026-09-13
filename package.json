@@ -1,6 +1,6 @@
 {
   "name": "aios",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "private": true,
   "description": "Portable owner context, adaptive onboarding and discoverable methods for specified, reviewed work.",
   "license": "MIT",
@@ -8,7 +8,11 @@
     "pi-package"
   ],
   "files": [
+    "plugin.json",
     ".codex-plugin",
+    ".claude-plugin",
+    ".cursor-plugin",
+    "gemini-extension.json",
     "skills",
     "assets/icon.png",
     "README.md",

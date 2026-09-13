@@ -1,8 +1,8 @@
 ---
 name: aios-onboard
-description: Set up, resume or move an AIOS owner home and its Codex or Pi bridge.
+description: Set up, resume or move an AIOS owner home using the selected harness’s native installation.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Onboard
@@ -24,8 +24,9 @@ before writing; an actual import also uses the [migration procedure](references/
 and [identity migration](references/migration.md) for legacy OSM or template AIOS
 and discovery collisions. Blank owner assets are in [assets/owner](assets/owner/AIOS.md).
 
-Resolve the configured or requested path to its physical absolute location;
-default to ~/.AIOS only for a new home. Check existing routing before creation;
+Resolve the requested or established path, then any managed bridge, to its
+physical absolute location. Without either, inspect ~/.AIOS for an existing
+home; use that default for a new home only after new-home intent is established. Check existing routing before creation;
 never create a second home merely because a default is absent. Resume from
 established facts with no fresh interview. Ask only the next material gap.
 
@@ -43,8 +44,10 @@ Use Maintain Context's framework through setup for source routes and minimal
 local gap filling. Verify sources in the receiving account when a home moves;
 copied references and earlier availability do not prove current access.
 
-Keep owner routing in the thin global bridge, not an owner-home AGENTS.md that
-would preload personal context into nested repository tasks.
+Native installation exposes skills in the selected harness without an owner
+home or global instruction edit. For requested persistent routing to a custom
+home, use a thin global bridge supported by that harness. A bridge is optional;
+never add an owner-home AGENTS.md that preloads nested repository tasks.
 Create owner files from the supplied neutral assets with ordinary file tools,
 never clone AIOS-template. Keep product version and data format separate.
 Local operation works without Git. Do not install anything or change global
