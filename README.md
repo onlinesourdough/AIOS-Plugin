@@ -3,7 +3,7 @@
 # AIOS
 
 AIOS helps your AI assistant plan work, build it, review the result and remember
-useful decisions. Install it in the app you use. The same 22 skills work from
+useful decisions. Install it in the app you use. The same 23 skills work from
 one shared source, with native packaging for Codex, Pi, Claude Code, Gemini CLI,
 Copilot CLI and Cursor.
 
@@ -168,7 +168,7 @@ selects only the local topic needed for a question. These references are not
 loaded into every session. The public Resources copy has its own visible source
 record and is updated through the [documentation export](docs/distribution.md#public-aios-overview-export).
 
-Read about the [22 skills](docs/skills.md), [architecture](docs/architecture.md),
+Read about the [23 skills](docs/skills.md), [architecture](docs/architecture.md),
 [verification](docs/verification.md), [recovery](docs/recovery.md) and
 [version history](CHANGELOG.md). GitHub [Releases](https://github.com/onlinesourdough/AIOS-Plugin/releases)
 lists published releases; a source version alone does not create a release tag.

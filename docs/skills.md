@@ -1,6 +1,6 @@
 # AIOS skills
 
-AIOS ships 22 native skills. Automatic selection uses each skill description;
+AIOS ships 23 native skills. Automatic selection uses each skill description;
 explicit selection uses its name. Each carries an independent quoted
 `metadata.version`; see [version maintenance](skill-versioning.md). Repository development methods in
 `.agents/skills/` are separate and are not product skills.
@@ -13,6 +13,7 @@ explicit selection uses its name. Each carries an independent quoted
 | [content](../skills/content/SKILL.md) | Produce and review content with sources, lineage and reuse evidence when needed |
 | [diffusion-studio](../skills/diffusion-studio/SKILL.md) | Use optional Diffusion Studio for video production |
 | [human-writing](../skills/human-writing/SKILL.md) | Default prose drafting and editing that preserves facts, uncertainty and the user’s voice |
+| [write-code](../skills/write-code/SKILL.md) | Quality and proportionate verification whenever writing or changing code, including scripts and automation; shared criteria for read-only code review |
 | [aios](../skills/aios/SKILL.md) | Select relevant context and methods for the current task |
 | [aios-build-work](../skills/aios-build-work/SKILL.md) | Implement specified AIOS work for lead Review |
 | [aios-check](../skills/aios-check/SKILL.md) | Inspect installation, owner format, and discovery |
@@ -35,6 +36,11 @@ and helpers. The assistant chains relevant skills using the current task and
 its accepted result; no workflow engine or fixed chain schema is required.
 Working material stays in the project. Optional tool setup is loaded only for
 work that uses that tool.
+
+Write code also applies directly to small code requests. Build invokes it for
+any code it authors, and Review uses its criteria without editing. It does not
+introduce a second lifecycle or require unit tests for every UI change. See the
+[implementation and verification record](write-code.md).
 
 Create Project starts a repository; Create System establishes an optional
 specialist with separate upkeep. Neither creates a mandatory AIOS registration.

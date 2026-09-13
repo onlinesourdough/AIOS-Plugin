@@ -1,5 +1,8 @@
 # Verification
 
+For 0.10.0, see [write-code verification](write-code.md) for the broad code trigger,
+shared Build/Review criteria, selected-read impact and native observations.
+
 For 0.9.0, see [integration proof](integration-proof.md) for the preserved domain
 methods, project/template changes, actual checks and native evidence limits.
 

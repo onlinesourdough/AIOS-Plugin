@@ -2,7 +2,7 @@
 name: aios-build-work
 description: Implement and verify accepted work through in-scope fixes and Review.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Build work
@@ -34,6 +34,11 @@ lifecycle owns whole-task handoff; repository ownership alone requires no delega
 Keep one writer for each overlapping change.
 
 ## Implement and verify
+
+For any code written or changed, use [Write code](../write-code/SKILL.md),
+including scripts, shell snippets, SQL, tests and automation. It owns code-quality
+criteria and verification by changed surface; apply them proportionately even
+to small one-off code. Reuse the result in this Build and its existing Review.
 
 Choose evidence for the changed behavior and risk. Reproduce a behavioral defect
 at the nearest safe representative boundary when practical; otherwise state the

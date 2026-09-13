@@ -1,6 +1,6 @@
 # AIOS
 
-AIOS version: 0.9.0
+AIOS version: 0.10.0
 
 AIOS supplies portable context and skills to help an AI assistant work from an
 owner's relevant context and carry a task from a small request to a reviewed
@@ -32,7 +32,9 @@ source, that is an evidence gap—not a reason to invent an answer from memory.
 
 ## Native harnesses and access
 
-Design, content and clear writing are included methods. The native app owns
+Design, content, clear writing and code quality are included methods. Write code
+applies to application code, scripts and automation, with verification suited
+to the change. The native app owns
 projects and sessions; AIOS adds no second project register. Spaces hold relevant
 business context, while optional specialist Systems keep their own upkeep.
 Design and content working material stays in the project.

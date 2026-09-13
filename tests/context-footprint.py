@@ -16,6 +16,7 @@ MAX_SKILL_BODY_BYTES = 8192
 MAX_DESCRIPTION_BYTES = 240
 JOB_PREFIXES = {
     "human-writing": "Draft ",
+    "write-code": "Write ",
     "design": "", "review-design": "", "openpencil-workbench": "",
     "content": "", "diffusion-studio": "",
     "aios": "Apply ",
@@ -63,6 +64,7 @@ CURRENT_JOURNEYS = {
         "skills/aios/SKILL.md",
         "skills/aios/references/routing.md",
         "skills/aios-build-work/SKILL.md",
+        "skills/write-code/SKILL.md",
         "skills/aios-select-model/SKILL.md",
         "skills/aios-orchestrate-workers/SKILL.md",
         "skills/aios/references/lifecycle.md",
