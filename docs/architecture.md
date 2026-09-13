@@ -73,12 +73,25 @@ merely because a route mentions it.
 
 ## Documentation and native installation
 
-Canonical product documentation stays in this repository. Version-specific
-claims require an observed package/ref or reviewed release. Private source reads
-use only an already-authorized native account; they never retrieve credentials,
-change visibility or imply publication. Customer documentation stays in its
-source system. AIOS retains a useful pointer, unique facts or an explicit gap,
-not an automatically synchronized copy.
+The product repository owns AIOS documentation. Its approved overview at
+`docs/public/aios.md` ships in the native package and states the matching package
+version. The primary AIOS skill points to a small
+[documentation route](../skills/aios/references/documentation.md), which selects
+only the local overview or method reference needed for a question. Including a
+file in the package does not preload it into conversation context.
+
+Current releases, changed external facts and gaps in local documentation use the
+[canonical source route](../skills/aios/references/canonical-sources.md).
+The installed version stays distinct from upstream `main` and the public site.
+Private source reads use already-authorized access. Local documentation and
+methods remain usable without that access or website availability.
+
+The [public export](distribution.md#public-aios-overview-export) contains only
+the approved overview and generated version/commit/hash metadata. Source and
+release checks prepare it; Resources owns its import, review, deployment and
+readback. Customer documentation remains in its source system, and AIOS retains
+only useful pointers, unique facts or explicit gaps. Owner context and private
+author records are outside the public export.
 
 Codex, Pi, Claude Code, Gemini CLI, Copilot CLI and Cursor have native metadata
 for the same source. Installation affects only the chosen harness. It creates

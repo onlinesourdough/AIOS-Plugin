@@ -88,6 +88,7 @@ the plugin.
 
 | File | Native role |
 | --- | --- |
+| `docs/public/aios.md` | Version-matched local overview, selected through the AIOS documentation route |
 | `plugin.json` | Portable Agent Plugins 1.0.0 identity; root `skills/` discovery |
 | `.codex-plugin/plugin.json` | Compatible Codex manifest and interface metadata |
 | `.agents/plugins/marketplace.json` | Codex repository marketplace |

@@ -237,3 +237,30 @@ Independent behavioral Review must verify that accepted work proceeds without a
 new goal request, carried goal requests retain their native rules, empty plan
 responses do not imply UI state or stop work, and a real blocker holds only its
 dependent action. Static link coverage does not prove these model decisions.
+
+## Versioned documentation
+
+The package validator checks that the overview is explicitly shipped, its
+version matches the package, and the documentation route resolves from an
+isolated minimal package without author-only documentation. Run:
+
+```sh
+python3 scripts/public_docs.py check
+python3 tests/public-docs-rehearsal.py
+```
+
+Export tests cover exact committed bytes despite a dirty worktree, version and
+release-tag mismatch, origin mismatch, symlinks, the public-file allowlist and
+preservation of prior exports. A matching version/hash does not replace review
+of the prose. The documentation workflow prepares only the overview and metadata.
+
+The native Claude and Gemini fixtures check installed overview bytes and their
+changes during a synthetic update. Pi checks the overview in its registered
+local-source package. These installation checks make no model-behavior claim.
+The ordinary-entry fixture includes a documentation question: run it with native
+skill discovery and its synthetic boundary to inspect selected reads, owner
+isolation and the reported installed version. Retain actual traces separately
+from static footprint counts.
+
+Resources owns import tests, offline CI and deployed-route readback. An exported
+artifact or source PASS never proves the public site was updated.

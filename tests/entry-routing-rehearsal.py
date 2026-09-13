@@ -8,7 +8,7 @@ import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 PRODUCT_PREFIXES = ("skills/", ".codex-plugin/", "assets/")
-PRODUCT_FILES = {"package.json", "LICENSE", "README.md"}
+PRODUCT_FILES = {"plugin.json", "package.json", "LICENSE", "README.md", "docs/public/aios.md"}
 
 
 def write(root, relative, text):
@@ -82,6 +82,9 @@ def prepare(destination, baseline):
     write(destination, "source-hashes.json", json.dumps(manifest, indent=2) + "\n")
 
     prompts = {
+        "documentation": """Forklar kort, hvad AIOS er, hvordan ejerkontekst adskiller sig fra
+de indbyggede metoder, og hvilken AIOS-version denne installation beskriver.
+""",
         "onboard": """Set up a small reusable context for me in owner-home.
 I am Rowan, a solo owner of Studio North. I have chosen new local onboarding;
 no Git sync or real harness/account settings changes. My relevant documents are

@@ -7,6 +7,9 @@ registries, or a durable owner corpus.
 
 ## AIOS product facts
 
+Use [local documentation](documentation.md) for the installed version. Read
+upstream for a current release, an external fact or a remaining documentation gap.
+
 Read the needed document directly from the canonical AIOS product repository.
 When it is private, use only an already-authorized native account's ordinary
 read path. Never inspect, copy, transport, or ask for credentials; never change

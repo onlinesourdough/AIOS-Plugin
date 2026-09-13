@@ -162,6 +162,12 @@ is not removed by the package manager.
 
 ## More
 
+The [AIOS overview](docs/public/aios.md) ships with the plugin and states the
+version it describes. The AIOS skill's [documentation route](skills/aios/references/documentation.md)
+selects only the local topic needed for a question. These references are not
+loaded into every session. The public Resources copy has its own visible source
+record and is updated through the [documentation export](docs/distribution.md#public-aios-overview-export).
+
 Read about the [22 skills](docs/skills.md), [architecture](docs/architecture.md),
 [verification](docs/verification.md), [recovery](docs/recovery.md) and
 [version history](CHANGELOG.md). GitHub [Releases](https://github.com/onlinesourdough/AIOS-Plugin/releases)

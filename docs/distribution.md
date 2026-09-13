@@ -2,8 +2,9 @@
 
 The release unit is this repository root: `plugin.json`, the native compatibility
 manifests, `package.json`, `gemini-extension.json`, `assets/`, `LICENSE`,
-`README.md`, and the single `skills/` source. Documentation, tests, and
-the optional specialist shelf are author material and are not product skills.
+`README.md`, the single `skills/` source and `docs/public/aios.md`. The overview
+is package documentation, read only when needed. Other documentation, tests and
+the optional specialist shelf remain author material, not product skills.
 This repository carries no local generic lifecycle skills.
 
 ## Before delivery
@@ -44,24 +45,51 @@ cutover, or owner-data migration.
 
 ## Public AIOS overview export
 
-`docs/public/aios.md` is the only approved source artifact for a future public
-AIOS overview export. It is an orientation document, not the package, its
-executable skill library, customer documentation, or an installation endpoint.
-No other documentation becomes public by implication.
+`docs/public/aios.md` is the only approved source artifact for public AIOS
+orientation. It ships in the package and visibly states the matching AIOS
+version. It is not the full skill library, customer documentation or an
+installation endpoint. No other documentation becomes public by implication.
 
-Before an authorized consumer publishes it as `/aios.md`, freeze the reviewed
-source commit and an immutable release tag (or explicitly recorded immutable
-commit when no tag exists). Run the current author checks, then record the
-following values from the exact source tree alongside the export:
+When the package version changes, review the overview and update its version
+line. `python3 scripts/public_docs.py check` and the normal package validator
+reject a missing, unshipped or mismatched version. The content review establishes
+accuracy; a matching version alone does not prove the prose is correct.
+
+After reviewing an immutable source revision, prepare its export:
 
 ```sh
-git rev-parse HEAD
-git describe --exact-match --tags HEAD || printf '%s\n' 'untagged'
-shasum -a 256 docs/public/aios.md
-wc -c < docs/public/aios.md
+python3 scripts/public_docs.py export --ref REVIEWED_REF --output /new/export-directory
 ```
 
-The consumer accepts only that one file and records its source commit/release,
-SHA-256, and byte length. A later site deployment, release, tag, or visibility
-change remains a separate authorized action with its own readback; this
-repository does not perform any of them from an author check.
+The author-only command reads the committed source, checks the package identity
+and version, and produces exactly `aios.md` plus `aios.meta.json` in a new
+directory. The metadata records package version, immutable commit, source date,
+canonical path, SHA-256, and byte length. It contains no credentials or owner
+context. An existing export directory is never overwritten.
+
+[Versioned documentation](../.github/workflows/documentation.yml) runs these
+checks and prepares the same two-file workflow artifact for pull requests,
+`main` updates, published releases and explicit dispatch. Release events also
+require the tag's version to match the package. The workflow has read-only
+repository permissions and does not publish the site or add a consumer runtime.
+
+Resources owns public adoption. Its maintainer imports the reviewed export:
+
+```sh
+npm run update:aios -- /export-directory REVIEWED_COMMIT
+npm run ci
+```
+
+Those commands run in Resources. The reviewed commit must be selected from the
+accepted source/release, rather than trusted solely from imported metadata.
+Resources checks both files before replacement and serves `/aios.md` and
+`/aios.meta.json`. Its existing review/merge/deploy path publishes the copy;
+verify the public version, source and bytes against the reviewed export after
+deployment. A source delivery is not completion of a requested public-site update.
+The site deployment, release, tag or visibility change remains a separate authorized action.
+
+Retain the previous source revision and Resources commit for recovery. A failed
+website update leaves the plugin's local documentation available. Reverting a
+public update restores the document and metadata together through Resources'
+normal delivery path. The installed version and public-site version remain
+explicitly distinct.

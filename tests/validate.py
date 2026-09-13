@@ -9,6 +9,10 @@ import re
 import shutil
 import struct
 import tempfile
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+from public_docs import check as validate_public_docs
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -70,7 +74,8 @@ FORBIDDEN_BOUNDARY_TEXT = {
 FORBIDDEN_SHIPPED_PATTERNS = (r"\bnpx skills\b", r"\bskills\.sh\b")
 DOMAIN_SKILLS = {"design", "review-design", "openpencil-workbench", "content", "diffusion-studio"}
 PRODUCT_PATHS = ("plugin.json", ".codex-plugin", ".claude-plugin", ".cursor-plugin",
-                 "gemini-extension.json", "skills", "assets/icon.png", "LICENSE")
+                 "gemini-extension.json", "skills", "assets/icon.png", "LICENSE",
+                 "docs/public/aios.md")
 FORBIDDEN_KEYS = {"scripts", "dependencies", "devDependencies", "peerDependencies"}
 SECRET_PATTERNS = (
     r"AKIA[0-9A-Z]{16}",
@@ -119,6 +124,10 @@ def copy_product(root, destination):
 
 def validate(root=ROOT):
     validate_native(root, require)
+    try:
+        validate_public_docs(root)
+    except ValueError as error:
+        raise AssertionError(str(error)) from error
     manifest = json.loads((root / ".codex-plugin/plugin.json").read_text())
     package = json.loads((root / "package.json").read_text())
     marketplace = json.loads((root / ".agents/plugins/marketplace.json").read_text())
@@ -438,8 +447,11 @@ def validate(root=ROOT):
     with tempfile.TemporaryDirectory(prefix="aios-package-") as temporary:
         staged = Path(temporary) / "aios"
         copy_product(root, staged)
-        require(not any((staged / name).exists() for name in (".agents", "docs", "tests", "AGENTS.md")),
+        require(not any((staged / name).exists() for name in (".agents", "tests", "AGENTS.md")),
                 "author content in product")
+        require({p.relative_to(staged).as_posix() for p in (staged / "docs").rglob("*")
+                 if p.is_file()} == {"docs/public/aios.md"},
+                "unapproved documentation in product")
         require(not any((staged / "skills" / name).exists()
                         for name in ("setup-guardrails",)),
                 "optional global capability shipped")
