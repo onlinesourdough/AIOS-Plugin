@@ -1,8 +1,8 @@
 {
   "name": "aios",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "private": true,
-  "description": "Portable owner context, adaptive onboarding and discoverable methods for specified, reviewed work.",
+  "description": "Portable context and skills for planning, design, content and reviewed delivery.",
   "license": "MIT",
   "keywords": [
     "pi-package"

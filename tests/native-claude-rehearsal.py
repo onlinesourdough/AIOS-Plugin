@@ -19,6 +19,9 @@ import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 PLUGIN_ID = "aios@online-sourdough"
+VERSION = json.loads((ROOT / "package.json").read_text())["version"]
+EXPECTED = {p.parent.name for p in (ROOT / "skills").glob("*/SKILL.md")}
+NEXT_VERSION = "99.0.0-rehearsal"
 
 
 def require(condition, message):
@@ -40,8 +43,8 @@ def check_contract():
     market = read_json(ROOT / ".claude-plugin/marketplace.json")
     require(set(plugin) == {"name", "version", "description", "author", "skills",
                             "repository", "license"}, "Unexpected plugin fields")
-    require(plugin["name"] == "aios" and plugin["version"] == "0.8.0",
-            "Expected aios 0.8.0")
+    require(plugin["name"] == "aios" and plugin["version"] == VERSION,
+            "Expected current AIOS version")
     require(plugin["skills"] == "./skills/", "Canonical root skills required")
     require(set(market) == {"name", "owner", "metadata", "plugins"},
             "Unexpected marketplace fields")
@@ -53,7 +56,7 @@ def check_contract():
     require(entry["name"] == "aios" and entry["source"] == "./" and
             entry["version"] == plugin["version"], "Marketplace source/version")
     skills = sorted((ROOT / "skills").glob("*/SKILL.md"))
-    require(len(skills) == 17, "Expected 17 canonical skills")
+    require({p.parent.name for p in skills} == EXPECTED, "Expected canonical skills")
     for skill in skills:
         require(re.search(r"^name: " + re.escape(skill.parent.name) + r"$",
                           skill.read_text(), re.M), "Skill name/path mismatch")
@@ -81,7 +84,7 @@ def check_contract():
                  ".github/plugin/plugin.json", "marketplace.json", "com.github.copilot",
                  ".plugin/marketplace.json", ".github/plugin/marketplace.json"):
         require(not (ROOT / name).exists(), "Unexpected native component: " + name)
-    print("PASS: metadata-only package, source ./, 17 canonical skills, no extra components")
+    print("PASS: metadata-only package, source ./, declared canonical skills, no extra components")
     return [p.parent.name for p in skills]
 
 
@@ -120,16 +123,16 @@ def rehearse(base, claude, install, names):
     print("PASS: native manifests accepted; invalid skills type rejected")
 
     def inspect_details(details):
-        for label, count in (("Skills", 17), ("Agents", 0), ("Hooks", 0), ("MCP servers", 0)):
+        for label, count in (("Skills", len(EXPECTED)), ("Agents", 0), ("Hooks", 0), ("MCP servers", 0)):
             require(f"{label} ({count})" in details, "Unexpected native inventory: " + label)
         for name in names:
             require(re.search(r"(?<![\w-])" + re.escape(name) + r"(?![\w-])", details),
                     "Native details missing skill: " + name)
 
     inline = run("--plugin-dir", ROOT, "plugin", "details", "aios")
-    require("aios@inline" in inline and "aios 0.8.0" in inline, "Inline identity/version")
+    require("aios@inline" in inline and f"aios {VERSION}" in inline, "Inline identity/version")
     inspect_details(inline)
-    print("PASS: native inline discovery reports 17 skills and zero agents/hooks/MCP servers")
+    print("PASS: native inline discovery reports declared skills and zero agents/hooks/MCP servers")
     if not install:
         print("Isolated state files:", json.dumps(sorted(str(p.relative_to(config))
               for p in config.rglob("*") if p.is_file())))
@@ -168,19 +171,19 @@ def rehearse(base, claude, install, names):
     require(json.loads(run("plugin", "list", "--json")) == [], "Fixture not empty")
     run("plugin", "marketplace", "add", source)
     run("plugin", "install", PLUGIN_ID, "--scope", "user")
-    installed("0.8.0")
+    installed(VERSION)
     # Version-transition proof only in the disposable source; not a product release.
     for name in ("plugin.json", "marketplace.json"):
         path = source / ".claude-plugin" / name
         data = read_json(path)
-        (data if name == "plugin.json" else data["plugins"][0])["version"] = "0.8.1-rehearsal"
+        (data if name == "plugin.json" else data["plugins"][0])["version"] = NEXT_VERSION
         path.write_text(json.dumps(data, indent=2) + "\n")
     portable = read_json(source / "plugin.json")
-    portable["version"] = "0.8.1-rehearsal"
+    portable["version"] = NEXT_VERSION
     (source / "plugin.json").write_text(json.dumps(portable) + "\n")
     run("plugin", "marketplace", "update", "online-sourdough")
     run("plugin", "update", PLUGIN_ID, "--scope", "user")
-    installed("0.8.1-rehearsal")
+    installed(NEXT_VERSION)
     run("plugin", "uninstall", PLUGIN_ID, "--scope", "user")
     require(json.loads(run("plugin", "list", "--json")) == [], "Uninstall left registration")
     run("plugin", "marketplace", "remove", "online-sourdough")

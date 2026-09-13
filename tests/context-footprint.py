@@ -16,11 +16,13 @@ MAX_SKILL_BODY_BYTES = 8192
 MAX_DESCRIPTION_BYTES = 240
 JOB_PREFIXES = {
     "human-writing": "Draft ",
-    "aios": "Route ",
+    "design": "", "review-design": "", "openpencil-workbench": "",
+    "content": "", "diffusion-studio": "",
+    "aios": "Apply ",
     "aios-build-work": "Implement ",
     "aios-check": "Verify ",
-    "aios-create-project": "Create a justified new bounded Project ",
-    "aios-create-system": "Create a justified reusable System ",
+    "aios-create-project": "Start ",
+    "aios-create-system": "Establish ",
     "aios-maintain-context": "Curate ",
     "aios-manage-skills": "Manage ",
     "aios-onboard": "Set up, resume or move ",
@@ -31,7 +33,7 @@ JOB_PREFIXES = {
     "aios-ship-work": "Deliver ",
     "aios-spec-work": "Specify or revise ",
     "aios-triage-improvement": "Triage ",
-    "aios-update": "Update selected installed upstream Systems ",
+    "aios-update": "Update selected optional ",
 }
 CURRENT_NEUTRAL_SCAFFOLD = (
     "skills/aios-onboard/assets/bridge.md",
@@ -41,9 +43,7 @@ CURRENT_NEUTRAL_SCAFFOLD = (
     "skills/aios-onboard/assets/owner/CONNECTIONS.md",
     "skills/aios-onboard/assets/owner/MEMORY.md",
     "skills/aios-onboard/assets/owner/context/README.md",
-    "skills/aios-onboard/assets/owner/projects/README.md",
     "skills/aios-onboard/assets/owner/skills/README.md",
-    "skills/aios-onboard/assets/owner/systems/README.md",
 )
 CURRENT_JOURNEYS = {
     "independent-local-negative-preload": (),

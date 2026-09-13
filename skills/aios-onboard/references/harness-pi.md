@@ -22,7 +22,7 @@ global skill paths and project-local registrations can conflict. Classify which
 entry owns each discovered skill. Under setup authority, replace only the
 verified obsolete AIOS/legacy registration, preserving original bodies,
 nonreserved owner methods and unrelated packages. Unknown collisions require a
-decision. Re-read the effective skill list after restart: the 17 AIOS names
+decision. Re-read the effective skill list after restart: the declared AIOS names
 once, owner methods once, supported links intact. AIOS adds no global discovery
 filter. Preserve ambient and trusted repository-local skills, existing explicit
 resource choices and separately selected owner-method registrations. Use the [identity migration](migration.md)

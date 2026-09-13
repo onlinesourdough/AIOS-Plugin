@@ -1,5 +1,8 @@
 # Verification
 
+For 0.9.0, see [integration proof](integration-proof.md) for the preserved domain
+methods, project/template changes, actual checks and native evidence limits.
+
 For 0.8.0, see [native installation](native-installation.md) for packaging,
 isolated lifecycle commands, actual observations and per-client limits.
 

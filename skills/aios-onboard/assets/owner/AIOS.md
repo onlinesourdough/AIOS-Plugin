@@ -1,20 +1,16 @@
 # Owner context
 
-Current focus: not yet recorded. Capture only what helps the current task.
-Keep this an orientation and route index. External facts stay at their sources;
-local context fills useful gaps with short owner-sourced facts. Read changing
-facts when needed; a recorded link or access state is not a freshness guarantee.
+Current focus: not yet recorded. Keep only facts and routes useful to the work.
+External facts stay at their sources; read changing information when needed.
 
-This configured folder is the owner-data home even when Git-backed. Check
-AIOS_FORMAT before any owner-data write; unsupported/malformed stays read-only.
+This physical folder is the owner home even when Git-backed. Check AIOS_FORMAT
+before writes. Read [MEMORY](MEMORY.md) for durable corrections,
+[context](context/README.md) for relevant facts and sources, and
+[CONNECTIONS](CONNECTIONS.md) when access matters. Personal methods can live in
+[skills](skills/README.md).
 
-Read [MEMORY](MEMORY.md) for durable corrections. Follow only relevant
-[context routes](context/README.md). Read [CONNECTIONS](CONNECTIONS.md) when
-access is needed. [Systems](systems/README.md) and [Projects](projects/README.md)
-point to independent owners; verify their checkouts before invocation.
-Optional owner methods live in [skills](skills/README.md).
-
-Space routes context. Systems own reusable capabilities. Projects own bounded
-outcomes. Keep repository work and proof in its repository. This folder owns
-shared context and one-off owner work. Native memories are optional aids.
-Carry accepted decisions forward; these routes grant no additional authority.
+Spaces describe business or brand context. Use the harness's existing project
+or workspace for work and results. Installed AIOS skills supply shared methods,
+design and content; optional specialists are selected only when needed.
+Keep local project requirements with the project and read owner context only
+when relevant. These facts and routes grant no additional authority.

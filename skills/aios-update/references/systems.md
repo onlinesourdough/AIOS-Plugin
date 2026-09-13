@@ -1,50 +1,27 @@
-# Maintain a selected System
+# Maintain a selected specialist
 
-This is the single System-code installation/update procedure. Systems remain
-independent reusable specialist repositories with AGENTS.md, their own skills,
-operational state and local lifecycle. AIOS selects and records pointers; it
-does not bundle their contents or own their data. Use the existing System
-registry and accepted canonical source; never guess an upstream or change a
-remote to make it fit. Plugin updates and owner-data Sync are separate actions.
+Use this procedure for a separately installed specialist, not the design and
+content methods included in AIOS. Start from the task's selected capability,
+accepted source and existing installation. Verify actual tools, supported
+platforms and source identity; a link is not proof of installation.
 
-## Bounded first-use catalog
+Prefer the specialist's native package installation. Where its documented
+interface is a repository, use that interface at the chosen location after
+reading its local instructions. Preserve existing work and customizations.
+Do not install alternatives or change a remote to make an assumed source fit.
+No owner-home registry or default checkout location is required.
 
-An existing owner-selected registry route wins. Consult only the matching row
-below when that route is missing; an empty new-home registry does not require
-an inventory or eager installation. These are source candidates, not claims of
-installation, access or compatibility. Verify repository identity, current
-entrypoint and dependencies on use. Catalog lookup neither clones nor registers
-anything automatically; the first-use procedure below owns those later actions.
+For a matching Power BI request without an established source, the optional
+candidate is https://github.com/onlinesourdough/Agentic-PowerBI-System and its
+primary `.agents/skills/agentic-powerbi-system/SKILL.md`. Verify it before use.
+Power BI Desktop needs a suitable Windows environment; file-based methods have
+their own dependencies. The specialist does not install with AIOS.
 
-| Matching outcome | Candidate upstream | Candidate primary skill |
-| --- | --- | --- |
-| Visual outcomes (ADS) | https://github.com/onlinesourdough/Agentic-Design-System | `.agents/skills/agentic-design-system/SKILL.md` |
-| Persistent content production | https://github.com/onlinesourdough/Agentic-Content-System | `.agents/skills/agentic-content-system/SKILL.md` |
-| OPTIONAL: matching Power BI need only | https://github.com/onlinesourdough/Agentic-PowerBI-System | `.agents/skills/agentic-powerbi-system/SKILL.md` |
-
-## First use
-
-Select a System by the requested outcome through [routing](../../aios/references/routing.md).
-Do not preclone during onboarding. ADS/design and content are available routes;
-Power BI is optional, never a default installation or selection without a
-matching user need. A registered URL alone is not an installed capability.
-
-Under existing task authority for the selected repository and destination,
-verify source identity/access and clone an upstream-backed checkout at the
-chosen independent root. Do not create a personal fork by default. Preserve a
-nonempty destination or deliberate existing external path; verify it instead
-of overwriting it. For a new owner-home checkout, verify parent Git exclusion
-and supported owner format before changing registry data.
-
-Verify physical checkout/Git identity, selected ref, AGENTS.md, primary skill,
-local lifecycle and required dependencies before invocation. Inspect dependency
-instructions before any execution; install only what the task authorizes and
-verify readiness. Missing access, entrypoint or dependencies is a focused gap,
-not permission to improvise the specialist result. Use the
-[shared execution decision](../../aios/references/lifecycle.md), verifying the
-selected root and one writer. Repository mutation alone does not require a worker.
-Record source/ref, path, primary route and verification in the existing registry
-fields under owner-data authority. Execute the selected System's actual workflow.
+Under the task's installation authority, verify source access, selected ref,
+destination, local instructions, dependency requirements and the usable
+entrypoint. Continue the specialist's actual method with the accepted inputs
+and relevant review. Keep working data in its established location. Package
+updates and owner-data Sync remain separate operations.
 
 ## Update installed upstream Systems
 
@@ -82,8 +59,8 @@ At a task boundary under authority to update the selected installed Systems:
    the preflight and requires fresh classification.
 6. Read back HEAD and preserved worktree/data state; run the System-local
    dependency and entrypoint checks required by the reviewed change. Report
-   exact old/new commits, checks and gaps. Update only relevant registry
-   verification under owner-data authority; do not call fetch alone an update.
+   exact old/new commits, checks and gaps. Update only relevant source
+   pointers under owner-data authority; do not call fetch alone an update.
 
 A failure stops further adoption. Preserve the resulting checkout and artifacts,
 report old/candidate/current commits and the focused next action. Use only the

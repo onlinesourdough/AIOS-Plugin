@@ -38,7 +38,7 @@ def assert_layout(owner):
         assert Path(git(checkout, "rev-parse", "--show-toplevel")) == checkout.resolve()
         assert (checkout / ".git").is_dir() and (checkout / "AGENTS.md").is_file()
         assert ignored(owner, f"{family}/{slug}/draft.txt"), "checkout exclusion missing"
-        assert not ignored(owner, f"{family}/README.md"), "registry excluded"
+        assert not ignored(owner, f"{family}/README.md"), "existing source index excluded"
         assert not any(path == f"{family}/{slug}" or path.startswith(f"{family}/{slug}/")
                        for path in tracked), "checkout already tracked"
 
@@ -52,7 +52,8 @@ def main():
 
         for family, slug in (("projects", "catalog"), ("systems", "reporting")):
             checkout = owner / family / slug
-            checkout.mkdir()
+            checkout.mkdir(parents=True)
+            (owner / family / "README.md").write_text("Optional existing source index.\n")
             git(checkout, "init", "-q", "-b", "main")
             (checkout / "AGENTS.md").write_text("Use this repository's local lifecycle.\n")
             (checkout / ".gitignore").write_text("private-fixture.txt\n")
@@ -88,7 +89,7 @@ def main():
         else:
             raise AssertionError("accepted missing checkout exclusion")
 
-    print("PASS: independent nested Git roots and registries remain separate")
+    print("PASS: existing nested Git roots and optional source indexes remain separate")
     print("PASS: rejects missing parent exclusions and tracked nested work")
 
 

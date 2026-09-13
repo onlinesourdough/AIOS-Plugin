@@ -97,7 +97,7 @@ def selected(source):
 
 
 def assert_source(source):
-    if (source / "AIOS_FORMAT").read_text() != "1\n":
+    if (source / "AIOS_FORMAT").read_text() not in {"1\n", "2\n"}:
         raise SafeStop("unsupported source owner format")
     assert_transferable_tree(source)
 
@@ -123,7 +123,7 @@ def assert_snapshot(snapshot):
     assert_history(snapshot)
     if not tracked or any(not allowed(relative, personal) for relative in tracked):
         raise SafeStop("remote contains a path outside owner continuity scope")
-    if (snapshot / "AIOS_FORMAT").read_text() != "1\n":
+    if (snapshot / "AIOS_FORMAT").read_text() not in {"1\n", "2\n"}:
         raise SafeStop("unsupported restored owner format")
     for relative in tracked:
         path = snapshot / relative
@@ -295,6 +295,22 @@ def main():
         (partial_target / "AIOS.md").write_text("owner custom content\n")
         expect_stop(lambda: restore(remote, partial_target), "not absent or empty")
         assert (partial_target / "AIOS.md").read_text() == "owner custom content\n"
+
+        # A legacy home with optional indexes still completes the same roundtrip.
+        legacy_source = fixture / "legacy-source/.AIOS"
+        shutil.copytree(OWNER_ASSETS, legacy_source)
+        (legacy_source / "AIOS_FORMAT").write_text("1\n")
+        for family in ("projects", "systems"):
+            (legacy_source / family).mkdir()
+            (legacy_source / family / "README.md").write_text("Existing useful source index.\n")
+        legacy_remote = fixture / "legacy.git"
+        git(fixture, "init", "--bare", "-q", str(legacy_remote))
+        publish(legacy_source, legacy_remote)
+        legacy_target = fixture / "legacy-restored/.AIOS"
+        restore(legacy_remote, legacy_target)
+        assert (legacy_target / "AIOS_FORMAT").read_text() == "1\n"
+        for family in ("projects", "systems"):
+            assert (legacy_target / family / "README.md").read_bytes() == (legacy_source / family / "README.md").read_bytes()
 
         bad_format = fixture / "bad-format/.AIOS"
         shutil.copytree(source, bad_format)

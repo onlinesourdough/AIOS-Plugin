@@ -1,0 +1,17 @@
+{
+  "contract_version": "acs-publisher-handoff/1.0",
+  "family_id": "family-neutral-proof",
+  "graph_version": 1,
+  "graph_sha256": "sha256:196bbb9e50d143cb8849753cb1992bba45679ed8273ddc0dada494ec4e1ab03b",
+  "status": "awaiting-separate-authorization",
+  "supervised": true,
+  "not_posted": true,
+  "external_posting": false,
+  "selected_nodes": [
+    {
+      "node_id": "node-master",
+      "version": 1,
+      "sha256": "sha256:746b8786c2244490440105de76011be74288015d63f9eda06e965e9b2e3fe901"
+    }
+  ]
+}

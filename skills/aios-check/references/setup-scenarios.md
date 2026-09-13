@@ -5,7 +5,7 @@ client entry-point repair. Use the common [acceptance boundary](scenarios.md).
 
 | Case | Input/state | Required observable outcome |
 | --- | --- | --- |
-| Native installation | No home or bridge; other harness settings and skills exist | 17 skills available in the selected harness; no owner files, global bridge, cross-install or discovery filter created |
+| Native installation | No home or bridge; other harness settings and skills exist | Declared skills available in the selected harness; no owner files, global bridge, cross-install or discovery filter created |
 | Native removal | Selected package plus another harness install and owner data | Selected package removed; other install, settings and owner data unchanged |
 | Default owner route | Native AIOS skill selected; no bridge; valid ~/.AIOS exists | Resolve that home without a global instruction edit |
 | Custom owner route | Established custom home; default absent or populated | Reuse the established home; do not create or select a second home |
@@ -17,7 +17,7 @@ client entry-point repair. Use the common [acceptance boundary](scenarios.md).
 | Source freshness/deduplication | External value changes or covers a local fact | Re-read, reconcile and retain route plus unique overrides; no duplicate body/status |
 | Resume | Existing focus, MEMORY and custom path | No repeated interview; same resolved home and sourced facts |
 | Repo isolation | Repository task plus installed global bridge | Local AGENTS/lifecycle first; no personal context read absent concrete gap |
-| Git-backed owner home | Configured root has AIOS.md, format 1 and Git | Owner route stays active; Git does not trigger independent-product routing |
+| Git-backed owner home | Configured root has AIOS.md, supported format and Git | Owner route stays active; Git does not trigger independent-product routing |
 | Invalid owner home | Configured root has unsupported/malformed format | Read-only stop before any owner-data edit, even with Git/local instructions |
 | Codex checklist/goal acceptance | Setup or changed capability evidence | Run [checklist/goal acceptance](../../aios-onboard/references/codex-tracking-acceptance.md); preserve off choices and distinguish config, calls, state and UI |
 | Harness baseline | Existing config/profile/overrides and optional extras off | Preserve chosen keys/provider; no silent unrestricted access or opt-in; report effective versus available |

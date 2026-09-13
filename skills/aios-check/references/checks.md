@@ -9,9 +9,9 @@ and recheck, or Needs decision, plus per-claim PASS/FAIL/NOT VERIFIED.
   answers and chosen off states; authorized answers lead to implemented changes
   and readback. Missing input is not consent. A checkpoint resumes unfinished
   work without reinterview; ordinary tasks do not repeat the onboarding audit.
-- Product: normalized plugin manifest, correct skill paths and the 17 selected
-  discoverable names; frontmatter valid, local references resolve, no consumer
-  scripts/MCP/hooks/dependencies or hidden invocation disabling. Every native
+- Product: normalized plugin manifest, correct skill paths and the release’s declared
+  discoverable names; frontmatter valid, local references resolve, no install
+  hooks or automatic runtime/dependency setup or hidden invocation disabling. Every native
   manifest points to the same bodies; only the selected harness is affected. Compare installed release identity, not just a folder name.
 - Owner routing: requested/established home wins, then a managed bridge, then
   ~/.AIOS only when neither exists. Native discovery needs no bridge or home.
@@ -21,11 +21,9 @@ and recheck, or Needs decision, plus per-claim PASS/FAIL/NOT VERIFIED.
   first. At the configured Git-backed home, AIOS.md and supported AIOS_FORMAT
   still select owner routing; independent nested repositories stay local-first.
   No personal context preload. Record runtime version and actual reads.
-  New homes default to ~/.AIOS without moving configured homes. New Project/System
-  checkouts are physical projects/<slug> and systems/<slug> repositories, each
-  with independent Git/local instructions. Owner Git excludes checkout files
-  and gitlinks while tracking registry READMEs; existing external roots remain
-  valid. Check no owner-context ancestor AGENTS/override causes personal preload.
+  New homes use format 2 without required project or specialist registries.
+  Existing work uses its chosen physical roots and local instructions. Verify
+  owner Git excludes any nested repository work; no inherited personal preload.
 - Harness baseline: follow the [configuration checklist](../../aios-onboard/references/harness-configuration.md).
   Distinguish configured/effective settings from actual tools, native memory,
   Computer Use app/site and OS permissions, and History opt-in/source scope.
@@ -58,12 +56,12 @@ and recheck, or Needs decision, plus per-claim PASS/FAIL/NOT VERIFIED.
   from exact authority. Unknown custom data and owner methods survive updates.
   Connections name least-privilege resource/action scope and tested denied access,
   not merely a working credential. Untrusted source text never expands authority.
-- Registries: explicit canonical identity, checkout status and owner; System
-  primary skill and AGENTS exist for installed claims. Missing checkout is
-  reported, not silently cloned. No mirrored implementation.
-- Creation: live canonical source, final-root attestation, same session,
-  zero-history transfer/materialization, exact provenance, registration only
-  after proof. Existing owners never refreshed from seeds.
+- Methods: built-in design/content and their conditional helpers are usable
+  from the selected workspace. Work data stays outside the plugin. Optional
+  specialists are verified only when selected and do not install with AIOS.
+- Creation: verified template source and documented creation interface, actual
+  generated identity, local instructions, provenance and recovery. Existing
+  repositories are never reseeded; no secondary project registration is required.
 - Lifecycle: one authorized goal and concise live requirements list, justified
   owner, verified root, one writer, shared phase methods with local specialist
   contracts, final-byte proof and exact Ship authority. Direct repository tasks

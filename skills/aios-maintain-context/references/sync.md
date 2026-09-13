@@ -29,7 +29,7 @@ direction or scope is not already explicit, ask for the one needed choice before
 continuing. Local/deferred continuity is valid: report that no remote backup or
 restore has happened and leave a useful next `aios sync` action.
 
-Sync transfers System/Project registry pointers, not nested contents or code
+Sync transfers relevant source pointers, not nested contents or code
 updates. If the request explicitly includes updating a selected installed
 System, route that separate action to
 [System maintenance](../../aios-update/references/systems.md) under its update
@@ -39,7 +39,7 @@ Continuity transfers only this owner-controlled scope after explicit consent:
 
 - `.gitignore`, `AIOS_FORMAT`, `AIOS.md`, `MEMORY.md`, `CONNECTIONS.md`;
 - routed `context/**` and personal `skills/**`; and
-- the owner registry indexes `projects/README.md` and `systems/README.md`.
+- existing source indexes `projects/README.md` and `systems/README.md`, when present and included in the agreed scope.
 
 Do not add other paths by inference. In particular, exclude package/plugin
 bodies, caches, `.git`, credentials, native histories/configuration, machine

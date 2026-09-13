@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.9.0 — 2026-09-13
+
+- Include design and content as five focused skills with portable helpers,
+  preserving source judgment, review, provenance and optional editor routes.
+- Use the native app's project and workspace. Remove mandatory AIOS project
+  registration; keep Spaces as context and Systems as optional specialists.
+- Default working material to project-local design/ and content/ when needed.
+  Align the project and system template routes with this model.
+- Create neutral owner format 2 without repository registries and retain
+  format-1 compatibility. Installation does not migrate owner data.
+- Keep one 22-skill source across native packages. Update documentation,
+  migration boundaries, version checks and installation rehearsals.
+
+
 ## 0.8.0 — source candidate
 
 - Add the portable Agent Plugins manifest and native Claude Code/Copilot,

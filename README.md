@@ -3,7 +3,7 @@
 # AIOS
 
 AIOS helps your AI assistant plan work, build it, review the result and remember
-useful decisions. Install it in the app you use. The same 17 skills work from
+useful decisions. Install it in the app you use. The same 22 skills work from
 one shared source, with native packaging for Codex, Pi, Claude Code, Gemini CLI,
 Copilot CLI and Cursor.
 
@@ -37,8 +37,7 @@ browser. Start a fresh task after installation.
 pi install git:github.com/onlinesourdough/AIOS-Plugin
 ```
 
-Start a fresh Pi session. AIOS is a native Pi package containing skills; it needs
-no executable extension.
+Start a fresh Pi session. AIOS is a native Pi skill package; it needs no executable extension.
 
 ### Claude Code
 
@@ -57,7 +56,8 @@ gemini extensions install https://github.com/onlinesourdough/AIOS-Plugin
 ```
 
 Review Gemini's installation prompt, then start a fresh session. The extension
-contains the same skills and no executable extension code.
+contains the same skills and no executable extension code. Selected design and
+content tasks can use the helpers supplied with their skills.
 
 ### Copilot CLI
 
@@ -88,6 +88,8 @@ After installation, try:
 
 - “Help me turn this idea into a clear plan.”
 - “Build the agreed change and review the result.”
+- “Design this product idea and prepare it for implementation.”
+- “Turn these sources into a finished article.”
 - “Make this draft easier to understand without losing its meaning.”
 - “Set up AIOS for my work. My current focus is …”
 
@@ -112,11 +114,31 @@ owner home when you choose it. The plugin supplies methods; your home holds
 your context and personal skills. Updates and removal leave that data intact.
 Git backup and persistent routing to a custom home are optional setup choices.
 
-Projects and Systems keep their own instructions and specialist methods.
-Shared Spec, Build, Review and Ship come from AIOS. Open a repository and work
-in the current task; unrelated code work does not load personal context.
-Design and content Systems remain optional, separately owned capabilities.
-Their integration into AIOS is being considered, not included in this release.
+## Context, skills and projects
+
+**Spaces hold context:** the relevant facts and source links for a business,
+brand or area of work. **Skills hold methods:** the process, standards and
+judgment your assistant uses. **Your app owns projects:** open the workspace
+and continue the task there. AIOS needs no second project register.
+
+Design and content are included. The assistant chains the relevant skills from
+brief to reviewed result, choosing only the steps the work needs. Design
+material belongs in `design/` and content material in `content/` within the
+project, created when needed. Finished code and published assets belong where
+the project uses them. Existing work stays intact.
+
+The [project template](https://github.com/onlinesourdough/Agentic-Project-Template)
+starts a new independent repository from an idea. It supplies local requirements
+and verification while AIOS supplies shared methods. The
+[system template](https://github.com/onlinesourdough/Agentic-System-Template)
+is for an optional specialist with its own maintenance needs. Power BI is one
+example: it serves a narrower audience and its Desktop workflow needs Windows,
+so it is not bundled with AIOS.
+
+Small helpers for design review, handoff and content validation travel with the
+skills. OpenPencil and Diffusion Studio remain optional tools, installed through
+their own supported setup when a task needs them. AIOS adds no background service,
+install hook or separate tools gateway. Your app keeps control of tool access.
 
 ## Update or remove
 
@@ -140,7 +162,7 @@ is not removed by the package manager.
 
 ## More
 
-Read about the [17 skills](docs/skills.md), [architecture](docs/architecture.md),
+Read about the [22 skills](docs/skills.md), [architecture](docs/architecture.md),
 [verification](docs/verification.md), [recovery](docs/recovery.md) and
 [version history](CHANGELOG.md). GitHub [Releases](https://github.com/onlinesourdough/AIOS-Plugin/releases)
 lists published releases; a source version alone does not create a release tag.

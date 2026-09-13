@@ -2,7 +2,7 @@
 
 This is a behavior map, not a requirement to ship one entry per old file.
 The 17 core template methods were inspected separately from optional external
-Global Skills. The current package exposes seventeen native workforms; smaller
+Global Skills. Current native skills are organized by responsibility; smaller
 checks and conditional procedures live with the workform that owns them.
 Client facts and personal methods are not copied into this package.
 
@@ -10,15 +10,15 @@ Client facts and personal methods are not copied into this package.
 | --- | --- | --- |
 | aios | [aios](../../aios/SKILL.md), [Onboard](../SKILL.md), [Check](../../aios-check/SKILL.md), [Maintain context](../../aios-maintain-context/SKILL.md), [Update](../../aios-update/SKILL.md) | Split by trigger: owner coordination and shortest justified route stay in `aios`; setup/resume, state inspection, context mutation and package adoption each use their focused owner; independent repositories remain local-first |
 | aios-build-work | [Build](../../aios-build-work/SKILL.md) | Keep: verified repository root, current-task execution by default, one writer, linked lead/worker goals when explicitly required, bounded contract, relevant local checks and evidence |
-| aios-create-project | [Create Project](../../aios-create-project/SKILL.md) | Keep: distinct bounded-owner request, registered live seed, seed-owned final-root creation interface, fresh independent history and proof-based registration |
-| aios-create-system | [Create System](../../aios-create-system/SKILL.md) | Keep: distinct reusable-owner request, registered live neutral seed, seed-owned adoption interface, no inherited history, concrete primary route and registration proof |
+| aios-create-project | [Create Project](../../aios-create-project/SKILL.md) | Keep: distinct bounded-owner request, verified live seed, documented creation interface and independently owned files; no AIOS project registration |
+| aios-create-system | [Create System](../../aios-create-system/SKILL.md) | Keep: distinct reusable-owner request, verified optional neutral guidance, local ownership and proof; no compulsory System framework |
 | aios-evaluate-completeness | [Review](../../aios-review-work/SKILL.md), [final completeness](../../aios-review-work/references/completeness.md) | Embed: explicit requirement-to-final-evidence gate before done; also used proportionately by ordinary AIOS handback and Ship reconciliation |
 | aios-evaluate-publish-safety | [Ship](../../aios-ship-work/SKILL.md), [final action check](../../aios-ship-work/references/publish-safety.md) | Embed: exact content, identity, authority, privacy, claims and commitments checked last before effect |
 | aios-evaluate-spec-work | [Spec](../../aios-spec-work/SKILL.md), [readiness](../../aios-spec-work/references/readiness.md) | Embed: explicit pre-Build gate for maturity, evidence, source preservation, local invariants and bounded READY contract |
 | aios-onboard | [Onboard](../SKILL.md) | Keep: adaptive new setup or resume, sourced context, first useful result and native readback |
 | aios-review-work | [Review](../../aios-review-work/SKILL.md) | Keep: PASS/REVISE/BLOCKED; independent caller acceptance when delegated, latest-byte evidence, same-writer revision and any applicable worker goal active through waiting-review |
-| aios-route-agentic-content-system | [aios](../../aios/SKILL.md), [System routing](../../aios/references/routing.md) | Embed responsibility: select a verified registered content owner by invoke condition, pass accepted inputs/authority/proof need, accept its declared natural return, and never imply publishing; no fixed tool, filename, package or sibling |
-| aios-route-agentic-design-system | [aios](../../aios/SKILL.md), [System routing](../../aios/references/routing.md) | Embed responsibility: select a verified registered design owner by invoke condition and preserve the accepted cross-owner result identity; no fixed tool, filename, export schema, sibling or Project |
+| aios-route-agentic-content-system | [aios](../../aios/SKILL.md), [System routing](../../aios/references/routing.md) | Embed responsibility: use included [content](../../content/SKILL.md) with accepted inputs, domain review and appropriate provenance; external publication remains separately authorized |
+| aios-route-agentic-design-system | [aios](../../aios/SKILL.md), [System routing](../../aios/references/routing.md) | Embed responsibility: use included [design](../../design/SKILL.md) and preserve relevant reviewed result identity; ordinary work stays in its project |
 | aios-route-business-constraint | [aios](../../aios/SKILL.md), [business routing](../../aios/references/routing.md) | Embed: current Offer/Operations/Demand constraint, Eliminate/Automate/Delegate and smallest owner; no mandatory business interview |
 | aios-ship-work | [Ship](../../aios-ship-work/SKILL.md) | Keep: exact Review plus authority, same writer/goals rather than a Ship goal, destination readback, recovery and three outcome states |
 | aios-spec-work | [Spec](../../aios-spec-work/SKILL.md) | Keep: four maturities, ten evidence dimensions, preserved sources, one authorized goal plus concise todo, worker linkage only when delegated and one readiness gate |
@@ -75,9 +75,9 @@ orchestration, lifecycle phases, improvement triage and package adoption retain
 focused discovery entries because their triggers or effects differ. The three
 legacy evaluations are phase-owned gates, so separate auto-discovery would add
 competing owners. Business and specialist routing share one owner-coordination
-job: `aios` selects a registered owner, while the registry and that owner's
-current primary route supply capability-specific behavior. This keeps the old
-routes reachable without freezing another repository's tools or output schema.
+job: `aios` selects the relevant context and method. Included specialist skills
+own their domain process; selected external specialists retain their own
+interfaces. The old routes do not require a registry or a second project type.
 
 ## Migration consequences
 

@@ -1,8 +1,8 @@
 ---
 name: aios-update
-description: Update selected installed upstream Systems or adopt or roll back a reviewed AIOS package.
+description: Update selected optional specialists or adopt or roll back a reviewed AIOS package.
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
 ---
 
 # Update AIOS
@@ -10,7 +10,7 @@ metadata:
 For a selected System installation or an explicit System-code update, use
 [System maintenance](references/systems.md), the single procedure for that
 boundary. A package update does not update Systems, and owner Sync transfers
-registry pointers, not their repository contents. The remaining steps here
+source pointers, not their repository contents. The remaining steps here
 apply only to the AIOS package.
 
 Keep the active task on its known method version. At a suitable task boundary,
@@ -55,7 +55,7 @@ skills untouched unless a separately reviewed migration explicitly includes
 those paths. Do not edit caches, native databases or the entire settings file.
 Respect app-control denials and current native permissions.
 
-Read back package source/version and start a fresh session. Verify all 17 public
+Read back package source/version and start a fresh session. Verify the release’s declared public
 skills are discoverable exactly once and that ordinary owner and independent
 repository requests use the intended routes. Report source installation,
 discovery, desktop entry-point cutover and model behavior separately. A failed

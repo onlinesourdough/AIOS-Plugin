@@ -18,8 +18,8 @@ uncommitted files. Keep a local protected original/backup and test restore.
 
 Construct an explicit source-to-destination map. For legacy template AIOS, map the
 CONTEXT index to AIOS.md routes plus context detail, MEMORY to MEMORY,
-CONNECTIONS to CONNECTIONS, and System/Project registries to the same owner
-concepts. Preserve facts, sources, access boundaries, every registry column,
+CONNECTIONS to CONNECTIONS, and useful work/specialist pointers to the
+owner’s relevant source indexes. Preserve facts, sources, access boundaries, every registry column,
 unknown values and all nonreserved owner skills externally. The 17 proved legacy methods map to the
 packaged [legacy parity map](legacy-parity.md). A name or prefix alone never
 proves ownership; inspect provenance before changing any legacy registration.
@@ -70,7 +70,7 @@ permissions. Do not write through unexpected symlinks. Record completed map
 entries/hashes in local migration evidence so an interrupted run resumes at
 the first incomplete entry; do not copy that log into the always-read core.
 
-Set format 1 only after mapped facts, owner methods, routes and restore proof
+Set format 2 only after mapped facts, owner methods, routes and restore proof
 pass. Re-run the migration: it must produce no new files, duplicate bridges,
 metadata entries, changed content or new authority. Preserve unrecognized data.
 A rollback restores only scoped changed files whose current bytes still equal
@@ -98,7 +98,7 @@ Local folder operation needs no Git. If the user chooses it, initialize a
 separate private owner-data repository, not the distributable Method product.
 Inspect tracking/ignore rules before adding: credentials, work, backups and
 nested checkouts must stay outside commits. Use the
-[checkout ignore rules](../assets/owner/.gitignore) while keeping the two registry
+[checkout ignore rules](../assets/owner/.gitignore) while preserving existing source-index
 README files trackable. Prove exclusions with git check-ignore and inspect the
 index for already tracked checkout files or gitlinks: ignore rules do not untrack
 them. Stop unsafe staging and reconcile that state under explicit scope; do not

@@ -1,6 +1,6 @@
 # Native installation
 
-AIOS 0.8.0 packages the same 17 skills for several agent apps. Install through
+AIOS 0.9.0 packages the same 22 skills for several agent apps. Install through
 the selected app's package manager. No AIOS installer program runs, and no other
 app is configured as a side effect. Owner setup is a separate conversation.
 
@@ -76,7 +76,7 @@ an “already up to date” response is not proof of a version change.
 
 Rollback selects the previous reviewed package through the same native controls.
 It does not restore owner data. After update or rollback, start a fresh session
-and verify the installed version, source and 17 skills.
+and verify the installed version, source and declared skills.
 
 Native uninstall removes the selected package registration. It leaves the owner
 home, other apps and separately configured bridges intact. Some clients retain
@@ -105,9 +105,12 @@ duplicated instruction bodies.
 An existing or requested owner home takes precedence over the default. Without
 one or a managed bridge, the selected AIOS skill checks `~/.AIOS`. It never scans
 for homes or creates a second home during package installation. A persistent
-bridge to a custom location is optional. Owner data format remains `1`.
+bridge to a custom location is optional. New owner homes use format `2`; existing format `1` remains supported.
 
 ## Evidence and limits
+
+The table below records 0.8.0 observations. For the integrated 0.9.0 package,
+see [current verification](verification.md).
 
 Native checks are recorded separately from instruction behavior. A successful
 install does not prove model performance, account access or full onboarding.
@@ -125,7 +128,7 @@ install does not prove model performance, account access or full onboarding.
 Run the author checks from the source repository:
 
 ```sh
-python3 tests/validate.py --baseline 02c540538546c0c76bc5185dc282362b18bb837b
+python3 tests/validate.py --baseline d8a602fd3b25d8380f53951b2fd6883156a86d27
 python3 tests/context-footprint.py
 python3 tests/native-claude-rehearsal.py --install-lifecycle
 python3 tests/native-pi-gemini-rehearsal.py pi

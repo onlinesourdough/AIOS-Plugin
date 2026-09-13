@@ -2,7 +2,7 @@
 name: aios-check
 description: Verify an AIOS installation, owner format or relevant harness discovery without changing it.
 metadata:
-  version: "1.1.0"
+  version: "2.0.0"
 ---
 
 # Check
@@ -15,8 +15,8 @@ During evaluation do not edit the subject. Return PASS, FAIL or NOT VERIFIED
 per claim, with actual artifact,
 checkpoint, observation and next safe action. Uncertainty is never PASS.
 
-A manifest is not proof of activation, a registry is not proof of an installed
-System, a URL is not a backup, and a successful push is not live equality.
+A manifest is not proof of activation, a source link is not proof of an installed
+specialist, a URL is not a backup, and a successful push is not live equality.
 If repair is already authorized, apply it through the responsible route:
 [maintenance](../aios-maintain-context/SKILL.md) for owner context,
 [onboarding](../aios-onboard/SKILL.md) for setup, or shared Build with the repository contract.

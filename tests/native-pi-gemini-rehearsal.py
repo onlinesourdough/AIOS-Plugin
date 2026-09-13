@@ -40,7 +40,8 @@ def main():
             dst.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(src, dst)
     expected = {p.parent.name for p in (source / 'skills').glob('*/SKILL.md')}
-    assert len(expected) == 17
+    assert expected == {p.parent.name for p in (ROOT / 'skills').glob('*/SKILL.md')}
+    package_version = json.loads((source / 'package.json').read_text())['version']
     # Adjacent synthetic owner data and another harness remain byte-identical.
     preserved = base / 'preserved'
     (preserved / 'owner').mkdir(parents=True)
@@ -121,7 +122,7 @@ def main():
         run('list')
         loaded = pi_skills()
         own = [c for c in loaded if str(source / 'skills') in c.get('sourceInfo', {}).get('path', '')]
-        assert len(own) == 17 and {Path(c['sourceInfo']['path']).parent.name for c in own} == expected
+        assert len(own) == len(expected) and {Path(c['sourceInfo']['path']).parent.name for c in own} == expected
         assert any('fixture-sentinel' in c.get('sourceInfo', {}).get('path', '') for c in loaded)
         unchanged()
         run('update', '--extension', source, '--no-approve')
@@ -135,7 +136,7 @@ def main():
         run('extensions', 'list')
         run('extensions', 'install', source, '--consent')
         listing = run('extensions', 'list')
-        assert 'aios (0.8.0)' in listing, listing
+        assert f'aios ({package_version})' in listing, listing
         discovered = run('skills', 'list')
         cache = settings_root / 'extensions' / 'aios'
         assert hashes(cache / 'skills') == hashes(source / 'skills'), 'Installed bytes differ'
@@ -145,11 +146,11 @@ def main():
         unchanged()
         manifest = source / 'gemini-extension.json'
         data = json.loads(manifest.read_text())
-        data['version'] = '0.8.1-rehearsal'
+        data['version'] = '99.0.0-rehearsal'
         manifest.write_text(json.dumps(data) + '\n')
         run('extensions', 'update', 'aios')
         listing = run('extensions', 'list')
-        assert '0.8.1-rehearsal' in listing, 'Gemini version transition not observed'
+        assert '99.0.0-rehearsal' in listing, 'Gemini version transition not observed'
         update_proof = 'Version transition'
         run('skills', 'list')
         unchanged()
@@ -157,7 +158,7 @@ def main():
         assert 'aios (0.' not in run('extensions', 'list')
         assert str(cache / 'skills') not in run('skills', 'list')
     unchanged()
-    print(json.dumps({'harness': args.harness, 'version': version, 'skills': 17,
+    print(json.dumps({'harness': args.harness, 'version': version, 'skills': len(expected),
                       'install_discovery_removal_coexistence': 'PASS', 'update': update_proof,
                       'fixture': str(base)}, indent=2))
 

@@ -16,7 +16,7 @@ Start from accepted input and useful work; assume no owner facts or connections.
 | Work/sources | Where priorities, records and domain facts are authoritative |
 | Decisions/constraints | Applicable choices, limits, quality and authority |
 | Preferences | Audience/channel, output language, angle, voice/examples and working methods; scoped exceptions to shared preferences |
-| Capabilities/ownership | Needed account, connection, Skill, System or Project |
+| Capabilities/ownership | Needed account, connection, skill, workspace or optional specialist |
 
 Cover relevant areas by a verified source, minimal owner-supplied local fact,
 or explicit gap/not-applicable decision. Inspect authorized answers before asking.
@@ -66,7 +66,7 @@ account scans, global audit on every task or background monitoring.
 For authorized cleanup/repair, trace removed claims to sources or retained facts.
 Preserve unique decisions, overrides and gaps. Remove superseded operational
 copies, even if labelled historical; keep change evidence in the task.
-Registries never mirror repository plans or source.
+Source indexes never mirror repository plans or source.
 
 Keep AIOS.md a short orientation/index: aim for 100 lines/6 KB and AIOS.md plus
 MEMORY below 12 KB; budgets never justify losing unique knowledge. Context names

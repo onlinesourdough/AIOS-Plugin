@@ -81,7 +81,7 @@ uninstall another owner's plugin, or assume the entire `aios-*` namespace is
 owned by Method. Optional external Global Skills remain independently managed.
 
 Use a supported native sequence that leaves one effective source for each of
-the 17 names. A temporary staged installation is not acceptance while duplicate
+the declared names. A temporary staged installation is not acceptance while duplicate
 sources remain active. Read back actual discovery in a fresh session; a clean
 filesystem list alone does not prove the harness loaded the intended source.
 

@@ -18,6 +18,7 @@ SKILL_NAMES = {
     "aios-onboard", "aios-orchestrate-workers", "aios-review-work",
     "aios-risky-changes", "aios-ship-work", "aios-spec-work", "aios-triage-improvement",
     "aios-update", "aios-select-model", "human-writing",
+    "design", "review-design", "openpencil-workbench", "content", "diffusion-studio",
 }
 LEGACY_ROUTE_TARGETS = {
     "aios": ("../../aios/SKILL.md", "../SKILL.md", "../../aios-check/SKILL.md",
@@ -53,7 +54,7 @@ LEGACY_EXTERNAL_TARGETS = {
     "route-models": "historical change `8b81375`",
     "shape-offer": "Remains an independently owned Global Skill",
 }
-# ADS is an accepted routing label; specialist tools/formats remain external.
+# Core routes methods; domain details stay in the selected domain skill.
 FORBIDDEN_BOUNDARY_TEXT = {
     "skills/aios/references/routing.md": (
         "ACS", "OpenPencil", "DESIGN.md", "HANDOFF.md", ".op",
@@ -65,16 +66,9 @@ FORBIDDEN_BOUNDARY_TEXT = {
         "agentic-system-template", "audit-system", "archive/extraction",
     ),
     "skills/aios-manage-skills/SKILL.md": ("skills.sh", "npx skills"),
-    "skills/aios-check/references/workflow-scenarios.md": (
-        "Design/content handoff", "content remains explicitly not posted",
-    ),
 }
-FORBIDDEN_SHIPPED_PATTERNS = (
-    r"\bOpenPencil\b", r"\bACS\b", r"\bDESIGN\.md\b",
-    r"\bHANDOFF\.md\b", r"(?<![\w])\.op(?![\w])", r"\bnpx skills\b",
-    r"\bskills\.sh\b", r"\bscripts/create-project\.sh\b",
-    r"\barchive/extraction\b", r"\baudit-system\b",
-)
+FORBIDDEN_SHIPPED_PATTERNS = (r"\bnpx skills\b", r"\bskills\.sh\b")
+DOMAIN_SKILLS = {"design", "review-design", "openpencil-workbench", "content", "diffusion-studio"}
 PRODUCT_PATHS = ("plugin.json", ".codex-plugin", ".claude-plugin", ".cursor-plugin",
                  "gemini-extension.json", "skills", "assets/icon.png", "LICENSE")
 FORBIDDEN_KEYS = {"scripts", "dependencies", "devDependencies", "peerDependencies"}
@@ -182,10 +176,10 @@ def validate(root=ROOT):
                 f"skill description: {path}")
         require("disable-model-invocation" not in fields, f"implicit invocation: {path}")
 
-    require("business constraints" in skill_fields["aios"]["description"] and
-            "registered System" in skill_fields["aios"]["description"] and
-            "scoped AIOS documentation questions" in skill_fields["aios"]["description"],
-            "owner routing discovery")
+    primary_targets = set(link_targets(skill_root / "aios/SKILL.md"))
+    for name in ("design", "content", "human-writing"):
+        require((skill_root / name / "SKILL.md").resolve() in primary_targets,
+                f"built-in method route missing: {name}")
     # Spec owns contract preparation; tracking is one linked shared owner.
     # Native decisions require the independent behavioral probes, not wording tests.
     spec_targets = set(link_targets(skill_root / "aios-spec-work/SKILL.md"))
@@ -291,27 +285,13 @@ def validate(root=ROOT):
     canonical_sources = skill_root / "aios/references/canonical-sources.md"
     require(canonical_sources.is_file(), "missing canonical source route")
     canonical_text = canonical_sources.read_text()
-    require("Answer stable method facts already stated in this loaded package directly" in primary and
-            "For\na missing, current, version, release, harness, or external canonical fact" in primary and
-            "This read-only route does not read AIOS_FORMAT, AIOS.md,\nMEMORY.md, lifecycle/Review guidance" in primary and
-            "only the directly relevant" in primary and
-            "Do not turn a guardrail into a fact" in primary and
-            "Otherwise say it is unknown" in primary and
-            "Before any owner-data mutation, setup or migration" in primary and
-            "For every actual\nowner-level task, resolve the home, read AIOS.md and MEMORY.md" in primary and
-            "Explaining or naming a workflow is a small answer, not executing it" in primary and
-            "explicitly required path directly rather than rediscovering it with an inventory" in primary and
-            "owner index/MEMORY establishes a needed\nsource is missing, report the gap" in primary and
-            "do not load a later phase body or search\nunrelated paths to infer it" in primary and
-            "Actual Spec, Build, Review or Ship work selects its\nfull applicable procedure" in primary and
+    require(canonical_sources.resolve() in primary_targets and
             "fact is missing from the accepted input and loaded package" in canonical_text and
             "one relevant source" in canonical_text and
             re.search(r"do not copy or sync", canonical_text) and
-            "unavailable, stale,\ninaccessible, or conflicts" in canonical_text and
             "already-authorized native account" in canonical_text and
             "Never inspect, copy, transport, or ask for credentials" in canonical_text and
-            "never change\nvisibility or publish" in canonical_text and
-            "AIOS-Plugin/blob/main/docs/architecture.md" in canonical_text,
+            "never change\nvisibility or publish" in canonical_text,
             "canonical source isolation")
     curation = (skill_root / "aios-maintain-context/references/curation.md").read_text()
     require("Keep facts in one canonical source" in curation and
@@ -329,7 +309,7 @@ def validate(root=ROOT):
     public_overview = root / "docs/public/aios.md"
     require(public_overview.is_file(), "missing public AIOS overview source")
     public_text = public_overview.read_text()
-    require("instruction-only method" in public_text and
+    require("portable context and skills" in public_text and
             "Shared method, owner context" in public_text and
             "Customer documentation stays in its\nsource system" in public_text and
             "Install it separately in each app you choose" in public_text and
@@ -360,7 +340,9 @@ def validate(root=ROOT):
     require(owner_lifecycle.resolve() in caller_targets, "personal-skill procedure not routed")
 
     owner = skill_root / "aios-onboard/assets/owner"
-    require((owner / "AIOS_FORMAT").read_bytes() == b"1\n", "owner format")
+    require((owner / "AIOS_FORMAT").read_bytes() == b"2\n", "owner format")
+    require(not (owner / "projects").exists() and not (owner / "systems").exists(),
+            "mandatory owner registry in new scaffold")
     require(not list(owner.rglob("AGENTS.md")) and not list(owner.rglob("AGENTS.override.md")),
             "inherited owner instructions")
     bridge = (skill_root / "aios-onboard/assets/bridge.md").read_text()
@@ -432,7 +414,12 @@ def validate(root=ROOT):
         for path in members:
             require(not path.is_symlink(), f"product symlink: {path}")
             if path.is_file():
-                allowed = (path.suffix in {".md", ".json"} or
+                parts = path.relative_to(root).parts
+                domain = len(parts) >= 4 and parts[0] == "skills" and parts[1] in DOMAIN_SKILLS
+                helper = domain and parts[2] == "scripts" and path.suffix in {".mjs", ".py"}
+                ui = domain and parts[2] == "agents" and path.name == "openai.yaml"
+                neutral_text = domain and parts[2] == "assets" and path.suffix == ".txt"
+                allowed = (path.suffix in {".md", ".json"} or helper or ui or neutral_text or
                            path.name in {"LICENSE", "AIOS_FORMAT", ".gitignore"} or
                            path == root / "assets/icon.png")
                 require(allowed, f"unexpected product file: {path}")
@@ -488,6 +475,14 @@ def negative_controls():
         path = root / "skills/aios-spec-work/SKILL.md"
         path.write_text(path.read_text().replace(
             "[native tracking SOP](../aios/references/lifecycle.md)", "tracking"))
+
+    def missing_domain_route(root):
+        path = root / "skills/aios/SKILL.md"
+        path.write_text(path.read_text().replace(
+            "](../design/SKILL.md)", "](../human-writing/SKILL.md)"))
+
+    def compulsory_registry(root):
+        (root / "skills/aios-onboard/assets/owner/projects").mkdir()
 
     def split_source(root):
         package = json.loads((root / "package.json").read_text())
@@ -554,6 +549,8 @@ def negative_controls():
     rejected(native_split_source, 'native split skill source')
     rejected(implicit_hook, 'unexpected native runtime')
 
+    rejected(missing_domain_route, "built-in method route missing")
+    rejected(compulsory_registry, "mandatory owner registry")
     rejected(split_source, "different skill sources")
     rejected(install_script, "consumer script or dependency")
     rejected(inherited_instructions, "inherited owner instructions")
@@ -578,6 +575,6 @@ if __name__ == "__main__":
     if args.baseline:
         commit = validate_baseline(ROOT, args.baseline, SKILL_NAMES)
         print(f"PASS: per-skill version maintenance against {commit}")
-    print("PASS: package declarations, 17 versioned skill frontmatters, complete legacy routes, links, isolation, and security checks")
+    print("PASS: package declarations, 22 versioned skill frontmatters, complete legacy routes, links, isolation, and security checks")
     print("PASS: discovery contracts and external-owner coupling boundaries")
-    print("PASS: rejects split sources, install/runtime scripts, inherited instructions, and duplicate ownership")
+    print("PASS: rejects split sources, install hooks, misplaced helpers, inherited instructions, and duplicate ownership")

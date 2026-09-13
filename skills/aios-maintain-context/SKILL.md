@@ -2,7 +2,7 @@
 name: aios-maintain-context
 description: Curate owner facts, memory and routes, or perform explicitly requested AIOS continuity Sync.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Maintain context
@@ -30,8 +30,7 @@ actions. This route retains owner facts and configured Git sync only; do not
 duplicate or resume skill management here.
 
 Keep shared facts in routed context, durable corrections in MEMORY.md, access
-and recorded authority in CONNECTIONS.md, and canonical repository pointers in
-registries. Never store credentials, model choices, raw transcripts or complete
+and recorded authority in CONNECTIONS.md, and useful repository pointers alongside their relevant context. Never store credentials, model choices, raw transcripts or complete
 repository plans here. Native memory/history may aid retrieval but cannot
 replace these sources.
 

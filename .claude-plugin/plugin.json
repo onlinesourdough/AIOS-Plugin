@@ -1,7 +1,7 @@
 {
   "name": "aios",
-  "version": "0.8.0",
-  "description": "Portable owner context, adaptive onboarding and discoverable methods for specified, reviewed work.",
+  "version": "0.9.0",
+  "description": "Portable context and skills for planning, design, content and reviewed delivery.",
   "author": {
     "name": "Online Sourdough"
   },

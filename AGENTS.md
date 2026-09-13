@@ -2,7 +2,7 @@
 
 Build and operate the smallest independent Project that creates this outcome:
 
-> Build a maintainable instruction-only native agent method package with portable owner context, lifecycle routing, safe onboarding and recovery, validated for independent lead Review before authorized release.
+> Build a maintainable native agent skill package with focused optional helpers with portable owner context, lifecycle routing, safe onboarding and recovery, validated for independent lead Review before authorized release.
 
 ## Shared lifecycle
 

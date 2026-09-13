@@ -8,10 +8,10 @@ to that harness only.
 
 ## Package and discovery
 
-The repository's `.claude-plugin/plugin.json` declares AIOS 0.8.0 and points to
+The repository's `.claude-plugin/plugin.json` declares the AIOS package identity and points to
 `./skills/`. Its marketplace is `online-sourdough`, with one plugin, `aios`,
 whose source is `./` relative to the repository root. The root `skills/` is the
-only canonical instruction payload: 17 skills with their supporting resources.
+only canonical instruction payload: the declared skills with their supporting resources.
 `.claude-plugin/` holds metadata only. No wrappers, symlinks, hooks, MCP servers,
 agents, background processes, settings overrides or installation scripts are
 part of this adapter. Harness-managed cache copies are installation artifacts.
@@ -29,8 +29,8 @@ These identifiers serve different purposes:
 Resolve portable method names through the chosen harness's actual discovery.
 Claude's slash-command namespace does not rename the files or require rewritten
 relative links. A plain `/aios-onboard` is not the promised Claude plugin entrypoint.
-Seventeen source files or a successful plugin listing alone do not prove that
-all 17 skills are available in a session. Inspect component inventory and fresh
+Source files or a successful plugin listing alone do not prove that
+all declared skills are available in a session. Inspect component inventory and fresh
 session discovery; skill descriptions enable selection, while bodies and
 supporting references are loaded as needed. Discovery does not prove successful
 method execution. See [Claude skills](https://code.claude.com/docs/en/skills) and
@@ -150,9 +150,10 @@ documentation includes features newer than this CLI.
 
 Run `python3 tests/native-claude-rehearsal.py` from the author repository for
 native schema validation, rejection of an invalid component type, and the
-instruction-only inventory check. Its read-only
+skill inventory check. Its read-only
 `claude --setting-sources user --plugin-dir /absolute/path/to/AIOS-Plugin plugin details aios`
-also verifies inline discovery: `aios@inline`, version 0.8.0, 17 skills,
+also verifies inline discovery against the current manifest: `aios@inline`, the
+selected version and skill inventory,
 0 agents, 0 hooks and 0 MCP servers. The inventory prints short component names;
 that display does not establish unqualified slash invocations. This uses
 temporary state, launches no model session and does not install anything.
@@ -179,6 +180,6 @@ It does not read or copy real config
 or credentials. Managed machine policy still applies.
 
 The lead completed the isolated local-source lifecycle on Claude Code 2.1.139:
-installation, 17-skill inventory, cached byte equality, a fixture-only version
+installation, 22-skill inventory, cached byte equality, a fixture-only version
 transition, uninstall and preservation of the sentinel skill/setting passed.
 No model execution or live GitHub installation is claimed by this fixture.

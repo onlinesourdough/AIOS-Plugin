@@ -2,7 +2,7 @@
 name: aios-review-work
 description: Review a result against its accepted outcome, or audit requested repository drift, without editing.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Review work
@@ -66,7 +66,7 @@ Source checks do not prove runtime behavior. Do not accept weakened tests as
 proof of a fix; an accepted behavior change needs replacement coverage.
 For a requested whole-repository health check or accumulated drift assessment,
 use [repository audit](references/repository-audit.md). It is not an extra phase
-after ordinary changes. Domain-specific reviews and audits stay with the System.
+after ordinary changes. Domain-specific reviews and audits stay with their owning skill or specialist.
 
 ## Conditional quality checks
 

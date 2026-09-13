@@ -1,102 +1,50 @@
-# Routing and ownership
+# Choose context and method
 
-Start from the requested result and observable proof. Read only relevant Space
-context; shared context is the default, a narrower sourced route wins for its
-scope. On a material conflict, preserve both and resolve the owner decision.
-For a current business constraint, reuse the accepted focus, identify the
-constraint and return the selected owner, source, bounded next result and proof.
-Offer, Operations and Demand are diagnostic
-labels, not folders or owners. Identify the wanted freedom and economic result;
-consider Eliminate, Automate, then Delegate before adding a capability.
+Start with the requested result, existing work and observable quality. Continue
+in the current task. A project is the harness's project or working folder;
+AIOS adds no second project identity or registration step.
 
-When a business, product, architecture, or trust decision materially determines
-the result, inspect actual constraints and sufficient alternatives. Preserve the
-chosen rationale, consequences, and any superseded decision in the owning
-canonical source; ask only for missing owner authority. A bounded owner answer
-remains an answer, not a requirement to create a Project or apply software
-delivery ceremony.
+Spaces describe business or brand context. Read only what changes the current
+decision. For a business constraint, reuse the accepted focus, inspect the actual
+work and consider eliminating, automating or delegating the bottleneck. Offer,
+Operations and Demand are useful lenses, not compulsory folders or departments.
+Record a material decision and its rationale in the source that owns the work.
 
-| Natural home | Decision |
-| --- | --- |
-| AIOS owner task | One-off answer, analysis, draft or coordination |
-| Skill | Repeatable method with known inputs, steps and proof, without independent operational truth |
-| System | Persistent reusable specialist capability across outcomes, with its own repository, state, operations and recovery |
-| Project | Bounded result requiring independent development, operation or handover; reuse its existing repository |
+## Methods
 
-Space is persistent business/domain context, never an execution owner.
-Resources are references, Archives recovery state, Skills methods; none adds an
-owner concept. A schedule or automation alone does not justify a System.
-Do not create a Project per content item or a wrapper per repository.
+- [Design](../../design/SKILL.md) creates or evaluates visual direction and assets.
+- [Content](../../content/SKILL.md) creates, revises or repurposes editorial work.
+- [Human writing](../../human-writing/SKILL.md) makes prose clear and natural.
+- Shared [lifecycle](lifecycle.md) supplies specification, implementation, review
+  and authorized delivery with the task's local requirements.
 
-Before substantive production, use the [shared task-result decision](lifecycle.md).
-Record the selected owner/root, primary workflow and relevant source pointers in
-the same contract. Reuse accepted decisions; small answers need no routing ritual.
+Select methods for their contribution to the result. Design and content may
+work independently or pass relevant reviewed material to each other. Preserve
+source identity, version and review when it matters; do not invent a cross-System
+handoff for work with the same owner. Domain review remains necessary where
+selected; deterministic validity alone does not establish quality.
 
-Read only the relevant registry. A registered URL is a route, not an installed
-capability. Verify an existing checkout, Git identity, AGENTS.md, primary skill
-and dependencies before invocation. For a selected missing System, use [System maintenance](../../aios-update/references/systems.md)
-to clone and verify it on first use under existing task authority. Onboarding
-does not preclone Systems. A new checkout uses projects/<slug> or systems/<slug>
-under AIOS_ROOT, with independent local truth and owner Git exclusion; preserve
-a deliberate existing external path.
-Do not substitute or implement the capability in shared owner context, or seed
-an existing repository. New ownership uses [creation](creation.md).
+Working material belongs in the project's design/ or content/ folders as needed.
+Use the actual project's context and keep one authoritative source for each
+artifact. The plugin owns methods and helpers, not deliverables or customer data.
 
-Use [lifecycle](lifecycle.md) for execution and continuation. Spec makes the chosen
-result usable; [Select model](../../aios-select-model/SKILL.md) supplies model and
-reasoning suitability. Delegation with retained acceptance selects
-[Orchestrate workers](../../aios-orchestrate-workers/SKILL.md), also for worker recovery.
-Whole-task transfer uses the lifecycle's conditional [handoff](continuation.md).
-Verify roots and local instructions before execution; no route authorizes silent sidebar creation.
-Local truth owns implementation and proof;
-AIOS stores only routing and genuinely shared knowledge. Existing repository work
-begins locally without automatically reading owner context. Expand only for a
-named gap, to authorized relevant sources in the correct account. Brand labels
-are not access control. Verify account before relying on or exposing data.
+## Optional specialists
 
-## Registered specialist capabilities
+A System is a separately maintained specialist solution, chosen when its
+capability is useful. Skills, code or a repository alone do not require this
+label. Use native skills/packages and tools instead of introducing another
+execution framework. [Creation](creation.md) applies only to new work that
+actually needs a repository or separately maintained specialist.
 
-A System registry row identifies the owner, checkout or canonical source,
-primary route, invoke condition, natural return and verification state. AIOS
-owns selection and the cross-owner boundary only. The System's current local
-instructions own its tools, stages, mutable source, artifact names and formats,
-workspace layout, schemas, review and recovery. Do not encode those choices in
-AIOS or choose a route from a tool name, filename or former repository label.
+Power BI remains an optional specialist for Power BI model/report work. Its
+Desktop/platform requirements do not apply to AIOS generally. For that or another
+selected external capability, use [specialist maintenance](../../aios-update/references/systems.md)
+to verify the actual source, installation and dependencies. An explicit existing
+route is accepted input, not permission to overwrite it or install alternatives.
 
-ADS/design and content are available specialist routes, not bundled contents
-or required installs. Visual work matching ADS must enter its current primary
-workflow and follow its stages and review; do not merely read ADS and generate
-a loose image in the parent task. Power BI is optional: never install by default
-or select it without a matching user need. Resolve these routes from the
-relevant registry or accepted canonical source, not guessed repository URLs.
-An existing owner-selected route wins. Only for a matching missing route, consult
-the [bounded first-use catalog](../../aios-update/references/systems.md#bounded-first-use-catalog);
-its candidates require verification on use, with no preclone or auto-registration.
-
-Invoke a verified registered route only when its declared condition matches the
-requested result. Pass resolved intent, only relevant accepted context and
-inputs, constraints, authority, proof need and receiving owner. Accept the
-natural return declared by the registry and current local contract. Preserve an
-accepted result's identity, revision and provenance when it crosses an owner
-boundary, using the representation that owner supports; AIOS imposes no shared
-return schema or synchronized live state.
-
-Capabilities remain independently usable. A newly discovered adjacent need does
-not automatically invoke a sibling or create a Project. Route one additional
-owner only when it is material to the same result, authorized and not already
-visited. If a required capability or input is unavailable, return one bounded
-verification, installation or input action instead of recursive routing or an
-improvised substitute. Publishing or any other external effect remains a
-separately authorized Ship action.
-
-Return the selected owner and route, the owner-declared result and proof
-pointers, remaining decisions or limitations, and the authority, recovery and
-stop state needed by the receiver.
-
-A Skill remains a repeatable method without independent operational truth;
-length, code, trigger, schedule or automation alone does not establish System
-ownership. The actual persistent operational responsibility is the criterion.
-
-A routing decision needs only the outcome, selected owner and truth, validation
-and semantic review when material, access versus authority, failure/replay
-owner and stop condition. Deterministic validity is not semantic acceptance.
+Independent work starts locally; expand to relevant authorized owner context
+only for a concrete gap. Brand names do not grant account access. Keep shared
+facts in owner context, implementation and proof with the work, and tools in
+their native installation. A missing tool holds the affected result, while
+independent authorized work continues. No route creates a sidebar task or
+authorizes external publication.

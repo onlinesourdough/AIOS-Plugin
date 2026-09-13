@@ -1,6 +1,6 @@
 # AIOS
 
-AIOS is an instruction-only method for helping an AI assistant work from an
+AIOS supplies portable context and skills to help an AI assistant work from an
 owner's relevant context and carry a task from a small request to a reviewed
 result. It is not a model, a hosted service, or a replacement for the tools and
 permissions supplied by the assistant's native harness.
@@ -29,6 +29,11 @@ If a source is unavailable, stale, inaccessible, or conflicts with another
 source, that is an evidence gap—not a reason to invent an answer from memory.
 
 ## Native harnesses and access
+
+Design, content and clear writing are included methods. The native app owns
+projects and sessions; AIOS adds no second project register. Spaces hold relevant
+business context, while optional specialist Systems keep their own upkeep.
+Design and content working material stays in the project.
 
 AIOS supplies one skill library with native installation metadata for several
 agent apps. Install it separately in each app you choose; installation in one

@@ -38,3 +38,16 @@ contract without hunting a session, deleting a goal or creating a replacement.
 This neither reactivates a native control nor grants missing action authority;
 external, user-action and security blockers still stop. A native-only outcome
 without that fallback needs a narrow owner clarification.
+
+## Design and content integration
+
+New work uses the bundled domain skills. Before retiring a legacy ADS or ACS
+checkout, inventory its tracked, ignored and untracked files. Preserve actual
+work and accepted artifacts; Git history only preserves committed source.
+Removal of old discovery entries does not authorize deleting a workspace.
+
+AIOS 0.9.0 accepts owner formats 1 and 2. Version 0.8.0 accepts format 1 only.
+Rolling back after an authorized owner cleanup therefore needs the preserved
+format-1 marker and index files as well as the earlier native package. Restore
+only unchanged outputs, preserving later owner edits. A package downgrade alone
+is not owner-data recovery.

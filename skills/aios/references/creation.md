@@ -1,45 +1,23 @@
-# Create only a justified independent owner
+# Start new work
 
-Read [routing](routing.md) and the READY [task contract](lifecycle.md) first.
-Existing owners are adopted in place, never refreshed from a template. The
-lead selects name, safe lowercase hyphen slug, final absolute root, optional
-canonical URL, outcome, authority, proof and accepted immutable input pointers.
-The owner registry supplies the canonical credential-free HTTPS .git seed URL.
-Validate URL has no userinfo, whitespace, query or fragment. Freshly query its
-symbolic HEAD and the default branch required by the seed's current creation
-interface, then freeze one exact live 40-character commit SHA. Cached refs, a
-remembered pin or an assumed branch are not live evidence. Network failure or
-a changed SHA stops before transfer.
+Reuse the current project or workspace. For a new repository, resolve its
+outcome and final location from the accepted task. Follow the native harness's
+project controls when relevant; a filesystem repository does not require a
+second AIOS registration or a new task.
 
-For new owners choose physical AIOS_ROOT/projects/<slug> (Project) or
-AIOS_ROOT/systems/<slug> (System). Existing deliberate external roots remain
-supported and are adopted in place; moving one is a separate authorized action.
-Before creation, the lead verifies owner Git, when used, ignores the checkout and
-that ancestor AGENTS/override files will not preload personal owner context.
-Keep independent .git, local AGENTS and lifecycle at the repository root; nesting
-is a filesystem layout, not shared implementation or authority. No symlink farm.
+Use [Create Project](../../aios-create-project/SKILL.md) for an APT repository
+starter, or [Create System](../../aios-create-system/SKILL.md) for a genuinely
+requested independent specialist. A small answer, document or skill needs
+neither template. Existing repositories are maintained in place, not reseeded.
 
-No registration in an unrelated legacy home. Reject existing path/registry/canonical
-identity duplicates. Create only the final empty unborn repository and use
-one verified writer. Continue in the current task unless the shared execution
-decision selects [Orchestrate workers](../../aios-orchestrate-workers/SKILL.md).
-Attest exact physical root/Git top level, branch, zero history/refs/remotes and
-no tracked/untracked/ignored files; verify registry absence before source access.
-No temporary template clone or separate seed worker.
+Verify the selected template's canonical URL, live default-branch commit and
+current instructions before using it. Treat URLs as data, never credentials or
+shell fragments. Freeze the exact revision and inspect its acquisition,
+validation, transfer and recovery interface. Preserve existing destinations,
+local work, repository identity and caller instructions.
 
-Use [Create Project](../../aios-create-project/SKILL.md) for a bounded Project
-or [Create System](../../aios-create-system/SKILL.md) for a reusable System.
-
-## Registration after proof
-
-
-Prepare one row in the selected owner registry's existing
-schema: name, slug, canonical URL or explicit local marker, final path, outcome
-and responsible owner, local lifecycle (Project) or primary skill/invoke/return
-(System), proof and checkout verification state. A delegated worker returns it
-to the caller; it never edits shared owner data. The owner task runs owner-data
-sync when configured, rechecks absence and
-adds only that verified row, then checks routes. If registration blocks, retain
-the canonical repo and retry registration only; never recreate or transfer.
-Creation, revisions, registration evidence and authorized Ship retain the same
-worker/session and goal. No System implementation belongs in shared owner context.
+After creation, inspect the actual generated files and run the template's
+relevant checks. The new repository owns its requirements, files and later
+maintenance. Preserve source provenance as history, not a runtime dependency.
+Use the [shared lifecycle](lifecycle.md) to continue the accepted result; the
+template is a starting point, not an updater or a second source of truth.

@@ -5,7 +5,7 @@
 work/
 backups/
 checkouts/
-# Registries belong to owner context; independent checkouts do not.
+# Preserve exclusion of established nested checkouts; these folders are not required.
 /projects/*
 !/projects/README.md
 /systems/*

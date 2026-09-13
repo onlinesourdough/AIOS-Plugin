@@ -4,7 +4,7 @@ Use only for authorized Pi package installation, registration or bridge repair.
 Apply the shared [native adapter and bridge boundary](adapters.md), read
 [Pi configuration](harness-pi.md) only for a requested settings or discovery repair.
 
-The root package.json declares only `pi.skills`, pointing to the same 17 root
+The root package.json declares only `pi.skills`, pointing to the same canonical root
 `skills/` folders. No extensions or install scripts are provided. Standard
 local and Git package routes are:
 
@@ -28,7 +28,7 @@ rewrite settings.json wholesale or touch authentication stores.
 
 ## Preserve existing discovery
 
-Native `pi install` registers the package and exposes its 17 skills. No global
+Native `pi install` registers the package and exposes its declared skills. No global
 skill filter or owner-home registration is required. Keep ambient skills,
 other packages, provider choices and trust settings unchanged. Installation in
 Pi does not install AIOS in Codex, Claude Code or another app.

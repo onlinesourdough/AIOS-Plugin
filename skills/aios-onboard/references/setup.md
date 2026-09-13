@@ -56,9 +56,9 @@ resolve bridge conflicts. Stop symlink overwrites; preserve custom/unrelated byt
 
 Inspect inherited instructions; owner-context AGENTS must not preload independent
 repositories. Repair only authorized owned blocks; unresolved preload fails isolation.
-[Creation](../../aios/references/creation.md) owns new independent owners;
-[System maintenance](../../aios-update/references/systems.md) owns selected System
-installation. No precloning; preserve external roots. Merge needed
+Use the current workspace for work. [Creation](../../aios/references/creation.md)
+starts a requested new repository; [specialist maintenance](../../aios-update/references/systems.md)
+handles selected optional installations. Merge needed
 [ignore exclusions](../assets/owner/.gitignore) and verify them before owner staging.
 
 Full onboarding/configuration changes use relevant [harness configuration](harness-configuration.md);

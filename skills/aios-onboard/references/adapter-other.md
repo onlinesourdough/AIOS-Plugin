@@ -1,22 +1,21 @@
 # Gemini CLI, Cursor and OpenCode
 
 Use the [native adapter boundary](adapters.md) for authorized adoption in one
-selected harness. The package has one canonical `skills/` source containing 17
-directories. Native installation may materialize a package; AIOS adds no copied
+selected harness. The package has one canonical `skills/` source containing the declared skills. Native installation may materialize a package; AIOS adds no copied
 instruction tree, loader, wrapper, symlink, hook, executable extension or MCP.
 Package registration alone does not configure an owner-home entrypoint or prove
 onboarding behavior. Preserve existing skills, settings and owner data.
 
 ## Gemini CLI
 
-The root `gemini-extension.json` declares AIOS 0.8.0. Gemini's documented
+The root `gemini-extension.json` declares the AIOS package identity. Gemini's documented
 extension discovery loads `skills/` directly; no manifest skill-path field or
 context-file override is needed. See the [extension reference](https://geminicli.com/docs/extensions/reference/)
 and [extension management guide](https://geminicli.com/docs/extensions/).
 
 For a new, authorized installation, replace `RELEASE_TAG` with an existing,
-reviewed release containing the manifest (0.8.0 is a candidate, not a released
-tag merely because this file exists):
+reviewed tag or immutable commit containing the manifest; a package version
+number alone does not establish that a release tag exists:
 
 ```sh
 gemini extensions install https://github.com/onlinesourdough/AIOS-Plugin --ref RELEASE_TAG
@@ -58,7 +57,7 @@ gemini extensions list
 gemini skills list
 ```
 
-Run every command with the same isolated environment. Require exactly the 17
+Run every command with the same isolated environment. Require exactly the declared
 expected names at the owned installed package paths, compare installed skill
 bytes with the reviewed source, and check their removal. An update reporting
 "already up to date" proves no version transition. Validation checks do not
@@ -130,7 +129,7 @@ prove packaging. Native discovery remains a separate check.
 
 Official sources were checked on 2026-09-13. Gemini CLI 0.42.0 supplies native
 extension and skill controls. The isolated local-source rehearsal passed
-installation, 17-skill discovery, installed byte equality, a fixture version
+installation, 22-skill discovery, installed byte equality, a fixture version
 transition, removal and preserved sentinel data/settings. No model call or
 live GitHub installation was tested. Cursor CLI 2025.10.13-405ee2e has no plugin command;
 its current marketplace/IDE route has not been tested here. OpenCode's native

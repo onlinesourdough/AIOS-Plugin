@@ -1,125 +1,93 @@
 # Architecture
 
-AIOS is an instruction-only package using the portable Agent Plugins format.
-Native compatibility manifests all load the same root `skills/` directory; AIOS does not provide a model runner,
-worker service, permission system, or client-data store.
+AIOS combines portable owner context with Agent Skills for planning, design,
+content and reviewed delivery. Native manifests load one root `skills/`
+directory. Focused helpers belong to their skills and run only for a selected
+task; AIOS has no model runner, background service or permission system.
 
 | Boundary | Responsibility |
 | --- | --- |
-| `plugin.json`, native manifests, `package.json`, `assets/`, `skills/` | Portable identity, native metadata and the 17 shared product skills |
-| `.agents/plugins/marketplace.json` | Codex marketplace entry pointing at this repository root |
-| `AGENTS.md`, optional `.agents/skills/` | Local requirements and specialist methods; no generic lifecycle copies |
-| Owner home, normally `~/.AIOS` | Client-controlled context, decisions, connections, and personal skills |
-| Native harness | Actual models, tools, credentials, permissions, settings, and UI |
-| Independent Project/System repositories | Their own instructions, implementation, proof, and recovery |
+| Native harness | Projects, sessions, models, tools, permissions and credentials |
+| Owner home, normally `~/.AIOS` | Relevant context, source links, decisions and personal skills |
+| Spaces | Selectively loaded business or brand context |
+| Skills | Reusable methods, standards and judgment, with references and small helpers as needed |
+| Project repository | Local requirements, implementation, design and content material, proof and recovery |
+| Optional System | A separately maintained specialist with its own dependencies or operational needs |
+| Native manifests | Package identity and discovery over the same 22 skills |
 
-The package version and owner-data format are separate. `AIOS_FORMAT` remains
-the plain integer `1`; a format value never implies a package rename or grants
-permission to migrate data.
+## Work and methods
+
+Continue in the current task and workspace. The shared lifecycle resolves the
+outcome, then applies Spec, Build, Review and authorized Ship proportionately.
+Design and content chain their own specialist steps into this lifecycle. There
+is no chain configuration language, mandatory department model or fixed sequence
+between design and content. Short writing uses human-writing directly.
+
+Use project-local `design/` and `content/` for working material and create them
+when needed. Product files belong where the project consumes them. Skill
+packages contain reusable methods and neutral assets, never customer work.
+Domain skills own briefs, evidence, review and handoff details; the core router
+only selects a method. See the [skill index](skills.md),
+[design preservation map](design-preservation.md) and
+[content preservation map](content-preservation.md).
+
+An optional System is useful for a bounded specialist with independent upkeep,
+such as Power BI and its Windows Desktop workflow. Its repository owns its
+requirements, dependencies, proof and recovery. A script or a long skill alone
+does not require a System. The project and system templates create local
+starting points; they do not add a second project identity or copy AIOS phases.
 
 ## Context and isolation
 
-The owner home is a selective route index, not a parent instruction layer for
-every repository. Independent repository work starts from local instructions
-and accepted inputs. Nested Project and System checkouts keep their own Git
-roots and are excluded from optional owner-home Git tracking.
+Owner context is selected when the work needs it. Independent repository work
+starts from local instructions and accepted inputs, including repositories
+nested beneath an owner home. No parent instruction file preloads personal data.
+Native project discovery does not depend on an AIOS registry. Existing useful
+source indexes can remain ordinary context.
 
-Manage Skills owns personal-skill placement and native capability adoption.
-Maintain Context owns owner facts and configured owner Git sync. Onboard and
-Check call those owners instead of duplicating their procedures.
-Risky Changes owns the conditional assessment of consequential-change
-assumptions, representative behavior, recovery, and residual unknowns. Spec
-and Review route to it only when that risk is material; Review retains
-independent acceptance and Ship remains the authority boundary.
+New owner homes use `AIOS_FORMAT` 2, without mandatory project or system indexes.
+The package also reads format 1. Package versions and owner-data formats are
+separate; installation never migrates data. An authorized cleanup preserves
+existing data and rollback evidence before changing the format marker. See
+[data compatibility](../skills/aios-onboard/references/data-format.md).
 
-Continuity Sync is an explicit client workflow under Maintain Context, not a
-package hook or installation side effect. It transfers only consented owner
-context, personal skills and format/index metadata; product bodies, native
-settings/history, credentials, caches and nested repositories remain outside.
-Onboard owns the missing/empty-home choice and native bridge setup, while Sync
-owns upload/restore consent and no-overwrite staging.
+Maintain Context owns facts and explicit continuity Sync. Manage Skills owns
+personal-skill placement and native adoption. Sync transfers consented context,
+personal skills and identity metadata; it excludes product trees, native
+settings, credentials and nested repositories. It is an explicit workflow,
+not an installation side effect.
 
-Worker orchestration and improvement triage are conditional instructions. They
-do not create a runtime, external authority, or background watcher. Optional
-Global Skills remain independently owned and are not copied into AIOS.
-The shared lifecycle owns the task's deliverable, continuation and completion
-boundary before costly production. Spec makes that result usable. Select Model
-assesses remaining judgment and chooses model/reasoning within the accepted work;
-its capability/cost evidence can reopen the shared decision. Orchestrate Workers
-owns delegated execution only when the caller retains coordination/acceptance.
-The lifecycle's conditional handoff reference owns portable prompts and authorized
-whole-task startup followed by the former lead's exit. It carries unfinished
-Review/delivery forward and supplies no automatic launch authority.
-`setup-guardrails` is an optional Global capability selected only when an
-owner expressly wants local guardrails for autonomous use; it is not packaged,
-installed, trusted, configured, or active by implication. Onboard and Manage
-Skills route that explicit need without making core AIOS depend on it.
-Registered Systems are selected by their declared responsibility and primary
-route. Their repositories own tool choices, internal stages, artifact formats,
-schemas and natural returns; AIOS keeps only the registry and handoff boundary.
-Shared Spec, Build, Review and Ship apply across owners without copying methods
-into their repositories. Local contracts supply domain requirements and proof;
-global discovery is provided by the harness, not parent-folder inheritance.
-Continue in the current task by default. Delegate a separable result only for a
-concrete gain after context, coordination, review and retry costs, or when the
-user requests it. Internal workers and explicitly requested new sidebar tasks
-retain their different harness authority. Direct tasks need no invented lead.
-The [shared lifecycle](../skills/aios/references/lifecycle.md) owns this decision.
-Selected Systems install on first use, upstream-backed by default, never eagerly
-at onboarding. [System maintenance](../skills/aios-update/references/systems.md)
-owns compatible fast-forward updates at task boundaries under update authority.
-Customized/forked Systems remain owner-maintained; local storage contracts govern
-artifact preservation and recovery. Owner Sync transfers pointers, not System
-contents. No registry schema, runtime or automatic updater is added.
+## Selective loading
 
-Skill name/description metadata and the small owner bridge are the startup method
-layer. One clearly triggered skill body loads next; a small explanation can name
-a workflow without executing it, uses stable facts in that body, and reads one
-direct source only for a missing or current fact. Conditional procedures live in
-focused references selected by operation or capability. AIOS does not preload
-owner format/context, lifecycle phases, cross-harness adapters or optional
-capabilities for that explanation. Skill count follows responsibility and
-discovery boundaries, not a context-budget target.
+The harness discovers skill names and descriptions. Load the selected skill,
+then only the references needed for its operation. Explaining a method does not
+execute its lifecycle. Model selection assesses the remaining work under the
+user's configured default; worker orchestration is conditional on a concrete
+gain or a request. Shared continuation retains existing action authority.
+Risky Changes applies to consequential changes, without creating routine gates.
 
-## Canonical documentation
+Optional Global Skills retain their own owners. For example, setup-guardrails
+is selected only for an explicit request, with installation and actual active
+protection verified separately. No optional capability becomes a prerequisite
+merely because a route mentions it.
 
-AIOS product documentation stays in its canonical product repository and
-releases; an active package/ref or reviewed release establishes version-specific
-claims. When the repository is private, the primary `aios` route uses only an
-already-authorized native account's normal read path; it neither handles
-credentials nor changes visibility or publication. The installed package keeps
-its executable rules offline; a source read is scoped evidence, not a remote
-instruction bootstrap.
-Customer documentation remains canonical in the customer source system. AIOS
-may retain a scoped source pointer and freshness boundary when useful, never a
-synchronized copy or an automatic harvest. An unavailable, inaccessible, or
-stale source is reported as a gap.
-Maintain Context owns the minimal context framework: relevant areas are covered
-by verified source routes, unique local facts or explicit gaps. Onboard invokes
-it for a fresh or changed home and proves one useful source-routed result.
-Account migration requires source identity and access verification; a title match
-or copied ID cannot silently replace a source. Local gap filling never invents
-missing knowledge or duplicates an already authoritative external document.
+## Documentation and native installation
 
-## Portability
+Canonical product documentation stays in this repository. Version-specific
+claims require an observed package/ref or reviewed release. Private source reads
+use only an already-authorized native account; they never retrieve credentials,
+change visibility or imply publication. Customer documentation stays in its
+source system. AIOS retains a useful pointer, unique facts or an explicit gap,
+not an automatically synchronized copy.
 
-The root `plugin.json` follows Agent Plugins 1.0.0. Codex uses the compatible
-`.codex-plugin` overlay for its interface. Claude Code and Copilot can use the
-`.claude-plugin` marketplace; Cursor has its native manifest; Gemini has an
-extension manifest; Pi reads `package.json`. These are metadata over one skills
-directory, without a loader, extension program or install script.
+Codex, Pi, Claude Code, Gemini CLI, Copilot CLI and Cursor have native metadata
+for the same source. Installation affects only the chosen harness. It creates
+no owner home, global bridge, tool installation or registration in another app.
+Native removal leaves owner and project data intact. Custom-home routing is an
+optional setup choice. See [native installation](native-installation.md) for
+actual evidence and documented-only routes.
 
-Installation affects only the selected harness. Native removal leaves owner
-data and other harnesses intact. The AIOS skill can find an established or
-default owner home without a global bridge; custom persistent routing is an
-optional separate setup. Existing settings and unrelated skills are preserved.
-See [native installation and evidence](native-installation.md) for tested versus
-documented routes, and the [adapter guide](../skills/aios-onboard/references/adapters.md)
-for the selected operation. Permissions and model behavior remain client-owned.
-
-## Repository boundary
-
-Tests check package structure and selected filesystem safety cases. They are
-author tools, not runtime or model evidence. Previous release investigations,
-frozen review inventories, and one-off acceptance reports remain recoverable
-from Git history rather than living beside current documentation.
+Source tests verify structure and filesystem behavior. They are author tools,
+not proof of model behavior, native UI or future task quality. Historical
+acceptance remains version-specific. Current proof and its limits belong in
+[verification](verification.md).
