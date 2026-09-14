@@ -17,7 +17,7 @@
     "category": "Productivity",
     "capabilities": [],
     "defaultPrompt": [
-      "Set up AIOS for my current work."
+      "Help me set up my AIOS environment and onboard me"
     ]
   },
   "repository": "https://github.com/onlinesourdough/AIOS-Plugin",
