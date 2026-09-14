@@ -1,6 +1,6 @@
 # Native installation
 
-AIOS 0.10.2 packages the same 23 skills for several agent apps. Install through
+AIOS 0.10.3 packages the same 23 skills for several agent apps. Install through
 the selected app's package manager. No AIOS installer program runs, and no other
 app is configured as a side effect. Owner setup is a separate conversation.
 

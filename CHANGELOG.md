@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.10.3 — 2026-09-14
+
+- Keep onboarding turns active while an asynchronous question awaits an answer,
+  including after independent work finishes. Use permitted interruptible waits;
+  a timeout never substitutes for a reply or an explicit skip, pause or cancel.
+- Accept answers sent as ordinary messages and preserve context on interruption.
+  Do not claim a question form survives turn completion. Advance Onboard and
+  Check to 2.0.2 with a pending-answer acceptance scenario; no format change.
+
 ## 0.10.2 — 2026-09-14
 
 - Require an available, permitted native question tool during onboarding.

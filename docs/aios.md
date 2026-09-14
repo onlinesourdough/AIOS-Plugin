@@ -1,6 +1,6 @@
 # AIOS
 
-AIOS version: 0.10.2
+AIOS version: 0.10.3
 
 AIOS supplies portable context and skills to help an AI assistant work from an
 owner's relevant context and carry a task from a small request to a reviewed

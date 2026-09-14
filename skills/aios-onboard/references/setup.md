@@ -51,7 +51,17 @@ only an unresolved choice before production. Understanding can itself be the res
 
 Silence/preselection grants no consent. Required input waits; independent work
 continues. A successful asynchronous call leaves its question pending until
-the reply arrives; do not repeat it or infer an answer from elapsed time.
+the reply arrives. Keep the turn active: do not send a final answer or completion
+handback while that question is pending, even when independent work is finished.
+After useful independent work, use an available interruptible wait/sleep tool in
+intervals permitted by the runtime, checking for incoming input between waits.
+A wait timeout is not an answer or permission to end the turn. Continue until
+the owner answers, explicitly skips the question, or pauses/cancels the work.
+An answer sent as an ordinary message also resolves the question; consume it
+without reasking. Do not repeat a pending question or infer an answer from time.
+If the runtime cannot keep the interaction open, disclose that limit and retain
+the question and known answers for resumption; do not promise the form survives
+turn completion. An interruption uses the checkpoint below, not a new interview.
 Implement authorized changes without reasking; assumptions grant no opt-in.
 
 ## Home and harness
