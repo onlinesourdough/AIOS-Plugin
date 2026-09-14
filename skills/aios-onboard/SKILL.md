@@ -2,13 +2,15 @@
 name: aios-onboard
 description: Set up, resume or move an AIOS owner home using the selected harness’s native installation.
 metadata:
-  version: "2.0.0"
+  version: "2.0.1"
 ---
 
 # Onboard
 
 Use the adaptive outcomes in [setup](references/setup.md): reuse known answers,
 choose the next material question or authorized action, implement and verify it.
+Use an available, permitted native question tool for onboarding questions;
+setup owns tool selection, conversational fallback and pending-answer handling.
 Full onboarding covers relevant readiness areas; ordinary resume stays scoped. Read the applicable
 [native adapter route](references/adapters.md) when installing or changing a
 bridge/package; it selects one harness/operation reference rather than a

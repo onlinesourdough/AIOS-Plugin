@@ -2,7 +2,7 @@
 name: aios-check
 description: Verify an AIOS installation, owner format or relevant harness discovery without changing it.
 metadata:
-  version: "2.0.0"
+  version: "2.0.1"
 ---
 
 # Check

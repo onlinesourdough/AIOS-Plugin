@@ -37,6 +37,7 @@ client entry-point repair. Use the common [acceptance boundary](scenarios.md).
 | Desktop chosen layout | Custom sections and roots | Preserve organization; remove only authorized obsolete shortcut; verify entry roots and local-first routing |
 | Desktop environment roots | Repeated labels and obsolete root | Verify physical roots/setup references and fresh native/UI state; preserve valid actions/dirty worktrees; no label-only deletion, setup execution or database edits |
 | Adaptive full onboarding | Accepted answers, privacy-off, gaps | Next material question in user language through permitted UI; useful work, no fixed interview or automatic opt-in |
+| Native onboarding questions | Permitted async tool, mode-restricted tool, or no usable tool | Invoke a tool permitted for this question and mode; explain conversational fallback when none is usable or the call fails; preserve open replies and pending async input without repeating or inventing an answer |
 | Unanswered choice | Interactive option preselected but no answer returned | No consent inferred; independent authorized work may continue, dependent opt-in waits |
 | Interrupted setup | Checkpoint has verified changes and one unfinished decision | Resume next gap without reinterview or replaying completed changes; recheck only stale/affected evidence |
 | Workspace mismatch | Selected Project null while active roots still reference retired workspace | Inspect selection, roots and fresh cwd independently; no false projectless/cutover PASS |

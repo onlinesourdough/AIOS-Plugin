@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.10.2 — 2026-09-14
+
+- Require an available, permitted native question tool during onboarding.
+  Respect runtime and mode restrictions, preserve open replies, and keep
+  asynchronous questions pending until answered. Explain conversational
+  fallback when no tool is usable or its call fails.
+- Advance Onboard and Check to 2.0.1 with a matching acceptance scenario.
+  The other 21 skills and owner formats are unchanged.
+
 ## 0.10.1 — 2026-09-13
 
 - Keep the versioned overview at `docs/aios.md` with the installed plugin.

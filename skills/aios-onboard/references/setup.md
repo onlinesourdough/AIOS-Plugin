@@ -38,14 +38,21 @@ an abstract target/deadline or prescribing a remedy from a task status or first
 symptom. A suggested system is a hypothesis until the difficulty is understood.
 
 Ask one material open question in the user's words/language; optional examples
-must not restrict replies. Prefer a permitted native question UI, otherwise
-conversation. Reuse accepted answers, including new-home/restore intent. Keep
+must not restrict replies. Use a native user-question tool when available and
+permitted for this question in the current runtime/mode. Check its actual rules:
+an asynchronous tool may be usable during ordinary work while another is
+Plan-only. Do not replace a usable question tool with a prose-only question.
+If no such tool is usable or its call fails, briefly explain and ask in
+conversation. Keep open questions open; do not invent restrictive choices to
+fit a tool. Reuse accepted answers, including new-home/restore intent. Keep
 method feedback separate from owner facts/work. Reflect a sourced snapshot and
 resolve corrections. Select a small useful result from accepted intent; clarify
 only an unresolved choice before production. Understanding can itself be the result.
 
 Silence/preselection grants no consent. Required input waits; independent work
-continues. Implement authorized changes without reasking; assumptions grant no opt-in.
+continues. A successful asynchronous call leaves its question pending until
+the reply arrives; do not repeat it or infer an answer from elapsed time.
+Implement authorized changes without reasking; assumptions grant no opt-in.
 
 ## Home and harness
 
