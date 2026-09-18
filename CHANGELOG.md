@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.11.0 — 2026-09-18
+
+- Add a conditional upstream guide for Taste design/style/image skills and Taste
+  Code composition references. Keep examples and catalogs with their publishers;
+  record selected revisions and continue with native AIOS methods when optional
+  sources are unavailable. No new dependencies, installer or automatic updater.
+- Connect inspected reference traits to accepted design choices and rendered
+  review; make redesign preservation explicit and retain OpenPencil as the
+  optional editable companion. Advance design and review-design to 1.1.0.
+- Clarify native plugin namespaces and the separate identity of personal skills,
+  including caller/registration reconciliation. Advance Manage Skills to 1.0.2.
+  Personal skill cleanup is a separate owner-authorized action, never an install
+  side effect. Keep the same 23 public skills and owner formats 1 and 2.
+- Standardize all 23 skill titles and Codex display names as `AIOS:skill-name`,
+  with lowercase hyphenated suffixes and compatible canonical invocation names.
+  Apply patch version bumps to the remaining skills for their display changes.
+
 ## 0.10.3 — 2026-09-14
 
 - Keep onboarding turns active while an asynchronous question awaits an answer,

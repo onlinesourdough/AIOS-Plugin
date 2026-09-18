@@ -11,7 +11,7 @@ class ResourceTests(unittest.TestCase):
         for folder in paths:
             skill = (folder / "SKILL.md").read_text()
             self.assertIn(f"name: {folder.name}\n", skill)
-            self.assertRegex(skill, r'metadata:\n  version: "1\.0\.0"')
+            self.assertRegex(skill, r'metadata:\n  version: "\d+\.\d+\.\d+"')
             self.assertLess(len(skill.encode()), 8192)
             self.assertTrue((folder / "LICENSE").is_file())
             for path in folder.rglob("*"):

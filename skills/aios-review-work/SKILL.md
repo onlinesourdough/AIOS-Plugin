@@ -2,10 +2,10 @@
 name: aios-review-work
 description: Review a result against its accepted outcome, or audit requested repository drift, without editing.
 metadata:
-  version: "1.2.0"
+  version: "1.2.1"
 ---
 
-# Review work
+# AIOS:review-work
 
 Use the [native tracking SOP](../aios/references/lifecycle.md) at Review: reconstruct
 accepted requirements, carried goal authority and the actual tracking readback

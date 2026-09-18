@@ -2,10 +2,10 @@
 name: aios-create-project
 description: Start a new independent repository from the Agentic Project Template in the chosen workspace.
 metadata:
-  version: "2.0.0"
+  version: "2.0.1"
 ---
 
-# Start a project
+# AIOS:create-project
 
 Use the accepted idea, outcome and destination through
 [creation](../aios/references/creation.md). APT is a repository starter; it does

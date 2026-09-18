@@ -2,10 +2,10 @@
 name: review-design
 description: Review a visual direction and selected companions against their brief without editing, or audit selected accumulated design evidence.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
-# Review design
+# AIOS:review-design
 
 Inspect the selected brief, canonical `DESIGN.md`, companions and current proof
 without editing the subject. Reuse the shared Review method for lifecycle
@@ -32,6 +32,12 @@ Apply only the checks needed for the selected outcome:
   Brief, canonical direction and selected companions agree. Optional format
   lint/export is evidence only when actually run; new source adoption needs
   rendered-task proof.
+  For reference-led work, compare the inspected source, its accepted adaptation
+  in `DESIGN.md` and the rendered result at relevant viewports. Check selected
+  hierarchy, proportions, alignment, density and mobile transformation; judge
+  justified differences against the brief. Report an actionable discrepancy as
+  expected choice, observed result, affected surface and bounded correction.
+  Similarity alone is not quality, and upstream review labels are not task proof.
 - **Ownership and change evidence:** implementation/content responsibilities
   stay with their task owners. No automatic sibling chain, invented decision,
   weakened requirement or unsupported correction passes review. Recovered files

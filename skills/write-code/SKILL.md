@@ -2,10 +2,10 @@
 name: write-code
 description: Write or change code of any size, including scripts, shell snippets, SQL, tests and automation; apply proportionate quality and verification, also when reviewing code.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
-# Write code
+# AIOS:write-code
 
 Apply whenever authoring or changing code, including short one-off scripts,
 notebooks, executable configuration and code examples. Use the same criteria

@@ -2,10 +2,10 @@
 name: aios-create-system
 description: Establish a requested independently maintained specialist solution using the useful System Template guidance.
 metadata:
-  version: "2.0.0"
+  version: "2.0.1"
 ---
 
-# Establish a specialist
+# AIOS:create-system
 
 Use this method when the accepted result is a separately maintained specialist
 solution. Resolve its purpose, users, supported tools/platforms, ownership,

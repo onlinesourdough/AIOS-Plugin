@@ -426,7 +426,9 @@ def validate(root=ROOT, release_tag=None):
                 parts = path.relative_to(root).parts
                 domain = len(parts) >= 4 and parts[0] == "skills" and parts[1] in DOMAIN_SKILLS
                 helper = domain and parts[2] == "scripts" and path.suffix in {".mjs", ".py"}
-                ui = domain and parts[2] == "agents" and path.name == "openai.yaml"
+                ui = (len(parts) == 4 and parts[0] == "skills" and
+                      parts[1] in SKILL_NAMES and parts[2] == "agents" and
+                      path.name == "openai.yaml")
                 neutral_text = domain and parts[2] == "assets" and path.suffix == ".txt"
                 allowed = (path.suffix in {".md", ".json"} or helper or ui or neutral_text or
                            path.name in {"LICENSE", "AIOS_FORMAT", ".gitignore"} or

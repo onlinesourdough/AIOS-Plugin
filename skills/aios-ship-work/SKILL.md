@@ -2,10 +2,10 @@
 name: aios-ship-work
 description: Deliver a reviewed result under existing action and destination authority, then verify readback.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
-# Ship work
+# AIOS:ship-work
 
 Use the [tracking SOP](../aios/references/lifecycle.md) for pending delivery and
 completion readback; carry the same requirements and goal authorization.

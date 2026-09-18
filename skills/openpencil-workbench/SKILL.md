@@ -2,10 +2,10 @@
 name: openpencil-workbench
 description: Open, inspect, save and export an explicitly selected optional OpenPencil companion using an external release and isolated task state.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
-# OpenPencil workbench
+# AIOS:openpencil-workbench
 
 Use for a selected editable companion. `DESIGN.md` stays canonical; unavailable
 editor tooling leaves the portable direction usable and the native requirement

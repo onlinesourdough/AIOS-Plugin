@@ -2,10 +2,10 @@
 name: aios-orchestrate-workers
 description: Prepare, launch, coordinate and recover delegated workers while the caller retains acceptance.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
-# Orchestrate workers
+# AIOS:orchestrate-workers
 
 Enter for [delegation](../aios/references/lifecycle.md) with retained caller
 coordination/acceptance, or worker recovery. New tasks alone do not select it:

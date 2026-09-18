@@ -1,5 +1,9 @@
 # Verification
 
+For 0.11.0, see [design upstream verification](design-upstream.md) for the
+optional source contract, inspected revisions, six bounded decision probes and
+the separation between source, model-routing and rendered design evidence.
+
 For 0.10.0, see [write-code verification](write-code.md) for the broad code trigger,
 shared Build/Review criteria, selected-read impact and native observations.
 

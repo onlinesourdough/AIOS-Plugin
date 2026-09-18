@@ -2,10 +2,10 @@
 name: aios-maintain-context
 description: Curate owner facts, memory and routes, or perform explicitly requested AIOS continuity Sync.
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
 ---
 
-# Maintain context
+# AIOS:maintain-context
 
 For an explicit System-code update, route to
 [System maintenance](../aios-update/references/systems.md); owner Sync does not

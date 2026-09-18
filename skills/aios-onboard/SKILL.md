@@ -2,10 +2,10 @@
 name: aios-onboard
 description: Set up, resume or move an AIOS owner home using the selected harness’s native installation.
 metadata:
-  version: "2.0.2"
+  version: "2.0.3"
 ---
 
-# Onboard
+# AIOS:onboard
 
 Use the adaptive outcomes in [setup](references/setup.md): reuse known answers,
 choose the next material question or authorized action, implement and verify it.

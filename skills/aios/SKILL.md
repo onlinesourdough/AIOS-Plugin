@@ -2,10 +2,10 @@
 name: aios
 description: Apply relevant owner context and choose AIOS methods for business work, design, content, AIOS setup or documentation.
 metadata:
-  version: "2.1.1"
+  version: "2.1.2"
 ---
 
-# AIOS
+# AIOS:aios
 
 Use the current task and its existing workspace. Independent repository work
 starts with local instructions and accepted inputs, without personal context

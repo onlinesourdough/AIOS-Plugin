@@ -2,10 +2,10 @@
 name: aios-update
 description: Update selected optional specialists or adopt or roll back a reviewed AIOS package.
 metadata:
-  version: "2.0.0"
+  version: "2.0.1"
 ---
 
-# Update AIOS
+# AIOS:update
 
 For a selected System installation or an explicit System-code update, use
 [System maintenance](references/systems.md), the single procedure for that

@@ -2,10 +2,10 @@
 name: aios-select-model
 description: Choose a sufficient model and reasoning effort when remaining work or runtime evidence warrants reassessment.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
-# Select model
+# AIOS:select-model
 
 Receive the accepted work and continuation from the [shared task-result decision](../aios/references/lifecycle.md).
 This skill owns model/reasoning suitability, not the deliverable, destination

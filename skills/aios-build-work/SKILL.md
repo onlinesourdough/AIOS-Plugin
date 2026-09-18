@@ -2,10 +2,10 @@
 name: aios-build-work
 description: Implement and verify accepted work through in-scope fixes and Review.
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
 ---
 
-# Build work
+# AIOS:build-work
 
 Start from a READY [Spec](../aios-spec-work/SKILL.md) or an already accepted
 contract. Return to Spec only for a material gap. Deliver the whole authorized

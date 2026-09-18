@@ -2,10 +2,10 @@
 name: human-writing
 description: Draft or revise prose for clear, concise, natural communication suited to its intended reader.
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
-# Human writing
+# AIOS:human-writing
 
 Make the intended meaning easy to understand on a first reading. Apply this
 across prose formats and genres, adapting to the audience and purpose. Use this

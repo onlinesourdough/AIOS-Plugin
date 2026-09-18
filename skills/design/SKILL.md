@@ -2,10 +2,10 @@
 name: design
 description: Create or revise a portable visual direction and selected previews or assets for a website, app, dashboard, report, slide, or content surface.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
-# Design
+# AIOS:design
 
 Turn the accepted intent into one inspectable visual direction. Reuse shared
 Spec/Build/Review/Ship for lifecycle work; this skill supplies design judgment.

@@ -15,6 +15,20 @@ components, density, imagery, responsive behavior and concrete do/don't rules.
 Name selected references, rights, unresolved limitations and why the direction
 fits. A format or token exporter supplies no universal aesthetic.
 
+For a substantive redesign, distinguish requested visual changes from behavior
+and identity to preserve. Record the affected baseline: representative views,
+content and primary actions, brand assets, routes, navigation and relevant form
+or analytics identifiers. Keep this proportional to the change and carry
+forward already authorized changes. A visual refresh alone does not expand
+the accepted functional scope.
+
+Translate selected reference traits into inspectable choices, such as text/media
+proportions and deliberate mobile content order. State justified differences
+caused by real copy, brand, accessibility or interaction needs. Images guide
+decisions; canonical `DESIGN.md` owns the accepted adaptation. For an editable
+companion, retain the selected OpenPencil workflow. External style or image
+references neither replace that editor nor prove editable or working output.
+
 Relevant interaction states include hover, active, visible focus, loading,
 empty, error, success, permission and offline. Errors belong near their control
 or group and must be programmatically associated. Status needs a signal beyond

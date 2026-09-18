@@ -2,10 +2,10 @@
 name: aios-spec-work
 description: Specify or revise substantive work when its outcome, boundaries or proof need clarification.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
-# Spec work
+# AIOS:spec-work
 
 Before substantive Spec, run the [native tracking SOP](../aios/references/lifecycle.md)
 with accepted requirements and carried goal authorization. READY returns its

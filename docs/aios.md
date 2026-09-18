@@ -1,6 +1,6 @@
 # AIOS
 
-AIOS version: 0.10.3
+AIOS version: 0.11.0
 
 AIOS supplies portable context and skills to help an AI assistant work from an
 owner's relevant context and carry a task from a small request to a reviewed
@@ -38,6 +38,17 @@ to the change. The native app owns
 projects and sessions; AIOS adds no second project register. Spaces hold relevant
 business context, while optional specialist Systems keep their own upkeep.
 Design and content working material stays in the project.
+
+Design can consult selected upstream Taste skills and composition references
+through its [source guide](../skills/design/references/taste-sources.md). AIOS
+keeps the brief, reference adaptation and rendered review; external examples
+and catalogs remain with their publishers. References are optional and their
+used revisions are recorded. OpenPencil remains an optional editable companion.
+
+All skill titles and Codex display names use `AIOS:skill-name`, such as
+`AIOS:design` and `AIOS:build-work`. Canonical invocation names stay compatible;
+the harness owns its native namespace. Personal methods keep their own names
+and ownership. Renames update the body, callers and native registration together.
 
 AIOS supplies one skill library with native installation metadata for several
 agent apps. Install it separately in each app you choose; installation in one

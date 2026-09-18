@@ -12,6 +12,19 @@ positive and avoid signals, and confidence. Do not copy media merely to keep
 evidence. Put the actual selected decisions in canonical `DESIGN.md`; the
 reference notes remain subordinate evidence.
 
+When a reference informs a substantive choice, inspect the actual image or
+rendered source. Connect useful observed traits to the adaptation chosen for
+this task and what the rendered review should check. Keep those decisions in
+the existing `DESIGN.md`; a separate catalog is optional. Carry selected
+locators and inspected views into implementation and review. For responsive
+work, inspect a relevant mobile view when available; otherwise identify the
+derived mobile behavior as a decision needing rendered validation. Reconcile
+contradictory content, identity or actions even in a source marked reviewed.
+
+The accepted task, brand, accessibility and user job govern adaptation. Match
+a reference closely when that is the brief; otherwise transfer selected useful
+traits. A URL or style label alone cannot prove visual fidelity.
+
 Record the useful route in the existing task or brief:
 
 - **Direct:** owner, brand and task evidence resolves the direction without a
@@ -24,6 +37,11 @@ Record the useful route in the existing task or brief:
 - **Explore:** the direction is unresolved or materially different options
   remain. Compare two compact directions; use three only when the brief needs
   that comparison. Explain the choice and stop when one direction is selected.
+
+For an unresolved web composition, a chosen aesthetic, an image concept or
+explicit Taste research, use the conditional [Taste sources](taste-sources.md)
+guide. It routes to upstream skill files and image catalogs without installing
+them or copying a library into AIOS. Skip it when existing evidence suffices.
 
 For exploration, these original lenses can supply a frame, useful signals and
 an avoidance. Show only the relevant options; they are not templates or a
@@ -48,8 +66,9 @@ until rendered inspection and the selected reviewer confirm them.
 ADS source research informed these methods, not default dependencies: Google
 Design.md supplied portable format/lint/export; elayadesign, no-ai-slop and
 taste-skill informed focused intake, specific copy, composition and states;
-awesome-design-md supplied optional variety research. Rigid palettes, font/
-spacing rules, catalogs, complexity and copied brands were rejected.
+awesome-design-md supplied optional variety research. Those historical inputs
+are not current source approval. AIOS owns the selection and review method;
+external catalogs, style recipes and examples remain with their publishers.
 
 HeroUI, Origin UI/Originkit, ThreeUI and DesEngs remain possible research sources,
 not installed libraries or accessibility guarantees. OpenPencil is an optional
