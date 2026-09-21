@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.12.0 — 2026-09-21
+
+- Rename `aios-onboard` to `aios-setup` (`AIOS:setup`), preserving home,
+  migration, native installation and continuity responsibilities. Update
+  explicit callers on adoption; no duplicate alias or owner-format change.
+  The new canonical skill identity starts at 1.0.0.
+- Add `aios-interview` 1.0.0 for requested exploration and material uncertainty
+  at the start of work. Keep clear tasks moving, use one blocking question
+  during execution and reuse accepted answers in Setup and Spec. Extract the
+  shared question/wait/resume procedure from setup into Interview.
+- Expand README with linked workflow tables covering all 24 public skills,
+  their useful results and conditional handoffs. Distinguish reusable skill
+  chains from independently maintained Systems and optional external tools.
+- Advance AIOS to 2.2.0 and Spec to 1.1.0 for conditional Interview routing;
+  patch Check, Maintain Context, Manage Skills and Update for the renamed
+  setup references. Update native metadata, package checks and the selected-read
+  benchmark without changing its ceilings or historical baseline.
+
 ## 0.11.0 — 2026-09-18
 
 - Add a conditional upstream guide for Taste design/style/image skills and Taste

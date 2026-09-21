@@ -1,8 +1,8 @@
 # Selective durable context
 
-Own context mapping, local gaps, source repair and deduplication. Onboard uses
+Own context mapping, local gaps, source repair and deduplication. Setup uses
 this for new/changed context; retrieval does not. Before owner writes verify
-AIOS_FORMAT via [data compatibility](../../aios-onboard/references/data-format.md);
+AIOS_FORMAT via [data compatibility](../../aios-setup/references/data-format.md);
 unsupported/malformed stays read-only, missing needs setup. Git-backed durable
 edits use [Sync](sync.md) under recorded authority.
 

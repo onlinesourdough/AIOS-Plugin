@@ -13,7 +13,7 @@ task; AIOS has no model runner, background service or permission system.
 | Skills | Reusable methods, standards and judgment, with references and small helpers as needed |
 | Project repository | Local requirements, implementation, design and content material, proof and recovery |
 | Optional System | A separately maintained specialist with its own dependencies or operational needs |
-| Native manifests | Package identity and discovery over the same 23 skills |
+| Native manifests | Package identity and discovery over the same 24 skills |
 
 ## Work and methods
 
@@ -49,7 +49,7 @@ New owner homes use `AIOS_FORMAT` 2, without mandatory project or system indexes
 The package also reads format 1. Package versions and owner-data formats are
 separate; installation never migrates data. An authorized cleanup preserves
 existing data and rollback evidence before changing the format marker. See
-[data compatibility](../skills/aios-onboard/references/data-format.md).
+[data compatibility](../skills/aios-setup/references/data-format.md).
 
 Maintain Context owns facts and explicit continuity Sync. Manage Skills owns
 personal-skill placement and native adoption. Sync transfers consented context,

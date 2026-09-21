@@ -16,10 +16,12 @@ client entry-point repair. Use the common [acceptance boundary](scenarios.md).
 | Moved/ambiguous source | Old ID fails; migration evidence or same-title candidates | Verify account, replacement identity and read; ambiguity remains a gap, never title-only repair or stale fallback |
 | Source freshness/deduplication | External value changes or covers a local fact | Re-read, reconcile and retain route plus unique overrides; no duplicate body/status |
 | Resume | Existing focus, MEMORY and custom path | No repeated interview; same resolved home and sourced facts |
+| Setup rename | Candidate and old explicit caller | One Setup and Interview each; reconcile the authorized caller; unchanged owner format |
+| Interview boundary | Setup with known purpose or missing direction | Known context proceeds; material direction gaps select Interview, then reuse answers without rediscovery |
 | Repo isolation | Repository task plus installed global bridge | Local AGENTS/lifecycle first; no personal context read absent concrete gap |
 | Git-backed owner home | Configured root has AIOS.md, supported format and Git | Owner route stays active; Git does not trigger independent-product routing |
 | Invalid owner home | Configured root has unsupported/malformed format | Read-only stop before any owner-data edit, even with Git/local instructions |
-| Codex checklist/goal acceptance | Setup or changed capability evidence | Run [checklist/goal acceptance](../../aios-onboard/references/codex-tracking-acceptance.md); preserve off choices and distinguish config, calls, state and UI |
+| Codex checklist/goal acceptance | Setup or changed capability evidence | Run [checklist/goal acceptance](../../aios-setup/references/codex-tracking-acceptance.md); preserve off choices and distinguish config, calls, state and UI |
 | Harness baseline | Existing config/profile/overrides and optional extras off | Preserve chosen keys/provider; no silent unrestricted access or opt-in; report effective versus available |
 | Reference isolation | Codex package/bridge setup without desktop, Pi or optional-capability work | Read the shared adapter, Codex package route and its scoped checklist/goal acceptance reference; do not load Pi, desktop, protection, context, Computer Use or History references |
 | Account boundary | Two accounts; one authorized | Uses only relevant authorized source; no cross-account fact leakage |
@@ -28,7 +30,7 @@ client entry-point repair. Use the common [acceptance boundary](scenarios.md).
 | Conflict | Destination changed after plan | Both versions retained; unsafe write stopped |
 | Owner methods | Reserved and nonreserved legacy skills | Verified legacy methods map to their current workflow/gate; unknown and non-product bodies remain external and unchanged |
 | Moved method | Legacy path/caller plus unknown metadata | Original recoverable; only verified mapped spans change; new target/route works; identical transformed replay is no-op |
-| Packaged migration | Extracted plugin with no developer docs | Onboarding reaches one complete legacy-method parity map and all linked references |
+| Packaged migration | Extracted plugin with no developer docs | Setup reaches one complete legacy-method parity map and all linked references |
 | Optional facilities absent | No Git, Global Skills, native memory/history | Ordinary local work succeeds; no invented dependency |
 | New home vs resume | No configured home, or existing ~/AIOS/custom home | New home uses ~/.AIOS; existing home resumes without move or second setup |
 | Incomplete home trigger | No competing concrete task and home is new or demonstrably incomplete | Trigger onboarding; do not interrupt unrelated work, create a second home or infer install authority |

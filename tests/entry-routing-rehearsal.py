@@ -125,7 +125,7 @@ Keep the function interface and verify the supplied cases with python3 check.py.
         for folder in sorted((package / "skills").iterdir()):
             if (folder / "SKILL.md").is_file():
                 (skill_dir / folder.name).symlink_to(folder, target_is_directory=True)
-        bridge = (package / "skills/aios-onboard/assets/bridge.md").read_text().replace(
+        bridge = (package / "skills/aios-setup/assets/bridge.md").read_text().replace(
             "AIOS_ABSOLUTE_PATH", str(root / "owner-home"))
         boundary = f"""This is an isolated local task. Use only files under {root}
 and the read-only installed skill package at {package}. No real owner files,

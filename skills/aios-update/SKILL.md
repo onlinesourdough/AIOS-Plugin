@@ -2,7 +2,7 @@
 name: aios-update
 description: Update selected optional specialists or adopt or roll back a reviewed AIOS package.
 metadata:
-  version: "2.0.1"
+  version: "2.0.2"
 ---
 
 # AIOS:update
@@ -16,7 +16,7 @@ apply only to the AIOS package.
 Keep the active task on its known method version. At a suitable task boundary,
 inspect the requested immutable release, current installed identity and source,
 owner-format compatibility, discovery origins and recovery path. Use
-[native adapters](../aios-onboard/references/adapters.md) for supported package
+[native adapters](../aios-setup/references/adapters.md) for supported package
 operations. A source checkout is not an installed release.
 
 ## Choose the adoption path
@@ -24,7 +24,7 @@ operations. A source checkout is not an installed release.
 - An existing native `aios@online-sourdough` package uses its supported update
   or reinstall operation targeting the reviewed ref.
 - An OSM 0.1.x package changes identity as well as method content. Follow
-  [identity migration](../aios-onboard/references/migration.md); updating the old
+  [identity migration](../aios-setup/references/migration.md); updating the old
   selector does not install the new one automatically.
 - A legacy AIOS template/global skill installation needs the same explicit
   source/registration inventory. Identical skill names are not evidence that
@@ -61,7 +61,7 @@ repository requests use the intended routes. Report source installation,
 discovery, desktop entry-point cutover and model behavior separately. A failed
 or unavailable native observation stays pending even if source checks passed.
 Use [Check](../aios-check/SKILL.md) for the relevant acceptance scope.
-For Codex, recheck [checklist and goal acceptance](../aios-onboard/references/codex-tracking-acceptance.md)
+For Codex, recheck [checklist and goal acceptance](../aios-setup/references/codex-tracking-acceptance.md)
 only when runtime/version or capability evidence changed, is missing or uncertain;
 an unchanged method update reuses dated evidence and does not authorize config edits.
 
@@ -73,6 +73,6 @@ registration through supported actions when authority covers recovery. Do not
 delete the old artifact, home, history or unknown settings. An uncertain action
 requires readback before retry. Subsequent edits are conflicts, not overwrite
 permission. Product rollback does not roll back owner data; the explicit
-[migration map](../aios-onboard/references/migration.md) owns that separate
+[migration map](../aios-setup/references/migration.md) owns that separate
 recovery. Report exact delivered/active identity, unavailable proof and the
 next bounded action.

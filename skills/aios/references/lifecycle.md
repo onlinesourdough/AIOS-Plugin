@@ -81,7 +81,7 @@ unavailable or fails, report that state and use one narrow existing file
 fallback (for example `docs/todo.md`), creating it only if needed. When native
 tracking returns, reconcile the same requirements and retire the file as a
 live list. Do not maintain duplicate live lists or silently change global
-configuration; authorized setup/repair uses [configuration guidance](../../aios-onboard/references/harness-codex.md#native-task-list-exposure).
+configuration; authorized setup/repair uses [configuration guidance](../../aios-setup/references/harness-codex.md#native-task-list-exposure).
 
 Added scope preserves still-active requirements and authority; reopen affected
 completed items and invalidate their old proof. At handoff/completion, map the

@@ -1,5 +1,13 @@
 # Verification
 
+For the 0.12.0 source candidate, see [Interview and Setup](interview-setup.md)
+for the accepted invocation boundaries, rename, README workflow coverage and
+bounded proof. The existing source checks now cover 24 canonical skills.
+The matched new-home footprint routes have an accepted focus and include the
+shared question procedure. An owner interview is conditional; the benchmark
+also reports its additional reads and the full setup total with that interview.
+It does not treat the broader new conversation capability as a free read.
+
 For 0.11.0, see [design upstream verification](design-upstream.md) for the
 optional source contract, inspected revisions, six bounded decision probes and
 the separation between source, model-routing and rendered design evidence.

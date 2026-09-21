@@ -8,7 +8,7 @@ import tempfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
-OWNER_ASSETS = ROOT / "skills/aios-onboard/assets/owner"
+OWNER_ASSETS = ROOT / "skills/aios-setup/assets/owner"
 
 
 def git(root, *args):

@@ -2,7 +2,7 @@
 
 Manage Skills owns this personal-owner procedure. Use it when an authorized
 conversation creates, imports, edits, renames or removes a personal owner
-skill, and when Onboard installs or moves an owner home. Callers link here; do
+skill, and when Setup installs or moves an owner home. Callers link here; do
 not copy these steps into another skill. It keeps personal placement,
 registration and discovery in the same capability-management lifecycle as
 installation, update, removal and rollback. Owner facts and configured Git
@@ -12,7 +12,7 @@ watcher or permission to audit unrelated skill libraries on every message.
 ## Choose the owner before authoring
 
 Resolve the configured home and supported format through
-[data compatibility](../../aios-onboard/references/data-format.md). Personal
+[data compatibility](../../aios-setup/references/data-format.md). Personal
 cross-project methods belong in
 `AIOS_ROOT/skills/<name>/`; repository-specific methods stay with that
 repository, and external/plugin skills stay with their distributor. Do not
@@ -55,7 +55,7 @@ does not move personal methods or facts into the distributed plugin.
    unknown dangling link or conflicting package skill is a collision: preserve
    both and stop that registration, without overwriting or uninstalling it.
 3. For separately selected Pi owner-skill setup, follow the
-   [Pi adapter](../../aios-onboard/references/adapter-pi.md#preserve-existing-discovery).
+   [Pi adapter](../../aios-setup/references/adapter-pi.md#preserve-existing-discovery).
    Inspect current discovery first; keep an existing route that loads the
    canonical skills once. If needed, register `AIOS_ROOT/skills` directly
    through Pi's supported skill-path setting, preserving ambient skills and

@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SKILL_NAMES = {
     "aios", "aios-build-work", "aios-check", "aios-create-project",
     "aios-create-system", "aios-maintain-context", "aios-manage-skills",
-    "aios-onboard", "aios-orchestrate-workers", "aios-review-work",
+    "aios-setup", "aios-interview", "aios-orchestrate-workers", "aios-review-work",
     "aios-risky-changes", "aios-ship-work", "aios-spec-work", "aios-triage-improvement",
     "aios-update", "aios-select-model", "human-writing", "write-code",
     "design", "review-design", "openpencil-workbench", "content", "diffusion-studio",
@@ -183,7 +183,7 @@ def validate(root=ROOT, release_tag=None):
         require("disable-model-invocation" not in fields, f"implicit invocation: {path}")
 
     primary_targets = set(link_targets(skill_root / "aios/SKILL.md"))
-    for name in ("design", "content", "human-writing", "write-code"):
+    for name in ("design", "content", "human-writing", "write-code", "aios-interview", "aios-setup"):
         require((skill_root / name / "SKILL.md").resolve() in primary_targets,
                 f"built-in method route missing: {name}")
     for caller in ("aios-build-work", "aios-review-work"):
@@ -244,10 +244,10 @@ def validate(root=ROOT, release_tag=None):
     require("| Routine risky-change boundary |" in workflow_scenarios and
             "do not load Risky Changes or create a lifecycle, goal, worker, or extra test suite" in workflow_scenarios,
             "routine risky-change negative route")
-    onboard = (skill_root / "aios-onboard/SKILL.md").read_text()
+    onboard = (skill_root / "aios-setup/SKILL.md").read_text()
     manage_skills = (skill_root / "aios-manage-skills/SKILL.md").read_text()
     require("[Manage Skills](../aios-manage-skills/SKILL.md)" in onboard and
-            re.search(r"normal onboarding does not\s+depend on that optional Global capability", onboard, re.I) and
+            re.search(r"normal setup does not\s+depend on that optional Global capability", onboard, re.I) and
             "setup-guardrails" in manage_skills and
             "setup-agent-guardrails" not in manage_skills and
             "not an AIOS prerequisite or package dependency" in manage_skills and
@@ -265,7 +265,7 @@ def validate(root=ROOT, release_tag=None):
     for source in (selection, skill_root / "aios-orchestrate-workers/SKILL.md"):
         require(not re.search(r"\b(?:gpt-\d|claude-\d|gemini-\d)", source.read_text()),
                 f"nonportable model default: {source}")
-    owner_assets = skill_root / "aios-onboard/assets/owner"
+    owner_assets = skill_root / "aios-setup/assets/owner"
     require(not any("model" in p.name.lower() for p in owner_assets.rglob("*")),
             "owner template carries a model inventory")
     sync = (skill_root / "aios-maintain-context/references/sync.md").read_text()
@@ -313,7 +313,7 @@ def validate(root=ROOT, release_tag=None):
             not (skill_root / "aios-select-model/references/continuation.md").exists() and
             continuation.resolve() in set(link_targets(skill_root / "aios/references/lifecycle.md")) and
             (skill_root / "aios-maintain-context/references/curation.md").resolve()
-            in set(link_targets(skill_root / "aios-onboard/references/setup.md")),
+            in set(link_targets(skill_root / "aios-setup/references/setup.md")),
             "single continuation and context framework owners")
 
     overview = root / "docs/aios.md"
@@ -340,7 +340,7 @@ def validate(root=ROOT, release_tag=None):
     caller_targets = set()
     for relative in (
         "skills/aios/SKILL.md",
-        "skills/aios-onboard/SKILL.md",
+        "skills/aios-setup/SKILL.md",
         "skills/aios-check/references/checks.md",
         "skills/aios-maintain-context/references/curation.md",
     ):
@@ -348,13 +348,13 @@ def validate(root=ROOT, release_tag=None):
     require((manager / "SKILL.md").resolve() in caller_targets, "Manage Skills not routed")
     require(owner_lifecycle.resolve() in caller_targets, "personal-skill procedure not routed")
 
-    owner = skill_root / "aios-onboard/assets/owner"
+    owner = skill_root / "aios-setup/assets/owner"
     require((owner / "AIOS_FORMAT").read_bytes() == b"2\n", "owner format")
     require(not (owner / "projects").exists() and not (owner / "systems").exists(),
             "mandatory owner registry in new scaffold")
     require(not list(owner.rglob("AGENTS.md")) and not list(owner.rglob("AGENTS.override.md")),
             "inherited owner instructions")
-    bridge = (skill_root / "aios-onboard/assets/bridge.md").read_text()
+    bridge = (skill_root / "aios-setup/assets/bridge.md").read_text()
     require(len(bridge.splitlines()) <= 14 and "AIOS_ABSOLUTE_PATH" in bridge,
             "bridge scope")
     require("local AGENTS.md and lifecycle first" in bridge and
@@ -365,7 +365,7 @@ def validate(root=ROOT, release_tag=None):
             "shared plugin/library" in owner_skills,
             "personal-skill continuity provenance")
 
-    parity = (skill_root / "aios-onboard/references/legacy-parity.md").read_text()
+    parity = (skill_root / "aios-setup/references/legacy-parity.md").read_text()
     parity_rows = {}
     parity_names = []
     for line in parity.splitlines():
@@ -496,7 +496,7 @@ def negative_controls():
             "](../design/SKILL.md)", "](../human-writing/SKILL.md)"))
 
     def compulsory_registry(root):
-        (root / "skills/aios-onboard/assets/owner/projects").mkdir()
+        (root / "skills/aios-setup/assets/owner/projects").mkdir()
 
     def split_source(root):
         package = json.loads((root / "package.json").read_text())
@@ -509,7 +509,7 @@ def negative_controls():
         (root / "package.json").write_text(json.dumps(package))
 
     def inherited_instructions(root):
-        (root / "skills/aios-onboard/assets/owner/AGENTS.md").write_text("Read all owner data.\n")
+        (root / "skills/aios-setup/assets/owner/AGENTS.md").write_text("Read all owner data.\n")
 
     def duplicate_owner(root):
         path = root / "skills/aios-maintain-context/references/owner-skills.md"
@@ -523,12 +523,12 @@ def negative_controls():
         path.write_text(path.read_text() + "\nUse OpenPencil for design.\n")
 
     def missing_legacy_route(root):
-        path = root / "skills/aios-onboard/references/legacy-parity.md"
+        path = root / "skills/aios-setup/references/legacy-parity.md"
         path.write_text(path.read_text().replace(
             "](../../aios-triage-improvement/SKILL.md)", "](missing-triage.md)", 1))
 
     def duplicate_legacy_route(root):
-        path = root / "skills/aios-onboard/references/legacy-parity.md"
+        path = root / "skills/aios-setup/references/legacy-parity.md"
         duplicate = next(line for line in path.read_text().splitlines()
                          if line.startswith("| aios-build-work |"))
         path.write_text(path.read_text() + duplicate + "\n")

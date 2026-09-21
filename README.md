@@ -3,13 +3,76 @@
 # AIOS
 
 AIOS helps your AI assistant plan work, build it, review the result and remember
-useful decisions. Install it in the app you use. The same 23 skills work from
+useful decisions. Install it in the app you use. The same 24 skills work from
 one shared source, with native packaging for Codex, Pi, Claude Code, Gemini CLI,
 Copilot CLI and Cursor.
 
 Small requests stay small. Larger tasks get a clear outcome, the relevant
 specialist method and a review before delivery. Your app still provides the
 models, tools and permissions.
+
+## Skill workflows
+
+AIOS connects skills around a useful result. The tables below describe the
+implemented methods and their handoffs. An arrow means the next relevant step;
+it does not force every task through every skill. Existing decisions carry
+forward, small requests stay small, and delivery uses the task's actual authority.
+
+### From an idea to a result
+
+| What you want to do | Skills and handoffs | What you get |
+| --- | --- | --- |
+| Think through an idea, agent or automation | [Interview](skills/aios-interview/SKILL.md) → [Spec](skills/aios-spec-work/SKILL.md) when execution needs a contract | Shared understanding, challenged assumptions, decisions and a useful next action |
+| Complete substantive work | [Spec](skills/aios-spec-work/SKILL.md) → [Build](skills/aios-build-work/SKILL.md) → [Review](skills/aios-review-work/SKILL.md) → [Ship](skills/aios-ship-work/SKILL.md) for authorized delivery | A defined outcome, implemented result, current verification and delivery readback |
+| Develop a visual direction | [Design](skills/design/SKILL.md) → [Review Design](skills/review-design/SKILL.md) → implementation through Build when requested | A reusable design direction and selected previews or assets, reviewed against the brief |
+| Create or repurpose content | [Content](skills/content/SKILL.md), using [Human Writing](skills/human-writing/SKILL.md) for prose → Content's [final review](skills/content/references/final-review.md) → authorized delivery | A finished piece with evidence, voice and source lineage suited to its use |
+| Edit an ordinary video | Content → [Diffusion Studio](skills/diffusion-studio/SKILL.md) → Content's final review → authorized delivery | An edited video, inspected export and the evidence needed for its handoff |
+| Start a project or specialist solution | [Create Project](skills/aios-create-project/SKILL.md) or [Create System](skills/aios-create-system/SKILL.md) → the shared work lifecycle | An independent repository or maintained specialist, with its own requirements and verification |
+
+Interview starts when requested, or when material uncertainty at the start of
+work makes the direction unclear. A new project or agent alone does not trigger
+it. During execution, the assistant asks the necessary question and continues;
+a broader interview waits for an appropriate opening. Spec reuses interview
+answers rather than starting discovery again.
+
+Design and content can work together when a result needs both. Content owns the
+message and production; Design owns visual direction and expressive assets.
+The optional [OpenPencil Workbench](skills/openpencil-workbench/SKILL.md) supports
+an editable design companion. Diffusion Studio is optional external software;
+its skill is included, but the editor is not installed with AIOS. Final content
+review is a procedure inside Content, not a separate public skill.
+
+### Setup, context and maintenance
+
+| What you want to do | Skills and handoffs | What you get |
+| --- | --- | --- |
+| Set up or move your AIOS home | [Setup](skills/aios-setup/SKILL.md), using Interview where context needs exploration → [Maintain Context](skills/aios-maintain-context/SKILL.md) for source routes → [Check](skills/aios-check/SKILL.md) for affected setup proof | A usable home, relevant context, verified chosen connections and a first useful result |
+| Keep useful context current | Maintain Context → its [Sync procedure](skills/aios-maintain-context/references/sync.md) only when continuity is explicitly requested | Relevant facts and source pointers; optional scoped backup or restore |
+| Create or change a skill | [Manage Skills](skills/aios-manage-skills/SKILL.md) → native authoring or installation → verification, using Check for discovery when relevant | One maintained capability with a known source, placement and recovery path |
+| Update or recover a package or specialist | [Update](skills/aios-update/SKILL.md) → native adoption or the specialist's maintenance procedure → Check where applicable | A selected revision with observed installation state and a recovery route |
+
+Setup is the new name for `aios-onboard`; its canonical name is `aios-setup`.
+Update explicit shortcuts and callers when adopting this version. The package
+does not ship a duplicate Onboard alias. Setup owns installation and readiness;
+Interview supplies the reusable conversation. Existing homes resume from known
+facts without another foundation interview. Owner formats are unchanged.
+
+### Methods used across workflows
+
+| Skill | When it contributes |
+| --- | --- |
+| [AIOS](skills/aios/SKILL.md) | Selects relevant owner context and the method for the task; independent repositories start with their local instructions |
+| [Write Code](skills/write-code/SKILL.md) | Supplies implementation and review criteria for code of any size, including scripts and automation |
+| [Human Writing](skills/human-writing/SKILL.md) | Drafts or revises prose directly, or supports another method's writing |
+| [Select Model](skills/aios-select-model/SKILL.md) | Assesses model and reasoning suitability when the remaining work warrants it |
+| [Orchestrate Workers](skills/aios-orchestrate-workers/SKILL.md) | Coordinates a justified delegation while the caller retains acceptance |
+| [Risky Changes](skills/aios-risky-changes/SKILL.md) | Adds representative proof and recovery planning when real-world consequences warrant them |
+| [Triage Improvement](skills/aios-triage-improvement/SKILL.md) | Turns a concrete underlying problem into a scoped, deduplicated improvement action under existing authority |
+
+These are composable methods, not background agents or a workflow engine.
+A **System** is a separately maintained specialist solution; a chain of skills
+does not need to become a System. The [skill index](docs/skills.md) lists all
+24 public entrypoints and their individual responsibilities.
 
 ## Install in your app
 
@@ -47,7 +110,7 @@ claude plugin install aios@online-sourdough --scope user
 ```
 
 Restart Claude Code. You can use ordinary language or call
-`/aios:aios-onboard` and `/aios:human-writing` directly.
+`/aios:aios-setup` and `/aios:human-writing` directly.
 
 ### Gemini CLI
 
@@ -75,18 +138,19 @@ Cursor supports AIOS's portable plugin format. For private distribution, add
 the repository through a **Teams or Enterprise marketplace**, then install AIOS
 from **Customize**. AIOS is not listed in Cursor's public marketplace, and this
 installation route has not been tested locally. See the
-[Cursor adapter](skills/aios-onboard/references/adapter-other.md#cursor).
+[Cursor adapter](skills/aios-setup/references/adapter-other.md#cursor).
 
 OpenCode can reference the skill directory through its native `skills.paths`
 setting. It currently has no equivalent native installer for this instruction
 package, so we do not describe that route as plug and play. See the
-[compatibility guide](skills/aios-onboard/references/adapter-other.md#opencode).
+[compatibility guide](skills/aios-setup/references/adapter-other.md#opencode).
 
 ## Start with a real task
 
 After installation, try:
 
 - “Help me turn this idea into a clear plan.”
+- “Interview me about the agent I want to create, so we can find the right scope.”
 - “Build the agreed change and review the result.”
 - “Design this product idea and prepare it for implementation.”
 - “Turn these sources into a finished article.”
@@ -143,7 +207,7 @@ account, remote, branch, direction and file scope. Existing standing permission
 is reused. Plugin installation, ordinary conversations and local edits do not
 start a background upload. A local home without Git is fully supported.
 
-Onboarding helps choose new setup or restore and a continuity destination.
+Setup helps choose a new home or restore and a continuity destination.
 Creating a private repository and the first upload need that action's approval.
 On another machine, install the plugin in the chosen app, restore the approved
 owner files into an absent or empty home, then register personal skills there.
@@ -213,7 +277,7 @@ Resources domain. Selective reading saves context whether the file is local or
 remote; hosting alone does not reduce the tokens of content actually read.
 Future standards-based discovery and updates are tracked in [issue #12](https://github.com/onlinesourdough/AIOS-Plugin/issues/12).
 
-Read about the [23 skills](docs/skills.md), [architecture](docs/architecture.md),
+Read about the [24 skills](docs/skills.md), [architecture](docs/architecture.md),
 [verification](docs/verification.md), [recovery](docs/recovery.md) and
 [version history](CHANGELOG.md). GitHub [Releases](https://github.com/onlinesourdough/AIOS-Plugin/releases)
 lists published releases. The [release procedure](docs/distribution.md#release-and-adoption)

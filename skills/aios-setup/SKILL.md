@@ -1,18 +1,19 @@
 ---
-name: aios-onboard
+name: aios-setup
 description: Set up, resume or move an AIOS owner home using the selected harness’s native installation.
 metadata:
-  version: "2.0.3"
+  version: "1.0.0"
 ---
 
-# AIOS:onboard
+# AIOS:setup
 
 Use the adaptive outcomes in [setup](references/setup.md): reuse known answers,
 choose the next material question or authorized action, implement and verify it.
-Use an available, permitted native question tool for onboarding questions;
-keep the turn open while an answer is pending. Setup owns tool selection,
-conversational fallback, waiting and interruption handling.
-Full onboarding covers relevant readiness areas; ordinary resume stays scoped. Read the applicable
+For questions, use Interview's [conversation procedure](../aios-interview/references/conversation.md).
+When useful work needs broader context or direction, select
+[Interview](../aios-interview/SKILL.md) under its activation rules and reuse its
+result. A setup choice or known next gap needs no full interview.
+Full setup covers relevant readiness areas; ordinary resume stays scoped. Read the applicable
 [native adapter route](references/adapters.md) when installing or changing a
 bridge/package; it selects one harness/operation reference rather than a
 cross-harness preload.
@@ -20,7 +21,7 @@ For personal skills during setup or a home move, call Manage Skills'
 [personal skill lifecycle](../aios-manage-skills/references/owner-skills.md).
 When an owner asks in ordinary language for local guardrails during autonomous
 use, route that request to [Manage Skills](../aios-manage-skills/SKILL.md). It
-owns candidate review/acquisition and its evidence. Normal onboarding does not
+owns candidate review/acquisition and its evidence. Normal setup does not
 depend on that optional Global capability.
 For an existing folder, read [data compatibility](references/data-format.md)
 before writing; an actual import also uses the [migration procedure](references/data.md)
@@ -34,14 +35,14 @@ never create a second home merely because a default is absent. Resume from
 established facts with no fresh interview. Ask only the next material gap.
 
 For a missing/empty home with unresolved new/restore intent, ask one friendly choice:
-“Sync existing AIOS or Onboard new?” An established, partial or custom-root home
+“Sync existing AIOS or set up new?” An established, partial or custom-root home
 resumes without that question or a repeat interview. Finish a new home or move
 with the explicit [Sync](../aios-maintain-context/references/sync.md) continuity
 choice; Sync remains the one procedure for remote, direction and scope consent.
 
-When no competing concrete task exists, trigger onboarding for a new or
+When no competing concrete task exists, trigger setup for a new or
 demonstrably incomplete owner home. Do not interrupt unrelated work, restart
-established onboarding, create a second home or infer installation authority.
+established setup, create a second home or infer installation authority.
 
 Use Maintain Context's framework through setup for source routes and minimal
 local gap filling. Verify sources in the receiving account when a home moves;

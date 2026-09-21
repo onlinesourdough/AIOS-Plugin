@@ -21,14 +21,14 @@ These identifiers serve different purposes:
 | Identifier | Meaning |
 | --- | --- |
 | `aios@online-sourdough` | Marketplace plugin installation identity |
-| `skills/aios-onboard/SKILL.md` | Portable source path; sibling Markdown links remain relative to this payload |
-| `aios-onboard` | Portable skill name in frontmatter |
-| `/aios:aios-onboard` | Claude Code's plugin-qualified invocation |
+| `skills/aios-setup/SKILL.md` | Portable source path; sibling Markdown links remain relative to this payload |
+| `aios-setup` | Portable skill name in frontmatter |
+| `/aios:aios-setup` | Claude Code's plugin-qualified invocation |
 | `/aios:human-writing` | Another Claude invocation; the plugin prefix applies to every skill |
 
 Resolve portable method names through the chosen harness's actual discovery.
 Claude's slash-command namespace does not rename the files or require rewritten
-relative links. A plain `/aios-onboard` is not the promised Claude plugin entrypoint.
+relative links. A plain `/aios-setup` is not the promised Claude plugin entrypoint.
 Source files or a successful plugin listing alone do not prove that
 all declared skills are available in a session. Inspect component inventory and fresh
 session discovery; skill descriptions enable selection, while bodies and
@@ -122,11 +122,11 @@ Copilot installation and session discovery have not been rehearsed by this
 adapter's Claude-only check. See the official
 [Copilot CLI plugin reference](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-plugin-reference).
 
-## Context onboarding
+## Context setup
 
 After method installation, the user can ask in ordinary language to set up AIOS
-for their work; `/aios:aios-onboard` is Claude's explicit entrypoint. Continue the
-shared [onboarding method](../SKILL.md) for the ordinary context interview,
+for their work; `/aios:aios-setup` is Claude's explicit entrypoint. Continue the
+shared [setup method](../SKILL.md), which selects Interview only when needed,
 existing-home discovery, supported format checks and first useful task. Installing
 this plugin creates no owner home, personal bridge or hidden agent and grants no
 additional access. Keep owner data outside the plugin cache.

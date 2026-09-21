@@ -4,7 +4,7 @@ Check the requested scope only; no implicit global sweep. Read-only audit is
 the default. Report Healthy, Repaired only after a separate authorized repair
 and recheck, or Needs decision, plus per-claim PASS/FAIL/NOT VERIFIED.
 
-- Onboarding, when requested: assess relevant outcome/context/memory/Space,
+- Setup, when requested: assess relevant outcome/context/memory/Space,
   connection/tool, harness, first-task and acceptance readiness. Reuse known
   answers and chosen off states; authorized answers lead to implemented changes
   and readback. Missing input is not consent. A checkpoint resumes unfinished
@@ -24,7 +24,7 @@ and recheck, or Needs decision, plus per-claim PASS/FAIL/NOT VERIFIED.
   New homes use format 2 without required project or specialist registries.
   Existing work uses its chosen physical roots and local instructions. Verify
   owner Git excludes any nested repository work; no inherited personal preload.
-- Harness baseline: follow the [configuration checklist](../../aios-onboard/references/harness-configuration.md).
+- Harness baseline: follow the [configuration checklist](../../aios-setup/references/harness-configuration.md).
   Distinguish configured/effective settings from actual tools, native memory,
   Computer Use app/site and OS permissions, and History opt-in/source scope.
   Preserve chosen providers, approvals, Pi settings and unrelated registrations.
@@ -34,12 +34,12 @@ and recheck, or Needs decision, plus per-claim PASS/FAIL/NOT VERIFIED.
   and hooks, including trust, failure behavior and actual tool/host coverage.
   An untested worker/cloud path is NOT VERIFIED, not inherited local coverage.
 - Codex setup acceptance: account for both native checklist and goal controls via
-  [checklist and goal acceptance](../../aios-onboard/references/codex-tracking-acceptance.md).
+  [checklist and goal acceptance](../../aios-setup/references/codex-tracking-acceptance.md).
   Updates reuse dated evidence unless runtime/version or capability evidence changed,
   is missing or uncertain. Inspect goal state read-only; no test goal.
 - Codex desktop cutover, when in scope: inspect actual New Chat selection and a
   fresh task's cwd/routing, plus relevant System/Project entry roots, using the
-  [desktop acceptance](../../aios-onboard/references/adapter-codex-desktop.md).
+  [desktop acceptance](../../aios-setup/references/adapter-codex-desktop.md).
   Check selected Project, active workspace roots and fresh task cwd separately;
   null selection alone is not proof. Inspect local Projects/saved roots, cloud
   environments and sidebar preferences as separate client surfaces. Distinguish

@@ -1,6 +1,6 @@
 {
   "name": "aios",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "Portable context and skills for planning, design, content and reviewed delivery.",
   "author": {
     "name": "Online Sourdough"
@@ -12,7 +12,7 @@
     "composerIcon": "./assets/icon.png",
     "logo": "./assets/icon.png",
     "shortDescription": "Your context, useful work and reviewed delivery.",
-    "longDescription": "Twenty-three skills for clear writing, code, design, content, onboarding and reviewed work. Your app owns projects and tools; your AIOS home holds your context. Optional helpers work on files in your project.",
+    "longDescription": "Twenty-four skills for clear writing, code, design, content, interviews, setup and reviewed work. Your app owns projects and tools; your AIOS home holds your context. Optional helpers work on files in your project.",
     "developerName": "Online Sourdough",
     "category": "Productivity",
     "capabilities": [],

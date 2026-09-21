@@ -26,7 +26,8 @@ JOB_PREFIXES = {
     "aios-create-system": "Establish ",
     "aios-maintain-context": "Curate ",
     "aios-manage-skills": "Manage ",
-    "aios-onboard": "Set up, resume or move ",
+    "aios-setup": "Set up, resume or move ",
+    "aios-interview": "Interview ",
     "aios-orchestrate-workers": "Prepare, launch, coordinate and recover ",
     "aios-risky-changes": "Assess ",
     "aios-review-work": "Review ",
@@ -37,14 +38,14 @@ JOB_PREFIXES = {
     "aios-update": "Update selected optional ",
 }
 CURRENT_NEUTRAL_SCAFFOLD = (
-    "skills/aios-onboard/assets/bridge.md",
-    "skills/aios-onboard/assets/owner/.gitignore",
-    "skills/aios-onboard/assets/owner/AIOS.md",
-    "skills/aios-onboard/assets/owner/AIOS_FORMAT",
-    "skills/aios-onboard/assets/owner/CONNECTIONS.md",
-    "skills/aios-onboard/assets/owner/MEMORY.md",
-    "skills/aios-onboard/assets/owner/context/README.md",
-    "skills/aios-onboard/assets/owner/skills/README.md",
+    "skills/aios-setup/assets/bridge.md",
+    "skills/aios-setup/assets/owner/.gitignore",
+    "skills/aios-setup/assets/owner/AIOS.md",
+    "skills/aios-setup/assets/owner/AIOS_FORMAT",
+    "skills/aios-setup/assets/owner/CONNECTIONS.md",
+    "skills/aios-setup/assets/owner/MEMORY.md",
+    "skills/aios-setup/assets/owner/context/README.md",
+    "skills/aios-setup/assets/owner/skills/README.md",
 )
 CURRENT_JOURNEYS = {
     "independent-local-negative-preload": (),
@@ -75,22 +76,24 @@ CURRENT_JOURNEYS = {
         "skills/aios-check/references/checks.md",
     ),
     "codex-package-and-bridge-pre-verification": (
-        "skills/aios-onboard/SKILL.md",
-        "skills/aios-onboard/references/setup.md",
+        "skills/aios-setup/SKILL.md",
+        "skills/aios-setup/references/setup.md",
+        "skills/aios-interview/references/conversation.md",
         "skills/aios-maintain-context/references/curation.md",
-        "skills/aios-onboard/references/adapters.md",
-        "skills/aios-onboard/references/adapter-codex.md",
-        "skills/aios-onboard/references/codex-tracking-acceptance.md",
-        "skills/aios-onboard/references/data-format.md",
+        "skills/aios-setup/references/adapters.md",
+        "skills/aios-setup/references/adapter-codex.md",
+        "skills/aios-setup/references/codex-tracking-acceptance.md",
+        "skills/aios-setup/references/data-format.md",
     ) + CURRENT_NEUTRAL_SCAFFOLD,
     "codex-package-and-bridge-verification": (
-        "skills/aios-onboard/SKILL.md",
-        "skills/aios-onboard/references/setup.md",
+        "skills/aios-setup/SKILL.md",
+        "skills/aios-setup/references/setup.md",
+        "skills/aios-interview/references/conversation.md",
         "skills/aios-maintain-context/references/curation.md",
-        "skills/aios-onboard/references/adapters.md",
-        "skills/aios-onboard/references/adapter-codex.md",
-        "skills/aios-onboard/references/codex-tracking-acceptance.md",
-        "skills/aios-onboard/references/data-format.md",
+        "skills/aios-setup/references/adapters.md",
+        "skills/aios-setup/references/adapter-codex.md",
+        "skills/aios-setup/references/codex-tracking-acceptance.md",
+        "skills/aios-setup/references/data-format.md",
         "skills/aios-check/references/scenarios.md",
         "skills/aios-check/references/setup-scenarios.md",
     ) + CURRENT_NEUTRAL_SCAFFOLD,
@@ -178,14 +181,14 @@ def current_bytes(paths, startup):
 
 
 def validate_routes():
-    adapters = (ROOT / "skills/aios-onboard/references/adapters.md").read_text()
+    adapters = (ROOT / "skills/aios-setup/references/adapters.md").read_text()
     required = ("adapter-codex.md", "adapter-codex-desktop.md", "adapter-pi.md",
                 "adapter-portability.md", "adapter-claude.md", "adapter-other.md",
                 "harness-configuration.md")
     require(all(target in adapters for target in required), "adapter route coverage")
     require("exactly one operation route" in adapters, "adapter selective-read rule")
 
-    harness = (ROOT / "skills/aios-onboard/references/harness-configuration.md").read_text()
+    harness = (ROOT / "skills/aios-setup/references/harness-configuration.md").read_text()
     required = ("harness-protection.md", "harness-codex.md",
                 "harness-codex-context.md", "harness-codex-computer-use.md",
                 "harness-codex-computer-history.md", "harness-pi.md")
@@ -205,7 +208,7 @@ def validate_routes():
             "do not load Pi, desktop, protection" in setup_scenarios,
             "onboarding reference isolation")
 
-    owner_root = ROOT / "skills/aios-onboard/assets/owner"
+    owner_root = ROOT / "skills/aios-setup/assets/owner"
     actual_owner_assets = {
         path.relative_to(ROOT).as_posix()
         for path in owner_root.rglob("*") if path.is_file()
@@ -258,9 +261,17 @@ def main():
         estimate = math.ceil(working / 4)
         print(f"{name}|{legacy_journey['stage']}|{legacy}|{working}|{change:.1f}%|~{estimate}")
 
-    owner_index = ROOT / "skills/aios-onboard/assets/owner/AIOS.md"
-    owner_memory = ROOT / "skills/aios-onboard/assets/owner/MEMORY.md"
+    owner_index = ROOT / "skills/aios-setup/assets/owner/AIOS.md"
+    owner_memory = ROOT / "skills/aios-setup/assets/owner/MEMORY.md"
     print(f"neutral_current_owner_index_memory_bytes={owner_index.stat().st_size + owner_memory.stat().st_size}")
+    interview = sum((ROOT / path).stat().st_size for path in (
+        "skills/aios-interview/SKILL.md",
+        "skills/aios-interview/references/owner-context.md",
+    ))
+    print(f"conditional_owner_interview_extra_bytes={interview}")
+    print("NOTE: matched setup routes have an accepted focus and count the shared question procedure; missing foundation adds Interview and its owner-context guide")
+    full_setup = current_bytes(CURRENT_JOURNEYS["codex-package-and-bridge-verification"], startup) + interview
+    print(f"setup_with_owner_interview_through_verification_bytes={full_setup}")
     measurement = ROOT / "skills/aios-select-model/references/measurement.md"
     print(f"conditional_model_measurement_extra_bytes={measurement.stat().st_size}")
     print("NOTE: performance-claim/comparison tasks add that reference; no matched legacy measurement path is claimed")

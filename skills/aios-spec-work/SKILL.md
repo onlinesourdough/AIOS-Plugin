@@ -2,7 +2,7 @@
 name: aios-spec-work
 description: Specify or revise substantive work when its outcome, boundaries or proof need clarification.
 metadata:
-  version: "1.0.1"
+  version: "1.1.0"
 ---
 
 # AIOS:spec-work
@@ -12,6 +12,13 @@ with accepted requirements and carried goal authorization. READY returns its
 actual tool/readback evidence or declared file fallback, alongside the contract.
 Scope changes update that same list; no phase goals or duplicate live lists.
 An accepted contract is sufficient input; do not recreate it for a new phase.
+
+Reuse any [Interview](../aios-interview/SKILL.md) result as accepted input,
+preserving decisions, sources and explicit unknowns. Select Interview only for
+requested exploration or material direction gaps at the start under its own
+activation rules. A routine missing fact or work already underway needs the
+smallest useful question, not another interview. Spec owns the executable
+contract and proof; Interview owns exploratory conversation.
 
 Accept rough idea, developed brief, near-complete specification or an existing
 change request. Preserve named sources and resolved wording. Construct missing

@@ -1,6 +1,6 @@
 # AIOS
 
-AIOS version: 0.11.0
+AIOS version: 0.12.0
 
 AIOS supplies portable context and skills to help an AI assistant work from an
 owner's relevant context and carry a task from a small request to a reviewed
@@ -39,6 +39,25 @@ projects and sessions; AIOS adds no second project register. Spaces hold relevan
 business context, while optional specialist Systems keep their own upkeep.
 Design and content working material stays in the project.
 
+## Connected work methods
+
+[Interview](../skills/aios-interview/SKILL.md) helps establish shared context and
+direction when requested or materially needed at the start. It reuses known
+answers, challenges assumptions and returns a useful next action. Clear work
+already underway needs no interview. [Setup](../skills/aios-setup/SKILL.md)
+uses that conversation when needed while retaining installation, home readiness
+and continuity. Setup replaces the former `aios-onboard` entrypoint.
+
+The shared delivery path is Spec → Build → Review → authorized Ship. Spec
+reuses interview decisions. Design → Review Design supplies visual direction
+and selected companions. Content uses Human Writing, production as needed and
+its own final review; ordinary video can use the optional Diffusion Studio.
+These methods connect only where the accepted result needs them. Project and
+System creation, context maintenance, skill management and package updates each
+retain their focused owners. A skill chain is not a separately operated System.
+
+## Design sources and skill names
+
 Design can consult selected upstream Taste skills and composition references
 through its [source guide](../skills/design/references/taste-sources.md). AIOS
 keeps the brief, reference adaptation and rendered review; external examples
@@ -46,7 +65,7 @@ and catalogs remain with their publishers. References are optional and their
 used revisions are recorded. OpenPencil remains an optional editable companion.
 
 All skill titles and Codex display names use `AIOS:skill-name`, such as
-`AIOS:design` and `AIOS:build-work`. Canonical invocation names stay compatible;
+`AIOS:design` and `AIOS:build-work`. Each skill declares its canonical name;
 the harness owns its native namespace. Personal methods keep their own names
 and ownership. Renames update the body, callers and native registration together.
 
@@ -63,7 +82,7 @@ available to the user and task.
 At setup completion, choose continuity explicitly. Private GitHub is a sensible
 option for a private owner backup, but it never creates a repository or uploads
 your data without your approval. On a missing or genuinely empty chosen home,
-AIOS asks whether to Sync existing AIOS or Onboard new; established, partial and
+AIOS asks whether to Sync existing AIOS or set up new; established, partial and
 custom homes are preserved rather than restarted.
 
 Sync transfers only approved owner context, personal skills, and owner

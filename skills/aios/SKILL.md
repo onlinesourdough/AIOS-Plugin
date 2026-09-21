@@ -2,7 +2,7 @@
 name: aios
 description: Apply relevant owner context and choose AIOS methods for business work, design, content, AIOS setup or documentation.
 metadata:
-  version: "2.1.2"
+  version: "2.2.0"
 ---
 
 # AIOS:aios
@@ -15,11 +15,15 @@ For owner work, resolve the explicitly chosen or established home, then its
 managed bridge; use ~/.AIOS only when neither exists. Read AIOS.md and MEMORY.md,
 then only the source relevant to the task. AIOS.md and a supported AIOS_FORMAT
 identify the physical home even when Git-backed. Check the format before writes;
-[data compatibility](../aios-onboard/references/data-format.md) owns that boundary.
+[data compatibility](../aios-setup/references/data-format.md) owns that boundary.
 Keep external facts at their source and respect the account and access scope.
 
+For requested exploration or materially unclear direction at the start of work,
+use [Interview](../aios-interview/SKILL.md) under its activation rules. Reuse
+accepted answers; clear work and isolated questions need no interview.
+
 For a missing or empty home with unresolved intent, use
-[Onboard](../aios-onboard/SKILL.md) to resolve “Sync existing AIOS or Onboard new?”
+[Setup](../aios-setup/SKILL.md) to resolve “Sync existing AIOS or set up new?”
 An established home resumes from known facts. Missing AIOS does not block
 unrelated work. Explicit `aios sync` uses
 [Sync](../aios-maintain-context/references/sync.md).

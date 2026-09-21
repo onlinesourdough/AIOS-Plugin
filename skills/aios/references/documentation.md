@@ -11,7 +11,8 @@ Reading a method to explain it does not start that workflow or load owner data.
 | What AIOS is, its concepts and boundaries | [AIOS overview](../../../docs/aios.md) |
 | Which AIOS version is installed | [Package identity](../../../plugin.json); the overview states the same version |
 | How work is selected and carried through | [Routing](routing.md) and the relevant part of [the lifecycle](lifecycle.md) |
-| How installation, updates or removal work in a selected app | [Native adapters](../../aios-onboard/references/adapters.md) |
+| How interview, setup and delivery methods connect | The overview's [connected work methods](../../../docs/aios.md#connected-work-methods), then the selected skill |
+| How installation, updates or removal work in a selected app | [Native adapters](../../aios-setup/references/adapters.md) |
 | How owner context and external sources are maintained | [Context curation](../../aios-maintain-context/references/curation.md) |
 | How owner data moves between machines | [Continuity Sync](../../aios-maintain-context/references/sync.md) |
 

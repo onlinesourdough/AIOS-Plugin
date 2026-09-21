@@ -1,10 +1,12 @@
 # AIOS skills
 
-AIOS ships 23 native skills. Their titles and Codex display names use
+AIOS ships 24 native skills. Their titles and Codex display names use
 `AIOS:skill-name`: uppercase `AIOS`, a colon without spaces, and lowercase
 hyphenated names. The display label omits a redundant leading `aios-` from the
 canonical name. Automatic selection uses each skill description; explicit
-invocation retains its existing canonical name and native namespace. Each
+invocation uses the canonical name and native namespace. Setup replaces the
+former `aios-onboard` entrypoint with `aios-setup`; update explicit callers on
+adoption. Each
 carries an independent quoted `metadata.version`; see
 [version maintenance](skill-versioning.md). Repository development methods in
 `.agents/skills/` are separate and are not product skills.
@@ -19,16 +21,17 @@ carries an independent quoted `metadata.version`; see
 | [AIOS:human-writing](../skills/human-writing/SKILL.md) | Default prose drafting and editing that preserves facts, uncertainty and the user’s voice |
 | [AIOS:write-code](../skills/write-code/SKILL.md) | Quality and proportionate verification whenever writing or changing code, including scripts and automation; shared criteria for read-only code review |
 | [AIOS:aios](../skills/aios/SKILL.md) | Select relevant context and methods for the current task |
-| [AIOS:build-work](../skills/aios-build-work/SKILL.md) | Implement specified AIOS work for lead Review |
+| [AIOS:interview](../skills/aios-interview/SKILL.md) | Explore context, challenge assumptions and find direction when requested or materially needed at the start; no routine interruption of execution |
+| [AIOS:build-work](../skills/aios-build-work/SKILL.md) | Implement and verify accepted work through in-scope fixes and Review |
 | [AIOS:check](../skills/aios-check/SKILL.md) | Inspect installation, owner format, and discovery |
 | [AIOS:create-project](../skills/aios-create-project/SKILL.md) | Start a new independent repository in the chosen workspace |
 | [AIOS:create-system](../skills/aios-create-system/SKILL.md) | Establish an optional separately maintained specialist |
 | [AIOS:maintain-context](../skills/aios-maintain-context/SKILL.md) | Maintain owner facts, routes, connections, and explicit continuity Sync |
 | [AIOS:manage-skills](../skills/aios-manage-skills/SKILL.md) | Manage personal and installed skill lifecycles |
-| [AIOS:onboard](../skills/aios-onboard/SKILL.md) | Set up or move an owner home and native bridge |
+| [AIOS:setup](../skills/aios-setup/SKILL.md) | Set up or move an owner home and native bridge |
 | [AIOS:orchestrate-workers](../skills/aios-orchestrate-workers/SKILL.md) | Prepare and recover delegated workers when the caller retains coordination and acceptance |
 | [AIOS:risky-changes](../skills/aios-risky-changes/SKILL.md) | Assess consequential changes proportionately |
-| [AIOS:review-work](../skills/aios-review-work/SKILL.md) | Independently accept or revise substantive work |
+| [AIOS:review-work](../skills/aios-review-work/SKILL.md) | Inspect the final result against its contract; caller acceptance remains separate for delegated work |
 | [AIOS:select-model](../skills/aios-select-model/SKILL.md) | Assess remaining judgment and select model/reasoning for the accepted work; return capability/cost evidence to the shared task decision |
 | [AIOS:ship-work](../skills/aios-ship-work/SKILL.md) | Deliver an exactly reviewed result under authority |
 | [AIOS:spec-work](../skills/aios-spec-work/SKILL.md) | Resolve a substantive AIOS work contract |
@@ -40,6 +43,12 @@ and helpers. The assistant chains relevant skills using the current task and
 its accepted result; no workflow engine or fixed chain schema is required.
 Working material stays in the project. Optional tool setup is loaded only for
 work that uses that tool.
+
+The [workflow overview](../README.md#skill-workflows) connects these entrypoints
+by purpose and result. Interview owns adaptive exploration and a shared question
+procedure; Setup owns home and harness readiness. Spec reuses interview answers
+and owns the execution contract. Neither installation nor a new project alone
+requires an interview.
 
 The conditional [Taste source guide](../skills/design/references/taste-sources.md)
 links to upstream design/style/image skills and Taste Code's reference catalog.
@@ -63,6 +72,6 @@ Create Project starts a repository; Create System establishes an optional
 specialist with separate upkeep. Neither creates a mandatory AIOS registration.
 Update owns native package recovery and selected specialist maintenance;
 Maintain Context owns facts, and Check observes state. The
-[legacy behavior map](../skills/aios-onboard/references/legacy-parity.md) records
+[legacy behavior map](../skills/aios-setup/references/legacy-parity.md) records
 older method routes. Domain preservation is documented in the
 [design](design-preservation.md) and [content](content-preservation.md) maps.

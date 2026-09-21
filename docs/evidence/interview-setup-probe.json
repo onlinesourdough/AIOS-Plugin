@@ -1,0 +1,184 @@
+{
+  "harness": "codex-cli 0.155.1",
+  "date": "2026-09-21",
+  "method": "One independent read-only structured next-response evaluation; expected labels withheld. Skills inspected from a candidate snapshot. Not an installed-plugin or multi-turn test.",
+  "model": "Runtime default; exact model ID not exposed in retained JSON events.",
+  "prompt": "Read cases.json. For each independent case, use the supplied AIOS skill library to decide the next assistant behavior. Start with the local skill names and descriptions and inspect only the relevant instructions. Treat each case independently. Return the requested JSON for every case, including the first Danish response the assistant should give and the next action. Do not perform the scenario, ask a live question or operate external tools: this is a read-only evaluation of the supplied cases. Ground decisions in inspected local source paths. Do not read any personal owner home, installed skills outside this directory, or network resources.\n",
+  "cases": [
+    {
+      "id": "explicit",
+      "user": "Interview mig om den rapporteringsagent, jeg overvejer. Jeg vil gerne finde ud af, hvad jeg faktisk skal overlade til den.",
+      "context": "No prior requirements. A Danish-speaking founder currently assembles a weekly report manually."
+    },
+    {
+      "id": "unclear-start",
+      "user": "Jeg vil lave en agent til salg. Jeg er i tvivl om problemet er, at vi får for få leads, eller at vi er for langsomme til at følge op. Hjælp mig i gang.",
+      "context": "Beginning of work. Relevant available sources confirm both symptoms but do not establish which limits the business. No accepted direction."
+    },
+    {
+      "id": "clear-agent",
+      "user": "Byg agenten efter den aftalte specifikation.",
+      "context": "New agent. Accepted local spec: read the supplied CSV, flag duplicate IDs, write a local report. No emails or external writes. Inputs, output schema, success checks and error behavior are complete."
+    },
+    {
+      "id": "clear-project",
+      "user": "Opret det nye projekt fra den aftalte skabelon og implementér den godkendte plan.",
+      "context": "A new independent repository with accepted purpose, destination, source template, interfaces, constraints and checks. No material direction gap. All creation authority is supplied."
+    },
+    {
+      "id": "mid-task-gap",
+      "user": "Fortsæt importen.",
+      "context": "Implementation underway under an accepted contract. Two authorized input folders have identical names and no metadata can determine which customer dataset is intended. Choosing the dataset requires one owner answer; the rest of the implementation is independent and can continue."
+    },
+    {
+      "id": "known-setup",
+      "user": "Sæt AIOS op i den valgte lokale mappe. Brug de svar, jeg allerede har givet.",
+      "context": "Known owner identity, focus, context sources, chosen home and local-only continuity. No connections or global bridge requested. Setup can create and verify the neutral home from accepted facts."
+    },
+    {
+      "id": "spec-after-interview",
+      "user": "Lav nu specifikationen ud fra det, vi lige er blevet enige om.",
+      "context": "Interview concluded with accepted audience, purpose, agent task, allowed local actions, escalation rules, output, success checks and next action: a specification. No material unknowns."
+    },
+    {
+      "id": "resume",
+      "user": "Det er især sammenligningen med sidste uges tal, jeg bruger tid på.",
+      "context": "An explicitly requested interview was interrupted with one pending question: which part of the weekly report consumes the most time? This message answers it. Known audience is the founder and operations lead, source is a spreadsheet; no need to repeat foundation."
+    },
+    {
+      "id": "declined",
+      "user": "Nej tak til den bredere snak. Fortsæt med det, vi allerede har aftalt.",
+      "context": "During implementation the assistant offered optional reflection about the longer-term workflow. Accepted current work is complete enough to proceed. No blocking question or new risk."
+    },
+    {
+      "id": "interview-only-stop",
+      "user": "Det er nok for nu. Saml lige det, vi har fundet frem til.",
+      "context": "User requested only an interview. Accepted conclusion: first validate a weekly draft report with a human reviewer before considering automatic distribution. Audience and input known; review time remains unknown. No build, memory write, publication or installation requested."
+    }
+  ],
+  "observations": [
+    {
+      "id": "explicit",
+      "mode": "interview",
+      "reason": "Brugeren beder eksplicit om et interview. Et konkret eksempel kan afdække agentens opgave og ansvar.",
+      "first_response": "Lad os tage udgangspunkt i din seneste ugerapport: Hvilken del krævede mest af din egen vurdering?",
+      "next_action": "Stil spørgsmålet via et tilladt spørgsmålsværktøj i scenariet, afvent svaret, og lad det styre næste spørgsmål om opgaver og ansvar.",
+      "sources": [
+        "skills/aios-interview/SKILL.md",
+        "skills/aios-interview/references/conversation.md"
+      ]
+    },
+    {
+      "id": "unclear-start",
+      "mode": "interview",
+      "reason": "Arbejdet begynder med et væsentligt retningsvalg, som de tilgængelige kilder ikke afklarer. Agentens formål afhænger af svaret.",
+      "first_response": "Lad os først undersøge, hvor salget går i stå. Kan du beskrive den seneste konkrete situation, hvor I mistede en salgsmulighed?",
+      "next_action": "Afvent et konkret eksempel og undersøg derefter, om manglende leads eller langsom opfølgning er den afgørende begrænsning, før agentens retning fastlægges.",
+      "sources": [
+        "skills/aios-interview/SKILL.md",
+        "skills/aios-interview/references/conversation.md"
+      ]
+    },
+    {
+      "id": "clear-agent",
+      "mode": "direct-work",
+      "reason": "Den accepterede specifikation dækker opgave, grænser og bevis. En ny agent udløser ikke i sig selv et interview.",
+      "first_response": "Jeg bygger agenten efter specifikationen: Den læser CSV-filen, markerer dublerede ID’er og skriver en lokal rapport. Jeg verificerer resultat og fejlhåndtering mod de aftalte checks.",
+      "next_action": "Fortsæt gennem Build med den accepterede kontrakt, lokal implementering, relevante checks og Review.",
+      "sources": [
+        "skills/aios-interview/SKILL.md",
+        "skills/aios-build-work/SKILL.md"
+      ]
+    },
+    {
+      "id": "clear-project",
+      "mode": "direct-work",
+      "reason": "Formål, destination, skabelon og implementeringsplan er accepteret. Oprettelse af et repository kræver ikke ny discovery.",
+      "first_response": "Jeg opretter projektet fra den aftalte skabelon i den valgte mappe og gennemfører den godkendte plan med de aftalte checks.",
+      "next_action": "Verificér skabelonens revision og oprettelsesprocedure, opret projektet under eksisterende autorisation, og fortsæt implementering og Review efter projektets lokale instruktioner.",
+      "sources": [
+        "skills/aios-create-project/SKILL.md",
+        "skills/aios/references/creation.md",
+        "skills/aios-build-work/SKILL.md"
+      ]
+    },
+    {
+      "id": "mid-task-gap",
+      "mode": "single-question",
+      "reason": "Kun valget af kundedatasæt blokerer. Under igangværende implementering skal assistenten stille det mindste nødvendige spørgsmål og fortsætte uafhængigt arbejde.",
+      "first_response": "Hvilken af de to mapper med samme navn indeholder det kundedatasæt, importen skal bruge? Angiv gerne den fulde sti. Jeg fortsætter imens med de dele, der ikke afhænger af datasættet.",
+      "next_action": "Bed om mappevalget via et tilladt asynkront spørgsmålsværktøj. Fortsæt uafhængig implementering, og afvent svaret før datasættet vælges eller importeres.",
+      "sources": [
+        "skills/aios-interview/SKILL.md",
+        "skills/aios-interview/references/conversation.md",
+        "skills/aios-spec-work/SKILL.md"
+      ]
+    },
+    {
+      "id": "known-setup",
+      "mode": "direct-work",
+      "reason": "De nødvendige setup-svar og lokal kontinuitet er allerede accepteret. Setup genbruger dem uden et nyt interview.",
+      "first_response": "Jeg sætter AIOS op i den valgte lokale mappe med dine eksisterende svar og den aftalte lokale kontinuitet. Derefter verificerer jeg opsætningen.",
+      "next_action": "Kontrollér den valgte sti og eventuelle eksisterende filers format, opret nødvendige neutrale ejerfiler, og verificér format, indhold og relevante setup-checks. Genbrug valget om lokal kontinuitet.",
+      "sources": [
+        "skills/aios-setup/SKILL.md",
+        "skills/aios-setup/references/setup.md"
+      ]
+    },
+    {
+      "id": "spec-after-interview",
+      "mode": "direct-work",
+      "reason": "Interviewets accepterede resultat er tilstrækkeligt input til Spec. Discovery skal ikke gentages.",
+      "first_response": "Jeg omsætter vores aftaler til en specifikation med agentens opgave, tilladte handlinger, eskalation, output og succeskriterier.",
+      "next_action": "Udarbejd og kontrollér den eksekverbare kontrakt ud fra de accepterede beslutninger. Afslut med den brugbare specifikation, da brugeren kun har bestilt Spec.",
+      "sources": [
+        "skills/aios-interview/SKILL.md",
+        "skills/aios-spec-work/SKILL.md"
+      ]
+    },
+    {
+      "id": "resume",
+      "mode": "continue-interview",
+      "reason": "Beskeden besvarer interviewets udestående spørgsmål. Fortsæt fra svaret uden at gentage kendt målgruppe eller datakilde.",
+      "first_response": "Det er altså sammenligningen med sidste uge, der tager mest tid. Kan du tage mig gennem, hvordan du lavede den sammenligning i den seneste rapport?",
+      "next_action": "Registrér det udestående spørgsmål som besvaret, og afvent det konkrete eksempel for at skelne mellem mekanisk sammenligning og menneskelig vurdering.",
+      "sources": [
+        "skills/aios-interview/SKILL.md",
+        "skills/aios-interview/references/conversation.md"
+      ]
+    },
+    {
+      "id": "declined",
+      "mode": "direct-work",
+      "reason": "Den bredere refleksion var valgfri og er afvist. Den accepterede opgave er tilstrækkeligt afklaret til at fortsætte.",
+      "first_response": "Jeg fortsætter implementeringen ud fra det, vi allerede har aftalt.",
+      "next_action": "Genoptag den accepterede implementering og relevante checks. Respektér afslaget og gentag ikke tilbuddet om bredere refleksion.",
+      "sources": [
+        "skills/aios-interview/SKILL.md",
+        "skills/aios-build-work/SKILL.md"
+      ]
+    },
+    {
+      "id": "interview-only-stop",
+      "mode": "summary-only",
+      "reason": "Brugeren afslutter et interview uden at bestille udførelse. Resultatet er en opsummering med accepteret retning og resterende usikkerhed.",
+      "first_response": "Vi er enige om først at afprøve et ugentligt rapportudkast med en menneskelig reviewer. Målgruppe og input er afklaret; tidsforbruget til review er stadig ukendt. Næste skridt er at validere udkastets nytte og måle reviewtiden, før automatisk distribution overvejes.",
+      "next_action": "Afslut med opsummeringen. Lad reviewtiden stå som ukendt, og iværksæt ingen build, hukommelsesskrivning, publicering eller installation.",
+      "sources": [
+        "skills/aios-interview/SKILL.md",
+        "skills/aios-interview/references/conversation.md"
+      ]
+    }
+  ],
+  "source_sha256": {
+    "skills/aios-build-work/SKILL.md": "539ab279cd030f7b2984707663ac8f770efef005661dd2c4386207d5ca0bff0f",
+    "skills/aios-create-project/SKILL.md": "4d188f53e6c5990dcab31e7a40db7e0fb04569c25ad9e704d049f44537975001",
+    "skills/aios-interview/SKILL.md": "2241cec73d88597eae0f46114dae29ea0a683042a646b8142574cdb7f23ae7e8",
+    "skills/aios-interview/references/conversation.md": "32a3c1e6cc19c39c28b7c07d9efd239091ab17dc86866af92370b4e378ac8dac",
+    "skills/aios-setup/SKILL.md": "9a9b6ed9e79e0d903d9ab33ed53648690cdd95801b4e84a828081debc1fae667",
+    "skills/aios-setup/references/setup.md": "f0bb85ae1ee782cfeef2a576ea5e5cfeaff330f2e5f2beae55240bd7e3722903",
+    "skills/aios-spec-work/SKILL.md": "be922582cefe26b0d8bfb2431ab9823d939ef078719885e0bb3d30a25fac9054",
+    "skills/aios/references/creation.md": "7f67a16faf08a6ba215c15715851c6758acac7e51cd506d2ade7963df8011b55"
+  },
+  "result": "10 of 10 routing decisions matched; next responses reviewed for relevance, preservation of context and authorized continuation."
+}

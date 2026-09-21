@@ -5,6 +5,10 @@ outcome and final location from the accepted task. Follow the native harness's
 project controls when relevant; a filesystem repository does not require a
 second AIOS registration or a new task.
 
+If purpose or responsibility is materially unresolved at the start, use
+[Interview](../../aios-interview/SKILL.md) under its activation rules and carry
+the result forward. Creating a repository alone requires no interview.
+
 Use [Create Project](../../aios-create-project/SKILL.md) for an APT repository
 starter, or [Create System](../../aios-create-system/SKILL.md) for a genuinely
 requested independent specialist. A small answer, document or skill needs
