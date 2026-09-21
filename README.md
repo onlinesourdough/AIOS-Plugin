@@ -11,68 +11,128 @@ Small requests stay small. Larger tasks get a clear outcome, the relevant
 specialist method and a review before delivery. Your app still provides the
 models, tools and permissions.
 
-## Skill workflows
+## Agentic systems and skill chains
 
-AIOS connects skills around a useful result. The tables below describe the
-implemented methods and their handoffs. An arrow means the next relevant step;
-it does not force every task through every skill. Existing decisions carry
-forward, small requests stay small, and delivery uses the task's actual authority.
+An agentic system brings together **context, a chain of skills, project files
+and tools the agent can operate**. Skills guide the work and pass useful results
+to each other. The project holds the brief, sources, working files and reviewed
+outputs. A workbench adds a visual production environment when the task needs it.
 
-### From an idea to a result
+AIOS includes the Agentic Content System and Agentic Design System as connected
+methods in this plugin. You work with them in your existing Codex task and
+workspace. The agent selects the relevant steps; a small request does not need
+a full production process or an external editor.
+
+### Agentic Content System
+
+From an idea or source material to useful, reviewed content and its adaptations:
+
+**Intent and sources → [Content](skills/content/SKILL.md) +
+[Human Writing](skills/human-writing/SKILL.md) → production →
+[final content review](skills/content/references/final-review.md) →
+[authorized delivery](skills/aios-ship-work/SKILL.md).**
+
+Content owns the audience, angle, evidence, voice, production and reuse. Working
+material lives in the project's `content/` folder when needed. A substantial
+production can track sources, transcripts, a master and derivatives; each final
+piece is reviewed for its own purpose. A short article can remain a simple file.
+
+[Diffusion Studio](skills/diffusion-studio/SKILL.md) is the optional video
+workbench: recorded video editing, cuts, audio, captions, overlays and export.
+Its role in the content system parallels OpenPencil's role in the design system.
+The selected video workflow uses the reviewed external application and its
+agent interface. Writing and editorial work need no Studio installation.
+AIOS includes the operating skill and helper; the editor is installed separately
+when authorized and needed. Final export inspection remains part of content review.
+
+### Agentic Design System
+
+From the intended experience to a visual direction, selected previews and
+implementation-ready assets:
+
+**Brief and references → [Design](skills/design/SKILL.md) →
+[Review Design](skills/review-design/SKILL.md) →
+[implementation](skills/aios-build-work/SKILL.md) when requested.**
+
+The project's `DESIGN.md` holds the visual direction. Its `design/` folder can
+hold browser previews, assets and editable companions. Review checks the actual
+selected result against the brief, including relevant responsive and interaction
+states. An accepted direction can be used by implementation or content production.
+
+[OpenPencil Workbench](skills/openpencil-workbench/SKILL.md) is the optional
+visual editing environment. The agent can open a project companion, work on its
+canvas, save and reopen a candidate, and inspect native exports through the
+supported workflow. A portable design direction or HTML preview also works
+without OpenPencil. Its external runtime is separate from the AIOS plugin.
+
+### Workbenches and the built-in browser
+
+Codex remains the place where you direct the work. Agent-native software gives
+the agent a supported interface for operating an external tool, while a browser
+view lets you inspect or work with the result in the same workspace. Each tool
+keeps its own editing, saving and export capabilities.
+
+| Surface | What happens directly in Codex's built-in browser | Where production happens |
+| --- | --- | --- |
+| Browser-ready design or application preview | Open a local preview, inspect layouts and test relevant interactions | The agent changes project files and checks the rendered result |
+| OpenPencil workbench | Open the returned local workbench URL; view and operate the canvas through the supported browser workflow | The external OpenPencil runtime edits a working copy; reviewed candidates and exports return to the project |
+| Diffusion Studio companion | Open the returned one-time local URL for human inspection of supported scene previews, with playback and scrubbing | The agent edits and exports through the external desktop host and its native interface; the browser companion is read-only |
+
+The current Diffusion Studio browser companion does not support media elements,
+so it is not a complete video-editing or final-export review surface. Use the
+actual export for final video inspection. The [Studio operation guide](skills/diffusion-studio/references/operation.md)
+records the supported boundary. A browser view alone never proves a save,
+export or reviewed result. In another supported app, use its available browser
+surface; browser controls and downloads depend on that app's capabilities.
+
+For example, one content task can combine an article, a short video and a visual
+asset. Content owns the message and production; Design supplies the visual
+direction; the relevant workbench is selected for the needed artifact. Files
+and review stay with that project, and accepted decisions carry between skills.
+
+### Understanding, delivery and setup
+
+The domain systems use these shared skill chains. Arrows show the next relevant
+step, not a requirement to repeat work or use every skill.
 
 | What you want to do | Skills and handoffs | What you get |
 | --- | --- | --- |
 | Think through an idea, agent or automation | [Interview](skills/aios-interview/SKILL.md) → [Spec](skills/aios-spec-work/SKILL.md) when execution needs a contract | Shared understanding, challenged assumptions, decisions and a useful next action |
-| Complete substantive work | [Spec](skills/aios-spec-work/SKILL.md) → [Build](skills/aios-build-work/SKILL.md) → [Review](skills/aios-review-work/SKILL.md) → [Ship](skills/aios-ship-work/SKILL.md) for authorized delivery | A defined outcome, implemented result, current verification and delivery readback |
-| Develop a visual direction | [Design](skills/design/SKILL.md) → [Review Design](skills/review-design/SKILL.md) → implementation through Build when requested | A reusable design direction and selected previews or assets, reviewed against the brief |
-| Create or repurpose content | [Content](skills/content/SKILL.md), using [Human Writing](skills/human-writing/SKILL.md) for prose → Content's [final review](skills/content/references/final-review.md) → authorized delivery | A finished piece with evidence, voice and source lineage suited to its use |
-| Edit an ordinary video | Content → [Diffusion Studio](skills/diffusion-studio/SKILL.md) → Content's final review → authorized delivery | An edited video, inspected export and the evidence needed for its handoff |
-| Start a project or specialist solution | [Create Project](skills/aios-create-project/SKILL.md) or [Create System](skills/aios-create-system/SKILL.md) → the shared work lifecycle | An independent repository or maintained specialist, with its own requirements and verification |
-
-Interview starts when requested, or when material uncertainty at the start of
-work makes the direction unclear. A new project or agent alone does not trigger
-it. During execution, the assistant asks the necessary question and continues;
-a broader interview waits for an appropriate opening. Spec reuses interview
-answers rather than starting discovery again.
-
-Design and content can work together when a result needs both. Content owns the
-message and production; Design owns visual direction and expressive assets.
-The optional [OpenPencil Workbench](skills/openpencil-workbench/SKILL.md) supports
-an editable design companion. Diffusion Studio is optional external software;
-its skill is included, but the editor is not installed with AIOS. Final content
-review is a procedure inside Content, not a separate public skill.
-
-### Setup, context and maintenance
-
-| What you want to do | Skills and handoffs | What you get |
-| --- | --- | --- |
-| Set up or move your AIOS home | [Setup](skills/aios-setup/SKILL.md), using Interview where context needs exploration → [Maintain Context](skills/aios-maintain-context/SKILL.md) for source routes → [Check](skills/aios-check/SKILL.md) for affected setup proof | A usable home, relevant context, verified chosen connections and a first useful result |
-| Keep useful context current | Maintain Context → its [Sync procedure](skills/aios-maintain-context/references/sync.md) only when continuity is explicitly requested | Relevant facts and source pointers; optional scoped backup or restore |
+| Complete substantive work | Spec → [Build](skills/aios-build-work/SKILL.md) → [Review](skills/aios-review-work/SKILL.md) → Ship for authorized delivery | A defined outcome, implemented result, current verification and delivery readback |
+| Start a project or specialist solution | [Create Project](skills/aios-create-project/SKILL.md) or [Create System](skills/aios-create-system/SKILL.md) → the shared work lifecycle | An independent repository or maintained specialist with its own requirements and verification |
+| Set up or move your AIOS home | [Setup](skills/aios-setup/SKILL.md), using Interview where needed → [Maintain Context](skills/aios-maintain-context/SKILL.md) for source routes → [Check](skills/aios-check/SKILL.md) for affected setup proof | A usable home, relevant context, verified chosen connections and a first useful result |
+| Keep useful context current | Maintain Context → its [Sync procedure](skills/aios-maintain-context/references/sync.md) when explicitly requested | Relevant facts and source pointers; optional scoped backup or restore |
 | Create or change a skill | [Manage Skills](skills/aios-manage-skills/SKILL.md) → native authoring or installation → verification, using Check for discovery when relevant | One maintained capability with a known source, placement and recovery path |
-| Update or recover a package or specialist | [Update](skills/aios-update/SKILL.md) → native adoption or the specialist's maintenance procedure → Check where applicable | A selected revision with observed installation state and a recovery route |
+| Update or recover a package or specialist | [Update](skills/aios-update/SKILL.md) → native adoption or specialist maintenance → Check where applicable | A selected revision with observed installation state and a recovery route |
 
-Setup is the new name for `aios-onboard`; its canonical name is `aios-setup`.
-Update explicit shortcuts and callers when adopting this version. The package
-does not ship a duplicate Onboard alias. Setup owns installation and readiness;
-Interview supplies the reusable conversation. Existing homes resume from known
-facts without another foundation interview. Owner formats are unchanged.
+Interview starts when requested, or when material uncertainty at the start makes
+the direction unclear. A new project or agent alone does not trigger it. During
+execution, the assistant asks the necessary question and continues; a broader
+interview waits for an appropriate opening. Setup and Spec reuse accepted answers.
 
-### Methods used across workflows
+Setup replaces `aios-onboard` with the canonical name `aios-setup`. Update explicit
+shortcuts and callers when adopting this version. Existing homes resume from
+known facts without another foundation interview; owner formats are unchanged.
+Final content review and continuity Sync are procedures within their owning
+skills, not additional public skills.
+
+### Methods used across systems
 
 | Skill | When it contributes |
 | --- | --- |
-| [AIOS](skills/aios/SKILL.md) | Selects relevant owner context and the method for the task; independent repositories start with their local instructions |
+| [AIOS](skills/aios/SKILL.md) | Selects relevant owner context and methods; independent repositories start with local instructions |
 | [Write Code](skills/write-code/SKILL.md) | Supplies implementation and review criteria for code of any size, including scripts and automation |
-| [Human Writing](skills/human-writing/SKILL.md) | Drafts or revises prose directly, or supports another method's writing |
+| Human Writing | Drafts or revises prose directly, or supports another method's writing |
 | [Select Model](skills/aios-select-model/SKILL.md) | Assesses model and reasoning suitability when the remaining work warrants it |
 | [Orchestrate Workers](skills/aios-orchestrate-workers/SKILL.md) | Coordinates a justified delegation while the caller retains acceptance |
 | [Risky Changes](skills/aios-risky-changes/SKILL.md) | Adds representative proof and recovery planning when real-world consequences warrant them |
 | [Triage Improvement](skills/aios-triage-improvement/SKILL.md) | Turns a concrete underlying problem into a scoped, deduplicated improvement action under existing authority |
 
-These are composable methods, not background agents or a workflow engine.
-A **System** is a separately maintained specialist solution; a chain of skills
-does not need to become a System. The [skill index](docs/skills.md) lists all
-24 public entrypoints and their individual responsibilities.
+These built-in systems are assembled from skills, project artifacts and selected
+tools. Separately maintained specialist Systems, such as Power BI, can add their
+own dependencies and upkeep. Neither form requires a new AIOS runtime, project
+registry or background agent. The [skill index](docs/skills.md) lists all 24
+public entrypoints.
 
 ## Install in your app
 

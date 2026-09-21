@@ -44,7 +44,7 @@ its accepted result; no workflow engine or fixed chain schema is required.
 Working material stays in the project. Optional tool setup is loaded only for
 work that uses that tool.
 
-The [workflow overview](../README.md#skill-workflows) connects these entrypoints
+The [systems and workflow overview](../README.md#agentic-systems-and-skill-chains) connects these entrypoints
 by purpose and result. Interview owns adaptive exploration and a shared question
 procedure; Setup owns home and harness readiness. Spec reuses interview answers
 and owns the execution contract. Neither installation nor a new project alone

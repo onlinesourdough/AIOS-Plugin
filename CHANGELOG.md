@@ -10,9 +10,10 @@
   at the start of work. Keep clear tasks moving, use one blocking question
   during execution and reuse accepted answers in Setup and Spec. Extract the
   shared question/wait/resume procedure from setup into Interview.
-- Expand README with linked workflow tables covering all 24 public skills,
-  their useful results and conditional handoffs. Distinguish reusable skill
-  chains from independently maintained Systems and optional external tools.
+- Organize README around the Agentic Content and Design Systems: context,
+  skill chains, project artifacts and optional external workbenches. Cover all
+  24 public skills and explain working through Codex's browser, including the
+  distinct OpenPencil canvas and limited Diffusion Studio companion.
 - Advance AIOS to 2.2.0 and Spec to 1.1.0 for conditional Interview routing;
   patch Check, Maintain Context, Manage Skills and Update for the renamed
   setup references. Update native metadata, package checks and the selected-read

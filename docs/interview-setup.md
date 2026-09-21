@@ -121,3 +121,11 @@ change. Delivery targets this repository's existing private `main`, immutable
 Release review binds the final commit separately; native installation and
 fresh discovery are verified after delivery. Owner data and other apps remain
 outside this package adoption.
+
+The owner then clarified the README presentation before delivery: show the
+Agentic Content and Design Systems as context, coordinated skills, project
+artifacts and optional agent-native workbenches. Diffusion Studio parallels
+OpenPencil in that role. Explain direct work in Codex's built-in browser while
+preserving the implemented boundaries: local previews and OpenPencil's canvas,
+versus Diffusion's read-only companion without media-element support. This is
+a documentation clarification; the editors' runtime capabilities are unchanged.

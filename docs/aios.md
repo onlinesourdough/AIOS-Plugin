@@ -54,7 +54,20 @@ and selected companions. Content uses Human Writing, production as needed and
 its own final review; ordinary video can use the optional Diffusion Studio.
 These methods connect only where the accepted result needs them. Project and
 System creation, context maintenance, skill management and package updates each
-retain their focused owners. A skill chain is not a separately operated System.
+retain their focused owners.
+
+The **Agentic Content System** and **Agentic Design System** combine these
+domain skill chains with the project's context, working files and selected
+tools. They are built into AIOS; independently maintained specialist Systems
+can add their own dependencies and upkeep. Diffusion Studio is the optional
+video workbench, and OpenPencil is the optional design workbench. AIOS supplies
+their operating methods; the external applications are separately installed.
+
+In Codex, the built-in browser can show local design/application previews and
+the supported OpenPencil canvas. Diffusion Studio exposes a read-only companion;
+editing and export use its external desktop host. The current companion lacks
+media-element support, so final video review uses the actual export. Browser
+surfaces supplement the project files and native tools that perform the work.
 
 ## Design sources and skill names
 

@@ -23,6 +23,15 @@ Design and content chain their own specialist steps into this lifecycle. There
 is no chain configuration language, mandatory department model or fixed sequence
 between design and content. Short writing uses human-writing directly.
 
+The README presents these connected domain workflows as the **Agentic Content
+System** and **Agentic Design System**. Each combines context, skills, project
+artifacts and selected tools. These built-in systems use this plugin's methods;
+they do not require separate installations of the former ACS or ADS repositories.
+Diffusion Studio and OpenPencil are optional external workbenches. Their native
+interfaces own production, with browser surfaces where supported: OpenPencil's
+canvas, local design/application previews, and Diffusion's limited read-only
+companion. The current Diffusion companion does not support media elements.
+
 Use project-local `design/` and `content/` for working material and create them
 when needed. Product files belong where the project consumes them. Skill
 packages contain reusable methods and neutral assets, never customer work.
