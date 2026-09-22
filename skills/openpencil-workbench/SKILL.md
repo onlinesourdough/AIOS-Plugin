@@ -2,7 +2,7 @@
 name: openpencil-workbench
 description: Open, inspect, save and export an explicitly selected optional OpenPencil companion using an external release and isolated task state.
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # AIOS:openpencil-workbench
@@ -36,8 +36,26 @@ for an explicitly supplied compatible runtime; its version/layout check is
 **not** release-byte verification. Record its separately verified provenance.
 
 The helper copies the selected source into disposable `working_document` state
-before launching the daemon. Open its returned loopback `url` with an available
-harness browser; do not invoke an OS-browser launcher. Inspect the live canvas.
+before launching the daemon. After start and whenever resuming, run `status
+--state-dir <state>` afresh. Require `status: running`, the intended source and
+working-document paths, and the returned loopback URL; an old URL, PID or saved
+state file is not readiness evidence. `status: stopped` can exit successfully.
+
+In Codex, use only its built-in browser for this workbench unless the user
+explicitly chooses another browser. Reuse the matching tab or open one there;
+inspect and operate that same tab. Do not also launch Chrome, Playwright's
+separate browser, or an OS-browser opener for verification. In another harness,
+use its selected browser. If that browser is unavailable, report the limitation
+instead of silently opening an external browser.
+
+Inspect the actual loaded canvas and intended document before authoring and
+again before handing back a live editor. A responding status endpoint, HTTP
+200 or successful open call does not prove the editor rendered. If it fails,
+read bounded `logs --state-dir <state> --lines 80` and use the existing `check`
+command below for service/assets/document diagnostics. Preserve any recoverable
+working copy before stopping or recreating a session; restart the selected
+document in fresh private state only when the failure warrants it, then repeat
+status and canvas checks. Never present a stale link as a working editor.
 Fresh origins seed English only when no existing OpenPencil language preference
 exists. Served locale/CanvasKit checks do not prove rendered English.
 
@@ -59,7 +77,8 @@ Compare the reopened source and export with `DESIGN.md`. Run `check --state-dir
 <state> --document <candidate.op> --expected-nodes <count>
 --expected-document-sha256 <hash>`; add `--export <file.png>` and
 `--expected-export-sha256 <hash>` only for a validated file. Use `status` and
-bounded `logs --lines 80`, always with `--state-dir`. Leave the workbench open
+bounded `logs --lines 80`, always with `--state-dir`. Refresh status at handback
+and use that session's verified URL. Leave the workbench open
 for requested `waiting-review`; otherwise `stop --state-dir <state>` closes the
 daemon and removes its disposable state. Save candidates and needed proof first.
 

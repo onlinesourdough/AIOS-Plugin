@@ -20,10 +20,17 @@ Owner data and other harness registrations are outside the installation scope.
 | Design 1.2.0 | Own a conditional before/after reference with an identified baseline, comparable views and evidence appropriate to the claim |
 | Review Design 1.2.0 | Apply that same reference to selected comparisons and assess improvement, regressions and limitations against the brief |
 | Human Writing 1.1.0 | Add concrete editing examples while preserving facts, uncertainty, meaning and voice |
+| OpenPencil Workbench 1.0.2 | Check fresh status and the rendered document on start/resume and live handback; use one built-in Codex browser tab and preserve recoverable work during diagnosis |
 
 Before/after capture uses available tools and project/task evidence. No recorder,
 upload endpoint, PR automation, testing platform or external review service is
 introduced. Factory-specific workflows remain with the factory.
+
+The owner added OpenPencil readiness and duplicate-browser handling before
+release. The inspected task used a separate Playwright browser and then opened
+the same editor in Codex. The existing helper already offers live status and
+asset/document checks; the method now makes their use and actual canvas
+inspection explicit. No runtime patch or external browser installation is needed.
 
 ## Research and adaptation
 
@@ -77,6 +84,17 @@ model and available native controls requires no settings or model change.
   instructions, so they do not establish automatic discovery. Proposed checks
   and captures were not executed. Installation and release are verified later
   against this reviewed source; no such observation is claimed here.
+- OpenPencil's six existing helper fixtures passed using their synthetic daemon,
+  including status/logs, no OS opener, source isolation and cleanup. The helper
+  script is unchanged. An additional [five-case native decision probe](evidence/openpencil-readiness-probe.json)
+  rejected stopped-but-exit-zero readiness, treated a blank canvas as unverified,
+  preserved unsaved work before recovery, reused the built-in browser without
+  launching Chrome, and required the current session URL at handback. The probe
+  executed none of those browser/runtime actions. Incident inspection confirmed
+  the earlier duplicate-browser route; the latest reported runtime error was not
+  available from the task reader. This is a method correction, not a claim to
+  have reproduced or repaired that unobserved runtime failure. Package,
+  documentation and footprint checks passed again with this addition.
 
 ## Recovery
 

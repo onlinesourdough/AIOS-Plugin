@@ -13,6 +13,9 @@
 - Add concrete editing examples to Human Writing 1.1.0 for filler, inflated
   claims, forced contrasts, repetition and hedging, without mechanical bans or
   invented voice. Keep all 24 canonical skill identities and owner formats.
+- Require fresh status and rendered-canvas checks in OpenPencil Workbench 1.0.2
+  at startup, resume and live handback. Use one Codex built-in browser tab by
+  default, preserve recoverable work during diagnosis and avoid a second browser.
 
 ## 0.12.0 — 2026-09-21
 

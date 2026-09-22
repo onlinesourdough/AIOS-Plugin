@@ -1,7 +1,7 @@
 # Verification
 
 For 0.13.0, see [productivity skill refinements](productivity-refinements.md)
-for the accepted four-skill scope, factory boundary and bounded verification.
+for the accepted five-skill scope, factory boundary and bounded verification.
 
 For the 0.12.0 source candidate, see [Interview and Setup](interview-setup.md)
 for the accepted invocation boundaries, rename, README workflow coverage and
