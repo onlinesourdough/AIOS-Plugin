@@ -2,7 +2,7 @@
 name: write-code
 description: Write or change code of any size, including scripts, shell snippets, SQL, tests and automation; apply proportionate quality and verification, also when reviewing code.
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # AIOS:write-code
@@ -12,12 +12,11 @@ notebooks, executable configuration and code examples. Use the same criteria
 when reviewing code. Calling an existing tool or explaining existing code alone
 does not require a coding workflow.
 
-Reuse the accepted task, local AGENTS, repository conventions and available
-tools. Work directly on small requests; do not create a second specification,
-lifecycle or report. In Build, implement and verify. In read-only Review, inspect
-the code and current proof, report concrete findings through the existing review
-gate, and leave the subject unchanged. The skill does not grant execution or
-external-write authority; drafting code is not permission to run its effects.
+Use the accepted task, local AGENTS, repository conventions and available tools.
+Keep small requests direct. Build implements and verifies; read-only Review
+inspects code and proof and reports findings through the existing gate without
+editing. Do not create another specification, lifecycle or report. Drafting code
+grants no execution or external-write authority.
 
 ## Code that earns its complexity
 
@@ -25,11 +24,11 @@ external-write authority; drafting code is not permission to run its effects.
   that express the domain, clear control flow and the existing type/style rules.
   Handle meaningful failures explicitly; do not hide defects behind broad
   exception handling, invented defaults or success-shaped fallback results.
-- Give modules and functions coherent responsibilities. Reuse existing code;
-  separate behavior from I/O where it improves testing or understanding. Add an
-  abstraction or dependency for an actual responsibility, not a hypothetical
-  future need. Avoid unnecessary wrappers, tiny pass-through modules and copied
-  logic; a small script can remain one readable file.
+- Give modules and functions coherent responsibilities. Share code when callers
+  need the same behavior and should change together, not merely similar syntax.
+  Separate behavior from I/O when useful; a real boundary can justify one-caller
+  abstractions. Follow the repository's architecture. Avoid speculative
+  dependencies, wrappers and copied logic; a small script can remain one file.
 - Make interfaces consistent: inputs, outputs, validation boundaries and errors
   should form a clear contract. Preserve compatibility or make the accepted
   change explicit. Account for authorization, retries/idempotency and cancellation
@@ -44,6 +43,10 @@ external-write authority; drafting code is not permission to run its effects.
 - Complete the requested behavior and relevant failure, empty and loading
   states. Keep the patch scoped and affected documentation accurate. Do not add
   configuration or unrelated refactors to make a small change look substantial.
+
+When extracting shared behavior, inspect affected callers. Move a bounded part,
+verify one caller, then check the others before removing old code. Preserve
+caller policies and relevant authorization, transaction and retry behavior.
 
 ## Evidence suited to the change
 

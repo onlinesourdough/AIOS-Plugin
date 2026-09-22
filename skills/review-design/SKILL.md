@@ -2,7 +2,7 @@
 name: review-design
 description: Review a visual direction and selected companions against their brief without editing, or audit selected accumulated design evidence.
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # AIOS:review-design
@@ -38,6 +38,11 @@ Apply only the checks needed for the selected outcome:
   justified differences against the brief. Report an actionable discrepancy as
   expected choice, observed result, affected surface and bounded correction.
   Similarity alone is not quality, and upstream review labels are not task proof.
+- **Before/after evidence:** when a comparison is selected, use Design's
+  [comparison method](../design/references/before-after.md). Check that the
+  baseline is genuine, the views are comparable and the claimed improvement
+  serves the brief. Report meaningful regressions or evidence limits; an
+  attractive after-image alone does not establish a better result.
 - **Ownership and change evidence:** implementation/content responsibilities
   stay with their task owners. No automatic sibling chain, invented decision,
   weakened requirement or unsupported correction passes review. Recovered files

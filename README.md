@@ -2,6 +2,8 @@
 
 # AIOS
 
+**Business first. Productivity built in.**
+
 AIOS helps your AI assistant plan work, build it, review the result and remember
 useful decisions. Install it in the app you use. The same 24 skills work from
 one shared source, with native packaging for Codex, Pi, Claude Code, Gemini CLI,
@@ -10,6 +12,12 @@ Copilot CLI and Cursor.
 Small requests stay small. Larger tasks get a clear outcome, the relevant
 specialist method and a review before delivery. Your app still provides the
 models, tools and permissions.
+
+AIOS supports business work, decisions, content, design and practical automation.
+Its code guidance and verification stay proportional to the task. A Software &
+Defense Factory is a separate product with its own software/security skills,
+job isolation, review automation and PR integrations; it does not require AIOS.
+Useful principles can inform both products without a shared runtime dependency.
 
 ## Agentic systems and skill chains
 
@@ -58,6 +66,11 @@ The project's `DESIGN.md` holds the visual direction. Its `design/` folder can
 hold browser previews, assets and editable companions. Review checks the actual
 selected result against the brief, including relevant responsive and interaction
 states. An accepted direction can be used by implementation or content production.
+
+For a visual revision, [before/after comparison](skills/design/references/before-after.md)
+can make the change inspectable using a genuine baseline and comparable views.
+Review checks the claimed improvement and relevant regressions. Existing tools
+capture the evidence; no new upload service or automatic PR process is required.
 
 [OpenPencil Workbench](skills/openpencil-workbench/SKILL.md) is the optional
 visual editing environment. The agent can open a project companion, work on its

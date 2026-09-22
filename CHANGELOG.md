@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.13.0 — 2026-09-22
+
+- Keep AIOS focused on business productivity. Software & Defense Factory remains
+  an independent product with its own skills and runtime; no factory dependency,
+  additional skill or rename is introduced.
+- Clarify shared behavior and bounded refactoring in Write Code 1.0.2, preserving
+  repository architecture, caller policies and small-script simplicity.
+- Add an optional before/after method owned by Design, with genuine baselines,
+  comparable views, selected captures and honest limits. Design and Review
+  Design advance to 1.2.0; automation and PR publication stay project-owned.
+- Add concrete editing examples to Human Writing 1.1.0 for filler, inflated
+  claims, forced contrasts, repetition and hedging, without mechanical bans or
+  invented voice. Keep all 24 canonical skill identities and owner formats.
+
 ## 0.12.0 — 2026-09-21
 
 - Rename `aios-onboard` to `aios-setup` (`AIOS:setup`), preserving home,

@@ -1,11 +1,18 @@
 # AIOS
 
-AIOS version: 0.12.0
+AIOS version: 0.13.0
+
+**Business first. Productivity built in.**
 
 AIOS supplies portable context and skills to help an AI assistant work from an
 owner's relevant context and carry a task from a small request to a reviewed
 result. It is not a model, a hosted service, or a replacement for the tools and
 permissions supplied by the assistant's native harness.
+
+AIOS focuses on business work, decisions, content, design and practical
+automation. A Software & Defense Factory is independently maintained and owns
+its specialized software/security skills, execution and PR automation. It does
+not depend on AIOS; shared inspiration does not require a shared runtime.
 
 ## Shared method, owner context
 
@@ -38,6 +45,13 @@ to the change. The native app owns
 projects and sessions; AIOS adds no second project register. Spaces hold relevant
 business context, while optional specialist Systems keep their own upkeep.
 Design and content working material stays in the project.
+
+Visual revisions can use [before/after comparisons](../skills/design/references/before-after.md)
+with an identified baseline, comparable views and a brief explanation of the
+change. Review Design evaluates the result. Human Writing includes concrete
+editing examples while preserving the author's meaning, evidence and voice.
+Write Code helps distinguish useful sharing from superficially similar code
+and keeps refactoring scoped to the affected behavior.
 
 ## Connected work methods
 

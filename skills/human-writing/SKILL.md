@@ -2,7 +2,7 @@
 name: human-writing
 description: Draft or revise prose for clear, concise, natural communication suited to its intended reader.
 metadata:
-  version: "1.0.2"
+  version: "1.1.0"
 ---
 
 # AIOS:human-writing
@@ -45,6 +45,22 @@ Treat familiar stock phrases, forced contrasts, decorative emphasis and
 mechanical lists as editing signals, not banned tokens. Keep useful headings,
 lists, technical terms and punctuation. Respect a requested house style;
 natural prose does not require deliberate errors or informality.
+
+Use concrete edits where a pattern obscures meaning. These examples illustrate
+choices, not a required tone or a list of forbidden words:
+
+| Signal | Useful edit |
+| --- | --- |
+| Filler and delayed meaning | "At this point in time, we are in the process of reviewing the draft" can become "We are reviewing the draft." |
+| Inflated praise or a vague benefit | For "This groundbreaking update transforms the experience," name the actual supported change. If the source supplies none, remove or question the claim; do not invent a benefit. |
+| A forced contrast or mechanical list | Replace "We don't just plan; we redefine planning" with the supported purpose of the plan. Keep a contrast or list when the distinctions help the reader. |
+| Repetition disguised as variety | Use the same name for the same thing; remove repeated conclusions rather than cycling through synonyms or adding another summary. |
+| Hidden actor or stacked hedges | "The draft was reviewed by the team" can become "The team reviewed the draft." "Could potentially possibly help" can become "may help"; retain material uncertainty. |
+
+Apply these choices to the requested prose, including documentation and PR
+descriptions when those are the deliverable. Preserve deliberate rhythm,
+technical precision and the author's voice instead of making every text sound
+alike. Do not add an opinion or personal anecdote to make a draft feel human.
 
 ## Preserve the evidence
 

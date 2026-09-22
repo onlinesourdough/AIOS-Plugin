@@ -2,7 +2,7 @@
 name: design
 description: Create or revise a portable visual direction and selected previews or assets for a website, app, dashboard, report, slide, or content surface.
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # AIOS:design
@@ -31,6 +31,9 @@ Load only what the task needs:
   discovery of a missing visual role, or comparison of unresolved directions.
 - [Authoring](references/design-solution.md) when making or revising the direction
   or its rendered surface.
+- [Before/after comparison](references/before-after.md) when revising an existing
+  visual surface and a comparison helps assess the change, or when requested.
+  Preserve a useful baseline before editing when practical.
 - [Portable helpers and snapshots](references/portable-work.md) to serve a
   selected HTML preview or deliver an exact snapshot to another owner.
 - [OpenPencil workbench](../openpencil-workbench/SKILL.md) only for a selected
