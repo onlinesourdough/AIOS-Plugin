@@ -8,7 +8,8 @@
     "skills/aios-project-foundation/references/ci-delivery.md": "c6ef20552f4a8e3d769ebf6becc5bd01f0ac88cbce8c4681bb99564971a322c0",
     "skills/aios-project-foundation/references/documents.md": "ec7ba410a3167c1ea4beacd7acb0cb999d5bc0a0417fef2c5bfb47a1165fddad",
     "skills/aios-project-foundation/references/factory.md": "787a89171a50253dff47aa2e263526d8eb612c5e8ae81f512cedb3a65b48d744",
-    "skills/aios-project-foundation/references/foundation.md": "9e7da3c0b634bc5e893ff4b7187f23b00f37afc0977bff2b8cc9865f604117cd"
+    "skills/aios-project-foundation/references/foundation.md": "9e7da3c0b634bc5e893ff4b7187f23b00f37afc0977bff2b8cc9865f604117cd",
+    "skills/aios-create-project/SKILL.md": "8be0fe95015449992d763bddf03c3b01b456d29d08f05f7543972ce2c59983bb"
   },
   "cases": [
     {
@@ -75,11 +76,41 @@
         "output_tokens": 15173,
         "reasoning_output_tokens": 5362
       }
+    },
+    {
+      "case": "neutral creation from immutable candidate",
+      "harness": "codex-cli 0.156.1",
+      "model": "gpt-6-luna",
+      "effort": "max",
+      "mode": "ephemeral synthetic workspace with an isolated detached template source",
+      "template_source_commit": "33567f30d27ce9571783288a11f1426358f74ee6",
+      "observations": [
+        "Verified source SHA, physical root and clean state before and after generation.",
+        "Template validator passed; created a neutral general seed on main with no commits, tracked files or remotes.",
+        "Documentation links and single AGENTS/CLAUDE instruction body verified.",
+        "No product license, application files, hosting or factory claims were fabricated.",
+        "The out-of-place helper does not embed a source SHA; verified evaluation provenance remains in this receipt and the task result."
+      ],
+      "result_sha256": "bf7a1b68cff0233d6da4631c7eb8e5a3596ff3ec510bdbe47cb6a2af97822aa4",
+      "events_sha256": "e0c99dbb3e5f173c6cecd84a1cc9462a95df40fafcac9e70c286a8db03bc09fd",
+      "reported_usage": {
+        "input_tokens": 370984,
+        "cached_input_tokens": 326912,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 11240,
+        "reasoning_output_tokens": 7560
+      }
     }
   ],
   "limits": [
     "These are bounded synthetic authoring observations, not performance comparisons.",
     "No live cloud, application factory qualification, production deployment or defence monitoring was executed.",
     "Other harnesses have packaging/source validation; no cross-harness model behavior is claimed."
-  ]
+  ],
+  "template_generation_sha256": {
+    "scripts/create-project.sh": "0fad5502ac3373719178a571ec40944ce23c22eb2dde4ded5009dba2e427b027",
+    "scripts/foundation-content.sh": "db5f9cd710ee9cbff74d7366f57166b6d80392940300957d6175feb8ebf480fb",
+    "LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec",
+    ".agents/skills/README.md": "e21b73ca39e79dca3cedefd63f145e4aa8209e16ef4710a0a088bea6616f9e94"
+  }
 }

@@ -60,3 +60,8 @@ and preserved proprietary product licensing with separate template attribution.
 Its mutable candidate source was reported honestly; Create Project now explicitly
 requires an isolated fixed seed and a fresh identity/clean-state check for either
 creation route. Local payload tests cover all four generated project kinds.
+The final neutral-seed probe used an isolated detached APT source at `33567f3`,
+verified its clean identity before and after generation, and observed main with
+empty history, no remote, valid routes and preserved unresolved product licensing.
+Out-of-place source provenance is in the receipt/task result because the current
+helper embeds generic attribution only; no live remote-acquisition claim is made.
