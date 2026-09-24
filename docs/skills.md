@@ -1,6 +1,6 @@
 # AIOS skills
 
-AIOS ships 24 native skills. Their titles and Codex display names use
+AIOS ships 25 native skills. Their titles and Codex display names use
 `AIOS:skill-name`: uppercase `AIOS`, a colon without spaces, and lowercase
 hyphenated names. The display label omits a redundant leading `aios-` from the
 canonical name. Automatic selection uses each skill description; explicit
@@ -25,6 +25,7 @@ carries an independent quoted `metadata.version`; see
 | [AIOS:build-work](../skills/aios-build-work/SKILL.md) | Implement and verify accepted work through in-scope fixes and Review |
 | [AIOS:check](../skills/aios-check/SKILL.md) | Inspect installation, owner format, and discovery |
 | [AIOS:create-project](../skills/aios-create-project/SKILL.md) | Start a new independent repository in the chosen workspace |
+| [AIOS:project-foundation](../skills/aios-project-foundation/SKILL.md) | Establish working project foundations and a requested application-to-factory transition |
 | [AIOS:create-system](../skills/aios-create-system/SKILL.md) | Establish an optional separately maintained specialist |
 | [AIOS:maintain-context](../skills/aios-maintain-context/SKILL.md) | Maintain owner facts, routes, connections, and explicit continuity Sync |
 | [AIOS:manage-skills](../skills/aios-manage-skills/SKILL.md) | Manage personal and installed skill lifecycles |

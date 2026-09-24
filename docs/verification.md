@@ -1,5 +1,9 @@
 # Verification
 
+For 0.14.0, see [Project Foundation](project-foundation.md) for shared template
+content, selected application obligations, CI cadence, runtime boundaries and
+the required distinction between source checks and behavioral evidence.
+
 For 0.13.0, see [productivity skill refinements](productivity-refinements.md)
 for the accepted five-skill scope, factory boundary and bounded verification.
 

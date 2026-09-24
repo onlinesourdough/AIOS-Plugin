@@ -5,7 +5,7 @@
 **Business first. Productivity built in.**
 
 AIOS helps your AI assistant plan work, build it, review the result and remember
-useful decisions. Install it in the app you use. The same 24 skills work from
+useful decisions. Install it in the app you use. The same 25 skills work from
 one shared source, with native packaging for Codex, Pi, Claude Code, Gemini CLI,
 Copilot CLI and Cursor.
 
@@ -113,6 +113,7 @@ step, not a requirement to repeat work or use every skill.
 | Think through an idea, agent or automation | [Interview](skills/aios-interview/SKILL.md) → [Spec](skills/aios-spec-work/SKILL.md) when execution needs a contract | Shared understanding, challenged assumptions, decisions and a useful next action |
 | Complete substantive work | Spec → [Build](skills/aios-build-work/SKILL.md) → [Review](skills/aios-review-work/SKILL.md) → Ship for authorized delivery | A defined outcome, implemented result, current verification and delivery readback |
 | Start a project or specialist solution | [Create Project](skills/aios-create-project/SKILL.md) or [Create System](skills/aios-create-system/SKILL.md) → the shared work lifecycle | An independent repository or maintained specialist with its own requirements and verification |
+| Move an MVP or legacy application into a reliable working environment | [Project Foundation](skills/aios-project-foundation/SKILL.md) → repair and verification → requested factory handoff | Reproducible setup, maintained project contracts, working CI and selected non-production delivery/compute with actual evidence |
 | Set up or move your AIOS home | [Setup](skills/aios-setup/SKILL.md), using Interview where needed → [Maintain Context](skills/aios-maintain-context/SKILL.md) for source routes → [Check](skills/aios-check/SKILL.md) for affected setup proof | A usable home, relevant context, verified chosen connections and a first useful result |
 | Keep useful context current | Maintain Context → its [Sync procedure](skills/aios-maintain-context/references/sync.md) when explicitly requested | Relevant facts and source pointers; optional scoped backup or restore |
 | Create or change a skill | [Manage Skills](skills/aios-manage-skills/SKILL.md) → native authoring or installation → verification, using Check for discovery when relevant | One maintained capability with a known source, placement and recovery path |
@@ -144,7 +145,7 @@ skills, not additional public skills.
 These built-in systems are assembled from skills, project artifacts and selected
 tools. Separately maintained specialist Systems, such as Power BI, can add their
 own dependencies and upkeep. Neither form requires a new AIOS runtime, project
-registry or background agent. The [skill index](docs/skills.md) lists all 24
+registry or background agent. The [skill index](docs/skills.md) lists all 25
 public entrypoints.
 
 ## Install in your app
@@ -350,7 +351,7 @@ Resources domain. Selective reading saves context whether the file is local or
 remote; hosting alone does not reduce the tokens of content actually read.
 Future standards-based discovery and updates are tracked in [issue #12](https://github.com/onlinesourdough/AIOS-Plugin/issues/12).
 
-Read about the [24 skills](docs/skills.md), [architecture](docs/architecture.md),
+Read about the [25 skills](docs/skills.md), [architecture](docs/architecture.md),
 [verification](docs/verification.md), [recovery](docs/recovery.md) and
 [version history](CHANGELOG.md). GitHub [Releases](https://github.com/onlinesourdough/AIOS-Plugin/releases)
 lists published releases. The [release procedure](docs/distribution.md#release-and-adoption)

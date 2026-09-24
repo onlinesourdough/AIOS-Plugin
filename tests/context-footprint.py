@@ -24,6 +24,7 @@ JOB_PREFIXES = {
     "aios-check": "Verify ",
     "aios-create-project": "Start ",
     "aios-create-system": "Establish ",
+    "aios-project-foundation": "Establish ",
     "aios-maintain-context": "Curate ",
     "aios-manage-skills": "Manage ",
     "aios-setup": "Set up, resume or move ",
