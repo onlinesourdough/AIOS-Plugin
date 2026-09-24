@@ -1,0 +1,116 @@
+{
+  "source_baseline": "aeacc79adb7c2d9b41abc0d9f6960afeb8af8901",
+  "package_candidate": "0.14.0",
+  "date": "2026-09-24",
+  "source_sha256": {
+    "skills/aios-project-foundation/SKILL.md": "2a1badc514a3a838e46fd2e27b278e47c484b12af1d50b873aadf8e537fd3410",
+    "skills/aios-project-foundation/agents/openai.yaml": "cba01b2420795f422dcee8b1f373a0884218d574de690544bfc0ef89dd9ace24",
+    "skills/aios-project-foundation/references/ci-delivery.md": "c6ef20552f4a8e3d769ebf6becc5bd01f0ac88cbce8c4681bb99564971a322c0",
+    "skills/aios-project-foundation/references/documents.md": "ec7ba410a3167c1ea4beacd7acb0cb999d5bc0a0417fef2c5bfb47a1165fddad",
+    "skills/aios-project-foundation/references/factory.md": "787a89171a50253dff47aa2e263526d8eb612c5e8ae81f512cedb3a65b48d744",
+    "skills/aios-project-foundation/references/foundation.md": "9e7da3c0b634bc5e893ff4b7187f23b00f37afc0977bff2b8cc9865f604117cd",
+    "skills/aios-create-project/SKILL.md": "8be0fe95015449992d763bddf03c3b01b456d29d08f05f7543972ce2c59983bb"
+  },
+  "cases": [
+    {
+      "case": "legacy local repair",
+      "harness": "codex-cli 0.156.1",
+      "model": "gpt-6-sol",
+      "effort": "high",
+      "mode": "ephemeral synthetic workspace, local candidate skill discovery",
+      "observations": [
+        "Read the candidate foundation entrypoint through native local skill discovery.",
+        "Corrected stale npm test guidance to the real Python command; four tests and a clean-copy example passed.",
+        "Retained existing subdirectory architecture/design, product license and application code; no duplicate root copies.",
+        "Reported absent remote/CI/worker/factory evidence; no network or provider actions."
+      ],
+      "result_sha256": "a667c78d035c9e838a92c0c2502e230a447ac2e66a5ff539baa715840027c23d",
+      "events_sha256": "6f3c7ece004c6de0c87291eb76f9a4eef4591faf554182d7960fc8e5a92a55d4",
+      "reported_usage": {
+        "input_tokens": 258889,
+        "cached_input_tokens": 231424,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7189,
+        "reasoning_output_tokens": 2643
+      }
+    },
+    {
+      "case": "already repaired project",
+      "harness": "codex-cli 0.156.1",
+      "model": "gpt-6-sol",
+      "effort": "high",
+      "mode": "ephemeral synthetic workspace, local candidate skill discovery",
+      "observations": [
+        "Read final document contract and added only the missing docs index route to AGENTS.",
+        "Existing changes were preserved; four tests and document links passed.",
+        "Kept the local preparation result separate from later factory qualification."
+      ],
+      "result_sha256": "04bac23b342991e6e35290ee31b561cd873bccb6cffbce48088df8c70a4b803f",
+      "events_sha256": "95021ecd7d1ea78feb0639242c70fbe776e5a50bca97559e82b13f114e9244fc",
+      "reported_usage": {
+        "input_tokens": 170584,
+        "cached_input_tokens": 145280,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2976,
+        "reasoning_output_tokens": 1332
+      }
+    },
+    {
+      "case": "application creation and completion",
+      "harness": "codex-cli 0.156.1",
+      "model": "gpt-6-sol",
+      "effort": "high",
+      "mode": "ephemeral synthetic workspace, local candidate skill discovery",
+      "observations": [
+        "Used the actual APT candidate helper with the CLI kind, then implemented a standard-library local CLI.",
+        "Filled application documents from accepted facts; four tests and both CLI outputs passed.",
+        "Fresh Git history and no remote; private product license and separate template attribution.",
+        "The candidate checkout changed during evaluation; generation files were unchanged, but no immutable live acquisition is claimed. A separate frozen-source creation probe covers that boundary."
+      ],
+      "result_sha256": "5472e7d92055b47d94964da4c72bddfaf2ec3202e4c1b774136f16d5fbf74f3c",
+      "events_sha256": "6a4e4fa7ac69e5eaa91e91e628d0059fc3589aec1885b5bb05dd1ab61aab1dab",
+      "reported_usage": {
+        "input_tokens": 1235556,
+        "cached_input_tokens": 1177088,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 15173,
+        "reasoning_output_tokens": 5362
+      }
+    },
+    {
+      "case": "neutral creation from immutable candidate",
+      "harness": "codex-cli 0.156.1",
+      "model": "gpt-6-luna",
+      "effort": "max",
+      "mode": "ephemeral synthetic workspace with an isolated detached template source",
+      "template_source_commit": "33567f30d27ce9571783288a11f1426358f74ee6",
+      "observations": [
+        "Verified source SHA, physical root and clean state before and after generation.",
+        "Template validator passed; created a neutral general seed on main with no commits, tracked files or remotes.",
+        "Documentation links and single AGENTS/CLAUDE instruction body verified.",
+        "No product license, application files, hosting or factory claims were fabricated.",
+        "The out-of-place helper does not embed a source SHA; verified evaluation provenance remains in this receipt and the task result."
+      ],
+      "result_sha256": "bf7a1b68cff0233d6da4631c7eb8e5a3596ff3ec510bdbe47cb6a2af97822aa4",
+      "events_sha256": "e0c99dbb3e5f173c6cecd84a1cc9462a95df40fafcac9e70c286a8db03bc09fd",
+      "reported_usage": {
+        "input_tokens": 370984,
+        "cached_input_tokens": 326912,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 11240,
+        "reasoning_output_tokens": 7560
+      }
+    }
+  ],
+  "limits": [
+    "These are bounded synthetic authoring observations, not performance comparisons.",
+    "No live cloud, application factory qualification, production deployment or defence monitoring was executed.",
+    "Other harnesses have packaging/source validation; no cross-harness model behavior is claimed."
+  ],
+  "template_generation_sha256": {
+    "scripts/create-project.sh": "0fad5502ac3373719178a571ec40944ce23c22eb2dde4ded5009dba2e427b027",
+    "scripts/foundation-content.sh": "db5f9cd710ee9cbff74d7366f57166b6d80392940300957d6175feb8ebf480fb",
+    "LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec",
+    ".agents/skills/README.md": "e21b73ca39e79dca3cedefd63f145e4aa8209e16ef4710a0a088bea6616f9e94"
+  }
+}

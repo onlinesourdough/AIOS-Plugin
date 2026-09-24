@@ -15,7 +15,7 @@ from package_documentation import check as validate_documentation
 ROOT = Path(__file__).resolve().parents[1]
 SKILL_NAMES = {
     "aios", "aios-build-work", "aios-check", "aios-create-project",
-    "aios-create-system", "aios-maintain-context", "aios-manage-skills",
+    "aios-create-system", "aios-project-foundation", "aios-maintain-context", "aios-manage-skills",
     "aios-setup", "aios-interview", "aios-orchestrate-workers", "aios-review-work",
     "aios-risky-changes", "aios-ship-work", "aios-spec-work", "aios-triage-improvement",
     "aios-update", "aios-select-model", "human-writing", "write-code",
@@ -183,13 +183,17 @@ def validate(root=ROOT, release_tag=None):
         require("disable-model-invocation" not in fields, f"implicit invocation: {path}")
 
     primary_targets = set(link_targets(skill_root / "aios/SKILL.md"))
-    for name in ("design", "content", "human-writing", "write-code", "aios-interview", "aios-setup"):
+    for name in ("design", "content", "human-writing", "write-code", "aios-interview", "aios-setup", "aios-project-foundation"):
         require((skill_root / name / "SKILL.md").resolve() in primary_targets,
                 f"built-in method route missing: {name}")
     for caller in ("aios-build-work", "aios-review-work"):
         require((skill_root / "write-code/SKILL.md").resolve() in
                 set(link_targets(skill_root / caller / "SKILL.md")),
                 f"shared code-quality route missing: {caller}")
+    creation_targets = set(link_targets(skill_root / "aios-create-project/SKILL.md"))
+    for target in ("SKILL.md", "references/foundation.md", "references/documents.md"):
+        require((skill_root / "aios-project-foundation" / target).resolve() in creation_targets,
+                f"shared project-foundation contract missing: {target}")
     # Spec owns contract preparation; tracking is one linked shared owner.
     # Native decisions require the independent behavioral probes, not wording tests.
     spec_targets = set(link_targets(skill_root / "aios-spec-work/SKILL.md"))

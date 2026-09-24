@@ -1,6 +1,6 @@
 # AIOS
 
-AIOS version: 0.13.0
+AIOS version: 0.14.0
 
 **Business first. Productivity built in.**
 
@@ -69,6 +69,18 @@ its own final review; ordinary video can use the optional Diffusion Studio.
 These methods connect only where the accepted result needs them. Project and
 System creation, context maintenance, skill management and package updates each
 retain their focused owners.
+
+[Project Foundation](../skills/aios-project-foundation/SKILL.md) establishes or
+repairs an MVP or legacy project's engineering foundations and connects it to
+the independent factory when requested. It covers working setup/checks, concise
+agent instructions, architecture/design/security and operating documents,
+GitHub workflow, suitable compute and actual non-production delivery evidence.
+Create Project shares its content contract; template generation alone does not
+prove readiness. Existing valid sources survive and unrelated project types
+do not acquire a hosting stack. Required PR checks remain before merge while
+complete application batches can run every three hours, skipping already verified
+revisions through a small control job. This adds no factory runtime or automatic
+production deployment to AIOS.
 
 The **Agentic Content System** and **Agentic Design System** combine these
 domain skill chains with the project's context, working files and selected

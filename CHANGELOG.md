@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.14.0 — 2026-09-24
+
+- Add Project Foundation 1.0.0 for repairing MVP/legacy engineering foundations
+  and a requested transition to an independent Software and Defence Factory.
+  Working setup, meaningful checks, remote compute and non-production delivery
+  need real evidence; documents and initialization alone do not prove readiness.
+- Share the project/document content contract with Create Project 2.1.0. Preserve
+  canonical legacy sources, concise AGENTS guidance, template attribution and
+  the distinction between a new seed and a qualified application. Keep documents
+  current with the changes they describe.
+- Define the application CI profile: required relevant PR checks before merge,
+  complete batches every three hours, exact-revision skip evidence, one small
+  idle control job and manual full runs. Keep branch, environment and actual
+  factory patch/PR handoff responsibilities explicit without adding a controller.
+- Advance AIOS routing to 2.3.0 and native package metadata to 25 skills. Owner
+  format and existing installations remain independent of project preparation.
+
 ## 0.13.0 — 2026-09-22
 
 - Keep AIOS focused on business productivity. Software & Defense Factory remains
