@@ -1,8 +1,8 @@
 ---
 name: aios
-description: Apply relevant owner context and choose AIOS methods for business work, design, content, AIOS setup or documentation.
+description: Apply owner context and select AIOS methods for the task.
 metadata:
-  version: "2.3.0"
+  version: "2.4.0"
 ---
 
 # AIOS:aios

@@ -13,7 +13,7 @@ task; AIOS has no model runner, background service or permission system.
 | Skills | Reusable methods, standards and judgment, with references and small helpers as needed |
 | Project repository | Local requirements, implementation, design and content material, proof and recovery |
 | Optional System | A separately maintained specialist with its own dependencies or operational needs |
-| Native manifests | Package identity and discovery over the same 24 skills |
+| Native manifests | Package identity and discovery over one shared skill directory |
 
 ## Work and methods
 
@@ -31,6 +31,11 @@ Diffusion Studio and OpenPencil are optional external workbenches. Their native
 interfaces own production, with browser surfaces where supported: OpenPencil's
 canvas, local design/application previews, and Diffusion's limited read-only
 companion. The current Diffusion companion does not support media elements.
+
+Excalidraw is a general diagram method, independent of content or design. Its
+optional external toolkit exposes a live editable browser canvas; architecture
+and other diagrams remain project artifacts. Image exports are optional and
+native browser access is verified separately from server/file operations.
 
 Use project-local `design/` and `content/` for working material and create them
 when needed. Product files belong where the project consumes them. Skill

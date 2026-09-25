@@ -16,16 +16,16 @@ Record a material decision and its rationale in the source that owns the work.
   requested or when material uncertainty at the start prevents choosing a
   direction. Use its activation rules; ordinary execution continues without it.
 - [Design](../../design/SKILL.md) creates or evaluates visual direction and assets.
+- [Excalidraw](../../excalidraw/SKILL.md) creates general and architecture diagrams
+  on an editable browser canvas, independently or for another method.
 - [Content](../../content/SKILL.md) creates, revises or repurposes editorial work.
 - [Human writing](../../human-writing/SKILL.md) makes prose clear and natural.
 - Shared [lifecycle](lifecycle.md) supplies specification, implementation, review
   and authorized delivery with the task's local requirements.
 
-Select methods for their contribution to the result. Design and content may
-work independently or pass relevant reviewed material to each other. Preserve
-source identity, version and review when it matters; do not invent a cross-System
-handoff for work with the same owner. Domain review remains necessary where
-selected; deterministic validity alone does not establish quality.
+Select methods for their contribution, independently or in sequence. Preserve
+source identity, version and review where relevant. Keep same-owner work together.
+Domain review still applies; deterministic validity alone does not establish quality.
 
 Working material belongs in the project's design/ or content/ folders as needed.
 Use the actual project's context and keep one authoritative source for each

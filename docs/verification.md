@@ -1,5 +1,8 @@
 # Verification
 
+For the 0.15.0 source candidate, see [Excalidraw](excalidraw.md) for the
+general/architecture diagram contract, external tool choice and proof limits.
+
 For 0.14.0, see [Project Foundation](project-foundation.md) for shared template
 content, selected application obligations, CI cadence, runtime boundaries and
 the required distinction between source checks and behavioral evidence.
