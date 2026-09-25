@@ -1,8 +1,8 @@
 ---
 name: content
-description: Create, revise or reuse content, configure channel and style defaults, or audit a named content outcome read-only. Use Diffusion Studio for ordinary video editing.
+description: Create, revise, reuse or audit content and configure channel/style defaults. Use Diffusion Studio for video editing.
 metadata:
-  version: "1.0.1"
+  version: "1.1.0"
 ---
 
 # AIOS:content
@@ -30,6 +30,7 @@ Read only the detail needed:
 | Requested readiness or audit | [Read-only audit](references/audit.md): bounded evidence and gaps |
 | Reference study or local transcription | [Reference analysis](references/reference-analysis.md) or [local transcription](references/local-transcription.md) |
 | Ordinary video | [Diffusion Studio](../diffusion-studio/SKILL.md): external pinned Electron/DAPI editing and supervised export |
+| Editable explanatory diagram | [Excalidraw](../excalidraw/SKILL.md): select the view and draw on a live canvas; return the scene and any requested visual assets |
 | Entire code-animated explainer or bounded motion overlay | [Specialist motion](references/specialist-motion.md) |
 
 Continue through relevant validation, inspection and in-scope fixes. Preserve

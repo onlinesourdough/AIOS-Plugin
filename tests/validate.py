@@ -19,7 +19,7 @@ SKILL_NAMES = {
     "aios-setup", "aios-interview", "aios-orchestrate-workers", "aios-review-work",
     "aios-risky-changes", "aios-ship-work", "aios-spec-work", "aios-triage-improvement",
     "aios-update", "aios-select-model", "human-writing", "write-code",
-    "design", "review-design", "openpencil-workbench", "content", "diffusion-studio",
+    "design", "review-design", "openpencil-workbench", "content", "diffusion-studio", "excalidraw",
 }
 LEGACY_ROUTE_TARGETS = {
     "aios": ("../../aios/SKILL.md", "../SKILL.md", "../../aios-check/SKILL.md",
@@ -69,7 +69,7 @@ FORBIDDEN_BOUNDARY_TEXT = {
     "skills/aios-manage-skills/SKILL.md": ("skills.sh", "npx skills"),
 }
 FORBIDDEN_SHIPPED_PATTERNS = (r"\bnpx skills\b", r"\bskills\.sh\b")
-DOMAIN_SKILLS = {"design", "review-design", "openpencil-workbench", "content", "diffusion-studio"}
+DOMAIN_SKILLS = {"design", "review-design", "openpencil-workbench", "content", "diffusion-studio", "excalidraw"}
 PRODUCT_PATHS = ("plugin.json", ".codex-plugin", ".claude-plugin", ".cursor-plugin",
                  "gemini-extension.json", "skills", "assets/icon.png", "LICENSE",
                  "docs/aios.md")

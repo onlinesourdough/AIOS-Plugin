@@ -1,0 +1,4 @@
+interface:
+  display_name: "AIOS:excalidraw"
+  short_description: "Editable diagrams and architecture views in the browser"
+  default_prompt: "Use $excalidraw to choose a clear diagram for this question and draw it on an editable canvas in the built-in browser."

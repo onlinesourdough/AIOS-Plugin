@@ -1,6 +1,6 @@
 # AIOS
 
-AIOS version: 0.14.0
+AIOS version: 0.15.0
 
 **Business first. Productivity built in.**
 
@@ -143,3 +143,12 @@ needed. Its version travels with the shared methods in the installed package.
 Native package updates are separate from owner-data Sync. There is no AIOS
 documentation or skill runtime on the Resources domain. A newer upstream
 release does not replace instructions already read into an active conversation.
+
+## Diagrams
+
+The bundled [Excalidraw skill](../skills/excalidraw/SKILL.md) supports general
+diagrams and architecture views on a live editable canvas in the built-in
+browser. It works independently of content and owner setup. The selected
+external toolkit is optional and separately installed; diagrams stay in the
+project as editable sources. Image exports are optional. Missing browser
+access is reported rather than replaced with an unverified editor claim.

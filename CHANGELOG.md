@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.15.0 — 2026-09-25
+
+- Add Excalidraw 1.0.0 for general diagrams and architecture views, independent
+  of content, manuscripts and owner context. Choose the view from the question,
+  ground existing architecture in sources and retain meaningful relationships.
+- Use a live editable canvas in the built-in browser with a saved `.excalidraw`
+  source. PNG/SVG exports are optional. Missing browser control remains an
+  explicit gap; server status and file creation do not prove a rendered editor.
+- Document the pinned external toolkit, portable optional setup, source rights,
+  live edits and recovery. AIOS adds no install hook, bundled editor or automatic
+  MCP registration. Existing user canvases and project files remain separate.
+- Advance AIOS routing to 2.4.0, Content to 1.1.0 and package metadata to 26 skills.
+
 ## 0.14.0 — 2026-09-24
 
 - Add Project Foundation 1.0.0 for repairing MVP/legacy engineering foundations

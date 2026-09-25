@@ -18,7 +18,7 @@ JOB_PREFIXES = {
     "human-writing": "Draft ",
     "write-code": "Write ",
     "design": "", "review-design": "", "openpencil-workbench": "",
-    "content": "", "diffusion-studio": "",
+    "content": "", "diffusion-studio": "", "excalidraw": "",
     "aios": "Apply ",
     "aios-build-work": "Implement ",
     "aios-check": "Verify ",

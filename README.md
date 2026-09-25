@@ -5,7 +5,7 @@
 **Business first. Productivity built in.**
 
 AIOS helps your AI assistant plan work, build it, review the result and remember
-useful decisions. Install it in the app you use. The same 25 skills work from
+useful decisions. Install it in the app you use. The same 26 skills work from
 one shared source, with native packaging for Codex, Pi, Claude Code, Gemini CLI,
 Copilot CLI and Cursor.
 
@@ -80,6 +80,14 @@ without OpenPencil. Its external runtime is separate from the AIOS plugin.
 
 ### Workbenches and the built-in browser
 
+[Excalidraw](skills/excalidraw/SKILL.md) turns an idea, process or system into an
+editable diagram. It helps choose the right view, including architecture,
+sequence, deployment and data-flow diagrams, and checks the explanation against
+its sources. It works independently of content and design. AIOS includes the
+method; the reviewed external toolkit is installed separately when needed.
+The primary result is a live canvas in the built-in browser plus its saved
+editable source. Image exports are optional.
+
 Codex remains the place where you direct the work. Agent-native software gives
 the agent a supported interface for operating an external tool, while a browser
 view lets you inspect or work with the result in the same workspace. Each tool
@@ -88,6 +96,7 @@ keeps its own editing, saving and export capabilities.
 | Surface | What happens directly in Codex's built-in browser | Where production happens |
 | --- | --- | --- |
 | Browser-ready design or application preview | Open a local preview, inspect layouts and test relevant interactions | The agent changes project files and checks the rendered result |
+| Excalidraw canvas | Work with editable shapes, labels and connections on a local live board | The selected external toolkit and browser share one scene; saved `.excalidraw` files stay with the project |
 | OpenPencil workbench | Open the returned local workbench URL; view and operate the canvas through the supported browser workflow | The external OpenPencil runtime edits a working copy; reviewed candidates and exports return to the project |
 | Diffusion Studio companion | Open the returned one-time local URL for human inspection of supported scene previews, with playback and scrubbing | The agent edits and exports through the external desktop host and its native interface; the browser companion is read-only |
 
@@ -145,7 +154,7 @@ skills, not additional public skills.
 These built-in systems are assembled from skills, project artifacts and selected
 tools. Separately maintained specialist Systems, such as Power BI, can add their
 own dependencies and upkeep. Neither form requires a new AIOS runtime, project
-registry or background agent. The [skill index](docs/skills.md) lists all 25
+registry or background agent. The [skill index](docs/skills.md) lists all 26
 public entrypoints.
 
 ## Install in your app
@@ -351,7 +360,7 @@ Resources domain. Selective reading saves context whether the file is local or
 remote; hosting alone does not reduce the tokens of content actually read.
 Future standards-based discovery and updates are tracked in [issue #12](https://github.com/onlinesourdough/AIOS-Plugin/issues/12).
 
-Read about the [25 skills](docs/skills.md), [architecture](docs/architecture.md),
+Read about the [26 skills](docs/skills.md), [architecture](docs/architecture.md),
 [verification](docs/verification.md), [recovery](docs/recovery.md) and
 [version history](CHANGELOG.md). GitHub [Releases](https://github.com/onlinesourdough/AIOS-Plugin/releases)
 lists published releases. The [release procedure](docs/distribution.md#release-and-adoption)
