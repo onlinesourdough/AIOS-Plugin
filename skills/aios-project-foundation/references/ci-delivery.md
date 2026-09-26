@@ -13,7 +13,7 @@ Changed bases, conflict resolutions and edited candidates require relevant fresh
 checks/review. A non-default-branch merge does not automatically close a GitHub
 issue; read back issue/PR/deployment state instead of equating these events.
 
-## Application/factory cadence
+## Application cadence
 
 The selected default is relevant PR checks before merge, with complete
 verification/build batches every three hours. Adapt to demonstrated project
@@ -59,7 +59,7 @@ Use current official provider documentation when implementing the actual workflo
 
 ## Delivery evidence
 
-Keep the factory's full acceptance command distinct from narrower PR commands.
+Keep the project's full acceptance command distinct from narrower PR commands.
 Record source/artifact revision, build/check result, target environment and access
 route. Production qualification needs its actual release criteria even if narrower
 PR checks passed. Retain existing working CD rather than disabling it because a

@@ -1,4 +1,23 @@
-# Project Foundation delivery
+# Project Foundation
+
+## 0.14.1: independent project contracts
+
+AIOS prepares self-contained projects. Create Project and Project Foundation
+share engineering and document criteria: real setup/checks, code standards,
+design, application infrastructure, security, CI/delivery and recovery.
+There is no external Factory route or runtime-specific skill dependency.
+Choosing another execution system is a separate, explicit operator action.
+
+Standards use an existing canonical CONTRIBUTING or coding-standards source.
+A new CODE_STANDARDS.md contains only useful project decisions. DESIGN.md stays
+the visual entrypoint; a distinct DESIGN_SYSTEM.md is justified by reusable
+components, with links instead of duplicated rules. Guidance follows actual
+source and is maintained with each relevant change.
+
+Source/package checks and independent review are recorded in verification.
+This change does not claim a new live deployment or remote-host qualification.
+
+## Original 0.14.0 evidence (historical)
 
 The accepted outcome is a focused AIOS method for making an MVP/legacy project
 ready for reliable engineering and its requested independent factory handoff.

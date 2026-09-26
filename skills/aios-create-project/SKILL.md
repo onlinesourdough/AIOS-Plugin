@@ -2,7 +2,7 @@
 name: aios-create-project
 description: Start a new independent repository from the Agentic Project Template in the chosen workspace.
 metadata:
-  version: "2.1.0"
+  version: "2.1.1"
 ---
 
 # AIOS:create-project
@@ -32,7 +32,7 @@ Continue from accepted context using the shared
 [foundation content contract](../aios-project-foundation/references/foundation.md)
 and [document contract](../aios-project-foundation/references/documents.md).
 The template supplies a neutral seed, not a working application or verified
-factory setup. Populate applicable sources from real project facts and actual
+deployment. Populate applicable sources from real project facts and actual
 implementation; preserve explicit unresolved decisions until they are settled.
 Keep instructions concise, documents consistent with behavior, and template
 attribution separate from the product's licensing decision. Do not create empty
@@ -40,9 +40,9 @@ application pages or claim readiness from file presence. Other project types
 need only their applicable authoring, validation and delivery responsibilities.
 
 Use [Project Foundation](../aios-project-foundation/SKILL.md) when the accepted
-result includes repairing engineering foundations or transitioning into a
-factory. It owns that verification and handoff; ordinary creation alone does
-not authorize remote provisioning or start factory jobs.
+result includes repairing engineering foundations. Maintain applicable project
+standards and design through the shared document contract as the project grows.
+Ordinary creation alone does not authorize remote provisioning or execution.
 
 Use the generated local requirements and native-discovered AIOS methods to
 continue from the resolved idea. [Design](../design/SKILL.md) and

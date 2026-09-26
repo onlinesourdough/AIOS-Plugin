@@ -14,10 +14,8 @@ specialist method and a review before delivery. Your app still provides the
 models, tools and permissions.
 
 AIOS supports business work, decisions, content, design and practical automation.
-Its code guidance and verification stay proportional to the task. A Software &
-Defense Factory is a separate product with its own software/security skills,
-job isolation, review automation and PR integrations; it does not require AIOS.
-Useful principles can inform both products without a shared runtime dependency.
+Its code guidance and verification stay proportional to the task. Projects own
+their source, engineering standards, design and delivery configuration.
 
 ## Agentic systems and skill chains
 
@@ -113,7 +111,7 @@ step, not a requirement to repeat work or use every skill.
 | Think through an idea, agent or automation | [Interview](skills/aios-interview/SKILL.md) → [Spec](skills/aios-spec-work/SKILL.md) when execution needs a contract | Shared understanding, challenged assumptions, decisions and a useful next action |
 | Complete substantive work | Spec → [Build](skills/aios-build-work/SKILL.md) → [Review](skills/aios-review-work/SKILL.md) → Ship for authorized delivery | A defined outcome, implemented result, current verification and delivery readback |
 | Start a project or specialist solution | [Create Project](skills/aios-create-project/SKILL.md) or [Create System](skills/aios-create-system/SKILL.md) → the shared work lifecycle | An independent repository or maintained specialist with its own requirements and verification |
-| Move an MVP or legacy application into a reliable working environment | [Project Foundation](skills/aios-project-foundation/SKILL.md) → repair and verification → requested factory handoff | Reproducible setup, maintained project contracts, working CI and selected non-production delivery/compute with actual evidence |
+| Move an MVP or legacy application into a reliable working environment | [Project Foundation](skills/aios-project-foundation/SKILL.md) → project repair and verification | Reproducible setup, maintained code/design contracts, working CI and selected non-production delivery |
 | Set up or move your AIOS home | [Setup](skills/aios-setup/SKILL.md), using Interview where needed → [Maintain Context](skills/aios-maintain-context/SKILL.md) for source routes → [Check](skills/aios-check/SKILL.md) for affected setup proof | A usable home, relevant context, verified chosen connections and a first useful result |
 | Keep useful context current | Maintain Context → its [Sync procedure](skills/aios-maintain-context/references/sync.md) when explicitly requested | Relevant facts and source pointers; optional scoped backup or restore |
 | Create or change a skill | [Manage Skills](skills/aios-manage-skills/SKILL.md) → native authoring or installation → verification, using Check for discovery when relevant | One maintained capability with a known source, placement and recovery path |
