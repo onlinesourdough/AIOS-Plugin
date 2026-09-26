@@ -26,5 +26,5 @@ maintenance. Preserve source provenance as history, not a runtime dependency.
 Use the [shared lifecycle](lifecycle.md) to continue the accepted result; the
 template is a starting point, not an updater or a second source of truth.
 Create Project carries the shared foundation content contract into that work.
-Use [Project Foundation](../../aios-project-foundation/SKILL.md) for a requested
-engineering/factory transition, including existing repositories repaired in place.
+Use [Project Foundation](../../aios-project-foundation/SKILL.md) for requested
+engineering foundations, including existing repositories repaired in place.

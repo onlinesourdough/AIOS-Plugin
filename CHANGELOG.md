@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.14.1 — 2026-09-26
+
+- Keep Project Foundation independent: remove the external runtime setup route
+  and retain application infrastructure, security and delivery responsibilities.
+- Share maintained project code standards and design-system ownership with
+  Create Project; preserve existing canonical documents and tool-enforced rules.
+
 ## 0.14.0 — 2026-09-24
 
 - Add Project Foundation 1.0.0 for repairing MVP/legacy engineering foundations

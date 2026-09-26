@@ -25,7 +25,7 @@ carries an independent quoted `metadata.version`; see
 | [AIOS:build-work](../skills/aios-build-work/SKILL.md) | Implement and verify accepted work through in-scope fixes and Review |
 | [AIOS:check](../skills/aios-check/SKILL.md) | Inspect installation, owner format, and discovery |
 | [AIOS:create-project](../skills/aios-create-project/SKILL.md) | Start a new independent repository in the chosen workspace |
-| [AIOS:project-foundation](../skills/aios-project-foundation/SKILL.md) | Establish working project foundations and a requested application-to-factory transition |
+| [AIOS:project-foundation](../skills/aios-project-foundation/SKILL.md) | Establish and maintain project engineering, code/design, infrastructure and delivery foundations |
 | [AIOS:create-system](../skills/aios-create-system/SKILL.md) | Establish an optional separately maintained specialist |
 | [AIOS:maintain-context](../skills/aios-maintain-context/SKILL.md) | Maintain owner facts, routes, connections, and explicit continuity Sync |
 | [AIOS:manage-skills](../skills/aios-manage-skills/SKILL.md) | Manage personal and installed skill lifecycles |

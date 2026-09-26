@@ -14,6 +14,7 @@ conditional on the task rather than requiring the entire map to be loaded.
 | `AGENTS.md` | Compact repository-specific execution/routing contract; see below |
 | `ARCHITECTURE.md` | Components/contracts, data/trust boundaries, runtime success/failure flows, deployment boundaries, quality goals, material decisions and known risks |
 | `DESIGN.md` | Observed/accepted flows, identity, hierarchy, tokens/components, responsive/accessibility rules and loading/empty/error states; API/CLI-only products use interface contracts and explain visual inapplicability |
+| `CODE_STANDARDS.md` (when useful) | Project-specific coding decisions, boundaries, meaningful test conventions and exceptions not already enforced by tools; preserve an existing CODING_STANDARDS.md or CONTRIBUTING section instead of duplicating it |
 | `SECURITY.md` | Actual reporting owner/channel, scope, security invariants, exposure and relevant review policy; reconcile inherited or competing security sources |
 | `CONTRIBUTING.md` | Real prerequisites/install/start/check commands or their canonical routes, fixtures/services, change/branch/review rules, test coverage/limits and documentation maintenance |
 | `docs/README.md` | Reader-oriented map to current canonical sources, responsibility and durable verification evidence; include developer, user/integrator and operator routes |
@@ -22,7 +23,7 @@ conditional on the task rather than requiring the entire map to be loaded.
 | `docs/operations.md` | Health/logs, diagnosis, stop/restart, updates, incident intake, operating responsibility, retention/cleanup and applicable reset/restore rehearsal |
 
 Ownership belongs in README/operations; testing in CONTRIBUTING; recovery in
-deployment/operations; proof in the real revision-bound CI/PR/factory records
+deployment/operations; proof in the real revision-bound CI/PR/release records
 linked from the appropriate guide. Standalone ownership.md, proof.md, testing.md
 or recovery.md are optional. Preserve their unique content and working links
 when consolidating. A combined operational guide can own several responsibilities.
@@ -34,6 +35,37 @@ project needs them. Do not pre-create directories or pages for every heading,
 impose a docs-site generator or invent historical decision rationale. For
 non-application projects, use the applicable authoring/usage/validation sources
 without a fictional hosting or visual design setup.
+
+## Standards and design across the project lifecycle
+
+Read existing standards, design and executable configuration before writing.
+Use `CODE_STANDARDS.md` when conventions need their own home; a concise existing
+CONTRIBUTING section is sufficient. Record accepted decisions and rationale,
+useful examples from current source and exceptions. Tool configuration owns
+mechanical formatting/lint rules. Do not turn every observed legacy pattern
+into an endorsed standard or fill a new file with generic programming advice.
+
+`DESIGN.md` remains the design entrypoint. Keep visual tokens, components and
+interaction/accessibility states there until a separate `DESIGN_SYSTEM.md`
+earns its own maintained scope through a reusable component library or theme.
+When separated, DESIGN links to the system; the system owns reusable primitives
+and DESIGN owns project flows and composition. Preserve existing canonical
+names and link code/token sources. Never maintain competing copies of a token.
+
+Create these sources as real decisions emerge, and update them alongside code
+and design changes. Route them conditionally from AGENTS and docs/README so a
+new contributor can find the applicable guidance. Review task correctness and
+project-standard conformance separately; report missing guidance as unknown,
+not as a fabricated rule. Record important terminology and durable trade-offs
+at their existing home; a separate glossary or decision record needs real content.
+
+A feature map is useful when behavior is otherwise difficult to locate: add
+short rows to the existing docs index linking user outcomes, intended behavior,
+implementation and relevant checks. Maintain those links in the same change;
+do not duplicate specifications or inventory every symbol. For recurring agent
+mistakes, improve executable checks first, judgment-dependent standards second,
+or the route to information already present. Remove stale/duplicate guidance
+and preserve the evidence behind meaningful rules.
 
 ## AGENTS as an execution contract
 

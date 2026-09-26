@@ -1,5 +1,12 @@
 # Verification
 
+For 0.14.1, [Project Foundation](project-foundation.md) records the independent
+project boundary and maintained code/design contracts. Source validation against
+0.14.0, documentation, layout, continuity, skill-version and context-footprint
+checks pass. These checks verify package routes and contracts, not model behavior
+or a live application deployment. Independent review and delivery evidence belong
+to the release PR.
+
 For 0.14.0, see [Project Foundation](project-foundation.md) for shared template
 content, selected application obligations, CI cadence, runtime boundaries and
 the required distinction between source checks and behavioral evidence.

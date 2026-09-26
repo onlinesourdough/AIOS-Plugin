@@ -1,17 +1,15 @@
 ---
 name: aios-project-foundation
-description: Establish engineering foundations for new or legacy projects and their requested Software and Defence Factory transition.
+description: Establish and maintain engineering foundations for new or existing projects.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # AIOS:project-foundation
 
 Turn the accepted project into a reproducible, reviewable working environment.
-For a requested factory transition, continue through off-laptop execution and a
-real application task. Production deployment is not a prerequisite. This skill
-owns project preparation; the independent factory owns its runtime and methods.
-It creates no controller, permanent registry or mandatory hosting stack.
+Keep the project self-contained: its source, standards, design, infrastructure,
+security and delivery evidence belong to the project.
 
 ## Establish the intended result
 
@@ -65,22 +63,6 @@ tested artifact in its actual preview/staging environment. Hosted build output
 alone is insufficient for a runnable service. A document-only project instead
 needs its applicable authoring, validation and delivery foundations.
 
-## Connect the factory when requested
-
-Read [factory handoff](references/factory.md) for a requested transition. Inspect
-the selected runtime's supported interfaces and source/version before using it.
-Configure the actual application, toolchain, acceptance command, isolated host,
-model access, limits and separate review; initialization is not qualification.
-Run one bounded real application task and verify its recorded base, candidate,
-checks, review and authorized branch/PR/test delivery. Reuse valid existing
-proof when it covers the same obligation and revision.
-
-Preserve session authority through setup and handoff. A skill does not grant
-account access, installation, publication or deployment rights. Hold only an
-action whose needed authority/access is genuinely missing; continue independent
-work and attach the precise remaining obligation. No default autonomous merge,
-production deployment or live defence-monitoring claim follows from adoption.
-
 ## Review and hand back
 
 [Review](../aios-review-work/SKILL.md) compares the working result with the
@@ -91,6 +73,6 @@ behavior it describes. Fix in-scope findings and use authorized
 
 Return the usable entrypoints, source/environment and version-bound evidence,
 changes made and remaining gaps. Distinguish a prepared repository, an exercised
-non-production delivery path and a qualified factory application. Complete the
-requested transition only when its applicable proof exists; a specification,
-template, installed runtime or green unrelated demo is an intermediate result.
+non-production delivery path and a production-qualified application. Complete
+the requested result only when its applicable proof exists; a specification,
+template or green unrelated demo is an intermediate result.

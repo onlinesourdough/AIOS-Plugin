@@ -3,8 +3,8 @@
 Use these responsibilities for the accepted project and environment. A small
 library, document repository and hosted application need different evidence.
 Keep the applicable result in the current issue/specification; do not create a
-separate readiness database. An application moving into a factory needs the
-working foundations below, not just a repository containing Markdown.
+separate readiness database. A working application needs exercised foundations,
+not just a repository containing Markdown.
 
 | Responsibility | Establish from the project | Useful proof |
 | --- | --- | --- |
@@ -12,12 +12,12 @@ working foundations below, not just a repository containing Markdown.
 | Repository and intake | Canonical GitHub repository, preserved origin/history, issue-to-task route, selected branch/PR policy, instructions, permissions and applicable protections | Read back remote identity/settings; trace an issue through the intended check/review target |
 | Reproducible setup | Actual toolchain/native libraries, ecosystem manifests and lockfiles, frozen install, start/check entrypoints, required fixture services and platform constraints | A clean checkout on the selected host installs and runs without hidden laptop state |
 | Architecture and design | Components, contracts, data/trust boundaries, meaningful runtime/failure scenarios, quality goals and risks; observed visual/interaction direction or API/CLI interface contracts | Inspect real code and representative screens/interfaces; separate desired changes from existing behavior |
+| Code standards | Project-specific conventions, enforced checks, material exceptions and maintained canonical examples | Inspect changed behavior against those standards and update stale guidance in the same change |
 | Testing and acceptance | Behavioral unit/integration/end-to-end coverage appropriate to risk, canonical commands, controlled fixtures, negative/recovery cases and known limitations | Run the relevant checks; show that a meaningful defect fails them. Empty or accidentally skipped suites are not proof |
 | Security and data | Reporting route, actual exposure, authorization/trust invariants, dependency/supply-chain controls, secrets references, synthetic fixtures, migration/retention/reset needs | Exercise affected denial, initialization and recovery paths; preserve sensitive data outside source and artifacts |
 | CI and delivery | Required PR evidence, complete build cadence, artifact identity, environment separation and repeatable preview/staging delivery | Observe actual GitHub events/results and selected artifact; exercise the running target and rollback/reset when applicable |
-| Compute and infrastructure | Application hosting versus worker/build host; suitable CPU/RAM/disk/platform, network/model connectivity, resource bounds, storage and provisioning ownership | Run the real workload on the selected off-laptop host; an unrelated synthetic benchmark does not qualify the app |
+| Application infrastructure | Hosting/build requirements, suitable resources, storage, network and provisioning ownership | Exercise the actual application target and access boundaries when in scope |
 | Operations and recovery | Health/logs, diagnosis, stop/restart, updates, incident intake, cleanup, last known good state and responsible operator | Observe a failure and its applicable rollback/restore/reset path; label any unrehearsed procedure |
-| Factory application | Selected source/base, compatible job image, real acceptance command, scoped model access, limits, separate revision-bound review and delivery target | A real bounded task produces checked/reviewed evidence and follows the authorized handoff; preserve stop/retry evidence |
 
 ## Files and configuration beyond documentation
 

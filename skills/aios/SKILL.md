@@ -2,7 +2,7 @@
 name: aios
 description: Apply relevant owner context and choose AIOS methods for business work, design, content, AIOS setup or documentation.
 metadata:
-  version: "2.3.0"
+  version: "2.3.1"
 ---
 
 # AIOS:aios
