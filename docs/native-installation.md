@@ -5,8 +5,9 @@ the selected app's package manager. No AIOS installer program runs, and no other
 app is configured as a side effect. Owner setup is a separate conversation.
 
 The [README](../README.md) contains the normal installation commands. They track
-the repository's default branch. Existing GitHub access is required while the
-repository is private; none of these commands changes its visibility.
+the repository's default branch. The repository is public and uses the MIT
+license; no GitHub invitation is required. These commands install the package
+without changing repository visibility.
 
 ## Choose a source and scope
 

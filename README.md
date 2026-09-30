@@ -148,9 +148,9 @@ public entrypoints.
 
 ## Install in your app
 
-AIOS is currently available by invitation. Accept your GitHub invitation and
-make sure your app can access this repository through your normal Git setup.
-Never paste access tokens into a chat.
+AIOS is open source under the MIT license. Install directly from this public
+GitHub repository; no invitation is required. Your app uses its normal Git
+setup. Never paste access tokens into a chat.
 
 Choose one of the routes below. These commands follow the repository's current
 `main` branch. For a fixed version, select a reviewed tag or commit using the
