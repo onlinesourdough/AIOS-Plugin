@@ -2,10 +2,10 @@
 name: aios-check
 description: Verify an AIOS installation, owner format or relevant harness discovery without changing it.
 metadata:
-  version: "2.0.4"
+  version: "2.0.5"
 ---
 
-# AIOS:check
+# AIOS-check
 
 Inspect only the requested scope using the relevant section of
 [checks](references/checks.md). Use [setup scenarios](references/setup-scenarios.md) for the requested installation

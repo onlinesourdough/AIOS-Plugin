@@ -1,5 +1,10 @@
 # Verification
 
+For the 0.15.0 Codex consumer candidate, see [the refresh record](codex-consumer-refresh.md)
+for human-controlled models/workers, naming migration and the maintained setup
+guide. Codex is the acceptance target; unavailable Pi model behavior does not
+hold completed Codex work open. Preserve the actual limits of other clients.
+
 For 0.14.1, [Project Foundation](project-foundation.md) records the independent
 project boundary and maintained code/design contracts. Source validation against
 0.14.0, documentation, layout, continuity, skill-version and context-footprint
@@ -65,6 +70,8 @@ an isolated read-only session, then use
 `python3 tests/model-selection-rehearsal.py score /absolute/scratch/path/result.json`.
 `prepare --baseline REF` supplies the same cases against an existing source
 revision. The helper never launches a model or spends account resources itself.
+The current cases preserve human model/worker control; older scored evidence
+remains historical and does not accept the changed 0.15.0 behavior.
 Expected decisions are withheld from the evaluator; inspect explanations as
 well as scored fields. Portable-brief cases return actual prompts for inspection
 of accepted facts, attachments, judgment and proof without doing the production.

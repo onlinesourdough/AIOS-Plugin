@@ -2,12 +2,12 @@
 name: aios-ship-work
 description: Deliver a reviewed result under existing action and destination authority, then verify readback.
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
-# AIOS:ship-work
+# AIOS-ship-work
 
-Use the [tracking SOP](../aios/references/lifecycle.md) for pending delivery and
+Use the [tracking SOP](../aios-start/references/lifecycle.md) for pending delivery and
 completion readback; carry the same requirements and goal authorization.
 
 Identify the immutable subject, Review PASS, current goal/requirements,
@@ -39,7 +39,7 @@ required proof or Ship approval keeps the applicable goals open. Worker completi
 requires accepted obligations; lead completion requires the
 whole requested outcome and final evals. Do not treat a logical wait/block as a
 native terminal state without actual control evidence. See
-[recovery](../aios/references/recovery.md) on interruptions.
+[recovery](../aios-start/references/recovery.md) on interruptions.
 
 Before final handback, run the proportional
 [completeness check](../aios-review-work/references/completeness.md) against the

@@ -1,20 +1,26 @@
 ---
 name: aios-orchestrate-workers
-description: Prepare, launch, coordinate and recover delegated workers while the caller retains acceptance.
+description: Prepare, launch, coordinate and recover user-requested workers while the caller retains acceptance and preserves the user's model choice.
 metadata:
-  version: "1.0.1"
+  version: "1.1.0"
 ---
 
-# AIOS:orchestrate-workers
+# AIOS-orchestrate-workers
 
-Enter for [delegation](../aios/references/lifecycle.md) with retained caller
-coordination/acceptance, or worker recovery. New tasks alone do not select it:
-whole-task/user-owned continuation uses the shared lifecycle's [handoff](../aios/references/continuation.md).
+Enter for user-requested [delegation](../aios-start/references/lifecycle.md) with
+retained caller coordination/acceptance, or recovery of an already authorized
+worker. The human decides when to start a worker. Task size, a cheaper model or
+potential parallel gain alone never authorizes launch. Explain a useful option
+when relevant and continue local work while awaiting the decision. New tasks
+alone do not select it:
+whole-task/user-owned continuation uses the shared lifecycle's [handoff](../aios-start/references/continuation.md).
 
 ## Prepare the handoff
 
-Receive the shared task's delegation decision, Spec and Select Model's
-model/effort evidence. Define separable scope, inputs, proof and handback.
+Receive the user's worker request, accepted scope and any explicitly chosen
+model/effort. Use [Select Model](../aios-select-model/SKILL.md) only for requested
+advice or a concrete choice gap; it is not a launch prerequisite. Define
+separable scope, inputs, proof and handback.
 Keep transfer/coordination/review/retry costs within the accepted rationale.
 
 Carry what Spec/Review settled, remaining decisions, worker discretion and what
@@ -31,7 +37,8 @@ Skill/prompt/model is not execution proof. Resume matching session/root/goal;
 slowness, clutter or a missing handle does not justify replacement. Missing
 control requires handoff/stop, not a claimed launch.
 
-Return to [Select Model](../aios-select-model/SKILL.md) for changed runtime/suitability.
+Use [Select Model](../aios-select-model/SKILL.md) for requested advice or an
+unsupported choice; never silently substitute a model or effort.
 Preserve tool-required defaults and explicit choices; claim no unapplied switch.
 Unavailable routes require handoff or sufficient authorized local continuation.
 
@@ -57,7 +64,7 @@ Pass:
 - no unrelated owner context/history.
 
 Before mutation attest cwd/root, branch/repository, instructions, session,
-route/tools/permissions. Run the [native tracking SOP](../aios/references/lifecycle.md)
+route/tools/permissions. Run the [native tracking SOP](../aios-start/references/lifecycle.md)
 in the worker's runtime; the lead's inventory proves no worker state. Return
 plan call/readback or visible fallback and goal/linkage state. Preserve carried
 authorization; obey native goal rules and hold work requiring missing activation.
@@ -86,7 +93,7 @@ for real ones.
 At waiting-review keep session/goal active; do not poll. The lead independently
 Reviews every handback. REVISE returns the same outcome to the same worker.
 For interruption, drift, reconnect or uncertain effects, use
-[recovery](../aios/references/recovery.md): prove identity, resume state/goals,
+[recovery](../aios-start/references/recovery.md): prove identity, resume state/goals,
 read back before retrying, replace only after explicit stop/proven failure.
 Never create a second writer or implicit authority.
 

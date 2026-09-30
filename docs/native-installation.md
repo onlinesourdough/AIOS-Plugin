@@ -39,7 +39,7 @@ claude plugin install aios@online-sourdough --scope user
 ```
 
 Codex and Claude use `aios@online-sourdough` as their installation identity.
-Claude's explicit skill calls are namespaced, such as `/aios:human-writing`.
+Claude's explicit skill calls are namespaced, such as `/aios:aios-human-writing`.
 Other apps may expose names differently; use their actual discovery rather
 than rewriting the canonical skill files. Native project/local scopes are
 available in some apps; use the same scope for later updates and removal.

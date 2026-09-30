@@ -8,7 +8,7 @@ from support import InstalledCase, fixture, fingerprint
 
 class AuditTests(InstalledCase):
     def audit(self, *args):
-        result = self.invoke("review-design", "audit.py", *args)
+        result = self.invoke("aios-review-design", "audit.py", *args)
         self.assertIn(result.returncode, (0, 1, 2), result.stderr)
         return json.loads(result.stdout)
 
@@ -37,9 +37,9 @@ class AuditTests(InstalledCase):
     def test_snapshot_integrity_acceptance_and_tampering(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
-            source = fixture(root / "design")
+            source = fixture(root / "aios-design")
             output = root / "snapshot"
-            handoff = self.invoke("design", "create-handoff.mjs", "--design-dir", source,
+            handoff = self.invoke("aios-design", "create-handoff.mjs", "--design-dir", source,
                                   "--output", output, "--receiving-owner", "Receiving owner")
             self.assertEqual(handoff.returncode, 0, handoff.stderr)
             before = fingerprint(root)

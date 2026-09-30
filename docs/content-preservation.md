@@ -11,21 +11,21 @@ no source workspace, owner home or production is migrated automatically.
 
 | ACS responsibility/source | New home or retained owner |
 | --- | --- |
-| `agentic-content-system` primary skill: creation/revision, selective inputs, editorial judgment, reuse, completion | [Content](../skills/content/SKILL.md), [editorial judgment](../skills/content/references/editorial.md), shared AIOS lifecycle and human-writing |
-| `setup-content-system`: business/audience/promise, voice, cadence, delivery policy and optional brand/design | [Setup and learning](../skills/content/references/setup-learning.md); facts persist at actual work owner; no test production/editor requirement |
-| `audit-content-system`: bounded repository or named-production audit, no mutation, evidence gaps, conditional Studio readiness | [Read-only audit](../skills/content/references/audit.md), shared Review for generic repository health |
-| `diffusion-studio`: pinned external application, action-specific authority, DAPI/companion, cleanup | [Diffusion Studio](../skills/diffusion-studio/SKILL.md) and [operation](../skills/diffusion-studio/references/operation.md) |
-| Source/transcript/thesis/master/derivative family, stable IDs, versions, hashes, provenance, explicit relationships, arbitrary optional targets | [Graph](../skills/content/references/graph.md) and unchanged [validator](../skills/content/scripts/check-content-graph.mjs); used only when lineage/review/handoff needs it |
-| Exact per-node approval, no family/master/sibling inheritance, changed-byte invalidation, designated human decision | [Final review](../skills/content/references/final-review.md); validation remains structural, actual reviewer evidence is inspected |
-| Hook, pacing, clarity, visuals, audio/captions, packaging, truthfulness, timestamped fixes and cross-format coherence | [Final review](../skills/content/references/final-review.md), [final-review template](../skills/content/assets/templates/final-review.md), [packaging template](../skills/content/assets/templates/packaging-review.md) |
-| Packaging and supervised publisher selection, graph/node hash binding, no posting | [Graph and handoff](../skills/content/references/graph.md); separately authorized publishing/sending/scheduling stays with caller’s delivery workflow |
-| Accepted optional design direction, immutable `DESIGN.md`/selected assets/revision/hashes/provenance/review | [Editorial input boundary](../skills/content/references/editorial.md) and optional graph field; editable visual sources stay at actual design owner |
-| Reference analysis, bounded frames/captions, observation versus interpretation, reusable patterns | [Reference analysis](../skills/content/references/reference-analysis.md), skill-local helper/template |
-| Local Whisper, open word-timestamp JSON, optional external packer, cloud opt-in, no credentials in package | [Local transcription](../skills/content/references/local-transcription.md), skill-local helper/requirements; external venv/cache/output |
-| Full code-animated explainers or bounded motion overlays; scene intent, readable strongest frames, export inspection | [Specialist motion](../skills/content/references/specialist-motion.md); upstream HyperFrames method and external project remain authoritative |
-| Real owner-video acceptance with truthful usability friction and feature trace | [Real-video acceptance](../skills/diffusion-studio/references/real-video-acceptance.md); retained protocol, no new live acceptance claimed |
-| Channel profile/style, reference index, project/motion learning, publication history | [Setup and learning](../skills/content/references/setup-learning.md); neutral profile/style templates available, records stay at actual work owner |
-| Nine capture forms, four practical groups, promise/proof/plan, source questions, channel-native reuse | [Format library](../skills/content/assets/formats.json), [editorial planning](../skills/content/references/editorial.md), [research provenance](../skills/content/references/research-provenance.md); historical cadence examples are optional |
+| `agentic-content-system` primary skill: creation/revision, selective inputs, editorial judgment, reuse, completion | [Content](../skills/aios-content/SKILL.md), [editorial judgment](../skills/aios-content/references/editorial.md), shared AIOS lifecycle and human-writing |
+| `setup-content-system`: business/audience/promise, voice, cadence, delivery policy and optional brand/design | [Setup and learning](../skills/aios-content/references/setup-learning.md); facts persist at actual work owner; no test production/editor requirement |
+| `audit-content-system`: bounded repository or named-production audit, no mutation, evidence gaps, conditional Studio readiness | [Read-only audit](../skills/aios-content/references/audit.md), shared Review for generic repository health |
+| `diffusion-studio`: pinned external application, action-specific authority, DAPI/companion, cleanup | [Diffusion Studio](../skills/aios-diffusion-studio/SKILL.md) and [operation](../skills/aios-diffusion-studio/references/operation.md) |
+| Source/transcript/thesis/master/derivative family, stable IDs, versions, hashes, provenance, explicit relationships, arbitrary optional targets | [Graph](../skills/aios-content/references/graph.md) and unchanged [validator](../skills/aios-content/scripts/check-content-graph.mjs); used only when lineage/review/handoff needs it |
+| Exact per-node approval, no family/master/sibling inheritance, changed-byte invalidation, designated human decision | [Final review](../skills/aios-content/references/final-review.md); validation remains structural, actual reviewer evidence is inspected |
+| Hook, pacing, clarity, visuals, audio/captions, packaging, truthfulness, timestamped fixes and cross-format coherence | [Final review](../skills/aios-content/references/final-review.md), [final-review template](../skills/aios-content/assets/templates/final-review.md), [packaging template](../skills/aios-content/assets/templates/packaging-review.md) |
+| Packaging and supervised publisher selection, graph/node hash binding, no posting | [Graph and handoff](../skills/aios-content/references/graph.md); separately authorized publishing/sending/scheduling stays with caller’s delivery workflow |
+| Accepted optional design direction, immutable `DESIGN.md`/selected assets/revision/hashes/provenance/review | [Editorial input boundary](../skills/aios-content/references/editorial.md) and optional graph field; editable visual sources stay at actual design owner |
+| Reference analysis, bounded frames/captions, observation versus interpretation, reusable patterns | [Reference analysis](../skills/aios-content/references/reference-analysis.md), skill-local helper/template |
+| Local Whisper, open word-timestamp JSON, optional external packer, cloud opt-in, no credentials in package | [Local transcription](../skills/aios-content/references/local-transcription.md), skill-local helper/requirements; external venv/cache/output |
+| Full code-animated explainers or bounded motion overlays; scene intent, readable strongest frames, export inspection | [Specialist motion](../skills/aios-content/references/specialist-motion.md); upstream HyperFrames method and external project remain authoritative |
+| Real owner-video acceptance with truthful usability friction and feature trace | [Real-video acceptance](../skills/aios-diffusion-studio/references/real-video-acceptance.md); retained protocol, no new live acceptance claimed |
+| Channel profile/style, reference index, project/motion learning, publication history | [Setup and learning](../skills/aios-content/references/setup-learning.md); neutral profile/style templates available, records stay at actual work owner |
+| Nine capture forms, four practical groups, promise/proof/plan, source questions, channel-native reuse | [Format library](../skills/aios-content/assets/formats.json), [editorial planning](../skills/aios-content/references/editorial.md), [research provenance](../skills/aios-content/references/research-provenance.md); historical cadence examples are optional |
 | Generic Spec/Build/Review/Ship, model/work judgment, domain proof and maintenance discipline | Shared AIOS lifecycle; specialist criteria remain in Content, without copied phase skills or a recovery ledger |
 
 ## Resource disposition
@@ -37,7 +37,7 @@ an exhaustive per-file source inventory and destination/disposition map.
 | Resource | Disposition |
 | --- | --- |
 | `.agents/skills/{agentic-content-system,setup-content-system,audit-content-system}/**` | One short Content entrypoint, conditional references, new native UI metadata |
-| `.agents/skills/diffusion-studio/**` | Separate short Diffusion skill with conditional operation reference and native UI metadata |
+| `.agents/skills/aios-diffusion-studio/**` | Separate short Diffusion skill with conditional operation reference and native UI metadata |
 | `.agents/skills/README.md`, `AGENTS.md`, `README.md`, `docs/{ARCHITECTURE,INPUT_OWNERSHIP,WORKFLOW,WORKING_DISCIPLINE,QUICKSTART,PROMPTS}.md` | Domain content redistributed into the two skill entrypoints/references; generic lifecycle and root integration remain lead-owned |
 | `docs/{CONTENT_GRAPH,PACKAGING,FINAL_REVIEW}.md` | Graph/handoff and final-review references |
 | `docs/{REFERENCE_ANALYSIS,LOCAL_TRANSCRIPTION,CLOUD_TRANSCRIPTION}.md` | Conditional reference/transcription guidance, explicit external storage and native setup |
@@ -47,7 +47,7 @@ an exhaustive per-file source inventory and destination/disposition map.
 | `docs/LEARNING.md`, `workspace/learning/PROJECT_MEMORY.md`, `workspace/references/REFERENCES.md` | Setup/learning and reference method; actual records belong to work owner, no bundled memory/index data |
 | `workspace/channel/{PROFILE,STYLE_GUIDE}.md` | Neutral optional `assets/templates/profile.md` and `style-guide.md` |
 | `workspace/channel/DESIGN.md`, `workspace/channel/assets/**`, `workspace/channel/brand.json`, `workspace/channel/published-videos.csv`, `workspace/content-pipeline/**` | Retain owner defaults, accepted design, ideas and publication history at actual work owner; no global defaults or mandatory pipeline structure bundled |
-| `workspace/engine/scripts/check-content-graph.mjs` | Byte-identical `skills/content/scripts/check-content-graph.mjs`; no second schema or dependency |
+| `workspace/engine/scripts/check-content-graph.mjs` | Byte-identical `skills/aios-content/scripts/check-content-graph.mjs`; no second schema or dependency |
 | `workspace/engine/scripts/{analyze-reference-video,transcribe-local-whisper}.py` | Portable skill-local scripts plus small `work_paths.py` boundary helper |
 | `workspace/engine/scripts/setup-local-transcription.sh` | Replaced by explicit native venv/pip instructions; no installation wrapper or auto hook |
 | `workspace/engine/requirements/local-transcription.txt` | Skill-local optional requirements asset; no bundled Python runtime/dependencies/models |
@@ -64,8 +64,8 @@ an exhaustive per-file source inventory and destination/disposition map.
 No tracked ACS LICENSE or NOTICE was present at the source commit; no upstream
 license grant is invented. Original source, reference-pipeline inspiration,
 creator-source IDs and external tool ownership are retained in
-[content provenance](../skills/content/references/provenance.md) and
-[launcher provenance](../skills/diffusion-studio/references/provenance.md).
+[content provenance](../skills/aios-content/references/provenance.md) and
+[launcher provenance](../skills/aios-diffusion-studio/references/provenance.md).
 No editor, rendering engine, publisher bot, media pipeline, recovery ledger,
 customer asset or account fact is bundled.
 
@@ -92,7 +92,7 @@ Run from the repository root:
 ```sh
 node --test tests/content/*.test.mjs
 python3 -B -m unittest discover -s tests/content -p 'test_*.py' -v
-node skills/content/scripts/check-content-graph.mjs tests/content/fixtures/content-graph/content-graph.json tests/content/fixtures/content-graph/publisher-handoff.json
+node skills/aios-content/scripts/check-content-graph.mjs tests/content/fixtures/content-graph/content-graph.json tests/content/fixtures/content-graph/publisher-handoff.json
 ```
 
 The Node suite passes 27 tests: all 19 migrated tests plus external-root/CLI

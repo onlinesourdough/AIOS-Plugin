@@ -2,23 +2,22 @@
 name: aios-build-work
 description: Implement and verify accepted work through in-scope fixes and Review.
 metadata:
-  version: "1.1.1"
+  version: "1.2.0"
 ---
 
-# AIOS:build-work
+# AIOS-build-work
 
 Start from a READY [Spec](../aios-spec-work/SKILL.md) or an already accepted
 contract. Return to Spec only for a material gap. Deliver the whole authorized
 result through implementation, relevant verification, Review and requested Ship.
 A small mechanical edit needs its scoped diff and affected check.
 
-Before implementation, use [Select model](../aios-select-model/SKILL.md) to
-reconcile the Spec decision with the accepted work and current runtime. Reuse
-current task evidence; if Build starts from an accepted contract without a
-selection, make that proportionate assessment now. Continue on a sufficient
-authorized route without adding a routine confirmation.
+Use the user's current model/effort and native defaults. Load
+[Select model](../aios-select-model/SKILL.md) for requested advice or a concrete
+capability gap requiring a human choice, not as a routine Build prerequisite.
+Continue authorized work locally unless the user requested a worker.
 
-Use the [shared lifecycle](../aios/references/lifecycle.md) before substantive
+Use the [shared lifecycle](../aios-start/references/lifecycle.md) before substantive
 implementation and on scope change. Reuse the current requirements, goal
 authorization and evidence; reopen affected completed items. Conditional
 recovery does not waive initial activation when the accepted work requires it.
@@ -27,15 +26,15 @@ Continue in the current task by default. For repository work, verify the exact
 root, branch, local AGENTS, accepted inputs and available tools before mutation.
 Use that repository's specialist workflow and local proof/recovery contract;
 do not preload personal owner context or look for a second local Build skill.
-Owner-level work uses [routing](../aios/references/routing.md) to select its owner.
-Use [Orchestrate workers](../aios-orchestrate-workers/SKILL.md) for justified
+Owner-level work uses [routing](../aios-start/references/routing.md) to select its owner.
+Use [Orchestrate workers](../aios-orchestrate-workers/SKILL.md) for user-requested
 delegation with retained caller responsibility or worker recovery. The shared
 lifecycle owns whole-task handoff; repository ownership alone requires no delegation.
 Keep one writer for each overlapping change.
 
 ## Implement and verify
 
-For any code written or changed, use [Write code](../write-code/SKILL.md),
+For any code written or changed, use [Write code](../aios-write-code/SKILL.md),
 including scripts, shell snippets, SQL, tests and automation. It owns code-quality
 criteria and verification by changed surface; apply them proportionately even
 to small one-off code. Reuse the result in this Build and its existing Review.
@@ -51,7 +50,7 @@ Preserve unrelated tracked, untracked and ignored work. Use the existing working
 stack unless a material [technology decision](../aios-spec-work/references/technology.md)
 changes it. Keep affected README, routes, interfaces, runbooks and evidence
 current. Add runtime layers only for an actual responsibility. Follow the
-accepted [security contract](../aios/references/security.md) when its boundary
+accepted [security contract](../aios-start/references/security.md) when its boundary
 applies; ordinary work gains no scan ritual.
 
 Prove the final bytes through the real interface or an appropriate validator,

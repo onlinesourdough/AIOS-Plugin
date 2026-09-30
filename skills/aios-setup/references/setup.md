@@ -1,8 +1,7 @@
 # Setup a useful owner home
 
-Full setup covers context, capabilities, harness fit, useful work and
-continuity. Repair stays scoped; resume starts at the next gap with known answers.
-No fixed interview or account/device scan. Installation is not usable access.
+Setup covers context, access, useful work and continuity. Resume at the next
+gap; no fixed interview or device scan. Installation does not prove access.
 
 ## Context and useful work
 
@@ -39,14 +38,14 @@ resolve bridge conflicts. Stop symlink overwrites; preserve custom/unrelated byt
 
 Inspect inherited instructions; owner-context AGENTS must not preload independent
 repositories. Repair only authorized owned blocks; unresolved preload fails isolation.
-Use the current workspace for work. [Creation](../../aios/references/creation.md)
+Use the current workspace for work. [Creation](../../aios-start/references/creation.md)
 starts a requested new repository; [specialist maintenance](../../aios-update/references/systems.md)
 handles selected optional installations. Merge needed
 [ignore exclusions](../assets/owner/.gitignore) and verify them before owner staging.
 
 Full setup/configuration changes use relevant [harness configuration](harness-configuration.md);
 [adapters](adapters.md) owns installation. Preserve settings/overrides; optional
-extras need a request/task need. Resume needs no machine audit.
+extras need a request/task need.
 
 ## Acceptance and continuity
 
@@ -60,6 +59,8 @@ New/changed setup needs a fresh ordinary request without naming AIOS; desktop
 cutover also verifies [New Chat](adapter-codex-desktop.md). CLI evidence proves
 no GUI state; report unavailable activation as NOT VERIFIED. Unchanged resumes
 reuse dated proof without repeating cold/optional checks.
+
+Selected overview consumers can retain dated [setup proof](codex-setup-status.md).
 
 Generated context/routes remain provisional until the owner confirms/corrects
 the snapshot. Reuse accepted answers; retain unresolved confirmation and do not

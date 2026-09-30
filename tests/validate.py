@@ -14,19 +14,19 @@ from package_documentation import check as validate_documentation
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILL_NAMES = {
-    "aios", "aios-build-work", "aios-check", "aios-create-project",
-    "aios-create-system", "aios-project-foundation", "aios-maintain-context", "aios-manage-skills",
+    "aios-start", "aios-build-work", "aios-check", "aios-create-project",
+    "aios-project-foundation", "aios-maintain-context", "aios-manage-skills",
     "aios-setup", "aios-interview", "aios-orchestrate-workers", "aios-review-work",
     "aios-risky-changes", "aios-ship-work", "aios-spec-work", "aios-triage-improvement",
-    "aios-update", "aios-select-model", "human-writing", "write-code",
-    "design", "review-design", "openpencil-workbench", "content", "diffusion-studio",
+    "aios-update", "aios-select-model", "aios-human-writing", "aios-write-code",
+    "aios-design", "aios-review-design", "aios-openpencil-workbench", "aios-content", "aios-diffusion-studio",
 }
 LEGACY_ROUTE_TARGETS = {
-    "aios": ("../../aios/SKILL.md", "../SKILL.md", "../../aios-check/SKILL.md",
+    "aios": ("../../aios-start/SKILL.md", "../SKILL.md", "../../aios-check/SKILL.md",
              "../../aios-maintain-context/SKILL.md", "../../aios-update/SKILL.md"),
     "aios-build-work": ("../../aios-build-work/SKILL.md",),
     "aios-create-project": ("../../aios-create-project/SKILL.md",),
-    "aios-create-system": ("../../aios-create-system/SKILL.md",),
+    "aios-create-system": ("../../aios-start/references/creation.md",),
     "aios-evaluate-completeness": ("../../aios-review-work/SKILL.md",
                                    "../../aios-review-work/references/completeness.md"),
     "aios-evaluate-publish-safety": ("../../aios-ship-work/SKILL.md",
@@ -35,12 +35,12 @@ LEGACY_ROUTE_TARGETS = {
                                 "../../aios-spec-work/references/readiness.md"),
     "aios-onboard": ("../SKILL.md",),
     "aios-review-work": ("../../aios-review-work/SKILL.md",),
-    "aios-route-agentic-content-system": ("../../aios/SKILL.md",
-                                           "../../aios/references/routing.md"),
-    "aios-route-agentic-design-system": ("../../aios/SKILL.md",
-                                          "../../aios/references/routing.md"),
-    "aios-route-business-constraint": ("../../aios/SKILL.md",
-                                       "../../aios/references/routing.md"),
+    "aios-route-agentic-content-system": ("../../aios-start/SKILL.md",
+                                           "../../aios-start/references/routing.md"),
+    "aios-route-agentic-design-system": ("../../aios-start/SKILL.md",
+                                          "../../aios-start/references/routing.md"),
+    "aios-route-business-constraint": ("../../aios-start/SKILL.md",
+                                       "../../aios-start/references/routing.md"),
     "aios-ship-work": ("../../aios-ship-work/SKILL.md",),
     "aios-spec-work": ("../../aios-spec-work/SKILL.md",),
     "aios-sync": ("../../aios-maintain-context/SKILL.md",
@@ -57,19 +57,16 @@ LEGACY_EXTERNAL_TARGETS = {
 }
 # Core routes methods; domain details stay in the selected domain skill.
 FORBIDDEN_BOUNDARY_TEXT = {
-    "skills/aios/references/routing.md": (
+    "skills/aios-start/references/routing.md": (
         "ACS", "OpenPencil", "DESIGN.md", "HANDOFF.md", ".op",
     ),
     "skills/aios-create-project/SKILL.md": (
         "scripts/create-project.sh", "--in-place", "--source-url", "--source-sha",
     ),
-    "skills/aios-create-system/SKILL.md": (
-        "agentic-system-template", "audit-system", "archive/extraction",
-    ),
     "skills/aios-manage-skills/SKILL.md": ("skills.sh", "npx skills"),
 }
 FORBIDDEN_SHIPPED_PATTERNS = (r"\bnpx skills\b", r"\bskills\.sh\b")
-DOMAIN_SKILLS = {"design", "review-design", "openpencil-workbench", "content", "diffusion-studio"}
+DOMAIN_SKILLS = {"aios-design", "aios-review-design", "aios-openpencil-workbench", "aios-content", "aios-diffusion-studio"}
 PRODUCT_PATHS = ("plugin.json", ".codex-plugin", ".claude-plugin", ".cursor-plugin",
                  "gemini-extension.json", "skills", "assets/icon.png", "LICENSE",
                  "docs/aios.md")
@@ -182,12 +179,12 @@ def validate(root=ROOT, release_tag=None):
                 f"skill description: {path}")
         require("disable-model-invocation" not in fields, f"implicit invocation: {path}")
 
-    primary_targets = set(link_targets(skill_root / "aios/SKILL.md"))
-    for name in ("design", "content", "human-writing", "write-code", "aios-interview", "aios-setup", "aios-project-foundation"):
+    primary_targets = set(link_targets(skill_root / "aios-start/SKILL.md"))
+    for name in ("aios-design", "aios-content", "aios-human-writing", "aios-write-code", "aios-interview", "aios-setup", "aios-project-foundation"):
         require((skill_root / name / "SKILL.md").resolve() in primary_targets,
                 f"built-in method route missing: {name}")
     for caller in ("aios-build-work", "aios-review-work"):
-        require((skill_root / "write-code/SKILL.md").resolve() in
+        require((skill_root / "aios-write-code/SKILL.md").resolve() in
                 set(link_targets(skill_root / caller / "SKILL.md")),
                 f"shared code-quality route missing: {caller}")
     creation_targets = set(link_targets(skill_root / "aios-create-project/SKILL.md"))
@@ -197,7 +194,7 @@ def validate(root=ROOT, release_tag=None):
     # Spec owns contract preparation; tracking is one linked shared owner.
     # Native decisions require the independent behavioral probes, not wording tests.
     spec_targets = set(link_targets(skill_root / "aios-spec-work/SKILL.md"))
-    for target in ("aios/references/lifecycle.md", "aios-spec-work/references/readiness.md",
+    for target in ("aios-start/references/lifecycle.md", "aios-spec-work/references/readiness.md",
                    "aios-build-work/SKILL.md"):
         require((skill_root / target).resolve() in spec_targets,
                 f"Spec contract route missing: {target}")
@@ -219,15 +216,15 @@ def validate(root=ROOT, release_tag=None):
             "[Risky Changes](../aios-risky-changes/SKILL.md)" in review_work and
             "Review still owns acceptance and does not gain Ship authority" in review_work,
             "risky-change caller routing")
-    primary = (skill_root / "aios/SKILL.md").read_text()
-    lifecycle = (skill_root / "aios/references/lifecycle.md").read_text()
+    primary = (skill_root / "aios-start/SKILL.md").read_text()
+    lifecycle = (skill_root / "aios-start/references/lifecycle.md").read_text()
     require("persistent-goal request boundary" in primary and
             re.search(r"If activation requires an explicit request and none\s+exists", lifecycle) and
             re.search(r"do\s+not silently substitute a note", lifecycle) and
             re.search(r"genuinely\s+has no native goal controls", lifecycle) and
             "The lead's default model remains the user's configured choice." in lifecycle,
             "native goal request boundary")
-    recovery = (skill_root / "aios/references/recovery.md").read_text()
+    recovery = (skill_root / "aios-start/references/recovery.md").read_text()
     require("## Native-state deadlock" in recovery and
             "standing owner fallback policy" in recovery and
             "native resumption\nis unavailable" in recovery and
@@ -242,8 +239,8 @@ def validate(root=ROOT, release_tag=None):
             "| Native-only continuation |" in workflow_scenarios and
             "| No native task list |" in workflow_scenarios and
             "without hunting a session, deleting, reactivating, replacing or duplicating a goal or worker" in workflow_scenarios and
-            "[native tracking SOP](../aios/references/lifecycle.md)" in spec_work and
-            "[native tracking SOP](../aios/references/lifecycle.md)" in review_work,
+            "[native tracking SOP](../aios-start/references/lifecycle.md)" in spec_work and
+            "[native tracking SOP](../aios-start/references/lifecycle.md)" in review_work,
             "native-state deadlock scenario")
     require("| Routine risky-change boundary |" in workflow_scenarios and
             "do not load Risky Changes or create a lifecycle, goal, worker, or extra test suite" in workflow_scenarios,
@@ -296,7 +293,7 @@ def validate(root=ROOT, release_tag=None):
             "does not waive initial activation" in build and
             "canonical blocked/terminal fallback applies only after prior verified activation" in readiness,
             "sync missing-home and native-goal gate ordering")
-    canonical_sources = skill_root / "aios/references/canonical-sources.md"
+    canonical_sources = skill_root / "aios-start/references/canonical-sources.md"
     require(canonical_sources.is_file(), "missing canonical source route")
     canonical_text = canonical_sources.read_text()
     require(canonical_sources.resolve() in primary_targets and
@@ -312,10 +309,10 @@ def validate(root=ROOT, release_tag=None):
             "A read of MEMORY alone neither invokes this procedure nor grants write authority" in curation and
             "recorded or standing authority" in curation,
             "memory read/write separation")
-    continuation = skill_root / "aios/references/continuation.md"
+    continuation = skill_root / "aios-start/references/continuation.md"
     require(continuation.is_file() and
             not (skill_root / "aios-select-model/references/continuation.md").exists() and
-            continuation.resolve() in set(link_targets(skill_root / "aios/references/lifecycle.md")) and
+            continuation.resolve() in set(link_targets(skill_root / "aios-start/references/lifecycle.md")) and
             (skill_root / "aios-maintain-context/references/curation.md").resolve()
             in set(link_targets(skill_root / "aios-setup/references/setup.md")),
             "single continuation and context framework owners")
@@ -343,7 +340,7 @@ def validate(root=ROOT, release_tag=None):
             "duplicate personal-skill owner")
     caller_targets = set()
     for relative in (
-        "skills/aios/SKILL.md",
+        "skills/aios-start/SKILL.md",
         "skills/aios-setup/SKILL.md",
         "skills/aios-check/references/checks.md",
         "skills/aios-maintain-context/references/curation.md",
@@ -461,7 +458,7 @@ def validate(root=ROOT, release_tag=None):
         require(not any((staged / "skills" / name).exists()
                         for name in ("setup-guardrails",)),
                 "optional global capability shipped")
-        require((staged / "skills/human-writing/SKILL.md").is_file(), "built-in writing capability missing")
+        require((staged / "skills/aios-human-writing/SKILL.md").is_file(), "built-in writing capability missing")
         for path in staged.rglob("*.md"):
             list(link_targets(path, staged))
 
@@ -481,23 +478,23 @@ def rejected(mutator, expected):
 
 def negative_controls():
     def missing_skill_version(root):
-        path = root / "skills/aios/SKILL.md"
+        path = root / "skills/aios-start/SKILL.md"
         path.write_text(re.sub(r'^  version: [^\n]*\n', '', path.read_text(), count=1, flags=re.M))
 
     def unquoted_skill_version(root):
-        path = root / "skills/aios/SKILL.md"
+        path = root / "skills/aios-start/SKILL.md"
         path.write_text(re.sub(r'^  version: [^\n]*', '  version: 1.0.0',
                                path.read_text(), count=1, flags=re.M))
 
     def missing_spec_tracking_route(root):
         path = root / "skills/aios-spec-work/SKILL.md"
         path.write_text(path.read_text().replace(
-            "[native tracking SOP](../aios/references/lifecycle.md)", "tracking"))
+            "[native tracking SOP](../aios-start/references/lifecycle.md)", "tracking"))
 
     def missing_domain_route(root):
-        path = root / "skills/aios/SKILL.md"
+        path = root / "skills/aios-start/SKILL.md"
         path.write_text(path.read_text().replace(
-            "](../design/SKILL.md)", "](../human-writing/SKILL.md)"))
+            "](../aios-design/SKILL.md)", "](../aios-human-writing/SKILL.md)"))
 
     def compulsory_registry(root):
         (root / "skills/aios-setup/assets/owner/projects").mkdir()
@@ -520,10 +517,10 @@ def negative_controls():
         path.write_text("# Duplicate owner\n")
 
     def runtime_script(root):
-        (root / "skills/aios/unsafe.sh").write_text("echo unexpected\n")
+        (root / "skills/aios-start/unsafe.sh").write_text("echo unexpected\n")
 
     def coupled_system_tool(root):
-        path = root / "skills/aios/references/routing.md"
+        path = root / "skills/aios-start/references/routing.md"
         path.write_text(path.read_text() + "\nUse OpenPencil for design.\n")
 
     def missing_legacy_route(root):

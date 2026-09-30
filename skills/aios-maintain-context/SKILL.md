@@ -1,11 +1,15 @@
 ---
 name: aios-maintain-context
-description: Curate owner facts, memory and routes, or perform explicitly requested AIOS continuity Sync.
+description: Curate confirmed owner facts, corrections and source routes from ordinary conversation, or perform explicitly requested AIOS continuity Sync.
 metadata:
-  version: "1.1.2"
+  version: "1.2.0"
 ---
 
-# AIOS:maintain-context
+# AIOS-maintain-context
+
+For a confirmed lasting fact, correction or new source in ordinary owner work,
+use [context signals](references/context-signals.md). Keep useful work moving;
+no profile interview, whole-home audit or automatic Git push follows a signal.
 
 For an explicit System-code update, route to
 [System maintenance](../aios-update/references/systems.md); owner Sync does not

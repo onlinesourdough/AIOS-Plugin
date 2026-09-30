@@ -22,7 +22,7 @@ class InstalledCase(unittest.TestCase):
         cls.temporary = tempfile.TemporaryDirectory(prefix="portable design ")
         cls.base = Path(cls.temporary.name).resolve()
         cls.package = cls.base / "installed package"
-        for name in ("design", "review-design", "openpencil-workbench"):
+        for name in ("aios-design", "aios-review-design", "aios-openpencil-workbench"):
             shutil.copytree(ROOT / "skills" / name, cls.package / "skills" / name)
         cls.cwd = cls.base / "unrelated cwd"
         cls.cwd.mkdir()

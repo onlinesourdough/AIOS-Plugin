@@ -211,7 +211,7 @@ process.on("SIGTERM", () => server.close(() => process.exit(0)));
         self, *arguments: str, env: Optional[dict[str, str]] = None
     ) -> subprocess.CompletedProcess[str]:
         return subprocess.run(
-            [NODE, str(self.package / "skills/openpencil-workbench/scripts/openpencil-workbench.mjs"), *arguments],
+            [NODE, str(self.package / "skills/aios-openpencil-workbench/scripts/openpencil-workbench.mjs"), *arguments],
             cwd=self.cwd,
             check=False,
             capture_output=True,

@@ -1,6 +1,8 @@
 # Codex configuration and instructions
 
-Use for relevant Codex base settings and instruction precedence. Apply the
+Use for relevant Codex base settings and instruction precedence. For a
+consumer setup or an overview of useful choices, read the maintained
+[Codex consumer guide](codex-consumer-guide.md). Apply the
 shared [configuration procedure](harness-configuration.md). Optional context,
 memory and computer capabilities use their separate routes from that index.
 

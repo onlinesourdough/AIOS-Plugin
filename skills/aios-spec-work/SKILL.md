@@ -2,12 +2,12 @@
 name: aios-spec-work
 description: Specify or revise substantive work when its outcome, boundaries or proof need clarification.
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
-# AIOS:spec-work
+# AIOS-spec-work
 
-Before substantive Spec, run the [native tracking SOP](../aios/references/lifecycle.md)
+Before substantive Spec, run the [native tracking SOP](../aios-start/references/lifecycle.md)
 with accepted requirements and carried goal authorization. READY returns its
 actual tool/readback evidence or declared file fallback, alongside the contract.
 Scope changes update that same list; no phase goals or duplicate live lists.
@@ -35,8 +35,8 @@ For repository work, start from local AGENTS, relevant specialist methods and
 accepted inputs. This shared Spec owns the procedure; the repository owns its
 technical truth, constraints and proof. Do not load personal owner context or
 look for another local Spec skill. Owner-level selection uses
-[routing](../aios/references/routing.md). Continue here by default. Use
-[Orchestrate workers](../aios-orchestrate-workers/SKILL.md) for justified delegation
+[routing](../aios-start/references/routing.md). Continue here by default. Use
+[Orchestrate workers](../aios-orchestrate-workers/SKILL.md) for user-requested delegation
 with retained caller responsibility; the shared lifecycle owns whole-task handoff.
 
 Keep the existing working stack. For a new or materially changed technology
@@ -48,15 +48,15 @@ Preserve a developed brief; a rough input may become a compact local contract
 without asking the owner for a formal document.
 
 During substantive Spec, reconcile the shared task-result decision once
-requirements are clear. For model-executed work use
-[Select model](../aios-select-model/SKILL.md) for model/effort suitability; carry
-its evidence and material gaps into READY. It does not own the deliverable or
-continuation decision. A requested brief needs only the relevant preparation,
+requirements are clear. Use the user's current model/effort and native defaults.
+Read [Select model](../aios-select-model/SKILL.md) only for requested advice or a
+concrete unresolved capability choice; include relevant advice in READY without
+switching on the user's behalf. A requested brief needs only relevant preparation,
 sources and specialist guidance, followed by the lifecycle's usable handoff.
 
 For sensitive data, authentication/authorization, external interfaces,
 privileged automation or deployment, use the conditional
-[security contract](../aios/references/security.md) through Spec/Build/Review/Ship. Keep its scope
+[security contract](../aios-start/references/security.md) through Spec/Build/Review/Ship. Keep its scope
 and evidence with the independent repository; ordinary tasks gain no scan ritual.
 
 When the proposed change may materially alter a real-world outcome, read

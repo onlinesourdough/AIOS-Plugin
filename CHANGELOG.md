@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.15.0 — 2026-09-30
+
+- Make model selection advisory and worker launch human-requested; remove
+  routine Spec/Build model assessment and the newest-model default.
+- Route owner-confirmed durable context changes from ordinary conversations
+  through existing curation and authority, with no background capture.
+- Add a maintained Codex consumer setup guide with deliberate access choices,
+  optional capabilities, fresh-session verification and scoped recovery.
+- Unify canonical names as aios-<method> and visible titles as AIOS-<method>.
+  Rename the router to aios-start; update current routes and metadata.
+- Retire Create System, keep Create Project and domain Review Design, and
+  remove the empty local skill shelf. Preserve native marketplace metadata
+  and historical evidence. The package now has 24 skills.
+- Keep the English overview/MCP UI experiment separate from the portable
+  dependency-free package; Codex acceptance does not wait for Pi model runs.
+
 ## 0.14.1 — 2026-09-26
 
 - Keep Project Foundation independent: remove the external runtime setup route

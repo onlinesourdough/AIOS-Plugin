@@ -7,7 +7,7 @@ from support import ROOT
 
 class ResourceTests(unittest.TestCase):
     def test_metadata_links_imports_and_no_old_operational_roots(self):
-        paths = [ROOT / "skills" / name for name in ("design", "review-design", "openpencil-workbench")]
+        paths = [ROOT / "skills" / name for name in ("aios-design", "aios-review-design", "aios-openpencil-workbench")]
         for folder in paths:
             skill = (folder / "SKILL.md").read_text()
             self.assertIn(f"name: {folder.name}\n", skill)

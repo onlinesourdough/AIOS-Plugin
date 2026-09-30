@@ -14,7 +14,7 @@ from urllib.parse import unquote
 
 sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[2]
-CONTENT = ROOT / 'skills/content'
+CONTENT = ROOT / 'skills/aios-content'
 
 
 def digest_tree(root):
@@ -28,7 +28,7 @@ class Helpers(unittest.TestCase):
         self.addCleanup(self.temp.cleanup)
         self.base = Path(self.temp.name).resolve()
         self.package = self.base / 'immutable package'
-        self.skill = self.package / 'skills/content'
+        self.skill = self.package / 'skills/aios-content'
         shutil.copytree(CONTENT, self.skill)
         self.work = self.base / 'actual work'
         self.work.mkdir()
@@ -274,7 +274,7 @@ root = pathlib.Path(sys.argv[2]); assert root == pathlib.Path.cwd()
 
 class RelativeLinks(unittest.TestCase):
     def test_all_migrated_markdown_links_and_format_provenance_resolve(self):
-        files = [*CONTENT.rglob('*.md'), *(ROOT / 'skills/diffusion-studio').rglob('*.md')]
+        files = [*CONTENT.rglob('*.md'), *(ROOT / 'skills/aios-diffusion-studio').rglob('*.md')]
         doc = ROOT / 'docs/content-preservation.md'
         if doc.exists():
             files.append(doc)

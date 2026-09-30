@@ -12,7 +12,7 @@ from support import InstalledCase, fixture, fingerprint, write_review
 
 class PortableTests(InstalledCase):
     def handoff(self, source, output, *args, owner="Receiving owner"):
-        return self.invoke("design", "create-handoff.mjs", "--design-dir", source,
+        return self.invoke("aios-design", "create-handoff.mjs", "--design-dir", source,
                            "--output", output, "--receiving-owner", owner, *args)
 
     def test_minimal_snapshot_and_pending_or_accepted_output_preserved(self):
@@ -39,7 +39,7 @@ class PortableTests(InstalledCase):
     def test_review_identity_owner_choice_and_changed_contract(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
-            source = fixture(root / "design")
+            source = fixture(root / "aios-design")
             output = root / "snapshot"
             write_review(source, reviewer="Receiving owner")
             wrong = self.handoff(source, output)
@@ -61,7 +61,7 @@ class PortableTests(InstalledCase):
     def test_stale_direction_unreviewed_and_changed_companions(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
-            source = fixture(root / "design")
+            source = fixture(root / "aios-design")
             output = root / "snapshot"
             design = source / "DESIGN.md"
             design.write_text(design.read_text() + "\nChanged after review.\n")
@@ -85,7 +85,7 @@ class PortableTests(InstalledCase):
     def test_selected_exports_need_explicit_external_tool_and_bind_derivation(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
-            source = fixture(root / "design")
+            source = fixture(root / "aios-design")
             output = root / "snapshot"
             missing = self.handoff(source, output, "--export", "tokens")
             self.assertIn("--designmd-cli", missing.stderr)
@@ -102,7 +102,7 @@ class PortableTests(InstalledCase):
     def test_proof_json_and_unavailable_optional_native_tool(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
-            source = fixture(root / "design")
+            source = fixture(root / "aios-design")
             from support import digest
             (source / "REVIEW.md").unlink()
             (source / "proof.json").write_text(json.dumps({"review": "PASS", "reviewer": "Independent reviewer",
@@ -115,7 +115,7 @@ class PortableTests(InstalledCase):
     def test_selected_native_companions_and_preview_are_exact_reviewed_copies(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
-            source = fixture(root / "design")
+            source = fixture(root / "aios-design")
             (source / "openpencil").mkdir()
             (source / "openpencil/direction.op").write_text('{"children": []}\n')
             (source / "openpencil/frame.svg").write_text('<svg xmlns="http://www.w3.org/2000/svg"/>\n')
@@ -134,13 +134,13 @@ class PortableTests(InstalledCase):
             self.assertEqual(json.loads(result.stdout)["openpencil"]["status"], "included")
             for name in names:
                 self.assertEqual((source / name).read_bytes(), (root / "snapshot" / name).read_bytes())
-            audit = self.invoke("review-design", "audit.py", "--snapshot", root / "snapshot")
+            audit = self.invoke("aios-review-design", "audit.py", "--snapshot", root / "snapshot")
             self.assertEqual(audit.returncode, 0, audit.stdout)
 
     def test_escape_symlink_collision_and_package_paths_preserve_data(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp).resolve()
-            source = fixture(root / "design")
+            source = fixture(root / "aios-design")
             outside = fixture(root / "outside")
             linked = root / "link"
             linked.symlink_to(outside, target_is_directory=True)
@@ -165,7 +165,7 @@ class PortableTests(InstalledCase):
             outside = root / "outside.txt"
             outside.write_text("must not serve")
             (design / "outside.txt").symlink_to(outside)
-            script = self.package / "skills/design/scripts/serve.mjs"
+            script = self.package / "skills/aios-design/scripts/serve.mjs"
             process = subprocess.Popen(["node", str(script), "--design-dir", str(design), "--port", "0"],
                                        cwd=self.cwd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             try:

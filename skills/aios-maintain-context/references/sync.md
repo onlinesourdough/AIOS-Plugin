@@ -101,7 +101,7 @@ ahead or diverged using commit ancestry, not cached tracking refs.
   instructions and verify live equality before work.
 - Ahead: finish that reviewed delivery first; no preflight push.
 - Dirty, diverged, uncertain access or mismatch: preserve state and stop
-  durable sync/editing. Use [same-worker recovery](../../aios/references/recovery.md).
+  durable sync/editing. Use [same-worker recovery](../../aios-start/references/recovery.md).
 
 An active task's own expected dirty changes are not grounds to discard work or
 restart onboarding. They proceed to Review under the same baseline; freshly

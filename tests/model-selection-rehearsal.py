@@ -12,8 +12,8 @@ CASES = ROOT / "tests/fixtures/model-selection-cases.json"
 SOURCES = [
     "skills/aios-select-model/SKILL.md",
     "skills/aios-select-model/references/measurement.md",
-    "skills/aios/references/continuation.md",
-    "skills/aios/references/lifecycle.md",
+    "skills/aios-start/references/continuation.md",
+    "skills/aios-start/references/lifecycle.md",
     "skills/aios-spec-work/SKILL.md",
     "skills/aios-build-work/SKILL.md",
     "skills/aios-orchestrate-workers/SKILL.md",
@@ -44,9 +44,9 @@ def prepare(destination, baseline):
     hashes = {}
     for relative in SOURCES:
         if baseline:
-            result = subprocess.run(["git", "show", f"{baseline}:{relative}"], cwd=ROOT,
+            result = subprocess.run(["git", "show", f"{baseline}:{relative.replace('skills/aios-start/', 'skills/aios/')}"], cwd=ROOT,
                                     text=True, capture_output=True)
-            if result.returncode and relative == "skills/aios/references/continuation.md":
+            if result.returncode and relative == "skills/aios-start/references/continuation.md":
                 # Before shared ownership, the same conditional procedure lived here.
                 result = subprocess.run(["git", "show", f"{baseline}:skills/aios-select-model/references/continuation.md"],
                                         cwd=ROOT, text=True, capture_output=True)

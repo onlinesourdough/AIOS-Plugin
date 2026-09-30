@@ -24,7 +24,7 @@ These identifiers serve different purposes:
 | `skills/aios-setup/SKILL.md` | Portable source path; sibling Markdown links remain relative to this payload |
 | `aios-setup` | Portable skill name in frontmatter |
 | `/aios:aios-setup` | Claude Code's plugin-qualified invocation |
-| `/aios:human-writing` | Another Claude invocation; the plugin prefix applies to every skill |
+| `/aios:aios-human-writing` | Another Claude invocation; the plugin prefix applies to every skill |
 
 Resolve portable method names through the chosen harness's actual discovery.
 Claude's slash-command namespace does not rename the files or require rewritten

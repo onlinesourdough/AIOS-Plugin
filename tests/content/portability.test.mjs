@@ -6,12 +6,12 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { externalPath, parseArguments, resolveProductionProject, runDapi, inspectCheckout } from '../../skills/diffusion-studio/scripts/diffusion-studio.mjs';
-import { loadAndValidate, validateGraph } from '../../skills/content/scripts/check-content-graph.mjs';
+import { externalPath, parseArguments, resolveProductionProject, runDapi, inspectCheckout } from '../../skills/aios-diffusion-studio/scripts/diffusion-studio.mjs';
+import { loadAndValidate, validateGraph } from '../../skills/aios-content/scripts/check-content-graph.mjs';
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
-const launcher = path.join(root, 'skills/diffusion-studio/scripts/diffusion-studio.mjs');
-const validator = path.join(root, 'skills/content/scripts/check-content-graph.mjs');
+const launcher = path.join(root, 'skills/aios-diffusion-studio/scripts/diffusion-studio.mjs');
+const validator = path.join(root, 'skills/aios-content/scripts/check-content-graph.mjs');
 const fixture = fileURLToPath(new URL('./fixtures/content-graph', import.meta.url));
 const hash = bytes => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 function scratch(t) {
@@ -92,8 +92,8 @@ console.log(JSON.stringify({args, cwd:process.cwd(), bytes:fs.readFileSync(path.
 test('relocated read-only skill runs actual subprocess paths without package data or ACS checkout', t => {
   const temp = scratch(t);
   const installed = path.join(temp, 'immutable plugin');
-  cpSync(path.join(root, 'skills/diffusion-studio'), path.join(installed, 'skills/diffusion-studio'), { recursive: true });
-  cpSync(path.join(root, 'skills/content'), path.join(installed, 'skills/content'), { recursive: true });
+  cpSync(path.join(root, 'skills/aios-diffusion-studio'), path.join(installed, 'skills/aios-diffusion-studio'), { recursive: true });
+  cpSync(path.join(root, 'skills/aios-content'), path.join(installed, 'skills/aios-content'), { recursive: true });
   const before = snapshot(installed);
   const makeReadonly = dir => {
     for (const entry of readdirSync(dir, { withFileTypes: true })) {
@@ -110,9 +110,9 @@ test('relocated read-only skill runs actual subprocess paths without package dat
   makeReadonly(installed);
   const work = path.join(temp, 'external work');
   cpSync(fixture, work, { recursive: true });
-  const result = execFileSync(process.execPath, [path.join(installed, 'skills/content/scripts/check-content-graph.mjs'), path.join(work, 'content-graph.json'), path.join(work, 'publisher-handoff.json')], { cwd: installed, encoding: 'utf8' });
+  const result = execFileSync(process.execPath, [path.join(installed, 'skills/aios-content/scripts/check-content-graph.mjs'), path.join(work, 'content-graph.json'), path.join(work, 'publisher-handoff.json')], { cwd: installed, encoding: 'utf8' });
   assert.match(result, /PASS content graph and supervised publisher handoff/);
-  const movedLauncher = path.join(installed, 'skills/diffusion-studio/scripts/diffusion-studio.mjs');
+  const movedLauncher = path.join(installed, 'skills/aios-diffusion-studio/scripts/diffusion-studio.mjs');
   const described = JSON.parse(execFileSync(process.execPath, [movedLauncher, 'describe', '--platform', 'win32'], { cwd: work, encoding: 'utf8' }));
   assert.equal(described.platform, 'win32');
   const project = path.join(work, 'project with spaces');
@@ -180,6 +180,6 @@ test('graph rejects path traversal and symlink escapes while allowing one real n
 
 test('empty graph and handoff templates cannot be mistaken for completed content', t => {
   const temp=scratch(t);
-  const graph=JSON.parse(readFileSync(path.join(root,'skills/content/assets/templates/content-graph.json')));
+  const graph=JSON.parse(readFileSync(path.join(root,'skills/aios-content/assets/templates/content-graph.json')));
   assert.ok(validateGraph(graph,temp).some(e=>e.includes('non-empty')));
 });

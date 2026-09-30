@@ -1,6 +1,6 @@
 # AIOS
 
-AIOS version: 0.14.1
+AIOS version: 0.15.0
 
 **Business first. Productivity built in.**
 
@@ -45,7 +45,7 @@ projects and sessions; AIOS adds no second project register. Spaces hold relevan
 business context, while optional specialist Systems keep their own upkeep.
 Design and content working material stays in the project.
 
-Visual revisions can use [before/after comparisons](../skills/design/references/before-after.md)
+Visual revisions can use [before/after comparisons](../skills/aios-design/references/before-after.md)
 with an identified baseline, comparable views and a brief explanation of the
 change. Review Design evaluates the result. Human Writing includes concrete
 editing examples while preserving the author's meaning, evidence and voice.
@@ -97,7 +97,7 @@ surfaces supplement the project files and native tools that perform the work.
 ## Design sources and skill names
 
 Design can consult selected upstream Taste skills and composition references
-through its [source guide](../skills/design/references/taste-sources.md). AIOS
+through its [source guide](../skills/aios-design/references/taste-sources.md). AIOS
 keeps the brief, reference adaptation and rendered review; external examples
 and catalogs remain with their publishers. References are optional and their
 used revisions are recorded. OpenPencil remains an optional editable companion.
@@ -142,3 +142,11 @@ needed. Its version travels with the shared methods in the installed package.
 Native package updates are separate from owner-data Sync. There is no AIOS
 documentation or skill runtime on the Resources domain. A newer upstream
 release does not replace instructions already read into an active conversation.
+
+## Codex setup and human choices
+
+Use the maintained [consumer guide](../skills/aios-setup/references/codex-consumer-guide.md)
+for access, optional capabilities and verification. Model and worker choices
+stay with the person. Canonical names use `aios-<method>`, with `aios-start`
+as the routing entrypoint. Create System is retired; Create Project and Manage
+Skills own new repositories and reusable methods.

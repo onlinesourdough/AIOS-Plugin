@@ -2,10 +2,10 @@
 name: aios-project-foundation
 description: Establish and maintain engineering foundations for new or existing projects.
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
 ---
 
-# AIOS:project-foundation
+# AIOS-project-foundation
 
 Turn the accepted project into a reproducible, reviewable working environment.
 Keep the project self-contained: its source, standards, design, infrastructure,
@@ -37,7 +37,7 @@ repository or mandatory FOUNDATION.md is needed.
 
 ## Establish and verify the foundations
 
-Use [Build](../aios-build-work/SKILL.md) and [Write code](../write-code/SKILL.md)
+Use [Build](../aios-build-work/SKILL.md) and [Write code](../aios-write-code/SKILL.md)
 to make the authorized repairs. Keep one source of truth per project fact;
 populate documents from accepted decisions, inspected code/configuration and
 actual results. Explicitly separate current behavior, intended changes and
@@ -52,9 +52,9 @@ when changing branch policy, checks, automation or environments. Reconcile the
 actual triggers, required checks and selected revision; prose cannot enable
 GitHub protections or prove a deployment.
 
-Use [Design](../design/SKILL.md) and [Review Design](../review-design/SKILL.md)
+Use [Design](../aios-design/SKILL.md) and [Review Design](../aios-review-design/SKILL.md)
 for material visual/interaction gaps, preserving an existing identity. Apply
-the shared [security contract](../aios/references/security.md) to the actual
+the shared [security contract](../aios-start/references/security.md) to the actual
 exposure and changes. A SECURITY.md page does not constitute a security audit.
 
 Exercise clean setup, the real checks and relevant failure/recovery paths with
