@@ -2,6 +2,8 @@
 
 ## 0.15.0 — 2026-09-30
 
+- Use the original onlinesourdough pixel bread for the plugin icon and banner.
+
 - Make model selection advisory and worker launch human-requested; remove
   routine Spec/Build model assessment and the newest-model default.
 - Route owner-confirmed durable context changes from ordinary conversations
