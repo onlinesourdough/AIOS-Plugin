@@ -67,8 +67,11 @@ capture-and-reuse behavior. Existing managed bridges need their owned router
 name updated to `aios-start` on adoption; fresh sessions discover new identities.
 
 Selected overview consumers may use the optional dated setup-status record.
-It never replaces actual Setup acceptance. Core file hashes invalidate affected
-checks; access/work are host-bound. Git sync remains optional and cached refs
+Existing homes need no new receipt for green local availability or Overview.
+The viewer resolves an explicit home or AIOS_HOME, then the managed agent
+route, then the standard local home. A missing explicit route never creates a second home.
+The optional receipt never replaces actual Setup acceptance. Core file hashes
+invalidate affected checks; access/work are host-bound. Git sync remains optional and cached refs
 are explicitly insufficient to prove current cloud equality.
 
 ## Verification observed on 30 September 2026

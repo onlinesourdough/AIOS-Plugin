@@ -1,8 +1,12 @@
-# Optional overview readiness record
+# Optional task-check record
 
-Use only when a selected AIOS overview needs durable setup status. Existing
-setups do not need a new receipt to remain usable. Absence means unverified in
-the panel, not that no work was ever done. Setup still owns acceptance.
+Use only when a selected AIOS overview needs dated evidence from actual task
+checks. An existing supported home with its index, memory and connections can
+show green local availability and open Overview without this receipt. The
+panel must not turn receipt absence into a requirement to repeat onboarding.
+File availability proves no account login or useful-work acceptance. Missing
+receipts mean those task checks are unrecorded, not that no work was ever done.
+Setup still owns acceptance and checks actual access when a task needs it.
 
 After the actual checks in [Setup](setup.md), record only verified scope under
 existing owner-data write authority at `context/codex-setup.json`. Do not create
