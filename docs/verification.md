@@ -1,5 +1,11 @@
 # Verification
 
+For the unreleased Interview/local-trial change, see
+[intent and local trials](intent-and-trials.md) for the accepted boundaries,
+baseline/candidate decision probes, ordinary native observations and limitations.
+These cover overactivation and selected source reads; no installation or
+rendered UI comparison is claimed.
+
 For 0.14.1, [Project Foundation](project-foundation.md) records the independent
 project boundary and maintained code/design contracts. Source validation against
 0.14.0, documentation, layout, continuity, skill-version and context-footprint

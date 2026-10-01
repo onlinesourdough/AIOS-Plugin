@@ -1,8 +1,8 @@
 ---
 name: aios-interview
-description: Interview to explore context, challenge assumptions and find direction when requested or when starting work with material uncertainty; not for routine questions or clear work already underway.
+description: Interview to explore context, restate goals and the underlying problem, or find direction when requested or materially unclear at the start; clear work and isolated questions continue directly.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # AIOS:interview
@@ -14,8 +14,8 @@ reconsider. Understanding or a decision can be the whole requested result.
 
 ## Select the conversation
 
-- Start when the user asks for an interview, exploratory sparring or help
-  finding direction. Reuse their chosen subject and depth.
+- Start when the user asks for an interview, exploratory sparring, a restatement
+  of their goals/problem or help finding direction. Reuse their subject and depth.
 - At the start of work, the model may select a short interview when unresolved
   purpose, responsibility or success criteria would materially change the
   direction and cannot be resolved from accepted inputs or authorized sources.
@@ -36,7 +36,19 @@ access, source verification and continuity; Interview owns the conversation.
 
 ## Follow what changes the decision
 
-Reflect a short sourced understanding and identify the most consequential gap.
+For thinking aloud or a goal/problem restatement, first explain in your own
+words what the user wants to change, the underlying difficulty and what a useful
+result would accomplish. Keep it a short natural paragraph in their language;
+distinguish the desired outcome from their suggested remedy and label any
+material inference. Compress the meaning rather than retelling the transcript.
+Use the available voice/text conversation; no recording service, minimum speaking
+time or separate document is needed.
+
+Identify the most consequential gap. A short exchange often needs only one or
+two questions, and none when the supplied context already resolves the next
+action. This is neither a quota nor a cap; let remaining uncertainty and the
+user's chosen depth govern. A correction replaces the mistaken interpretation
+and changes the next action where needed.
 Ask one material question at a time in the user's language, following the
 [conversation procedure](references/conversation.md). Prefer a concrete recent
 example over an abstract questionnaire. Let answers change the next question;
