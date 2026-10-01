@@ -1,6 +1,6 @@
 # Set up AIOS in Codex
 
-Maintained by Online Sourdough. Documentation checked 30 September 2026 against
+Maintained by Online Sourdough. Documentation checked 1 October 2026 against
 Codex CLI 0.159.2 and the official configuration reference. Recheck support in
 the installed desktop app; its version, account and managed policy can differ.
 
@@ -92,6 +92,45 @@ latest bytes, patch only authorized keys and read back. UI-only preferences
 use supported UI controls. Do not rewrite the whole config or copy auth state.
 Verify effective settings and the relevant capability in a fresh Codex session.
 Rollback restores only owned changes and preserves later edits.
+
+## Plugin lifecycle and Git sync
+
+The Codex manifest declares `extensions.com.openai.onboardingSkill` pointing
+to the bundled AIOS-setup skill. This supplies a getting-started entry; current
+documentation does not guarantee automatic execution on installation.
+
+Enabled plugins can bundle `hooks/hooks.json`. Installing or enabling a plugin
+does not trust its hooks: the consumer must review the exact definition before
+it runs, and changed definitions need renewed trust. The documented events
+include `SessionStart`, `Stop` and `SessionEnd`; no install or uninstall event
+is documented. A turn stopping is not proof that its changes are reviewed.
+
+Prefer plugin-owned, bounded read-only discovery and GitHub checks when the
+panel opens. Keep the work inside the host-managed MCP process, without copying
+hooks into global settings or creating launchd/cron jobs. Removing the plugin
+removes its source from future hook discovery; immediate active-process teardown
+and deletion of writable plugin data need native verification.
+
+AIOS Sync currently runs through the [Sync procedure](../../aios-maintain-context/references/sync.md),
+under the recorded destination, branch, file scope and push authority. There is
+no bundled background autosync. Any later automatic write hook needs opt-in,
+reviewed owned paths, conflict handling and the same exact authority; hook trust
+alone is not permission to upload all changes. A matching remote commit proves
+committed files match at the check time, not that ignored or excluded files
+are backed up.
+
+Keep the owner's AIOS home and remote repository on uninstall. Setup's managed
+AIOS block in the agent's AGENTS.md is external to the plugin. Remove it only
+through an explicitly requested cleanup that verifies the exact owned block
+and preserves unrelated or later edits. Do not promise automatic uninstall
+cleanup for external settings without a supported lifecycle event.
+
+Cloud-orchestrated ChatGPT Work does not support plugin hooks, including when
+tools execute on a local machine. Qualify each receiving surface separately.
+
+Sources checked 1 October 2026: [onboarding metadata](https://developers.openai.com/plugins/deploy/submission#manifest-fields),
+[plugin support](https://learn.chatgpt.com/docs/plugins), [bundled plugin lifecycle](https://developers.openai.com/plugins/build/plugins#bundled-mcp-servers-and-lifecycle-hooks)
+and [supported hooks and trust](https://learn.chatgpt.com/docs/hooks).
 
 ## Keep the guide current
 

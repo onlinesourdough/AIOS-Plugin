@@ -19,10 +19,14 @@ def validate_native(root, require):
             'portable schema or components')
     require(all(isinstance(portable[k], str) and portable[k] for k in common - {'author'}) and
             portable['author'] == {'name': 'Online Sourdough'}, 'portable metadata types')
-    require(set(codex) == common | {'skills', 'interface'} and
+    require(set(codex) == common | {'skills', 'interface', 'extensions'} and
             set(claude) == common | {'skills'} and
             set(cursor) == {'name', 'version', 'description', 'skills'} and
             set(gemini) == {'name', 'version', 'description'}, 'unexpected native component field')
+    onboarding = './skills/aios-setup/SKILL.md'
+    require(codex['extensions'] == {'com.openai': {'onboardingSkill': onboarding}} and
+            (root / onboarding).is_file() and not (root / onboarding).is_symlink(),
+            'getting-started entry must select bundled Setup without runtime extensions')
     for native in (codex, claude, cursor, gemini, package):
         require(all(native[k] == portable[k] for k in ('name', 'version', 'description')),
                 'native identity/version drift')

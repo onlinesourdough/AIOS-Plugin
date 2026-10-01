@@ -98,7 +98,7 @@ the plugin.
 | --- | --- |
 | `docs/aios.md` | Version-matched local overview, selected through the AIOS documentation route |
 | `plugin.json` | Portable Agent Plugins 1.0.0 identity; root `skills/` discovery |
-| `.codex-plugin/plugin.json` | Compatible Codex manifest and interface metadata |
+| `.codex-plugin/plugin.json` | Compatible Codex manifest, interface metadata and bundled Setup getting-started entry |
 | `.agents/plugins/marketplace.json` | Codex repository marketplace |
 | `.claude-plugin/plugin.json` and `marketplace.json` | Claude Code and Copilot-compatible plugin distribution |
 | `.cursor-plugin/plugin.json` | Cursor-format compatibility metadata |
@@ -110,6 +110,13 @@ Codex compatibility overlay. It has no inline extension that would shadow that
 overlay. Every native declaration selects the same `skills/` source. There are
 no consumer dependencies, executable extensions, hooks, settings payloads or
 duplicated instruction bodies.
+
+The 0.15.0 candidate declares `extensions.com.openai.onboardingSkill` in the
+Codex compatibility manifest, pointing to the existing `aios-setup/SKILL.md`.
+This is an official getting-started entry, not an executable installation script.
+Automatic launch and native presentation still need host verification. See the
+[consumer guide](../skills/aios-setup/references/codex-consumer-guide.md#plugin-lifecycle-and-git-sync)
+for lifecycle, hook trust, sync and uninstall boundaries.
 
 An existing or requested owner home takes precedence over the default. Without
 one or a managed bridge, the selected AIOS skill checks `~/.AIOS`. It never scans

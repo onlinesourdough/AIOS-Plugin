@@ -21,5 +21,10 @@
     ]
   },
   "repository": "https://github.com/onlinesourdough/AIOS-Plugin",
-  "license": "MIT"
+  "license": "MIT",
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/aios-setup/SKILL.md"
+    }
+  }
 }
