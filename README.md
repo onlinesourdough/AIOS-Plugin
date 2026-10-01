@@ -1,4 +1,4 @@
-![AIOS](assets/branding/aios-banner.png)
+![AIOS](https://raw.githubusercontent.com/onlinesourdough/AIOS-Plugin/v0.15.1/assets/branding/aios-banner.png)
 
 # AIOS
 
