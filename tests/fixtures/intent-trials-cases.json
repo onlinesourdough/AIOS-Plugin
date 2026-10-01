@@ -1,0 +1,122 @@
+[
+  {
+    "id": "thinking-aloud",
+    "request": "Jeg glemmer at følge op på tilbud. Måske skal jeg have en CRM-agent, men jeg har også noter og mails overalt og ved ikke, hvad jeg skal starte med. Hjælp mig med at finde retningen.",
+    "context": "New conversation. No accepted outcome or source establishes which difficulty matters most.",
+    "expected": {
+      "interview": true,
+      "trial": false,
+      "question": true
+    }
+  },
+  {
+    "id": "restate-only",
+    "request": "Genfortæl mit mål og problem: Jeg vil følge op på åbne tilbud hver fredag; de ligger spredt i mails, så nogle bliver glemt. Jeg ønsker kun din forståelse nu.",
+    "context": "No implementation requested. Intended change and difficulty are supplied.",
+    "expected": {
+      "interview": true,
+      "trial": false,
+      "question": false
+    }
+  },
+  {
+    "id": "clear-copy-edit",
+    "request": "Ret 'tilbd' til 'tilbud': Se vores tilbd. Bevar resten.",
+    "context": "One clear reversible edit; nothing else requested.",
+    "expected": {
+      "interview": false,
+      "trial": false,
+      "question": false
+    }
+  },
+  {
+    "id": "new-agent-clear",
+    "request": "Lav den nye lokale agent efter den godkendte brief. Fortsæt implementeringen.",
+    "context": "Brief defines inputs, outputs, allowed local files, errors and checks. No material choice remains. Implementation is authorized.",
+    "expected": {
+      "interview": false,
+      "trial": false,
+      "question": false
+    }
+  },
+  {
+    "id": "mid-task-gap",
+    "request": "Fortsæt rapporten med det materiale, vi har.",
+    "context": "Implementation is underway. A missing period definition holds one calculation and cannot be discovered. Other sections can continue.",
+    "expected": {
+      "interview": false,
+      "trial": false,
+      "question": true
+    }
+  },
+  {
+    "id": "accepted-design",
+    "request": "Implementer layout B fra den godkendte sammenligning. Bevar indhold og mobilrækkefølge.",
+    "context": "Direction and behavior are accepted. No new evidence or changed requirements.",
+    "expected": {
+      "interview": false,
+      "trial": false,
+      "question": false
+    }
+  },
+  {
+    "id": "visual-comparison",
+    "request": "Vis to forskellige kompositioner for denne formular ved siden af hinanden på vores eksisterende canvas, så jeg kan vælge. Indhold og mål er aftalt.",
+    "context": "Available editor renders comparable variants in a local working copy. Production implementation not requested.",
+    "expected": {
+      "interview": false,
+      "trial": true,
+      "question": false
+    }
+  },
+  {
+    "id": "interaction-fork",
+    "request": "Vi skal redigere en ordre uden at miste overblikket. Vi overvejer drawer eller modal. Undersøg hvilken der fungerer bedst med tastatur og lange ordredetaljer.",
+    "context": "Goal agreed. Small local browser demo with synthetic data can expose focus/navigation/context. Browser tools available.",
+    "expected": {
+      "interview": false,
+      "trial": true,
+      "question": false
+    }
+  },
+  {
+    "id": "workflow-fork",
+    "request": "Afprøv om daglig sortering eller sortering ved modtagelse forhindrer glemte indbakkeopgaver bedst. Brug de samme fem fiktive sager. Hold forsøget lille.",
+    "context": "Synthetic cases include interruptions and a returning case; a local walkthrough can expose lost ownership. No live integration requested.",
+    "expected": {
+      "interview": false,
+      "trial": true,
+      "question": false
+    }
+  },
+  {
+    "id": "source-settles-choice",
+    "request": "Vælg mellem A og B til eksporten efter de angivne krav.",
+    "context": "Accepted requirement CSV. Supplied authoritative contracts: A supports CSV; B only PDF. This fully resolves the choice.",
+    "expected": {
+      "interview": false,
+      "trial": false,
+      "question": false
+    }
+  },
+  {
+    "id": "corrected-goal",
+    "request": "Nej, jeg vil ikke automatisere salg. Jeg vil kun have ét samlet overblik over åbne tilbud. Lav den lokale oversigt med de aftalte kolonner.",
+    "context": "Interview was underway. User corrected the sales-automation interpretation and supplied columns, input and authorized next action. No uncertainty remains.",
+    "expected": {
+      "interview": false,
+      "trial": false,
+      "question": false
+    }
+  },
+  {
+    "id": "skip-exploration",
+    "request": "Spring interview og prototyper over. Skriv den korte mail med den godkendte formulering; jeg sender den selv.",
+    "context": "Audience, message and wording supplied. Drafting only. No unresolved decision or external send.",
+    "expected": {
+      "interview": false,
+      "trial": false,
+      "question": false
+    }
+  }
+]

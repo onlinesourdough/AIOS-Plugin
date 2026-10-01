@@ -276,6 +276,9 @@ def main():
     measurement = ROOT / "skills/aios-select-model/references/measurement.md"
     print(f"conditional_model_measurement_extra_bytes={measurement.stat().st_size}")
     print("NOTE: performance-claim/comparison tasks add that reference; no matched legacy measurement path is claimed")
+    trials = ROOT / "skills/aios-spec-work/references/local-trials.md"
+    print(f"conditional_local_trials_extra_bytes={trials.stat().st_size}")
+    print("NOTE: a material unresolved choice adds this reference; ordinary Spec and Build routes do not")
     handoff = ROOT / "skills/aios/references/continuation.md"
     print(f"conditional_whole_task_handoff_extra_bytes={handoff.stat().st_size}")
     print("NOTE: portable/whole-task transfer adds that reference, not worker orchestration; no matched legacy transfer path is claimed")

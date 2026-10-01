@@ -2,7 +2,7 @@
 name: aios
 description: Apply relevant owner context and choose AIOS methods for business work, design, content, AIOS setup or documentation.
 metadata:
-  version: "2.3.1"
+  version: "2.3.2"
 ---
 
 # AIOS:aios
@@ -19,8 +19,8 @@ identify the physical home even when Git-backed. Check the format before writes;
 Keep external facts at their source and respect the account and access scope.
 
 Use [Interview](../aios-interview/SKILL.md) for requested exploration or materially
-unclear direction at the start. Reuse accepted answers; clear work and isolated
-questions need no interview.
+unclear goals at the start, including thinking aloud. Reuse accepted answers;
+clear work and isolated questions proceed directly.
 
 For a missing or empty home with unresolved intent, use
 [Setup](../aios-setup/SKILL.md) to resolve “Sync existing AIOS or set up new?”

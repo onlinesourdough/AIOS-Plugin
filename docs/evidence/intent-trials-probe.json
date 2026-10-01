@@ -1,0 +1,491 @@
+{
+  "date": "2026-10-01",
+  "harness": "codex-cli 0.159.2",
+  "model": "Runtime default; exact model ID unavailable in retained JSON events.",
+  "baseline_commit": "bbacc8d4199936b8a37a6e69e10f4dc140633021",
+  "authority": "Scoped source implementation and draft PR; no merge, release, installation, owner mutation or live integration.",
+  "review_subject_sha256": "8cde48746db4ddbed35fc392f3cf084862a44cfac5796d6d9ccbbeab6780f497",
+  "review_subject_sha256_method": "Sorted repository-relative paths, NUL, file bytes, NUL. Excludes this evidence record and its explanation.",
+  "review_subject_file_sha256": {
+    "CHANGELOG.md": "aa48952cccdfa2156aeec6ab6ce1c0221501e7d95e8850fa1dcdf4905b32a027",
+    "README.md": "ef8d9cce01ac2e75593d126702186264a9f9e58d7a9ef6b591422a29508b5648",
+    "docs/aios.md": "cec877739d04348de3d7109fcef73691fa1c58447008521ec976a1e40e155dcd",
+    "docs/verification.md": "b317cea9c64167f8dc7a7c4aef70985c1eb70d5996f6a3e7332b78751b6de1b5",
+    "skills/aios-interview/SKILL.md": "658f5c8fe9635caac3e8d5c5492159654146dcdcfcf8cb5c2d3581468f6b742f",
+    "skills/aios-spec-work/SKILL.md": "5ffbdf93ba3e4e11c3f110a9f557625947757250f8cae079eaaeeafcf467deb9",
+    "skills/aios-spec-work/references/local-trials.md": "068b0860a547e71d3127b1231e7a4c9ab5d9d5c7523d083902ebe4f6a098b76b",
+    "skills/aios/SKILL.md": "547454fd8991e93f7b3027b86aed85a359434faa5b7319ec960b84c91b5b98ea",
+    "tests/context-footprint.py": "8725bae975074365bdf35112da28f4fdf14dfb193d5f2301a6276dfe0f7db457",
+    "tests/fixtures/intent-trials-cases.json": "7e15341eeda495b50757fb056e7b1d22c8bc29e0c8af33285ea30d77cd63f7b1",
+    "tests/intent-trials-rehearsal.py": "81583a4ec2085ae4c832a8a63107112658358a8fb96d71b77da53bbc75a4c776"
+  },
+  "candidate_instruction_sha256": {
+    "skills/aios-interview/SKILL.md": "658f5c8fe9635caac3e8d5c5492159654146dcdcfcf8cb5c2d3581468f6b742f",
+    "skills/aios-interview/references/conversation.md": "32a3c1e6cc19c39c28b7c07d9efd239091ab17dc86866af92370b4e378ac8dac",
+    "skills/aios-review-work/SKILL.md": "07c701dc6c9541488d32cf481da6ca7f9a81488a219ba008f2e0e61d78c6eea0",
+    "skills/aios-review-work/references/completeness.md": "52d582b95fec0983176d52321f56b6e31df6db56da521cc1ee8c441b93b1822f",
+    "skills/aios-spec-work/SKILL.md": "5ffbdf93ba3e4e11c3f110a9f557625947757250f8cae079eaaeeafcf467deb9",
+    "skills/aios-spec-work/references/local-trials.md": "068b0860a547e71d3127b1231e7a4c9ab5d9d5c7523d083902ebe4f6a098b76b",
+    "skills/aios/SKILL.md": "547454fd8991e93f7b3027b86aed85a359434faa5b7319ec960b84c91b5b98ea",
+    "skills/aios/references/lifecycle.md": "894bee18d26ad7d07eb702072d80ef32156a564a36185c1307d5a22a2e27601c",
+    "skills/design/references/source-selection.md": "9bcf1fc0aded1f155acc61830558fc7ac8591469cf66bc202daeb67cc1312c01"
+  },
+  "decision_comparison": {
+    "method": "Expected labels withheld. Supplied skill texts, independent synthetic cases, no case execution. Replies inspected separately.",
+    "baseline_instruction_sha256": {
+      "skills/aios/SKILL.md": "5d366360c0f675bdbebf136b0dbea4c23c3ecc4599370e35a58bd32da7faedec",
+      "skills/aios-interview/SKILL.md": "2241cec73d88597eae0f46114dae29ea0a683042a646b8142574cdb7f23ae7e8",
+      "skills/aios-spec-work/SKILL.md": "be922582cefe26b0d8bfb2431ab9823d939ef078719885e0bb3d30a25fac9054",
+      "skills/design/references/source-selection.md": "9bcf1fc0aded1f155acc61830558fc7ac8591469cf66bc202daeb67cc1312c01"
+    },
+    "cases": [
+      {
+        "id": "thinking-aloud",
+        "request": "Jeg glemmer at følge op på tilbud. Måske skal jeg have en CRM-agent, men jeg har også noter og mails overalt og ved ikke, hvad jeg skal starte med. Hjælp mig med at finde retningen.",
+        "context": "New conversation. No accepted outcome or source establishes which difficulty matters most.",
+        "expected": {
+          "interview": true,
+          "trial": false,
+          "question": true
+        }
+      },
+      {
+        "id": "restate-only",
+        "request": "Genfortæl mit mål og problem: Jeg vil følge op på åbne tilbud hver fredag; de ligger spredt i mails, så nogle bliver glemt. Jeg ønsker kun din forståelse nu.",
+        "context": "No implementation requested. Intended change and difficulty are supplied.",
+        "expected": {
+          "interview": true,
+          "trial": false,
+          "question": false
+        }
+      },
+      {
+        "id": "clear-copy-edit",
+        "request": "Ret 'tilbd' til 'tilbud': Se vores tilbd. Bevar resten.",
+        "context": "One clear reversible edit; nothing else requested.",
+        "expected": {
+          "interview": false,
+          "trial": false,
+          "question": false
+        }
+      },
+      {
+        "id": "new-agent-clear",
+        "request": "Lav den nye lokale agent efter den godkendte brief. Fortsæt implementeringen.",
+        "context": "Brief defines inputs, outputs, allowed local files, errors and checks. No material choice remains. Implementation is authorized.",
+        "expected": {
+          "interview": false,
+          "trial": false,
+          "question": false
+        }
+      },
+      {
+        "id": "mid-task-gap",
+        "request": "Fortsæt rapporten med det materiale, vi har.",
+        "context": "Implementation is underway. A missing period definition holds one calculation and cannot be discovered. Other sections can continue.",
+        "expected": {
+          "interview": false,
+          "trial": false,
+          "question": true
+        }
+      },
+      {
+        "id": "accepted-design",
+        "request": "Implementer layout B fra den godkendte sammenligning. Bevar indhold og mobilrækkefølge.",
+        "context": "Direction and behavior are accepted. No new evidence or changed requirements.",
+        "expected": {
+          "interview": false,
+          "trial": false,
+          "question": false
+        }
+      },
+      {
+        "id": "visual-comparison",
+        "request": "Vis to forskellige kompositioner for denne formular ved siden af hinanden på vores eksisterende canvas, så jeg kan vælge. Indhold og mål er aftalt.",
+        "context": "Available editor renders comparable variants in a local working copy. Production implementation not requested.",
+        "expected": {
+          "interview": false,
+          "trial": true,
+          "question": false
+        }
+      },
+      {
+        "id": "interaction-fork",
+        "request": "Vi skal redigere en ordre uden at miste overblikket. Vi overvejer drawer eller modal. Undersøg hvilken der fungerer bedst med tastatur og lange ordredetaljer.",
+        "context": "Goal agreed. Small local browser demo with synthetic data can expose focus/navigation/context. Browser tools available.",
+        "expected": {
+          "interview": false,
+          "trial": true,
+          "question": false
+        }
+      },
+      {
+        "id": "workflow-fork",
+        "request": "Afprøv om daglig sortering eller sortering ved modtagelse forhindrer glemte indbakkeopgaver bedst. Brug de samme fem fiktive sager. Hold forsøget lille.",
+        "context": "Synthetic cases include interruptions and a returning case; a local walkthrough can expose lost ownership. No live integration requested.",
+        "expected": {
+          "interview": false,
+          "trial": true,
+          "question": false
+        }
+      },
+      {
+        "id": "source-settles-choice",
+        "request": "Vælg mellem A og B til eksporten efter de angivne krav.",
+        "context": "Accepted requirement CSV. Supplied authoritative contracts: A supports CSV; B only PDF. This fully resolves the choice.",
+        "expected": {
+          "interview": false,
+          "trial": false,
+          "question": false
+        }
+      },
+      {
+        "id": "corrected-goal",
+        "request": "Nej, jeg vil ikke automatisere salg. Jeg vil kun have ét samlet overblik over åbne tilbud. Lav den lokale oversigt med de aftalte kolonner.",
+        "context": "Interview was underway. User corrected the sales-automation interpretation and supplied columns, input and authorized next action. No uncertainty remains.",
+        "expected": {
+          "interview": false,
+          "trial": false,
+          "question": false
+        }
+      },
+      {
+        "id": "skip-exploration",
+        "request": "Spring interview og prototyper over. Skriv den korte mail med den godkendte formulering; jeg sender den selv.",
+        "context": "Audience, message and wording supplied. Drafting only. No unresolved decision or external send.",
+        "expected": {
+          "interview": false,
+          "trial": false,
+          "question": false
+        }
+      }
+    ],
+    "baseline_decisions": [
+      {
+        "id": "thinking-aloud",
+        "interview": true,
+        "trial": false,
+        "question": true,
+        "next_action": "Begynd en kort interview­samtale om et konkret glemt tilbud.",
+        "reply": "Lad os finde ud af, hvor opfølgningen går tabt. Fortæl om det seneste tilbud, du glemte at følge op på: Hvad skete der fra afsendelsen?"
+      },
+      {
+        "id": "restate-only",
+        "interview": false,
+        "trial": false,
+        "question": false,
+        "next_action": "Genfortæl kun det oplyste mål og problem.",
+        "reply": "Du vil følge op på åbne tilbud hver fredag. Tilbuddene ligger spredt i mails, så nogle bliver glemt."
+      },
+      {
+        "id": "clear-copy-edit",
+        "interview": false,
+        "trial": false,
+        "question": false,
+        "next_action": "Ret den ene stavefejl.",
+        "reply": "Se vores tilbud."
+      },
+      {
+        "id": "new-agent-clear",
+        "interview": false,
+        "trial": false,
+        "question": false,
+        "next_action": "Fortsæt lokal implementering og kontrollér mod den godkendte brief.",
+        "reply": "Jeg fortsætter implementeringen efter den godkendte brief og kontrollerer agentens input, output og fejlhåndtering."
+      },
+      {
+        "id": "mid-task-gap",
+        "interview": false,
+        "trial": false,
+        "question": true,
+        "next_action": "Spørg om beregningsperioden og fortsæt uafhængige rapportafsnit.",
+        "reply": "Hvilken periode skal beregningen dække? Jeg fortsætter imens de øvrige afsnit med det materiale, vi har."
+      },
+      {
+        "id": "accepted-design",
+        "interview": false,
+        "trial": false,
+        "question": false,
+        "next_action": "Implementer accepteret layout B og verificér indhold og mobilrækkefølge.",
+        "reply": "Jeg implementerer layout B og kontrollerer, at indhold og mobilrækkefølge følger den godkendte sammenligning."
+      },
+      {
+        "id": "visual-comparison",
+        "interview": false,
+        "trial": true,
+        "question": false,
+        "next_action": "Lav og render to kompositioner side om side i en lokal canvas-kopi.",
+        "reply": "Jeg laver to forskellige kompositioner side om side på en lokal kopi af jeres eksisterende canvas, med samme aftalte indhold."
+      },
+      {
+        "id": "interaction-fork",
+        "interview": false,
+        "trial": true,
+        "question": false,
+        "next_action": "Sammenlign drawer og modal i en lille browserdemo med syntetiske ordredata.",
+        "reply": "Jeg afprøver drawer og modal med samme lange ordre og sammenligner tastaturbetjening, fokus og overblik."
+      },
+      {
+        "id": "workflow-fork",
+        "interview": false,
+        "trial": true,
+        "question": false,
+        "next_action": "Gennemgå begge sorteringsrutiner med de samme fem fiktive sager.",
+        "reply": "Jeg gennemgår begge rutiner med de samme fem fiktive sager og ser, hvor afbrydelser og tilbagevendende sager kan få ansvar eller opfølgning til at gå tabt."
+      },
+      {
+        "id": "source-settles-choice",
+        "interview": false,
+        "trial": false,
+        "question": false,
+        "next_action": "Vælg A ud fra CSV-kravet og de autoritative kontrakter.",
+        "reply": "Jeg vælger A: Kravet er CSV, som A understøtter. B understøtter kun PDF."
+      },
+      {
+        "id": "corrected-goal",
+        "interview": false,
+        "trial": false,
+        "question": false,
+        "next_action": "Afslut interviewet og byg den autoriserede lokale oversigt.",
+        "reply": "Målet er ét samlet overblik over åbne tilbud. Jeg laver den lokale oversigt med det aftalte input og de aftalte kolonner."
+      },
+      {
+        "id": "skip-exploration",
+        "interview": false,
+        "trial": false,
+        "question": false,
+        "next_action": "Skriv den korte mail med den godkendte formulering.",
+        "reply": "Jeg skriver den korte mail med den godkendte formulering, klar til at du selv sender den."
+      }
+    ],
+    "candidate_decisions": [
+      {
+        "id": "thinking-aloud",
+        "interview": true,
+        "trial": false,
+        "question": true,
+        "next_action": "Afklar den vigtigste vanskelighed med ét konkret eksempel.",
+        "reply": "Du vil undgå, at åbne tilbud bliver glemt, men det er endnu uklart, om problemet især er overblik eller selve opfølgningen. En CRM-agent er en mulig løsning. Hvad skete der med det seneste tilbud, du glemte at følge op på?"
+      },
+      {
+        "id": "restate-only",
+        "interview": true,
+        "trial": false,
+        "question": false,
+        "next_action": "Giv den ønskede forståelse og afslut uden implementering.",
+        "reply": "Du vil følge op på alle åbne tilbud hver fredag. Problemet er, at tilbuddene ligger spredt i mails, så nogle bliver overset. Et nyttigt resultat er et samlet overblik, der gør fredagens opfølgning pålidelig."
+      },
+      {
+        "id": "clear-copy-edit",
+        "interview": false,
+        "trial": false,
+        "question": false,
+        "next_action": "Ret kun den angivne stavefejl.",
+        "reply": "Se vores tilbud."
+      },
+      {
+        "id": "new-agent-clear",
+        "interview": false,
+        "trial": false,
+        "question": false,
+        "next_action": "Fortsæt lokal implementering og checks efter den godkendte brief.",
+        "reply": "Jeg fortsætter implementeringen efter den godkendte brief og kontrollerer agentens output og fejlhåndtering med de aftalte checks."
+      },
+      {
+        "id": "mid-task-gap",
+        "interview": false,
+        "trial": false,
+        "question": true,
+        "next_action": "Spørg om perioden for den blokerede beregning; fortsæt uafhængige afsnit.",
+        "reply": "Hvilken periode skal beregningen dække? Jeg fortsætter imens med de øvrige afsnit ud fra materialet."
+      },
+      {
+        "id": "accepted-design",
+        "interview": false,
+        "trial": false,
+        "question": false,
+        "next_action": "Implementer accepteret layout B og kontrollér indhold og mobilrækkefølge.",
+        "reply": "Jeg implementerer layout B og bevarer indholdet og den aftalte mobilrækkefølge."
+      },
+      {
+        "id": "visual-comparison",
+        "interview": false,
+        "trial": true,
+        "question": false,
+        "next_action": "Lav og render to sammenlignelige kompositioner på det eksisterende canvas.",
+        "reply": "Jeg laver to forskellige kompositioner med samme indhold og viser dem ved siden af hinanden på vores eksisterende canvas som foreløbige varianter."
+      },
+      {
+        "id": "interaction-fork",
+        "interview": false,
+        "trial": true,
+        "question": false,
+        "next_action": "Sammenlign drawer og modal i en lille browserdemo med syntetiske data.",
+        "reply": "Jeg afprøver drawer og modal med de samme lange ordredetaljer og tastaturforløb. Derefter anbefaler jeg en retning ud fra observeret fokus, navigation og bevaret overblik."
+      },
+      {
+        "id": "workflow-fork",
+        "interview": false,
+        "trial": true,
+        "question": false,
+        "next_action": "Gennemgå begge sorteringsmåder med de samme fem fiktive sager.",
+        "reply": "Jeg gennemgår begge sorteringsmåder med de samme fem fiktive sager, inklusive afbrydelser og en tilbagevendende sag, og sammenligner, hvor ansvar eller opfølgning bliver tabt."
+      },
+      {
+        "id": "source-settles-choice",
+        "interview": false,
+        "trial": false,
+        "question": false,
+        "next_action": "Vælg A ud fra CSV-kravet og de leverede kontrakter.",
+        "reply": "Jeg vælger A. Kravet er CSV, og de leverede kontrakter angiver, at A understøtter CSV, mens B kun understøtter PDF."
+      },
+      {
+        "id": "corrected-goal",
+        "interview": false,
+        "trial": false,
+        "question": false,
+        "next_action": "Afslut interviewet og lav den autoriserede lokale oversigt.",
+        "reply": "Målet er ét samlet overblik over åbne tilbud. Jeg laver den lokale oversigt med de aftalte kolonner og input."
+      },
+      {
+        "id": "skip-exploration",
+        "interview": false,
+        "trial": false,
+        "question": false,
+        "next_action": "Skriv kun mailudkastet med den godkendte formulering.",
+        "reply": "Jeg skriver det korte mailudkast med den godkendte formulering, klar til at du selv sender det."
+      }
+    ],
+    "candidate_routing": "12/12 expected labels; seven direct-work negative cases avoid Interview and trials, with a focused mid-task question where necessary.",
+    "baseline_routing": "11/12 expected labels. Restate-only classified no Interview, but response correctly restated goal/problem; not a user-outcome failure.",
+    "observed_difference": "Thinking-aloud candidate restates goal/problem before one question; baseline starts with question. Both select appropriate trials.",
+    "usage": {
+      "baseline": {
+        "input_tokens": 23824,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 837,
+        "reasoning_output_tokens": 0
+      },
+      "candidate": {
+        "input_tokens": 21680,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 919,
+        "reasoning_output_tokens": 0
+      }
+    },
+    "limits": "Decision simulation does not establish native discovery, executed UI trials, broad quality gains or savings."
+  },
+  "ordinary_native_observations": [
+    {
+      "id": "clear-edit",
+      "request": "Ret tilbd til tilbud i title.txt; bevar resten.",
+      "selected_reads": [],
+      "selected_reads_note": "Only task text read; no Interview or trial source read.",
+      "observed_output": "Se vores tilbud.\n",
+      "messages": [
+        "Jeg retter stavefejlen i title.txt og bevarer resten.\n",
+        "Rettet i title.txt: “Se vores tilbud.” Resten er bevaret."
+      ],
+      "usage": {
+        "input_tokens": 51687,
+        "cached_input_tokens": 46208,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 165,
+        "reasoning_output_tokens": 0
+      }
+    },
+    {
+      "id": "thinking-aloud",
+      "request": "Jeg glemmer at følge op på tilbud. Måske skal jeg have en CRM-agent, men noter og mails ligger også overalt. Jeg ved ikke, hvad jeg egentlig skal starte med. Hjælp mig med at finde retningen.",
+      "selected_reads": [
+        "skills/aios-interview/SKILL.md",
+        "skills/aios-interview/references/conversation.md"
+      ],
+      "messages": [
+        "Jeg bruger interview-skillen til at finde ud af, hvor opfølgningen går tabt, og hvad der vil være et godt første skridt.\n",
+        "Du vil gerne have tilbud fulgt op, selv om oplysningerne ligger spredt. Mit foreløbige bud er, at vi først skal finde ud af, om du mangler overblik over tilbuddene, en påmindelse på det rigtige tidspunkt eller hjælp til selve opfølgningen. Det afgør, om en CRM-agent vil hjælpe.\n",
+        "Tænk på det seneste tilbud, du ikke fik fulgt op på: Hvad skete der fra du sendte det, til du opdagede, at opfølgningen manglede?",
+        "Mit foreløbige råd er at starte med **overblik over aktive tilbud og deres næste opfølgning**.\n\nDu beskriver to problemer: Opfølgninger bliver glemt, og oplysninger ligger spredt. En CRM-agent kan måske hjælpe, men vi mangler at vide, hvor forløbet går i stå.\n\nEt lille første forsøg er at samle fem aktive tilbud i én liste med:\n\n- Kunde og tilbudsdato\n- Link til tilbuddet eller mailtråden\n- Næste handling og dato\n\nBrug listen til at gennemføre én runde opfølgning. Det kan vise, om den største hindring er at finde oplysningerne, huske tidspunktet eller skrive beskeden. Så har vi et konkret grundlag for at vælge, hvad en agent skal hjælpe med."
+      ],
+      "usage": {
+        "input_tokens": 108932,
+        "cached_input_tokens": 95616,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 515,
+        "reasoning_output_tokens": 31
+      },
+      "result": "Correct initial goal/problem interpretation and one recent-example question. No answer supplied; later advice was provisional. First-response evidence, not a completed multi-turn interview."
+    },
+    {
+      "id": "workflow-trial",
+      "request": "Afprøv om daglig sortering eller sortering ved modtagelse bedst undgår glemte indbakkeopgaver. Brug cases.md med de samme fem fiktive sager for begge flows. Lav en lille lokal gennemspilning og skriv din anbefaling i trial.md. Ingen live integration.",
+      "synthetic_input": "# Synthetic inbox cases\n\nBoth flows may add a local queue item with an owner and next action. Daily sorting\ndoes it at 16:00; sorting on receipt does it immediately. During an interruption\nbefore queueing, a raw message remains only in the inbox.\n\n| Case | Arrival and follow-up |\n| --- | --- |\n| A | 09:00 actionable request, no interruption |\n| B | 10:00 actionable request; sorting interrupted before queueing |\n| C | 15:55 actionable request; daily pass interrupted before queueing |\n| D | 16:05 actionable request after daily pass; due at 10:00 tomorrow |\n| E | A's owner replies next morning with new work; previous item is marked complete |\n\nJudge whether each actionable request has an owner and next action by its due\ntime, and account for the extra interruptions in immediate processing. Unknown\noperator attention outside these cases remains unknown. Local samples only.\n",
+      "selected_reads": [
+        "skills/aios-review-work/SKILL.md",
+        "skills/aios-review-work/references/completeness.md"
+      ],
+      "selected_reads_note": "No observed reading of Spec or local-trials. This task demonstrates actual bounded local work, not native selection of the new reference.",
+      "artifact_sha256": "7339c164686719ba7012e5da4b1befb522539324d14f7df894dc46da0550dd6e",
+      "artifact": "# Lokal afprøvning af indbakkesortering\n\n## Metode\n\nManuel gennemspilning af de samme fem fiktive sager fra `cases.md` i to separate flows. Ingen live integration eller virkelige indbakker. Køen starter tom i begge flows. En registrering er først gyldig, når den har både ejer og næste handling. Som lokale pladsholdere bruges »ejer A« og »behandl anmodning A« osv.; E får en ny handling hos A's ejer.\n\nDaglig sortering registrerer kl. 16:00; sortering ved modtagelse registrerer ved ankomst. B's afbrydelse før registrering gælder i begge flows, mens C's angivne afbrydelse kun gælder den daglige gennemgang. Der antages ingen ekstra genoptagelse, påmindelse eller indbakkekontrol. En afbrydelse i én sag antages ikke at stoppe alle senere sager; den virkning er ikke beskrevet. E behandles som nyt arbejde, selv om A's tidligere køpost er afsluttet.\n\n## Gennemspilning\n\n| Sag og hændelse | Daglig sortering | Sortering ved modtagelse |\n| --- | --- | --- |\n| A: dag 1 kl. 09:00 | Rå besked frem til 16:00, derefter køpost med ejer A og næste handling. | Køpost med ejer A og næste handling kl. 09:00. |\n| B: dag 1 kl. 10:00; sortering afbrydes før registrering | Forsøget kl. 16:00 afbrydes. B bliver kun i indbakken, uden ejer og næste handling i køen. | Forsøget kl. 10:00 afbrydes. B bliver kun i indbakken, uden ejer og næste handling i køen. |\n| C: dag 1 kl. 15:55; daglig gennemgang afbrydes | Forsøget kl. 16:00 afbrydes før registrering. C bliver kun i indbakken. | Køpost med ejer C og næste handling kl. 15:55; ingen afbrydelse ved modtagelsen er angivet. |\n| D: dag 1 kl. 16:05; frist dag 2 kl. 10:00 | Ankommer efter gennemgangen. Næste planlagte registrering er dag 2 kl. 16:00, seks timer efter fristen. Ved fristen mangler ejer og næste handling. | Køpost med ejer D og næste handling kl. 16:05 dag 1, inden fristen. |\n| E: næste morgen; svar fra A's ejer med nyt arbejde | A's afsluttede post dækker ikke E. E venter som rå besked til dag 2 kl. 16:00, hvor en ny post oprettes med A's ejer og E's næste handling. | Ny post med A's ejer og E's næste handling ved modtagelsen næste morgen. A's gamle post forbliver afsluttet. |\n\nVed slutningen af dag 1's beskrevne hændelser har daglig sortering registreret A: 1 af 4 modtagne anmodninger. Sortering ved modtagelse har registreret A, C og D: 3 af 4. B mangler i begge køer; C mangler også i den daglige kø. Dette er et lokalt øjebliksbillede, ikke en målt glemselsrate.\n\n## Frister og belastning\n\nKun D har en angivet frist. Her består sortering ved modtagelse kriteriet »ejer og næste handling inden fristen«, mens daglig sortering fejler. For A, B, C og E kan rettidighed ikke afgøres: deres frister er ukendte. B er en uafklaret rest i begge flows, og C er en uafklaret rest i det daglige flow. Et senere forsøg kan redde dem, men det er ikke dokumenteret i sagerne.\n\nSortering ved modtagelse kræver fem behandlingsstarter på ankomsttidspunkterne, inklusive den nye opgave i E. Daglig sortering samler behandlingen i to planlagte vinduer, ét hver dag. De fem umiddelbare starter kan give flere skift væk fra andet arbejde; tidsforbrug og faktisk koncentrationstab er ikke oplyst. De eksplicitte afbrydelser før registrering er B i begge flows og desuden C i det daglige flow. Det skal holdes adskilt fra den mulige belastning ved at reagere på hver ankomst.\n\n## Anbefaling\n\nVælg **sortering ved modtagelse** blandt de to afprøvede flows. Det får flere af de beskrevne opgaver ind i køen tidligt, klarer D's eneste kendte frist og registrerer E som nyt arbejde. Prisen er flere behandlingsstarter i løbet af dagen. Materialet giver ikke grundlag for at sætte minutter på den pris eller generalisere til en virkelig indbakke.\n\nFlowet er ikke tilstrækkeligt alene: B viser, at en afbrydelse før registrering stadig kan efterlade en opgave uden ejer og næste handling. Som næste lokale variant anbefales en kort daglig kontrol af rå beskeder, der endnu ikke har en køpost, som supplement til registrering ved modtagelse. Den variant er ikke gennemspillet her og kan ikke påstås at løse alle frister. Ukendt opmærksomhed uden for de fem sager forbliver ukendt.\n",
+      "usage": {
+        "input_tokens": 96558,
+        "cached_input_tokens": 85632,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2128,
+        "reasoning_output_tokens": 184
+      },
+      "result": "Same five cases compared. Daily sorting misses D’s known deadline; B remains unqueued in both. Other deadlines and attention cost are unknown. Suggested daily safeguard is explicitly untested."
+    },
+    {
+      "id": "spec-only-unavailable-browser",
+      "request": "Lav en kort Spec for en lokal ordreeditor. Målet er at redigere en ordre og bevare overblikket over listen; vi overvejer drawer eller modal. Valget skal bero på tastaturnavigation og lange ordredetaljer. Brug fiktive data og det eksisterende browser-UI, ingen ny editor eller installation. Der er ingen browser- eller appværktøjer til rådighed i denne kørsel, så du kan ikke observere interaktionen nu. Beskriv det mindste lokale forsøg, der kan afgøre valget, og skeln mellem kendte krav, foreløbig vurdering og manglende observation. Spec-only: svar kort i chat, opret ingen filer og start ikke Build.",
+      "selected_reads": [
+        "skills/aios-spec-work/SKILL.md",
+        "skills/aios-spec-work/references/local-trials.md",
+        "skills/aios/references/lifecycle.md"
+      ],
+      "messages": [
+        "Jeg bruger den lokale Spec-skill til at formulere kravene og et lille forsøg, der kan afgøre drawer eller modal uden at påstå, at interaktionen er observeret.\n",
+        "**Kort Spec — lokal ordreeditor**\n\n**Kendte krav:** Redigér en ordre og bevar overblikket over ordrelisten. Brug fiktive data i det eksisterende browser-UI. Valget mellem drawer og modal skal bero på tastaturnavigation og lange ordredetaljer.\n\n**Foreløbig vurdering:** Drawer er første kandidat, fordi listen kan forblive synlig. Modal kan være bedre, hvis drawerens bredde gør lange detaljer svære at redigere. Synlig liste alene beviser ikke godt overblik.\n\n**Mindste lokale forsøg, når browseradgang er tilgængelig:**\n\n- Sammenlign drawer og modal i samme UI, med samme vinduesstørrelse og fiktive ordre: 20 varelinjer, lang leveringsnote og redigerbart antal.\n- Brug kun tastaturet: åbn fra listen, navigér med Tab/Shift+Tab, ret sidste varelinje og noten, gem, åbn igen og annullér.\n- Kontrollér synligt fokus, logisk fokusrækkefølge, adgang til alle felter og knapper under scroll samt tilbageførsel af fokus til den oprindelige række. Listens filter og scrollposition skal bevares.\n- Registrér fokusfejl, unødige tastetryk/scroll og om næste ordre let kan findes.\n\n**Beslutningsregel:** Vælg drawer, hvis den består tastaturforløbet og håndterer lange detaljer uden væsentlig ekstra friktion. Vælg modal, hvis den fungerer tydeligt bedre på disse punkter og stadig bevarer listepositionen efter lukning.\n\n**Manglende observation:** Forsøget er ikke kørt; fokus, scroll og faktisk overblik er uafklaret. Hvis begge varianter ikke findes i det nuværende UI, kræver sammenligningen særskilt implementering. Spec er klar; komponentvalget er foreløbigt. Ingen filer oprettet eller Build startet."
+      ],
+      "usage": {
+        "input_tokens": 91909,
+        "cached_input_tokens": 77696,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 741,
+        "reasoning_output_tokens": 0
+      },
+      "result": "Conditional source selected. Concrete keyboard/long-details trial proposed. Browser behavior explicitly unobserved, direction provisional; no artifact creation or Build."
+    }
+  ],
+  "source_checks": {
+    "validate.py --baseline bbacc8d": "PASS; 25 skills, package/link isolation and version progression.",
+    "context-footprint.py": "PASS; existing ceilings unchanged, local-trials conditional extra 2518 bytes.",
+    "skill-version-rehearsal.py": "PASS; seven tests.",
+    "documentation-rehearsal.py": "PASS; seven tests.",
+    "intent-trials-rehearsal.py score candidate": "PASS; 12/12 labels, replies separately inspected.",
+    "Skill Creator quick_validate Interview and Spec": "PASS in prior run against the same unchanged skill bytes, using ephemeral uv with PyYAML.",
+    "git diff --check": "PASS."
+  },
+  "review": {
+    "status": "PASS",
+    "scope": "Original-task source review against the accepted outcome and exact review_subject hashes; no delegated arena or release acceptance.",
+    "criteria": [
+      "One canonical Interview and Spec responsibility; relevant references resolve.",
+      "Clear tasks, accepted designs, source-settled choices, corrections and explicit skip avoid unnecessary exploration.",
+      "Restatement distinguishes outcome from proposed remedy and preserves uncertainty; no question quota or summary approval.",
+      "Local trials remain task-local, conditional and provisional; Design retains visual ownership, UI behavior requires actual observation.",
+      "No new user schema, required editor, automatic fan-out, owner mutation, installation or release.",
+      "Helper withholds expected labels, binds source hashes, checks case identities and leaves semantic replies to separate review.",
+      "Decision simulation, native source selection and actually executed synthetic work are reported separately."
+    ],
+    "unresolved_source_findings": []
+  },
+  "limits": [
+    "No installed-plugin adoption, release, live integration, voice capture, rendered design or exercised UI interaction.",
+    "Ordinary native tasks used candidate only; baseline/candidate comparison was supplied-text decision simulation.",
+    "Runtime token telemetry has different task inputs and cache state; no savings comparison or automatic worker fan-out."
+  ]
+}
