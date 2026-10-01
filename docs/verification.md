@@ -1,9 +1,16 @@
 # Verification
 
-For the 0.15.0 Codex consumer candidate, see [the refresh record](codex-consumer-refresh.md)
+For the 0.16.0 Codex consumer candidate, see [the refresh record](codex-consumer-refresh.md)
 for human-controlled models/workers, naming migration and the maintained setup
 guide. Codex is the acceptance target; unavailable Pi model behavior does not
 hold completed Codex work open. Preserve the actual limits of other clients.
+
+For the 0.15.0 Interview/local-trial change, see
+[intent and local trials](intent-and-trials.md) for the accepted boundaries,
+baseline/candidate decision probes, ordinary native observations and limitations.
+These cover overactivation and selected source reads; the behavioral probes
+do not establish installation or a rendered UI comparison. Release and native
+adoption are verified separately against the delivered version.
 
 For 0.14.1, [Project Foundation](project-foundation.md) records the independent
 project boundary and maintained code/design contracts. Source validation against

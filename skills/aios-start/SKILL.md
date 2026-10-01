@@ -22,8 +22,8 @@ conversation, use [context maintenance](../aios-maintain-context/SKILL.md) to
 triage it under existing authority; a passing idea is not durable memory.
 
 Use [Interview](../aios-interview/SKILL.md) for requested exploration or materially
-unclear direction at the start. Reuse accepted answers; clear work and isolated
-questions need no interview.
+unclear goals at the start, including thinking aloud. Reuse accepted answers;
+clear work and isolated questions proceed directly.
 
 For a missing or empty home with unresolved intent, use
 [Setup](../aios-setup/SKILL.md) to resolve “Sync existing AIOS or set up new?”

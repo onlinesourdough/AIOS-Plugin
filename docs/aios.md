@@ -1,6 +1,6 @@
 # AIOS
 
-AIOS version: 0.15.0
+AIOS version: 0.16.0
 
 **Business first. Productivity built in.**
 
@@ -60,6 +60,13 @@ answers, challenges assumptions and returns a useful next action. Clear work
 already underway needs no interview. [Setup](../skills/aios-setup/SKILL.md)
 uses that conversation when needed while retaining installation, home readiness
 and continuity. Setup replaces the former `aios-onboard` entrypoint.
+
+Thinking aloud can start with Interview restating the goal and underlying problem
+before asking only what changes the next action. Spec can resolve a material
+solution choice through a [small local trial](../skills/aios-spec-work/references/local-trials.md).
+Design owns visual variants; a runnable interaction or sample workflow can
+resolve other choices. These steps are conditional and reuse accepted answers;
+ordinary work gains no mandatory interview, prototype or parallel agents.
 
 The shared delivery path is Spec → Build → Review → authorized Ship. Spec
 reuses interview decisions. Design → Review Design supplies visual direction
@@ -150,3 +157,7 @@ for access, optional capabilities and verification. Model and worker choices
 stay with the person. Canonical names use `aios-<method>`, with `aios-start`
 as the routing entrypoint. Create System is retired; Create Project and Manage
 Skills own new repositories and reusable methods.
+
+Refresh/update the package through your app first, then start a fresh chat.
+A new chat alone does not download a plugin update. Personal owner context
+and separately maintained skills are independent of the package release.

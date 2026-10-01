@@ -47,6 +47,14 @@ failure visibility, operation and recovery only where material to the delta.
 Preserve a developed brief; a rough input may become a compact local contract
 without asking the owner for a formal document.
 
+When a material solution choice remains and a small local observation could
+change it, or the user requests concrete alternatives, use
+[local trials](references/local-trials.md). Skip this for accepted directions,
+routine changes and questions already answered by the sources. Task size or
+novelty alone is insufficient. Design owns visual exploration; this conditional
+procedure resolves the choice and returns to the same contract, not another
+interview or compulsory phase.
+
 During substantive Spec, reconcile the shared task-result decision once
 requirements are clear. Use the user's current model/effort and native defaults.
 Read [Select model](../aios-select-model/SKILL.md) only for requested advice or a

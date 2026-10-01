@@ -1,12 +1,15 @@
 # Native installation
 
-AIOS 0.13.0 packages the same 24 skills for several agent apps. Install through
-the selected app's package manager. No AIOS installer program runs, and no other
-app is configured as a side effect. Owner setup is a separate conversation.
+AIOS packages the same shared skills for several agent apps. The installed
+manifest and overview identify its version and declared skill inventory.
+Install through the selected app's package manager. No AIOS installer program
+runs, and no other app is configured as a side effect. Owner setup is a separate
+conversation.
 
 The [README](../README.md) contains the normal installation commands. They track
-the repository's default branch. Existing GitHub access is required while the
-repository is private; none of these commands changes its visibility.
+the repository's default branch. The repository is public and uses the MIT
+license; no GitHub invitation is required. These commands install the package
+without changing repository visibility.
 
 ## Choose a source and scope
 
@@ -85,6 +88,12 @@ app's native update to adopt it; AIOS adds no updater or background sync.
 Some apps refresh discovery between turns or provide reload controls, but an
 update cannot erase instructions already read into a conversation. Do not
 promise immediate adoption by every active session or another installed app.
+
+Refreshing/updating the package obtains the new files. A fresh conversation
+then starts with the current installed methods; starting a new chat alone does
+not update the package. If the desktop still reports the previous installed
+version after a verified update, use its supported reload/restart and recheck
+discovery; do not edit its cache or internal state.
 
 Native uninstall removes the selected package registration. It leaves the owner
 home, other apps and separately configured bridges intact. Some clients retain

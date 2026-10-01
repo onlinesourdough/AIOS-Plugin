@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.15.0 — 2026-09-30
+## 0.16.0 — 2026-10-01
 
 - Use the original onlinesourdough pixel bread for the plugin icon and banner.
 
@@ -15,8 +15,22 @@
 - Retire Create System, keep Create Project and domain Review Design, and
   remove the empty local skill shelf. Preserve native marketplace metadata
   and historical evidence. The package now has 24 skills.
-- Keep the English overview/MCP UI experiment separate from the portable
-  dependency-free package; Codex acceptance does not wait for Pi model runs.
+- Bundle the accepted English Setup, Overview, Skills and Sync in Codex using
+  a local stdio companion. Other harnesses retain the instruction-only route.
+- Build verified Codex/portable ZIPs with checksums in CI. Manual CD prepares
+  draft GitHub releases; public publication is a separate approved action.
+- Codex acceptance does not wait for Pi model runs.
+## 0.15.0 — 2026-10-01
+
+- Make Interview 1.1.0 explicitly restate goals and the underlying problem for
+  thinking aloud or requested understanding; reuse corrections and ask only
+  what changes the next action. Clear work retains its direct path.
+- Let Spec 1.2.0 select a small local trial for a material unresolved choice or
+  requested alternatives. Design retains visual exploration; UI interaction
+  and other workflows need relevant observations. No compulsory prototype,
+  editor, schema or parallel agents.
+- Update AIOS routing to 2.3.2 and retain bounded positive/negative decision
+  probes plus native observations. Package adoption and release remain separate.
 
 ## 0.14.1 — 2026-09-26
 

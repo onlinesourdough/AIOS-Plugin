@@ -55,8 +55,9 @@ git push origin refs/tags/vVERSION
 for pull requests, main updates and version tags. On a tag, it also checks that
 the tag commit belongs to main, that its version matches the package and local
 overview, and that its changelog entry exists. Only then does it create the
-matching GitHub prerelease. AIOS remains an invited pilot; this workflow does
-not promote it to a stable/public release or change repository visibility.
+matching GitHub prerelease. The repository is public; releases retain the
+pilot prerelease channel. This workflow does not promote a stable release or
+change repository visibility.
 
 Verify workflow completion and the GitHub Release's tag and resolved commit.
 A failed run means release delivery is incomplete. Fix the cause and rerun;
@@ -71,6 +72,11 @@ reviewed tag/commit explicitly. Verify the installed source, version and actual
 skill discovery in every app included in the task. An update in Codex does not
 update Pi or another app, and package discovery does not prove model behavior
 or replacement of instructions already read into an active conversation.
+
+A published release makes the reviewed package available to plugin users; it
+does not replace their local installations. They refresh/update through their
+app, then start a fresh conversation with the installed version. A new chat
+alone does not download an update. AIOS provides no background updater.
 
 Owner-data continuity is a separate, explicit Sync operation. Plugin releases
 never upload, restore or migrate an owner's home.

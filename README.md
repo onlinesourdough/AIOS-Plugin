@@ -122,6 +122,13 @@ the direction unclear. A new project or agent alone does not trigger it. During
 execution, the assistant asks the necessary question and continues; a broader
 interview waits for an appropriate opening. Setup and Spec reuse accepted answers.
 
+When you think aloud, Interview can first restate your goal and the underlying
+problem in its own words, then resolve the few questions that change the next
+action. You can ask for just that understanding. For an unresolved solution
+choice, Spec can select a [small local trial](skills/aios-spec-work/references/local-trials.md):
+design variations on a chosen canvas/preview, a runnable UI interaction, or a
+sample workflow. Clear work proceeds directly; neither step is a fixed ritual.
+
 Setup replaces `aios-onboard` with the canonical name `aios-setup`. Update explicit
 shortcuts and callers when adopting this version. Existing homes resume from
 known facts without another foundation interview; owner formats are unchanged.
@@ -148,9 +155,9 @@ public entrypoints.
 
 ## Install in your app
 
-AIOS is currently available by invitation. Accept your GitHub invitation and
-make sure your app can access this repository through your normal Git setup.
-Never paste access tokens into a chat.
+AIOS is open source under the MIT license. Install directly from this public
+GitHub repository; no invitation is required. Your app uses its normal Git
+setup. Never paste access tokens into a chat.
 
 Choose one of the routes below. These commands follow the repository's current
 `main` branch. For a fixed version, select a reviewed tag or commit using the
