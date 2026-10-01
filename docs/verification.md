@@ -1,10 +1,11 @@
 # Verification
 
-For the unreleased Interview/local-trial change, see
+For the 0.15.0 Interview/local-trial change, see
 [intent and local trials](intent-and-trials.md) for the accepted boundaries,
 baseline/candidate decision probes, ordinary native observations and limitations.
-These cover overactivation and selected source reads; no installation or
-rendered UI comparison is claimed.
+These cover overactivation and selected source reads; the behavioral probes
+do not establish installation or a rendered UI comparison. Release and native
+adoption are verified separately against the delivered version.
 
 For 0.14.1, [Project Foundation](project-foundation.md) records the independent
 project boundary and maintained code/design contracts. Source validation against

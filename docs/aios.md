@@ -1,6 +1,6 @@
 # AIOS
 
-AIOS version: 0.14.1
+AIOS version: 0.15.0
 
 **Business first. Productivity built in.**
 
@@ -149,3 +149,6 @@ needed. Its version travels with the shared methods in the installed package.
 Native package updates are separate from owner-data Sync. There is no AIOS
 documentation or skill runtime on the Resources domain. A newer upstream
 release does not replace instructions already read into an active conversation.
+Refresh/update the package through your app first, then start a fresh chat.
+A new chat alone does not download a plugin update. Personal owner context
+and separately maintained skills are independent of the package release.
