@@ -1,6 +1,7 @@
 # Intent and local trials
 
-Unreleased source change. Baseline: `bbacc8d4199936b8a37a6e69e10f4dc140633021`.
+Source change prepared for 0.15.0. Baseline:
+`bbacc8d4199936b8a37a6e69e10f4dc140633021`.
 
 ## Accepted result
 
@@ -73,9 +74,16 @@ model; its JSON schema is not a user workflow or runtime requirement.
 
 ## Delivery boundary
 
-This task delivers a reviewed draft PR, preserving package version 0.14.1,
-owner formats and the installed package. Merge, release and installation are
-separate actions. Recover source by reverting the scoped commit or closing the
-draft; no owner-state migration is involved. Review binds the changed product
-and author-tool source hashes in the evidence record, excluding that record
-and this explanation from its own digest.
+The original source delivery was draft PR #26 with package version 0.14.1;
+it was subsequently merged under the owner's authority. The evidence record
+binds that candidate's product and author-tool hashes, excluding the record
+and this explanation from its own digest. Those dated observations remain
+behavioral evidence; they do not claim installation or a completed interview.
+
+The owner then authorized release and Codex adoption. Version 0.15.0 updates
+all native declarations, changelog and packaged overview together. The observed
+skill instructions are unchanged. Final source checks and independent Review
+bind the release PR; tag CI and native installation/discovery require their
+own readback. Owner formats, personal context and other plugins remain outside
+the update. Recovery selects the prior reviewed package through native controls
+or reverts the scoped source change; there is no owner-state migration.

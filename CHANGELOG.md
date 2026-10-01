@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.15.0 — 2026-10-01
 
 - Make Interview 1.1.0 explicitly restate goals and the underlying problem for
   thinking aloud or requested understanding; reuse corrections and ask only
