@@ -9,7 +9,7 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 CASES = ROOT / "tests/fixtures/intent-trials-cases.json"
 SOURCES = (
-    "skills/aios/SKILL.md",
+    "skills/aios-start/SKILL.md",
     "skills/aios-interview/SKILL.md",
     "skills/aios-spec-work/SKILL.md",
     "skills/aios-spec-work/references/local-trials.md",

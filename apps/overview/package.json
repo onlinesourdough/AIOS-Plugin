@@ -1,0 +1,21 @@
+{
+  "name": "aios-overview-build",
+  "version": "0.16.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node --test context-status.test.mjs git-status.test.mjs && node smoke.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/ext-apps": "1.7.5",
+    "@modelcontextprotocol/sdk": "1.31.0",
+    "@openai/mcp-extensions": "0.1.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

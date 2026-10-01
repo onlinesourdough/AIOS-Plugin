@@ -143,7 +143,7 @@ def rehearse(base, claude, install, names):
     source.mkdir()
     for name in (".claude-plugin", "skills"):
         shutil.copytree(ROOT / name, source / name)
-    shutil.copy2(ROOT / "plugin.json", source / "plugin.json")
+    shutil.copy2(ROOT / "packaging/portable-plugin.json", source / "plugin.json")
     overview = source / "docs/aios.md"
     overview.parent.mkdir(parents=True)
     shutil.copy2(ROOT / "docs/aios.md", overview)

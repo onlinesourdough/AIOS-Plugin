@@ -2,7 +2,7 @@
 name: aios-spec-work
 description: Specify or revise substantive work when its outcome, boundaries or proof need clarification.
 metadata:
-  version: "1.2.0"
+  version: "1.2.1"
 ---
 
 # AIOS-spec-work

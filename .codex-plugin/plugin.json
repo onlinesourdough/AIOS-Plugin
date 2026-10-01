@@ -1,6 +1,6 @@
 {
   "name": "aios",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "description": "Portable context and skills for planning, design, content and reviewed delivery.",
   "author": {
     "name": "onlinesourdough"
@@ -11,12 +11,18 @@
     "brandColor": "#2b1b12",
     "composerIcon": "./assets/icon.png",
     "logo": "./assets/icon.png",
-    "shortDescription": "Your context, useful work and reviewed delivery.",
-    "longDescription": "Twenty-four skills for clear writing, code, design, content, interviews, setup and reviewed work. Your app owns projects and tools; your AIOS home holds your context. Optional helpers work on files in your project.",
+    "shortDescription": "Context and skills for work",
+    "longDescription": "Twenty-four AIOS skills and a local context overview. Browse your context and personal skills, open files in the supported editor, and check GitHub sync. Setup and reviewed sync continue in your agent conversation. Your app owns projects, models and permissions.",
     "developerName": "onlinesourdough",
     "category": "Productivity",
-    "capabilities": [],
+    "capabilities": [
+      "AIOS skills",
+      "Browse context",
+      "Open context files",
+      "Check GitHub sync"
+    ],
     "defaultPrompt": [
+      "Open my AIOS overview.",
       "Set up AIOS for my current work."
     ],
     "websiteURL": "https://onlinesourdough.com/",
@@ -32,5 +38,6 @@
       "onboardingSkill": "./skills/aios-setup/SKILL.md"
     }
   },
-  "homepage": "https://onlinesourdough.com/"
+  "homepage": "https://onlinesourdough.com/",
+  "mcpServers": "./.codex-plugin/mcp.json"
 }

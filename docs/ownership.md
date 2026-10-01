@@ -26,5 +26,5 @@ methods are shared plugin skills. Delegated workers return proposed shared
 learning to their caller instead of writing client memory.
 
 The [Codex consumer guide](../skills/aios-setup/references/codex-consumer-guide.md)
-is maintained with the package. The [0.15.0 refresh record](codex-consumer-refresh.md)
+is maintained with the package. The [0.16.0 refresh record](codex-consumer-refresh.md)
 owns this migration and its verification limits.

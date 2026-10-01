@@ -15,8 +15,9 @@ a native sign-in/invitation step, not a secret in chat. Select the intended
 source: current main for a tracking install, or a reviewed immutable tag/commit
 for a fixed version. Do not substitute a branch for a requested fixed release.
 
-The root `plugin.json` uses Agent Plugins 1.0.0 and discovers `skills/` directly.
-`.codex-plugin/plugin.json` supplies the compatible Codex interface metadata;
+The native `.codex-plugin/plugin.json` declares the shared skills, interface
+metadata and local overview (Node.js 22+). The portable skills ZIP has a root
+Agent Plugins manifest and omits that MCP runtime;
 `.agents/plugins/marketplace.json` points to this same package root. For an authorized local pilot, substitute the
 verified repository path:
 
@@ -25,7 +26,7 @@ codex plugin marketplace add /absolute/path/to/AIOS-Plugin
 codex plugin add aios@online-sourdough
 ```
 
-For a released private repository, the authorized account can instead add
+For a released version, the account can instead add
 `onlinesourdough/AIOS-Plugin --ref REVIEWED_REF` as the marketplace source, then
 install the same selector. A reviewed immutable commit/tag must exist first.
 Read installed marketplace identity before reusing a conflicting name. Do not

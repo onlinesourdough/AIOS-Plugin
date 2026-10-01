@@ -1,97 +1,62 @@
-# Codex consumer refresh: 0.15.0 candidate
+# Codex consumer refresh: 0.16.0 candidate
 
-Owner request, 30 September 2026: focus on the Codex product, make model choice
-and worker launch human decisions, expose an English minimal overview, maintain
-a consumer setup guide, unify skill names and retire Create System.
+The accepted owner request combines an English context overview, consistent
+skill names, human control of models/workers, context curation, a maintained
+consumer guide and native release packaging. Codex is the acceptance target;
+Pi model simulations are not a release gate.
 
-This local candidate changes the portable instruction package. The optional
-MCP/UI prototype is separate and is not a production runtime dependency or a
-released feature. No owner files, machine settings, credentials or remote code
-are changed by this source patch.
+## Methods and migration
 
-## Accepted behavior and migration
+All 24 canonical skills use `aios-<method>`. The old router is `aios-start`;
+domain skills include `aios-design`, `aios-review-design`, `aios-content`,
+`aios-human-writing` and `aios-write-code`. Update explicit shortcuts and owned
+bridges on adoption. Host command namespaces remain host-controlled.
 
-The person chooses a model and requests worker sessions. Model advice remains
-available for requested help or a concrete unresolved capability choice.
-Ordinary Spec/Build continues with current choices; task size or a new model
-release does not start a selection ritual or authorize another worker.
-
-All canonical skill names use `aios-<method>`. The former `aios` router is
-`aios-start`; domain names become `aios-design`, `aios-review-design`,
-`aios-openpencil-workbench`, `aios-content`, `aios-diffusion-studio`,
-`aios-human-writing` and `aios-write-code`. Titles use `AIOS-<method>`.
-The host owns command syntax and plugin namespaces; this package does not
-claim it can remove a host-added namespace or register `/aios-design` aliases.
-Existing explicit prompts/shortcuts need the new canonical names on adoption.
-Renamed identities begin at 1.0.0; their domain methods remain intact.
-
-Create Project remains the new-repository method. Create System is retired;
-Manage Skills owns reusable methods and selected existing specialists keep
-their own maintenance route. Review Design remains domain inspection inside
-the shared Review lifecycle; it is not a second delivery lifecycle.
-
-The empty `.agents/skills/` shelf is removed. `.agents/plugins/` remains native
-Codex marketplace metadata. Root AGENTS becomes a concise development contract.
-Historical evidence and the legacy footprint fixture retain their original
-bytes; current links, inventory tests and decision cases follow the new contract.
+The person chooses models/effort and requests workers. Ordinary Spec/Build
+continues in the current chat. Model advice supports a requested choice or a
+concrete capability gap. Create System is retired; Create Project remains.
+Review Design contributes to shared Review. The empty local skill shelf is gone.
+Owner-confirmed lasting facts route to Maintain Context under its existing
+format, curation and write/Sync authority, without background capture.
 
 The [consumer guide](../skills/aios-setup/references/codex-consumer-guide.md)
-uses a scoped workspace baseline, distinguishes an explicit Full Access choice,
-preserves model/permission/privacy choices and reuses existing conditional
-capability references. Optional private owner Git continuity is not mandatory
-onboarding. Shared docs contain no personal config values or device identifiers.
+maintains deliberate workspace/access/privacy choices and optional capabilities.
+No personal settings or account identifiers are copied into the plugin.
+Upstream 0.15.0 Interview intent and conditional local trials remain intact.
 
-## Verification and recovery
+## Local overview
 
-Run the maintained source, version, layout, continuity, documentation and
-footprint checks against baseline `3bf3ebd842ff014e2801555cf1406107648d2b07`.
-Prepared instruction cases cover ordinary local work, explicit worker requests,
-requested advice and unsupported choices. No new model simulation is part of
-this slice; those preparations are not behavior proof. Report missing runtime
-proof separately. No Pi model runs are required for this request.
+The accepted Setup, Overview, Skills and Sync UI uses the onlinesourdough bread,
+warm branding, English agent-neutral copy and prominent status circles. It
+finds an explicit home or AIOS_HOME, the managed Codex route, then the standard
+home. A missing explicit route never creates another home. Supported formats
+1 and 2 are read-only. Actual bounded filenames come from the owner home;
+a filename alone does not claim an inferred topic, route or authenticated tool.
+Shared AIOS skills are generated from the canonical source; personal skills
+come from the home and stay separate from plugin releases.
 
-Review the complete final diff and relevant rendered prototype separately.
-The package remains dependency-free. Recovery is the existing 0.14.1 release;
-native adoption must not overwrite active methods mid-task. Publishing,
-installation of the production candidate and release require their existing
-action authority and native verification.
+File opening uses the host editor capability. Conversation actions show the
+exact request and explain that sending starts a new chat, with duplicate-send
+protection. The Git view distinguishes cached refs from a fresh read-only
+GitHub branch check, shows the real repository and last commit, and never
+invents a sync time. Green sync requires a clean home and fresh remote equality.
+No background autosync, install/uninstall hooks or hosted backend are introduced.
 
-## Ordinary context changes
+## Build, release and proof
 
-Start now selects Maintain Context for owner-confirmed lasting changes,
-corrections and new sources. Its conditional context-signals reference reuses
-curation, format checks, deduplication and existing write/Sync authority. It
-creates no background capture, mandatory approval loop or repository preload.
-This is an instruction change; source checks do not establish complete native
-capture-and-reuse behavior. Existing managed bridges need their owned router
-name updated to `aios-start` on adoption; fresh sessions discover new identities.
+The canonical runtime is built under `apps/overview/` and committed under
+`runtime/overview/`. Native Codex and portable skills ZIPs are generated from
+one source. [Distribution](distribution.md) owns CI, draft CD, public submission
+and adoption. The prior 0.15.0 release is preserved; 0.16.0 is the combined candidate.
 
-Selected overview consumers may use the optional dated setup-status record.
-Existing homes need no new receipt for green local availability or Overview.
-The viewer resolves an explicit home or AIOS_HOME, then the managed agent
-route, then the standard local home. A missing explicit route never creates a second home.
-The optional receipt never replaces actual Setup acceptance. Core file hashes
-invalidate affected checks; access/work are host-bound. Git sync remains optional and cached refs
-are explicitly insufficient to prove current cloud equality.
+Run maintained checks against the current remote main baseline. Source checks,
+synthetic filesystem/Git cases and real stdio protocol checks provide bounded
+code evidence. The accepted browser prototype was inspected at narrow and wide
+sizes with synthetic SDK interaction fixtures. These do not prove the native
+Codex sidebar, actual editor opening, active uninstall or first-account login.
+The computer-use surface previously refused native Codex access; that remains
+an explicit acceptance gap rather than a reason to simulate a PASS.
 
-## Verification observed on 30 September 2026
-
-The package/version/link validator against 3bf3ebd, layout, continuity,
-documentation and skill-version checks pass. Selected-read ceilings remain
-unchanged; final setup verification is 42,748 bytes against 42,793. These are
-source/Git checks and byte estimates, not runtime token telemetry.
-
-Renamed helper coverage: 18 Design checks, 27 Content Node checks and 14 Content
-Python checks pass. Review corrected an over-broad rename that changed the
-Design audit dispatch identifier and missed several test import paths; existing
-behavioral checks exposed those errors. Helpers retain their original behavior.
-
-The optional overview uses local stdio metadata and a separate loopback preview.
-Its status reader and protocol checks exercise real local code with bounded
-synthetic fixtures. No production owner files or Codex settings are changed.
-Native sidebar rendering and message-to-Setup execution remain unverified; the
-computer-use surface refuses access to the Codex app. CLI installation alone
-does not settle that gap. Complete fresh-chat acceptance remains with issue #4.
-
-No Pi model simulations, new workers, remote code push, production plugin
-cutover or release are part of this candidate. Recovery remains installed 0.14.1.
+The release PR records current CI and extracted-package results. Independent
+review and native host acceptance remain separate publication gates. No new
+model comparisons, workers or writes to a real owner home are required here.

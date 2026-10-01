@@ -72,8 +72,8 @@ The shared delivery path is Spec → Build → Review → authorized Ship. Spec
 reuses interview decisions. Design → Review Design supplies visual direction
 and selected companions. Content uses Human Writing, production as needed and
 its own final review; ordinary video can use the optional Diffusion Studio.
-These methods connect only where the accepted result needs them. Project and
-System creation, context maintenance, skill management and package updates each
+These methods connect only where the accepted result needs them. Project
+creation, context maintenance, skill management and package updates each
 retain their focused owners.
 
 [Project Foundation](../skills/aios-project-foundation/SKILL.md) establishes or
@@ -109,8 +109,8 @@ keeps the brief, reference adaptation and rendered review; external examples
 and catalogs remain with their publishers. References are optional and their
 used revisions are recorded. OpenPencil remains an optional editable companion.
 
-All skill titles and Codex display names use `AIOS:skill-name`, such as
-`AIOS:design` and `AIOS:build-work`. Each skill declares its canonical name;
+All skill titles and Codex display names use `AIOS-skill-name`, such as
+`AIOS-design` and `AIOS-build-work`. Each skill declares its canonical name;
 the harness owns its native namespace. Personal methods keep their own names
 and ownership. Renames update the body, callers and native registration together.
 
@@ -161,3 +161,11 @@ Skills own new repositories and reusable methods.
 Refresh/update the package through your app first, then start a fresh chat.
 A new chat alone does not download a plugin update. Personal owner context
 and separately maintained skills are independent of the package release.
+
+The Codex package includes a local Setup, Overview, Skills and Sync panel.
+It lists the context files actually found in your AIOS home, explains the index,
+memory, connections and spaces, and opens files through the supported editor.
+Shared plugin skills and your personal skills have separate sources and update
+paths. Setup and Sync actions show the request before sending it to your agent
+chat. The panel checks Git status; it never commits or uploads your context.
+The local companion requires Node.js 22+. The portable skills ZIP omits it.

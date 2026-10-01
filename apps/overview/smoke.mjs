@@ -1,0 +1,38 @@
+import assert from 'node:assert/strict';
+import { Client } from '@modelcontextprotocol/sdk/client/index.js';
+import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
+import { fileURLToPath } from 'node:url';
+import { OpenAIUiToolMetadataSchema } from '@openai/mcp-extensions/server';
+const server=process.argv[2]||fileURLToPath(new URL('../../runtime/overview/server.mjs',import.meta.url));
+const client=new Client({name:'aios-package-check',version:'1'});
+try{
+  await client.connect(new StdioClientTransport({command:process.execPath,args:[server]}));
+  const {tools}=await client.listTools();
+  assert.equal(tools.length,3);
+  assert.equal(tools[0].name,'aios_open');
+  assert.deepEqual(tools[0]._meta['openai/ui'].entrypoints.map(e=>e.type),['global','thread']);
+  OpenAIUiToolMetadataSchema.parse(tools[0]._meta['openai/ui']);
+  assert.match(tools[0]._meta['openai/ui'].entrypoints[0].quickAction.icons[0].src,/^data:image\/png;base64,/);
+  assert.equal(tools[0]._meta['openai/ui'].entrypoints[0].quickAction.target.name,'aios_open');
+  const result=await client.callTool({name:'aios_open',arguments:{}});
+  assert.ok(['ready','incomplete','missing','unsupported','unavailable'].includes(result.structuredContent.owner));
+  assert.deepEqual(tools.find(t=>t.name==='aios_context_status')._meta.ui.visibility,['app']);
+  const status=await client.callTool({name:'aios_context_status',arguments:{}});
+  assert.ok(status.structuredContent.checkedAt);
+  assert.equal(status.structuredContent.fileTargets,undefined);
+  assert.ok(status._meta?.['aios/fileTargets']);
+  assert.ok(Object.keys(status._meta['aios/fileTargets']).every(key=>['index','memory','connections'].includes(key)||key.startsWith('context/')||key.startsWith('skills/')));
+  assert.equal(status.structuredContent.inventory,undefined);
+  assert.equal(status.structuredContent.gitDetails,undefined);
+  assert.ok(status._meta?.['aios/git']);
+  assert.deepEqual(tools.find(t=>t.name==='aios_git_check')._meta.ui.visibility,['app']);
+  assert.ok(status._meta?.['aios/inventory']);
+  assert.ok(!JSON.stringify(status.structuredContent).includes('/Users/'));
+  const resource=await client.readResource({uri:'ui://aios/overview'});
+  assert.match(resource.contents[0].text,/AIOS views/);
+  assert.equal(resource.contents[0].mimeType,'text/html;profile=mcp-app');
+  assert.deepEqual(resource.contents[0]._meta.ui.csp.connectDomains,[]);
+  const missing=await client.callTool({name:'missing_tool',arguments:{}});
+  assert.equal(missing.isError,true);
+  console.log('PASS: stdio handshake, tool metadata, local owner status, bundled UI, restricted CSP and unknown-tool error.');
+}finally{await client.close();}

@@ -1,6 +1,6 @@
 {
   "name": "aios",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "private": true,
   "description": "Portable context and skills for planning, design, content and reviewed delivery.",
   "license": "MIT",
@@ -8,7 +8,6 @@
     "pi-package"
   ],
   "files": [
-    "plugin.json",
     ".codex-plugin",
     ".claude-plugin",
     ".cursor-plugin",
@@ -17,7 +16,8 @@
     "assets/icon.png",
     "README.md",
     "LICENSE",
-    "docs/aios.md"
+    "docs/aios.md",
+    "runtime/overview"
   ],
   "pi": {
     "skills": [

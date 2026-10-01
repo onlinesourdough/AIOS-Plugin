@@ -173,6 +173,19 @@ codex plugin add aios@online-sourdough
 Once the marketplace is available, you can also install AIOS from Codex's plugin
 browser. Start a fresh task after installation.
 
+The Codex package includes **Setup, Overview, Skills and Sync** in a local panel.
+It finds your existing AIOS home, shows its context files and personal skills,
+and checks the configured GitHub branch. Opening a file uses the editor when
+supported. Conversation actions show the request before sending it to a new chat.
+The local companion requires **Node.js 22 or newer**. It does not host your
+context or sync in the background. Other agents receive the same skills through
+their native manifests; their UI capabilities remain app-specific.
+
+Versioned **Codex** and **portable skills** ZIPs are prepared by CI. The portable
+ZIP contains no MCP runtime. GitHub installation is separate from a listing in
+the public OpenAI Plugins Directory, which requires submission and approval.
+See [release preparation](docs/distribution.md) for checks and publication status.
+
 For the choices that make Codex useful day to day, see the maintained
 [Codex setup guide](skills/aios-setup/references/codex-consumer-guide.md).
 Model choice and worker launch stay with the person. AIOS can advise and

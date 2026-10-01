@@ -67,9 +67,9 @@ FORBIDDEN_BOUNDARY_TEXT = {
 }
 FORBIDDEN_SHIPPED_PATTERNS = (r"\bnpx skills\b", r"\bskills\.sh\b")
 DOMAIN_SKILLS = {"aios-design", "aios-review-design", "aios-openpencil-workbench", "aios-content", "aios-diffusion-studio"}
-PRODUCT_PATHS = ("plugin.json", ".codex-plugin", ".claude-plugin", ".cursor-plugin",
+PRODUCT_PATHS = (".codex-plugin", ".claude-plugin", ".cursor-plugin",
                  "gemini-extension.json", "skills", "assets/icon.png", "LICENSE",
-                 "docs/aios.md")
+                 "docs/aios.md", "runtime/overview")
 FORBIDDEN_KEYS = {"scripts", "dependencies", "devDependencies", "peerDependencies"}
 SECRET_PATTERNS = (
     r"AKIA[0-9A-Z]{16}",
@@ -134,7 +134,7 @@ def validate(root=ROOT, release_tag=None):
             "package inventory")
     require(set(package["pi"]) == {"skills"} and len(package["pi"]["skills"]) == 1,
             "Pi declaration")
-    require(not ({"hooks", "apps", "mcpServers"} & manifest.keys()),
+    require(not ({"hooks", "apps"} & manifest.keys()),
             "unexpected plugin runtime")
 
     skill_root = (root / manifest["skills"]).resolve()
@@ -431,7 +431,11 @@ def validate(root=ROOT, release_tag=None):
                       parts[1] in SKILL_NAMES and parts[2] == "agents" and
                       path.name == "openai.yaml")
                 neutral_text = domain and parts[2] == "assets" and path.suffix == ".txt"
-                allowed = (path.suffix in {".md", ".json"} or helper or ui or neutral_text or
+                runtime = path.relative_to(root).as_posix() in {
+                    'runtime/overview/server.mjs', 'runtime/overview/index.html',
+                    'runtime/overview/THIRD-PARTY-NOTICES.md',
+                    'runtime/overview/assets/icon.png', 'runtime/overview/assets/onlinesourdough-mark.svg'}
+                allowed = (path.suffix in {".md", ".json"} or helper or ui or neutral_text or runtime or
                            path.name in {"LICENSE", "AIOS_FORMAT", ".gitignore"} or
                            path == root / "assets/icon.png")
                 require(allowed, f"unexpected product file: {path}")
@@ -466,7 +470,7 @@ def validate(root=ROOT, release_tag=None):
 def rejected(mutator, expected):
     with tempfile.TemporaryDirectory(prefix="aios-negative-") as temporary:
         copy = Path(temporary) / "repo"
-        shutil.copytree(ROOT, copy, ignore=shutil.ignore_patterns(".git", ".tmp"))
+        shutil.copytree(ROOT, copy, ignore=shutil.ignore_patterns(".git", ".tmp", "node_modules", "dist", "build", "__pycache__"))
         mutator(copy)
         try:
             validate(copy)

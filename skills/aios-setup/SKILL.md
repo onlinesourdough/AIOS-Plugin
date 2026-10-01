@@ -2,7 +2,7 @@
 name: aios-setup
 description: Set up, resume or move an AIOS owner home using the selected harness’s native installation.
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
 ---
 
 # AIOS-setup
