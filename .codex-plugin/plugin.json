@@ -18,7 +18,12 @@
     "capabilities": [],
     "defaultPrompt": [
       "Set up AIOS for my current work."
-    ]
+    ],
+    "websiteURL": "https://onlinesourdough.com/",
+    "supportURL": "https://github.com/onlinesourdough/AIOS-Plugin/issues",
+    "brandColorDark": "#f8f2e8",
+    "composerIconDark": "./assets/icon.png",
+    "logoDark": "./assets/icon.png"
   },
   "repository": "https://github.com/onlinesourdough/AIOS-Plugin",
   "license": "MIT",
@@ -26,5 +31,6 @@
     "com.openai": {
       "onboardingSkill": "./skills/aios-setup/SKILL.md"
     }
-  }
+  },
+  "homepage": "https://onlinesourdough.com/"
 }
