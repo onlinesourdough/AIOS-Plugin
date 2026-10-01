@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.15.1 — 2026-10-01
+
+- Replace the plugin icon and README banner with the pixel logo, cream
+  background and brown ink from onlinesourdough.com.
+- Keep the existing skills and installation paths unchanged.
+
 ## 0.15.0 — 2026-10-01
 
 - Make Interview 1.1.0 explicitly restate goals and the underlying problem for
