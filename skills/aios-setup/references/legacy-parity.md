@@ -36,11 +36,11 @@ migration evidence also accounts for the two other historical Global methods:
 
 | Named external method | Current owner/disposition |
 | --- | --- |
-| `clarify` | Remains independently owned with an intentionally changed current job; AIOS may discover it for a concrete need but claims no unchanged-body parity |
+| `clarify` | Adopted as native [Clarify](../../clarify/SKILL.md) in AIOS 0.16.0 for complex explanations and optional visuals; the former mandatory HTML output is intentionally adapted |
 | `manage-skills` | Its accepted responsibility moved to native [Manage Skills](../../aios-manage-skills/SKILL.md); no external body existed in the snapshot to migrate |
 | `orchestrate-workers` | Its accepted responsibility moved to native [Orchestrate workers](../../aios-orchestrate-workers/SKILL.md); no external body existed in the snapshot to migrate |
 | `route-models` | Retired at historical change `8b81375`; current runtime selection is owned by [Select model](../../aios-select-model/SKILL.md), without restoring a model catalog |
-| `shape-offer` | Remains an independently owned Global Skill; AIOS discovers it only for a concrete need and does not copy it |
+| `shape-offer` | Retained in the public Global Skills archive; not adopted or actively routed by AIOS |
 
 Four private personal methods were retained through owner migration and current
 discovery; their bodies remain owner-controlled and are not enumerated in this
@@ -64,9 +64,8 @@ the old umbrella's lifecycle is now directly invocable as Spec/Build/Review/Ship
 
 Conditional [principles, voice and visual checks](../../aios-review-work/references/contextual-quality.md)
 belong in Review. They retain observable judgment but use the selected client's
-sources, not the author's preferences. Optional clarification or offer methods
-remain independently discoverable and are not prerequisites or bundled
-implementations. Native management, orchestration and triage are conditional
+sources, not the author's preferences. Clarify is now independently discoverable in this package; the former offer
+method remains archived. Neither is a prerequisite for unrelated work. Native management, orchestration and triage are conditional
 routes; none grants a worker runtime or external issue authority.
 
 The public count is an outcome of responsibility boundaries, not a target.

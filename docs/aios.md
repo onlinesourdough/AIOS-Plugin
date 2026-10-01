@@ -1,6 +1,6 @@
 # AIOS
 
-AIOS version: 0.15.1
+AIOS version: 0.16.0
 
 **Business first. Productivity built in.**
 
@@ -53,6 +53,13 @@ Write Code helps distinguish useful sharing from superficially similar code
 and keeps refactoring scoped to the affected behavior.
 
 ## Connected work methods
+
+[Clarify](../skills/clarify/SKILL.md) owns explanations of complex topics and
+decisions: a useful mental model, concrete examples and visuals when they help.
+It uses the available visualization tools for presentation and can return a
+short text answer. It is independently selectable and needs no design process
+or compulsory HTML artifact.
+
 
 [Interview](../skills/aios-interview/SKILL.md) helps establish shared context and
 direction when requested or materially needed at the start. It reuses known

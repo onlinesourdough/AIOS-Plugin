@@ -18,8 +18,9 @@
 | Projects and optional specialists | Their own repositories, deliverables, dependencies, proof and recovery; no mandatory AIOS registration |
 | Design and content methods and helpers | Built-in domain skills; project files remain owned by the project |
 | Selected upstream System installation/code updates | AIOS Update [System maintenance](../skills/aios-update/references/systems.md) routes authorized work; each System owns compatibility and recovery |
-| Optional Global Skills | Their original owners; AIOS Manage Skills governs only reviewed adoption |
-| Optional autonomous-use guardrails | Independently owned `setup-guardrails` Global Skill; Setup/Manage Skills conditionally route a client request without adopting it |
+| Complex explanations | Included `clarify`; native visualization tools own their presentation contracts |
+| Historical Global Skills and Skills Atlas | Their public archived repositories; only Clarify is adopted in this package |
+| Optional autonomous-use guardrails | Native harness controls and reviewed maintained implementations selected for an explicit request; the former Global implementation remains archived |
 
 The product repository is not an owner-data home. Repository specialist methods stay local; generic lifecycle
 methods are shared plugin skills. Delegated workers return proposed shared

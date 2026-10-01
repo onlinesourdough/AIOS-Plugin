@@ -15,6 +15,7 @@ MANIFEST = ROOT / "tests/fixtures/context-footprint-legacy.json"
 MAX_SKILL_BODY_BYTES = 8192
 MAX_DESCRIPTION_BYTES = 240
 JOB_PREFIXES = {
+    "clarify": "Explain ",
     "human-writing": "Draft ",
     "write-code": "Write ",
     "design": "", "review-design": "", "openpencil-workbench": "",

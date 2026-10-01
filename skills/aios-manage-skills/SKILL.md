@@ -2,7 +2,7 @@
 name: aios-manage-skills
 description: Manage an authorized skill creation, edit, installation, update, removal or rollback.
 metadata:
-  version: "1.0.3"
+  version: "1.0.4"
 ---
 
 # AIOS:manage-skills
@@ -38,9 +38,11 @@ install. A request to edit a named skill already establishes the authoring task;
 do not repeat candidate acquisition review for unchanged source and access.
 
 When an owner asks in ordinary language for local guardrails during autonomous
-use, prefer an available reviewed `setup-guardrails` Global Skill. When it
-is missing, assess only its authorized acquisition through this lifecycle. It is
-not an AIOS prerequisite or package dependency: report source identity,
+use, inspect the selected harness's native permissions and supported hooks through
+[protection coverage](../aios-setup/references/harness-protection.md). Assess a
+concrete missing capability before acquiring a maintained implementation. The
+former `setup-guardrails` source is archived, not a preferred active installation.
+A guard is not an AIOS prerequisite or package dependency: report source identity,
 installation state, trust/configuration state, and native-active observation
 separately; a catalog entry or copied prompt proves none of them.
 

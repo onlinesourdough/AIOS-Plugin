@@ -1,8 +1,8 @@
 ---
 name: aios-setup
-description: Set up, resume or move an AIOS owner home using the selected harness’s native installation.
+description: Set up, resume or move an AIOS owner home through native harness installation.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # AIOS:setup
@@ -22,7 +22,7 @@ For personal skills during setup or a home move, call Manage Skills'
 When an owner asks in ordinary language for local guardrails during autonomous
 use, route that request to [Manage Skills](../aios-manage-skills/SKILL.md). It
 owns candidate review/acquisition and its evidence. Normal setup does not
-depend on that optional Global capability.
+depend on an optional guard implementation.
 For an existing folder, read [data compatibility](references/data-format.md)
 before writing; an actual import also uses the [migration procedure](references/data.md)
 and [identity migration](references/migration.md) for legacy OSM or template AIOS

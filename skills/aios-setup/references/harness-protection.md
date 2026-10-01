@@ -6,8 +6,9 @@ affects the requested change. Use the shared [configuration procedure](harness-c
 Instructions guide decisions. Native permissions/sandbox restrict execution;
 pre-execution hooks can intercept supported calls. These are separate controls.
 Full Access is not isolation for active security tests. This package supplies
-no runtime protection hook, denylist or enforcement adapter. Optional Global
-Skills stay a separate product.
+no runtime protection hook, denylist or enforcement adapter. The former Global
+Skills guard implementation is an archived reference, not a bundled or preferred
+active installation.
 
 When an existing hook or permission boundary matters, record the harness/version,
 execution host, effective tool coverage, trust state and observed deny/allow

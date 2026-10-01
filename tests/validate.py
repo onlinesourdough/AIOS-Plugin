@@ -19,7 +19,7 @@ SKILL_NAMES = {
     "aios-setup", "aios-interview", "aios-orchestrate-workers", "aios-review-work",
     "aios-risky-changes", "aios-ship-work", "aios-spec-work", "aios-triage-improvement",
     "aios-update", "aios-select-model", "human-writing", "write-code",
-    "design", "review-design", "openpencil-workbench", "content", "diffusion-studio",
+    "design", "review-design", "openpencil-workbench", "content", "diffusion-studio", "clarify",
 }
 LEGACY_ROUTE_TARGETS = {
     "aios": ("../../aios/SKILL.md", "../SKILL.md", "../../aios-check/SKILL.md",
@@ -49,11 +49,11 @@ LEGACY_ROUTE_TARGETS = {
     "aios-update": ("../../aios-update/SKILL.md", "migration.md"),
 }
 LEGACY_EXTERNAL_TARGETS = {
-    "clarify": "intentionally changed current job",
+    "clarify": "](../../clarify/SKILL.md)",
     "manage-skills": "](../../aios-manage-skills/SKILL.md)",
     "orchestrate-workers": "](../../aios-orchestrate-workers/SKILL.md)",
     "route-models": "historical change `8b81375`",
-    "shape-offer": "Remains an independently owned Global Skill",
+    "shape-offer": "Retained in the public Global Skills archive",
 }
 # Core routes methods; domain details stay in the selected domain skill.
 FORBIDDEN_BOUNDARY_TEXT = {
@@ -251,8 +251,10 @@ def validate(root=ROOT, release_tag=None):
     onboard = (skill_root / "aios-setup/SKILL.md").read_text()
     manage_skills = (skill_root / "aios-manage-skills/SKILL.md").read_text()
     require("[Manage Skills](../aios-manage-skills/SKILL.md)" in onboard and
-            re.search(r"normal setup does not\s+depend on that optional Global capability", onboard, re.I) and
+            re.search(r"normal setup does not\s+depend on an optional guard implementation", onboard, re.I) and
             "setup-guardrails" in manage_skills and
+            "[protection coverage](../aios-setup/references/harness-protection.md)" in manage_skills and
+            "archived, not a preferred active installation" in manage_skills and
             "setup-agent-guardrails" not in manage_skills and
             "not an AIOS prerequisite or package dependency" in manage_skills and
             all(term in manage_skills for term in ("source identity", "installation state",
@@ -459,7 +461,7 @@ def validate(root=ROOT, release_tag=None):
                  if p.is_file()} == {"docs/aios.md"},
                 "unapproved documentation in product")
         require(not any((staged / "skills" / name).exists()
-                        for name in ("setup-guardrails",)),
+                        for name in ("setup-guardrails", "shape-offer")),
                 "optional global capability shipped")
         require((staged / "skills/human-writing/SKILL.md").is_file(), "built-in writing capability missing")
         for path in staged.rglob("*.md"):

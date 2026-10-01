@@ -15,6 +15,7 @@ Record a material decision and its rationale in the source that owns the work.
 - [Interview](../../aios-interview/SKILL.md) develops shared understanding when
   requested or when material uncertainty at the start prevents choosing a
   direction. Use its activation rules; ordinary execution continues without it.
+- [Clarify](../../clarify/SKILL.md) explains complex topics with examples and useful visuals.
 - [Design](../../design/SKILL.md) creates or evaluates visual direction and assets.
 - [Content](../../content/SKILL.md) creates, revises or repurposes editorial work.
 - [Human writing](../../human-writing/SKILL.md) makes prose clear and natural.

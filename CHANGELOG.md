@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.16.0 — 2026-10-01
+
+- Add Clarify 1.0.0 as an independently selectable explanation method in AIOS.
+  Use concrete examples and visuals when they improve understanding; ordinary
+  explanations stay in the conversation and HTML is no longer compulsory.
+- Keep visualization rendering with the available native tools and keep
+  Clarify separate from Design. AIOS routing advances to 2.4.0 and exposes
+  26 skills from the same source in every native package.
+- Retire the active Global Skills acquisition route. Shape Offer and the
+  former guardrail implementation remain in the public Global Skills archive;
+  neither is included in AIOS. Skills Atlas is also retained as a public archive.
+
 ## 0.15.1 — 2026-10-01
 
 - Replace the plugin icon and README banner with the pixel logo, cream

@@ -1,6 +1,6 @@
 # AIOS skills
 
-AIOS ships 25 native skills. Their titles and Codex display names use
+AIOS ships 26 native skills. Their titles and Codex display names use
 `AIOS:skill-name`: uppercase `AIOS`, a colon without spaces, and lowercase
 hyphenated names. The display label omits a redundant leading `aios-` from the
 canonical name. Automatic selection uses each skill description; explicit
@@ -13,6 +13,7 @@ carries an independent quoted `metadata.version`; see
 
 | Skill | Responsibility |
 | --- | --- |
+| [AIOS:clarify](../skills/clarify/SKILL.md) | Explain complex topics and decisions with concrete examples and visuals when they help understanding |
 | [AIOS:design](../skills/design/SKILL.md) | Develop a brief into an implementation-ready design, using discovery or exploration when needed |
 | [AIOS:review-design](../skills/review-design/SKILL.md) | Review exact design evidence and prepare a stable handoff |
 | [AIOS:openpencil-workbench](../skills/openpencil-workbench/SKILL.md) | Use optional OpenPencil tooling with project-local work |
