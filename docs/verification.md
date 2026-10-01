@@ -1,5 +1,10 @@
 # Verification
 
+For AIOS 0.16.0, see [Clarify and retired shelves](clarify.md) for the adopted
+explanation purpose, source provenance, two native candidate decision probes
+and retirement/recovery boundary. Native package adoption and public archive
+state are read back separately after release.
+
 For the 0.15.0 Interview/local-trial change, see
 [intent and local trials](intent-and-trials.md) for the accepted boundaries,
 baseline/candidate decision probes, ordinary native observations and limitations.

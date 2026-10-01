@@ -5,7 +5,7 @@
 **Business first. Productivity built in.**
 
 AIOS helps your AI assistant plan work, build it, review the result and remember
-useful decisions. Install it in the app you use. The same 25 skills work from
+useful decisions. Install it in the app you use. The same 26 skills work from
 one shared source, with native packaging for Codex, Pi, Claude Code, Gemini CLI,
 Copilot CLI and Cursor.
 
@@ -16,6 +16,13 @@ models, tools and permissions.
 AIOS supports business work, decisions, content, design and practical automation.
 Its code guidance and verification stay proportional to the task. Projects own
 their source, engineering standards, design and delivery configuration.
+
+## Understand complex topics
+
+[Clarify](skills/clarify/SKILL.md) explains a difficult topic or decision from
+your question and knowledge level. It uses a concrete example and a visual
+when seeing a relationship helps. Ordinary explanations stay in the conversation;
+a diagram, interactive visual or reusable file is selected only when useful.
 
 ## Agentic systems and skill chains
 
@@ -150,7 +157,7 @@ skills, not additional public skills.
 These built-in systems are assembled from skills, project artifacts and selected
 tools. Separately maintained specialist Systems, such as Power BI, can add their
 own dependencies and upkeep. Neither form requires a new AIOS runtime, project
-registry or background agent. The [skill index](docs/skills.md) lists all 25
+registry or background agent. The [skill index](docs/skills.md) lists all 26
 public entrypoints.
 
 ## Install in your app
@@ -356,7 +363,7 @@ Resources domain. Selective reading saves context whether the file is local or
 remote; hosting alone does not reduce the tokens of content actually read.
 Future standards-based discovery and updates are tracked in [issue #12](https://github.com/onlinesourdough/AIOS-Plugin/issues/12).
 
-Read about the [25 skills](docs/skills.md), [architecture](docs/architecture.md),
+Read about the [26 skills](docs/skills.md), [architecture](docs/architecture.md),
 [verification](docs/verification.md), [recovery](docs/recovery.md) and
 [version history](CHANGELOG.md). GitHub [Releases](https://github.com/onlinesourdough/AIOS-Plugin/releases)
 lists published releases. The [release procedure](docs/distribution.md#release-and-adoption)

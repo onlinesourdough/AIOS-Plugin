@@ -1,8 +1,8 @@
 ---
 name: aios-check
-description: Verify an AIOS installation, owner format or relevant harness discovery without changing it.
+description: Verify AIOS installation, owner format and native skill discovery without changes.
 metadata:
-  version: "2.0.4"
+  version: "2.0.5"
 ---
 
 # AIOS:check

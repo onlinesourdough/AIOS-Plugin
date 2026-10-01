@@ -75,10 +75,11 @@ user's configured default; worker orchestration is conditional on a concrete
 gain or a request. Shared continuation retains existing action authority.
 Risky Changes applies to consequential changes, without creating routine gates.
 
-Optional Global Skills retain their own owners. For example, setup-guardrails
-is selected only for an explicit request, with installation and actual active
-protection verified separately. No optional capability becomes a prerequisite
-merely because a route mentions it.
+Clarify is an included explanation method, separate from visual design. The
+Global Skills and Skills Atlas repositories are retained as public archives.
+Shape Offer and the former guardrail implementation are not included in AIOS.
+Explicit protection requests use native harness controls and reviewed maintained
+capabilities; installation and actual active protection are verified separately.
 
 ## Documentation and native installation
 
