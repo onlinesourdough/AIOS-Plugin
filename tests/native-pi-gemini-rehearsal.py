@@ -139,7 +139,7 @@ def main():
         listing = run('extensions', 'list')
         assert f'aios ({package_version})' in listing, listing
         discovered = run('skills', 'list')
-        cache = settings_root / 'extensions' / 'aios'
+        cache = settings_root / 'extensions' / 'aios-start'
         assert hashes(cache / 'skills') == hashes(source / 'skills'), 'Installed bytes differ'
         overview = source / 'docs/aios.md'
         assert (cache / 'docs/aios.md').read_bytes() == overview.read_bytes(), 'Installed documentation differs'
@@ -153,14 +153,14 @@ def main():
         manifest.write_text(json.dumps(data) + '\n')
         overview.write_text(overview.read_text().replace(f'AIOS version: {package_version}\n',
                                                         'AIOS version: 99.0.0-rehearsal\n'))
-        run('extensions', 'update', 'aios')
+        run('extensions', 'update', 'aios-start')
         listing = run('extensions', 'list')
         assert '99.0.0-rehearsal' in listing, 'Gemini version transition not observed'
         assert (cache / 'docs/aios.md').read_bytes() == overview.read_bytes(), 'Updated documentation differs'
         update_proof = 'Version transition'
         run('skills', 'list')
         unchanged()
-        run('extensions', 'uninstall', 'aios')
+        run('extensions', 'uninstall', 'aios-start')
         assert 'aios (0.' not in run('extensions', 'list')
         assert str(cache / 'skills') not in run('skills', 'list')
     unchanged()

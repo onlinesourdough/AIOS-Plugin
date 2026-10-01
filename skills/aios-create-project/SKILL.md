@@ -2,13 +2,13 @@
 name: aios-create-project
 description: Start a new independent repository from the Agentic Project Template in the chosen workspace.
 metadata:
-  version: "2.1.1"
+  version: "2.1.2"
 ---
 
-# AIOS:create-project
+# AIOS-create-project
 
 Use the accepted idea, outcome and destination through
-[creation](../aios/references/creation.md). APT is a repository starter; it does
+[creation](../aios-start/references/creation.md). APT is a repository starter; it does
 not create another AIOS project type. Continue existing work in its current
 repository. Do not require a repository for a self-contained task.
 
@@ -45,8 +45,8 @@ standards and design through the shared document contract as the project grows.
 Ordinary creation alone does not authorize remote provisioning or execution.
 
 Use the generated local requirements and native-discovered AIOS methods to
-continue from the resolved idea. [Design](../design/SKILL.md) and
-[content](../content/SKILL.md) work in that project when relevant. Follow shared
+continue from the resolved idea. [Design](../aios-design/SKILL.md) and
+[content](../aios-content/SKILL.md) work in that project when relevant. Follow shared
 [Spec](../aios-spec-work/SKILL.md), [Build](../aios-build-work/SKILL.md) and
 [Review](../aios-review-work/SKILL.md) for the authorized result.
 No owner-home registry, folder relocation or automatic new task is required.

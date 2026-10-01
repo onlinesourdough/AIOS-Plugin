@@ -2,12 +2,12 @@
 name: aios-review-work
 description: Review a result against its accepted outcome, or audit requested repository drift, without editing.
 metadata:
-  version: "1.2.1"
+  version: "1.2.2"
 ---
 
-# AIOS:review-work
+# AIOS-review-work
 
-Use the [native tracking SOP](../aios/references/lifecycle.md) at Review: reconstruct
+Use the [native tracking SOP](../aios-start/references/lifecycle.md) at Review: reconstruct
 accepted requirements, carried goal authority and the actual tracking readback
 or declared fallback. Map every requirement to final evidence or unresolved
 status; pending lead approval/delivery stays pending. Review the affected
@@ -45,7 +45,7 @@ step lists, competing acceptance rules and circular delegation without an
 executable owner; do not merge distinct responsibilities just to reduce files.
 
 For code review, including scripts, shell snippets, SQL, tests and automation,
-use [Write code](../write-code/SKILL.md) in read-only review mode. Apply its shared
+use [Write code](../aios-write-code/SKILL.md) in read-only review mode. Apply its shared
 quality criteria to the actual code and current behavioral proof; feed findings
 into this gate without editing the subject or starting another Build/Review loop.
 

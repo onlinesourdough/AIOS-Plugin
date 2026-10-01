@@ -2,10 +2,10 @@
 name: aios-triage-improvement
 description: Triage a concrete underlying improvement signal into a sanitized, deduplicated and authorized issue action.
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
-# AIOS:triage-improvement
+# AIOS-triage-improvement
 
 Load this native skill only after the worker or lead has identified a concrete
 underlying improvement signal. Ordinary deliverable corrections alone do not

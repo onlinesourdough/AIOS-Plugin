@@ -42,7 +42,7 @@ claude plugin install aios@online-sourdough --scope user
 ```
 
 Codex and Claude use `aios@online-sourdough` as their installation identity.
-Claude's explicit skill calls are namespaced, such as `/aios:human-writing`.
+Claude's explicit skill calls are namespaced, such as `/aios:aios-human-writing`.
 Other apps may expose names differently; use their actual discovery rather
 than rewriting the canonical skill files. Native project/local scopes are
 available in some apps; use the same scope for later updates and removal.
@@ -106,19 +106,30 @@ the plugin.
 | File | Native role |
 | --- | --- |
 | `docs/aios.md` | Version-matched local overview, selected through the AIOS documentation route |
-| `plugin.json` | Portable Agent Plugins 1.0.0 identity; root `skills/` discovery |
-| `.codex-plugin/plugin.json` | Compatible Codex manifest and interface metadata |
+| `packaging/portable-plugin.json` | Author template emitted as root `plugin.json` in the portable skills ZIP |
+| `.codex-plugin/plugin.json` | Native Codex identity, listing metadata, Setup entry and local overview declaration |
+| `.codex-plugin/mcp.json` and `runtime/overview/` | Bundled local Codex overview; Node.js 22+ required |
 | `.agents/plugins/marketplace.json` | Codex repository marketplace |
 | `.claude-plugin/plugin.json` and `marketplace.json` | Claude Code and Copilot-compatible plugin distribution |
 | `.cursor-plugin/plugin.json` | Cursor-format compatibility metadata |
 | `gemini-extension.json` | Gemini CLI extension identity |
 | `package.json` | Pi package with only `pi.skills` |
 
-The portable manifest leaves OpenAI-specific presentation in the supported
-Codex compatibility overlay. It has no inline extension that would shadow that
-overlay. Every native declaration selects the same `skills/` source. There are
-no consumer dependencies, executable extensions, hooks, settings payloads or
-duplicated instruction bodies.
+The Git source and Codex ZIP select the native Codex manifest. A recognized root
+portable manifest would make portable components canonical and ignore the
+overlay's MCP declaration, so that manifest is emitted only in the separate
+portable skills ZIP. Its generated Codex overlay omits the MCP declaration.
+Every native adapter selects the same `skills/` source. Build dependencies stay
+under `apps/overview/`; installed Codex packages need Node.js, but no npm install.
+Other adapters declare no executable runtime. No hooks, settings payloads,
+background sync or duplicated skill bodies are installed.
+
+The 0.16.0 candidate declares `extensions.com.openai.onboardingSkill` in the
+Codex compatibility manifest, pointing to the existing `aios-setup/SKILL.md`.
+This is an official getting-started entry, not an executable installation script.
+Automatic launch and native presentation still need host verification. See the
+[consumer guide](../skills/aios-setup/references/codex-consumer-guide.md#plugin-lifecycle-and-git-sync)
+for lifecycle, hook trust, sync and uninstall boundaries.
 
 An existing or requested owner home takes precedence over the default. Without
 one or a managed bridge, the selected AIOS skill checks `~/.AIOS`. It never scans
@@ -160,8 +171,9 @@ model calls. They never copy credentials. Native folder-trust prompts concern
 only the disposable fixture. Managed machine policy can still constrain a run.
 
 Source validation checks equal identity/version, the one skill source, manifest
-field types, package inventory and absence of implicitly discovered runtime
-components. Negative fixtures reject version drift, split sources and hooks.
+field types, package inventory and a tightly scoped Codex runtime. Root MCP
+files remain forbidden so other adapters cannot discover it implicitly.
+Negative fixtures reject version drift, split sources, shadowing and hooks.
 The pre-existing selected-read ceilings remain unchanged.
 
 ## Official references

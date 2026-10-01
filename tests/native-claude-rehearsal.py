@@ -43,7 +43,7 @@ def check_contract():
     market = read_json(ROOT / ".claude-plugin/marketplace.json")
     require(set(plugin) == {"name", "version", "description", "author", "skills",
                             "repository", "license"}, "Unexpected plugin fields")
-    require(plugin["name"] == "aios" and plugin["version"] == VERSION,
+    require(plugin["name"] == "aios-start" and plugin["version"] == VERSION,
             "Expected current AIOS version")
     require(plugin["skills"] == "./skills/", "Canonical root skills required")
     require(set(market) == {"name", "owner", "metadata", "plugins"},
@@ -129,7 +129,7 @@ def rehearse(base, claude, install, names):
             require(re.search(r"(?<![\w-])" + re.escape(name) + r"(?![\w-])", details),
                     "Native details missing skill: " + name)
 
-    inline = run("--plugin-dir", ROOT, "plugin", "details", "aios")
+    inline = run("--plugin-dir", ROOT, "plugin", "details", "aios-start")
     require("aios@inline" in inline and f"aios {VERSION}" in inline, "Inline identity/version")
     inspect_details(inline)
     print("PASS: native inline discovery reports declared skills and zero agents/hooks/MCP servers")
@@ -143,7 +143,7 @@ def rehearse(base, claude, install, names):
     source.mkdir()
     for name in (".claude-plugin", "skills"):
         shutil.copytree(ROOT / name, source / name)
-    shutil.copy2(ROOT / "plugin.json", source / "plugin.json")
+    shutil.copy2(ROOT / "packaging/portable-plugin.json", source / "plugin.json")
     overview = source / "docs/aios.md"
     overview.parent.mkdir(parents=True)
     shutil.copy2(ROOT / "docs/aios.md", overview)

@@ -2,10 +2,10 @@
 name: aios-manage-skills
 description: Manage an authorized skill creation, edit, installation, update, removal or rollback.
 metadata:
-  version: "1.0.3"
+  version: "1.0.4"
 ---
 
-# AIOS:manage-skills
+# AIOS-manage-skills
 
 Manage a capability change deliberately. Independent projects remain operable
 without AIOS, a plugin, a personal skill or a central run-history store.

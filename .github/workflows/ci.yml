@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_call:
+    inputs:
+      source_ref:
+        type: string
+        required: true
+      release_tag:
+        type: string
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ inputs.source_ref || github.ref }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: apps/overview/package-lock.json
+      - name: Install pinned build dependencies without install scripts
+        run: npm --prefix apps/overview ci --ignore-scripts --no-audit --no-fund
+      - name: Verify reproducible checked-in runtime
+        run: |
+          npm --prefix apps/overview run build
+          git diff --exit-code -- runtime/overview
+          test -z "$(git ls-files --others --exclude-standard runtime/overview)"
+      - name: Validate source and skill version progression
+        env:
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
+        run: |
+          baseline="${PR_BASE:-$(git rev-parse HEAD^)}"
+          python3 tests/validate.py --baseline "$baseline"
+          if [ -n "$RELEASE_TAG" ]; then
+            git merge-base --is-ancestor HEAD origin/main
+            python3 tests/validate.py --release-tag "$RELEASE_TAG"
+          fi
+          python3 tests/documentation-rehearsal.py
+          python3 tests/layout-rehearsal.py
+          python3 tests/continuity-rehearsal.py
+          python3 tests/skill-version-rehearsal.py
+          python3 tests/context-footprint.py
+      - name: Exercise overview and retained domain helpers
+        run: |
+          npm --prefix apps/overview test
+          python3 -m unittest discover -s tests/design
+          python3 -m unittest discover -s tests/content
+          node --test tests/content/*.test.mjs
+      - name: Test and create installable archives
+        run: |
+          python3 tests/release-package.py
+          python3 scripts/package_release.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: aios-release-package
+          path: dist/release/*
+          if-no-files-found: error
+          retention-days: 30

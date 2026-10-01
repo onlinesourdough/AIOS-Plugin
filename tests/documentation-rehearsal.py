@@ -16,7 +16,8 @@ class DocumentationTest(unittest.TestCase):
         self.overview = self.root / SOURCE_PATH
         self.overview.parent.mkdir()
         self.overview.write_text("# AIOS\n\nAIOS version: 0.10.1\n\nLocal overview.\n")
-        (self.root / "plugin.json").write_text('{"version":"0.10.1"}')
+        (self.root / ".codex-plugin").mkdir()
+        (self.root / ".codex-plugin/plugin.json").write_text('{"version":"0.10.1"}')
         self.package = {"version": "0.10.1", "files": [SOURCE_PATH]}
         self.save_package()
         (self.root / "CHANGELOG.md").write_text("# Changelog\n\n## 0.10.1 — 2026-09-13\n")

@@ -85,12 +85,12 @@ merely because a route mentions it.
 The product repository owns AIOS documentation. Its approved overview at
 `docs/aios.md` ships in the native package and states the matching package
 version. The primary AIOS skill points to a small
-[documentation route](../skills/aios/references/documentation.md), which selects
+[documentation route](../skills/aios-start/references/documentation.md), which selects
 only the local overview or method reference needed for a question. Including a
 file in the package does not preload it into conversation context.
 
 Current releases, changed external facts and gaps in local documentation use the
-[canonical source route](../skills/aios/references/canonical-sources.md).
+[canonical source route](../skills/aios-start/references/canonical-sources.md).
 The installed version stays distinct from upstream `main` and newer releases.
 Private source reads use already-authorized access. Local documentation and
 methods remain usable without that access or website availability.

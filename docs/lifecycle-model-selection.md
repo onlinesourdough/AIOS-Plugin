@@ -1,5 +1,7 @@
 # Runtime model selection — 2026-09-10
 
+Historical implementation record. The 0.15.0 [Codex consumer revision](codex-consumer-refresh.md) supersedes model-selection and worker-launch defaults here. Preserve the original evidence for its dated sources.
+
 The later [context and task-result revision](lifecycle-context-routing.md)
 supersedes this record's continuation ownership. Earlier acceptance and usage
 remain historical evidence for their exact sources, not the revised entry route.

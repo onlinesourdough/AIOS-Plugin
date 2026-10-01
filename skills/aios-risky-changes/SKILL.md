@@ -2,10 +2,10 @@
 name: aios-risky-changes
 description: Assess consequential changes needing representative proof and recovery, not routine edits or lifecycle management.
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
-# AIOS:risky-changes
+# AIOS-risky-changes
 
 Use this as a bounded assessment when a change could materially alter a real
 world outcome, caller experience, operational responsibility, trust boundary,

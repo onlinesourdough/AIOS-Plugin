@@ -1,5 +1,7 @@
 # Context and task-result routing
 
+Historical implementation record. The 0.15.0 [Codex consumer revision](codex-consumer-refresh.md) supersedes model-selection and worker-launch defaults here. Preserve the original evidence for its dated sources.
+
 Accepted revision: `context-routing-2026-09-10`.
 Product baseline: `f6d4a06b9701e0df89638e491ea9423261a5a922` (0.5.0).
 

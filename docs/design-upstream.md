@@ -20,7 +20,7 @@ chosen identity.
 
 ## Source observations
 
-The [conditional guide](../skills/design/references/taste-sources.md) records
+The [conditional guide](../skills/aios-design/references/taste-sources.md) records
 the exact upstream links and licenses inspected on 2026-09-18:
 
 - Taste Skill: `e79ca9ec7e071eb3a3b623c4fb752e853fc3ed58`. Its main v2 skill is

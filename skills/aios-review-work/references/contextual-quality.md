@@ -27,7 +27,7 @@ built-in house style, punctuation ban, fixed sentence length or mandatory
 persona. Preserve the client's chosen voice. A missing corpus is not license to
 claim a verified style match; use explicit task direction and label the limit.
 
-Use the bundled [human-writing](../../human-writing/SKILL.md) method for
+Use the bundled [human-writing](../../aios-human-writing/SKILL.md) method for
 substantive prose drafting or revision. Preserve accepted facts, uncertainty and
 voice; the method adds no separate acceptance gate. Ordinary code review does
 not need a writing pass.

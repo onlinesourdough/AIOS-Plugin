@@ -33,7 +33,7 @@
   },
   {
     "id": "bounded-build-downshift",
-    "request": "Spec er klar: udfør de 40 mekaniske omdøbninger og kør den aftalte kontrol. Vælg selv model og reasoning.",
+    "request": "Spec er klar: udfør de 40 mekaniske omdøbninger og kør den aftalte kontrol. Skift til Swift med medium først.",
     "runtime": "Active Atlas/high. Current same-harness repeated task measurements meet the quality bar: Atlas/high consumes 22000 total tokens; Swift/medium consumes 5000 including tools/review/retries. Native in-session switch preserves all context, is authorized, and supports Swift/medium. Both routes are verified on the same authorized account. Spec evidence is from this task and remains current. No switch has been executed yet.",
     "expected": {
       "ask": false,
@@ -55,7 +55,7 @@
   {
     "id": "destination-runtime",
     "request": "Kør den afgrænsede uafhængige kontrol med den interne worker på min anden maskine.",
-    "runtime": "Internal worker launch is explicitly authorized, with the same approved data/account boundary. Lead machine has Atlas/high. Destination discovery exposes only Cedar, supports the needed checks and has no reasoning parameter. Launch API accepts model but not effort. Exact destination root and read-only scope are established; current evidence proves the route sufficient. No sidebar task request.",
+    "runtime": "Internal worker launch is explicitly authorized, with the same approved data/account boundary. Lead machine has Atlas/high. Destination discovery exposes only Cedar, supports the needed checks and has no reasoning parameter. Launch API accepts model but not effort; omission uses the verified native Cedar default. Exact destination root and read-only scope are established; current evidence proves the route sufficient. No sidebar task request.",
     "expected": {
       "ask": false,
       "model": [
@@ -68,7 +68,7 @@
         "worker"
       ],
       "launch_model_arg": [
-        "Cedar"
+        null
       ],
       "write_defaults": false,
       "write_inventory": false,
@@ -240,7 +240,7 @@
   {
     "id": "mechanical-content-delegation",
     "request": "Spec og tone er godkendt. Lad en intern worker anvende skabelonen på de 60 allerede godkendte tekster; du skal gennemgå handback.",
-    "runtime": "Active Atlas/xhigh. Approved content is immutable and every placement has a deterministic check. Internal worker Swift/max is verified sufficient and authorized. Repeated same-task evidence includes transfer, review and repair and favors this route. No in-session switch exists; no sidebar request. The caller retains final acceptance.",
+    "runtime": "Active Atlas/xhigh. Approved content is immutable and every placement has a deterministic check. Internal worker Swift/max is the verified sufficient native default; omitting model/effort selects it. Repeated same-task evidence includes transfer, review and repair and favors this route. No in-session switch exists; no sidebar request. The caller retains final acceptance.",
     "expected": {
       "write_defaults": false,
       "write_inventory": false,
@@ -249,7 +249,7 @@
       "coordination": "orchestrator",
       "model": "Swift",
       "effort": "max",
-      "launch_model_arg": "Swift",
+      "launch_model_arg": null,
       "after_startup": "coordinate"
     }
   },
@@ -260,11 +260,14 @@
     "expected": {
       "write_defaults": false,
       "write_inventory": false,
-      "ask": false,
-      "session": "switch_here",
+      "ask": true,
+      "session": [
+        "blocked",
+        "user_handoff"
+      ],
       "model": "Atlas",
       "effort": "xhigh",
-      "apply_switch": true,
+      "apply_switch": false,
       "reassess_judgment": true,
       "coordination": "current_task"
     }
@@ -294,7 +297,10 @@
       "write_defaults": false,
       "write_inventory": false,
       "ask": true,
-      "session": ["user_handoff", "blocked"],
+      "session": [
+        "user_handoff",
+        "blocked"
+      ],
       "launch_model_arg": null,
       "prepare_prompt": true,
       "coordination": [
@@ -398,6 +404,49 @@
       "effort": null,
       "coordination": "current_task",
       "apply_switch": false
+    }
+  },
+  {
+    "id": "cheap-worker-not-requested",
+    "request": "Implement the accepted batch update here.",
+    "runtime": "Active Atlas/high is sufficient. Swift/medium workers are cheaper and sufficient, but the user has not requested delegation or a model change.",
+    "expected": {
+      "ask": false,
+      "session": "stay",
+      "coordination": "current_task",
+      "apply_switch": false,
+      "launch_model_arg": null,
+      "write_defaults": false,
+      "write_inventory": false
+    }
+  },
+  {
+    "id": "new-release-not-a-switch",
+    "request": "A new model was released yesterday. Continue the accepted work.",
+    "runtime": "Active Prior/high meets the task bar. Atlas/high is newer. No model comparison or switch requested.",
+    "expected": {
+      "ask": false,
+      "research": false,
+      "session": "stay",
+      "apply_switch": false,
+      "write_defaults": false,
+      "write_inventory": false
+    }
+  },
+  {
+    "id": "explicit-worker-model-preserved",
+    "request": "Start an internal read-only worker with Cedar and high; keep acceptance here.",
+    "runtime": "Supported worker control accepts Cedar/high and defaults to Atlas/medium. Worker root and scope are verified. User explicitly authorizes this worker, not a new sidebar task.",
+    "expected": {
+      "session": "worker",
+      "model": "Cedar",
+      "effort": "high",
+      "launch_model_arg": "Cedar",
+      "coordination": "orchestrator",
+      "after_startup": "coordinate",
+      "apply_switch": false,
+      "write_defaults": false,
+      "write_inventory": false
     }
   }
 ]

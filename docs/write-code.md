@@ -7,7 +7,7 @@ Baseline: `23d5ab715e5e85f49f39f5f9fd7cd7fe917a39a7` (AIOS 0.9.0).
 
 ## Contract and ownership
 
-`skills/write-code/SKILL.md` is the single code-quality method. Its description
+`skills/aios-write-code/SKILL.md` is the single code-quality method. Its description
 enables normal selection for writing, changing or reviewing code of any size.
 Scripts, shell snippets, SQL, tests, automation, notebooks, executable
 configuration and authored examples are in scope. Invoking an existing tool or

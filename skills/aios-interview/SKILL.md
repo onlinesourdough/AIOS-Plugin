@@ -2,10 +2,10 @@
 name: aios-interview
 description: Interview to explore context, restate goals and the underlying problem, or find direction when requested or materially unclear at the start; clear work and isolated questions continue directly.
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
 ---
 
-# AIOS:interview
+# AIOS-interview
 
 Help the user think through a situation while giving the assistant the context
 needed for a useful next action. Use this for setup, a new agent or automation,

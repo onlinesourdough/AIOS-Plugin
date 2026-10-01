@@ -16,7 +16,7 @@ useful. Preserve existing source and user edits. A mock or trial does not prove
 production readiness and cannot expand account access, publication or deployment
 authority.
 
-- **Visual direction:** use [Design's exploration](../../design/references/source-selection.md)
+- **Visual direction:** use [Design's exploration](../../aios-design/references/source-selection.md)
   and its selected preview/editor. Show comparable variants on an available
   canvas or browser surface when that helps the decision. Design retains its
   canonical direction and review; this procedure does not require a new editor.

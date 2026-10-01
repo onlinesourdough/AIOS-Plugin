@@ -4,8 +4,8 @@
 | --- | --- |
 | Product instructions, declarations, and neutral assets | AIOS maintainer in this repository |
 | Implementation and local verification | Current repository task or deliberately selected worker |
-| Requirement tracking SOP | `skills/aios/references/lifecycle.md` for all phases and repository tasks; local records hold evidence, not a copied procedure |
-| Task deliverable, continuation and whole-task handoff | Shared AIOS lifecycle; Spec clarifies the contract and Select Model supplies model/reasoning evidence |
+| Requirement tracking SOP | `skills/aios-start/references/lifecycle.md` for all phases and repository tasks; local records hold evidence, not a copied procedure |
+| Task deliverable, continuation and whole-task handoff | Shared AIOS lifecycle; Spec clarifies the contract; the human chooses model/effort and worker launch, with conditional advice from Select Model |
 | Exploratory interview and shared question procedure | Interview owns activation, adaptive questioning, waiting and resumption; Setup and Spec reuse accepted answers |
 | Context framework, source routes and unique local knowledge | Maintain Context's curation procedure; Setup applies it and verifies useful source-routed work |
 | Consequential-change assessment | `aios-risky-changes`; conditionally routed by Spec and Review |
@@ -24,3 +24,7 @@
 The product repository is not an owner-data home. Repository specialist methods stay local; generic lifecycle
 methods are shared plugin skills. Delegated workers return proposed shared
 learning to their caller instead of writing client memory.
+
+The [Codex consumer guide](../skills/aios-setup/references/codex-consumer-guide.md)
+is maintained with the package. The [0.16.0 refresh record](codex-consumer-refresh.md)
+owns this migration and its verification limits.

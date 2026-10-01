@@ -1,6 +1,6 @@
 # AIOS
 
-AIOS version: 0.15.0
+AIOS version: 0.16.0
 
 **Business first. Productivity built in.**
 
@@ -45,7 +45,7 @@ projects and sessions; AIOS adds no second project register. Spaces hold relevan
 business context, while optional specialist Systems keep their own upkeep.
 Design and content working material stays in the project.
 
-Visual revisions can use [before/after comparisons](../skills/design/references/before-after.md)
+Visual revisions can use [before/after comparisons](../skills/aios-design/references/before-after.md)
 with an identified baseline, comparable views and a brief explanation of the
 change. Review Design evaluates the result. Human Writing includes concrete
 editing examples while preserving the author's meaning, evidence and voice.
@@ -72,8 +72,8 @@ The shared delivery path is Spec → Build → Review → authorized Ship. Spec
 reuses interview decisions. Design → Review Design supplies visual direction
 and selected companions. Content uses Human Writing, production as needed and
 its own final review; ordinary video can use the optional Diffusion Studio.
-These methods connect only where the accepted result needs them. Project and
-System creation, context maintenance, skill management and package updates each
+These methods connect only where the accepted result needs them. Project
+creation, context maintenance, skill management and package updates each
 retain their focused owners.
 
 [Project Foundation](../skills/aios-project-foundation/SKILL.md) establishes or
@@ -104,13 +104,13 @@ surfaces supplement the project files and native tools that perform the work.
 ## Design sources and skill names
 
 Design can consult selected upstream Taste skills and composition references
-through its [source guide](../skills/design/references/taste-sources.md). AIOS
+through its [source guide](../skills/aios-design/references/taste-sources.md). AIOS
 keeps the brief, reference adaptation and rendered review; external examples
 and catalogs remain with their publishers. References are optional and their
 used revisions are recorded. OpenPencil remains an optional editable companion.
 
-All skill titles and Codex display names use `AIOS:skill-name`, such as
-`AIOS:design` and `AIOS:build-work`. Each skill declares its canonical name;
+All skill titles and Codex display names use `AIOS-skill-name`, such as
+`AIOS-design` and `AIOS-build-work`. Each skill declares its canonical name;
 the harness owns its native namespace. Personal methods keep their own names
 and ownership. Renames update the body, callers and native registration together.
 
@@ -149,6 +149,23 @@ needed. Its version travels with the shared methods in the installed package.
 Native package updates are separate from owner-data Sync. There is no AIOS
 documentation or skill runtime on the Resources domain. A newer upstream
 release does not replace instructions already read into an active conversation.
+
+## Codex setup and human choices
+
+Use the maintained [consumer guide](../skills/aios-setup/references/codex-consumer-guide.md)
+for access, optional capabilities and verification. Model and worker choices
+stay with the person. Canonical names use `aios-<method>`, with `aios-start`
+as the routing entrypoint. Create System is retired; Create Project and Manage
+Skills own new repositories and reusable methods.
+
 Refresh/update the package through your app first, then start a fresh chat.
 A new chat alone does not download a plugin update. Personal owner context
 and separately maintained skills are independent of the package release.
+
+The Codex package includes a local Setup, Overview, Skills and Sync panel.
+It lists the context files actually found in your AIOS home, explains the index,
+memory, connections and spaces, and opens files through the supported editor.
+Shared plugin skills and your personal skills have separate sources and update
+paths. Setup and Sync actions show the request before sending it to your agent
+chat. The panel checks Git status; it never commits or uploads your context.
+The local companion requires Node.js 22+. The portable skills ZIP omits it.

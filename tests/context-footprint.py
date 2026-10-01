@@ -15,15 +15,14 @@ MANIFEST = ROOT / "tests/fixtures/context-footprint-legacy.json"
 MAX_SKILL_BODY_BYTES = 8192
 MAX_DESCRIPTION_BYTES = 240
 JOB_PREFIXES = {
-    "human-writing": "Draft ",
-    "write-code": "Write ",
-    "design": "", "review-design": "", "openpencil-workbench": "",
-    "content": "", "diffusion-studio": "",
-    "aios": "Apply ",
+    "aios-human-writing": "Draft ",
+    "aios-write-code": "Write ",
+    "aios-design": "", "aios-review-design": "", "aios-openpencil-workbench": "",
+    "aios-content": "", "aios-diffusion-studio": "",
+    "aios-start": "Apply ",
     "aios-build-work": "Implement ",
     "aios-check": "Verify ",
     "aios-create-project": "Start ",
-    "aios-create-system": "Establish ",
     "aios-project-foundation": "Establish ",
     "aios-maintain-context": "Curate ",
     "aios-manage-skills": "Manage ",
@@ -32,7 +31,7 @@ JOB_PREFIXES = {
     "aios-orchestrate-workers": "Prepare, launch, coordinate and recover ",
     "aios-risky-changes": "Assess ",
     "aios-review-work": "Review ",
-    "aios-select-model": "Choose ",
+    "aios-select-model": "Advise ",
     "aios-ship-work": "Deliver ",
     "aios-spec-work": "Specify or revise ",
     "aios-triage-improvement": "Triage ",
@@ -51,28 +50,26 @@ CURRENT_NEUTRAL_SCAFFOLD = (
 CURRENT_JOURNEYS = {
     "independent-local-negative-preload": (),
     "owner-business-route": (
-        "skills/aios/SKILL.md",
-        "skills/aios/references/routing.md",
+        "skills/aios-start/SKILL.md",
+        "skills/aios-start/references/routing.md",
     ),
     "spec-ready": (
-        "skills/aios/SKILL.md",
-        "skills/aios/references/routing.md",
+        "skills/aios-start/SKILL.md",
+        "skills/aios-start/references/routing.md",
         "skills/aios-spec-work/SKILL.md",
-        "skills/aios-select-model/SKILL.md",
-        "skills/aios/references/lifecycle.md",
+        "skills/aios-start/references/lifecycle.md",
         "skills/aios-spec-work/references/readiness.md",
     ),
     "worker-build": (
-        "skills/aios/SKILL.md",
-        "skills/aios/references/routing.md",
+        "skills/aios-start/SKILL.md",
+        "skills/aios-start/references/routing.md",
         "skills/aios-build-work/SKILL.md",
-        "skills/write-code/SKILL.md",
-        "skills/aios-select-model/SKILL.md",
+        "skills/aios-write-code/SKILL.md",
         "skills/aios-orchestrate-workers/SKILL.md",
-        "skills/aios/references/lifecycle.md",
+        "skills/aios-start/references/lifecycle.md",
     ),
     "installation-check-basic": (
-        "skills/aios/SKILL.md",
+        "skills/aios-start/SKILL.md",
         "skills/aios-check/SKILL.md",
         "skills/aios-check/references/checks.md",
     ),
@@ -273,13 +270,16 @@ def main():
     print("NOTE: matched setup routes have an accepted focus and count the shared question procedure; missing foundation adds Interview and its owner-context guide")
     full_setup = current_bytes(CURRENT_JOURNEYS["codex-package-and-bridge-verification"], startup) + interview
     print(f"setup_with_owner_interview_through_verification_bytes={full_setup}")
+    advice = ROOT / "skills/aios-select-model/SKILL.md"
+    print(f"conditional_model_advice_extra_bytes={advice.stat().st_size}")
+    print("NOTE: ordinary Spec/Build and requested workers use current choices/defaults; requested advice or a capability choice gap adds Select Model")
     measurement = ROOT / "skills/aios-select-model/references/measurement.md"
     print(f"conditional_model_measurement_extra_bytes={measurement.stat().st_size}")
     print("NOTE: performance-claim/comparison tasks add that reference; no matched legacy measurement path is claimed")
     trials = ROOT / "skills/aios-spec-work/references/local-trials.md"
     print(f"conditional_local_trials_extra_bytes={trials.stat().st_size}")
     print("NOTE: a material unresolved choice adds this reference; ordinary Spec and Build routes do not")
-    handoff = ROOT / "skills/aios/references/continuation.md"
+    handoff = ROOT / "skills/aios-start/references/continuation.md"
     print(f"conditional_whole_task_handoff_extra_bytes={handoff.stat().st_size}")
     print("NOTE: portable/whole-task transfer adds that reference, not worker orchestration; no matched legacy transfer path is claimed")
     print("PASS: bounded skill bodies and representative positive/negative selected routes")

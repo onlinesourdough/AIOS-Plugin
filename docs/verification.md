@@ -1,5 +1,24 @@
 # Verification
 
+For the 0.16.0 Codex consumer candidate, see [the refresh record](codex-consumer-refresh.md)
+for human-controlled models/workers, naming migration and the maintained setup
+guide. Codex is the acceptance target; unavailable Pi model behavior does not
+hold completed Codex work open. Preserve the actual limits of other clients.
+
+The 0.16.0 local release checks pass: source/SemVer against remote main
+`14ae7c9`, documentation, layout, continuity, footprint, 16 overview/Git
+cases, stdio metadata, three archive checks, 18 Design and 41 Content checks.
+Codex CLI 0.159.2 installed the extracted Codex ZIP in isolated settings,
+reported all 24 skills, preserved every installed byte, ran its bundled stdio
+server, and removed the cache while preserving a synthetic owner and bridge.
+The dependency audit reported zero known runtime advisories. The release PR
+owns remote CI/readback. Native desktop sidebar/editor/login and independent
+release acceptance remain outstanding; none of these checks simulates a model.
+The final bundled 0.16.0 UI also completed a synthetic SDK handshake, displayed
+the generated 24-skill catalog, sent the expected editor path, showed three
+green steps for matching Git, and displayed/sent the Setup request for a missing
+home. These are browser protocol fixtures, not real native editor/chat execution.
+
 For the 0.15.0 Interview/local-trial change, see
 [intent and local trials](intent-and-trials.md) for the accepted boundaries,
 baseline/candidate decision probes, ordinary native observations and limitations.
@@ -72,6 +91,8 @@ an isolated read-only session, then use
 `python3 tests/model-selection-rehearsal.py score /absolute/scratch/path/result.json`.
 `prepare --baseline REF` supplies the same cases against an existing source
 revision. The helper never launches a model or spends account resources itself.
+The current cases preserve human model/worker control; older scored evidence
+remains historical and does not accept the changed 0.16.0 behavior.
 Expected decisions are withheld from the evaluator; inspect explanations as
 well as scored fields. Portable-brief cases return actual prompts for inspection
 of accepted facts, attachments, judgment and proof without doing the production.

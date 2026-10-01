@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.16.0 — 2026-10-01
+
+- Use the original onlinesourdough pixel bread for the plugin icon and banner.
+
+- Make model selection advisory and worker launch human-requested; remove
+  routine Spec/Build model assessment and the newest-model default.
+- Route owner-confirmed durable context changes from ordinary conversations
+  through existing curation and authority, with no background capture.
+- Add a maintained Codex consumer setup guide with deliberate access choices,
+  optional capabilities, fresh-session verification and scoped recovery.
+- Unify canonical names as aios-<method> and visible titles as AIOS-<method>.
+  Rename the router to aios-start; update current routes and metadata.
+- Retire Create System, keep Create Project and domain Review Design, and
+  remove the empty local skill shelf. Preserve native marketplace metadata
+  and historical evidence. The package now has 24 skills.
+- Bundle the accepted English Setup, Overview, Skills and Sync in Codex using
+  a local stdio companion. Other harnesses retain the instruction-only route.
+- Build verified Codex/portable ZIPs with checksums in CI. Manual CD prepares
+  draft GitHub releases; public publication is a separate approved action.
+- Codex acceptance does not wait for Pi model runs.
 ## 0.15.0 — 2026-10-01
 
 - Make Interview 1.1.0 explicitly restate goals and the underlying problem for

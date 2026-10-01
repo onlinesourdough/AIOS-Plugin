@@ -9,7 +9,7 @@ SOURCE_PATH = "docs/aios.md"
 
 def check(root, release_tag=None):
     package = json.loads((root / "package.json").read_text())
-    version = json.loads((root / "plugin.json").read_text())["version"]
+    version = json.loads((root / ".codex-plugin/plugin.json").read_text())["version"]
     if package["version"] != version:
         raise ValueError("AIOS package version mismatch.")
     if SOURCE_PATH not in package["files"]:

@@ -1,25 +1,43 @@
 {
   "name": "aios",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "description": "Portable context and skills for planning, design, content and reviewed delivery.",
   "author": {
-    "name": "Online Sourdough"
+    "name": "onlinesourdough"
   },
   "skills": "./skills/",
   "interface": {
     "displayName": "AIOS",
-    "brandColor": "#b86f36",
+    "brandColor": "#2b1b12",
     "composerIcon": "./assets/icon.png",
     "logo": "./assets/icon.png",
-    "shortDescription": "Your context, useful work and reviewed delivery.",
-    "longDescription": "Twenty-five skills for clear writing, code, design, content, interviews, setup and reviewed work. Your app owns projects and tools; your AIOS home holds your context. Optional helpers work on files in your project.",
-    "developerName": "Online Sourdough",
+    "shortDescription": "Context and skills for work",
+    "longDescription": "Twenty-four AIOS skills and a local context overview. Browse your context and personal skills, open files in the supported editor, and check GitHub sync. Setup and reviewed sync continue in your agent conversation. Your app owns projects, models and permissions.",
+    "developerName": "onlinesourdough",
     "category": "Productivity",
-    "capabilities": [],
+    "capabilities": [
+      "AIOS skills",
+      "Browse context",
+      "Open context files",
+      "Check GitHub sync"
+    ],
     "defaultPrompt": [
+      "Open my AIOS overview.",
       "Set up AIOS for my current work."
-    ]
+    ],
+    "websiteURL": "https://onlinesourdough.com/",
+    "supportURL": "https://github.com/onlinesourdough/AIOS-Plugin/issues",
+    "brandColorDark": "#f8f2e8",
+    "composerIconDark": "./assets/icon.png",
+    "logoDark": "./assets/icon.png"
   },
   "repository": "https://github.com/onlinesourdough/AIOS-Plugin",
-  "license": "MIT"
+  "license": "MIT",
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/aios-setup/SKILL.md"
+    }
+  },
+  "homepage": "https://onlinesourdough.com/",
+  "mcpServers": "./.codex-plugin/mcp.json"
 }

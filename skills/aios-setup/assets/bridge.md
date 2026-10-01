@@ -1,7 +1,7 @@
 <!-- AIOS:BEGIN -->
 AIOS entrypoint: AIOS_ABSOLUTE_PATH
 At that physical root, AIOS.md and supported AIOS_FORMAT identify the owner home
-even when Git-backed. For owner work, use aios to select relevant sources, this
+even when Git-backed. For owner work, use aios-start to select relevant sources, this
 task's result and continuation; read AIOS.md, MEMORY.md and only needed routes.
 Check AIOS_FORMAT before writes; unsupported/malformed stays read-only and
 missing needs setup.
