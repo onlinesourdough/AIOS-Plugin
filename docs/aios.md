@@ -1,6 +1,6 @@
 # AIOS
 
-AIOS version: 0.15.0
+AIOS version: 0.15.1
 
 **Business first. Productivity built in.**
 
