@@ -1,5 +1,19 @@
 # Project Foundation
 
+## 0.17.0: workspace setup and engineering readiness
+
+Create Project now establishes useful context and a simple workspace for
+content, learning, business or software work. Git and a repository seed are
+optional. Project Foundation retains the distinct responsibility for software
+engineering readiness in new or existing projects. The conditional repository
+seed shares the established engineering/document criteria; general folder
+setup does not load them or imply an application is ready.
+
+Create System is retired. Reusable methods use Manage Skills, while separately
+maintained solutions retain their ordinary project ownership. Factory remains
+an independent environment and method selected separately by the operator.
+See [project creation](project-creation.md) for the scoped change and evidence.
+
 ## 0.14.1: independent project contracts
 
 AIOS prepares self-contained projects. Create Project and Project Foundation

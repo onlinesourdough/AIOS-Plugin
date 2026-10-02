@@ -15,7 +15,7 @@ from package_documentation import check as validate_documentation
 ROOT = Path(__file__).resolve().parents[1]
 SKILL_NAMES = {
     "aios", "aios-build-work", "aios-check", "aios-create-project",
-    "aios-create-system", "aios-project-foundation", "aios-maintain-context", "aios-manage-skills",
+    "aios-project-foundation", "aios-maintain-context", "aios-manage-skills",
     "aios-setup", "aios-interview", "aios-orchestrate-workers", "aios-review-work",
     "aios-risky-changes", "aios-ship-work", "aios-spec-work", "aios-triage-improvement",
     "aios-update", "aios-select-model", "human-writing", "write-code",
@@ -26,7 +26,8 @@ LEGACY_ROUTE_TARGETS = {
              "../../aios-maintain-context/SKILL.md", "../../aios-update/SKILL.md"),
     "aios-build-work": ("../../aios-build-work/SKILL.md",),
     "aios-create-project": ("../../aios-create-project/SKILL.md",),
-    "aios-create-system": ("../../aios-create-system/SKILL.md",),
+    "aios-create-system": ("../../aios-manage-skills/SKILL.md",
+                           "../../aios-create-project/SKILL.md"),
     "aios-evaluate-completeness": ("../../aios-review-work/SKILL.md",
                                    "../../aios-review-work/references/completeness.md"),
     "aios-evaluate-publish-safety": ("../../aios-ship-work/SKILL.md",
@@ -62,9 +63,6 @@ FORBIDDEN_BOUNDARY_TEXT = {
     ),
     "skills/aios-create-project/SKILL.md": (
         "scripts/create-project.sh", "--in-place", "--source-url", "--source-sha",
-    ),
-    "skills/aios-create-system/SKILL.md": (
-        "agentic-system-template", "audit-system", "archive/extraction",
     ),
     "skills/aios-manage-skills/SKILL.md": ("skills.sh", "npx skills"),
 }
@@ -191,9 +189,15 @@ def validate(root=ROOT, release_tag=None):
                 set(link_targets(skill_root / caller / "SKILL.md")),
                 f"shared code-quality route missing: {caller}")
     creation_targets = set(link_targets(skill_root / "aios-create-project/SKILL.md"))
+    seed_reference = skill_root / "aios-create-project/references/repository-seed.md"
+    require(seed_reference.resolve() in creation_targets,
+            "optional repository-seed route missing")
+    require((skill_root / "aios-project-foundation/SKILL.md").resolve() in creation_targets,
+            "conditional engineering-foundation route missing")
+    seed_targets = set(link_targets(seed_reference))
     for target in ("SKILL.md", "references/foundation.md", "references/documents.md"):
-        require((skill_root / "aios-project-foundation" / target).resolve() in creation_targets,
-                f"shared project-foundation contract missing: {target}")
+        require((skill_root / "aios-project-foundation" / target).resolve() in seed_targets,
+                f"shared repository-seed foundation contract missing: {target}")
     # Spec owns contract preparation; tracking is one linked shared owner.
     # Native decisions require the independent behavioral probes, not wording tests.
     spec_targets = set(link_targets(skill_root / "aios-spec-work/SKILL.md"))

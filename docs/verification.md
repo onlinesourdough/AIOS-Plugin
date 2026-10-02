@@ -1,10 +1,17 @@
 # Verification
 
-For the write-code 1.1.0 source candidate, see
+For AIOS 0.18.0 and write-code 1.1.0, see
 [engineering criteria and matched trials](write-code.md#engineering-criteria-revision-110).
 The 1.0.2 baseline was tested before editing; identical native tasks and 20
 independent checks per revision cover proportional implementation and read-only
 review. Source checks and installation/release state remain separate.
+
+For AIOS 0.17.0, see [project creation](project-creation.md) for general workspace
+setup, conditional repository seeds, the distinct software-foundation result
+and retirement of Create System. The release PR retains source checks,
+bounded native observations and independent review; installation/discovery and
+release readback remain separate evidence. No hook or Factory qualification is
+claimed by this package change.
 
 For AIOS 0.16.0, see [Clarify and retired shelves](clarify.md) for the adopted
 explanation purpose, source provenance, two native candidate decision probes

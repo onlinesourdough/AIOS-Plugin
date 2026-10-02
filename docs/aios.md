@@ -1,6 +1,6 @@
 # AIOS
 
-AIOS version: 0.16.0
+AIOS version: 0.18.0
 
 **Business first. Productivity built in.**
 
@@ -79,21 +79,36 @@ The shared delivery path is Spec → Build → Review → authorized Ship. Spec
 reuses interview decisions. Design → Review Design supplies visual direction
 and selected companions. Content uses Human Writing, production as needed and
 its own final review; ordinary video can use the optional Diffusion Studio.
-These methods connect only where the accepted result needs them. Project and
-System creation, context maintenance, skill management and package updates each
-retain their focused owners.
+These methods connect only where the accepted result needs them. Project setup,
+context maintenance, skill management and package updates retain their focused
+owners. Reusable methods use Manage Skills; the former Create System entrypoint
+is retired.
+
+[Create Project](../skills/aios-create-project/SKILL.md) establishes a useful
+workspace, context and simple structure for content, learning, business work or
+software. A folder can be sufficient; Git, GitHub and a template are optional.
+Native sidebar/project controls are conveniences rather than a required AIOS
+registration. Existing useful files and locations survive.
 
 [Project Foundation](../skills/aios-project-foundation/SKILL.md) establishes or
 repairs an MVP or legacy project's engineering foundations. It covers working
 setup/checks, maintained code/design contracts, concise
 agent instructions, architecture/design/security and operating documents,
 GitHub workflow, suitable compute and actual non-production delivery evidence.
-Create Project shares its content contract; template generation alone does not
-prove readiness. Existing valid sources survive and unrelated project types
+The optional repository-seed route shares its content contract; workspace or
+template creation alone does not prove readiness. Existing valid sources survive
+and unrelated project types
 do not acquire a hosting stack. Required PR checks remain before merge while
 complete application batches can run every three hours, skipping already verified
 revisions through a small control job. Selecting another execution system or
 automating production deployment requires its own explicit task.
+
+Software & Defence Factory is an independent work environment and method, not
+an AIOS integration or dependency. AIOS can support human-guided software work
+directly. An operator may select Factory for more independent work, carrying the
+project's accepted scope and sources while preserving each environment's own
+instructions, credentials and execution controls. Human involvement does not
+itself enforce a filesystem or tool boundary.
 
 The **Agentic Content System** and **Agentic Design System** combine these
 domain skill chains with the project's context, working files and selected

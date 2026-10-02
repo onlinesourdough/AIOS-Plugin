@@ -5,7 +5,7 @@
 **Business first. Productivity built in.**
 
 AIOS helps your AI assistant plan work, build it, review the result and remember
-useful decisions. Install it in the app you use. The same 26 skills work from
+useful decisions. Install it in the app you use. The same 25 skills work from
 one shared source, with native packaging for Codex, Pi, Claude Code, Gemini CLI,
 Copilot CLI and Cursor.
 
@@ -16,6 +16,17 @@ models, tools and permissions.
 AIOS supports business work, decisions, content, design and practical automation.
 Its code guidance and verification stay proportional to the task. Projects own
 their source, engineering standards, design and delivery configuration.
+
+Projects can be content, learning, business work or software. Create Project
+establishes the useful workspace and context; Git and GitHub are optional.
+Project Foundation addresses software engineering readiness for new or existing
+projects. Neither requires a particular sidebar or execution environment.
+
+[Software & Defence Factory](https://github.com/arcitai/factory-software-defence)
+is a separate work environment and method. AIOS can support software work directly;
+choosing Factory for more independent agent work is a separate operator action.
+The project carries its accepted scope and relevant sources between them, while
+the selected environment owns tools, access and execution protection.
 
 ## Understand complex topics
 
@@ -117,7 +128,7 @@ step, not a requirement to repeat work or use every skill.
 | --- | --- | --- |
 | Think through an idea, agent or automation | [Interview](skills/aios-interview/SKILL.md) → [Spec](skills/aios-spec-work/SKILL.md) when execution needs a contract | Shared understanding, challenged assumptions, decisions and a useful next action |
 | Complete substantive work | Spec → [Build](skills/aios-build-work/SKILL.md) → [Review](skills/aios-review-work/SKILL.md) → Ship for authorized delivery | A defined outcome, implemented result, current verification and delivery readback |
-| Start a project or specialist solution | [Create Project](skills/aios-create-project/SKILL.md) or [Create System](skills/aios-create-system/SKILL.md) → the shared work lifecycle | An independent repository or maintained specialist with its own requirements and verification |
+| Start a project for content, learning, business or software | [Create Project](skills/aios-create-project/SKILL.md) → the relevant work methods | A useful workspace, context and simple structure; Git and templates are optional |
 | Move an MVP or legacy application into a reliable working environment | [Project Foundation](skills/aios-project-foundation/SKILL.md) → project repair and verification | Reproducible setup, maintained code/design contracts, working CI and selected non-production delivery |
 | Set up or move your AIOS home | [Setup](skills/aios-setup/SKILL.md), using Interview where needed → [Maintain Context](skills/aios-maintain-context/SKILL.md) for source routes → [Check](skills/aios-check/SKILL.md) for affected setup proof | A usable home, relevant context, verified chosen connections and a first useful result |
 | Keep useful context current | Maintain Context → its [Sync procedure](skills/aios-maintain-context/references/sync.md) when explicitly requested | Relevant facts and source pointers; optional scoped backup or restore |
@@ -157,7 +168,7 @@ skills, not additional public skills.
 These built-in systems are assembled from skills, project artifacts and selected
 tools. Separately maintained specialist Systems, such as Power BI, can add their
 own dependencies and upkeep. Neither form requires a new AIOS runtime, project
-registry or background agent. The [skill index](docs/skills.md) lists all 26
+registry or background agent. The [skill index](docs/skills.md) lists all 25
 public entrypoints.
 
 ## Install in your app
@@ -363,7 +374,7 @@ Resources domain. Selective reading saves context whether the file is local or
 remote; hosting alone does not reduce the tokens of content actually read.
 Future standards-based discovery and updates are tracked in [issue #12](https://github.com/onlinesourdough/AIOS-Plugin/issues/12).
 
-Read about the [26 skills](docs/skills.md), [architecture](docs/architecture.md),
+Read about the [25 skills](docs/skills.md), [architecture](docs/architecture.md),
 [verification](docs/verification.md), [recovery](docs/recovery.md) and
 [version history](CHANGELOG.md). GitHub [Releases](https://github.com/onlinesourdough/AIOS-Plugin/releases)
 lists published releases. The [release procedure](docs/distribution.md#release-and-adoption)

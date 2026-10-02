@@ -21,8 +21,10 @@ changed security boundaries route conditionally to their existing canonical
 owners; there is no duplicate setup, security scan or acceptance procedure.
 
 The skill's minor version records a compatible expansion of quality criteria,
-with unchanged discovery, authority and lifecycle. Package release and installed
-plugin adoption are separate; this source revision does not claim either.
+with unchanged discovery, authority and lifecycle. AIOS 0.18.0 includes this
+revision and preserves the 0.17.0 project-creation changes, 25-skill inventory
+and supported owner formats. Package release and installed plugin adoption are
+verified separately against the delivered ref; 0.17.0 remains the recovery ref.
 
 ### Research used for this revision
 
@@ -86,7 +88,12 @@ an explicit `high` effort override and disposable workspace-write fixtures.
   cases, seven documentation cases, the native skill-author validator and
   whitespace, layout and continuity checks passed. The skill grows from 5,114 to
   5,218 bytes; the
-  worker-build route remains 38,079 bytes against the unchanged 38,099 ceiling.
+  pre-integration worker-build route was 38,079 bytes against the unchanged
+  38,099 ceiling. Integration with AIOS 0.17.0 passed the structural checks and
+  measures 37,909 bytes against the same ceiling. Matched behavior evidence
+  applies to the unchanged
+  skill bytes (SHA-256
+  `4dabe2e9e4aa814ef1e7f6b43eb007e165821b57c5b453a47af0adcb63a9f56d`).
 
 This is one run per task/revision, with explicit local skill selection and
 ambient account tool/skill metadata. Unused optional MCP clients logged OAuth
