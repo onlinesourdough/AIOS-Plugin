@@ -2,70 +2,73 @@
 name: write-code
 description: Write or change code of any size, including scripts, shell snippets, SQL, tests and automation; apply proportionate quality and verification, also when reviewing code.
 metadata:
-  version: "1.0.2"
+  version: "1.1.0"
 ---
 
 # AIOS:write-code
 
-Apply whenever authoring or changing code, including short one-off scripts,
-notebooks, executable configuration and code examples. Use the same criteria
-when reviewing code. Calling an existing tool or explaining existing code alone
-does not require a coding workflow.
+Use for authoring, changing or reviewing code, including one-off scripts,
+notebooks, executable configuration and examples. Tool invocation or explanation
+alone needs no coding workflow.
 
-Use the accepted task, local AGENTS, repository conventions and available tools.
-Keep small requests direct. Build implements and verifies; read-only Review
-inspects code and proof and reports findings through the existing gate without
-editing. Do not create another specification, lifecycle or report. Drafting code
-grants no execution or external-write authority.
+Use the accepted task, local AGENTS and repository conventions/tools. Keep small
+work direct. Build implements and verifies; read-only Review reports through the
+existing gate. Add no separate lifecycle or report. Drafting code grants no
+execution or external-write authority.
 
 ## Code that earns its complexity
 
-- Read the relevant surrounding code and existing interfaces first. Use names
-  that express the domain, clear control flow and the existing type/style rules.
-  Handle meaningful failures explicitly; do not hide defects behind broad
-  exception handling, invented defaults or success-shaped fallback results.
-- Give modules and functions coherent responsibilities. Share code when callers
-  need the same behavior and should change together, not merely similar syntax.
-  Separate behavior from I/O when useful; a real boundary can justify one-caller
-  abstractions. Follow the repository's architecture. Avoid speculative
-  dependencies, wrappers and copied logic; a small script can remain one file.
-- Make interfaces consistent: inputs, outputs, validation boundaries and errors
-  should form a clear contract. Preserve compatibility or make the accepted
-  change explicit. Account for authorization, retries/idempotency and cancellation
-  when they affect the operation. A CLI's arguments, stdout/stderr and exit
-  status are also an API.
-- Comments explain intent, surprising constraints, invariants and tradeoffs.
-  Document public interfaces when callers need help using them correctly.
-  Update stale comments; do not narrate obvious lines. Remove conversational
-  AI meta-comments, scaffolding leftovers, unused code and placeholders that
-  pretend to implement behavior. Preserve required notices and legitimate
-  generated-file attribution.
-- Complete the requested behavior and relevant failure, empty and loading
-  states. Keep the patch scoped and affected documentation accurate. Do not add
-  configuration or unrelated refactors to make a small change look substantial.
+- Read surrounding code and interfaces first. Use domain names, clear control
+  flow and local type/style rules. Expose meaningful failures; avoid broad
+  catches, invented defaults and success-shaped fallbacks that hide defects.
+- Keep cohesive responsibilities: gather behavior that changes for the same
+  reasons; separate independent policies. Hide internals behind small caller
+  contracts. Avoid circular dependencies and hidden shared
+  mutable state. Share common behavior, not merely similar syntax.
+- At meaningful domain/I/O boundaries, keep business rules independent of
+  framework/provider types and concrete storage. Adapters translate
+  external data/errors; core contracts express what the caller needs. Supply
+  dependencies explicitly when useful, including time/randomness for repeatable
+  tests. Follow local architecture/idioms; functions/modules may suffice.
+  Prefer composition over inheritance for unrelated policies.
+  A real boundary may justify one-caller abstraction; speculative interfaces,
+  containers, wrappers and dependencies do not. Small scripts can stay one file.
+- Define inputs, outputs, errors and domain invariants. Validate untrusted data
+  at boundaries; preserve valid internal states and compatibility, or make the
+  accepted change explicit. CLI arguments, stdout/stderr and exit status are APIs.
+  Consider authorization, atomicity, concurrent updates, retries/idempotency,
+  cancellation and partial failure where they affect correctness. Own resource
+  cleanup; bound waits/work where needed. Check expected data sizes and measure
+  relevant performance rather than optimizing speculatively. Failures should be
+  diagnosable without exposing secrets or sensitive data.
+- Comments explain intent, constraints and tradeoffs; document public contracts
+  for correct use. Update stale comments. Remove obvious narration, AI
+  meta-comments, scaffolding, dead code and fake implementations; preserve
+  required notices/generated attribution. Complete relevant failure, empty and
+  loading states. Keep changes scoped and affected documentation accurate.
 
-When extracting shared behavior, inspect affected callers. Move a bounded part,
-verify one caller, then check the others before removing old code. Preserve
-caller policies and relevant authorization, transaction and retry behavior.
+For extraction, inspect affected callers, move a bounded part, verify one caller
+then the others before removing old code. Preserve caller-specific permissions,
+transactions and retry policies. Setup/delivery gaps use
+[Project Foundation](../aios-project-foundation/SKILL.md); changed sensitive or
+protected boundaries use the existing [security contract](../aios/references/security.md).
 
 ## Evidence suited to the change
 
-Choose the nearest useful boundary. Prefer observed behavior and meaningful
-regressions over tests that repeat implementation details or merely vary inputs
-without exercising a distinct case. Run required repository checks; do not
-weaken them to obtain green. Add durable tests where they protect meaningful
-behavior, without a coverage quota or a new test framework for every snippet.
+Verify at the nearest useful boundary. Test observable contracts/invariants and
+distinct regressions, not internal call sequences or redundant cases.
+Run required checks without weakening them. Add durable tests for meaningful
+behavior, without a coverage quota or a new framework for every snippet.
 
 | Changed surface | Useful verification |
 | --- | --- |
-| UI/UX, layout or interaction | Use the running interface with browser/computer-use tools. Exercise the changed flow and relevant viewport, keyboard/focus, loading and error behavior. Keep selected screenshots or an action/result trace when useful. A source inspection or initial screenshot cannot prove an interaction. Avoid unit tests manufactured for styling; add/update a durable end-to-end test for a critical repeated flow when warranted. |
-| Logic, parsing or state | Test the contract, meaningful boundaries and distinct regression cases. For a defect, demonstrate a failing regression before the fix when practical. Use the existing unit/integration stack where suitable. |
-| API, database or integration | Exercise relevant success and failure behavior at the affected boundary with controlled fixtures or test environments. Distinguish mocks from observed integration; check compatibility when the contract changes. |
-| Script, CLI or automation | Invoke it against disposable representative inputs; check results, errors, exit status and relevant repeat-run behavior. For state-changing code, use a safe fixture or supported dry run within the task's authority. Syntax checks alone do not prove behavior. |
-| Code example or executable configuration | Validate syntax and the documented behavior in a small safe example when practical. Respect a request to draft only; state any unexecuted assumptions. |
+| UI/UX, layout or interaction | Exercise the running flow with browser/computer-use tools, including relevant viewports, keyboard/focus, loading and errors. Keep useful screenshots/traces; source or an initial screenshot cannot prove interaction. Avoid styling-only unit tests; protect critical repeated flows with end-to-end tests when warranted. |
+| Logic, parsing or state | Test contracts, boundaries and distinct regressions in the existing stack. Reproduce a failing regression before fixing a defect when practical. Exercise core rules independently of external I/O where useful. |
+| API, database or integration | Exercise relevant success/failure at the actual boundary with controlled data. Check affected atomicity, concurrency, duplicate/denied operations and compatibility. Distinguish mocks and synthetic adapters from observed integration. |
+| Script, CLI or automation | Invoke representative disposable inputs; check results, errors, exit status and relevant repeated runs. State changes use safe fixtures or supported dry runs within authority. Syntax alone is insufficient. |
+| Code example or executable configuration | Validate syntax/documented behavior in a safe example when practical. Honor draft-only requests and state unexecuted assumptions. |
 
-After a relevant final edit, rerun affected verification and reuse unchanged
-proof. Report what ran, what it demonstrated and material gaps. If a needed
-interface is unavailable, use another suitable authorized tool where possible;
-do not invent a PASS or automatically transfer testing to the user. Build owns
-repairs and Review owns acceptance within the existing task.
+After final edits, rerun affected verification; reuse unchanged proof. Report
+checks, observed behavior and gaps. Use another suitable authorized tool if a
+needed interface is unavailable; never invent PASS or default testing to the
+user. Build owns repairs and Review acceptance within the existing task.

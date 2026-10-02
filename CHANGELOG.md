@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.18.0 — 2026-10-02
+
+- Strengthen Write Code 1.1.0 with cohesive responsibilities, explicit
+  dependencies, domain and I/O boundaries, invariants, concurrency, partial
+  failure and resource ownership. Preserve proportionate scripts and tests;
+  route project/security foundations to their existing canonical owners.
+- Retain matched baseline/candidate native trials and independent behavioral
+  readback. Package release and installed adoption are verified separately.
+- Preserve the 25-skill inventory and supported owner formats from 0.17.0.
+
 ## 0.17.0 — 2026-10-02
 
 - Retire Create System. Reusable methods use Manage Skills; independently

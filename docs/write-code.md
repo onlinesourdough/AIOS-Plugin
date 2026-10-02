@@ -1,4 +1,107 @@
-# Write code: 0.10.0
+# Write code
+
+## Engineering criteria revision 1.1.0
+
+The accepted 2 October 2026 scope strengthens the existing general-purpose
+method across languages and projects. Baseline: AIOS 0.16.0 at
+`082cfe3a9168c06526f9c53f309687a92f3a551b`, write-code 1.0.2. Test that baseline
+before editing the skill, then implement and repeat the same bounded trials.
+
+Write-code 1.1.0 makes cohesion, information hiding and explicit dependencies
+concrete. Business rules stay independent of framework/provider types and
+storage at meaningful boundaries; functions and modules remain valid choices.
+Composition, small contracts and repeatable tests do not mandate interfaces,
+classes, dependency-injection containers or a new architecture for small work.
+Caller-specific authorization, transactions and retries survive extraction.
+
+The revision also names domain invariants, concurrency/atomicity, partial
+failure, resource cleanup, bounded work and diagnosable failures. Performance
+work follows expected sizes and measurement. Missing project foundations and
+changed security boundaries route conditionally to their existing canonical
+owners; there is no duplicate setup, security scan or acceptance procedure.
+
+The skill's minor version records a compatible expansion of quality criteria,
+with unchanged discovery, authority and lifecycle. AIOS 0.18.0 includes this
+revision and preserves the 0.17.0 project-creation changes, 25-skill inventory
+and supported owner formats. Package release and installed plugin adoption are
+verified separately against the delivered ref; 0.17.0 remains the recovery ref.
+
+### Research used for this revision
+
+- [Robert Martin on SRP](https://blog.cleancoder.com/uncle-bob/2014/05/08/SingleReponsibilityPrinciple.html):
+  cohesive change responsibilities and coupling.
+- [Cockburn's original hexagonal architecture](https://alistair.cockburn.us/hexagonal-architecture/):
+  separating business rules from external devices through application contracts.
+- [Fowler on dependency injection](https://martinfowler.com/articles/injection.html):
+  separating configuration from use.
+- [The Pragmatic Programmer tips](https://pragprog.com/tips/): knowledge-based
+  DRY, decoupling, composition alternatives and resource ownership.
+- [Fowler on YAGNI](https://martinfowler.com/bliki/Yagni.html): maintaining
+  malleable code without speculative capability.
+- [Google code review](https://google.github.io/eng-practices/review/reviewer/looking-for.html)
+  and [The Practical Test Pyramid](https://martinfowler.com/articles/practical-test-pyramid.html):
+  understandable design, meaningful behavioral and integration proof.
+- [AWS on idempotent APIs](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/):
+  retry semantics and side effects.
+
+### Verification scope
+
+Two isolated Codex executions per revision use identical prompts and supplied
+files. One implements a decimal CSV CLI, checkout through an existing payment
+adapter, and archive-bookkeeping extraction with distinct permission policies.
+The other reviews concurrency, failed writes and payment behavior without
+changing supplied source. Expected findings are withheld from the reviewer.
+
+The caller independently invokes generated code and checks 20 outcomes: eight
+CLI cases, six checkout cases, five permission cases and preserved review-source
+hashes. It separately reproduces the review fixture's overbooking and lost-stock
+defects using actual disposable SQLite connections. Manual inspection checks
+module boundaries and proportionate abstraction; wording matches do not score
+quality. Native traces must show the exact local skill read.
+
+These are explicitly selected skill trials, not tests of automatic discovery,
+plugin installation, live provider integration, every language or future tasks.
+No savings or universal quality guarantee is inferred. Maintained source,
+version, footprint and documentation checks provide separate structural proof.
+
+### Observations 2 October 2026
+
+The [matched trial evidence](evidence/write-code-engineering-probe.json) binds
+the prompts, supplied/produced files, native skill-read outputs, caller-checker
+source, usage receipts and readback to the exact baseline/candidate hashes.
+Observed artifact timestamps corroborate baseline completion/readback before
+the candidate was saved and prepared; they are not signed native event times.
+Codex CLI 0.159.3 used the ordinary account's configured `gpt-6.1-sol` model with
+an explicit `high` effort override and disposable workspace-write fixtures.
+
+- Both baseline runs completed before the skill was edited. All 20 independent
+  checks passed in each revision; supplied review source stayed unchanged.
+- Both revisions kept the CSV CLI in one production file, used the existing
+  domain/payment boundaries and shared archive bookkeeping while preserving
+  permission differences. The candidate also added ten useful local unittest
+  cases. These observations do not establish that every task needs tests.
+- Both reviewers reproduced overbooking, lost stock after an insert failure and
+  payment failures returned as success. The candidate also considered monetary
+  invariants and duplicate-charge risk; real provider/caller idempotency requires
+  its actual contract, not an inference from a synthetic SDK.
+- Source/package/link validation against the baseline, seven skill-version
+  cases, seven documentation cases, the native skill-author validator and
+  whitespace, layout and continuity checks passed. The skill grows from 5,114 to
+  5,218 bytes; the
+  pre-integration worker-build route was 38,079 bytes against the unchanged
+  38,099 ceiling. Integration with AIOS 0.17.0 passed the structural checks and
+  measures 37,909 bytes against the same ceiling. Matched behavior evidence
+  applies to the unchanged
+  skill bytes (SHA-256
+  `4dabe2e9e4aa814ef1e7f6b43eb007e165821b57c5b453a47af0adcb63a9f56d`).
+
+This is one run per task/revision, with explicit local skill selection and
+ambient account tool/skill metadata. Unused optional MCP clients logged OAuth
+startup failures in both revisions; the model and fixture execution completed.
+There is no claim of empty global context, live-service integration, automatic
+discovery, current installed adoption or measured performance improvement.
+
+## Initial release 0.10.0
 
 Implements [issue #9](https://github.com/onlinesourdough/AIOS-Plugin/issues/9),
 with the accepted clarification that the skill applies whenever writing code,
