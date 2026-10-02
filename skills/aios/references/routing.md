@@ -37,8 +37,8 @@ artifact. The plugin owns methods and helpers, not deliverables or customer data
 A System is a separately maintained specialist solution, chosen when its
 capability is useful. Skills, code or a repository alone do not require this
 label. Use native skills/packages and tools instead of introducing another
-execution framework. [Creation](creation.md) applies only to new work that
-actually needs a repository or separately maintained specialist.
+execution framework. [Creation](creation.md) establishes a workspace for new
+project work when useful; Git is optional. A small task needs no project setup.
 
 Power BI remains an optional specialist for Power BI model/report work. Its
 Desktop/platform requirements do not apply to AIOS generally. For that or another

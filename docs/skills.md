@@ -1,6 +1,6 @@
 # AIOS skills
 
-AIOS ships 26 native skills. Their titles and Codex display names use
+AIOS ships 25 native skills. Their titles and Codex display names use
 `AIOS:skill-name`: uppercase `AIOS`, a colon without spaces, and lowercase
 hyphenated names. The display label omits a redundant leading `aios-` from the
 canonical name. Automatic selection uses each skill description; explicit
@@ -25,9 +25,8 @@ carries an independent quoted `metadata.version`; see
 | [AIOS:interview](../skills/aios-interview/SKILL.md) | Explore context, challenge assumptions and find direction when requested or materially needed at the start; no routine interruption of execution |
 | [AIOS:build-work](../skills/aios-build-work/SKILL.md) | Implement and verify accepted work through in-scope fixes and Review |
 | [AIOS:check](../skills/aios-check/SKILL.md) | Inspect installation, owner format, and discovery |
-| [AIOS:create-project](../skills/aios-create-project/SKILL.md) | Start a new independent repository in the chosen workspace |
-| [AIOS:project-foundation](../skills/aios-project-foundation/SKILL.md) | Establish and maintain project engineering, code/design, infrastructure and delivery foundations |
-| [AIOS:create-system](../skills/aios-create-system/SKILL.md) | Establish an optional separately maintained specialist |
+| [AIOS:create-project](../skills/aios-create-project/SKILL.md) | Establish a useful project workspace, context and simple structure; Git is optional |
+| [AIOS:project-foundation](../skills/aios-project-foundation/SKILL.md) | Establish and maintain software engineering, code/design, infrastructure and delivery foundations |
 | [AIOS:maintain-context](../skills/aios-maintain-context/SKILL.md) | Maintain owner facts, routes, connections, and explicit continuity Sync |
 | [AIOS:manage-skills](../skills/aios-manage-skills/SKILL.md) | Manage personal and installed skill lifecycles |
 | [AIOS:setup](../skills/aios-setup/SKILL.md) | Set up or move an owner home and native bridge |
@@ -70,8 +69,11 @@ any code it authors, and Review uses its criteria without editing. It does not
 introduce a second lifecycle or require unit tests for every UI change. See the
 [implementation and verification record](write-code.md).
 
-Create Project starts a repository; Create System establishes an optional
-specialist with separate upkeep. Neither creates a mandatory AIOS registration.
+Create Project establishes a workspace for the actual work; Git and a repository
+template are optional. Project Foundation addresses software engineering readiness
+for new or existing projects. Manage Skills owns reusable specialist
+methods. Independently maintained solutions keep their local ownership and
+ordinary project lifecycle. No mandatory AIOS registration is created.
 Update owns native package recovery and selected specialist maintenance;
 Maintain Context owns facts, and Check observes state. The
 [legacy behavior map](../skills/aios-setup/references/legacy-parity.md) records

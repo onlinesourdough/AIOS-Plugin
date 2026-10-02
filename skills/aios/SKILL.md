@@ -2,7 +2,7 @@
 name: aios
 description: Apply owner context and select relevant AIOS methods for the current task.
 metadata:
-  version: "2.4.0"
+  version: "2.4.1"
 ---
 
 # AIOS:aios
@@ -43,8 +43,7 @@ Reuse decisions; small answers need no ceremony.
 Select focused maintenance: [context](../aios-maintain-context/SKILL.md),
 [skills](../aios-manage-skills/SKILL.md), [Check](../aios-check/SKILL.md),
 [Update](../aios-update/SKILL.md), [project creation](../aios-create-project/SKILL.md),
-[foundations](../aios-project-foundation/SKILL.md),
-[specialist creation](../aios-create-system/SKILL.md),
+[engineering foundations](../aios-project-foundation/SKILL.md),
 [model selection](../aios-select-model/SKILL.md),
 [workers](../aios-orchestrate-workers/SKILL.md) or
 [improvement triage](../aios-triage-improvement/SKILL.md).

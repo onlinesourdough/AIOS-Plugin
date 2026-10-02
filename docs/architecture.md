@@ -11,9 +11,9 @@ task; AIOS has no model runner, background service or permission system.
 | Owner home, normally `~/.AIOS` | Relevant context, source links, decisions and personal skills |
 | Spaces | Selectively loaded business or brand context |
 | Skills | Reusable methods, standards and judgment, with references and small helpers as needed |
-| Project repository | Local requirements, implementation, design and content material, proof and recovery |
+| Project workspace | Local requirements, working files, outputs, proof and recovery; Git is selected when useful |
 | Optional System | A separately maintained specialist with its own dependencies or operational needs |
-| Native manifests | Package identity and discovery over the same 24 skills |
+| Native manifests | Package identity and discovery over the same 25 skills |
 
 ## Work and methods
 
@@ -43,8 +43,16 @@ only selects a method. See the [skill index](skills.md),
 An optional System is useful for a bounded specialist with independent upkeep,
 such as Power BI and its Windows Desktop workflow. Its repository owns its
 requirements, dependencies, proof and recovery. A script or a long skill alone
-does not require a System. The project and system templates create local
-starting points; they do not add a second project identity or copy AIOS phases.
+does not require a System. Create Project establishes the appropriate workspace
+and context. A selected repository template is an optional seed; it does not add
+a second project identity or copy AIOS phases. Project Foundation owns software
+engineering readiness, including repairs to existing projects. Create System is
+retired; reusable methods use Manage Skills.
+
+Software & Defence Factory is a separate work environment and method. The
+operator may use it with an AIOS-assisted project under the project's accepted
+scope. This is not an AIOS runtime integration, shared credential store or
+automatic software handoff. The selected execution environment owns its controls.
 
 ## Context and isolation
 

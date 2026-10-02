@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.17.0 — 2026-10-02
+
+- Retire Create System. Reusable methods use Manage Skills; independently
+  maintained solutions keep their ordinary project lifecycle and ownership.
+  AIOS now exposes 25 skills from the same native source.
+- Broaden Create Project to 3.0.0: establish a useful workspace, context and
+  simple structure for software, content, learning or business work. Git,
+  GitHub and repository templates are optional; sidebar controls are not required.
+- Keep verified APT acquisition, transfer/recovery and software document
+  criteria in the conditional repository-seed reference. Existing work is
+  maintained in place. Project Foundation 1.1.1 addresses engineering readiness,
+  separate from workspace creation and an independently selected execution host.
+- Preserve Software & Defence Factory as a separate method and work environment.
+  AIOS can support software work directly; choosing Factory grants no shared
+  credentials or automatic execution authority. No hooks are installed or enabled.
+- Advance AIOS routing to 2.4.1 and Setup's retired-method map to 1.0.2.
+
 ## 0.16.0 — 2026-10-01
 
 - Add Clarify 1.0.0 as an independently selectable explanation method in AIOS.
