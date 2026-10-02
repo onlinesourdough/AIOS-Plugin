@@ -1,13 +1,15 @@
 ---
 name: aios-project-foundation
-description: Establish and maintain engineering foundations for new or existing projects.
+description: Establish and maintain engineering foundations for new or existing software projects.
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
 ---
 
 # AIOS:project-foundation
 
-Turn the accepted project into a reproducible, reviewable working environment.
+Use for engineering readiness in software work. General workspace and context
+setup belongs to [Create Project](../aios-create-project/SKILL.md).
+Turn the accepted software project into a reproducible, reviewable working environment.
 Keep the project self-contained: its source, standards, design, infrastructure,
 security and delivery evidence belong to the project.
 
@@ -17,7 +19,7 @@ Start with the actual repository, local instructions and accepted decisions.
 Keep existing work, data, licenses, remotes and useful documents. Repair a legacy
 project in place; never run a template conversion or reinitialize its Git history.
 Use [Create Project](../aios-create-project/SKILL.md) only for a genuinely new
-repository. A requested read-only assessment uses the same criteria without
+workspace or repository. A requested read-only assessment uses the same criteria without
 editing, provisioning or starting jobs.
 
 Resolve material gaps in audience, ambition, current status, data sensitivity,

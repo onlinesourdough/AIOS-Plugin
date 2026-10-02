@@ -15,7 +15,7 @@
 | Owner continuity remote, direction, and allowed paths | Client under explicit Sync consent; Maintain Context owns the procedure |
 | Customer or externally owned documentation | Its source system; AIOS may retain only a scoped pointer and freshness boundary |
 | Native installation, connections, and cutover | Authorized client or lead using native controls and readback |
-| Projects and optional specialists | Their own repositories, deliverables, dependencies, proof and recovery; no mandatory AIOS registration |
+| Projects and optional specialists | Their own working files, deliverables, dependencies, proof and recovery; Git and native project controls are selected when useful, without mandatory AIOS registration |
 | Design and content methods and helpers | Built-in domain skills; project files remain owned by the project |
 | Selected upstream System installation/code updates | AIOS Update [System maintenance](../skills/aios-update/references/systems.md) routes authorized work; each System owns compatibility and recovery |
 | Complex explanations | Included `clarify`; native visualization tools own their presentation contracts |

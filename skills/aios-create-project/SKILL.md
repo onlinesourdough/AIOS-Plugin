@@ -1,53 +1,52 @@
 ---
 name: aios-create-project
-description: Start a new independent repository from the Agentic Project Template in the chosen workspace.
+description: Start a project with a useful workspace, context and simple structure; Git is optional.
 metadata:
-  version: "2.1.1"
+  version: "3.0.0"
 ---
 
 # AIOS:create-project
 
-Use the accepted idea, outcome and destination through
-[creation](../aios/references/creation.md). APT is a repository starter; it does
-not create another AIOS project type. Continue existing work in its current
-repository. Do not require a repository for a self-contained task.
+Establish a useful place to work from the accepted purpose, result and location.
+A project may be content, learning, research, business work or software.
+Follow [creation](../aios/references/creation.md); continue an existing project
+in place rather than creating a second workspace.
 
-The canonical template is
-https://github.com/onlinesourdough/Agentic-project-template.git.
-Resolve its live default branch and exact commit, inspect the root instructions
-and documented creation interface, and acquire the verified seed in the chosen
-new destination. Follow the seed's validation and transfer procedure; AIOS does
-not duplicate its command flags, generated payload or recovery code.
-For either creation route, use an isolated seed at that fixed revision with no
-concurrent writer. Recheck its identity and clean state immediately before
-generation; changed source needs renewed verification, not inherited acceptance.
+## Establish the workspace
 
-For an in-place seed conversion, verify the exact physical root, Git identity,
-source revision and clean seed immediately before conversion. Only the verified
-template seed may be converted. On failure preserve the reported recovery state.
-Re-enter the final root after transfer and inspect generated instructions,
-identity, source provenance and the expected fresh Git history and remotes.
+Use the chosen location and the project's actual working needs. Resolve the
+physical destination before writing; preserve existing files, instructions and
+data. Ask only when an unresolved purpose or destination would materially change
+the result. Native project/sidebar controls are optional harness conveniences,
+not a prerequisite, registration step or reason to create another task.
 
-Continue from accepted context using the shared
-[foundation content contract](../aios-project-foundation/references/foundation.md)
-and [document contract](../aios-project-foundation/references/documents.md).
-The template supplies a neutral seed, not a working application or verified
-deployment. Populate applicable sources from real project facts and actual
-implementation; preserve explicit unresolved decisions until they are settled.
-Keep instructions concise, documents consistent with behavior, and template
-attribution separate from the product's licensing decision. Do not create empty
-application pages or claim readiness from file presence. Other project types
-need only their applicable authoring, validation and delivery responsibilities.
+Create only the folders and files needed to start useful work. Keep a short
+entrypoint or context note when it helps the next session understand the purpose,
+accepted scope, sources and intended outputs. Separate drafts, reusable material
+and finished work only where those distinctions help the project. Do not generate
+empty documentation trees or copy external source systems into the workspace.
+Keep secrets and private source data in their authorized homes.
 
-Use [Project Foundation](../aios-project-foundation/SKILL.md) when the accepted
-result includes repairing engineering foundations. Maintain applicable project
-standards and design through the shared document contract as the project grows.
-Ordinary creation alone does not authorize remote provisioning or execution.
+Choose Git, GitHub, a template or a remote only when the accepted work needs them.
+A local folder can be a complete project workspace. For a requested new
+template-based repository, read [repository seed](references/repository-seed.md).
+The selected seed owns its generator and transfer mechanics; existing projects
+are never reseeded or given fresh Git history.
 
-Use the generated local requirements and native-discovered AIOS methods to
-continue from the resolved idea. [Design](../design/SKILL.md) and
-[content](../content/SKILL.md) work in that project when relevant. Follow shared
-[Spec](../aios-spec-work/SKILL.md), [Build](../aios-build-work/SKILL.md) and
-[Review](../aios-review-work/SKILL.md) for the authorized result.
-No owner-home registry, folder relocation or automatic new task is required.
-Creation does not authorize publication or a remote change.
+## Continue the project
+
+Use the relevant methods for the real work: [Design](../design/SKILL.md),
+[Content](../content/SKILL.md), [Human Writing](../human-writing/SKILL.md) or other
+available specialist skills. Use [Manage Skills](../aios-manage-skills/SKILL.md)
+when the intended result is a reusable method rather than this project's work.
+
+Select [Project Foundation](../aios-project-foundation/SKILL.md) when the accepted
+software work needs engineering foundations, including an existing project that
+needs repair. Folder creation or a template receipt proves workspace setup;
+it does not prove an application, deployment or execution environment ready.
+Use the shared [Spec](../aios-spec-work/SKILL.md), [Build](../aios-build-work/SKILL.md)
+and [Review](../aios-review-work/SKILL.md) proportionately for the agreed result.
+
+Return the actual location, useful entrypoint, created structure and remaining
+decisions. Creation does not authorize publication, remote provisioning or
+installation of another execution environment.
