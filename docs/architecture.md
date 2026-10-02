@@ -8,12 +8,12 @@ task; AIOS has no model runner, background service or permission system.
 | Boundary | Responsibility |
 | --- | --- |
 | Native harness | Projects, sessions, models, tools, permissions and credentials |
-| Owner home, normally `~/.AIOS` | Relevant context, source links, decisions and personal skills |
+| Selected context home: Notion guide or local files | Relevant context, source links, decisions and personal skills |
 | Spaces | Selectively loaded business or brand context |
 | Skills | Reusable methods, standards and judgment, with references and small helpers as needed |
 | Project workspace | Local requirements, working files, outputs, proof and recovery; Git is selected when useful |
 | Optional System | A separately maintained specialist with its own dependencies or operational needs |
-| Native manifests | Package identity and discovery over the same 25 skills |
+| Native manifests | Package identity and discovery over the same 26 skills |
 
 ## Work and methods
 
@@ -62,14 +62,18 @@ nested beneath an owner home. No parent instruction file preloads personal data.
 Native project discovery does not depend on an AIOS registry. Existing useful
 source indexes can remain ordinary context.
 
-New owner homes use `AIOS_FORMAT` 2, without mandatory project or system indexes.
+New file owner homes use `AIOS_FORMAT` 2, without mandatory project or system indexes.
 The package also reads format 1. Package versions and owner-data formats are
 separate; installation never migrates data. An authorized cleanup preserves
 existing data and rollback evidence before changing the format marker. See
 [data compatibility](../skills/aios-setup/references/data-format.md).
 
+Notion context uses an approved guide and native page/skill tools without a
+local owner mirror or AIOS_FORMAT. A small host pointer supplies fresh-session
+discovery. Source systems retain their records and access control.
+
 Maintain Context owns facts and explicit continuity Sync. Manage Skills owns
-personal-skill placement and native adoption. Sync transfers consented context,
+personal-skill placement and native adoption. File-home Sync transfers consented context,
 personal skills and identity metadata; it excludes product trees, native
 settings, credentials and nested repositories. It is an explicit workflow,
 not an installation side effect.

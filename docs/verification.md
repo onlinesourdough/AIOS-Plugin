@@ -315,3 +315,11 @@ Tag-triggered CI must complete and the GitHub Release's resolved tag must match
 the accepted commit. Native installed version and discovery are separate readback
 steps. The Resources deployment separately verifies that retired AIOS URLs no
 longer serve the overview or metadata and that the remaining site still works.
+
+## Notion context preview
+
+The [preview contract](notion-preview.md) and [Notion acceptance](../skills/aios-notion-setup/references/acceptance.md)
+separate package checks, native activation, live import, fresh-session behavior
+and rollback. Account-specific evidence stays in the private task workspace.
+No native export, future scheduled run or cross-harness behavior is inferred
+from a successful page write.

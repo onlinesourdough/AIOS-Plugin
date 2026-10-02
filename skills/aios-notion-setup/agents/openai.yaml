@@ -1,0 +1,4 @@
+interface:
+  display_name: "AIOS:notion-setup"
+  short_description: "Set up your company context and personal skills in Notion."
+  default_prompt: "Use aios-notion-setup to set up Notion as my AIOS context home."

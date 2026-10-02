@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SKILL_NAMES = {
     "aios", "aios-build-work", "aios-check", "aios-create-project",
     "aios-project-foundation", "aios-maintain-context", "aios-manage-skills",
-    "aios-setup", "aios-interview", "aios-orchestrate-workers", "aios-review-work",
+    "aios-setup", "aios-notion-setup", "aios-interview", "aios-orchestrate-workers", "aios-review-work",
     "aios-risky-changes", "aios-ship-work", "aios-spec-work", "aios-triage-improvement",
     "aios-update", "aios-select-model", "human-writing", "write-code",
     "design", "review-design", "openpencil-workbench", "content", "diffusion-studio", "clarify",

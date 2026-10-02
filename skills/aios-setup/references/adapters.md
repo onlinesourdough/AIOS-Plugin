@@ -21,24 +21,25 @@ model behavior nor owner setup.
 
 ## Optional owner routing
 
-The AIOS skill resolves an established home, then an existing managed bridge,
-then ~/.AIOS when neither is known. Custom roots can be supplied in the task.
-Persistent custom routing uses a separately authorized bridge in the selected
-harness's effective global instruction file. Never install it in other apps
-as a side effect or place owner data in a package cache.
+Resolve the owner's chosen provider from the task or established bridge.
+Use the selected harness's effective global instruction file; Codex's
+[adapter](adapter-codex.md) identifies AGENTS.md and override precedence.
+Preserve unrelated instructions and every byte outside the AIOS marker pair.
+Record the pre-edit hash, reread before patching and make identical replay a
+no-op. Multiple/malformed blocks, a changed source or conflicting home require
+reconciliation. Do not change other apps or store owner data in plugin caches.
 
-Use the [bridge asset](../assets/bridge.md), replacing AIOS_ABSOLUTE_PATH with
-the physical absolute owner path as literal text. Preserve every byte outside
-the marker pair. Record the pre-edit hash and reread before patching. One
-identical existing block is a no-op; multiple/malformed blocks, a changed source
-or an unexpected home require conflict resolution before writing.
+For Notion, use the [Notion bridge](../../aios-notion-setup/assets/bridge.md)
+with the verified guide URL. Fetch that exact guide before activation; no local
+owner path, AIOS.md or AIOS_FORMAT is required. Do not recreate a file home.
+For file context, use the [file bridge](../assets/bridge.md) with the literal
+physical owner path. Resolve an established home first, defaulting to ~/.AIOS.
+AIOS.md plus supported AIOS_FORMAT identify even a Git-backed home; unsupported
+or malformed formats remain read-only.
 
-Keep AIOS.md in the owner home. Do not add owner-context instructions to parent
-or owner-home AGENTS/override files that preload independent repositories.
-After changing a bridge, verify owner routing and local-first nested repository
-behavior in fresh tasks. AIOS.md plus supported AIOS_FORMAT identify the home;
-unsupported/malformed formats stay read-only. Markdown supplies no isolation,
-account access or permission grant.
+Verify owner routing and independent repository isolation in fresh tasks.
+Never place owner-context preload in parent/owner-home AGENTS or overrides.
+A pointer supplies no account access or permission grant.
 
 Selected personal-skill setup or home moves use Manage Skills'
 [personal skill lifecycle](../../aios-manage-skills/references/owner-skills.md).

@@ -1,6 +1,6 @@
 # AIOS skills
 
-AIOS ships 25 native skills. Their titles and Codex display names use
+AIOS ships 26 native skills. Their titles and Codex display names use
 `AIOS:skill-name`: uppercase `AIOS`, a colon without spaces, and lowercase
 hyphenated names. The display label omits a redundant leading `aios-` from the
 canonical name. Automatic selection uses each skill description; explicit
@@ -21,6 +21,7 @@ carries an independent quoted `metadata.version`; see
 | [AIOS:diffusion-studio](../skills/diffusion-studio/SKILL.md) | Use optional Diffusion Studio for video production |
 | [AIOS:human-writing](../skills/human-writing/SKILL.md) | Default prose drafting and editing that preserves facts, uncertainty and the user’s voice |
 | [AIOS:write-code](../skills/write-code/SKILL.md) | Quality and proportionate verification whenever writing or changing code, including scripts and automation; shared criteria for read-only code review |
+| [AIOS:notion-setup](../skills/aios-notion-setup/SKILL.md) | Set up an optional Notion context home, durable memory and personal skills |
 | [AIOS:aios](../skills/aios/SKILL.md) | Select relevant context and methods for the current task |
 | [AIOS:interview](../skills/aios-interview/SKILL.md) | Explore context, challenge assumptions and find direction when requested or materially needed at the start; no routine interruption of execution |
 | [AIOS:build-work](../skills/aios-build-work/SKILL.md) | Implement and verify accepted work through in-scope fixes and Review |

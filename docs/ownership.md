@@ -11,7 +11,8 @@
 | Consequential-change assessment | `aios-risky-changes`; conditionally routed by Spec and Review |
 | Acceptance and delivery instruction | Reviewer bound to an exact artifact; independent caller acceptance for delegated work |
 | Private Git destination and release | Authorized AIOS maintainer or Ship worker |
-| Owner context, personal facts, and access decisions | Client in the chosen AIOS home and source systems |
+| Owner context, personal facts, and access decisions | Client in the chosen file or Notion context home and source systems |
+| Notion preview setup and personal-skill routing | Notion setup and Manage Skills; client owns content/permissions, harness owns scheduling/access |
 | Owner continuity remote, direction, and allowed paths | Client under explicit Sync consent; Maintain Context owns the procedure |
 | Customer or externally owned documentation | Its source system; AIOS may retain only a scoped pointer and freshness boundary |
 | Native installation, connections, and cutover | Authorized client or lead using native controls and readback |

@@ -13,6 +13,15 @@ AIOS focuses on business work, decisions, content, design and practical
 automation. Projects own their implementation, engineering standards, design,
 infrastructure and delivery configuration.
 
+## Notion context preview
+
+This branch supports an optional Notion context home through
+[Notion setup](../skills/aios-notion-setup/SKILL.md). The approved operating guide
+routes company context and personal skills; the host keeps only a small pointer.
+There is no required local owner mirror or custom service. Shared skills remain
+in AIOS and source systems keep their operational records. This is a preview,
+not a released migration requirement.
+
 ## Shared method, owner context
 
 The shared AIOS package contains reusable routing and work methods. An owner's
@@ -146,7 +155,12 @@ available to the user and task.
 
 ## Continuity between machines
 
-At setup completion, choose continuity explicitly. Private GitHub is a sensible
+For Notion context, reconnect the selected workspace through the new harness,
+verify the exact guide and personal skills, then establish its thin pointer.
+Keep dated exports and the preview's rollback record for recovery; this is not
+file Git Sync or automatic replication of every connected business source.
+
+For file context, choose continuity explicitly. Private GitHub is a sensible
 option for a private owner backup, but it never creates a repository or uploads
 your data without your approval. On a missing or genuinely empty chosen home,
 AIOS asks whether to Sync existing AIOS or set up new; established, partial and

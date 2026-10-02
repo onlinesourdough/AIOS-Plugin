@@ -2,18 +2,20 @@
 name: aios-setup
 description: Set up, resume or move an AIOS owner home through native harness installation.
 metadata:
-  version: "1.0.2"
+  version: "1.1.0"
 ---
 
 # AIOS:setup
 
+Requested or configured Notion context uses [Notion setup](../aios-notion-setup/SKILL.md)
+instead of the file procedure below. Connection availability alone does not
+authorize migration.
+
 Use the adaptive outcomes in [setup](references/setup.md): reuse known answers,
 choose the next material question or authorized action, implement and verify it.
 For questions, use Interview's [conversation procedure](../aios-interview/references/conversation.md).
-When useful work needs broader context or direction, select
-[Interview](../aios-interview/SKILL.md) under its activation rules and reuse its
-result. A setup choice or known next gap needs no full interview.
-Full setup covers relevant readiness areas; ordinary resume stays scoped. Read the applicable
+Use [Interview](../aios-interview/SKILL.md) only when its activation rules apply;
+reuse accepted answers. Full setup covers readiness; resume stays scoped. Read the
 [native adapter route](references/adapters.md) when installing or changing a
 bridge/package; it selects one harness/operation reference rather than a
 cross-harness preload.
@@ -28,11 +30,10 @@ before writing; an actual import also uses the [migration procedure](references/
 and [identity migration](references/migration.md) for legacy OSM or template AIOS
 and discovery collisions. Blank owner assets are in [assets/owner](assets/owner/AIOS.md).
 
-Resolve the requested or established path, then any managed bridge, to its
-physical absolute location. Without either, inspect ~/.AIOS for an existing
-home; use that default for a new home only after new-home intent is established. Check existing routing before creation;
-never create a second home merely because a default is absent. Resume from
-established facts with no fresh interview. Ask only the next material gap.
+Resolve the established/requested home or bridge to its physical absolute path.
+Only without either, inspect ~/.AIOS; create there only under new-home intent.
+Check routing first; an absent default does not justify a second home.
+Resume known facts and ask only for material missing input.
 
 For a missing/empty home with unresolved new/restore intent, ask one friendly choice:
 “Sync existing AIOS or set up new?” An established, partial or custom-root home
@@ -48,10 +49,9 @@ Use Maintain Context's framework through setup for source routes and minimal
 local gap filling. Verify sources in the receiving account when a home moves;
 copied references and earlier availability do not prove current access.
 
-Native installation exposes skills in the selected harness without an owner
-home or global instruction edit. For requested persistent routing to a custom
-home, use a thin global bridge supported by that harness. A bridge is optional;
-never add an owner-home AGENTS.md that preloads nested repository tasks.
+Native installation exposes skills without owner files or global edits.
+Requested persistent routing uses the harness's thin optional bridge; never
+add owner-home AGENTS.md that preloads nested repositories.
 Create owner files from the supplied neutral assets with ordinary file tools,
 never clone AIOS-template. Keep product version and data format separate.
 Local operation works without Git. Do not install anything or change global

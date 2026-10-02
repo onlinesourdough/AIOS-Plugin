@@ -2,7 +2,7 @@
 name: aios-manage-skills
 description: Manage an authorized skill creation, edit, installation, update, removal or rollback.
 metadata:
-  version: "1.0.4"
+  version: "1.1.0"
 ---
 
 # AIOS:manage-skills
@@ -16,6 +16,10 @@ registration and discovery, plus adoption, update and rollback. Follow the
 [personal skill lifecycle](references/owner-skills.md) for owner methods. The
 native Skill Creator owns authoring mechanics; Maintain context owns durable
 owner facts and configured Git sync. Neither takes back this lifecycle.
+
+When the owner uses Notion, the [Notion personal-skill route](../aios-notion-setup/references/personal-skills.md)
+owns canonical placement and discovery instead of local owner folders.
+Shared AIOS skills remain in the plugin; project skills remain with their project.
 
 ## Distinguish audit from management
 

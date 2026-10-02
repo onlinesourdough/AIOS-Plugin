@@ -123,7 +123,9 @@ duplicated instruction bodies.
 An existing or requested owner home takes precedence over the default. Without
 one or a managed bridge, the selected AIOS skill checks `~/.AIOS`. It never scans
 for homes or creates a second home during package installation. A persistent
-bridge to a custom location is optional. New owner homes use format `2`; existing format `1` remains supported.
+bridge to a custom location is optional. New file homes use format `2`; existing format `1` remains supported.
+A selected Notion home instead uses its verified operating-guide URL and the
+[Notion bridge](../skills/aios-notion-setup/assets/bridge.md), with no file-format marker.
 
 ## Evidence and limits
 

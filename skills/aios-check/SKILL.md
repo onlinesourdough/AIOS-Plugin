@@ -2,10 +2,15 @@
 name: aios-check
 description: Verify AIOS installation, owner format and native skill discovery without changes.
 metadata:
-  version: "2.0.5"
+  version: "2.1.0"
 ---
 
 # AIOS:check
+
+For a configured Notion home, use the [Notion checks](../aios-notion-setup/references/acceptance.md)
+for context and personal skills. A missing local owner folder or AIOS_FORMAT is
+not a failure in this mode. Inspect native plugin identity through the usual
+installation checks; a read-only check never creates a page or test record.
 
 Inspect only the requested scope using the relevant section of
 [checks](references/checks.md). Use [setup scenarios](references/setup-scenarios.md) for the requested installation

@@ -28,6 +28,7 @@ JOB_PREFIXES = {
     "aios-maintain-context": "Curate ",
     "aios-manage-skills": "Manage ",
     "aios-setup": "Set up, resume or move ",
+    "aios-notion-setup": "Set up or resume ",
     "aios-interview": "Interview ",
     "aios-orchestrate-workers": "Prepare, launch, coordinate and recover ",
     "aios-risky-changes": "Assess ",
@@ -282,6 +283,12 @@ def main():
     handoff = ROOT / "skills/aios/references/continuation.md"
     print(f"conditional_whole_task_handoff_extra_bytes={handoff.stat().st_size}")
     print("NOTE: portable/whole-task transfer adds that reference, not worker orchestration; no matched legacy transfer path is claimed")
+    notion = sum((ROOT / path).stat().st_size for path in (
+        "skills/aios/SKILL.md",
+        "skills/aios-notion-setup/references/operating.md",
+    )) + startup
+    print(f"conditional_notion_owner_route_bytes={notion}")
+    print("NOTE: Notion guide, selected cloud sources and MCP tool schemas add workload-dependent bytes; no matched legacy or cost-saving claim")
     print("PASS: bounded skill bodies and representative positive/negative selected routes")
     print("NOTE: token values are bytes/4 estimates; no native-runtime token telemetry was available")
     print("NOTE: owner/task context and target-repository instructions are excluded as documented in the manifest")
