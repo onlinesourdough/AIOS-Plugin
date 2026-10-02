@@ -1,0 +1,590 @@
+{
+  "date": "2026-10-02",
+  "contract": "Test baseline first; strengthen general write-code guidance; repeat the same trials and review the final source.",
+  "baseline": {
+    "commit": "082cfe3a9168c06526f9c53f309687a92f3a551b",
+    "skill_version": "1.0.2",
+    "skill_sha256": "99ac5be7d7fe32fc8b2e1777b592c2942d13f1a523cb49a81e9e8e93f942a693",
+    "skill_bytes": 5114
+  },
+  "candidate": {
+    "skill_version": "1.1.0",
+    "skill_sha256": "4dabe2e9e4aa814ef1e7f6b43eb007e165821b57c5b453a47af0adcb63a9f56d",
+    "skill_bytes": 5218
+  },
+  "harness": {
+    "cli": "codex-cli 0.159.3",
+    "configured_model": "gpt-6.1-sol",
+    "explicit_reasoning_effort": "high",
+    "sandbox": "workspace-write",
+    "ephemeral": true,
+    "ordinary_account_config_retained": true,
+    "skill_explicitly_selected": true
+  },
+  "prompts": {
+    "implementation": "Use the local write-code skill at .agents/skills/write-code/SKILL.md. Complete these three independent fixture tasks in their own folders:\n1. script/: create sum_csv.py, a small Python standard-library CLI accepting a CSV path. Sum its amount column exactly, print just the total, support negative values, and print 0 for a header-only file. Reject missing columns, invalid numbers and non-finite numbers with a nonzero exit and useful stderr.\n2. checkout/: implement app.checkout(items), returning the existing payment provider's receipt. Validate the items using the existing domain module before payment, calculate the total in cents and charge once through the existing payment adapter. Payment failures must remain visible. Preserve the existing module responsibilities and client configuration.\n3. authorization/: reduce duplicated archive bookkeeping in archive.py while preserving the two functions' signatures and existing permission policies, results and events.\nExercise the implemented behavior with disposable inputs. Keep changes within these task folders, use no third-party dependencies, and report the files and actual checks. Do not write outside this fixture or contact external services.\n",
+    "review": "Use the local write-code skill at .agents/skills/write-code/SKILL.md in read-only review mode. Review reservation.py and payments.py for correctness, maintainability and the adequacy of their tests. Callers provide SQLite connections in autocommit mode (isolation_level=None); the service runs multiple concurrent workers against one database. The payment client is an external service; the included SDK is a synthetic fixture. Report actionable findings with file, line, impact and useful verification. You may run existing tests and use disposable scratch data to investigate, but leave all supplied source and test files unchanged. Do not contact external services or write outside this fixture.\n"
+  },
+  "supplied_files": {
+    "implementation": {
+      "script/sample.csv": "amount\n0.10\n0.20\n-0.05\n",
+      "checkout/domain.py": "def validate_items(items):\n    if not items:\n        raise ValueError(\"Order must have at least one item\")\n    for item in items:\n        price, quantity = item[\"unit_price_cents\"], item[\"quantity\"]\n        if type(price) is not int or type(quantity) is not int or price < 0 or quantity <= 0:\n            raise ValueError(\"Invalid line item\")\n",
+      "checkout/vendor_sdk.py": "from dataclasses import dataclass\n\n@dataclass\nclass ChargeRequest:\n    amount_cents: int\n\nclass PaymentFailure(Exception):\n    pass\n\nclass Client:\n    def __init__(self):\n        self.requests = []\n        self.fail = False\n\n    def charge(self, request):\n        self.requests.append(request)\n        if self.fail:\n            raise PaymentFailure(\"Payment service unavailable\")\n        return {\"receipt_id\": \"synthetic-receipt\", \"amount_cents\": request.amount_cents}\n",
+      "checkout/payment_adapter.py": "from vendor_sdk import ChargeRequest, Client\n\nclient = Client()\n\ndef charge(amount_cents):\n    return client.charge(ChargeRequest(amount_cents))\n",
+      "authorization/archive.py": "def archive_document(user_id, document, events):\n    if user_id != document[\"owner_id\"]:\n        raise PermissionError(\"Only the owner may archive documents\")\n    document[\"archived\"] = True\n    events.append({\"kind\": \"archived\", \"id\": document[\"id\"], \"actor\": user_id})\n    return document[\"id\"]\n\ndef archive_attachment(user_id, role, attachment, events):\n    if user_id != attachment[\"owner_id\"] and role != \"maintainer\":\n        raise PermissionError(\"Only the owner or a maintainer may archive attachments\")\n    attachment[\"archived\"] = True\n    events.append({\"kind\": \"archived\", \"id\": attachment[\"id\"], \"actor\": user_id})\n    return attachment[\"id\"]\n"
+    },
+    "review": {
+      "reservation.py": "def reserve(connection, user_id):\n    remaining = connection.execute(\"SELECT remaining FROM stock WHERE id = 1\").fetchone()[0]\n    if remaining <= 0:\n        raise ValueError(\"Sold out\")\n    connection.execute(\"UPDATE stock SET remaining = ? WHERE id = 1\", (remaining - 1,))\n    connection.execute(\"INSERT INTO reservations(user_id) VALUES (?)\", (user_id,))\n    connection.commit()\n    return {\"reserved\": True, \"user_id\": user_id}\n",
+      "payments.py": "from vendor_sdk import ChargeRequest\n\ndef approve_invoice(invoice, client):\n    amount = sum(item[\"unit_price_cents\"] * item[\"quantity\"] for item in invoice)\n    try:\n        return client.charge(ChargeRequest(amount))\n    except Exception:\n        return {\"paid\": True, \"receipt\": None}\n",
+      "vendor_sdk.py": "from dataclasses import dataclass\n\n@dataclass\nclass ChargeRequest:\n    amount_cents: int\n\nclass PaymentFailure(Exception):\n    pass\n\nclass Client:\n    def __init__(self):\n        self.requests = []\n        self.fail = False\n\n    def charge(self, request):\n        self.requests.append(request)\n        if self.fail:\n            raise PaymentFailure(\"Payment service unavailable\")\n        return {\"receipt_id\": \"synthetic-receipt\", \"amount_cents\": request.amount_cents}\n",
+      "test_existing.py": "import sqlite3\nimport unittest\nfrom unittest.mock import Mock\nfrom payments import approve_invoice\nfrom reservation import reserve\n\nclass ExistingTests(unittest.TestCase):\n    def test_payment(self):\n        client = Mock()\n        client.charge.return_value = {\"receipt\": \"r1\"}\n        self.assertEqual(approve_invoice([{\"unit_price_cents\": 100, \"quantity\": 1}], client), {\"receipt\": \"r1\"})\n\n    def test_reservation(self):\n        with sqlite3.connect(\":memory:\", isolation_level=None) as connection:\n            connection.executescript(\"CREATE TABLE stock(id INTEGER PRIMARY KEY, remaining INTEGER); INSERT INTO stock VALUES(1,1); CREATE TABLE reservations(user_id TEXT UNIQUE);\")\n            self.assertTrue(reserve(connection, \"u1\")[\"reserved\"])\n\nif __name__ == \"__main__\":\n    unittest.main()\n"
+    }
+  },
+  "revisions": {
+    "baseline": {
+      "independent_readback": {
+        "revision": "baseline",
+        "observations": [
+          {
+            "case": "exact_decimals",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": "0.25",
+            "stderr": ""
+          },
+          {
+            "case": "large_exact_number",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": "9007199254740993.03",
+            "stderr": ""
+          },
+          {
+            "case": "negative_total",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": "-3.50",
+            "stderr": ""
+          },
+          {
+            "case": "header_only",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": "0",
+            "stderr": ""
+          },
+          {
+            "case": "missing_column",
+            "passed": true,
+            "exit_code": 1,
+            "stdout": "",
+            "stderr": "sum_csv: CSV must have an amount column"
+          },
+          {
+            "case": "malformed_amount",
+            "passed": true,
+            "exit_code": 1,
+            "stdout": "",
+            "stderr": "sum_csv: Line 2: invalid amount 'hello'"
+          },
+          {
+            "case": "nonfinite_nan",
+            "passed": true,
+            "exit_code": 1,
+            "stdout": "",
+            "stderr": "sum_csv: Line 2: amount must be finite ('NaN')"
+          },
+          {
+            "case": "nonfinite_infinity",
+            "passed": true,
+            "exit_code": 1,
+            "stdout": "",
+            "stderr": "sum_csv: Line 2: amount must be finite ('Infinity')"
+          },
+          {
+            "case": "checkout_success",
+            "passed": true
+          },
+          {
+            "case": "empty_order",
+            "passed": true
+          },
+          {
+            "case": "negative_price",
+            "passed": true
+          },
+          {
+            "case": "zero_quantity",
+            "passed": true
+          },
+          {
+            "case": "boolean_price",
+            "passed": true
+          },
+          {
+            "case": "payment_failure_visible",
+            "passed": true
+          },
+          {
+            "case": "document_owner",
+            "passed": true
+          },
+          {
+            "case": "document_other_user",
+            "passed": true
+          },
+          {
+            "case": "attachment_owner",
+            "passed": true
+          },
+          {
+            "case": "attachment_maintainer",
+            "passed": true
+          },
+          {
+            "case": "attachment_other_member",
+            "passed": true
+          },
+          {
+            "case": "read_only_review_preserves_supplied_files",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "known_fixture_defects": {
+          "race": {
+            "capacity": 1,
+            "reservation_count": 2,
+            "remaining": 0,
+            "results": [
+              {
+                "reserved": true,
+                "user_id": "u1"
+              },
+              {
+                "reserved": true,
+                "user_id": "u2"
+              }
+            ]
+          },
+          "failed_insert": {
+            "remaining_before": 1,
+            "remaining_after": 0
+          },
+          "payment_failure": {
+            "reported_result": {
+              "paid": true,
+              "receipt": null
+            },
+            "request_count": 1
+          }
+        }
+      },
+      "native_cases": {
+        "implementation": {
+          "run": {
+            "case": "implementation",
+            "exit_code": 0,
+            "timed_out": false,
+            "elapsed_seconds": 202.84,
+            "skill_sha256": "99ac5be7d7fe32fc8b2e1777b592c2942d13f1a523cb49a81e9e8e93f942a693"
+          },
+          "selected_skill_reads": [
+            "/bin/zsh -lc 'cat .agents/skills/write-code/SKILL.md'"
+          ],
+          "usage_receipt": {
+            "input_tokens": 90859,
+            "cached_input_tokens": 44160,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4859,
+            "reasoning_output_tokens": 1048
+          },
+          "response": "Completed all three tasks:\n\n- [script/sum_csv.py](script/sum_csv.py): exact decimal totals, negatives, header-only `0`, and useful errors.\n- [checkout/app.py](checkout/app.py): validates through the domain module, charges once through the existing adapter, returns its receipt, and propagates payment failures.\n- [authorization/archive.py](authorization/archive.py): shares archive bookkeeping while preserving signatures and permission policies.\n\nPassed 23 CSV CLI checks, checkout success/failure and invalid-item checks, six archive permission cases, syntax checks, and `git diff --check`.\n\nDisposable inputs were removed. Changes stayed within the task folders; no dependencies or external services were used.",
+          "supplied_hashes": {
+            "checkout/payment_adapter.py": "663335390761fba0dc76440278b5bcde052c4204d4986608d61752a0cd4f3eba",
+            "checkout/domain.py": "bee33ad088a0b4033cf679d60794b3438b5189c600d691fbe128ce310807cd57",
+            "checkout/vendor_sdk.py": "1da1387730d20042c13349644e44435e3d83c275c9f7eaee196fff1422a3161d",
+            "authorization/archive.py": "3cfc7aae737d1fc427c00d850939f8668701bc6cf69f952e4832f1e96bf0dc78"
+          },
+          "generated_files": {
+            "script/sum_csv.py": "\"\"\"Print the exact sum of a CSV file's amount column.\"\"\"\n\nimport argparse\nimport csv\nfrom decimal import Decimal, InvalidOperation, MAX_EMAX, MIN_EMIN, localcontext\nimport sys\n\n\ndef sum_amounts(path):\n    total = Decimal(0)\n    with open(path, newline=\"\", encoding=\"utf-8\") as source:\n        reader = csv.DictReader(source, strict=True)\n        if reader.fieldnames is None or \"amount\" not in reader.fieldnames:\n            raise ValueError(\"CSV must have an amount column\")\n        with localcontext() as context:\n            context.Emax = MAX_EMAX\n            context.Emin = MIN_EMIN\n            for row in reader:\n                raw = row[\"amount\"]\n                if raw is None:\n                    raise ValueError(f\"Line {reader.line_num}: missing amount\")\n                try:\n                    amount = Decimal(raw)\n                except InvalidOperation:\n                    raise ValueError(\n                        f\"Line {reader.line_num}: invalid amount {raw!r}\"\n                    ) from None\n                if not amount.is_finite():\n                    raise ValueError(\n                        f\"Line {reader.line_num}: amount must be finite ({raw!r})\"\n                    )\n                # Preserve every decimal place and allow an extra digit for carry.\n                context.prec = max(total.adjusted(), amount.adjusted()) - min(\n                    total.as_tuple().exponent, amount.as_tuple().exponent\n                ) + 2\n                total += amount\n    return total\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"csv_path\", help=\"CSV file containing an amount column\")\n    args = parser.parse_args()\n    try:\n        total = sum_amounts(args.csv_path)\n    except (OSError, UnicodeError, csv.Error, ValueError) as error:\n        print(f\"sum_csv: {error}\", file=sys.stderr)\n        return 1\n    print(format(total, \"f\") if total else \"0\")\n    return 0\n\n\nif __name__ == \"__main__\":\n    sys.exit(main())\n",
+            "checkout/payment_adapter.py": "from vendor_sdk import ChargeRequest, Client\n\nclient = Client()\n\ndef charge(amount_cents):\n    return client.charge(ChargeRequest(amount_cents))\n",
+            "checkout/domain.py": "def validate_items(items):\n    if not items:\n        raise ValueError(\"Order must have at least one item\")\n    for item in items:\n        price, quantity = item[\"unit_price_cents\"], item[\"quantity\"]\n        if type(price) is not int or type(quantity) is not int or price < 0 or quantity <= 0:\n            raise ValueError(\"Invalid line item\")\n",
+            "checkout/vendor_sdk.py": "from dataclasses import dataclass\n\n@dataclass\nclass ChargeRequest:\n    amount_cents: int\n\nclass PaymentFailure(Exception):\n    pass\n\nclass Client:\n    def __init__(self):\n        self.requests = []\n        self.fail = False\n\n    def charge(self, request):\n        self.requests.append(request)\n        if self.fail:\n            raise PaymentFailure(\"Payment service unavailable\")\n        return {\"receipt_id\": \"synthetic-receipt\", \"amount_cents\": request.amount_cents}\n",
+            "checkout/app.py": "\"\"\"Checkout orchestration using the existing domain and payment boundaries.\"\"\"\n\nimport domain\nimport payment_adapter\n\n\ndef checkout(items):\n    domain.validate_items(items)\n    total_cents = sum(item[\"unit_price_cents\"] * item[\"quantity\"] for item in items)\n    return payment_adapter.charge(total_cents)\n",
+            "authorization/archive.py": "def _record_archive(user_id, resource, events):\n    resource[\"archived\"] = True\n    events.append({\"kind\": \"archived\", \"id\": resource[\"id\"], \"actor\": user_id})\n    return resource[\"id\"]\n\n\ndef archive_document(user_id, document, events):\n    if user_id != document[\"owner_id\"]:\n        raise PermissionError(\"Only the owner may archive documents\")\n    return _record_archive(user_id, document, events)\n\ndef archive_attachment(user_id, role, attachment, events):\n    if user_id != attachment[\"owner_id\"] and role != \"maintainer\":\n        raise PermissionError(\"Only the owner or a maintainer may archive attachments\")\n    return _record_archive(user_id, attachment, events)\n"
+          },
+          "selected_skill_readbacks": [
+            {
+              "command": "/bin/zsh -lc 'cat .agents/skills/write-code/SKILL.md'",
+              "exit_code": 0,
+              "output": "---\nname: write-code\ndescription: Write or change code of any size, including scripts, shell snippets, SQL, tests and automation; apply proportionate quality and verification, also when reviewing code.\nmetadata:\n  version: \"1.0.2\"\n---\n\n# AIOS:write-code\n\nApply whenever authoring or changing code, including short one-off scripts,\nnotebooks, executable configuration and code examples. Use the same criteria\nwhen reviewing code. Calling an existing tool or explaining existing code alone\ndoes not require a coding workflow.\n\nUse the accepted task, local AGENTS, repository conventions and available tools.\nKeep small requests direct. Build implements and verifies; read-only Review\ninspects code and proof and reports findings through the existing gate without\nediting. Do not create another specification, lifecycle or report. Drafting code\ngrants no execution or external-write authority.\n\n## Code that earns its complexity\n\n- Read the relevant surrounding code and existing interfaces first. Use names\n  that express the domain, clear control flow and the existing type/style rules.\n  Handle meaningful failures explicitly; do not hide defects behind broad\n  exception handling, invented defaults or success-shaped fallback results.\n- Give modules and functions coherent responsibilities. Share code when callers\n  need the same behavior and should change together, not merely similar syntax.\n  Separate behavior from I/O when useful; a real boundary can justify one-caller\n  abstractions. Follow the repository's architecture. Avoid speculative\n  dependencies, wrappers and copied logic; a small script can remain one file.\n- Make interfaces consistent: inputs, outputs, validation boundaries and errors\n  should form a clear contract. Preserve compatibility or make the accepted\n  change explicit. Account for authorization, retries/idempotency and cancellation\n  when they affect the operation. A CLI's arguments, stdout/stderr and exit\n  status are also an API.\n- Comments explain intent, surprising constraints, invariants and tradeoffs.\n  Document public interfaces when callers need help using them correctly.\n  Update stale comments; do not narrate obvious lines. Remove conversational\n  AI meta-comments, scaffolding leftovers, unused code and placeholders that\n  pretend to implement behavior. Preserve required notices and legitimate\n  generated-file attribution.\n- Complete the requested behavior and relevant failure, empty and loading\n  states. Keep the patch scoped and affected documentation accurate. Do not add\n  configuration or unrelated refactors to make a small change look substantial.\n\nWhen extracting shared behavior, inspect affected callers. Move a bounded part,\nverify one caller, then check the others before removing old code. Preserve\ncaller policies and relevant authorization, transaction and retry behavior.\n\n## Evidence suited to the change\n\nChoose the nearest useful boundary. Prefer observed behavior and meaningful\nregressions over tests that repeat implementation details or merely vary inputs\nwithout exercising a distinct case. Run required repository checks; do not\nweaken them to obtain green. Add durable tests where they protect meaningful\nbehavior, without a coverage quota or a new test framework for every snippet.\n\n| Changed surface | Useful verification |\n| --- | --- |\n| UI/UX, layout or interaction | Use the running interface with browser/computer-use tools. Exercise the changed flow and relevant viewport, keyboard/focus, loading and error behavior. Keep selected screenshots or an action/result trace when useful. A source inspection or initial screenshot cannot prove an interaction. Avoid unit tests manufactured for styling; add/update a durable end-to-end test for a critical repeated flow when warranted. |\n| Logic, parsing or state | Test the contract, meaningful boundaries and distinct regression cases. For a defect, demonstrate a failing regression before the fix when practical. Use the existing unit/integration stack where suitable. |\n| API, database or integration | Exercise relevant success and failure behavior at the affected boundary with controlled fixtures or test environments. Distinguish mocks from observed integration; check compatibility when the contract changes. |\n| Script, CLI or automation | Invoke it against disposable representative inputs; check results, errors, exit status and relevant repeat-run behavior. For state-changing code, use a safe fixture or supported dry run within the task's authority. Syntax checks alone do not prove behavior. |\n| Code example or executable configuration | Validate syntax and the documented behavior in a small safe example when practical. Respect a request to draft only; state any unexecuted assumptions. |\n\nAfter a relevant final edit, rerun affected verification and reuse unchanged\nproof. Report what ran, what it demonstrated and material gaps. If a needed\ninterface is unavailable, use another suitable authorized tool where possible;\ndo not invent a PASS or automatically transfer testing to the user. Build owns\nrepairs and Review owns acceptance within the existing task.\n",
+              "extracted_snapshot_sha256": "99ac5be7d7fe32fc8b2e1777b592c2942d13f1a523cb49a81e9e8e93f942a693"
+            }
+          ],
+          "raw_events_sha256": "d23b94a13b8a06a78c8a1d32f2f21f19f0e0347ad6247b6cd45761792e6ba7fc"
+        },
+        "review": {
+          "run": {
+            "case": "review",
+            "exit_code": 0,
+            "timed_out": false,
+            "elapsed_seconds": 103.68,
+            "skill_sha256": "99ac5be7d7fe32fc8b2e1777b592c2942d13f1a523cb49a81e9e8e93f942a693"
+          },
+          "selected_skill_reads": [
+            "/bin/zsh -lc \"pwd; rg --files -g 'AGENTS.md' -g 'SKILL.md' -g '*.py' -g 'pyproject.toml' -g 'README*' -g 'requirements*' -g 'pytest.ini'; cat .agents/skills/write-code/SKILL.md\""
+          ],
+          "usage_receipt": {
+            "input_tokens": 69823,
+            "cached_input_tokens": 25600,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2194,
+            "reasoning_output_tokens": 551
+          },
+          "response": "Found three high-priority correctness issues:\n\n1. **P1 — Concurrent workers can oversell stock.** [reservation.py:2](fixture/review/reservation.py:2) reads stock separately from the update at line 5. Two workers can both read `1`, both write `0`, and both insert successful reservations.\n\n   **Verified:** Two independent autocommit connections, synchronized after reading the last unit, produced two successful reservations with stock remaining `0`.\n\n   **Action:** Serialize the operation using an explicit transaction, such as `BEGIN IMMEDIATE` before reading. Add a concurrent regression asserting exactly one successful reservation from one available unit.\n\n2. **P1 — Failed reservations permanently consume stock.** [reservation.py:5](fixture/review/reservation.py:5) commits the decrement immediately under autocommit. If the insertion at line 6 fails, inventory is already reduced; line 7’s `commit()` does not make these statements atomic.\n\n   **Verified:** Reserving for an existing unique `user_id` raised `IntegrityError`, but stock fell from `2` to `1` without creating a reservation.\n\n   **Action:** Put the decrement and insertion in the same explicit transaction and roll back on failure. Add a duplicate-user regression asserting both tables remain unchanged after rejection.\n\n3. **P1 — Payment failures are reported as paid.** [payments.py:7](fixture/review/payments.py:7) catches every exception and returns `{\"paid\": True, \"receipt\": None}`. This can authorize fulfillment without confirmed payment and also conceals programming errors.\n\n   **Verified:** The synthetic client’s `PaymentFailure` produced that paid response.\n\n   **Action:** Propagate failures or return an explicit failure/unknown outcome. Handle documented payment exceptions narrowly; ambiguous external outcomes need reconciliation before retrying. Add tests for service failure and unexpected exceptions, ensuring neither reports payment success.\n\nBoth existing tests passed, but they exercise only happy paths. The reservation test checks no inventory invariant; the payment mock checks neither the request amount nor actual SDK behavior. Add payload assertions and failure/concurrency coverage. The synthetic SDK cannot establish compatibility with the real external service.\n\nAll supplied source and test files remained unchanged. Disposable database data was removed; no external services were contacted.",
+          "supplied_hashes": {
+            "reservation.py": "b0d931e75c48c18729cc24e61a7f59aa365eb7ccd4d9a09a671f61243b4736b4",
+            "payments.py": "67554156ecff0298b6ded947c69991a1dbaf8f418d6d52ae967fd122b8b8ad40",
+            "test_existing.py": "045c6fd9fd11e92f82510ddfc659048135862661503fd1ce16cc2a0aef5b0977",
+            "vendor_sdk.py": "1da1387730d20042c13349644e44435e3d83c275c9f7eaee196fff1422a3161d"
+          },
+          "selected_skill_readbacks": [
+            {
+              "command": "/bin/zsh -lc \"pwd; rg --files -g 'AGENTS.md' -g 'SKILL.md' -g '*.py' -g 'pyproject.toml' -g 'README*' -g 'requirements*' -g 'pytest.ini'; cat .agents/skills/write-code/SKILL.md\"",
+              "exit_code": 0,
+              "output": "fixture/review\nAGENTS.md\nvendor_sdk.py\ntest_existing.py\npayments.py\nreservation.py\n---\nname: write-code\ndescription: Write or change code of any size, including scripts, shell snippets, SQL, tests and automation; apply proportionate quality and verification, also when reviewing code.\nmetadata:\n  version: \"1.0.2\"\n---\n\n# AIOS:write-code\n\nApply whenever authoring or changing code, including short one-off scripts,\nnotebooks, executable configuration and code examples. Use the same criteria\nwhen reviewing code. Calling an existing tool or explaining existing code alone\ndoes not require a coding workflow.\n\nUse the accepted task, local AGENTS, repository conventions and available tools.\nKeep small requests direct. Build implements and verifies; read-only Review\ninspects code and proof and reports findings through the existing gate without\nediting. Do not create another specification, lifecycle or report. Drafting code\ngrants no execution or external-write authority.\n\n## Code that earns its complexity\n\n- Read the relevant surrounding code and existing interfaces first. Use names\n  that express the domain, clear control flow and the existing type/style rules.\n  Handle meaningful failures explicitly; do not hide defects behind broad\n  exception handling, invented defaults or success-shaped fallback results.\n- Give modules and functions coherent responsibilities. Share code when callers\n  need the same behavior and should change together, not merely similar syntax.\n  Separate behavior from I/O when useful; a real boundary can justify one-caller\n  abstractions. Follow the repository's architecture. Avoid speculative\n  dependencies, wrappers and copied logic; a small script can remain one file.\n- Make interfaces consistent: inputs, outputs, validation boundaries and errors\n  should form a clear contract. Preserve compatibility or make the accepted\n  change explicit. Account for authorization, retries/idempotency and cancellation\n  when they affect the operation. A CLI's arguments, stdout/stderr and exit\n  status are also an API.\n- Comments explain intent, surprising constraints, invariants and tradeoffs.\n  Document public interfaces when callers need help using them correctly.\n  Update stale comments; do not narrate obvious lines. Remove conversational\n  AI meta-comments, scaffolding leftovers, unused code and placeholders that\n  pretend to implement behavior. Preserve required notices and legitimate\n  generated-file attribution.\n- Complete the requested behavior and relevant failure, empty and loading\n  states. Keep the patch scoped and affected documentation accurate. Do not add\n  configuration or unrelated refactors to make a small change look substantial.\n\nWhen extracting shared behavior, inspect affected callers. Move a bounded part,\nverify one caller, then check the others before removing old code. Preserve\ncaller policies and relevant authorization, transaction and retry behavior.\n\n## Evidence suited to the change\n\nChoose the nearest useful boundary. Prefer observed behavior and meaningful\nregressions over tests that repeat implementation details or merely vary inputs\nwithout exercising a distinct case. Run required repository checks; do not\nweaken them to obtain green. Add durable tests where they protect meaningful\nbehavior, without a coverage quota or a new test framework for every snippet.\n\n| Changed surface | Useful verification |\n| --- | --- |\n| UI/UX, layout or interaction | Use the running interface with browser/computer-use tools. Exercise the changed flow and relevant viewport, keyboard/focus, loading and error behavior. Keep selected screenshots or an action/result trace when useful. A source inspection or initial screenshot cannot prove an interaction. Avoid unit tests manufactured for styling; add/update a durable end-to-end test for a critical repeated flow when warranted. |\n| Logic, parsing or state | Test the contract, meaningful boundaries and distinct regression cases. For a defect, demonstrate a failing regression before the fix when practical. Use the existing unit/integration stack where suitable. |\n| API, database or integration | Exercise relevant success and failure behavior at the affected boundary with controlled fixtures or test environments. Distinguish mocks from observed integration; check compatibility when the contract changes. |\n| Script, CLI or automation | Invoke it against disposable representative inputs; check results, errors, exit status and relevant repeat-run behavior. For state-changing code, use a safe fixture or supported dry run within the task's authority. Syntax checks alone do not prove behavior. |\n| Code example or executable configuration | Validate syntax and the documented behavior in a small safe example when practical. Respect a request to draft only; state any unexecuted assumptions. |\n\nAfter a relevant final edit, rerun affected verification and reuse unchanged\nproof. Report what ran, what it demonstrated and material gaps. If a needed\ninterface is unavailable, use another suitable authorized tool where possible;\ndo not invent a PASS or automatically transfer testing to the user. Build owns\nrepairs and Review owns acceptance within the existing task.\n",
+              "extracted_snapshot_sha256": "99ac5be7d7fe32fc8b2e1777b592c2942d13f1a523cb49a81e9e8e93f942a693"
+            }
+          ],
+          "raw_events_sha256": "d051e4b8391276baa7515dfbc69b048bd3a63c16e2947e6a326d39d3a3692130"
+        }
+      }
+    },
+    "candidate": {
+      "independent_readback": {
+        "revision": "candidate",
+        "observations": [
+          {
+            "case": "exact_decimals",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": "0.25",
+            "stderr": ""
+          },
+          {
+            "case": "large_exact_number",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": "9007199254740993.03",
+            "stderr": ""
+          },
+          {
+            "case": "negative_total",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": "-3.50",
+            "stderr": ""
+          },
+          {
+            "case": "header_only",
+            "passed": true,
+            "exit_code": 0,
+            "stdout": "0",
+            "stderr": ""
+          },
+          {
+            "case": "missing_column",
+            "passed": true,
+            "exit_code": 1,
+            "stdout": "",
+            "stderr": "sum_csv.py: CSV must contain an 'amount' column"
+          },
+          {
+            "case": "malformed_amount",
+            "passed": true,
+            "exit_code": 1,
+            "stdout": "",
+            "stderr": "sum_csv.py: Line 2: invalid amount 'hello'"
+          },
+          {
+            "case": "nonfinite_nan",
+            "passed": true,
+            "exit_code": 1,
+            "stdout": "",
+            "stderr": "sum_csv.py: Line 2: amount must be finite"
+          },
+          {
+            "case": "nonfinite_infinity",
+            "passed": true,
+            "exit_code": 1,
+            "stdout": "",
+            "stderr": "sum_csv.py: Line 2: amount must be finite"
+          },
+          {
+            "case": "checkout_success",
+            "passed": true
+          },
+          {
+            "case": "empty_order",
+            "passed": true
+          },
+          {
+            "case": "negative_price",
+            "passed": true
+          },
+          {
+            "case": "zero_quantity",
+            "passed": true
+          },
+          {
+            "case": "boolean_price",
+            "passed": true
+          },
+          {
+            "case": "payment_failure_visible",
+            "passed": true
+          },
+          {
+            "case": "document_owner",
+            "passed": true
+          },
+          {
+            "case": "document_other_user",
+            "passed": true
+          },
+          {
+            "case": "attachment_owner",
+            "passed": true
+          },
+          {
+            "case": "attachment_maintainer",
+            "passed": true
+          },
+          {
+            "case": "attachment_other_member",
+            "passed": true
+          },
+          {
+            "case": "read_only_review_preserves_supplied_files",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "known_fixture_defects": {
+          "race": {
+            "capacity": 1,
+            "reservation_count": 2,
+            "remaining": 0,
+            "results": [
+              {
+                "reserved": true,
+                "user_id": "u1"
+              },
+              {
+                "reserved": true,
+                "user_id": "u2"
+              }
+            ]
+          },
+          "failed_insert": {
+            "remaining_before": 1,
+            "remaining_after": 0
+          },
+          "payment_failure": {
+            "reported_result": {
+              "paid": true,
+              "receipt": null
+            },
+            "request_count": 1
+          }
+        }
+      },
+      "native_cases": {
+        "implementation": {
+          "run": {
+            "case": "implementation",
+            "exit_code": 0,
+            "timed_out": false,
+            "elapsed_seconds": 221.23,
+            "skill_sha256": "4dabe2e9e4aa814ef1e7f6b43eb007e165821b57c5b453a47af0adcb63a9f56d"
+          },
+          "selected_skill_reads": [
+            "/bin/zsh -lc 'cat .agents/skills/write-code/SKILL.md'"
+          ],
+          "usage_receipt": {
+            "input_tokens": 123024,
+            "cached_input_tokens": 97280,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5186,
+            "reasoning_output_tokens": 1032
+          },
+          "response": "Completed all three tasks:\n\n- [script/sum_csv.py](script/sum_csv.py): exact decimal totals, negative values, header-only `0`, and useful errors with nonzero exits.\n- [checkout/app.py](checkout/app.py): domain validation before one charge in cents; returns the provider receipt and propagates failures. Existing client configuration preserved.\n- [authorization/archive.py](authorization/archive.py): shared bookkeeping with unchanged signatures, permissions, results, and events.\n\nAdded `test_sum_csv.py`, `test_app.py`, and `test_archive.py` in their respective folders. Ran unittest discovery for each: **10 tests passed**, covering precision, invalid inputs, payment failures, and archive behavior. The sample CLI printed `0.25`.\n\nDisposable CSV inputs were removed. All changes stayed within the three task folders; no external services were contacted.",
+          "supplied_hashes": {
+            "checkout/payment_adapter.py": "663335390761fba0dc76440278b5bcde052c4204d4986608d61752a0cd4f3eba",
+            "checkout/domain.py": "bee33ad088a0b4033cf679d60794b3438b5189c600d691fbe128ce310807cd57",
+            "checkout/vendor_sdk.py": "1da1387730d20042c13349644e44435e3d83c275c9f7eaee196fff1422a3161d",
+            "authorization/archive.py": "3cfc7aae737d1fc427c00d850939f8668701bc6cf69f952e4832f1e96bf0dc78"
+          },
+          "generated_files": {
+            "script/test_sum_csv.py": "import os\nfrom pathlib import Path\nimport subprocess\nimport sys\nimport tempfile\nimport unittest\n\n\nROOT = Path(__file__).resolve().parent\n\n\nclass SumCsvTests(unittest.TestCase):\n    def invoke(self, contents):\n        with tempfile.TemporaryDirectory(dir=ROOT) as directory:\n            path = Path(directory) / \"input.csv\"\n            path.write_text(contents, encoding=\"utf-8\")\n            return subprocess.run(\n                [sys.executable, str(ROOT / \"sum_csv.py\"), str(path)],\n                capture_output=True,\n                text=True,\n                env={**os.environ, \"PYTHONDONTWRITEBYTECODE\": \"1\"},\n                check=False,\n            )\n\n    def test_exact_totals(self):\n        cases = [\n            (\"amount\\n0.10\\n0.20\\n-0.05\\n\", \"0.25\"),\n            (\"amount\\n\", \"0\"),\n            (\"label,amount\\na,-2.5\\nb,1\\n\", \"-1.5\"),\n            (\"amount\\n999999999999999999999999999999.99\\n0.01\\n\",\n             \"1000000000000000000000000000000.00\"),\n            (\"amount\\n1e30\\n1e-30\\n-1e30\\n\",\n             \"0.000000000000000000000000000001\"),\n        ]\n        for contents, expected in cases:\n            with self.subTest(contents=contents):\n                result = self.invoke(contents)\n                self.assertEqual(result.returncode, 0, result.stderr)\n                self.assertEqual(result.stdout, expected + \"\\n\")\n                self.assertEqual(result.stderr, \"\")\n\n    def test_invalid_csv_has_no_total(self):\n        cases = [\n            (\"\", \"amount\"),\n            (\"other\\n1\\n\", \"amount\"),\n            (\"amount\\nabc\\n\", \"Line 2\"),\n            (\"amount,label\\n,empty\\n\", \"invalid amount\"),\n            (\"label,amount\\nmissing\\n\", \"missing amount\"),\n            (\"amount\\nNaN\\n\", \"finite\"),\n            (\"amount\\nsNaN\\n\", \"finite\"),\n            (\"amount\\nInfinity\\n\", \"finite\"),\n            (\"amount\\n-Infinity\\n\", \"finite\"),\n            ('amount\\n\"1\\n', \"unexpected end of data\"),\n        ]\n        for contents, message in cases:\n            with self.subTest(contents=contents):\n                result = self.invoke(contents)\n                self.assertNotEqual(result.returncode, 0)\n                self.assertEqual(result.stdout, \"\")\n                self.assertIn(message, result.stderr)\n\n    def test_missing_path(self):\n        with tempfile.TemporaryDirectory(dir=ROOT) as directory:\n            result = subprocess.run(\n                [sys.executable, str(ROOT / \"sum_csv.py\"), str(Path(directory) / \"absent.csv\")],\n                capture_output=True, text=True, check=False,\n            )\n        self.assertNotEqual(result.returncode, 0)\n        self.assertEqual(result.stdout, \"\")\n        self.assertIn(\"absent.csv\", result.stderr)\n\n\nif __name__ == \"__main__\":\n    unittest.main()\n",
+            "script/sum_csv.py": "\"\"\"Print the exact sum of a CSV file's amount column.\"\"\"\n\nimport argparse\nimport csv\nfrom decimal import Decimal, InvalidOperation, MAX_EMAX, MIN_EMIN, localcontext\nimport sys\n\n\ndef sum_csv(path):\n    total = Decimal(0)\n    with open(path, newline=\"\", encoding=\"utf-8\") as source, localcontext() as context:\n        context.Emax = MAX_EMAX\n        context.Emin = MIN_EMIN\n        reader = csv.DictReader(source, strict=True)\n        if reader.fieldnames is None or \"amount\" not in reader.fieldnames:\n            raise ValueError(\"CSV must contain an 'amount' column\")\n        for row in reader:\n            raw = row[\"amount\"]\n            try:\n                amount = Decimal(raw) if raw is not None else None\n            except InvalidOperation:\n                raise ValueError(f\"Line {reader.line_num}: invalid amount {raw!r}\") from None\n            if amount is None:\n                raise ValueError(f\"Line {reader.line_num}: missing amount\")\n            if not amount.is_finite():\n                raise ValueError(f\"Line {reader.line_num}: amount must be finite\")\n            # Align every decimal place and allow a carry, independent of the\n            # default decimal precision or the number of rows already summed.\n            context.prec = max(\n                context.prec,\n                max(total.adjusted(), amount.adjusted())\n                - min(total.as_tuple().exponent, amount.as_tuple().exponent)\n                + 2,\n            )\n            total += amount\n    return total\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"path\", help=\"CSV file containing an amount column\")\n    args = parser.parse_args()\n    try:\n        total = sum_csv(args.path)\n    except (OSError, UnicodeError, csv.Error, ValueError) as error:\n        print(f\"{parser.prog}: {error}\", file=sys.stderr)\n        return 1\n    print(format(total, \"f\"))\n    return 0\n\n\nif __name__ == \"__main__\":\n    sys.exit(main())\n",
+            "checkout/payment_adapter.py": "from vendor_sdk import ChargeRequest, Client\n\nclient = Client()\n\ndef charge(amount_cents):\n    return client.charge(ChargeRequest(amount_cents))\n",
+            "checkout/domain.py": "def validate_items(items):\n    if not items:\n        raise ValueError(\"Order must have at least one item\")\n    for item in items:\n        price, quantity = item[\"unit_price_cents\"], item[\"quantity\"]\n        if type(price) is not int or type(quantity) is not int or price < 0 or quantity <= 0:\n            raise ValueError(\"Invalid line item\")\n",
+            "checkout/vendor_sdk.py": "from dataclasses import dataclass\n\n@dataclass\nclass ChargeRequest:\n    amount_cents: int\n\nclass PaymentFailure(Exception):\n    pass\n\nclass Client:\n    def __init__(self):\n        self.requests = []\n        self.fail = False\n\n    def charge(self, request):\n        self.requests.append(request)\n        if self.fail:\n            raise PaymentFailure(\"Payment service unavailable\")\n        return {\"receipt_id\": \"synthetic-receipt\", \"amount_cents\": request.amount_cents}\n",
+            "checkout/app.py": "\"\"\"Coordinate order validation and payment.\"\"\"\n\nimport domain\nimport payment_adapter\n\n\ndef checkout(items):\n    \"\"\"Validate line items and return the receipt from a single payment.\"\"\"\n    domain.validate_items(items)\n    total_cents = sum(item[\"unit_price_cents\"] * item[\"quantity\"] for item in items)\n    return payment_adapter.charge(total_cents)\n",
+            "checkout/test_app.py": "import unittest\nfrom unittest.mock import patch\n\nimport app\nimport domain\nimport payment_adapter\nfrom vendor_sdk import Client, PaymentFailure\n\n\nclass CheckoutTests(unittest.TestCase):\n    def setUp(self):\n        self.client = Client()\n        client_patch = patch.object(payment_adapter, \"client\", self.client)\n        client_patch.start()\n        self.addCleanup(client_patch.stop)\n\n    def test_receipt_and_single_charge_in_cents(self):\n        items = [\n            {\"unit_price_cents\": 125, \"quantity\": 3},\n            {\"unit_price_cents\": 50, \"quantity\": 2},\n        ]\n        with patch.object(domain, \"validate_items\", wraps=domain.validate_items) as validate:\n            receipt = app.checkout(items)\n        validate.assert_called_once_with(items)\n        self.assertEqual(receipt, {\"receipt_id\": \"synthetic-receipt\", \"amount_cents\": 475})\n        self.assertEqual([request.amount_cents for request in self.client.requests], [475])\n\n    def test_returns_adapter_receipt_unchanged(self):\n        receipt = object()\n        with patch.object(payment_adapter, \"charge\", return_value=receipt) as charge:\n            self.assertIs(app.checkout([{\"unit_price_cents\": 0, \"quantity\": 1}]), receipt)\n        charge.assert_called_once_with(0)\n\n    def test_domain_rejections_never_charge(self):\n        invalid_orders = [\n            [],\n            [{\"unit_price_cents\": -1, \"quantity\": 1}],\n            [{\"unit_price_cents\": 1, \"quantity\": 0}],\n            [{\"unit_price_cents\": 1.5, \"quantity\": 1}],\n            [{\"unit_price_cents\": True, \"quantity\": 1}],\n            [{\"unit_price_cents\": 1, \"quantity\": False}],\n            [{\"unit_price_cents\": 10, \"quantity\": 1}, {\"unit_price_cents\": 1, \"quantity\": -1}],\n        ]\n        for items in invalid_orders:\n            with self.subTest(items=items), self.assertRaises(ValueError):\n                app.checkout(items)\n        self.assertEqual(self.client.requests, [])\n\n    def test_provider_failure_propagates_without_retry(self):\n        self.client.fail = True\n        with self.assertRaisesRegex(PaymentFailure, \"Payment service unavailable\"):\n            app.checkout([{\"unit_price_cents\": 200, \"quantity\": 2}])\n        self.assertEqual([request.amount_cents for request in self.client.requests], [400])\n\n\nif __name__ == \"__main__\":\n    unittest.main()\n",
+            "authorization/test_archive.py": "import unittest\n\nfrom archive import archive_attachment, archive_document\n\n\nclass ArchiveTests(unittest.TestCase):\n    def test_allowed_operations_keep_result_state_and_events(self):\n        cases = [\n            (archive_document, (\"owner\",)),\n            (archive_attachment, (\"owner\", \"reader\")),\n            (archive_attachment, (\"other\", \"maintainer\")),\n        ]\n        for operation, args in cases:\n            with self.subTest(operation=operation.__name__, args=args):\n                resource = {\"owner_id\": \"owner\", \"id\": \"resource\", \"archived\": False}\n                previous_event = {\"kind\": \"created\"}\n                events = [previous_event]\n                self.assertEqual(operation(*args, resource, events), \"resource\")\n                self.assertEqual(resource, {\"owner_id\": \"owner\", \"id\": \"resource\", \"archived\": True})\n                self.assertEqual(events, [previous_event, {\"kind\": \"archived\", \"id\": \"resource\", \"actor\": args[0]}])\n\n    def test_denied_operations_leave_state_and_events_unchanged(self):\n        cases = [\n            (archive_document, (\"other\",), \"Only the owner may archive documents\"),\n            (archive_attachment, (\"other\", \"reader\"), \"Only the owner or a maintainer may archive attachments\"),\n            (archive_attachment, (\"other\", \"admin\"), \"Only the owner or a maintainer may archive attachments\"),\n        ]\n        for operation, args, message in cases:\n            with self.subTest(operation=operation.__name__, args=args):\n                resource = {\"owner_id\": \"owner\", \"id\": \"resource\", \"archived\": False}\n                events = []\n                with self.assertRaisesRegex(PermissionError, message):\n                    operation(*args, resource, events)\n                self.assertFalse(resource[\"archived\"])\n                self.assertEqual(events, [])\n\n    def test_repeated_archive_still_emits_each_event(self):\n        for operation, args in [(archive_document, (\"owner\",)), (archive_attachment, (\"owner\", \"reader\"))]:\n            with self.subTest(operation=operation.__name__):\n                resource = {\"owner_id\": \"owner\", \"id\": \"resource\", \"archived\": True}\n                events = []\n                for _ in range(2):\n                    self.assertEqual(operation(*args, resource, events), \"resource\")\n                self.assertEqual(events, [{\"kind\": \"archived\", \"id\": \"resource\", \"actor\": \"owner\"}] * 2)\n\n\nif __name__ == \"__main__\":\n    unittest.main()\n",
+            "authorization/archive.py": "def _archive(user_id, resource, events):\n    resource[\"archived\"] = True\n    events.append({\"kind\": \"archived\", \"id\": resource[\"id\"], \"actor\": user_id})\n    return resource[\"id\"]\n\n\ndef archive_document(user_id, document, events):\n    if user_id != document[\"owner_id\"]:\n        raise PermissionError(\"Only the owner may archive documents\")\n    return _archive(user_id, document, events)\n\ndef archive_attachment(user_id, role, attachment, events):\n    if user_id != attachment[\"owner_id\"] and role != \"maintainer\":\n        raise PermissionError(\"Only the owner or a maintainer may archive attachments\")\n    return _archive(user_id, attachment, events)\n"
+          },
+          "selected_skill_readbacks": [
+            {
+              "command": "/bin/zsh -lc 'cat .agents/skills/write-code/SKILL.md'",
+              "exit_code": 0,
+              "output": "---\nname: write-code\ndescription: Write or change code of any size, including scripts, shell snippets, SQL, tests and automation; apply proportionate quality and verification, also when reviewing code.\nmetadata:\n  version: \"1.1.0\"\n---\n\n# AIOS:write-code\n\nUse for authoring, changing or reviewing code, including one-off scripts,\nnotebooks, executable configuration and examples. Tool invocation or explanation\nalone needs no coding workflow.\n\nUse the accepted task, local AGENTS and repository conventions/tools. Keep small\nwork direct. Build implements and verifies; read-only Review reports through the\nexisting gate. Add no separate lifecycle or report. Drafting code grants no\nexecution or external-write authority.\n\n## Code that earns its complexity\n\n- Read surrounding code and interfaces first. Use domain names, clear control\n  flow and local type/style rules. Expose meaningful failures; avoid broad\n  catches, invented defaults and success-shaped fallbacks that hide defects.\n- Keep cohesive responsibilities: gather behavior that changes for the same\n  reasons; separate independent policies. Hide internals behind small caller\n  contracts. Avoid circular dependencies and hidden shared\n  mutable state. Share common behavior, not merely similar syntax.\n- At meaningful domain/I/O boundaries, keep business rules independent of\n  framework/provider types and concrete storage. Adapters translate\n  external data/errors; core contracts express what the caller needs. Supply\n  dependencies explicitly when useful, including time/randomness for repeatable\n  tests. Follow local architecture/idioms; functions/modules may suffice.\n  Prefer composition over inheritance for unrelated policies.\n  A real boundary may justify one-caller abstraction; speculative interfaces,\n  containers, wrappers and dependencies do not. Small scripts can stay one file.\n- Define inputs, outputs, errors and domain invariants. Validate untrusted data\n  at boundaries; preserve valid internal states and compatibility, or make the\n  accepted change explicit. CLI arguments, stdout/stderr and exit status are APIs.\n  Consider authorization, atomicity, concurrent updates, retries/idempotency,\n  cancellation and partial failure where they affect correctness. Own resource\n  cleanup; bound waits/work where needed. Check expected data sizes and measure\n  relevant performance rather than optimizing speculatively. Failures should be\n  diagnosable without exposing secrets or sensitive data.\n- Comments explain intent, constraints and tradeoffs; document public contracts\n  for correct use. Update stale comments. Remove obvious narration, AI\n  meta-comments, scaffolding, dead code and fake implementations; preserve\n  required notices/generated attribution. Complete relevant failure, empty and\n  loading states. Keep changes scoped and affected documentation accurate.\n\nFor extraction, inspect affected callers, move a bounded part, verify one caller\nthen the others before removing old code. Preserve caller-specific permissions,\ntransactions and retry policies. Setup/delivery gaps use\n[Project Foundation](../aios-project-foundation/SKILL.md); changed sensitive or\nprotected boundaries use the existing [security contract](../aios/references/security.md).\n\n## Evidence suited to the change\n\nVerify at the nearest useful boundary. Test observable contracts/invariants and\ndistinct regressions, not internal call sequences or redundant cases.\nRun required checks without weakening them. Add durable tests for meaningful\nbehavior, without a coverage quota or a new framework for every snippet.\n\n| Changed surface | Useful verification |\n| --- | --- |\n| UI/UX, layout or interaction | Exercise the running flow with browser/computer-use tools, including relevant viewports, keyboard/focus, loading and errors. Keep useful screenshots/traces; source or an initial screenshot cannot prove interaction. Avoid styling-only unit tests; protect critical repeated flows with end-to-end tests when warranted. |\n| Logic, parsing or state | Test contracts, boundaries and distinct regressions in the existing stack. Reproduce a failing regression before fixing a defect when practical. Exercise core rules independently of external I/O where useful. |\n| API, database or integration | Exercise relevant success/failure at the actual boundary with controlled data. Check affected atomicity, concurrency, duplicate/denied operations and compatibility. Distinguish mocks and synthetic adapters from observed integration. |\n| Script, CLI or automation | Invoke representative disposable inputs; check results, errors, exit status and relevant repeated runs. State changes use safe fixtures or supported dry runs within authority. Syntax alone is insufficient. |\n| Code example or executable configuration | Validate syntax/documented behavior in a safe example when practical. Honor draft-only requests and state unexecuted assumptions. |\n\nAfter final edits, rerun affected verification; reuse unchanged proof. Report\nchecks, observed behavior and gaps. Use another suitable authorized tool if a\nneeded interface is unavailable; never invent PASS or default testing to the\nuser. Build owns repairs and Review acceptance within the existing task.\n",
+              "extracted_snapshot_sha256": "4dabe2e9e4aa814ef1e7f6b43eb007e165821b57c5b453a47af0adcb63a9f56d"
+            }
+          ],
+          "raw_events_sha256": "da95d0c280fe373961d02b08127db502f26443ed7ffb831e6592448e2136ad48"
+        },
+        "review": {
+          "run": {
+            "case": "review",
+            "exit_code": 0,
+            "timed_out": false,
+            "elapsed_seconds": 135.66,
+            "skill_sha256": "4dabe2e9e4aa814ef1e7f6b43eb007e165821b57c5b453a47af0adcb63a9f56d"
+          },
+          "selected_skill_reads": [
+            "/bin/zsh -lc 'cat .agents/skills/write-code/SKILL.md'"
+          ],
+          "usage_receipt": {
+            "input_tokens": 56888,
+            "cached_input_tokens": 35200,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3049,
+            "reasoning_output_tokens": 875
+          },
+          "response": "Found five actionable issues. Both existing tests pass, but disposable reproductions exposed failures they do not cover.\n\n1. **[P1] Concurrent reservations oversell stock — [reservation.py:2](fixture/review/reservation.py:2).**  \n   The read and update are separate autocommitted statements. Two workers can read the same remaining count and both reserve it. With one available item, I reproduced two successful reservations and final stock of zero. Use a conditional decrement (`WHERE remaining > 0`), check the affected-row count, and include the reservation insert in the same explicit transaction. Verify with two connections competing for one item: exactly one reservation must succeed.\n\n2. **[P1] Failed inserts permanently consume stock — [reservation.py:5](fixture/review/reservation.py:5).**  \n   In autocommit mode, the decrement persists before the insert runs; the final `commit()` provides no atomicity. A duplicate `user_id` raised `IntegrityError` but reduced stock from two to one. A subsequent rollback could not restore it. Wrap both writes in an explicit transaction with failure rollback. Verify that a rejected insert leaves both stock and reservations unchanged.\n\n3. **[P1] Payment exceptions become successful payment results — [payments.py:7](fixture/review/payments.py:7).**  \n   Every exception—including provider failures and programming errors—returns `{\"paid\": True, \"receipt\": None}`. The fixture’s `PaymentFailure` reproduced this directly. Callers can therefore treat an unsuccessful payment as settled. Handle documented provider exceptions explicitly and expose failure or an indeterminate outcome; let unexpected errors remain diagnosable. Define a consistent application result contract instead of mixing raw SDK responses with a fabricated success response. Test provider rejection, timeout, and unexpected exceptions.\n\n4. **[P1] Retries have no protection against duplicate charges — [payments.py:6](fixture/review/payments.py:6).**  \n   The function carries no stable invoice identity or idempotency key. If the service accepts a charge before a timeout, retrying submits another charge. A local client simulating that sequence recorded two accepted charges. Introduce stable invoice identity and use the real provider’s documented idempotency or reconciliation mechanism. Verify acceptance followed by a lost response and retry produces only one charge. **The synthetic SDK cannot establish the real provider’s guarantees.**\n\n5. **[P2] Invalid monetary inputs reach the payment boundary — [payments.py:4](fixture/review/payments.py:4).**  \n   There is no validation of prices or quantities. Negative quantity and fractional-cent inputs produced requests for `-100` and `0.5` cents. Define the permitted invoice rules and validate integer monetary units, quantity constraints, and applicable limits before charging. Test invalid inputs and assert that the client receives no request.\n\nThe tests are inadequate for these risks. [test_existing.py:13](fixture/review/test_existing.py:13) checks only the reservation success flag, without checking stock, inserted rows, rollback, or concurrency. [test_existing.py:8](fixture/review/test_existing.py:8) uses an unconstrained payment mock and never verifies the charged amount, failure behavior, or retries.\n\nVerification used local SQLite databases and synthetic clients only. Scratch data was removed, all four supplied Python files match their original hashes, and no external services were contacted.",
+          "supplied_hashes": {
+            "reservation.py": "b0d931e75c48c18729cc24e61a7f59aa365eb7ccd4d9a09a671f61243b4736b4",
+            "payments.py": "67554156ecff0298b6ded947c69991a1dbaf8f418d6d52ae967fd122b8b8ad40",
+            "test_existing.py": "045c6fd9fd11e92f82510ddfc659048135862661503fd1ce16cc2a0aef5b0977",
+            "vendor_sdk.py": "1da1387730d20042c13349644e44435e3d83c275c9f7eaee196fff1422a3161d"
+          },
+          "selected_skill_readbacks": [
+            {
+              "command": "/bin/zsh -lc 'cat .agents/skills/write-code/SKILL.md'",
+              "exit_code": 0,
+              "output": "---\nname: write-code\ndescription: Write or change code of any size, including scripts, shell snippets, SQL, tests and automation; apply proportionate quality and verification, also when reviewing code.\nmetadata:\n  version: \"1.1.0\"\n---\n\n# AIOS:write-code\n\nUse for authoring, changing or reviewing code, including one-off scripts,\nnotebooks, executable configuration and examples. Tool invocation or explanation\nalone needs no coding workflow.\n\nUse the accepted task, local AGENTS and repository conventions/tools. Keep small\nwork direct. Build implements and verifies; read-only Review reports through the\nexisting gate. Add no separate lifecycle or report. Drafting code grants no\nexecution or external-write authority.\n\n## Code that earns its complexity\n\n- Read surrounding code and interfaces first. Use domain names, clear control\n  flow and local type/style rules. Expose meaningful failures; avoid broad\n  catches, invented defaults and success-shaped fallbacks that hide defects.\n- Keep cohesive responsibilities: gather behavior that changes for the same\n  reasons; separate independent policies. Hide internals behind small caller\n  contracts. Avoid circular dependencies and hidden shared\n  mutable state. Share common behavior, not merely similar syntax.\n- At meaningful domain/I/O boundaries, keep business rules independent of\n  framework/provider types and concrete storage. Adapters translate\n  external data/errors; core contracts express what the caller needs. Supply\n  dependencies explicitly when useful, including time/randomness for repeatable\n  tests. Follow local architecture/idioms; functions/modules may suffice.\n  Prefer composition over inheritance for unrelated policies.\n  A real boundary may justify one-caller abstraction; speculative interfaces,\n  containers, wrappers and dependencies do not. Small scripts can stay one file.\n- Define inputs, outputs, errors and domain invariants. Validate untrusted data\n  at boundaries; preserve valid internal states and compatibility, or make the\n  accepted change explicit. CLI arguments, stdout/stderr and exit status are APIs.\n  Consider authorization, atomicity, concurrent updates, retries/idempotency,\n  cancellation and partial failure where they affect correctness. Own resource\n  cleanup; bound waits/work where needed. Check expected data sizes and measure\n  relevant performance rather than optimizing speculatively. Failures should be\n  diagnosable without exposing secrets or sensitive data.\n- Comments explain intent, constraints and tradeoffs; document public contracts\n  for correct use. Update stale comments. Remove obvious narration, AI\n  meta-comments, scaffolding, dead code and fake implementations; preserve\n  required notices/generated attribution. Complete relevant failure, empty and\n  loading states. Keep changes scoped and affected documentation accurate.\n\nFor extraction, inspect affected callers, move a bounded part, verify one caller\nthen the others before removing old code. Preserve caller-specific permissions,\ntransactions and retry policies. Setup/delivery gaps use\n[Project Foundation](../aios-project-foundation/SKILL.md); changed sensitive or\nprotected boundaries use the existing [security contract](../aios/references/security.md).\n\n## Evidence suited to the change\n\nVerify at the nearest useful boundary. Test observable contracts/invariants and\ndistinct regressions, not internal call sequences or redundant cases.\nRun required checks without weakening them. Add durable tests for meaningful\nbehavior, without a coverage quota or a new framework for every snippet.\n\n| Changed surface | Useful verification |\n| --- | --- |\n| UI/UX, layout or interaction | Exercise the running flow with browser/computer-use tools, including relevant viewports, keyboard/focus, loading and errors. Keep useful screenshots/traces; source or an initial screenshot cannot prove interaction. Avoid styling-only unit tests; protect critical repeated flows with end-to-end tests when warranted. |\n| Logic, parsing or state | Test contracts, boundaries and distinct regressions in the existing stack. Reproduce a failing regression before fixing a defect when practical. Exercise core rules independently of external I/O where useful. |\n| API, database or integration | Exercise relevant success/failure at the actual boundary with controlled data. Check affected atomicity, concurrency, duplicate/denied operations and compatibility. Distinguish mocks and synthetic adapters from observed integration. |\n| Script, CLI or automation | Invoke representative disposable inputs; check results, errors, exit status and relevant repeated runs. State changes use safe fixtures or supported dry runs within authority. Syntax alone is insufficient. |\n| Code example or executable configuration | Validate syntax/documented behavior in a safe example when practical. Honor draft-only requests and state unexecuted assumptions. |\n\nAfter final edits, rerun affected verification; reuse unchanged proof. Report\nchecks, observed behavior and gaps. Use another suitable authorized tool if a\nneeded interface is unavailable; never invent PASS or default testing to the\nuser. Build owns repairs and Review acceptance within the existing task.\n",
+              "extracted_snapshot_sha256": "4dabe2e9e4aa814ef1e7f6b43eb007e165821b57c5b453a47af0adcb63a9f56d"
+            }
+          ],
+          "raw_events_sha256": "2dfdcb5e6bfb5317bb6d9e8875894266237dc6e5be360a3149c4ddd560230a15"
+        }
+      }
+    }
+  },
+  "structural_checks": [
+    {
+      "command": "python3 tests/validate.py --baseline 082cfe3a9168c06526f9c53f309687a92f3a551b",
+      "result": "PASS; 26 canonical skill frontmatters, links, isolated package and version progression"
+    },
+    {
+      "command": "python3 tests/skill-version-rehearsal.py",
+      "result": "PASS; 7 cases"
+    },
+    {
+      "command": "python3 tests/documentation-rehearsal.py",
+      "result": "PASS; 7 cases"
+    },
+    {
+      "command": "python3 tests/context-footprint.py",
+      "result": "PASS; unchanged ceilings, candidate worker-build 38079 <= legacy 38099 bytes"
+    },
+    {
+      "command": "quick_validate.py skills/write-code",
+      "result": "PASS using a task-local Python environment with PyYAML 6.0.3; no product dependency added"
+    },
+    {
+      "command": "git diff --check",
+      "result": "PASS"
+    },
+    {
+      "command": "python3 tests/layout-rehearsal.py",
+      "result": "PASS; separate nested roots and exclusion failures"
+    },
+    {
+      "command": "python3 tests/continuity-rehearsal.py",
+      "result": "PASS; scoped local-Git roundtrip and negative cases"
+    }
+  ],
+  "manual_inspection": [
+    "Both CSV implementations use one production file, standard-library dependencies and functions without interfaces or containers.",
+    "Both checkout implementations validate through the existing domain module and call the existing payment adapter once. The supplied domain, SDK and adapter bytes are unchanged.",
+    "Both archive implementations extract bookkeeping only and retain distinct permission policies in their public functions.",
+    "Both reviewers reproduced overbooking, failed-insert stock loss and payment errors reported as success.",
+    "The candidate also discussed monetary-input invariants and repeat-charge risk. Provider idempotency remains conditional on real provider/caller contracts; it is not proven by the synthetic fixture."
+  ],
+  "limitations": [
+    "One matched run per task and revision; no statistical comparison or universal quality/performance guarantee.",
+    "Explicit local skill reads do not establish automatic discovery, marketplace adoption or active desktop installation.",
+    "SQLite is real and disposable; the payment SDK is synthetic and no live service was called.",
+    "Ordinary account configuration exposed ambient tool/skill metadata. Unused optional MCP servers logged OAuth startup failures in both revisions; fixture tools and model execution completed.",
+    "Tests cover Python fixtures; cross-language portability of the instructions is reviewed, not behaviorally proven for every language.",
+    "Package release and native installation were not part of these trials."
+  ],
+  "chronology": {
+    "basis": "Observed filesystem timestamps of saved artifacts, corroborating the task execution sequence; these are not signed native event timestamps.",
+    "artifacts": {
+      "baseline_implementation_completion_record": {
+        "modified_at_utc": "2026-10-02T09:47:53.248538+00:00",
+        "mtime_ns": 1790934473248538577
+      },
+      "baseline_implementation_skill_snapshot": {
+        "modified_at_utc": "2026-10-02T09:44:30.336797+00:00",
+        "mtime_ns": 1790934270336796593
+      },
+      "baseline_review_completion_record": {
+        "modified_at_utc": "2026-10-02T09:46:14.086349+00:00",
+        "mtime_ns": 1790934374086348763
+      },
+      "baseline_review_skill_snapshot": {
+        "modified_at_utc": "2026-10-02T09:44:30.353173+00:00",
+        "mtime_ns": 1790934270353173045
+      },
+      "baseline_independent_readback": {
+        "modified_at_utc": "2026-10-02T09:48:15.164147+00:00",
+        "mtime_ns": 1790934495164147365
+      },
+      "candidate_implementation_completion_record": {
+        "modified_at_utc": "2026-10-02T09:55:20.546605+00:00",
+        "mtime_ns": 1790934920546605184
+      },
+      "candidate_implementation_skill_snapshot": {
+        "modified_at_utc": "2026-10-02T09:51:39.248309+00:00",
+        "mtime_ns": 1790934699248309408
+      },
+      "candidate_review_completion_record": {
+        "modified_at_utc": "2026-10-02T09:53:54.979509+00:00",
+        "mtime_ns": 1790934834979509293
+      },
+      "candidate_review_skill_snapshot": {
+        "modified_at_utc": "2026-10-02T09:51:39.269243+00:00",
+        "mtime_ns": 1790934699269242744
+      },
+      "candidate_independent_readback": {
+        "modified_at_utc": "2026-10-02T09:55:50.803946+00:00",
+        "mtime_ns": 1790934950803945716
+      },
+      "candidate_canonical_skill_save": {
+        "modified_at_utc": "2026-10-02T09:51:39.027601+00:00",
+        "mtime_ns": 1790934699027601359
+      }
+    },
+    "baseline_completed_and_checked_before_final_candidate_save": true,
+    "candidate_snapshots_prepared_after_canonical_save": true
+  },
+  "independent_checker_source": "\"\"\"Check generated fixture behavior independently of the native agent's report.\"\"\"\n\nimport argparse\nfrom concurrent.futures import ThreadPoolExecutor\nfrom decimal import Decimal\nimport hashlib\nimport importlib.util\nimport json\nfrom pathlib import Path\nimport sqlite3\nimport subprocess\nimport sys\nimport tempfile\nimport threading\n\nROOT = Path(__file__).resolve().parent / \"write-code-trials\"\n\n\ndef load(path, name):\n    spec = importlib.util.spec_from_file_location(name, path)\n    module = importlib.util.module_from_spec(spec)\n    spec.loader.exec_module(module)\n    return module\n\n\ndef check_script(root):\n    script = root / \"script/sum_csv.py\"\n    if not script.is_file():\n        return [{\"case\": \"script_exists\", \"passed\": False}]\n    cases = [\n        (\"exact_decimals\", \"amount\\n0.10\\n0.20\\n-0.05\\n\", Decimal(\"0.25\")),\n        (\"large_exact_number\", \"amount\\n9007199254740993.01\\n0.02\\n\", Decimal(\"9007199254740993.03\")),\n        (\"negative_total\", \"amount\\n-2.50\\n-1.00\\n\", Decimal(\"-3.50\")),\n        (\"header_only\", \"amount\\n\", Decimal(\"0\")),\n        (\"missing_column\", \"other\\n1\\n\", None),\n        (\"malformed_amount\", \"amount\\nhello\\n\", None),\n        (\"nonfinite_nan\", \"amount\\nNaN\\n\", None),\n        (\"nonfinite_infinity\", \"amount\\nInfinity\\n\", None),\n    ]\n    observations = []\n    with tempfile.TemporaryDirectory(prefix=\"readback-\", dir=root) as temporary:\n        path = Path(temporary) / \"input.csv\"\n        for name, content, expected in cases:\n            path.write_text(content)\n            run = subprocess.run([sys.executable, str(script), str(path)], capture_output=True, text=True, timeout=10)\n            if expected is None:\n                passed = run.returncode != 0 and bool(run.stderr.strip()) and not run.stdout.strip()\n            else:\n                try:\n                    passed = run.returncode == 0 and Decimal(run.stdout.strip()) == expected\n                except ArithmeticError:\n                    passed = False\n            observations.append({\"case\": name, \"passed\": passed, \"exit_code\": run.returncode,\n                                 \"stdout\": run.stdout.strip(), \"stderr\": run.stderr.strip()})\n    return observations\n\n\ndef check_checkout(root):\n    path = root / \"checkout\"\n    if not (path / \"app.py\").is_file():\n        return [{\"case\": \"checkout_exists\", \"passed\": False}]\n    program = '''import json\nimport app\nimport payment_adapter\n\nresults = []\nclient = payment_adapter.client\nresult = app.checkout([{\"unit_price_cents\": 1200, \"quantity\": 1}, {\"unit_price_cents\": 175, \"quantity\": 1}])\nresults.append({\"case\": \"checkout_success\", \"passed\": result == {\"receipt_id\": \"synthetic-receipt\", \"amount_cents\": 1375} and len(client.requests) == 1 and client.requests[0].amount_cents == 1375})\nfor name, items in [\n (\"empty_order\", []),\n (\"negative_price\", [{\"unit_price_cents\": -1, \"quantity\": 1}]),\n (\"zero_quantity\", [{\"unit_price_cents\": 1, \"quantity\": 0}]),\n (\"boolean_price\", [{\"unit_price_cents\": True, \"quantity\": 1}]),\n]:\n before = len(client.requests)\n try:\n  app.checkout(items)\n except ValueError:\n  passed = len(client.requests) == before\n else:\n  passed = False\n results.append({\"case\": name, \"passed\": passed})\nclient.fail = True\ntry:\n app.checkout([{\"unit_price_cents\": 100, \"quantity\": 1}])\nexcept Exception:\n visible = True\nelse:\n visible = False\nresults.append({\"case\": \"payment_failure_visible\", \"passed\": visible and len(client.requests) == 2})\nprint(json.dumps(results))\n'''\n    run = subprocess.run([sys.executable, \"-c\", program], cwd=path, capture_output=True, text=True, timeout=10)\n    if run.returncode:\n        return [{\"case\": \"checkout_execution\", \"passed\": False, \"stderr\": run.stderr}]\n    return json.loads(run.stdout)\n\n\ndef check_authorization(root):\n    module = load(root / \"authorization/archive.py\", \"archive_fixture\")\n    observations = []\n    for name, function, arguments, allowed in [\n        (\"document_owner\", module.archive_document, (\"owner\",), True),\n        (\"document_other_user\", module.archive_document, (\"other\",), False),\n        (\"attachment_owner\", module.archive_attachment, (\"owner\", \"member\"), True),\n        (\"attachment_maintainer\", module.archive_attachment, (\"other\", \"maintainer\"), True),\n        (\"attachment_other_member\", module.archive_attachment, (\"other\", \"member\"), False),\n    ]:\n        item = {\"id\": \"item-1\", \"owner_id\": \"owner\", \"archived\": False}\n        events = []\n        try:\n            result = function(*arguments, item, events)\n        except PermissionError:\n            passed = not allowed and not item[\"archived\"] and events == []\n        else:\n            passed = allowed and result == \"item-1\" and item[\"archived\"] and events == [\n                {\"kind\": \"archived\", \"id\": \"item-1\", \"actor\": arguments[0]}]\n        observations.append({\"case\": name, \"passed\": passed})\n    return observations\n\n\ndef check_review(root):\n    original = json.loads((root / \"initial-hashes.json\").read_text())\n    unchanged = all(hashlib.sha256((root / name).read_bytes()).hexdigest() == value for name, value in original.items())\n    return [{\"case\": \"read_only_review_preserves_supplied_files\", \"passed\": unchanged}]\n\n\ndef reproduce_reservation(root):\n    module = load(root / \"reservation.py\", \"reservation_fixture\")\n    schema = \"CREATE TABLE stock(id INTEGER PRIMARY KEY, remaining INTEGER); INSERT INTO stock VALUES(1,1); CREATE TABLE reservations(user_id TEXT UNIQUE);\"\n    with tempfile.TemporaryDirectory(prefix=\"reservation-readback-\", dir=root) as temporary:\n        database = Path(temporary) / \"stock.sqlite\"\n        with sqlite3.connect(database, isolation_level=None) as connection:\n            connection.executescript(schema)\n        barrier = threading.Barrier(2, timeout=10)\n\n        class SynchronizedCursor:\n            def __init__(self, cursor):\n                self.cursor = cursor\n\n            def fetchone(self):\n                value = self.cursor.fetchone()\n                barrier.wait()\n                return value\n\n        class Connection:\n            def __init__(self, connection):\n                self.connection = connection\n\n            def execute(self, statement, values=()):\n                cursor = self.connection.execute(statement, values)\n                return SynchronizedCursor(cursor) if statement.startswith(\"SELECT\") else cursor\n\n            def commit(self):\n                self.connection.commit()\n\n        def reserve(user):\n            with sqlite3.connect(database, isolation_level=None, timeout=10) as connection:\n                return module.reserve(Connection(connection), user)\n\n        with ThreadPoolExecutor(max_workers=2) as executor:\n            results = list(executor.map(reserve, (\"u1\", \"u2\")))\n        with sqlite3.connect(database) as connection:\n            count = connection.execute(\"SELECT count(*) FROM reservations\").fetchone()[0]\n            remaining = connection.execute(\"SELECT remaining FROM stock\").fetchone()[0]\n    with sqlite3.connect(\":memory:\", isolation_level=None) as connection:\n        connection.executescript(schema + \"INSERT INTO reservations VALUES('existing');\")\n        try:\n            module.reserve(connection, \"existing\")\n        except sqlite3.IntegrityError:\n            remaining_after_failure = connection.execute(\"SELECT remaining FROM stock\").fetchone()[0]\n        else:\n            raise AssertionError(\"Expected fixture uniqueness failure\")\n    return {\"race\": {\"capacity\": 1, \"reservation_count\": count, \"remaining\": remaining, \"results\": results},\n            \"failed_insert\": {\"remaining_before\": 1, \"remaining_after\": remaining_after_failure}}\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"revision\")\n    arguments = parser.parse_args()\n    root = ROOT / arguments.revision\n    observations = check_script(root / \"implementation\") + check_checkout(root / \"implementation\") + check_authorization(root / \"implementation\") + check_review(root / \"review\")\n    result = {\"revision\": arguments.revision, \"observations\": observations,\n              \"passed\": all(item[\"passed\"] for item in observations),\n              \"known_fixture_defects\": reproduce_reservation(root / \"review\")}\n    (root / \"readback.json\").write_text(json.dumps(result, indent=2) + \"\\n\")\n    print(json.dumps(result, indent=2))\n    raise SystemExit(0 if result[\"passed\"] else 1)\n\n\nif __name__ == \"__main__\":\n    main()\n",
+  "trial_preparation_and_launch_source": "\"\"\"Prepare and run bounded native write-code trials using disposable inputs.\"\"\"\n\nimport argparse\nfrom concurrent.futures import ThreadPoolExecutor\nimport hashlib\nimport json\nfrom pathlib import Path\nimport shutil\nimport subprocess\nimport sys\nimport time\n\nTASK_ROOT = Path(__file__).resolve().parent / \"write-code-trials\"\nSOURCE = Path(\"skills/write-code/SKILL.md\")\n\nFILES = {\n    \"script/sample.csv\": \"amount\\n0.10\\n0.20\\n-0.05\\n\",\n    \"checkout/domain.py\": '''def validate_items(items):\n    if not items:\n        raise ValueError(\"Order must have at least one item\")\n    for item in items:\n        price, quantity = item[\"unit_price_cents\"], item[\"quantity\"]\n        if type(price) is not int or type(quantity) is not int or price < 0 or quantity <= 0:\n            raise ValueError(\"Invalid line item\")\n''',\n    \"checkout/vendor_sdk.py\": '''from dataclasses import dataclass\n\n@dataclass\nclass ChargeRequest:\n    amount_cents: int\n\nclass PaymentFailure(Exception):\n    pass\n\nclass Client:\n    def __init__(self):\n        self.requests = []\n        self.fail = False\n\n    def charge(self, request):\n        self.requests.append(request)\n        if self.fail:\n            raise PaymentFailure(\"Payment service unavailable\")\n        return {\"receipt_id\": \"synthetic-receipt\", \"amount_cents\": request.amount_cents}\n''',\n    \"checkout/payment_adapter.py\": '''from vendor_sdk import ChargeRequest, Client\n\nclient = Client()\n\ndef charge(amount_cents):\n    return client.charge(ChargeRequest(amount_cents))\n''',\n    \"authorization/archive.py\": '''def archive_document(user_id, document, events):\n    if user_id != document[\"owner_id\"]:\n        raise PermissionError(\"Only the owner may archive documents\")\n    document[\"archived\"] = True\n    events.append({\"kind\": \"archived\", \"id\": document[\"id\"], \"actor\": user_id})\n    return document[\"id\"]\n\ndef archive_attachment(user_id, role, attachment, events):\n    if user_id != attachment[\"owner_id\"] and role != \"maintainer\":\n        raise PermissionError(\"Only the owner or a maintainer may archive attachments\")\n    attachment[\"archived\"] = True\n    events.append({\"kind\": \"archived\", \"id\": attachment[\"id\"], \"actor\": user_id})\n    return attachment[\"id\"]\n''',\n}\n\nREVIEW_FILES = {\n    \"reservation.py\": '''def reserve(connection, user_id):\n    remaining = connection.execute(\"SELECT remaining FROM stock WHERE id = 1\").fetchone()[0]\n    if remaining <= 0:\n        raise ValueError(\"Sold out\")\n    connection.execute(\"UPDATE stock SET remaining = ? WHERE id = 1\", (remaining - 1,))\n    connection.execute(\"INSERT INTO reservations(user_id) VALUES (?)\", (user_id,))\n    connection.commit()\n    return {\"reserved\": True, \"user_id\": user_id}\n''',\n    \"payments.py\": '''from vendor_sdk import ChargeRequest\n\ndef approve_invoice(invoice, client):\n    amount = sum(item[\"unit_price_cents\"] * item[\"quantity\"] for item in invoice)\n    try:\n        return client.charge(ChargeRequest(amount))\n    except Exception:\n        return {\"paid\": True, \"receipt\": None}\n''',\n    \"vendor_sdk.py\": FILES[\"checkout/vendor_sdk.py\"],\n    \"test_existing.py\": '''import sqlite3\nimport unittest\nfrom unittest.mock import Mock\nfrom payments import approve_invoice\nfrom reservation import reserve\n\nclass ExistingTests(unittest.TestCase):\n    def test_payment(self):\n        client = Mock()\n        client.charge.return_value = {\"receipt\": \"r1\"}\n        self.assertEqual(approve_invoice([{\"unit_price_cents\": 100, \"quantity\": 1}], client), {\"receipt\": \"r1\"})\n\n    def test_reservation(self):\n        with sqlite3.connect(\":memory:\", isolation_level=None) as connection:\n            connection.executescript(\"CREATE TABLE stock(id INTEGER PRIMARY KEY, remaining INTEGER); INSERT INTO stock VALUES(1,1); CREATE TABLE reservations(user_id TEXT UNIQUE);\")\n            self.assertTrue(reserve(connection, \"u1\")[\"reserved\"])\n\nif __name__ == \"__main__\":\n    unittest.main()\n''',\n}\n\nPROMPTS = {\n    \"implementation\": \"\"\"Use the local write-code skill at .agents/skills/write-code/SKILL.md. Complete these three independent fixture tasks in their own folders:\n1. script/: create sum_csv.py, a small Python standard-library CLI accepting a CSV path. Sum its amount column exactly, print just the total, support negative values, and print 0 for a header-only file. Reject missing columns, invalid numbers and non-finite numbers with a nonzero exit and useful stderr.\n2. checkout/: implement app.checkout(items), returning the existing payment provider's receipt. Validate the items using the existing domain module before payment, calculate the total in cents and charge once through the existing payment adapter. Payment failures must remain visible. Preserve the existing module responsibilities and client configuration.\n3. authorization/: reduce duplicated archive bookkeeping in archive.py while preserving the two functions' signatures and existing permission policies, results and events.\nExercise the implemented behavior with disposable inputs. Keep changes within these task folders, use no third-party dependencies, and report the files and actual checks. Do not write outside this fixture or contact external services.\n\"\"\",\n    \"review\": \"\"\"Use the local write-code skill at .agents/skills/write-code/SKILL.md in read-only review mode. Review reservation.py and payments.py for correctness, maintainability and the adequacy of their tests. Callers provide SQLite connections in autocommit mode (isolation_level=None); the service runs multiple concurrent workers against one database. The payment client is an external service; the included SDK is a synthetic fixture. Report actionable findings with file, line, impact and useful verification. You may run existing tests and use disposable scratch data to investigate, but leave all supplied source and test files unchanged. Do not contact external services or write outside this fixture.\n\"\"\",\n}\n\n\ndef digest(path):\n    return hashlib.sha256(path.read_bytes()).hexdigest()\n\n\ndef supplied_hashes(root):\n    return {str(path.relative_to(root)): digest(path) for path in root.rglob(\"*.py\")}\n\n\ndef prepare(revision):\n    destination = TASK_ROOT / revision\n    if destination.exists():\n        raise SystemExit(f\"Refusing to overwrite existing trial: {destination}\")\n    for case, files in ((\"implementation\", FILES), (\"review\", REVIEW_FILES)):\n        root = destination / case\n        root.mkdir(parents=True)\n        skill = root / \".agents/skills/write-code/SKILL.md\"\n        skill.parent.mkdir(parents=True)\n        shutil.copyfile(SOURCE, skill)\n        (root / \"AGENTS.md\").write_text(\n            \"# Independent synthetic fixture\\n\\nUse only this fixture's instructions and local write-code skill. \"\n            \"No owner context, installation changes, external writes or publishing are part of this task. \"\n            \"The parent owns comparison and acceptance. No native goal was requested.\\n\"\n        )\n        for name, text in files.items():\n            path = root / name\n            path.parent.mkdir(parents=True, exist_ok=True)\n            path.write_text(text)\n        subprocess.run([\"git\", \"init\", \"-q\", str(root)], check=True)\n        (root / \"prompt.txt\").write_text(PROMPTS[case])\n        (root / \"initial-hashes.json\").write_text(json.dumps(supplied_hashes(root), indent=2) + \"\\n\")\n    (destination / \"source.json\").write_text(json.dumps({\"skill_sha256\": digest(SOURCE), \"source\": str(SOURCE)}, indent=2) + \"\\n\")\n    print(f\"Prepared {revision}: {destination}\", flush=True)\n\n\ndef run_case(revision, case):\n    root = TASK_ROOT / revision / case\n    command = [\"codex\", \"exec\", \"--ephemeral\", \"--json\", \"--sandbox\", \"workspace-write\",\n               \"-c\", 'approval_policy=\"never\"', \"-c\", 'model_reasoning_effort=\"high\"',\n               \"--cd\", str(root), \"--output-last-message\", str(root / \"response.txt\"), \"-\"]\n    started = time.monotonic()\n    with (root / \"events.jsonl\").open(\"w\") as output, (root / \"stderr.txt\").open(\"w\") as errors:\n        process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=output, stderr=errors, text=True)\n        process.stdin.write((root / \"prompt.txt\").read_text())\n        process.stdin.close()\n        try:\n            code = process.wait(timeout=300)\n            timed_out = False\n        except subprocess.TimeoutExpired:\n            process.terminate()\n            try:\n                process.wait(timeout=5)\n            except subprocess.TimeoutExpired:\n                process.kill()\n                process.wait()\n            code, timed_out = process.returncode, True\n    result = {\"case\": case, \"exit_code\": code, \"timed_out\": timed_out,\n              \"elapsed_seconds\": round(time.monotonic() - started, 2),\n              \"skill_sha256\": digest(root / \".agents/skills/write-code/SKILL.md\")}\n    (root / \"run.json\").write_text(json.dumps(result, indent=2) + \"\\n\")\n    print(json.dumps(result), flush=True)\n    return result\n\n\ndef run(revision):\n    with ThreadPoolExecutor(max_workers=2) as executor:\n        results = list(executor.map(lambda case: run_case(revision, case), PROMPTS))\n    if any(result[\"exit_code\"] != 0 or result[\"timed_out\"] for result in results):\n        raise SystemExit(1)\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"action\", choices=(\"prepare\", \"run\"))\n    parser.add_argument(\"revision\")\n    arguments = parser.parse_args()\n    {\"prepare\": prepare, \"run\": run}[arguments.action](arguments.revision)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}

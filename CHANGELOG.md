@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+- Strengthen Write Code 1.1.0 with cohesive responsibilities, explicit
+  dependencies, domain and I/O boundaries, invariants, concurrency, partial
+  failure and resource ownership. Preserve proportionate scripts and tests;
+  route project/security foundations to their existing canonical owners.
+- Retain matched baseline/candidate native trials and independent behavioral
+  readback; package release and installed adoption remain separate.
+
 ## 0.16.0 — 2026-10-01
 
 - Add Clarify 1.0.0 as an independently selectable explanation method in AIOS.

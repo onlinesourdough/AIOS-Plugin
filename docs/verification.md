@@ -1,5 +1,11 @@
 # Verification
 
+For the write-code 1.1.0 source candidate, see
+[engineering criteria and matched trials](write-code.md#engineering-criteria-revision-110).
+The 1.0.2 baseline was tested before editing; identical native tasks and 20
+independent checks per revision cover proportional implementation and read-only
+review. Source checks and installation/release state remain separate.
+
 For AIOS 0.16.0, see [Clarify and retired shelves](clarify.md) for the adopted
 explanation purpose, source provenance, two native candidate decision probes
 and retirement/recovery boundary. Native package adoption and public archive
