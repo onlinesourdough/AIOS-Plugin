@@ -11,6 +11,14 @@ accounting system or existing database. Repository instructions and plans stay
 in Git. Notion's guide routes to them; putting a link in Notion does not make
 the underlying data available or synchronized. Verify the relevant connection.
 
+For a database-based home, use the approved topic/Space/status properties or
+saved views to select metadata before fetching page bodies. Shared context is
+selected when relevant, not preloaded wholesale. A Space is an organizational
+scope; views reuse the same records. Keep knowledge at its owning topic and
+memory as durable decisions/corrections with provenance, avoiding a shadow copy.
+Native personal skills may appear in the same catalog, but their native skill
+designation and required references must remain intact.
+
 Use Notion permissions for page access and the native connection's identity.
 AIOS prompts do not enforce per-user access control. Validate actual access
 when adding a teammate; do not claim filtered search is a security boundary.
@@ -59,6 +67,7 @@ and distinguish that observation from future delivery.
 A preview retains the old owner data and exact previous registrations in a
 protected backup. Rollback changes only owned values that still match the
 preview output; preserve unrelated and subsequent edits. Re-enable the prior
-plugin, restore the prior bridge and owned skill links through supported host
-controls. Notion pages and new work remain; rollback is not permission to delete
+plugin (reinstall it if removed), restore the prior bridge and owned skill links
+through supported host controls. Restore an archived home only after reconciling
+later knowledge, and never overwrite an occupied destination. Notion pages and new work remain; rollback is not permission to delete
 them. Reconcile new Notion knowledge deliberately before resuming old memory.

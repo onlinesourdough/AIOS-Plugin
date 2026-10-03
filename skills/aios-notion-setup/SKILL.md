@@ -2,7 +2,7 @@
 name: aios-notion-setup
 description: Set up or resume a Notion context home with durable memory and native personal skills.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # AIOS:notion-setup
@@ -26,6 +26,17 @@ create the smallest useful home, memory destination and personal-skill route
 within the authorized scope. Use native Notion skills, not an ordinary database
 that merely labels pages as skills. Preserve existing pages and unknown blocks.
 
+Make the home usable by people: show existing knowledge, decisions and native
+skills through database views. When Spaces are useful, start with a Space
+property and filtered views, including a shared scope, rather than separate
+copies or an obligatory Space database. Preserve the owner's actual hierarchy.
+Split large imports into coherent, independently editable topics with clear
+titles, stable source identity and provenance. A view tag does not confer
+native skill status or permissions. Inspect the rendered home and use its
+filters before claiming usability. Keep technical guidance and recovery out
+of everyday navigation. Retire replaced structures only within cleanup authority,
+after source mapping, reference repair and verified recovery.
+
 Select accessible owner context with the user or existing task authority.
 Import durable facts with their provenance, source dates and uncertainty;
 import date is not confirmation date. Link live business sources instead of
@@ -48,6 +59,8 @@ Create or update one owner-approved Agent Operating Guide containing:
 
 - identity of this context home and links to relevant authoritative sources;
 - memory and actual work destinations, with source/freshness rules;
+- database/view identities and selective retrieval by topic, Space and current
+  status; query metadata first and fetch only relevant page bodies;
 - discoverable personal skills and the agreed policy for future skill changes;
 - access boundaries, maintenance scope and recovery location.
 

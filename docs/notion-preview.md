@@ -20,7 +20,7 @@ flowchart LR
 
 Deliver an installed, reversible preview with real import/readback and fresh
 session proof. Reuse the existing Business home and work destinations. Preserve
-personal supporting files, existing access, source dates and the original setup.
+personal supporting files, existing access, source dates and verified recovery.
 No merge, release, custom service, paid dependency or destructive data migration.
 Do not publish private IDs, imported content or machine settings in this repo.
 
@@ -50,11 +50,37 @@ is bounded to approved sources, not hidden chat history. Notion setup updates
 are reviewed before adoption.
 
 Rollback restores only recorded, unchanged preview registrations and the host
-pointer. Notion pages and later work remain available. The old owner home stays
-inactive during the trial, available for recovery; resuming it requires
-reconciliation of decisions made since cutover.
+pointer. Notion pages and later work remain available. Cleanup may retire the
+old home and registrations after a verified backup. Restore removed packages
+through supported host controls and reconcile later knowledge before resuming
+an archived home; do not overwrite an occupied destination. An earlier rollback
+helper is not valid after changing its recorded package/home assumptions.
 
-## Verification — 2026-10-03
+## Database and Space revision — 2026-10-03
+
+The owner requested one readable Business home, Space-based navigation and
+removal of the replaced setup. Reuse the existing knowledge and memory sources.
+Show current knowledge, native personal skills and decisions through filtered
+views; use Space metadata instead of copying records into separate page trees.
+Keep coherent topics independently editable, preserving source identity and
+dates. Native skill designation and supporting files are separate from a
+catalog's Type property. Views organize information; they do not restrict access.
+
+The host instruction is a conditional pointer: work needing owner context and
+Notion writes read the guide; unrelated repository work stays local-first.
+The guide supplies exact database/view identities, metadata-first selection,
+current decisions and relevant personal skills. Shared scope is selected when
+needed, not read wholesale. This revision adds no hook or custom context service.
+
+Private recovery preserves the replaced host instructions, imported sources,
+Notion structure and the retired owner home. Obsolete plugin registrations,
+the old navigation hub and superseded policy are removed from active use only
+after readback. Keep current recovery instructions alongside that backup.
+
+Current verification is recorded separately at the end of this document;
+the historical evidence below does not establish acceptance of later mutations.
+
+## Historical verification — previews .1 through .3
 
 Source base: `3b15f6a2dfef198702b532737e00e9a5fae9099f`.
 Source subject SHA-256: `1b8132dd196fbd8d1192aa54987c87a284cbf0b5628db6acda0ebfeec4ad66d4`. This is SHA-256 of a sorted
@@ -101,3 +127,34 @@ review of the operator helper found a relative-link defect; it was fixed and
 the affected synthetic and actual host recovery checks were repeated.
 No merge, release, cross-harness runtime proof, UI-default proof, native complete
 skill-package export or token/cost improvement is claimed.
+
+## Current source verification — database and Space revision
+
+Source base: `3457050a200a1573dab5835f89445972dfcd3735`.
+Source subject SHA-256: `414f7cbd686e1aa9f196ada7facdd1c03c31f9c533b75cb4bd5ebc5c6257259c`, computed by the method above.
+Package validation with per-skill versions against that base, context-footprint,
+layout and continuity rehearsals, and whitespace checks passed. Test ceilings
+were unchanged. An initial footprint failure was fixed by shortening the entry
+wording while retaining the conditional owner-context boundary.
+
+Independent source review found no actionable method/bridge defects. Its one
+documentation finding was the ambiguous historical evidence label; the earlier
+preview evidence is now explicitly historical. Independent correction review
+returned PASS for the exact source subject above.
+
+The installed preview `0.18.0-notion.4` matches all 170 staged package files.
+Private operator evidence records rendered Space/Skills views, preserved native
+skill banners and supporting children, and unique current knowledge/memory keys.
+A fresh independent-project session computed its local result with no Notion
+calls. A fresh owner-content session fetched the guide, selected metadata from
+saved views, and read relevant topic pages, one personal skill and its reference.
+The first owner run used plan-limited SQL; the owner guide was clarified to
+prefer the existing quota-free view mode and that affected run was repeated.
+Both runs were read-only. These observations prove the bounded retrieval path,
+not future reliability, automatic slash-command discovery or token savings.
+
+The earlier local home was retired with 32 matching file hashes. Obsolete
+registrations and the outdated rollback helper are removed from active use;
+the current recovery record preserves the original sources and explains safe
+restoration after later edits. Native daily-maintenance configuration was read
+back with the revised source scope; future executions remain unproven.

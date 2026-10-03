@@ -2,7 +2,7 @@
 name: aios
 description: Apply owner context and select relevant AIOS methods for the current task.
 metadata:
-  version: "2.5.0"
+  version: "2.5.1"
 ---
 
 # AIOS:aios
@@ -11,7 +11,7 @@ Use the current task/workspace. Independent repositories use local
 instructions and accepted inputs without personal preload. Native harnesses
 own projects, sessions, tools and permissions.
 
-Owner work uses the chosen home or managed bridge. For Notion, fetch its exact
+When owner context is needed, use its home or bridge. For Notion, fetch its exact
 guide and relevant sources through the [Notion route](../aios-notion-setup/references/operating.md);
 do not create local owner files or fall back to stale data on failure.
 Otherwise use the established file home, defaulting to ~/.AIOS: read AIOS.md,
