@@ -2,7 +2,7 @@
 name: aios-context
 description: Manage the chosen context home for setup, relevant retrieval, durable updates or a context audit. Keep independent repository work local.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # AIOS:context
@@ -22,6 +22,8 @@ setting up a client. Persistent routing changes only at the intended scope.
 Notion is the recommended starting point for solo founders, business leaders
 and small teams. Preserve an established alternative unless a move is requested.
 An installed connector alone never selects a home or authorizes migration.
+“Set up my Notion for AIOS” starts the Notion setup route below. Installation
+alone does not run it; setup guides the owner from access to a first useful task.
 
 For an unresolved home design, a move or a structural audit, apply the
 [home contract](references/home-contract.md). A concrete provider setup already

@@ -261,7 +261,7 @@ discovery, universal connector behavior or future freshness. Daily maintenance
 remains paused. Account-specific snapshots and rendered UI proof stay private;
 no merge, public workspace template, package release or deployment is included.
 
-## Current verification — provider-neutral Context (.8)
+## Provider-neutral Context verification (.8)
 
 The public `aios-context` entry replaces `aios-notion-setup`; 26 shared skills
 remain. Notion is the preferred small-team route within an open home contract.
@@ -316,3 +316,47 @@ privately. A synthetic restoration check restored only the unchanged owned block
 preserved later unrelated instructions and rejected a modified block. Live .8
 configuration was not rolled back for that test. The former daily automation
 remains paused; no schedule, sharing change, dependency, merge or release was added.
+
+## Customer onboarding and shared page layout (.9)
+
+The Notion setup route now starts after plugin installation with a short request,
+checks the customer's connection and selected home, and helps resolve only the
+missing business choices. The reusable Operating Model page ships in
+`skills/aios-context/assets/notion-operating-model.md`. Its common layout routes
+to Docs, Skills and Memory; customer links, Spaces, source choices and agreements
+are filled from actual evidence. Technical routes sit inside one collapsed
+section. Repeated setup and plugin updates preserve the customer's existing
+page identity, icons, wording and policy. Resources teaches this template instead
+of maintaining a second copy. AIOS Context is now version 1.1.0.
+
+Verification on the source following `22ba23545e1dd7c1441c135f9e95b51998a174c1`:
+package/per-skill validation, layout, continuity, skill-version, documentation,
+unchanged footprint ceilings and whitespace checks passed. Independent source
+review returned PASS, including the new asset and Resources wording; 94 local
+links resolved. The affected Resources branch passed its full CI gate with 108
+tests; Draft/Hidden metadata and the 10-resource/65-outline catalog remain.
+
+Preview `0.18.0-notion.9` was installed through native plugin controls. All 176
+installed files match the package stage; 26 skills remain. The user's short host
+instruction is unchanged. Three fresh read-only native sessions loaded .9:
+
+- No Notion connection: names the required connection/access step and helps
+  choose one task without claiming access or setup success.
+- Messy customer: reuses exact Docs and native Skills, preserves the archive,
+  unclassified work and skill resources, proposes only missing destinations,
+  and adapts the packaged layout without inventing links or claiming a task ran.
+- Existing customer page: preserves its icon, title, wording, IDs and founder
+  review rule; no personal skill is invented. Structure readiness is separated
+  from the still-pending first task and correction test.
+
+These are synthetic decision/draft exercises, not live customer provisioning or
+end-to-end idempotence proof. Traces contain only local shell reads, with no
+provider calls or source writes. The owner's live entry was separately updated
+and read back exactly, with existing routes, policy, title and icon preserved;
+native UI inspection confirmed the human sections and collapsed technical notes.
+Database schemas and native templates were unchanged; their earlier evidence and
+connector limitation still apply. No runtime performance claim is made.
+
+The previous .8 stage, host instructions and pre-edit owner entry are retained
+privately for scoped recovery. No stable release, merge, public Notion template,
+sharing change or schedule was created. Resources remains a draft.

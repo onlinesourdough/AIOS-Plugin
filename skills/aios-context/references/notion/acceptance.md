@@ -14,6 +14,7 @@ test artifact. Do not confuse these observations with future reliability.
 | Schema and templates | Apply the [schema contract](schema-and-templates.md): consistent Space names/hierarchy, explained fields, retained IDs, no duplicate logical keys or broken relations; native templates instantiate their intended defaults without fixed keys or dates; verify actual skill designation separately |
 | Idempotence | Repeat discovery/reconciliation selects the same IDs; a changed destination is preserved |
 | Messy existing home | Reuse suitable Docs/native Skills/Memory by identity, add only missing destinations, preserve unclassified records and same-title decoys, and prove the first chosen workflow without broad migration |
+| First setup | A plain-language request reaches setup; missing access gets a concrete sign-in/access action, not an invented connection. The owner supplies decisions, not technical configuration. The filled entry uses the packaged layout, verified local links and agreements, no unresolved placeholders; an undecided task stays explicitly pending |
 | Fresh use | New native session reads the configured guide and relevant current sources, returns a sourced answer and uses a personal skill correctly |
 | Freshness | A controlled change in the test source is visible in a second retrieval; no local shadow truth |
 | Isolation | Independent repository task follows its local instructions without reading owner context |
@@ -25,3 +26,8 @@ test artifact. Do not confuse these observations with future reliability.
 
 For shared source changes run the repository's affected package, link, version
 and footprint checks. They do not replace live Notion or native-session proof.
+Report personal-skill use as not applicable when the selected task needs none;
+verify existing skill migrations separately. Report structure readiness and
+actual first-task/correction proof separately so an empty setup cannot pass as
+a working business workflow. Repeat setup must preserve local page wording and
+agreements as well as record identities.

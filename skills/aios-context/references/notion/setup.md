@@ -10,6 +10,26 @@ and the relevant Skills documentation it links. Record the applied version and
 date; a newer remote guide is a review input, not authority to replace policy.
 Use [operating boundaries](operating.md) throughout the setup.
 
+## Start after installation
+
+Accept an ordinary request such as “Set up my Notion for AIOS; start at [URL].”
+The owner connects Notion and grants access through the app's supported controls;
+the plugin cannot complete their sign-in. Verify a read of the selected home.
+If access is missing, name the exact connection action needed and continue only
+work that does not depend on private data. An installed plugin is not a connection.
+
+Reuse what the conversation and selected home already establish. Resolve only
+missing decisions: where to start, which businesses/brands belong together and
+one task worth improving. Help choose that task from the inspected work rather
+than making a long intake form a prerequisite. If the task remains undecided,
+the authorized structure can proceed; label the first-use test pending.
+
+Explain the concrete mapping in ordinary language: what already works, what
+will be added and which source needs an owner's decision. A compact before/after
+table is enough. Continue reversible in-scope setup under existing authority;
+ask only about unresolved facts, conflicts or actions outside that scope.
+Keep the customer's task and any persistent pointer scoped to that customer.
+
 ## Establish the destinations
 
 Verify the connected workspace/account and available tools. Reuse the owner's
@@ -71,16 +91,19 @@ transactional data. Cleanup of unrelated clutter is a separate scope.
 
 ## Establish ongoing use
 
-Create or update one short owner-approved context entry/operating guide. Use a
-name that fits the workspace; it can be called AI Native Operating Model. It
-contains owner-specific routing and choices, not a copy of this plugin's methods:
+Create or update one short entry using the packaged
+[Operating Model page](../../assets/notion-operating-model.md). Keep the familiar
+layout: where Docs, Skills and Memory are, what Spaces mean, how to start work
+and where results go. Fill the customer-specific links, Space map, sources,
+review/write agreements and recovery route from verified evidence. Put exact
+database/view IDs, field mappings and connection exceptions in its collapsed
+agent notes. Keep icons, titles and useful local wording. The customer owns
+this instance; package updates do not regenerate it or replace its agreements.
 
-- identity of this context home and links to relevant authoritative sources;
-- memory and actual work destinations, with source/freshness rules;
-- database/view identities and selective retrieval by topic, Space and current
-  status; query metadata first and fetch only relevant page bodies;
-- discoverable personal skills and the agreed policy for future skill changes;
-- access boundaries, maintenance scope and recovery location.
+The plugin owns the reusable page layout and setup procedure. Resources explains
+how to use them. The customer does not have to copy a long setup prompt or build
+an instruction page from scratch. The page is the everyday map after onboarding;
+installation instructions and test receipts belong in the setup handoff.
 
 Prefer linking the host directly to this short entry to avoid reading the whole
 Business home or Docs database each session. Neither page name is mandatory.
@@ -107,5 +130,10 @@ Run the authorized [acceptance checks](acceptance.md), including a
 fresh session that retrieves the correct live context and personal skill.
 Import, native discovery and behavioral use are separate claims. Preserve
 earlier versions on failed activation, and complete independent work.
-Return the home/guide links, what is active, actual proof, remaining limits and
-one scoped rollback path. Do not claim future daily runs have already succeeded.
+If the first task needs no personal method, do not invent a skill to pass a test;
+report that use as not applicable and verify any existing migrated methods separately.
+Return the entry link, what the customer can now ask, the first real result and
+any unresolved source or review decision. Distinguish connection ready, structure
+ready, first task verified and correction retained. A structure with no tested
+task is a foundation, not completed onboarding. Include concise proof and one
+scoped recovery route; do not claim future daily runs have already succeeded.

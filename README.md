@@ -257,6 +257,23 @@ sub-brands within one home. Start with a real workflow, even in a messy workspac
 classify only the context it needs. No local mirror, custom server or daily task
 is required. Maintenance happens during useful work.
 
+After installing the preview, connect Notion in your agent app and say:
+
+> Use AIOS Context to set up my Notion. Start here: [page link]. Help me choose
+> the first useful task and reuse what I already have.
+
+The agent checks access, identifies the useful existing databases and fills the
+bundled [Operating Model page](skills/aios-context/assets/notion-operating-model.md)
+with your links, Spaces and working agreements. It adds only missing pieces,
+connects the short instruction in your app and tests a real task with you.
+You decide which sources are correct and review the result; the agent handles
+the fields, views and references. Installing the plugin alone does not do this.
+
+The page uses a shared layout for Docs, Skills, Memory and everyday work.
+Its links, Space map and source/review choices are yours. Later plugin updates
+leave this customer-owned page intact. A consultant uses the client's selected
+home without replacing their own personal default.
+
 The method also accommodates a selected Obsidian vault, repository or another
 home through verified access and local mappings. Those alternatives require their
 own acceptance; they are not all tested integrations. Managed AIOS file homes
