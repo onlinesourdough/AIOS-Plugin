@@ -2,7 +2,7 @@
 name: aios-notion-setup
 description: Set up or resume a Notion context home with durable memory and native personal skills.
 metadata:
-  version: "1.2.0"
+  version: "1.3.0"
 ---
 
 # AIOS:notion-setup
@@ -31,9 +31,11 @@ and templates. Prefer full-page databases reached from the existing home;
 inline dashboards are optional, not a setup requirement. Reuse a native Skills
 destination and a memory destination when suitable; add only a missing useful
 destination, not an obligatory three-database hierarchy or an extra AIOS hub.
-When Spaces are useful, start with a Space
-property and filtered views, including a shared scope, rather than separate
-copies or an obligatory Space database. Preserve the owner's actual hierarchy.
+Preserve Spaces as business/brand scopes within one owner home, including
+sub-brands and shared context. Projects use their native workspaces. Start with
+a Space property and useful views; a separate Space database is conditional.
+For properties, hierarchy, native templates and integrity checks, apply the
+[schema contract](references/schema-and-templates.md) to the existing workspace.
 Split large imports into coherent, independently editable topics with clear
 titles, stable source identity and provenance. A view tag does not confer
 native skill status or permissions. Inspect the rendered home and use its

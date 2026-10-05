@@ -21,6 +21,8 @@ memory owns decisions and corrections. Map these roles onto suitable existing
 destinations; names and database count need not be identical across companies.
 Native skill designation and required references must remain intact even when
 an existing workspace presents them together.
+Use the approved [schema contract](schema-and-templates.md) when creating or
+promoting managed records, checking metadata or changing Spaces/templates.
 
 Use Notion permissions for page access and the native connection's identity.
 AIOS prompts do not enforce per-user access control. Validate actual access

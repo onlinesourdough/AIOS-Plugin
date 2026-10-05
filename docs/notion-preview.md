@@ -207,3 +207,56 @@ automation is PAUSED. These are bounded observed runs, not a guarantee of
 background freshness, complete package export or cross-harness behavior.
 Account-specific records and recovery snapshots remain in the private task
 workspace. No merge or release is included.
+
+## Schema and native templates — 2026-10-05
+
+The owner requested a clear reusable template, English setup labels and property
+descriptions, and an explanation of identity, Spaces and skill activation. Spaces
+remain central to one AIOS spanning brands/sub-brands; native project workspaces
+do not require separate owner installations. Keep other metadata proportionate.
+
+The conditional schema reference now defines the minimal roles, controlled Space
+names and hierarchy, native template defaults, logical keys versus page identity,
+and checks before managed records become Current. Existing equivalents and
+document templates are reused. Relations are added only for meaningful links;
+templates and prompts are not database integrity constraints. The owner's guide
+holds actual values, IDs and parent/child view rules. Shared product source holds
+the reusable method, not private configuration or company content.
+
+Personal skill guidance explicitly distinguishes direct page-based Codex use from
+Notion's Enable for me and package download. The former needs the existing host
+bridge and Notion connection, not that button or a slash-command installation.
+
+Source base: `a90e694092b5efc3f8cb9adb914acf97d1f1654a`.
+Source subject SHA-256: `d0ec778d63cce5b1365704d9e029e1a9ed0533e4282b49df930049161131feaf`,
+computed by the method above over 246 source files. Package/per-skill version
+validation, context-footprint, documentation rehearsal and whitespace checks
+passed. Independent review identified missing schema links from the direct
+Check and Manage Skills routes. Both were corrected, and independent correction
+review returned PASS for the exact subject, with other reviewed source unchanged.
+
+Preview `0.18.0-notion.6` is installed with all 171 package files matching its
+stage. Live readback preserves the same 24 Docs, three personal skills and ten
+Memory records, with matching English Space options and unique nonempty logical
+keys. Original document metadata and the default New doc template body remain.
+The ten Memory records link to the exact affected Docs through a native relation.
+One context page received a concurrent owner edit; it was preserved, and the
+fresh-session test retrieved that newer decision.
+
+Native UI tests applied New doc, Context, Source, Decision and Personal skill
+templates to temporary drafts. Readback verified their bodies and intended
+defaults, including Needs review and blank Key/Space. All five drafts are now in
+recoverable trash. Connector template application had returned success while
+leaving pages blank; the documented fallback keeps the same draft, checks for
+delayed application, and uses native UI or the inspected structure. This is an
+observed connection limitation, not a claim about all Notion integrations.
+
+A fresh read-only Codex session used the installed .6 route, fetched the guide,
+queried saved views and selected three relevant context pages and the native
+content skill. It returned the owner's latest headline, explained Notion AI
+Enable/download versus Codex page use, and named the correct creation checks.
+The trace contains only three read-only shell calls and thirteen read-only
+Notion calls; no writes. This verifies one bounded journey, not automatic skill
+discovery, universal connector behavior or future freshness. Daily maintenance
+remains paused. Account-specific snapshots and rendered UI proof stay private;
+no merge, public workspace template, package release or deployment is included.

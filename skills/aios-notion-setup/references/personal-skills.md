@@ -13,6 +13,9 @@ sync or installation of its dependencies.
 
 ## Create, import or edit
 
+For creation or promotion to Current, use the approved owner's mapping and the
+[schema contract](schema-and-templates.md) for completeness, identity and scope.
+
 1. Inspect the destination and current capability map. Read Notion's Skills
    documentation. Use native upload/download tools when actually exposed;
    advertised account access alone is not callable capability.
@@ -47,7 +50,9 @@ External agents fetch the exact skill URL and required references when relevant.
 Notion's “Use automatically” applies to its own registry; it does not install
 skills in Codex or schedule them. A fresh external agent needs the host bridge
 and an accessible operating guide. Do not claim slash-command discovery for
-page-only skills. A small directory is routing metadata, not a copied payload.
+page-only skills. For this page-based Codex route, neither “Enable for me” in
+Notion nor a manual download is needed. Explain that distinction in the owner's
+Skills description or guide. A small directory is routing metadata, not a copied payload.
 
 If local script execution requires a package, use a supported download/export,
 inspect the exact revision, then stage the minimum files in the task workspace.

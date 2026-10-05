@@ -11,6 +11,7 @@ test artifact. Do not confuse these observations with future reliability.
 | Import | Source/destination map, provenance/dates, every required skill file accounted for, no lost unknown blocks |
 | Native skill | Readback confirms native designation, current body and required resources |
 | Navigation | The existing home opens the chosen full-page databases; useful views work, original Docs templates/content remain and retired view routes are repaired |
+| Schema and templates | Apply the [schema contract](schema-and-templates.md): consistent Space names/hierarchy, explained fields, retained IDs, no duplicate logical keys or broken relations; native templates instantiate their intended defaults without fixed keys or dates; verify actual skill designation separately |
 | Idempotence | Repeat discovery/reconciliation selects the same IDs; a changed destination is preserved |
 | Fresh use | New native session reads the configured guide and relevant current sources, returns a sourced answer and uses a personal skill correctly |
 | Freshness | A controlled change in the test source is visible in a second retrieval; no local shadow truth |
