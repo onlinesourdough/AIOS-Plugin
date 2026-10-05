@@ -242,7 +242,7 @@ setting. It currently has no equivalent native installer for this instruction
 package, so we do not describe that route as plug and play. See the
 [compatibility guide](skills/aios-setup/references/adapter-other.md#opencode).
 
-## Context home preview
+## Your context home
 
 [AIOS Setup](skills/aios-setup/SKILL.md) leads onboarding from connection to a
 first useful task. [AIOS Context](skills/aios-context/SKILL.md) owns the selected
@@ -258,7 +258,7 @@ sub-brands within one home. Start with a real workflow, even in a messy workspac
 classify only the context it needs. No local mirror, custom server or daily task
 is required. Maintenance happens during useful work.
 
-After installing the preview, say:
+After installing AIOS, say:
 
 > Use AIOS Setup to set up my Notion. Start here: [page link]. Help me choose
 > the first useful task and reuse what I already have.
@@ -280,8 +280,9 @@ home without replacing their own personal default.
 The method also accommodates a selected Obsidian vault, repository or another
 home through verified access and local mappings. Those alternatives require their
 own acceptance; they are not all tested integrations. Managed AIOS file homes
-keep their existing concrete procedure. See the [preview contract](docs/notion-preview.md)
-for current proof and limits. This branch is a preview, not a released migration.
+keep their existing concrete procedure. See [context verification](docs/verification.md#context-homes--0190)
+for tested boundaries and limits. An update preserves existing homes; use Setup
+when you choose to establish or move one.
 
 ## Start with a real task
 

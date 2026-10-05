@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.19.0 — 2026-10-05
+
+- Add provider-neutral Context 1.2.0 and make Setup 1.3.0 the single onboarding
+  entry from installation and connection to the first useful task. Notion is
+  the recommended starting point for solo founders, leaders and small teams;
+  existing context homes remain supported and are never migrated by an update.
+- Ship one adaptable Operating Model template with full-page Docs, native
+  personal Skills, Memory and Spaces. Reuse real knowledge for Offers, Demand
+  and Operations; Memory can start empty. Shared methods stay in the plugin.
+- Keep the app instruction short and read relevant context on demand. Client
+  setup preserves the consultant's personal default. Durable maintenance happens
+  during work without a local mirror, custom server or mandatory schedule.
+- Publish bounded Notion and native Codex evidence with explicit limits.
+  Preserve recovery through immutable releases and customer-owned records.
+
 ## 0.18.0 — 2026-10-02
 
 - Strengthen Write Code 1.1.0 with cohesive responsibilities, explicit

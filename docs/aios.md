@@ -1,6 +1,6 @@
 # AIOS
 
-AIOS version: 0.18.0
+AIOS version: 0.19.0
 
 **Business first. Productivity built in.**
 
@@ -13,7 +13,7 @@ AIOS focuses on business work, decisions, content, design and practical
 automation. Projects own their implementation, engineering standards, design,
 infrastructure and delivery configuration.
 
-## Context home preview
+## Your context home
 
 [Context](../skills/aios-context/SKILL.md) owns the common home contract and selects
 one provider. The host keeps a short pointer to an approved entry; the agent reads
@@ -26,7 +26,8 @@ An established alternative can use its own structure and verified tools. Managed
 file homes retain their concrete procedure; other providers need separate proof.
 Shared methods stay in the plugin and operational records at their source.
 Maintain Context saves durable changes during work. No local mirror, custom
-server or timer is required. This branch is a preview, not a released migration.
+server or timer is required. Installing or updating AIOS leaves existing homes
+intact; use Setup when you choose to establish or move one.
 
 ## Shared method, owner context
 
@@ -163,7 +164,7 @@ available to the user and task.
 
 For Notion context, reconnect the selected workspace through the new harness,
 verify the exact guide and personal skills, then establish its thin pointer.
-Keep dated exports and the preview's rollback record for recovery; this is not
+Keep dated exports and the setup recovery record for recovery; this is not
 file Git Sync or automatic replication of every connected business source.
 
 For file context, choose continuity explicitly. Private GitHub is a sensible
