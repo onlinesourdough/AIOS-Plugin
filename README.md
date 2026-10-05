@@ -5,7 +5,7 @@
 **Business first. Productivity built in.**
 
 AIOS helps your AI assistant plan work, build it, review the result and remember
-useful decisions. Install it in the app you use. The same 25 skills work from
+useful decisions. Install it in the app you use. The same 26 skills work from
 one shared source, with native packaging for Codex, Pi, Claude Code, Gemini CLI,
 Copilot CLI and Cursor.
 
@@ -130,8 +130,8 @@ step, not a requirement to repeat work or use every skill.
 | Complete substantive work | Spec → [Build](skills/aios-build-work/SKILL.md) → [Review](skills/aios-review-work/SKILL.md) → Ship for authorized delivery | A defined outcome, implemented result, current verification and delivery readback |
 | Start a project for content, learning, business or software | [Create Project](skills/aios-create-project/SKILL.md) → the relevant work methods | A useful workspace, context and simple structure; Git and templates are optional |
 | Move an MVP or legacy application into a reliable working environment | [Project Foundation](skills/aios-project-foundation/SKILL.md) → project repair and verification | Reproducible setup, maintained code/design contracts, working CI and selected non-production delivery |
-| Set up or move your AIOS home | [Setup](skills/aios-setup/SKILL.md), using Interview where needed → [Maintain Context](skills/aios-maintain-context/SKILL.md) for source routes → [Check](skills/aios-check/SKILL.md) for affected setup proof | A usable home, relevant context, verified chosen connections and a first useful result |
-| Keep useful context current | Maintain Context → its [Sync procedure](skills/aios-maintain-context/references/sync.md) when explicitly requested | Relevant facts and source pointers; optional scoped backup or restore |
+| Set up or move your AIOS home | [Setup](skills/aios-setup/SKILL.md) leads onboarding through the chosen [Context](skills/aios-context/SKILL.md) procedure, using Maintain Context and Check where needed | A usable home, relevant context, verified chosen connections and a first useful result |
+| Keep useful context current | Maintain Context → the selected provider; [Git Sync](skills/aios-maintain-context/references/sync.md) only for an explicitly selected managed AIOS file home | Relevant facts and source pointers; optional scoped backup or restore |
 | Create or change a skill | [Manage Skills](skills/aios-manage-skills/SKILL.md) → native authoring or installation → verification, using Check for discovery when relevant | One maintained capability with a known source, placement and recovery path |
 | Update or recover a package or specialist | [Update](skills/aios-update/SKILL.md) → native adoption or specialist maintenance → Check where applicable | A selected revision with observed installation state and a recovery route |
 
@@ -168,7 +168,7 @@ skills, not additional public skills.
 These built-in systems are assembled from skills, project artifacts and selected
 tools. Separately maintained specialist Systems, such as Power BI, can add their
 own dependencies and upkeep. Neither form requires a new AIOS runtime, project
-registry or background agent. The [skill index](docs/skills.md) lists all 25
+registry or background agent. The [skill index](docs/skills.md) lists all 26
 public entrypoints.
 
 ## Install in your app
@@ -242,6 +242,48 @@ setting. It currently has no equivalent native installer for this instruction
 package, so we do not describe that route as plug and play. See the
 [compatibility guide](skills/aios-setup/references/adapter-other.md#opencode).
 
+## Your context home
+
+[AIOS Setup](skills/aios-setup/SKILL.md) leads onboarding from connection to a
+first useful task. [AIOS Context](skills/aios-context/SKILL.md) owns the selected
+home, relevant retrieval, maintenance routing and context checks. A short host instruction
+points to one context entry; that entry routes to only the sources a task needs.
+The plugin holds shared methods. Your chosen home holds company facts, decisions
+and personal skills. Operational records remain in their owning systems.
+
+Notion is our preferred starting point for solo founders, business leaders and
+small teams. Use a short entry plus full-page **Docs, native Skills and Memory**,
+reusing suitable existing databases. Spaces distinguish businesses, brands and
+sub-brands within one home. Start with a real workflow, even in a messy workspace;
+classify only the context it needs. No local mirror, custom server or daily task
+is required. Maintenance happens during useful work.
+
+After installing AIOS, say:
+
+> Use AIOS Setup to set up my Notion. Start here: [page link]. Help me choose
+> the first useful task and reuse what I already have.
+
+Setup guides the Notion connection when missing, identifies useful existing databases and fills the
+bundled [Operating Model page](skills/aios-context/assets/notion-operating-model.md)
+with your links, Spaces and working agreements. It checks where Offers, Demand
+and Operations are covered and asks only about gaps that affect the first task.
+After verifying the entry, it adds the short instruction at the appropriate app
+scope and tests a real task with you. Memory can start empty and grows through use.
+You decide which sources are correct and review the result; the agent handles
+the fields, views and references. Installing the plugin alone does not do this.
+
+The page uses a shared layout for Docs, Skills, Memory and everyday work.
+Its links, Space map and source/review choices are yours. Later plugin updates
+leave this customer-owned page intact. A consultant uses the client's selected
+home without replacing their own personal default.
+
+The method also accommodates a selected Obsidian vault, repository or another
+home through verified access and local mappings. Those alternatives require their
+own acceptance; they are not all tested integrations. Managed AIOS file homes
+keep their existing concrete procedure. See [context verification](docs/verification.md#context-homes--0190)
+for tested boundaries and limits. An update preserves existing homes; use Setup
+when you choose to establish or move one.
+
 ## Start with a real task
 
 After installation, try:
@@ -256,7 +298,8 @@ After installation, try:
 
 You can use the shared work methods immediately. Setting up your personal
 context is a separate conversation: AIOS reuses an existing home or helps you
-create one, normally at `~/.AIOS`. A custom location is also supported. No owner
+choose the home that fits your work. Notion is preferred; existing alternatives
+and managed file homes remain available. No owner
 home or global instruction edit is required just to install the plugin.
 
 The bundled [human-writing](skills/human-writing/SKILL.md) skill is the default
@@ -268,22 +311,22 @@ detail. It adds no separate approval step.
 ## What is shared
 
 The **AIOS plugin** is Online Sourdough's shared method. **Your AIOS home**,
-normally `~/.AIOS`, is your own context and personal skills. They have separate
+selected through Context, contains your context and personal skills. They have separate
 owners, locations and update paths.
 
 ```mermaid
 flowchart TB
     upstream["Online Sourdough / AIOS-Plugin<br/>Reviewed GitHub releases"]
     installed["Each app's local plugin installation<br/>Shared skills + references + overview"]
-    agent["Your agent in Codex, Pi or another app<br/>Reads the relevant local files when needed"]
-    personal["Your AIOS home: ~/.AIOS<br/>Context + personal skills + source pointers"]
+    agent["Your agent in Codex, Pi or another app<br/>Reads relevant sources when needed"]
+    personal["Your selected context home<br/>Personal skills + source pointers"]
     backup["Optional private GitHub owner repository<br/>Approved owner files only"]
     project["Independent projects and Systems<br/>Own code, instructions and Git history"]
     projectremote["Each project's or System's own remote"]
     upstream -->|"Native install or update in each app"| installed
     installed -->|"Selected method and references"| agent
     personal -->|"Relevant owner context and personal methods"| agent
-    personal <-->|"Explicit, approved continuity Sync"| backup
+    personal <-->|"File homes only: approved Git Sync"| backup
     personal -.->|"Optional source pointers"| project
     project -->|"Local instructions and accepted inputs"| agent
     project <-->|"That repository's own Git workflow"| projectremote
@@ -292,19 +335,19 @@ flowchart TB
 | What | Where it belongs | How it moves or updates |
 | --- | --- | --- |
 | Shared AIOS skills, supporting files and overview | The selected app's plugin installation/cache | Install or update through that app. A fixed tag/commit stays fixed until another is selected. |
-| Your facts, memory and connection pointers | `~/.AIOS/AIOS.md`, `MEMORY.md`, `CONNECTIONS.md`, `AIOS_FORMAT` and routed `context/` | Optional continuity Sync to the chosen private repository, within the approved scope. |
-| Skills you create and own | Canonical personal folders in `~/.AIOS/skills/`, recorded in the owner skill index | Eligible for owner Sync after review. Each app's discovery registration is configured separately; it is not copied as owner data. |
+| Your facts, memory and source pointers | The selected home and its authoritative sources | Use that provider's verified tools. Managed file homes can use optional scoped Git Sync. |
+| Skills you create and own | The chosen home's personal-method destination and supporting resources | Read page-based methods when needed. Native installation/export is a separate verified step; managed file homes may use reviewed Sync. |
 | Other installed plugins and shared skill libraries | Their native installation or their own source | Their own update route. They do not become personal skills just because a folder is named `skills`. |
 | Independent projects and optional Systems | Their own repository, inside or outside the owner home | Their own Git workflow and remote. Owner Sync can carry agreed source indexes, never their nested code/history. |
 | Sessions, app settings, credentials and caches | The native app or credential store | Outside owner Sync. Reconnect/configure the destination app through its supported setup. |
 
-**When does owner Sync happen?** When you explicitly request continuity work,
+**For file homes, when does owner Sync happen?** When you explicitly request continuity work,
 for example “Sync my AIOS to my private GitHub repository,” under the agreed
 account, remote, branch, direction and file scope. Existing standing permission
 is reused. Plugin installation, ordinary conversations and local edits do not
 start a background upload. A local home without Git is fully supported.
 
-Setup helps choose a new home or restore and a continuity destination.
+For file context, Setup helps choose a new home or restore and a continuity destination.
 Creating a private repository and the first upload need that action's approval.
 On another machine, install the plugin in the chosen app, restore the approved
 owner files into an absent or empty home, then register personal skills there.
@@ -374,7 +417,7 @@ Resources domain. Selective reading saves context whether the file is local or
 remote; hosting alone does not reduce the tokens of content actually read.
 Future standards-based discovery and updates are tracked in [issue #12](https://github.com/onlinesourdough/AIOS-Plugin/issues/12).
 
-Read about the [25 skills](docs/skills.md), [architecture](docs/architecture.md),
+Read about the [26 skills](docs/skills.md), [architecture](docs/architecture.md),
 [verification](docs/verification.md), [recovery](docs/recovery.md) and
 [version history](CHANGELOG.md). GitHub [Releases](https://github.com/onlinesourdough/AIOS-Plugin/releases)
 lists published releases. The [release procedure](docs/distribution.md#release-and-adoption)

@@ -51,3 +51,10 @@ Rolling back after an authorized owner cleanup therefore needs the preserved
 format-1 marker and index files as well as the earlier native package. Restore
 only unchanged outputs, preserving later owner edits. A package downgrade alone
 is not owner-data recovery.
+
+## Notion preview
+
+Use the [Notion recovery route](../skills/aios-context/references/notion/operating.md#recovery).
+Restore only the previous owned bridge, plugin selections and personal-skill
+registrations after checking current identities. Preserve Notion pages and any
+new work; reconcile post-cutover decisions before resuming old memory.

@@ -120,10 +120,13 @@ overlay. Every native declaration selects the same `skills/` source. There are
 no consumer dependencies, executable extensions, hooks, settings payloads or
 duplicated instruction bodies.
 
-An existing or requested owner home takes precedence over the default. Without
-one or a managed bridge, the selected AIOS skill checks `~/.AIOS`. It never scans
-for homes or creates a second home during package installation. A persistent
-bridge to a custom location is optional. New owner homes use format `2`; existing format `1` remains supported.
+[Context](../skills/aios-context/SKILL.md) resolves the chosen home independently
+of installation. Use its [short host pointer](../skills/aios-context/assets/bridge.md)
+for a verified context entry URL or path. Notion is preferred for small teams;
+existing alternative homes keep their mappings. No provider failure falls back
+to `~/.AIOS`. Only a selected managed file home uses the file setup/default-root
+rules and format `2` (existing format `1` remains supported). An Obsidian vault is
+not automatically a managed file home. Package installation creates no home.
 
 ## Evidence and limits
 

@@ -4,6 +4,9 @@ Full setup covers context, capabilities, harness fit, useful work and
 continuity. Repair stays scoped; resume starts at the next gap with known answers.
 No fixed interview or account/device scan. Installation is not usable access.
 
+Business onboarding adds the [coverage check](../../aios-context/references/business-context.md),
+reusing existing sources and answers.
+
 ## Context and useful work
 
 Use Maintain Context's [framework](../../aios-maintain-context/references/curation.md)

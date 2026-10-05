@@ -315,3 +315,30 @@ Tag-triggered CI must complete and the GitHub Release's resolved tag must match
 the accepted commit. Native installed version and discovery are separate readback
 steps. The Resources deployment separately verifies that retired AIOS URLs no
 longer serve the overview or metadata and that the remaining site still works.
+
+## Context homes — 0.19.0
+
+[Notion acceptance](../skills/aios-context/references/notion/acceptance.md)
+separates package checks, native activation, live retrieval, first-task behavior
+and recovery. Setup is the single onboarding entry; Context owns the provider
+route. The package now exposes 26 shared skills, including Context 1.2.0 and
+Setup 1.3.0. Existing managed-file homes retain their supported procedure.
+
+The October 5, 2026 candidate checks passed package/per-skill validation,
+documentation, layout, continuity, skill-version and unchanged footprint limits.
+Independent review corrected client setup touching global personal instructions;
+the corrected shared and Codex/Claude/Pi scope routes passed review.
+
+Bounded Notion observations cover existing full-page databases, native templates,
+personal skills, scoped retrieval and exact page readback. A matched synthetic
+Codex onboarding trial covered conflicting offer prices, an archive decoy,
+parent/child Spaces, irrelevant missing access and empty Memory. It used local
+fixtures and no provider calls, so it does not prove unattended end-to-end
+customer provisioning. The final candidate maps Offers/Demand/Operations to
+existing knowledge, asks about material gaps and leaves Memory empty.
+
+Historical preview evidence remains in Git history and private recovery;
+account-specific IDs and traces stay outside this public repository. Release CI,
+installed package identity, fresh-session discovery and live production delivery
+are verified separately for the final release. No cross-harness behavior, future
+scheduled run or general token/latency saving is inferred from these checks.

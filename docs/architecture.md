@@ -8,12 +8,12 @@ task; AIOS has no model runner, background service or permission system.
 | Boundary | Responsibility |
 | --- | --- |
 | Native harness | Projects, sessions, models, tools, permissions and credentials |
-| Owner home, normally `~/.AIOS` | Relevant context, source links, decisions and personal skills |
+| Selected context home and its short entry | Relevant context, source links, decisions and personal skills |
 | Spaces | Selectively loaded business or brand context |
 | Skills | Reusable methods, standards and judgment, with references and small helpers as needed |
 | Project workspace | Local requirements, working files, outputs, proof and recovery; Git is selected when useful |
 | Optional System | A separately maintained specialist with its own dependencies or operational needs |
-| Native manifests | Package identity and discovery over the same 25 skills |
+| Native manifests | Package identity and discovery over the same 26 skills |
 
 ## Work and methods
 
@@ -62,14 +62,26 @@ nested beneath an owner home. No parent instruction file preloads personal data.
 Native project discovery does not depend on an AIOS registry. Existing useful
 source indexes can remain ordinary context.
 
-New owner homes use `AIOS_FORMAT` 2, without mandatory project or system indexes.
+New file owner homes use `AIOS_FORMAT` 2, without mandatory project or system indexes.
 The package also reads format 1. Package versions and owner-data formats are
 separate; installation never migrates data. An authorized cleanup preserves
 existing data and rollback evidence before changing the format marker. See
 [data compatibility](../skills/aios-setup/references/data-format.md).
 
+[Context](../skills/aios-context/SKILL.md) selects the provider and owns the common
+home contract. A small host pointer supplies fresh-session discovery; the entry
+identifies authoritative sources, Spaces, personal methods and maintenance scope.
+Notion is the preferred concrete setup for solo founders and small teams. Other
+selected homes retain native structures and require verified tools and acceptance.
+Source systems retain their operational records and access control.
+
+Docs, Skills and Memory establish a context foundation. An operating model also
+needs workflows, responsibility, review points and evidence of useful outcomes.
+Start from one real workflow and add context where it improves that work. This
+package does not provision an ERP, data integration service or runtime memory engine.
+
 Maintain Context owns facts and explicit continuity Sync. Manage Skills owns
-personal-skill placement and native adoption. Sync transfers consented context,
+personal-skill placement and native adoption. File-home Sync transfers consented context,
 personal skills and identity metadata; it excludes product trees, native
 settings, credentials and nested repositories. It is an explicit workflow,
 not an installation side effect.

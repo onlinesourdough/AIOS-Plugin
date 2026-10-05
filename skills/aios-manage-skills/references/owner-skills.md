@@ -11,6 +11,13 @@ watcher or permission to audit unrelated skill libraries on every message.
 
 ## Choose the owner before authoring
 
+Use the resolved [provider selection](../../aios-context/references/providers.md),
+resolving it first only if unknown. For Notion use the
+[Notion personal-skill route](../../aios-context/references/notion/personal-skills.md).
+For another document/vault home use [existing-home methods](../../aios-context/references/existing-home.md#personal-methods-and-checks).
+Return to Manage Skills for review. Apply the file registration below only to
+a managed AIOS file home; do not create AIOS_ROOT to satisfy another provider.
+
 Resolve the configured home and supported format through
 [data compatibility](../../aios-setup/references/data-format.md). Personal
 cross-project methods belong in

@@ -1,6 +1,6 @@
 # AIOS
 
-AIOS version: 0.18.0
+AIOS version: 0.19.0
 
 **Business first. Productivity built in.**
 
@@ -12,6 +12,22 @@ permissions supplied by the assistant's native harness.
 AIOS focuses on business work, decisions, content, design and practical
 automation. Projects own their implementation, engineering standards, design,
 infrastructure and delivery configuration.
+
+## Your context home
+
+[Context](../skills/aios-context/SKILL.md) owns the common home contract and selects
+one provider. The host keeps a short pointer to an approved entry; the agent reads
+only relevant sources and personal methods. Notion is preferred for solo founders,
+business leaders and small teams. Reuse full-page Docs, native Skills and Memory,
+with Spaces for business and brand scopes. Start with one useful workflow in an
+existing workspace; no wholesale migration is required.
+
+An established alternative can use its own structure and verified tools. Managed
+file homes retain their concrete procedure; other providers need separate proof.
+Shared methods stay in the plugin and operational records at their source.
+Maintain Context saves durable changes during work. No local mirror, custom
+server or timer is required. Installing or updating AIOS leaves existing homes
+intact; use Setup when you choose to establish or move one.
 
 ## Shared method, owner context
 
@@ -146,7 +162,12 @@ available to the user and task.
 
 ## Continuity between machines
 
-At setup completion, choose continuity explicitly. Private GitHub is a sensible
+For Notion context, reconnect the selected workspace through the new harness,
+verify the exact guide and personal skills, then establish its thin pointer.
+Keep dated exports and the setup recovery record for recovery; this is not
+file Git Sync or automatic replication of every connected business source.
+
+For file context, choose continuity explicitly. Private GitHub is a sensible
 option for a private owner backup, but it never creates a repository or uploads
 your data without your approval. On a missing or genuinely empty chosen home,
 AIOS asks whether to Sync existing AIOS or set up new; established, partial and

@@ -13,7 +13,12 @@ and recheck, or Needs decision, plus per-claim PASS/FAIL/NOT VERIFIED.
   discoverable names; frontmatter valid, local references resolve, no install
   hooks or automatic runtime/dependency setup or hidden invocation disabling. Every native
   manifest points to the same bodies; only the selected harness is affected. Compare installed release identity, not just a folder name.
-- Owner routing: requested/established home wins, then a managed bridge, then
+- Context: use the resolved [provider](../../aios-context/references/providers.md)
+  and [home contract](../../aios-context/references/home-contract.md), then its
+  applicable checks for routing, memory, personal methods and reconciliation.
+  The file-home routing, data and Sync bullets below apply only to managed file
+  homes. Native product and harness checks remain independent of the provider.
+- File owner routing: requested/established home wins, then a managed bridge, then
   ~/.AIOS only when neither exists. Native discovery needs no bridge or home.
   For a separately chosen bridge, the configured absolute home is correct; effective AGENTS/override read
   path is known; one managed block, unrelated bytes preserved. A fresh ordinary
@@ -51,7 +56,7 @@ and recheck, or Needs decision, plus per-claim PASS/FAIL/NOT VERIFIED.
   Preserve valid setup/actions, credential references, dirty worktrees and custom
   sections/history/files; do not execute setup commands to inspect them;
   unavailable native UI proof leaves cutover PENDING even if installation PASS.
-- Owner data: supported AIOS_FORMAT, small AIOS.md index and MEMORY, meaningful
+- File owner data: supported AIOS_FORMAT, small AIOS.md index and MEMORY, meaningful
   selective routes, no invented facts/secrets, CONNECTIONS distinguishes access
   from exact authority. Unknown custom data and owner methods survive updates.
   Connections name least-privilege resource/action scope and tested denied access,
@@ -73,7 +78,7 @@ and recheck, or Needs decision, plus per-claim PASS/FAIL/NOT VERIFIED.
   Sensitive changes retain repository-owned security context, scoped negative
   tests, validated findings and affected deployment/retest proof; optional tools
   do not become required scans for ordinary edits.
-- Sync: local mode remains usable; configured mode observes exact live branch,
+- File Sync: local mode remains usable; configured mode observes exact live branch,
   scoped commits, authority and equality; dirty/drift state is preserved.
 - Learning: curated source-bound corrections; methods owned in the right place;
   native improvement triage is loaded only for a concrete worker/lead signal;

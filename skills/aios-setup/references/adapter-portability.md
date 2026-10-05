@@ -3,8 +3,12 @@
 Read only when moving between supported harnesses, updating, rolling back or
 uninstalling the package. Apply the shared [native adapter boundary](adapters.md).
 
-AIOS portability means that the same physical owner home and canonical `skills/`
-source can be used through each harness's native entrypoint. The portable root
+AIOS portability means that the same shared `skills/` source can be used through
+each harness's native entrypoint. File context can reuse its physical owner
+home; Notion context reuses the approved guide URL and verifies access separately
+in each client, without copying a local owner mirror. Personal Notion skills
+use the [Notion lifecycle](../../aios-context/references/notion/personal-skills.md).
+The portable root
 manifest and thin Codex, Claude/Copilot, Cursor, Gemini and Pi metadata all use
 the same skills. Install separately in each chosen harness; no cross-install
 hook or shared configuration writer runs. Native discovery and model behavior
@@ -19,7 +23,7 @@ capabilities before acting. No universal loader, duplicated method body,
 background bridge or hidden permission grant is part of AIOS.
 
 For update, inspect the selected source and its declared owner-data compatibility.
-Read [data compatibility](data-format.md) only if owner data will be used or
+Read [data compatibility](data-format.md) only if file-home data will be used or
 changed; native package installation/removal does not read or migrate a home. Pin the active task's method version; defer updates until a
 task boundary. Use native package update/reinstall targeting the reviewed ref,
 then a new task and checks. Product rollback selects the previous reviewed

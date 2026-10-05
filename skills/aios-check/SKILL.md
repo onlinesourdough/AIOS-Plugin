@@ -2,10 +2,16 @@
 name: aios-check
 description: Verify AIOS installation, owner format and native skill discovery without changes.
 metadata:
-  version: "2.0.5"
+  version: "2.2.0"
 ---
 
 # AIOS:check
+
+For requested context inspection, use the resolved [provider](../aios-context/references/providers.md)
+and [home contract](../aios-context/references/home-contract.md), then the selected
+provider checks. Read-only Check never creates pages, templates or test records.
+Missing AIOS_FORMAT/local folders are not failures for other homes. Product-only
+installation checks do not require fetching owner context.
 
 Inspect only the requested scope using the relevant section of
 [checks](references/checks.md). Use [setup scenarios](references/setup-scenarios.md) for the requested installation

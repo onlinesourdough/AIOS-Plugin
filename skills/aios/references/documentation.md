@@ -13,6 +13,8 @@ Reading a method to explain it does not start that workflow or load owner data.
 | How work is selected and carried through | [Routing](routing.md) and the relevant part of [the lifecycle](lifecycle.md) |
 | How interview, setup and delivery methods connect | The overview's [connected work methods](../../../docs/aios.md#connected-work-methods), then the selected skill |
 | How installation, updates or removal work in a selected app | [Native adapters](../../aios-setup/references/adapters.md) |
+| How to choose, set up or check a context home | [Context](../../aios-context/SKILL.md) |
+| How Notion context and personal skills work | [Notion operating route](../../aios-context/references/notion/operating.md) |
 | How owner context and external sources are maintained | [Context curation](../../aios-maintain-context/references/curation.md) |
 | How owner data moves between machines | [Continuity Sync](../../aios-maintain-context/references/sync.md) |
 

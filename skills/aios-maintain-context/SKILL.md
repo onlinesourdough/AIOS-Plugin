@@ -2,7 +2,7 @@
 name: aios-maintain-context
 description: Curate owner facts, memory and routes, or perform explicitly requested AIOS continuity Sync.
 metadata:
-  version: "1.1.2"
+  version: "1.4.0"
 ---
 
 # AIOS:maintain-context
@@ -10,6 +10,23 @@ metadata:
 For an explicit System-code update, route to
 [System maintenance](../aios-update/references/systems.md); owner Sync does not
 update nested repositories.
+
+Use the resolved [context provider](../aios-context/references/providers.md);
+resolve it first only when not already known. For a selected home without a
+guide/mapping, [Context](../aios-context/SKILL.md) owns setup of that gap. No
+provider failure falls through to file maintenance or creates a second home.
+
+For Notion, follow its guide and [operating route](../aios-context/references/notion/operating.md).
+For another existing document/vault home, use the [existing-home procedure](../aios-context/references/existing-home.md).
+Curate durable decisions, reasons and corrections within current-task or standing
+write authority. Update the owning record, preserve provenance, verify writes
+and create nothing when unchanged. This is task-time curation; personal skill
+changes belong to Manage Skills. A non-file-home sync request reconciles only
+its named sources, not the file-home Git procedure.
+
+Apply the procedure below only to a selected managed AIOS file home.
+
+## Managed file homes
 
 For an explicit `aios sync`, read [Sync](references/sync.md) first. At a missing
 or genuinely empty chosen home, make its one Sync-existing-versus-new-setup choice;
