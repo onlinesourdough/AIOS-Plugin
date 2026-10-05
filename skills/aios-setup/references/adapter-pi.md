@@ -20,7 +20,7 @@ managed Git cache on package update. Dependencies and lifecycle scripts are
 absent from this package. Verify `pi list`, package paths, loaded skill names
 and a fresh session. Do not manually copy skills into ~/.pi/agent/skills.
 
-For separately requested persistent owner routing, the default bridge target is ~/.pi/agent/AGENTS.md; respect a configured agent home.
+For an authorized personal default-home change, use ~/.pi/agent/AGENTS.md; respect a configured agent home. Client setup follows the shared scope rule.
 Inspect AGENTS.override.md and any fallback CLAUDE.md plus effective loaded
 context. Preserve unrelated content and resolve shadowing as for Codex.
 Only patch exact owned keys/array entries if settings require a change; never

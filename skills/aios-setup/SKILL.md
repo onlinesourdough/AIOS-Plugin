@@ -1,11 +1,15 @@
 ---
 name: aios-setup
-description: Set up, resume or move an AIOS owner home through native harness installation.
+description: Set up, resume or move AIOS, from installation to a useful first task.
 metadata:
-  version: "1.2.0"
+  version: "1.3.0"
 ---
 
 # AIOS:setup
+
+Own onboarding from access and business choices to the verified home, pointer
+and first task. Use one procedure below; the owner need not invoke internal
+skills separately. Reuse accepted answers and resume at the next gap.
 
 For package installation or a requested bridge-only change, use the
 [adapter route](references/adapters.md); preserve the existing home. Installation
@@ -19,11 +23,8 @@ managed AIOS file procedure below. An Obsidian vault is not that file format.
 
 ## File-home setup
 
-Follow [setup](references/setup.md), reusing accepted answers. Ask only material
-questions through the [conversation procedure](../aios-interview/references/conversation.md);
-activate [Interview](../aios-interview/SKILL.md) only under its own rules.
-Full setup covers readiness; resume stays scoped. For installation or a bridge
-change, select one harness/operation through the [adapter route](references/adapters.md).
+Follow [setup](references/setup.md) for questions, conditional Interview and
+readiness. Resume stays scoped.
 For personal skills during setup or a home move, call Manage Skills'
 [personal skill lifecycle](../aios-manage-skills/references/owner-skills.md).
 When an owner asks in ordinary language for local guardrails during autonomous

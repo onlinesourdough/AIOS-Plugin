@@ -12,7 +12,9 @@ Use [operating boundaries](operating.md) throughout the setup.
 
 ## Start after installation
 
-Accept an ordinary request such as “Set up my Notion for AIOS; start at [URL].”
+AIOS Setup leads this route. Accept an ordinary request such as
+“Use AIOS Setup to set up my Notion; start at [URL].” Stay in this flow; the owner
+need not invoke Context, Manage Skills or Check separately.
 The owner connects Notion and grants access through the app's supported controls;
 the plugin cannot complete their sign-in. Verify a read of the selected home.
 If access is missing, name the exact connection action needed and continue only
@@ -29,6 +31,12 @@ will be added and which source needs an owner's decision. A compact before/after
 table is enough. Continue reversible in-scope setup under existing authority;
 ask only about unresolved facts, conflicts or actions outside that scope.
 Keep the customer's task and any persistent pointer scoped to that customer.
+
+Apply the [business coverage check](../business-context.md) to the selected
+sources. Map Offers, Demand and Operations, including relevant brand, source
+access and responsibility, before declaring the task ready. Resolve concrete
+gaps through short questions; do not require full coverage to begin a task that
+needs only one area. Reuse actual methods and allow Memory to start empty.
 
 ## Establish the destinations
 
@@ -84,7 +92,9 @@ relevant sources and fill genuine context gaps from documented evidence.
 
 Give people one short entry and ordinary full-page destinations. Prove that the
 first workflow finds the right fact and method, produces a reviewable result
-and retains one useful correction without duplication. Expand to another Space
+and, if one arises, retains a real authorized correction without duplication.
+Otherwise report correction proof pending; never create a decision to pass.
+Expand to another Space
 or source when work needs it. These destinations establish a context foundation;
 they do not by themselves redesign operations, automate workflows or integrate
 transactional data. Cleanup of unrelated clutter is a separate scope.
@@ -93,7 +103,8 @@ transactional data. Cleanup of unrelated clutter is a separate scope.
 
 Create or update one short entry using the packaged
 [Operating Model page](../../assets/notion-operating-model.md). Keep the familiar
-layout: where Docs, Skills and Memory are, what Spaces mean, how to start work
+layout: where Docs, Skills and Memory are, where business topics are covered,
+what Spaces mean, how to start work
 and where results go. Fill the customer-specific links, Space map, sources,
 review/write agreements and recovery route from verified evidence. Put exact
 database/view IDs, field mappings and connection exceptions in its collapsed
@@ -116,6 +127,9 @@ instruction a thin pointer using [the bridge](../../assets/bridge.md) and the se
 instructions and repository isolation. Never embed private IDs in plugin source.
 Verify the guide first, then change only the owned bridge and selected plugin
 registration. Leave the previous home as inactive recovery during a preview.
+The pointer is installed once at the intended scope, not rewritten whenever
+an offer, source or skill changes. Those changes belong in the context home.
+Change the pointer only for an authorized entry move or host/scope change.
 
 Make [Maintain Context](../../../aios-maintain-context/SKILL.md) usable at natural task
 checkpoints within the approved read/write policy. No timer is required.

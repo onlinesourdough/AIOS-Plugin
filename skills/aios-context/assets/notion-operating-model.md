@@ -26,6 +26,19 @@ Start here to find what we know, how we work and what we have decided.
 
 Use the database's **New** menu to create an item. Choose its Space and use an
 existing template where helpful. The agent can help fill in the details.
+Memory grows through real decisions and corrections; it can start empty.
+
+## Business context
+
+| Topic | Where to look |
+| --- | --- |
+| Offers — what we sell and promise | [Verified source, or explicit gap] |
+| Demand — audience, brand and reaching customers | [Verified source, or explicit gap] |
+| Operations — delivery, responsibility and systems | [Verified source, or explicit gap] |
+
+These are routes to existing knowledge, not required new documents. Read the
+topics the task needs. [Keep any unresolved starting-task question here briefly;
+omit this instruction if none remains. Do not claim all linked sources are current.]
 
 ## Our Spaces
 

@@ -131,7 +131,7 @@ existing-home discovery, supported format checks and first useful task. Installi
 this plugin creates no owner home, personal bridge or hidden agent and grants no
 additional access. Keep owner data outside the plugin cache.
 
-For separately authorized Claude owner-context setup, the native user instruction
+For an authorized Claude personal default-home change, the native user instruction
 entrypoint is `~/.claude/CLAUDE.md`, under `CLAUDE_CONFIG_DIR` when configured.
 Use the shared adapter's small bridge procedure and preserve existing content.
 This package does not install it automatically. For Copilot, resolve its native

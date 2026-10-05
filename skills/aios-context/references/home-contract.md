@@ -33,6 +33,10 @@ Links and copied summaries are not live synchronization.
 
 ## Maintenance and evidence
 
+For business setup or a foundation audit, use the [business coverage check](business-context.md).
+Map Offers, Demand and Operations to useful sources or explicit gaps. This does
+not require a document for each topic, a personal skill or prefilled Memory.
+
 At meaningful decisions, corrections and task checkpoints, use Maintain Context
 under current-task or standing write authority. Reconcile identity and meaning
 before creating; preserve dates, reasons, exclusions and useful history. No new

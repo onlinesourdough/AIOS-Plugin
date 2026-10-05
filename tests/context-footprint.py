@@ -280,6 +280,10 @@ def main():
     print("NOTE: matched setup routes have an accepted focus and count the shared question procedure; missing foundation adds Interview and its owner-context guide")
     full_setup = current_bytes(CURRENT_JOURNEYS["codex-package-and-bridge-verification"], startup) + interview
     print(f"setup_with_owner_interview_through_verification_bytes={full_setup}")
+    business = ROOT / "skills/aios-context/references/business-context.md"
+    print(f"conditional_business_coverage_extra_bytes={business.stat().st_size}")
+    print(f"setup_with_business_coverage_and_owner_interview_bytes={full_setup + business.stat().st_size}")
+    print("NOTE: business onboarding or a foundation audit adds the coverage reference; matched technical package/bridge journeys and ordinary retrieval do not")
     measurement = ROOT / "skills/aios-select-model/references/measurement.md"
     print(f"conditional_model_measurement_extra_bytes={measurement.stat().st_size}")
     print("NOTE: performance-claim/comparison tasks add that reference; no matched legacy measurement path is claimed")

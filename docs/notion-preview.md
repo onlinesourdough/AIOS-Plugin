@@ -2,7 +2,8 @@
 
 Status: isolated test branch; not a release or a migration of existing users.
 
-The preview tests a provider-neutral Context entry, with Notion preferred for
+The preview tests one Setup-led onboarding journey and a provider-neutral Context
+entry for ongoing use, with Notion preferred for
 solo founders, business leaders and small teams. AIOS remains a portable method/skill package. The customer's Notion guide
 owns context routing, durable memory and personal skills. Native connections
 access source systems; Notion is not a universal data ingestion layer.
@@ -32,8 +33,9 @@ export require actual host/API capability and are separately verified.
 
 ## Implementation and evidence
 
-Setup, AIOS, Maintain Context, Manage Skills and Check dispatch to the selected
-provider. The public Context skill selects the home; its conditional Notion procedure
+Setup leads onboarding and dispatches to the selected provider. AIOS, Maintain
+Context, Manage Skills and Check retain their focused procedures. Context owns
+the home contract; its conditional Notion procedure
 follows the official setup guide with AIOS ownership/recovery boundaries. Personal changes use native Notion skills;
 shared methods remain in the plugin. A distinctly named local preview can be
 staged from this branch without changing the production package identity.
@@ -360,3 +362,41 @@ connector limitation still apply. No runtime performance claim is made.
 The previous .8 stage, host instructions and pre-edit owner entry are retained
 privately for scoped recovery. No stable release, merge, public Notion template,
 sharing change or schedule was created. Resources remains a draft.
+
+## One onboarding flow and business coverage (.10)
+
+AIOS Setup 1.3.0 now leads the customer from connection to a first useful task.
+Context 1.2.0 owns the chosen home and ongoing use. The plugin keeps one page
+template; Resources teaches that same flow. The business coverage reference
+maps Offers, Demand and Operations to existing sources or explicit gaps, without
+requiring topic documents, personal skills or generated working principles.
+Memory can start empty and preserves only genuine decisions and corrections.
+The verified entry precedes the host pointer; ordinary context changes do not
+require rewriting that pointer.
+
+Independent review found a conflicting global-bridge instruction. The shared
+adapter and Codex, Claude and Pi routes now distinguish task/client scope from
+an authorized personal default-home change. Focused correction review passed;
+the original review checked 126 relative links. Source checks passed against
+`4fc16466540aa3d7813b9a0289623189893be010`: package/version, documentation,
+layout, continuity, skill-version, whitespace and unchanged footprint ceilings.
+The new 2,479-byte business reference is reported as conditional setup overhead.
+The source subject, excluding this evidence document, is
+`ec8abb437f71ba221744ba3a850e68ea225fc18585b7a20db25e46a30836f96c`.
+
+Preview .10 is enabled and all 177 installed files match staging. The host
+instruction is unchanged. Matched read-only native .9/.10 exercises used the
+same synthetic customer inventory: conflicting offer prices, an existing
+checklist with a reference, an unclassified document and empty Memory. Both
+preserved client scope and left the price unresolved. The .10 response mapped
+business coverage explicitly, kept Memory empty and separated proposed structure
+from an unverified first task. No provider calls or live provisioning occurred.
+
+The owner's entry separately gained links to existing business sources and an
+explanation of Memory. Exact readback preserved title, icon, agent rules, child
+page and unrelated content. One stale guide-name reference was corrected.
+Schemas and personal skills did not change. Resources passed local CI with 108
+tests and remote CI at `2ed980749a97885912735125b652393b51454e5b`; its guide remains
+Draft/Hidden. These observations prove bounded source and simulated behavior,
+not unattended customer setup or runtime token/latency savings. Previous .9
+stage, host and page snapshots remain in private recovery. No merge or release.

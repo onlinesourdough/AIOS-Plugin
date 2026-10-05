@@ -130,7 +130,7 @@ step, not a requirement to repeat work or use every skill.
 | Complete substantive work | Spec → [Build](skills/aios-build-work/SKILL.md) → [Review](skills/aios-review-work/SKILL.md) → Ship for authorized delivery | A defined outcome, implemented result, current verification and delivery readback |
 | Start a project for content, learning, business or software | [Create Project](skills/aios-create-project/SKILL.md) → the relevant work methods | A useful workspace, context and simple structure; Git and templates are optional |
 | Move an MVP or legacy application into a reliable working environment | [Project Foundation](skills/aios-project-foundation/SKILL.md) → project repair and verification | Reproducible setup, maintained code/design contracts, working CI and selected non-production delivery |
-| Set up or move your AIOS home | [Context](skills/aios-context/SKILL.md), with Setup for native installation → [Maintain Context](skills/aios-maintain-context/SKILL.md) for source routes → [Check](skills/aios-check/SKILL.md) for affected setup proof | A usable home, relevant context, verified chosen connections and a first useful result |
+| Set up or move your AIOS home | [Setup](skills/aios-setup/SKILL.md) leads onboarding through the chosen [Context](skills/aios-context/SKILL.md) procedure, using Maintain Context and Check where needed | A usable home, relevant context, verified chosen connections and a first useful result |
 | Keep useful context current | Maintain Context → the selected provider; [Git Sync](skills/aios-maintain-context/references/sync.md) only for an explicitly selected managed AIOS file home | Relevant facts and source pointers; optional scoped backup or restore |
 | Create or change a skill | [Manage Skills](skills/aios-manage-skills/SKILL.md) → native authoring or installation → verification, using Check for discovery when relevant | One maintained capability with a known source, placement and recovery path |
 | Update or recover a package or specialist | [Update](skills/aios-update/SKILL.md) → native adoption or specialist maintenance → Check where applicable | A selected revision with observed installation state and a recovery route |
@@ -244,8 +244,9 @@ package, so we do not describe that route as plug and play. See the
 
 ## Context home preview
 
-[AIOS Context](skills/aios-context/SKILL.md) is the common entry for setup,
-relevant retrieval, maintenance and context checks. A short host instruction
+[AIOS Setup](skills/aios-setup/SKILL.md) leads onboarding from connection to a
+first useful task. [AIOS Context](skills/aios-context/SKILL.md) owns the selected
+home, relevant retrieval, maintenance routing and context checks. A short host instruction
 points to one context entry; that entry routes to only the sources a task needs.
 The plugin holds shared methods. Your chosen home holds company facts, decisions
 and personal skills. Operational records remain in their owning systems.
@@ -257,15 +258,17 @@ sub-brands within one home. Start with a real workflow, even in a messy workspac
 classify only the context it needs. No local mirror, custom server or daily task
 is required. Maintenance happens during useful work.
 
-After installing the preview, connect Notion in your agent app and say:
+After installing the preview, say:
 
-> Use AIOS Context to set up my Notion. Start here: [page link]. Help me choose
+> Use AIOS Setup to set up my Notion. Start here: [page link]. Help me choose
 > the first useful task and reuse what I already have.
 
-The agent checks access, identifies the useful existing databases and fills the
+Setup guides the Notion connection when missing, identifies useful existing databases and fills the
 bundled [Operating Model page](skills/aios-context/assets/notion-operating-model.md)
-with your links, Spaces and working agreements. It adds only missing pieces,
-connects the short instruction in your app and tests a real task with you.
+with your links, Spaces and working agreements. It checks where Offers, Demand
+and Operations are covered and asks only about gaps that affect the first task.
+After verifying the entry, it adds the short instruction at the appropriate app
+scope and tests a real task with you. Memory can start empty and grows through use.
 You decide which sources are correct and review the result; the agent handles
 the fields, views and references. Installing the plugin alone does not do this.
 

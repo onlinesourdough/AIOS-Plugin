@@ -34,8 +34,9 @@ and verify the declared package skills are discoverable once. Use the
 [identity migration](migration.md) before replacing an older Method selector or
 legacy/global registration; a matching skill name does not establish ownership.
 
-Only when persistent owner routing is requested, the default bridge target is ~/.codex/AGENTS.md (respect an explicitly
-configured CODEX_HOME). Inspect AGENTS.override.md: it can shadow the normal
+Only for an authorized personal default-home change, use ~/.codex/AGENTS.md
+(respect configured CODEX_HOME). Client setup follows the shared scope rule.
+Inspect AGENTS.override.md: it can shadow the normal
 file. Preserve it and unrelated AGENTS instructions; do not delete or overwrite
 an override to make discovery pass. Under setup authority, propose/apply the
 same small managed block in the effective file, documenting the exception.
