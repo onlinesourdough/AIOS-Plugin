@@ -12,7 +12,7 @@
     "composerIcon": "./assets/icon.png",
     "logo": "./assets/icon.png",
     "shortDescription": "Your context, useful work and reviewed delivery.",
-    "longDescription": "Twenty-six skills for clear writing, code, design, content, interviews, setup and reviewed work. Your app owns projects and tools; your selected file or Notion home holds your context. Optional helpers work on files in your project.",
+    "longDescription": "Twenty-six skills for clear writing, code, design, content, interviews, setup and reviewed work. Your app owns projects and tools; your selected context home holds your context. Optional helpers work on files in your project.",
     "developerName": "Online Sourdough",
     "category": "Productivity",
     "capabilities": [],

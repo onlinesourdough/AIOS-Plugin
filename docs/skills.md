@@ -21,7 +21,7 @@ carries an independent quoted `metadata.version`; see
 | [AIOS:diffusion-studio](../skills/diffusion-studio/SKILL.md) | Use optional Diffusion Studio for video production |
 | [AIOS:human-writing](../skills/human-writing/SKILL.md) | Default prose drafting and editing that preserves facts, uncertainty and the user’s voice |
 | [AIOS:write-code](../skills/write-code/SKILL.md) | Quality and proportionate verification whenever writing or changing code, including scripts and automation; shared criteria for read-only code review |
-| [AIOS:notion-setup](../skills/aios-notion-setup/SKILL.md) | Set up an optional Notion context home, durable memory and personal skills |
+| [AIOS:context](../skills/aios-context/SKILL.md) | Select and maintain the chosen context-home contract; route setup, retrieval and audit to its provider |
 | [AIOS:aios](../skills/aios/SKILL.md) | Select relevant context and methods for the current task |
 | [AIOS:interview](../skills/aios-interview/SKILL.md) | Explore context, challenge assumptions and find direction when requested or materially needed at the start; no routine interruption of execution |
 | [AIOS:build-work](../skills/aios-build-work/SKILL.md) | Implement and verify accepted work through in-scope fixes and Review |

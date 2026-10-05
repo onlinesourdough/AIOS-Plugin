@@ -7,7 +7,7 @@ AIOS portability means that the same shared `skills/` source can be used through
 each harness's native entrypoint. File context can reuse its physical owner
 home; Notion context reuses the approved guide URL and verifies access separately
 in each client, without copying a local owner mirror. Personal Notion skills
-use the [Notion lifecycle](../../aios-notion-setup/references/personal-skills.md).
+use the [Notion lifecycle](../../aios-context/references/notion/personal-skills.md).
 The portable root
 manifest and thin Codex, Claude/Copilot, Cursor, Gemini and Pi metadata all use
 the same skills. Install separately in each chosen harness; no cross-install

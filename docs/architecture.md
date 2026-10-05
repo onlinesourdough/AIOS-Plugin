@@ -8,7 +8,7 @@ task; AIOS has no model runner, background service or permission system.
 | Boundary | Responsibility |
 | --- | --- |
 | Native harness | Projects, sessions, models, tools, permissions and credentials |
-| Selected context home: Notion guide or local files | Relevant context, source links, decisions and personal skills |
+| Selected context home and its short entry | Relevant context, source links, decisions and personal skills |
 | Spaces | Selectively loaded business or brand context |
 | Skills | Reusable methods, standards and judgment, with references and small helpers as needed |
 | Project workspace | Local requirements, working files, outputs, proof and recovery; Git is selected when useful |
@@ -68,9 +68,17 @@ separate; installation never migrates data. An authorized cleanup preserves
 existing data and rollback evidence before changing the format marker. See
 [data compatibility](../skills/aios-setup/references/data-format.md).
 
-Notion context uses an approved guide and native page/skill tools without a
-local owner mirror or AIOS_FORMAT. A small host pointer supplies fresh-session
-discovery. Source systems retain their records and access control.
+[Context](../skills/aios-context/SKILL.md) selects the provider and owns the common
+home contract. A small host pointer supplies fresh-session discovery; the entry
+identifies authoritative sources, Spaces, personal methods and maintenance scope.
+Notion is the preferred concrete setup for solo founders and small teams. Other
+selected homes retain native structures and require verified tools and acceptance.
+Source systems retain their operational records and access control.
+
+Docs, Skills and Memory establish a context foundation. An operating model also
+needs workflows, responsibility, review points and evidence of useful outcomes.
+Start from one real workflow and add context where it improves that work. This
+package does not provision an ERP, data integration service or runtime memory engine.
 
 Maintain Context owns facts and explicit continuity Sync. Manage Skills owns
 personal-skill placement and native adoption. File-home Sync transfers consented context,

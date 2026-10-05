@@ -2,30 +2,31 @@
 name: aios-maintain-context
 description: Curate owner facts, memory and routes, or perform explicitly requested AIOS continuity Sync.
 metadata:
-  version: "1.3.0"
+  version: "1.4.0"
 ---
 
 # AIOS:maintain-context
 
-If Notion is selected but no guide is established, use
-[Notion setup](../aios-notion-setup/SKILL.md) to resolve that gap. Do not fall
-through to local-file maintenance or create a second home.
-
-For an established Notion context home, follow its approved guide and the
-[Notion operating route](../aios-notion-setup/references/operating.md).
-At natural task checkpoints, curate new durable decisions, reasons and
-corrections from the current work within the guide's approved source and
-destination scope. Update the owning fact or existing memory, read back writes,
-and create nothing when unchanged. This is task-time curation, not a claim to
-observe other chats or keep all sources synchronized. No timer is required.
-Personal skill changes still belong to Manage Skills. No AIOS_FORMAT or local memory
-mirror is required. An explicit sync request in this mode means reconciling the
-named sources, not running file-home Git sync. Apply the file-home procedure
-below only when that provider is selected.
-
 For an explicit System-code update, route to
 [System maintenance](../aios-update/references/systems.md); owner Sync does not
 update nested repositories.
+
+Use the resolved [context provider](../aios-context/references/providers.md);
+resolve it first only when not already known. For a selected home without a
+guide/mapping, [Context](../aios-context/SKILL.md) owns setup of that gap. No
+provider failure falls through to file maintenance or creates a second home.
+
+For Notion, follow its guide and [operating route](../aios-context/references/notion/operating.md).
+For another existing document/vault home, use the [existing-home procedure](../aios-context/references/existing-home.md).
+Curate durable decisions, reasons and corrections within current-task or standing
+write authority. Update the owning record, preserve provenance, verify writes
+and create nothing when unchanged. This is task-time curation; personal skill
+changes belong to Manage Skills. A non-file-home sync request reconciles only
+its named sources, not the file-home Git procedure.
+
+Apply the procedure below only to a selected managed AIOS file home.
+
+## Managed file homes
 
 For an explicit `aios sync`, read [Sync](references/sync.md) first. At a missing
 or genuinely empty chosen home, make its one Sync-existing-versus-new-setup choice;

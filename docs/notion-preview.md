@@ -2,8 +2,8 @@
 
 Status: isolated test branch; not a release or a migration of existing users.
 
-The preview tests an optional Notion context home for solo founders and small
-teams. AIOS remains a portable method/skill package. The customer's Notion guide
+The preview tests a provider-neutral Context entry, with Notion preferred for
+solo founders, business leaders and small teams. AIOS remains a portable method/skill package. The customer's Notion guide
 owns context routing, durable memory and personal skills. Native connections
 access source systems; Notion is not a universal data ingestion layer.
 
@@ -33,8 +33,8 @@ export require actual host/API capability and are separately verified.
 ## Implementation and evidence
 
 Setup, AIOS, Maintain Context, Manage Skills and Check dispatch to the selected
-provider. The new Notion setup skill follows Notion's current setup guide with
-AIOS ownership/recovery boundaries. Personal changes use native Notion skills;
+provider. The public Context skill selects the home; its conditional Notion procedure
+follows the official setup guide with AIOS ownership/recovery boundaries. Personal changes use native Notion skills;
 shared methods remain in the plugin. A distinctly named local preview can be
 staged from this branch without changing the production package identity.
 
@@ -260,3 +260,59 @@ Notion calls; no writes. This verifies one bounded journey, not automatic skill
 discovery, universal connector behavior or future freshness. Daily maintenance
 remains paused. Account-specific snapshots and rendered UI proof stay private;
 no merge, public workspace template, package release or deployment is included.
+
+## Current verification — provider-neutral Context (.8)
+
+The public `aios-context` entry replaces `aios-notion-setup`; 26 shared skills
+remain. Notion is the preferred small-team route within an open home contract.
+Setup, Maintain Context, Check and Manage Skills keep their focused procedure
+ownership. Other existing homes use verified native mappings, not forced file
+formats, fabricated connectors or implicit migration. Client-scoped work leaves
+an unrelated personal default unchanged.
+
+The context entry retains its original identity and owner-selected title. It now
+routes directly to full-page Docs, native Skills and Memory, preserving Spaces,
+source ownership and task-time maintenance. Reusable procedures stay in the
+plugin. English properties and five native templates retain the .6 verification;
+no schema/template changes were made in this revision. The host block decreased
+from 411 to 297 UTF-8 bytes and the entry body from 9,575 to 5,875. These are text
+sizes, not measured runtime token, cost or quality improvements.
+
+Source validation against `32ece9b054ff97debfc5cd5b4c609f6c30c887b4`, footprint,
+documentation, layout, continuity, skill-version and whitespace checks pass.
+Independent review found and corrected resolved-provider dispatch and read-cost
+accounting gaps; focused re-review passed. A client fixture exposed unnecessary
+reconciliation with the consultant's personal pointer. The scope correction
+received independent review and passed the same fixture on .8.
+The final source subject is
+`e19549da0b60ad217e25f13b9761b9f682e015348c3d6ddb88c4defe77f7aac7`
+over 250 files, excluding this evidence-only document. Generic provider selection
+and design overhead is reported separately; legacy ceilings are unchanged.
+
+Native Codex installation exposes preview `0.18.0-notion.8`; all 175 installed
+files match the staged package. Fresh ephemeral Codex sessions observed:
+
+- Live Notion: current owner-edited positioning and the native personal content
+  method were retrieved and used in a short draft (13 provider reads, no writes).
+- Live unchanged maintenance: existing one-home/Spaces decision reconciled with
+  the active guide (5 provider reads, no writes or routine records).
+- Synthetic independent repository: local task completed without owner reads.
+- Synthetic missing entry: explicit gap, no old-context fallback or mutation.
+- Synthetic Obsidian home: correct current offer and personal method, with no
+  forced `.AIOS` format or Notion move.
+- Synthetic messy customer workspace: exact Docs/Skills identities reused, only
+  a short entry and missing Memory proposed, preserved decoys/unclassified work
+  and skill resources, and customer-scoped routing preserves the personal default.
+
+These are bounded behavioral observations. The customer fixture is an onboarding
+plan simulation, not live provisioning or end-to-end mutation/idempotence proof.
+Other cloud providers remain untested. The selected personal video/content method
+requests a production reference even for a short adaptation; no blanket minimal
+retrieval or token guarantee is claimed. The .6 native-template connector limit
+remains: inspect drafts and use the working native picker where needed.
+
+Preview .6, the previous instruction block and pre-shortening entry are retained
+privately. A synthetic restoration check restored only the unchanged owned block,
+preserved later unrelated instructions and rejected a modified block. Live .8
+configuration was not rolled back for that test. The former daily automation
+remains paused; no schedule, sharing change, dependency, merge or release was added.

@@ -318,7 +318,7 @@ longer serve the overview or metadata and that the remaining site still works.
 
 ## Notion context preview
 
-The [preview contract](notion-preview.md) and [Notion acceptance](../skills/aios-notion-setup/references/acceptance.md)
+The [preview contract](notion-preview.md) and [Notion acceptance](../skills/aios-context/references/notion/acceptance.md)
 separate package checks, native activation, live import, fresh-session behavior
 and rollback. Account-specific evidence stays in the private task workspace.
 No native export, future scheduled run or cross-harness behavior is inferred

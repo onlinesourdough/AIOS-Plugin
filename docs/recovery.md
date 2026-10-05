@@ -54,7 +54,7 @@ is not owner-data recovery.
 
 ## Notion preview
 
-Use the [Notion recovery route](../skills/aios-notion-setup/references/operating.md#recovery).
+Use the [Notion recovery route](../skills/aios-context/references/notion/operating.md#recovery).
 Restore only the previous owned bridge, plugin selections and personal-skill
 registrations after checking current identities. Preserve Notion pages and any
 new work; reconcile post-cutover decisions before resuming old memory.

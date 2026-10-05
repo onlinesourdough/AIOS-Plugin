@@ -28,7 +28,7 @@ JOB_PREFIXES = {
     "aios-maintain-context": "Curate ",
     "aios-manage-skills": "Manage ",
     "aios-setup": "Set up, resume or move ",
-    "aios-notion-setup": "Set up or resume ",
+    "aios-context": "Manage ",
     "aios-interview": "Interview ",
     "aios-orchestrate-workers": "Prepare, launch, coordinate and recover ",
     "aios-risky-changes": "Assess ",
@@ -53,9 +53,12 @@ CURRENT_JOURNEYS = {
     "independent-local-negative-preload": (),
     "owner-business-route": (
         "skills/aios/SKILL.md",
+        "skills/aios-context/SKILL.md",
+        "skills/aios-context/references/providers.md",
         "skills/aios/references/routing.md",
     ),
     "spec-ready": (
+        # Historical file bridge resolves the owner home; no new provider decision.
         "skills/aios/SKILL.md",
         "skills/aios/references/routing.md",
         "skills/aios-spec-work/SKILL.md",
@@ -64,6 +67,7 @@ CURRENT_JOURNEYS = {
         "skills/aios-spec-work/references/readiness.md",
     ),
     "worker-build": (
+        # Historical file bridge resolves the owner home; no new provider decision.
         "skills/aios/SKILL.md",
         "skills/aios/references/routing.md",
         "skills/aios-build-work/SKILL.md",
@@ -78,6 +82,7 @@ CURRENT_JOURNEYS = {
         "skills/aios-check/references/checks.md",
     ),
     "codex-package-and-bridge-pre-verification": (
+        # Fixed managed-file package/bridge journey: provider already resolved.
         "skills/aios-setup/SKILL.md",
         "skills/aios-setup/references/setup.md",
         "skills/aios-interview/references/conversation.md",
@@ -88,6 +93,7 @@ CURRENT_JOURNEYS = {
         "skills/aios-setup/references/data-format.md",
     ) + CURRENT_NEUTRAL_SCAFFOLD,
     "codex-package-and-bridge-verification": (
+        # Fixed managed-file package/bridge journey: provider already resolved.
         "skills/aios-setup/SKILL.md",
         "skills/aios-setup/references/setup.md",
         "skills/aios-interview/references/conversation.md",
@@ -285,9 +291,20 @@ def main():
     print("NOTE: portable/whole-task transfer adds that reference, not worker orchestration; no matched legacy transfer path is claimed")
     notion = sum((ROOT / path).stat().st_size for path in (
         "skills/aios/SKILL.md",
-        "skills/aios-notion-setup/references/operating.md",
+        "skills/aios-context/SKILL.md",
+        "skills/aios-context/references/providers.md",
+        "skills/aios-context/references/notion/operating.md",
     )) + startup
     print(f"conditional_notion_owner_route_bytes={notion}")
+    contract = ROOT / "skills/aios-context/references/home-contract.md"
+    print(f"conditional_context_setup_contract_extra_bytes={contract.stat().st_size}")
+    selection = sum((ROOT / path).stat().st_size for path in (
+        "skills/aios-context/SKILL.md", "skills/aios-context/references/providers.md"))
+    print(f"conditional_unresolved_provider_selection_extra_bytes={selection}")
+    print(f"conditional_generic_selection_and_design_extra_bytes={selection + contract.stat().st_size}")
+    for journey in ("spec-ready", "worker-build"):
+        print(f"{journey}_with_unresolved_provider_bytes={current_bytes(CURRENT_JOURNEYS[journey], startup) + selection}")
+    print("NOTE: legacy file bridges already resolve the home; a new provider decision adds the measured selection path, and provider-specific operating/contract reads remain additional. These expanded operations have no matched legacy claim")
     print("NOTE: Notion guide, selected cloud sources and MCP tool schemas add workload-dependent bytes; no matched legacy or cost-saving claim")
     print("PASS: bounded skill bodies and representative positive/negative selected routes")
     print("NOTE: token values are bytes/4 estimates; no native-runtime token telemetry was available")

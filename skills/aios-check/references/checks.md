@@ -13,10 +13,11 @@ and recheck, or Needs decision, plus per-claim PASS/FAIL/NOT VERIFIED.
   discoverable names; frontmatter valid, local references resolve, no install
   hooks or automatic runtime/dependency setup or hidden invocation disabling. Every native
   manifest points to the same bodies; only the selected harness is affected. Compare installed release identity, not just a folder name.
-- Notion context: use [Notion acceptance](../../aios-notion-setup/references/acceptance.md)
-  for routing, context, memory, skills and reconciliation. The file-home owner
-  routing, data and Sync bullets below apply only to file context. Native product
-  and harness checks apply to both.
+- Context: use the resolved [provider](../../aios-context/references/providers.md)
+  and [home contract](../../aios-context/references/home-contract.md), then its
+  applicable checks for routing, memory, personal methods and reconciliation.
+  The file-home routing, data and Sync bullets below apply only to managed file
+  homes. Native product and harness checks remain independent of the provider.
 - File owner routing: requested/established home wins, then a managed bridge, then
   ~/.AIOS only when neither exists. Native discovery needs no bridge or home.
   For a separately chosen bridge, the configured absolute home is correct; effective AGENTS/override read

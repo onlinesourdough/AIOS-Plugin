@@ -2,7 +2,7 @@
 name: aios
 description: Apply owner context and select relevant AIOS methods for the current task.
 metadata:
-  version: "2.5.1"
+  version: "2.6.0"
 ---
 
 # AIOS:aios
@@ -11,21 +11,20 @@ Use the current task/workspace. Independent repositories use local
 instructions and accepted inputs without personal preload. Native harnesses
 own projects, sessions, tools and permissions.
 
-When owner context is needed, use its home or bridge. For Notion, fetch its exact
-guide and relevant sources through the [Notion route](../aios-notion-setup/references/operating.md);
-do not create local owner files or fall back to stale data on failure.
-Otherwise use the established file home, defaulting to ~/.AIOS: read AIOS.md,
-MEMORY.md and relevant routes. AIOS.md and supported AIOS_FORMAT identify even a
-Git-backed home; check [data compatibility](../aios-setup/references/data-format.md)
-before writes. External facts remain at their authorized sources.
+For needed context in an already-resolved home, follow its approved guide and
+relevant source routes; do not repeat provider selection. A managed file bridge
+already resolves its root and AIOS.md. Use [Context](../aios-context/SKILL.md) when
+the home or operation needs routing. Load only relevant sources and methods.
+Unavailable context never falls back to an old copy or another provider.
 
 Use [Interview](../aios-interview/SKILL.md) for requested exploration or materially
 unclear goals at the start, including thinking aloud. Reuse accepted answers;
 clear work and isolated questions proceed directly.
 
-For a missing/empty home with unresolved intent, [Setup](../aios-setup/SKILL.md)
-resolves “Sync existing AIOS or set up new?”. Resume established homes from known
-facts; missing AIOS does not block unrelated work. Explicit `aios sync` uses
+For requested context setup, [Context](../aios-context/SKILL.md) reuses the
+established home or resolves the next material choice. [Setup](../aios-setup/SKILL.md)
+owns native installation; managed file homes retain their Sync/new-home choice.
+Missing context does not block unrelated work. Explicit `aios sync` uses
 [Maintain Context](../aios-maintain-context/SKILL.md) for the selected provider.
 
 For substantive work, [routing](references/routing.md) selects context, method

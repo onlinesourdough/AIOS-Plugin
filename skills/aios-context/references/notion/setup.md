@@ -1,11 +1,4 @@
----
-name: aios-notion-setup
-description: Set up or resume a Notion context home with durable memory and native personal skills.
-metadata:
-  version: "1.3.0"
----
-
-# AIOS:notion-setup
+# Set up a Notion context home
 
 Use when the owner chooses Notion as the context home. AIOS supplies methods;
 Notion holds company knowledge and personal skills; the harness supplies tools
@@ -15,7 +8,7 @@ No server, custom MCP, database service or local owner folder is required.
 Read the complete current [Notion setup guide](https://developers.notion.com/prompts/setup)
 and the relevant Skills documentation it links. Record the applied version and
 date; a newer remote guide is a review input, not authority to replace policy.
-Use [operating boundaries](references/operating.md) throughout the setup.
+Use [operating boundaries](operating.md) throughout the setup.
 
 ## Establish the destinations
 
@@ -35,7 +28,7 @@ Preserve Spaces as business/brand scopes within one owner home, including
 sub-brands and shared context. Projects use their native workspaces. Start with
 a Space property and useful views; a separate Space database is conditional.
 For properties, hierarchy, native templates and integrity checks, apply the
-[schema contract](references/schema-and-templates.md) to the existing workspace.
+[schema contract](schema-and-templates.md) to the existing workspace.
 Split large imports into coherent, independently editable topics with clear
 titles, stable source identity and provenance. A view tag does not confer
 native skill status or permissions. Inspect the rendered home and use its
@@ -55,13 +48,32 @@ distributed plugin. Deduplicate by source identity and destination, not title
 alone. If a write's result is uncertain, read the destination before retrying.
 Changed source or destination requires reconciliation; never overwrite blindly.
 
-Migrate selected personal methods through [Manage Skills](../aios-manage-skills/SKILL.md)
-and the [Notion skill lifecycle](references/personal-skills.md). Preserve every
+Migrate selected personal methods through [Manage Skills](../../../aios-manage-skills/SKILL.md)
+and the [Notion skill lifecycle](personal-skills.md). Preserve every
 supporting file and repair references before retiring an old registration.
+
+## Starting in a messy workspace
+
+Begin with one real workflow and its outcome, source owner and review point.
+Inspect the selected home and relevant databases, not the whole workspace.
+Record exact IDs: two pages called Docs need not be the same destination.
+Reuse the suitable Document Hub, native Skills and Memory; create only missing
+destinations under the agreed home. Existing unclassified documents stay usable
+without bulk tagging, moving or declaring them authoritative. Link the few
+relevant sources and fill genuine context gaps from documented evidence.
+
+Give people one short entry and ordinary full-page destinations. Prove that the
+first workflow finds the right fact and method, produces a reviewable result
+and retains one useful correction without duplication. Expand to another Space
+or source when work needs it. These destinations establish a context foundation;
+they do not by themselves redesign operations, automate workflows or integrate
+transactional data. Cleanup of unrelated clutter is a separate scope.
 
 ## Establish ongoing use
 
-Create or update one owner-approved Agent Operating Guide containing:
+Create or update one short owner-approved context entry/operating guide. Use a
+name that fits the workspace; it can be called AI Native Operating Model. It
+contains owner-specific routing and choices, not a copy of this plugin's methods:
 
 - identity of this context home and links to relevant authoritative sources;
 - memory and actual work destinations, with source/freshness rules;
@@ -70,23 +82,28 @@ Create or update one owner-approved Agent Operating Guide containing:
 - discoverable personal skills and the agreed policy for future skill changes;
 - access boundaries, maintenance scope and recovery location.
 
+Prefer linking the host directly to this short entry to avoid reading the whole
+Business home or Docs database each session. Neither page name is mandatory.
+Keep detailed source, schema and skill procedures in the shared plugin; retain
+only the owner's actual mappings and exceptions in the guide.
+
 Use the existing setup authority for this guide. Keep the host's persistent
-instruction a thin pointer using [the bridge](assets/bridge.md) and the selected
-[native adapter](../aios-setup/references/adapters.md). Preserve other
+instruction a thin pointer using [the bridge](../../assets/bridge.md) and the selected
+[native adapter](../../../aios-setup/references/adapters.md). Preserve other
 instructions and repository isolation. Never embed private IDs in plugin source.
 Verify the guide first, then change only the owned bridge and selected plugin
 registration. Leave the previous home as inactive recovery during a preview.
 
-Make [Maintain Context](../aios-maintain-context/SKILL.md) usable at natural task
+Make [Maintain Context](../../../aios-maintain-context/SKILL.md) usable at natural task
 checkpoints within the approved read/write policy. No timer is required.
 Setup or general upkeep authority does not authorize a recurring task. Use the
 host's scheduler only for an explicit recurring-work request with bounded
-sources, destinations and cadence; see [maintenance](references/operating.md#maintenance).
+sources, destinations and cadence; see [maintenance](operating.md#maintenance).
 Skill automatic-use settings do not create scheduled runs.
 
 ## Prove the result
 
-Run the authorized [acceptance checks](references/acceptance.md), including a
+Run the authorized [acceptance checks](acceptance.md), including a
 fresh session that retrieves the correct live context and personal skill.
 Import, native discovery and behavioral use are separate claims. Preserve
 earlier versions on failed activation, and complete independent work.

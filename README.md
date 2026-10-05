@@ -130,8 +130,8 @@ step, not a requirement to repeat work or use every skill.
 | Complete substantive work | Spec → [Build](skills/aios-build-work/SKILL.md) → [Review](skills/aios-review-work/SKILL.md) → Ship for authorized delivery | A defined outcome, implemented result, current verification and delivery readback |
 | Start a project for content, learning, business or software | [Create Project](skills/aios-create-project/SKILL.md) → the relevant work methods | A useful workspace, context and simple structure; Git and templates are optional |
 | Move an MVP or legacy application into a reliable working environment | [Project Foundation](skills/aios-project-foundation/SKILL.md) → project repair and verification | Reproducible setup, maintained code/design contracts, working CI and selected non-production delivery |
-| Set up or move your AIOS home | [Setup](skills/aios-setup/SKILL.md), using Interview where needed → [Maintain Context](skills/aios-maintain-context/SKILL.md) for source routes → [Check](skills/aios-check/SKILL.md) for affected setup proof | A usable home, relevant context, verified chosen connections and a first useful result |
-| Keep useful context current | Maintain Context → its [Sync procedure](skills/aios-maintain-context/references/sync.md) when explicitly requested | Relevant facts and source pointers; optional scoped backup or restore |
+| Set up or move your AIOS home | [Context](skills/aios-context/SKILL.md), with Setup for native installation → [Maintain Context](skills/aios-maintain-context/SKILL.md) for source routes → [Check](skills/aios-check/SKILL.md) for affected setup proof | A usable home, relevant context, verified chosen connections and a first useful result |
+| Keep useful context current | Maintain Context → the selected provider; [Git Sync](skills/aios-maintain-context/references/sync.md) only for an explicitly selected managed AIOS file home | Relevant facts and source pointers; optional scoped backup or restore |
 | Create or change a skill | [Manage Skills](skills/aios-manage-skills/SKILL.md) → native authoring or installation → verification, using Check for discovery when relevant | One maintained capability with a known source, placement and recovery path |
 | Update or recover a package or specialist | [Update](skills/aios-update/SKILL.md) → native adoption or specialist maintenance → Check where applicable | A selected revision with observed installation state and a recovery route |
 
@@ -242,16 +242,26 @@ setting. It currently has no equivalent native installer for this instruction
 package, so we do not describe that route as plug and play. See the
 [compatibility guide](skills/aios-setup/references/adapter-other.md#opencode).
 
-## Notion context preview
+## Context home preview
 
-This test branch adds an optional [Notion setup](skills/aios-notion-setup/SKILL.md).
-Company context and personal skills can live in Notion while AIOS supplies the
-shared methods. A thin host pointer makes the guide discoverable in new tasks;
-no local owner mirror or server is required. Existing file homes remain supported.
-Reuse ordinary full-page Docs and native Skills destinations, with Memory for
-durable decisions. Adapt to the customer's existing structure. Context upkeep
-happens during work; a recurring automation is optional and separately requested.
-See the [preview contract](docs/notion-preview.md) for proof and recovery boundaries.
+[AIOS Context](skills/aios-context/SKILL.md) is the common entry for setup,
+relevant retrieval, maintenance and context checks. A short host instruction
+points to one context entry; that entry routes to only the sources a task needs.
+The plugin holds shared methods. Your chosen home holds company facts, decisions
+and personal skills. Operational records remain in their owning systems.
+
+Notion is our preferred starting point for solo founders, business leaders and
+small teams. Use a short entry plus full-page **Docs, native Skills and Memory**,
+reusing suitable existing databases. Spaces distinguish businesses, brands and
+sub-brands within one home. Start with a real workflow, even in a messy workspace;
+classify only the context it needs. No local mirror, custom server or daily task
+is required. Maintenance happens during useful work.
+
+The method also accommodates a selected Obsidian vault, repository or another
+home through verified access and local mappings. Those alternatives require their
+own acceptance; they are not all tested integrations. Managed AIOS file homes
+keep their existing concrete procedure. See the [preview contract](docs/notion-preview.md)
+for current proof and limits. This branch is a preview, not a released migration.
 
 ## Start with a real task
 
@@ -267,7 +277,8 @@ After installation, try:
 
 You can use the shared work methods immediately. Setting up your personal
 context is a separate conversation: AIOS reuses an existing home or helps you
-choose Notion or create a file home, normally at `~/.AIOS`. A custom location is also supported. No owner
+choose the home that fits your work. Notion is preferred; existing alternatives
+and managed file homes remain available. No owner
 home or global instruction edit is required just to install the plugin.
 
 The bundled [human-writing](skills/human-writing/SKILL.md) skill is the default
@@ -279,7 +290,7 @@ detail. It adds no separate approval step.
 ## What is shared
 
 The **AIOS plugin** is Online Sourdough's shared method. **Your AIOS home**,
-selected as Notion or a file home, contains your context and personal skills. They have separate
+selected through Context, contains your context and personal skills. They have separate
 owners, locations and update paths.
 
 ```mermaid
@@ -287,7 +298,7 @@ flowchart TB
     upstream["Online Sourdough / AIOS-Plugin<br/>Reviewed GitHub releases"]
     installed["Each app's local plugin installation<br/>Shared skills + references + overview"]
     agent["Your agent in Codex, Pi or another app<br/>Reads relevant sources when needed"]
-    personal["Your context home: Notion or files<br/>Personal skills + source pointers"]
+    personal["Your selected context home<br/>Personal skills + source pointers"]
     backup["Optional private GitHub owner repository<br/>Approved owner files only"]
     project["Independent projects and Systems<br/>Own code, instructions and Git history"]
     projectremote["Each project's or System's own remote"]
@@ -303,8 +314,8 @@ flowchart TB
 | What | Where it belongs | How it moves or updates |
 | --- | --- | --- |
 | Shared AIOS skills, supporting files and overview | The selected app's plugin installation/cache | Install or update through that app. A fixed tag/commit stays fixed until another is selected. |
-| Your facts, memory and connection pointers | Selected Notion guide/memory/sources, or file-home AIOS.md, MEMORY.md and routed context | Notion writes are canonical; file homes can use scoped optional Git Sync. |
-| Skills you create and own | Native Notion skills for Notion context, or personal folders in the selected file home | Fetch Notion skills on demand; file-home skills use reviewed Sync and separate native registration. |
+| Your facts, memory and source pointers | The selected home and its authoritative sources | Use that provider's verified tools. Managed file homes can use optional scoped Git Sync. |
+| Skills you create and own | The chosen home's personal-method destination and supporting resources | Read page-based methods when needed. Native installation/export is a separate verified step; managed file homes may use reviewed Sync. |
 | Other installed plugins and shared skill libraries | Their native installation or their own source | Their own update route. They do not become personal skills just because a folder is named `skills`. |
 | Independent projects and optional Systems | Their own repository, inside or outside the owner home | Their own Git workflow and remote. Owner Sync can carry agreed source indexes, never their nested code/history. |
 | Sessions, app settings, credentials and caches | The native app or credential store | Outside owner Sync. Reconnect/configure the destination app through its supported setup. |

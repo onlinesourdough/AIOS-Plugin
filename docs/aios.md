@@ -13,17 +13,20 @@ AIOS focuses on business work, decisions, content, design and practical
 automation. Projects own their implementation, engineering standards, design,
 infrastructure and delivery configuration.
 
-## Notion context preview
+## Context home preview
 
-This branch supports an optional Notion context home through
-[Notion setup](../skills/aios-notion-setup/SKILL.md). The approved operating guide
-routes company context and personal skills; the host keeps only a small pointer.
-There is no required local owner mirror or custom service. Shared skills remain
-in AIOS and source systems keep their operational records. This is a preview,
-not a released migration requirement. Reuse normal Docs/Skills navigation and
-the existing memory destination; full-page databases keep the home compact.
-Maintain Context curates durable changes during work. A timer is optional and
-requires an explicit recurring-work request.
+[Context](../skills/aios-context/SKILL.md) owns the common home contract and selects
+one provider. The host keeps a short pointer to an approved entry; the agent reads
+only relevant sources and personal methods. Notion is preferred for solo founders,
+business leaders and small teams. Reuse full-page Docs, native Skills and Memory,
+with Spaces for business and brand scopes. Start with one useful workflow in an
+existing workspace; no wholesale migration is required.
+
+An established alternative can use its own structure and verified tools. Managed
+file homes retain their concrete procedure; other providers need separate proof.
+Shared methods stay in the plugin and operational records at their source.
+Maintain Context saves durable changes during work. No local mirror, custom
+server or timer is required. This branch is a preview, not a released migration.
 
 ## Shared method, owner context
 
