@@ -45,8 +45,9 @@ workspace. Record exact source revision and checks below before delivery.
 ## Ownership and recovery
 
 The maintainer owns the plugin; the customer owns Notion content and permissions;
-the harness owns scheduling, tool access and local registration. Daily curation
-is bounded to approved sources, not hidden chat history. Notion setup updates
+the harness owns scheduling, tool access and local registration. Task-time curation
+is bounded to approved sources, not hidden chat history. A schedule requires an
+explicit recurring-work request. Notion setup updates
 are reviewed before adoption.
 
 Rollback restores only recorded, unchanged preview registrations and the host
@@ -128,7 +129,7 @@ the affected synthetic and actual host recovery checks were repeated.
 No merge, release, cross-harness runtime proof, UI-default proof, native complete
 skill-package export or token/cost improvement is claimed.
 
-## Current source verification — database and Space revision
+## Historical verification — database and Space revision (.4)
 
 Source base: `3457050a200a1573dab5835f89445972dfcd3735`.
 Source subject SHA-256: `414f7cbd686e1aa9f196ada7facdd1c03c31f9c533b75cb4bd5ebc5c6257259c`, computed by the method above.
@@ -158,3 +159,51 @@ registrations and the outdated rollback helper are removed from active use;
 the current recovery record preserves the original sources and explains safe
 restoration after later edits. Native daily-maintenance configuration was read
 back with the revised source scope; future executions remain unproven.
+
+## Full-page navigation and task-time maintenance — 2026-10-05
+
+The owner requested normal Notion navigation, with full-page Docs, native Skills
+and Memory reached directly from Business home. Existing Docs content, native
+template and properties stay useful. Move the same personal skill pages into a
+canonical native Skills collection, preserving their method bodies, references,
+attachments and automatic-use settings. Preserve the original home blocks and
+repair exact view routes before retiring the replaced inline views.
+
+This is an example mapping for this owner, not a mandatory three-database
+template. Reuse suitable customer destinations and add only what is missing.
+AIOS owns shared method releases; the owner owns context, decisions and personal
+methods in Notion. Operational source systems and repositories keep their data.
+
+Maintain Context owns durable correction/decision capture at natural task
+checkpoints. No timer is necessary; the existing daily automation is paused.
+The skill cannot observe other chats or guarantee freshness between tasks.
+Setup alone does not authorize scheduling. The acceptance contract now checks
+task-time correction and unchanged replay; schedule evidence is conditional.
+
+Source base: `7c9372b284a52e5728030345a2a7662ddd63c6f4`.
+Source subject SHA-256: `7e54511fc78ca926d5473a2598796b856d78060d1bf18df009e34e612701d8a4`,
+computed by the method above. Package/per-skill version validation against that
+base, context-footprint, documentation, layout and continuity rehearsals, and
+whitespace checks passed without changing test ceilings. Independent review
+identified an unnecessarily narrow standing-authority condition. The corrected
+rule accepts either current task authorization or standing policy; independent
+correction review returned PASS and verified the other reviewed files unchanged.
+
+Preview `0.18.0-notion.5` is installed with all 170 files matching its stage.
+Live readback verifies three full-page destinations, working Space views,
+preserved Docs template, three native skill banners and their disabled personal
+automatic-use settings. The skill methods, references and attachments are
+unchanged; one native mention's displayed label normalized while retaining its
+URL. The original home image, quote and unknown block remain intact. The two
+replaced inline views are in recoverable trash; their guide routes are repaired.
+
+Current decisions were updated in place. A fresh native session used the new
+guide, metadata from saved views, relevant context, a personal content skill and
+its manuscript reference. A separate Maintain Context replay fetched the
+existing decision and made no write; independent readback confirmed unchanged
+content and edit time. Memory retained ten unique keys. A fresh independent
+project returned the correct local sum/count with no Notion calls. The native
+automation is PAUSED. These are bounded observed runs, not a guarantee of
+background freshness, complete package export or cross-harness behavior.
+Account-specific records and recovery snapshots remain in the private task
+workspace. No merge or release is included.

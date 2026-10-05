@@ -248,6 +248,9 @@ This test branch adds an optional [Notion setup](skills/aios-notion-setup/SKILL.
 Company context and personal skills can live in Notion while AIOS supplies the
 shared methods. A thin host pointer makes the guide discoverable in new tasks;
 no local owner mirror or server is required. Existing file homes remain supported.
+Reuse ordinary full-page Docs and native Skills destinations, with Memory for
+durable decisions. Adapt to the customer's existing structure. Context upkeep
+happens during work; a recurring automation is optional and separately requested.
 See the [preview contract](docs/notion-preview.md) for proof and recovery boundaries.
 
 ## Start with a real task

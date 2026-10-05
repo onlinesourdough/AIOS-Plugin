@@ -16,8 +16,11 @@ saved views to select metadata before fetching page bodies. Shared context is
 selected when relevant, not preloaded wholesale. A Space is an organizational
 scope; views reuse the same records. Keep knowledge at its owning topic and
 memory as durable decisions/corrections with provenance, avoiding a shadow copy.
-Native personal skills may appear in the same catalog, but their native skill
-designation and required references must remain intact.
+Docs own knowledge and deliverables, native Skills own personal methods, and
+memory owns decisions and corrections. Map these roles onto suitable existing
+destinations; names and database count need not be identical across companies.
+Native skill designation and required references must remain intact even when
+an existing workspace presents them together.
 
 Use Notion permissions for page access and the native connection's identity.
 AIOS prompts do not enforce per-user access control. Validate actual access
@@ -48,7 +51,17 @@ with their pending destination; unrelated repository work continues.
 
 ## Maintenance
 
-Use the native host scheduler only under the owner's recurring-work authority.
+Default to [Maintain Context](../../aios-maintain-context/SKILL.md) during the
+current work, at a durable decision/correction or before finishing. Use the
+guide's approved sources and destinations; save the useful change, not a routine
+run log. Compare existing identity and meaning before writing. An unchanged
+replay should make no write. If neither current task authorization nor a standing
+write policy covers a result, keep the concrete proposed change for approval
+without blocking unrelated work.
+
+The skill is a method, not a background process or a guarantee of fresh data
+between tasks. Use the native host scheduler only for explicitly requested
+recurring work; setup/general upkeep authority alone does not authorize it.
 Record cadence/time zone, sources, destination and the actual scheduling ID.
 Limit a maintenance run to the approved guide, memory, selected changed work
 and explicitly supplied learnings. It does not have access to every conversation

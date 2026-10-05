@@ -16,6 +16,12 @@ sync or installation of its dependencies.
 1. Inspect the destination and current capability map. Read Notion's Skills
    documentation. Use native upload/download tools when actually exposed;
    advertised account access alone is not callable capability.
+   Reuse an existing native Skills home. For an authorized new collection, use
+   the supported canonical Skills database type, preserving its native fields;
+   add only useful owner metadata. A Docs Type tag alone is not this collection.
+   On relocation, move the existing pages rather than duplicate their methods.
+   Verify property mapping, native status, automatic-use policy, children and
+   attachments, then repair guide/view routes before retiring the old view.
 2. Prefer complete native package import/export. With page tools only, create a
    page and mark it as a native skill with the supported create/update/convert
    operation. The page body is the current method. Preserve supporting text as

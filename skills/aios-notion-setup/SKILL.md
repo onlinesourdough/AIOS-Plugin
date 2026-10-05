@@ -2,7 +2,7 @@
 name: aios-notion-setup
 description: Set up or resume a Notion context home with durable memory and native personal skills.
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # AIOS:notion-setup
@@ -26,8 +26,12 @@ create the smallest useful home, memory destination and personal-skill route
 within the authorized scope. Use native Notion skills, not an ordinary database
 that merely labels pages as skills. Preserve existing pages and unknown blocks.
 
-Make the home usable by people: show existing knowledge, decisions and native
-skills through database views. When Spaces are useful, start with a Space
+Make the home usable by people: preserve ordinary Docs/Document Hub navigation
+and templates. Prefer full-page databases reached from the existing home;
+inline dashboards are optional, not a setup requirement. Reuse a native Skills
+destination and a memory destination when suitable; add only a missing useful
+destination, not an obligatory three-database hierarchy or an extra AIOS hub.
+When Spaces are useful, start with a Space
 property and filtered views, including a shared scope, rather than separate
 copies or an obligatory Space database. Preserve the owner's actual hierarchy.
 Split large imports into coherent, independently editable topics with clear
@@ -71,11 +75,12 @@ instructions and repository isolation. Never embed private IDs in plugin source.
 Verify the guide first, then change only the owned bridge and selected plugin
 registration. Leave the previous home as inactive recovery during a preview.
 
-If ongoing maintenance is requested or included in setup authority, use the
-host's native scheduler with a bounded source set and schedule. See
-[maintenance](references/operating.md#maintenance). Skill automatic-use settings
-do not create scheduled runs. If scheduling is unavailable, report that limit
-and leave ordinary task-boundary curation usable.
+Make [Maintain Context](../aios-maintain-context/SKILL.md) usable at natural task
+checkpoints within the approved read/write policy. No timer is required.
+Setup or general upkeep authority does not authorize a recurring task. Use the
+host's scheduler only for an explicit recurring-work request with bounded
+sources, destinations and cadence; see [maintenance](references/operating.md#maintenance).
+Skill automatic-use settings do not create scheduled runs.
 
 ## Prove the result
 

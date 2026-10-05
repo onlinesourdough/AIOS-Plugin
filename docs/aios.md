@@ -20,7 +20,10 @@ This branch supports an optional Notion context home through
 routes company context and personal skills; the host keeps only a small pointer.
 There is no required local owner mirror or custom service. Shared skills remain
 in AIOS and source systems keep their operational records. This is a preview,
-not a released migration requirement.
+not a released migration requirement. Reuse normal Docs/Skills navigation and
+the existing memory destination; full-page databases keep the home compact.
+Maintain Context curates durable changes during work. A timer is optional and
+requires an explicit recurring-work request.
 
 ## Shared method, owner context
 
