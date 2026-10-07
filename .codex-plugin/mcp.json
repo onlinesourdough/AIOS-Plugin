@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "aios": {
+      "command": "node",
+      "args": ["./runtime/sidebar/server.cjs"],
+      "cwd": "."
+    }
+  }
+}

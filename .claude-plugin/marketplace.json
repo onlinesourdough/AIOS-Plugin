@@ -1,7 +1,7 @@
 {
   "name": "online-sourdough",
   "owner": {
-    "name": "Online Sourdough"
+    "name": "onlinesourdough"
   },
   "metadata": {
     "description": "AIOS methods for portable owner context and reviewed work."
@@ -10,7 +10,7 @@
     {
       "name": "aios",
       "source": "./",
-      "version": "0.20.0",
+      "version": "0.21.0",
       "description": "Portable context and skills for planning, design, content and reviewed delivery."
     }
   ]

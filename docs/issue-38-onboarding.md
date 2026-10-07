@@ -1,5 +1,8 @@
 # Native AIOS onboarding — issue 38
 
+Historical 0.20.0 delivery record. The subsequently requested sidebar is
+implemented in 0.21.0; see [the current sidebar contract](sidebar.md).
+
 Accepted outcome: one short onboarding route in Codex, verified Notion access,
 the AIOS name across the customer entry and shared template, and a consistent
 Resources guide. Keep existing homes, Spaces, icons and personal methods.

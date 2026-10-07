@@ -1,6 +1,6 @@
 {
   "name": "aios",
-  "version": "0.20.0",
+  "version": "0.21.0",
   "private": true,
   "description": "Portable context and skills for planning, design, content and reviewed delivery.",
   "license": "MIT",
@@ -17,7 +17,8 @@
     "assets/icon.png",
     "README.md",
     "LICENSE",
-    "docs/aios.md"
+    "docs/aios.md",
+    "runtime/sidebar"
   ],
   "pi": {
     "skills": [

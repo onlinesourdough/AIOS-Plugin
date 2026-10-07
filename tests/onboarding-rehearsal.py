@@ -30,7 +30,7 @@ class OnboardingTest(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory(prefix="aios-onboarding-")
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
-        for name in (".codex-plugin", ".claude-plugin", ".cursor-plugin", "skills"):
+        for name in (".codex-plugin", ".claude-plugin", ".cursor-plugin", "skills", "runtime", ".agents/plugins"):
             shutil.copytree(ROOT / name, self.root / name)
         for name in (".app.json", "package.json", "gemini-extension.json"):
             shutil.copy2(ROOT / name, self.root / name)
@@ -71,6 +71,11 @@ class OnboardingTest(unittest.TestCase):
     def test_no_implicit_runtime(self):
         (self.root / "mcp.json").write_text('{"mcpServers":{}}')
         with self.assertRaisesRegex(AssertionError, "unexpected native runtime"):
+            validate_native(self.root, require)
+
+    def test_sidebar_must_be_bundled_and_explicit(self):
+        self.edit('.codex-plugin/mcp.json', lambda d: d['mcpServers']['aios'].update(command='npx'))
+        with self.assertRaisesRegex(AssertionError, 'unexpected sidebar'):
             validate_native(self.root, require)
 
 
@@ -115,9 +120,9 @@ def native_check():
         require(setup and setup["enabled"] and
                 Path(setup["path"]) == ROOT / "skills/aios-setup/SKILL.md",
                 "Codex did not expose the selected Setup entry; check plugin enablement")
-        require(len(detail["skills"]) == 26 and not detail["mcpServers"] and not detail["hooks"],
+        require(len(detail["skills"]) == 26 and detail["mcpServers"] == ["aios"] and not detail["hooks"],
                 "Unexpected native inventory")
-        print("PASS: Codex recognizes Notion, the native Setup entry and 26 skills; no MCP or hooks")
+        print("PASS: Codex recognizes Notion, Setup, 26 skills and the declared AIOS sidebar server; no hooks")
     finally:
         selector.close()
         process.terminate()

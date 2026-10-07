@@ -1,5 +1,10 @@
 # Verification
 
+For AIOS 0.21.0, see [Codex sidebar verification](sidebar.md#verification).
+Build and test the pinned author dependencies, check generated runtime equality,
+then run the existing source and native onboarding checks. A protocol fixture
+does not establish rendered sidebar placement or a new-account OAuth grant.
+
 For AIOS 0.20.0, see [native onboarding](issue-38-onboarding.md) for the
 optional Notion connection, native Setup entry, six synthetic decision cases,
 Codex parser and Claude lifecycle observations. Run

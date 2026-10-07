@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.21.0 — 2026-10-07
+
+- Add a small host-themed Codex sidebar app with Notion connection status, the
+  saved context link and Start setup / Continue setup using the existing skill.
+- Keep connection checks read-only through Codex app-server; connect through the
+  official account page. No auth store, business-data mirror or setup-state database.
+- Bundle the MCP App and local server; Node.js 22+ is required, with no consumer
+  dependency installation. Other clients continue to use the same skills.
+- Use onlinesourdough consistently in publisher labels. Preserve marketplace identity.
+- Verify protocol discovery, isolated first run, failure states, synthetic UI
+  interactions and the existing packaging checks. See the sidebar evidence limits.
+
 ## 0.20.0 — 2026-10-07
 
 - Connect the native Codex Set up action to AIOS Setup and declare Notion as an

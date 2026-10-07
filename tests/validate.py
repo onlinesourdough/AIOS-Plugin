@@ -70,7 +70,7 @@ FORBIDDEN_SHIPPED_PATTERNS = (r"\bnpx skills\b", r"\bskills\.sh\b")
 DOMAIN_SKILLS = {"design", "review-design", "openpencil-workbench", "content", "diffusion-studio"}
 PRODUCT_PATHS = (".app.json", ".codex-plugin", ".claude-plugin", ".cursor-plugin",
                  "gemini-extension.json", "skills", "assets/icon.png", "LICENSE",
-                 "docs/aios.md")
+                 "docs/aios.md", "runtime/sidebar")
 FORBIDDEN_KEYS = {"scripts", "dependencies", "devDependencies", "peerDependencies"}
 SECRET_PATTERNS = (
     r"AKIA[0-9A-Z]{16}",
@@ -135,8 +135,7 @@ def validate(root=ROOT, release_tag=None):
             "package inventory")
     require(set(package["pi"]) == {"skills"} and len(package["pi"]["skills"]) == 1,
             "Pi declaration")
-    require(not ({"hooks", "mcpServers"} & manifest.keys()),
-            "unexpected plugin runtime")
+    require('hooks' not in manifest, "unexpected plugin hooks")
 
     skill_root = (root / manifest["skills"]).resolve()
     require(skill_root == (root / package["pi"]["skills"][0]).resolve(),
@@ -440,7 +439,10 @@ def validate(root=ROOT, release_tag=None):
                       parts[1] in SKILL_NAMES and parts[2] == "agents" and
                       path.name == "openai.yaml")
                 neutral_text = domain and parts[2] == "assets" and path.suffix == ".txt"
-                allowed = (path.suffix in {".md", ".json"} or helper or ui or neutral_text or
+                sidebar = path.relative_to(root).as_posix() in {
+                    'runtime/sidebar/server.cjs', 'runtime/sidebar/index.html',
+                    'runtime/sidebar/THIRD-PARTY-NOTICES.md'}
+                allowed = (path.suffix in {".md", ".json"} or helper or ui or neutral_text or sidebar or
                            path.name in {"LICENSE", "AIOS_FORMAT", ".gitignore"} or
                            path == root / "assets/icon.png")
                 require(allowed, f"unexpected product file: {path}")
@@ -475,7 +477,7 @@ def validate(root=ROOT, release_tag=None):
 def rejected(mutator, expected):
     with tempfile.TemporaryDirectory(prefix="aios-negative-") as temporary:
         copy = Path(temporary) / "repo"
-        shutil.copytree(ROOT, copy, ignore=shutil.ignore_patterns(".git", ".tmp"))
+        shutil.copytree(ROOT, copy, ignore=shutil.ignore_patterns(".git", ".tmp", "node_modules"))
         mutator(copy)
         try:
             validate(copy)

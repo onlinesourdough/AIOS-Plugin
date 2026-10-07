@@ -1,9 +1,9 @@
 {
   "name": "aios",
-  "version": "0.20.0",
+  "version": "0.21.0",
   "description": "Portable context and skills for planning, design, content and reviewed delivery.",
   "author": {
-    "name": "Online Sourdough"
+    "name": "onlinesourdough"
   },
   "skills": "./skills/",
   "apps": "./.app.json",
@@ -18,14 +18,17 @@
     "composerIcon": "./assets/icon.png",
     "logo": "./assets/icon.png",
     "shortDescription": "Your AI operating system",
-    "longDescription": "Start with AIOS Setup. Connect Notion through Codex, choose your existing home and put its knowledge, personal skills and decisions to work. Notion is optional; established context homes remain supported. Twenty-six shared skills help with writing, code, design and reviewed delivery.",
-    "developerName": "Online Sourdough",
+    "longDescription": "Open AIOS from the Codex sidebar. Check your Notion connection, choose a context home and continue with AIOS Setup. Notion is optional; established context homes remain supported. Twenty-six shared skills help with writing, code, design and reviewed delivery.",
+    "developerName": "onlinesourdough",
     "category": "Productivity",
-    "capabilities": [],
+    "capabilities": [
+      "Interactive"
+    ],
     "defaultPrompt": [
       "Set up AIOS for my current work."
     ]
   },
   "repository": "https://github.com/onlinesourdough/AIOS-Plugin",
-  "license": "MIT"
+  "license": "MIT",
+  "mcpServers": "./.codex-plugin/mcp.json"
 }

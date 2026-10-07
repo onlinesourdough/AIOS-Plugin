@@ -122,6 +122,12 @@ The optional Notion app is a connection declaration, not an installed runtime
 dependency. There are no executable extensions, hooks, settings payloads or
 duplicated instruction bodies. See [onboarding evidence](issue-38-onboarding.md).
 
+From 0.21.0, Codex also loads the explicitly declared local sidebar MCP from
+`.codex-plugin/mcp.json`. Node.js 22+ must be on the execution host's PATH;
+connection checks use its signed-in Codex CLI. The panel has no hosted service
+or consumer dependency-install step. Other client manifests still expose skills
+only. See [sidebar setup and recovery](sidebar.md).
+
 [Context](../skills/aios-context/SKILL.md) resolves the chosen home independently
 of installation. Use its [short host pointer](../skills/aios-context/assets/bridge.md)
 for a verified context entry URL or path. Notion is preferred for small teams;

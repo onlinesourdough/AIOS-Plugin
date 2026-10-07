@@ -1,6 +1,6 @@
 # AIOS
 
-AIOS version: 0.20.0
+AIOS version: 0.21.0
 
 **Business first. Productivity built in.**
 
@@ -16,8 +16,10 @@ infrastructure and delivery configuration.
 ## Your context home
 
 AIOS means AI Operating System: the shared method and your chosen context home.
-In Codex, start from the plugin’s **Set up** entry. Codex handles the optional
-Notion connection; Setup checks the selected page, reuses existing destinations
+In Codex, open **AIOS** in the sidebar, or use the plugin’s **Set up** entry.
+The panel shows the Notion connection and saved context link. **Connect Notion**
+opens the official connection page; return and refresh. **Start setup / Continue
+setup** starts the same Setup skill in the conversation. Setup checks the selected page, reuses existing destinations
 and helps with the first task. It resumes existing setups. The Notion entry is
 called **AIOS** by default; customer names and stable links remain theirs.
 
@@ -31,8 +33,12 @@ existing workspace; no wholesale migration is required.
 An established alternative can use its own structure and verified tools. Managed
 file homes retain their concrete procedure; other providers need separate proof.
 Shared methods stay in the plugin and operational records at their source.
-Maintain Context saves durable changes during work. No local mirror, custom
-server or timer is required. Installing or updating AIOS leaves existing homes
+Maintain Context saves durable changes during work. No local mirror, hosted
+server or timer is required. The Codex panel is a bundled local MCP process
+managed by Codex, using Node.js 22+ and the installed Codex CLI for connection
+status. It reads the saved routing block, not business documents; the agent loads
+selected context during work. A connected account does not prove page access.
+Installing or updating AIOS leaves existing homes
 intact; use Setup when you choose to establish or move one.
 
 ## Shared method, owner context
