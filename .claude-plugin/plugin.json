@@ -1,9 +1,9 @@
 {
   "name": "aios",
-  "version": "0.20.0",
+  "version": "0.21.0",
   "description": "Portable context and skills for planning, design, content and reviewed delivery.",
   "author": {
-    "name": "Online Sourdough"
+    "name": "onlinesourdough"
   },
   "skills": "./skills/",
   "repository": "https://github.com/onlinesourdough/AIOS-Plugin",

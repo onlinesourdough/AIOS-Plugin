@@ -1,5 +1,15 @@
 # Recovery
 
+## Codex sidebar
+
+If the sidebar process fails, use the plugin's native **Set up** entry or ask
+for AIOS Setup in a conversation. Check Node.js 22+ and the Codex CLI on the
+execution host; never repair by copying credentials or resetting Notion auth.
+The panel has no saved business data or setup state to restore. A package
+rollback to the reviewed 0.20.0 tag removes this Codex runtime and keeps the
+existing home and pointer. Preserve any later customer edits. See
+[sidebar boundaries](sidebar.md).
+
 Git history and reviewed tags/commits preserve earlier package versions and
 removed documentation. Do not keep duplicate historical reports in the active
 tree solely as backups.

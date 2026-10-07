@@ -1,7 +1,7 @@
 # Review and release AIOS
 
 The release unit is this repository root: the native manifests, `.app.json`, `package.json`, `gemini-extension.json`, `assets/`, `LICENSE`,
-`README.md`, the single `skills/` source and `docs/aios.md`. The overview
+`README.md`, the single `skills/` source, `runtime/sidebar` and `docs/aios.md`. The overview
 is package documentation, read only when needed. Other documentation, tests and
 the optional specialist shelf remain author material, not product skills.
 This repository carries no local generic lifecycle skills.
@@ -15,6 +15,10 @@ This repository carries no local generic lifecycle skills.
    against the last reviewed release/commit. Prepare [release notes](../CHANGELOG.md).
 2. Run the checks in [verification](verification.md) and inspect the complete
    diff. Runtime observations stay separate from source checks.
+   For the Codex sidebar, run `npm ci --prefix apps/sidebar --ignore-scripts`,
+   `npm run build --prefix apps/sidebar`, `npm test --prefix apps/sidebar` and
+   `git diff --exit-code -- runtime/sidebar` after committing the generated output.
+   The runtime is bundled; consumers do not install these author dependencies.
 3. Obtain independent Review of the exact tree to be delivered. Any relevant
    content change invalidates that acceptance.
 4. Confirm the destination, action, visibility, recovery point, and authority.

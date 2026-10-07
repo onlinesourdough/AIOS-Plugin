@@ -1,7 +1,7 @@
 {
   "name": "online-sourdough",
   "interface": {
-    "displayName": "Online Sourdough"
+    "displayName": "onlinesourdough"
   },
   "plugins": [
     {

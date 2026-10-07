@@ -17,6 +17,7 @@
 | Owner continuity scope | Client under explicit consent; Maintain Context owns named-source reconciliation, with Git Sync only for managed AIOS file homes |
 | Customer or externally owned documentation | Its source system; AIOS may retain only a scoped pointer and freshness boundary |
 | Native installation, connections, and cutover | Authorized client or lead using native controls and readback |
+| Codex sidebar source and bundled runtime | `apps/sidebar` and reproducible `runtime/sidebar` in this repository; Codex owns launch, account access and UI placement |
 | Projects and optional specialists | Their own working files, deliverables, dependencies, proof and recovery; Git and native project controls are selected when useful, without mandatory AIOS registration |
 | Design and content methods and helpers | Built-in domain skills; project files remain owned by the project |
 | Selected upstream System installation/code updates | AIOS Update [System maintenance](../skills/aios-update/references/systems.md) routes authorized work; each System owns compatibility and recovery |

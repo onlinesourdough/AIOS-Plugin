@@ -255,12 +255,15 @@ Notion is our preferred starting point for solo founders, business leaders and
 small teams. Use a short entry plus full-page **Docs, native Skills and Memory**,
 reusing suitable existing databases. Spaces distinguish businesses, brands and
 sub-brands within one home. Start with a real workflow, even in a messy workspace;
-classify only the context it needs. No local mirror, custom server or daily task
+classify only the context it needs. No local mirror, hosted server or daily task
 is required. Maintenance happens during useful work.
 
-After installing AIOS in Codex, choose **Set up** on the plugin. Codex manages
-the optional Notion connection; AIOS Setup continues in the conversation. If your
-client does not show Set up, say:
+After installing AIOS in Codex, open **AIOS** in the sidebar. The small panel
+shows Notion connection status, your saved context link and **Start setup** or
+**Continue setup**. **Connect Notion** opens the official account connection
+page; return and refresh its status. Setup then continues in the Codex conversation.
+The plugin's native **Set up** entry starts the same skill. If your client has
+no sidebar or Set up entry, say:
 
 > Use AIOS Setup to set up my Notion. Start here: [page link]. Help me choose
 > the first useful task and reuse what I already have.
@@ -273,6 +276,12 @@ After verifying the entry, it adds the short instruction at the appropriate app
 scope and tests a real task with you. Memory can start empty and grows through use.
 You decide which sources are correct and review the result; the agent handles
 the fields, views and references. Installing the plugin alone does not do this.
+
+The Codex panel uses a bundled local MCP process managed by Codex. It needs Node.js
+22+ on the execution host and uses the installed Codex CLI for read-only connection
+status. No Docker, consumer `npm install`, account database or service to host.
+Other clients retain the same skills without the Codex panel. See
+[sidebar behavior and tested limits](docs/sidebar.md).
 
 The page uses a shared layout for Docs, Skills, Memory and everyday work.
 Its links, Space map and source/review choices are yours. Later plugin updates
@@ -312,13 +321,13 @@ detail. It adds no separate approval step.
 
 ## What is shared
 
-The **AIOS plugin** is Online Sourdough's shared method. **Your AIOS home**,
+The **AIOS plugin** is onlinesourdough's shared method. **Your AIOS home**,
 selected through Context, contains your context and personal skills. They have separate
 owners, locations and update paths.
 
 ```mermaid
 flowchart TB
-    upstream["Online Sourdough / AIOS-Plugin<br/>Reviewed GitHub releases"]
+    upstream["onlinesourdough / AIOS-Plugin<br/>Reviewed GitHub releases"]
     installed["Each app's local plugin installation<br/>Shared skills + references + overview"]
     agent["Your agent in Codex, Pi or another app<br/>Reads relevant sources when needed"]
     personal["Your selected context home<br/>Personal skills + source pointers"]
@@ -386,7 +395,8 @@ so it is not bundled with AIOS.
 
 Small helpers for design review, handoff and content validation travel with the
 skills. OpenPencil and Diffusion Studio remain optional tools, installed through
-their own supported setup when a task needs them. AIOS adds no background service,
+their own supported setup when a task needs them. The small Codex sidebar runtime
+starts and stops with the host; AIOS adds no independently running service,
 install hook or separate tools gateway. Your app keeps control of tool access.
 
 ## Update or remove

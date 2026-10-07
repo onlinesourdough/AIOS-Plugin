@@ -1,0 +1,36 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>AIOS sidebar test host</title>
+<style>
+body {margin:0;background:#ececec;font:12px system-ui}header {padding:10px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}iframe {display:block;border:0;width:100%;height:820px;margin:auto}pre {white-space:pre-wrap;overflow-wrap:anywhere;padding:10px;max-height:160px;overflow:auto}label {display:flex;gap:5px}
+</style>
+<header><strong>Synthetic host · no real messages</strong>
+<label>Scenario <select id="scenario"><option value="new">New setup</option><option value="existing">Existing setup</option><option value="disabled">Notion disabled</option><option value="unknown">Status unavailable</option><option value="ambiguous">Ambiguous pointer</option><option value="malformed">Malformed status</option></select></label>
+<label>Theme <select id="theme"><option>light</option><option>dark</option></select></label>
+<label>Width <select id="width"><option value="100%">Full</option><option value="390px">390px</option></select></label>
+<label>Result <select id="result"><option value="ok">Accepted</option><option value="denied">Denied</option><option value="error">RPC error</option></select></label>
+<label><input id="delayed" type="checkbox">Delay reply 5 seconds</label>
+<label><input id="unsupported" type="checkbox">No messages</label><button id="reset">Reset panel</button></header>
+<iframe title="AIOS panel" src="/app"></iframe><pre id="events" aria-label="Protocol events">Waiting for connection</pre>
+<script>
+const frame=document.querySelector('iframe'), events=document.querySelector('#events');
+let trace=[];
+function send(message){frame.contentWindow.postMessage({jsonrpc:'2.0',...message},location.origin)}
+function context(){const dark=document.querySelector('#theme').value==='dark';return {theme:dark?'dark':'light',displayMode:'fullscreen',availableDisplayModes:['fullscreen'],styles:{variables:{'--font-sans':'system-ui','--color-background-primary':dark?'#181818':'#ffffff','--color-background-secondary':dark?'#282828':'#f5f5f5','--color-text-primary':dark?'#efefef':'#202020','--color-text-secondary':dark?'#aaa':'#666','--color-border-primary':dark?'#383838':'#e6e6e6','--color-text-info':dark?'#eee':'#222','--color-text-inverse':dark?'#111':'#fff'}}}}
+function status(){const value=document.querySelector('#scenario').value;if(value==='malformed')return {content:[]};return {content:[],_meta:{'aios/status':{version:'0.21.0',notion:{state:value==='new'?'not_connected':value==='disabled'?'disabled':value==='unknown'?'unknown':'connected'},context:value==='new'?{state:'missing'}:value==='ambiguous'?{state:'ambiguous'}:{state:'configured',target:'https://app.notion.com/p/example-company-home',kind:'notion'},checkedAt:new Date().toISOString()}}}}
+document.querySelector('#scenario').onchange=()=>send({method:'ui/notifications/tool-result',params:status()});
+document.querySelector('#theme').onchange=()=>send({method:'ui/notifications/host-context-changed',params:context()});
+document.querySelector('#width').onchange=(event)=>{frame.style.width=event.target.value};
+document.querySelector('#reset').onclick=()=>{trace=[];events.textContent='Waiting for connection';frame.src='/app'};
+window.addEventListener('message',event=>{
+ if(event.source!==frame.contentWindow||event.origin!==location.origin)return;
+ const {id,method,params}=event.data;if(!method)return;
+ if(!method.includes('size-changed')){trace.push({method,params});events.textContent=JSON.stringify(trace,null,2)}
+ if(method==='ui/initialize')send({id,result:{protocolVersion:'2026-01-26',hostInfo:{name:'AIOS synthetic host',version:'1'},hostCapabilities:{serverTools:{},openLinks:{},...(!document.querySelector('#unsupported').checked?{message:{text:{}},experimental:{'openai/message':{}}}:{})},hostContext:context()}});
+ else if(method==='ui/notifications/initialized')send({method:'ui/notifications/tool-result',params:status()});
+ else if(method==='tools/call')send({id,result:status()});
+ else if(method==='ui/message'||method==='ui/open-link'){
+  const mode=document.querySelector('#result').value;
+  const reply=mode==='error'?{id,error:{code:-32000,message:'Synthetic host failure'}}:{id,result:{isError:mode==='denied'}};
+  if(method==='ui/message'&&document.querySelector('#delayed').checked)setTimeout(()=>send(reply),5000);else send(reply);
+ }else if(id!==undefined)send({id,result:{}});
+});
+</script></html>

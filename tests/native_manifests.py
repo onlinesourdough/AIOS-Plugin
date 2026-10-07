@@ -1,4 +1,4 @@
-"""Cross-client contract for AIOS's metadata-only native package."""
+"""Cross-client methods, with one explicitly declared Codex sidebar runtime."""
 import json
 
 
@@ -16,8 +16,8 @@ def validate_native(root, require):
     # manifest. Preserve one skills source through each supported native format.
     require(not (root / 'plugin.json').exists(), 'root manifest shadows native app binding')
     require(all(isinstance(codex[k], str) and codex[k] for k in common - {'author'}) and
-            codex['author'] == {'name': 'Online Sourdough'}, 'native metadata types')
-    require(set(codex) == common | {'skills', 'interface', 'apps', 'extensions'} and
+            codex['author'] == {'name': 'onlinesourdough'}, 'native metadata types')
+    require(set(codex) == common | {'skills', 'interface', 'apps', 'extensions', 'mcpServers'} and
             set(claude) == common | {'skills'} and
             set(cursor) == {'name', 'version', 'description', 'skills'} and
             set(gemini) == {'name', 'version', 'description'}, 'unexpected native component field')
@@ -45,7 +45,19 @@ def validate_native(root, require):
             entry['source'] == './' and
             all(entry[k] == codex[k] for k in ('name', 'version', 'description')),
             'Claude marketplace source/version')
-    for folder, expected in (('.codex-plugin', {'plugin.json'}),
+    require(codex['mcpServers'] == './.codex-plugin/mcp.json' and
+            read('.codex-plugin/mcp.json') == {'mcpServers': {'aios': {
+                'command': 'node', 'args': ['./runtime/sidebar/server.cjs'], 'cwd': '.'}}},
+            'unexpected sidebar command or server')
+    for name in ('server.cjs', 'index.html', 'THIRD-PARTY-NOTICES.md'):
+        require((root / 'runtime/sidebar' / name).is_file() and
+                not (root / 'runtime/sidebar' / name).is_symlink(), 'missing bundled sidebar')
+    require({p.name for p in (root / 'runtime/sidebar').iterdir()} ==
+            {'server.cjs', 'index.html', 'THIRD-PARTY-NOTICES.md'}, 'extra sidebar runtime file')
+    require(codex['interface']['developerName'] == 'onlinesourdough' and
+            read('.agents/plugins/marketplace.json')['interface']['displayName'] == 'onlinesourdough',
+            'publisher branding drift')
+    for folder, expected in (('.codex-plugin', {'plugin.json', 'mcp.json'}),
                              ('.claude-plugin', {'plugin.json', 'marketplace.json'}),
                              ('.cursor-plugin', {'plugin.json'})):
         require({p.name for p in (root / folder).iterdir()} == expected,

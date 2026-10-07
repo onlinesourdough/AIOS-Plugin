@@ -19,6 +19,17 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: apps/sidebar/package-lock.json
+      - name: Build and verify the bundled sidebar
+        run: |
+          npm ci --prefix apps/sidebar --ignore-scripts --no-fund
+          npm run build --prefix apps/sidebar
+          git diff --exit-code -- runtime/sidebar
+          npm test --prefix apps/sidebar
       - name: Validate package and local documentation
         run: |
           python3 tests/validate.py
