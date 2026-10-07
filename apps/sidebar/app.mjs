@@ -9,6 +9,7 @@ let status;
 let edited = false;
 let sending = false;
 let sent = false;
+let refreshing = false;
 let canMessage = false;
 
 function feedback(message, error = false) {
@@ -36,10 +37,15 @@ function updateForm() {
   $('open-home').hidden = !route || route.kind === 'path' || !app.getHostCapabilities()?.openLinks;
   $('start').textContent = sending ? 'Starting…' : sent ? 'Started in Codex' : status?.context?.state === 'configured' ? 'Continue setup' : 'Start setup';
   $('start').disabled = sending || sent;
+  $('provider').disabled = sending;
+  $('target').disabled = sending;
+  $('refresh').disabled = refreshing || sending || !app.getHostCapabilities()?.serverTools;
 }
 function render(result) {
   const next = result?._meta?.['aios/status'];
-  if (!next || !(next.notion?.state in connectionCopy) || !next.context) throw new Error('Invalid status');
+  if (!next || !Object.hasOwn(connectionCopy, next.notion?.state)
+    || !['configured', 'missing', 'unavailable', 'ambiguous'].includes(next.context?.state)
+    || (next.context.state === 'configured' && !classifyTarget(next.context.target))) throw new Error('Invalid status');
   status = next;
   $('version').textContent = `v${__AIOS_VERSION__}`;
   const [label, detail] = connectionCopy[next.notion.state];
@@ -48,7 +54,7 @@ function render(result) {
   $('connection-detail').textContent = detail;
   $('connect').hidden = !['not_connected', 'unknown'].includes(next.notion.state);
   $('connect').disabled = !app.getHostCapabilities()?.openLinks;
-  if (!edited) {
+  if (!edited && !sending && !sent) {
     const route = next.context.state === 'configured' ? classifyTarget(next.context.target) : null;
     $('target').value = route?.target || '';
     $('provider').value = route && route.kind !== 'notion' ? 'other' : 'notion';
@@ -62,19 +68,26 @@ function render(result) {
   $('setup').hidden = false;
   updateForm();
 }
+function unavailableStatus(message) {
+  render({ _meta: { 'aios/status': { notion: { state: 'unknown' }, context: status?.context || { state: 'unavailable' } } } });
+  feedback(message, true);
+}
 
 app.ontoolresult = (result) => {
-  try { render(result); } catch { feedback('Setup status could not be read. Please refresh or continue in the conversation.', true); }
+  try { render(result); } catch { unavailableStatus('Setup status could not be read. Refresh or continue setup with Codex.'); }
 };
 app.addEventListener('hostcontextchanged', theme);
 for (const event of ['input', 'change']) $('setup').addEventListener(event, () => {
   edited = true; sent = false;
   $('validation').hidden = true;
   $('fallback').hidden = true;
+  $('feedback').hidden = true;
   updateForm();
 });
 
 $('refresh').addEventListener('click', async () => {
+  if (refreshing || sending) return;
+  refreshing = true;
   $('refresh').disabled = true;
   $('refresh').textContent = 'Checking…';
   try {
@@ -82,8 +95,8 @@ $('refresh').addEventListener('click', async () => {
     if (result.isError) throw new Error('Status unavailable');
     render(result);
     feedback('Status refreshed.');
-  } catch { feedback('Could not refresh the connection. You can still continue setup with Codex.', true); }
-  finally { $('refresh').disabled = false; $('refresh').textContent = 'Refresh status'; }
+  } catch { unavailableStatus('Could not refresh the connection. You can still continue setup with Codex.'); }
+  finally { refreshing = false; $('refresh').textContent = 'Refresh status'; updateForm(); }
 });
 
 async function openLink(url) {

@@ -3,6 +3,7 @@ import { spawn } from 'node:child_process';
 // Use the public app-server protocol, never Codex's auth files or private HTTP APIs.
 export const NOTION_ID = 'asdk_app_69c18c28f1188191bf5b8445c4ab0a2e';
 export const NOTION_CONNECT_URL = `https://chatgpt.com/apps/notion/${NOTION_ID}`;
+const isRecord = (value) => value !== null && typeof value === 'object' && !Array.isArray(value);
 
 export function notionState(app) {
   if (!app) return 'not_connected';
@@ -32,6 +33,7 @@ export async function readNotionConnection({ launch = spawn, timeoutMs = 12000 }
       child.on('error', () => finish('unknown'));
       child.on('exit', () => finish('unknown'));
       child.stdin.on('error', () => finish('unknown'));
+      child.stdout.on('error', () => finish('unknown'));
       const send = (method, params, id) => child.stdin.write(JSON.stringify({ method, params, ...(id ? { id } : {}) }) + '\n');
       child.stdout.setEncoding('utf8');
       child.stdout.on('data', (chunk) => {
@@ -44,18 +46,24 @@ export async function readNotionConnection({ launch = spawn, timeoutMs = 12000 }
           const line = buffer.slice(0, end); buffer = buffer.slice(end + 1);
           if (!line.trim()) continue;
           let response;
-          try { response = JSON.parse(line); } catch { return finish('unknown'); }
-          if (response.id === 1) {
-            if (response.error || !response.result) return finish('unknown');
-            send('initialized', {});
-            send('app/installed', { forceRefresh: true }, 2);
-          } else if (response.id === 2) {
-            if (response.error || !Array.isArray(response.result?.apps)) return finish('unknown');
-            const matches = response.result.apps.filter((app) => app?.id === NOTION_ID);
-            if (matches.length > 1) return finish('unknown');
-            if (matches.length === 1) return finish(notionState(matches[0]));
-            return finish('not_connected');
-          }
+          try {
+            response = JSON.parse(line);
+            if (!isRecord(response)) return finish('unknown');
+            if (response.id === 1) {
+              if (response.error || !isRecord(response.result)) return finish('unknown');
+              send('initialized', {});
+              send('app/installed', { forceRefresh: true }, 2);
+            } else if (response.id === 2) {
+              if (response.error || !Array.isArray(response.result?.apps)) return finish('unknown');
+              const apps = response.result.apps;
+              if (!apps.every((app) => isRecord(app) && typeof app.id === 'string' && app.id.trim()
+                && typeof app.enabled === 'boolean' && typeof app.callable === 'boolean')) return finish('unknown');
+              const matches = apps.filter((app) => app.id === NOTION_ID);
+              if (matches.length > 1) return finish('unknown');
+              if (matches.length === 1) return finish(notionState(matches[0]));
+              return finish('not_connected');
+            }
+          } catch { return finish('unknown'); }
           if (finished) break;
         }
       });

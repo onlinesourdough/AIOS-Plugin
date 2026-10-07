@@ -84,15 +84,18 @@ python3 tests/onboarding-rehearsal.py --native
 CI rebuilds and compares the committed runtime. Source checks protect the exact
 declared server, the common skill source, optional Notion binding, isolated
 consumer inventory and absence of hooks/implicit servers in other clients.
-Unit tests cover connection classification, exact identity, process cleanup, errors,
-timeouts, bounded route reads, duplicate routes and provider input validation.
+Unit tests cover connection classification, exact identity, process cleanup, malformed
+protocol frames and inventories, timeouts, bounded route reads, duplicate routes,
+round-trips from the shipped bridge for URLs/paths and provider input validation.
 The bundled-server smoke check uses an isolated empty Codex home. No real account
 is connected or business page changed by those tests.
 
 The browser fixture (`npm run preview --prefix apps/sidebar`) supplies a real
 MCP App handshake with synthetic state. Observed: first run and existing home,
 connection link, explicit refresh, setup message, duplicate-click prevention,
-denied message, alternative provider, light/dark themes and narrow layout.
+denied message, delayed response with locked inputs, malformed initial status,
+alternative provider, light/dark themes and narrow layout. The fixture exposes
+delay and malformed-status controls so those regressions can be repeated.
 These checks prove the panel and bridge behavior in that fixture. Actual local
 connection metadata, installed bytes and host tool discovery are separate
 readbacks during adoption.

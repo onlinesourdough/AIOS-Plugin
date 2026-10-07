@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { EventEmitter } from 'node:events';
 import { PassThrough } from 'node:stream';
-import { mkdtemp, writeFile, rm } from 'node:fs/promises';
+import { mkdtemp, readFile, writeFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { NOTION_ID, notionState, readNotionConnection } from './codex-status.mjs';
@@ -17,7 +17,7 @@ test('connection availability never implies page access, enablement or missing e
   assert.equal(notionState({ callable: true }), 'unknown');
 });
 
-function fixture(replies) {
+function fixture(replies, initialize = { result: {} }) {
   const requests = [];
   const child = new EventEmitter();
   child.stdin = new PassThrough(); child.stdout = new PassThrough(); child.exitCode = null;
@@ -25,8 +25,8 @@ function fixture(replies) {
   child.stdin.on('data', (chunk) => {
     const request = JSON.parse(String(chunk)); requests.push(request);
     if (request.id) queueMicrotask(() => {
-      const response = request.method === 'initialize' ? { result: {} } : replies.shift();
-      if (response) child.stdout.write(JSON.stringify({ id: request.id, ...response }) + '\n');
+      const response = request.method === 'initialize' ? initialize : replies.shift();
+      if (response) child.stdout.write((response.raw ?? JSON.stringify({ id: request.id, ...response })) + '\n');
     });
   });
   return { requests, child, launch: () => child };
@@ -48,12 +48,24 @@ test('a complete empty inventory differs from failed or malformed discovery', as
   for (const replies of [
     [{ error: { code: -1, message: 'private failure detail' } }],
     [{ result: {} }],
+    [{ result: { apps: [null, {}] } }],
+    [{ result: { apps: [{ id: '', callable: true, enabled: true }] } }],
+    [{ result: { apps: [{ id: 'unrelated', callable: 'yes', enabled: true }] } }],
     [{ result: { apps: [{ id: NOTION_ID }] } }],
     [{ result: { apps: [{ id: NOTION_ID }, { id: NOTION_ID }] } }],
   ]) {
     const result = await readNotionConnection(fixture(replies));
     assert.equal(result.state, 'unknown');
     assert.equal(JSON.stringify(result).includes('private'), false);
+  }
+});
+
+test('malformed asynchronous protocol frames recover as unknown without throwing', async () => {
+  for (const raw of ['null', '[]', 'true', '42', '"text"', '{invalid']) {
+    for (const f of [fixture([{ raw }]), fixture([], { raw })]) {
+      assert.equal((await readNotionConnection(f)).state, 'unknown');
+      assert.equal(f.child.exitCode, 0);
+    }
   }
 });
 
@@ -73,6 +85,14 @@ test('reads only the exact routing block and rejects ambiguous legacy instructio
   assert.deepEqual(parseContextRoute(block('https://example.com') + block('https://other.com')), { state: 'ambiguous' });
   assert.deepEqual(parseContextRoute(block('https://a.com\nContext: https://b.com')), { state: 'ambiguous' });
   assert.deepEqual(parseContextRoute('<!-- AIOS:BEGIN -->\nold prose'), { state: 'ambiguous' });
+});
+
+test('the shipped context bridge round-trips web, Unix and Windows locations', async () => {
+  const bridge = await readFile(new URL('../../skills/aios-context/assets/bridge.md', import.meta.url), 'utf8');
+  for (const target of ['https://app.notion.com/p/example', 'https://example.com/context.', '/work/my vault', '/work/company.', 'C:\\Work\\Knowledge']) {
+    const saved = bridge.replace('<verified-context-entry-url-or-absolute-path>', target);
+    assert.deepEqual(parseContextRoute(saved), { state: 'configured', ...classifyTarget(target) });
+  }
 });
 
 test('route read does not fall back to another home; bounded files only', async (t) => {

@@ -14,7 +14,8 @@ export function parseContextRoute(text) {
   const routes = [...block.matchAll(/^Context:[ \t]*(.+)$/gm)];
   if (routes.length !== 1) return { state: 'ambiguous' };
   const raw = routes[0][1].trim();
-  const route = classifyTarget(raw.startsWith('https://') ? raw.replace(/\.$/, '') : raw);
+  // The shared bridge ends Context: with one sentence period for every provider.
+  const route = classifyTarget(raw.replace(/\.$/, ''));
   return route ? { state: 'configured', ...route } : { state: 'ambiguous' };
 }
 
