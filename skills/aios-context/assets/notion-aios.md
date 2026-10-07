@@ -1,4 +1,4 @@
-# Adapting the Operating Model page
+# Adapting the AIOS page
 
 This is the shared starting layout for one customer-owned page. Setup fills it
 from verified sources; the customer need not understand database IDs or design
@@ -12,9 +12,9 @@ Keep connection details inside one collapsed toggle. If this page already
 exists, reconcile only needed changes; preserve its identity, icons, local
 wording and agreements. Plugin updates never overwrite customer pages.
 
-# AI-native Operating Model
+# AIOS
 
-Start here to find what we know, how we work and what we have decided.
+Your AI operating system. Start here to find what we know, how we work and what we have decided.
 
 ## Find what you need
 

@@ -23,6 +23,7 @@ jobs:
         run: |
           python3 tests/validate.py
           python3 tests/documentation-rehearsal.py
+          python3 tests/onboarding-rehearsal.py
           python3 tests/layout-rehearsal.py
           python3 tests/continuity-rehearsal.py
           python3 tests/skill-version-rehearsal.py

@@ -1,5 +1,12 @@
 # Verification
 
+For AIOS 0.20.0, see [native onboarding](issue-38-onboarding.md) for the
+optional Notion connection, native Setup entry, six synthetic decision cases,
+Codex parser and Claude lifecycle observations. Run
+`python3 tests/onboarding-rehearsal.py`; add `--native` for the separate
+read-only Codex check. Desktop rendering and new-account OAuth remain unverified.
+Release, installed bytes and live customer access require their own readback.
+
 For AIOS 0.18.0 and write-code 1.1.0, see
 [engineering criteria and matched trials](write-code.md#engineering-criteria-revision-110).
 The 1.0.2 baseline was tested before editing; identical native tasks and 20

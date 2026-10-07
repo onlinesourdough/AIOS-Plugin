@@ -2,7 +2,7 @@
 name: aios
 description: Apply owner context and select relevant AIOS methods for the current task.
 metadata:
-  version: "2.6.0"
+  version: "2.6.1"
 ---
 
 # AIOS:aios

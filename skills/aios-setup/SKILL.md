@@ -2,14 +2,17 @@
 name: aios-setup
 description: Set up, resume or move AIOS, from installation to a useful first task.
 metadata:
-  version: "1.3.0"
+  version: "1.4.0"
 ---
 
 # AIOS:setup
 
 Own onboarding from access and business choices to the verified home, pointer
-and first task. Use one procedure below; the owner need not invoke internal
-skills separately. Reuse accepted answers and resume at the next gap.
+and first task. Use one procedure; the owner need not invoke internal skills. Reuse answers.
+
+Codex opens this skill through native **Set up**. Show the next missing step;
+resume accepted setup and connections. Verify selected-home access separately
+from installation or connection status.
 
 For package installation or a requested bridge-only change, use the
 [adapter route](references/adapters.md); preserve the existing home. Installation

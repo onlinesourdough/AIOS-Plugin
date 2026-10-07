@@ -143,7 +143,6 @@ def rehearse(base, claude, install, names):
     source.mkdir()
     for name in (".claude-plugin", "skills"):
         shutil.copytree(ROOT / name, source / name)
-    shutil.copy2(ROOT / "plugin.json", source / "plugin.json")
     overview = source / "docs/aios.md"
     overview.parent.mkdir(parents=True)
     shutil.copy2(ROOT / "docs/aios.md", overview)
@@ -185,9 +184,6 @@ def rehearse(base, claude, install, names):
         data = read_json(path)
         (data if name == "plugin.json" else data["plugins"][0])["version"] = NEXT_VERSION
         path.write_text(json.dumps(data, indent=2) + "\n")
-    portable = read_json(source / "plugin.json")
-    portable["version"] = NEXT_VERSION
-    (source / "plugin.json").write_text(json.dumps(portable) + "\n")
     overview.write_text(overview.read_text().replace(f"AIOS version: {VERSION}\n",
                                                     f"AIOS version: {NEXT_VERSION}\n"))
     run("plugin", "marketplace", "update", "online-sourdough")

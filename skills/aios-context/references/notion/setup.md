@@ -15,10 +15,26 @@ Use [operating boundaries](operating.md) throughout the setup.
 AIOS Setup leads this route. Accept an ordinary request such as
 “Use AIOS Setup to set up my Notion; start at [URL].” Stay in this flow; the owner
 need not invoke Context, Manage Skills or Check separately.
-The owner connects Notion and grants access through the app's supported controls;
-the plugin cannot complete their sign-in. Verify a read of the selected home.
-If access is missing, name the exact connection action needed and continue only
-work that does not depend on private data. An installed plugin is not a connection.
+Codex declares Notion as an optional native app connection. Use the host's
+connection status and available tools; do not create a second MCP, login page,
+token store or connection tracker. If status is unavailable, say unknown and
+try the selected page through the existing tool. An installed plugin is not
+proof of a connection, and a connection is not proof of page access.
+
+| Observed state | Next action |
+| --- | --- |
+| Not installed or not connected | Offer the official Notion plugin through native discovery/connection controls. The owner completes sign-in and access choices. Resume here afterward. |
+| Connected, home not selected | Ask for the existing starting page; do not scan the workspace to choose one. |
+| Connected, selected page readable | Verify workspace and page identity; reuse this connection and continue. |
+| Connected, selected page denied or missing | Explain the specific page/access gap. Keep the chosen home; do not reconnect, switch accounts or create a replacement automatically. |
+| Read works, writes unavailable | Continue discovery and prepare the concrete changes; hold writes and report the access needed. |
+| Setup already exists | Check its routes and the requested gap; preserve IDs, wording and the existing pointer. |
+
+The owner signs in through the host; never ask for credentials in chat.
+Check only capabilities needed for this setup and do not write a throwaway page
+just to detect permissions. After an authorized real write, read it back.
+On cancel or failure, preserve completed work and resume from the unresolved
+step. Only independent work can continue before missing access is resolved.
 
 Reuse what the conversation and selected home already establish. Resolve only
 missing decisions: where to start, which businesses/brands belong together and
@@ -102,7 +118,7 @@ transactional data. Cleanup of unrelated clutter is a separate scope.
 ## Establish ongoing use
 
 Create or update one short entry using the packaged
-[Operating Model page](../../assets/notion-operating-model.md). Keep the familiar
+[AIOS page](../../assets/notion-aios.md). Keep the familiar
 layout: where Docs, Skills and Memory are, where business topics are covered,
 what Spaces mean, how to start work
 and where results go. Fill the customer-specific links, Space map, sources,

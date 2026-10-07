@@ -93,11 +93,8 @@ removal, if separately requested, follows the shared adapter's owned-block rule.
 GitHub documents `.claude-plugin/plugin.json` and
 `.claude-plugin/marketplace.json` as supported legacy plugin locations and
 supports the `skills` directory field. These manifests provide a documented
-compatible fallback without another instruction copy. Copilot checks a root
-`plugin.json` before `.claude-plugin/plugin.json`: when the lead-owned root
-Agent Plugins 1.0 manifest is present, that manifest supplies plugin metadata
-and discovers the same root `skills/` by convention. The Claude manifest itself
-does not declare Agent Plugins 1.0. The marketplace remains
+compatible route without another instruction copy. AIOS ships no competing root
+manifest. The marketplace remains
 `.claude-plugin/marketplace.json`. Only install in Copilot CLI when it is the
 chosen harness:
 

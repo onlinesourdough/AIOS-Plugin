@@ -6,25 +6,33 @@ def validate_native(root, require):
     def read(name):
         return json.loads((root / name).read_text())
 
-    portable = read('plugin.json')
     codex = read('.codex-plugin/plugin.json')
     claude = read('.claude-plugin/plugin.json')
     cursor = read('.cursor-plugin/plugin.json')
     gemini = read('gemini-extension.json')
     package = read('package.json')
     common = {'name', 'version', 'description', 'author', 'repository', 'license'}
-    # Deliberately narrow subset of Agent Plugins 1.0.0: no runtime overlay.
-    require(set(portable) == common | {'$schema'} and
-            portable['$schema'] == 'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json',
-            'portable schema or components')
-    require(all(isinstance(portable[k], str) and portable[k] for k in common - {'author'}) and
-            portable['author'] == {'name': 'Online Sourdough'}, 'portable metadata types')
-    require(set(codex) == common | {'skills', 'interface'} and
+    # Codex 0.160.1 ignores app bindings when an Agent Plugins root shadows this
+    # manifest. Preserve one skills source through each supported native format.
+    require(not (root / 'plugin.json').exists(), 'root manifest shadows native app binding')
+    require(all(isinstance(codex[k], str) and codex[k] for k in common - {'author'}) and
+            codex['author'] == {'name': 'Online Sourdough'}, 'native metadata types')
+    require(set(codex) == common | {'skills', 'interface', 'apps', 'extensions'} and
             set(claude) == common | {'skills'} and
             set(cursor) == {'name', 'version', 'description', 'skills'} and
             set(gemini) == {'name', 'version', 'description'}, 'unexpected native component field')
+    require(codex['apps'] == './.app.json' and
+            read('.app.json') == {'apps': {'notion': {
+                'id': 'asdk_app_69c18c28f1188191bf5b8445c4ab0a2e',
+                'required': False, 'category': 'Context'}}},
+            'Notion must remain the verified optional native app')
+    require(codex['extensions'] == {'com.openai': {
+                'onboardingSkill': './skills/aios-setup/SKILL.md'}},
+            'onboarding must use the packaged Setup skill')
+    setup = root / 'skills/aios-setup/SKILL.md'
+    require(setup.is_file() and not setup.is_symlink(), 'missing packaged Setup skill')
     for native in (codex, claude, cursor, gemini, package):
-        require(all(native[k] == portable[k] for k in ('name', 'version', 'description')),
+        require(all(native[k] == codex[k] for k in ('name', 'version', 'description')),
                 'native identity/version drift')
     for native in (codex, claude, cursor):
         require((root / native['skills']).resolve() == (root / 'skills').resolve(),
@@ -35,7 +43,7 @@ def validate_native(root, require):
     entry = market['plugins'][0]
     require(set(entry) == {'name', 'source', 'version', 'description'} and
             entry['source'] == './' and
-            all(entry[k] == portable[k] for k in ('name', 'version', 'description')),
+            all(entry[k] == codex[k] for k in ('name', 'version', 'description')),
             'Claude marketplace source/version')
     for folder, expected in (('.codex-plugin', {'plugin.json'}),
                              ('.claude-plugin', {'plugin.json', 'marketplace.json'}),

@@ -68,7 +68,7 @@ FORBIDDEN_BOUNDARY_TEXT = {
 }
 FORBIDDEN_SHIPPED_PATTERNS = (r"\bnpx skills\b", r"\bskills\.sh\b")
 DOMAIN_SKILLS = {"design", "review-design", "openpencil-workbench", "content", "diffusion-studio"}
-PRODUCT_PATHS = ("plugin.json", ".codex-plugin", ".claude-plugin", ".cursor-plugin",
+PRODUCT_PATHS = (".app.json", ".codex-plugin", ".claude-plugin", ".cursor-plugin",
                  "gemini-extension.json", "skills", "assets/icon.png", "LICENSE",
                  "docs/aios.md")
 FORBIDDEN_KEYS = {"scripts", "dependencies", "devDependencies", "peerDependencies"}
@@ -135,7 +135,7 @@ def validate(root=ROOT, release_tag=None):
             "package inventory")
     require(set(package["pi"]) == {"skills"} and len(package["pi"]["skills"]) == 1,
             "Pi declaration")
-    require(not ({"hooks", "apps", "mcpServers"} & manifest.keys()),
+    require(not ({"hooks", "mcpServers"} & manifest.keys()),
             "unexpected plugin runtime")
 
     skill_root = (root / manifest["skills"]).resolve()

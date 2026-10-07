@@ -1,6 +1,6 @@
 # AIOS
 
-AIOS version: 0.19.0
+AIOS version: 0.20.0
 
 **Business first. Productivity built in.**
 
@@ -14,6 +14,12 @@ automation. Projects own their implementation, engineering standards, design,
 infrastructure and delivery configuration.
 
 ## Your context home
+
+AIOS means AI Operating System: the shared method and your chosen context home.
+In Codex, start from the plugin’s **Set up** entry. Codex handles the optional
+Notion connection; Setup checks the selected page, reuses existing destinations
+and helps with the first task. It resumes existing setups. The Notion entry is
+called **AIOS** by default; customer names and stable links remain theirs.
 
 [Context](../skills/aios-context/SKILL.md) owns the common home contract and selects
 one provider. The host keeps a short pointer to an approved entry; the agent reads
