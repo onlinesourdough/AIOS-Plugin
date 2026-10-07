@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.20.0 — 2026-10-07
+
+- Connect the native Codex Set up action to AIOS Setup and declare Notion as an
+  optional official app connection. Codex owns sign-in and connection state.
+- Check selected-page access separately; resume disconnected, read-only and
+  existing setups without duplicate homes or forced reconnects.
+- Name the shared Notion entry AIOS, with one customer-owned Docs/Skills/Memory
+  map, Spaces and selective retrieval. Rename its template to notion-aios.md.
+- Use the supported Codex manifest without a shadowing portable root: Codex
+  0.160.1 ignores app bindings under that root. Other native formats and the
+  shared 26 skills remain; no UI runtime, custom MCP or background job is added.
+- Setup is 1.4.0; Context is 1.3.0; the AIOS documentation route is 2.6.1. Existing context homes and host pointers
+  remain unchanged by package updates.
+
 ## 0.19.0 — 2026-10-05
 
 - Add provider-neutral Context 1.2.0 and make Setup 1.3.0 the single onboarding

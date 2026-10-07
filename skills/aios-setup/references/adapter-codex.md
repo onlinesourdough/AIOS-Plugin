@@ -1,22 +1,21 @@
 # Codex package and bridge
 
-Use only for an authorized Codex package installation, registration or bridge
-repair. Apply the shared [native adapter and bridge boundary](adapters.md). Read
-[Codex configuration](harness-codex.md) only when effective settings or
-instruction precedence beyond the bridge affects the request. Desktop workspace
-and New Chat acceptance are a separate [conditional route](adapter-codex-desktop.md).
+For authorized Codex installation, registration or bridge repair, apply the
+[adapter boundary](adapters.md). Read [configuration](harness-codex.md) only for
+settings/precedence beyond the bridge, or [desktop acceptance](adapter-codex-desktop.md)
+when workspace or New Chat behavior matters.
 Normal Codex setup also runs [checklist and goal acceptance](codex-tracking-acceptance.md).
 On package update/repair, reuse its dated evidence unless runtime/version or
 capability evidence changed, is missing or uncertain; do not repeat global setup.
 
-Install through Codex's plugin UI or native CLI. The repository's marketplace
-selects AIOS; no agent bootstrap script is needed. Missing GitHub access needs
-a native sign-in/invitation step, not a secret in chat. Select the intended
-source: current main for a tracking install, or a reviewed immutable tag/commit
-for a fixed version. Do not substitute a branch for a requested fixed release.
+Install through Codex's UI or CLI using the repository marketplace. Use main
+for a tracking install or the requested reviewed immutable ref for a fixed
+version; never substitute a branch for that ref.
 
-The root `plugin.json` uses Agent Plugins 1.0.0 and discovers `skills/` directly.
-`.codex-plugin/plugin.json` supplies the compatible Codex interface metadata;
+`.codex-plugin/plugin.json` declares the shared skills, native Setup entry and
+optional Notion app connection. Codex owns authentication and its connection UI;
+Setup verifies access to the selected home before proceeding. No custom MCP,
+auth wrapper or background process is installed.
 `.agents/plugins/marketplace.json` points to this same package root. For an authorized local pilot, substitute the
 verified repository path:
 
@@ -25,7 +24,7 @@ codex plugin marketplace add /absolute/path/to/AIOS-Plugin
 codex plugin add aios@online-sourdough
 ```
 
-For a released private repository, the authorized account can instead add
+For the public release repository, the account can instead add
 `onlinesourdough/AIOS-Plugin --ref REVIEWED_REF` as the marketplace source, then
 install the same selector. A reviewed immutable commit/tag must exist first.
 Read installed marketplace identity before reusing a conflicting name. Do not

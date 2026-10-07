@@ -1,7 +1,6 @@
 # Review and release AIOS
 
-The release unit is this repository root: `plugin.json`, the native compatibility
-manifests, `package.json`, `gemini-extension.json`, `assets/`, `LICENSE`,
+The release unit is this repository root: the native manifests, `.app.json`, `package.json`, `gemini-extension.json`, `assets/`, `LICENSE`,
 `README.md`, the single `skills/` source and `docs/aios.md`. The overview
 is package documentation, read only when needed. Other documentation, tests and
 the optional specialist shelf remain author material, not product skills.
@@ -10,7 +9,7 @@ This repository carries no local generic lifecycle skills.
 ## Before delivery
 
 1. Keep identity/version equal across all native manifests and the Claude
-   marketplace entry. The Codex marketplace resolves the root manifest.
+   marketplace entry. The Codex marketplace resolves the package root and its Codex manifest.
    Run the [native packaging checks](native-installation.md) for changed adapters.
    Maintain each skill's independent [SemVer](skill-versioning.md) and compare
    against the last reviewed release/commit. Prepare [release notes](../CHANGELOG.md).

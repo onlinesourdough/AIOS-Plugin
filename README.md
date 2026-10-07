@@ -231,7 +231,7 @@ It has not been tested locally.
 
 ### Cursor and other apps
 
-Cursor supports AIOS's portable plugin format. For private distribution, add
+Cursor supports AIOS's native Cursor plugin format. For private distribution, add
 the repository through a **Teams or Enterprise marketplace**, then install AIOS
 from **Customize**. AIOS is not listed in Cursor's public marketplace, and this
 installation route has not been tested locally. See the
@@ -258,13 +258,15 @@ sub-brands within one home. Start with a real workflow, even in a messy workspac
 classify only the context it needs. No local mirror, custom server or daily task
 is required. Maintenance happens during useful work.
 
-After installing AIOS, say:
+After installing AIOS in Codex, choose **Set up** on the plugin. Codex manages
+the optional Notion connection; AIOS Setup continues in the conversation. If your
+client does not show Set up, say:
 
 > Use AIOS Setup to set up my Notion. Start here: [page link]. Help me choose
 > the first useful task and reuse what I already have.
 
 Setup guides the Notion connection when missing, identifies useful existing databases and fills the
-bundled [Operating Model page](skills/aios-context/assets/notion-operating-model.md)
+bundled [AIOS page](skills/aios-context/assets/notion-aios.md)
 with your links, Spaces and working agreements. It checks where Offers, Demand
 and Operations are covered and asks only about gaps that affect the first task.
 After verifying the entry, it adds the short instruction at the appropriate app

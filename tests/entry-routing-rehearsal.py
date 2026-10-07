@@ -8,7 +8,7 @@ import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 PRODUCT_PREFIXES = ("skills/", ".codex-plugin/", "assets/")
-PRODUCT_FILES = {"plugin.json", "package.json", "LICENSE", "README.md", "docs/aios.md"}
+PRODUCT_FILES = {".app.json", "package.json", "LICENSE", "README.md", "docs/aios.md"}
 
 
 def write(root, relative, text):

@@ -1,4 +1,4 @@
-# Notion preview acceptance
+# Notion setup acceptance
 
 Report PASS, FAIL or NOT VERIFIED with concrete observations. Read-only Check
 does not create test data; onboarding authority may include a clearly scoped
@@ -8,6 +8,7 @@ test artifact. Do not confuse these observations with future reliability.
 | --- | --- |
 | Recovery | Verified backup bytes and actual restore inspection; exact previous plugin, bridge and owned registrations |
 | Source identity | Correct workspace, guide, database schemas and relevant access; preserve same-title decoys |
+| Connection | Native app status and selected-page read are separate observations. Cover disconnected, connected, inaccessible page, read-only and resumed setup without resetting auth, writing permission probes or duplicating the home |
 | Import | Source/destination map, provenance/dates, every required skill file accounted for, no lost unknown blocks |
 | Native skill | Readback confirms native designation, current body and required resources |
 | Navigation | The existing home opens the chosen full-page databases; useful views work, original Docs templates/content remain and retired view routes are repaired |

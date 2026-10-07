@@ -106,19 +106,21 @@ the plugin.
 | File | Native role |
 | --- | --- |
 | `docs/aios.md` | Version-matched local overview, selected through the AIOS documentation route |
-| `plugin.json` | Portable Agent Plugins 1.0.0 identity; root `skills/` discovery |
-| `.codex-plugin/plugin.json` | Compatible Codex manifest and interface metadata |
+| `.codex-plugin/plugin.json` | Codex identity, interface and native Setup skill |
+| `.app.json` | Optional official Notion connection managed by Codex |
 | `.agents/plugins/marketplace.json` | Codex repository marketplace |
 | `.claude-plugin/plugin.json` and `marketplace.json` | Claude Code and Copilot-compatible plugin distribution |
 | `.cursor-plugin/plugin.json` | Cursor-format compatibility metadata |
 | `gemini-extension.json` | Gemini CLI extension identity |
 | `package.json` | Pi package with only `pi.skills` |
 
-The portable manifest leaves OpenAI-specific presentation in the supported
-Codex compatibility overlay. It has no inline extension that would shadow that
-overlay. Every native declaration selects the same `skills/` source. There are
-no consumer dependencies, executable extensions, hooks, settings payloads or
-duplicated instruction bodies.
+Every native declaration selects the same `skills/` source. Codex uses its
+supported compatibility manifest because 0.160.1 skips app bindings when a
+portable root manifest takes precedence. The package therefore omits that root
+manifest. Claude/Copilot, Cursor, Gemini and Pi retain their native metadata.
+The optional Notion app is a connection declaration, not an installed runtime
+dependency. There are no executable extensions, hooks, settings payloads or
+duplicated instruction bodies. See [onboarding evidence](issue-38-onboarding.md).
 
 [Context](../skills/aios-context/SKILL.md) resolves the chosen home independently
 of installation. Use its [short host pointer](../skills/aios-context/assets/bridge.md)
