@@ -1,6 +1,6 @@
 # AIOS
 
-AIOS version: 0.21.0
+AIOS version: 0.22.0
 
 **Business first. Productivity built in.**
 
@@ -17,11 +17,16 @@ infrastructure and delivery configuration.
 
 AIOS means AI Operating System: the shared method and your chosen context home.
 In Codex, open **AIOS** in the sidebar, or use the plugin’s **Set up** entry.
-The panel shows the Notion connection and saved context link. **Connect Notion**
-opens the official connection page; return and refresh. **Start setup / Continue
-setup** starts the same Setup skill in the conversation. Setup checks the selected page, reuses existing destinations
-and helps with the first task. It resumes existing setups. The Notion entry is
-called **AIOS** by default; customer names and stable links remain theirs.
+The panel checks the separate official Notion plugin and its connection. It
+helps install or connect that plugin when needed. **Find pages** returns actual
+choices through the agent in the visible conversation. **Find linked sources**
+reads the selected entry's source map. Continue through **Context + Docs →
+Skills → Memory**, then into the same Setup skill. Space and client/plan-only
+scope are under **More options**. Verified setup returns a source-link overview.
+Skills support Personal and optional Team, with a responsible owner and actual
+permissions; a filtered view alone does not make personal skills private.
+Setup checks access, reuses useful destinations and helps with the first task.
+The Notion entry is called **AIOS** by default; customer names remain theirs.
 
 [Context](../skills/aios-context/SKILL.md) owns the common home contract and selects
 one provider. The host keeps a short pointer to an approved entry; the agent reads
@@ -36,8 +41,10 @@ Shared methods stay in the plugin and operational records at their source.
 Maintain Context saves durable changes during work. No local mirror, hosted
 server or timer is required. The Codex panel is a bundled local MCP process
 managed by Codex, using Node.js 22+ and the installed Codex CLI for connection
-status. It reads the saved routing block, not business documents; the agent loads
-selected context during work. A connected account does not prove page access.
+status. It reads plugin/connection metadata and the saved routing block. Page choices
+and source names from the agent stay in bounded temporary panel memory: ten
+minutes for discovery, up to one hour for a setup conversation.
+The agent reads only the selected Notion entry and its declared destinations. A connected account does not prove page access.
 Installing or updating AIOS leaves existing homes
 intact; use Setup when you choose to establish or move one.
 

@@ -1,156 +1,276 @@
 import { App, applyDocumentTheme, applyHostStyleVariables } from '@modelcontextprotocol/ext-apps';
 import { OpenAIExtensions } from '@openai/mcp-extensions/app';
+import { notionPageId } from './target.mjs';
 import { classifyTarget, connectionCopy, setupPrompt } from './ui-model.mjs';
 
 const app = new App({ name: 'aios-setup', version: __AIOS_VERSION__ }, { availableDisplayModes: ['fullscreen'] });
 const extensions = new OpenAIExtensions(app);
 const $ = (id) => document.getElementById(id);
-let status;
-let edited = false;
-let sending = false;
-let sent = false;
-let refreshing = false;
-let canMessage = false;
+const roles = ['docs', 'skills', 'teamSkills', 'memory'];
+let status, picker, appliedMap, appliedPages, pollTimer, pollUntil = 0;
+let edited = false, sending = false, sent = false, refreshing = false;
+let step = 0, homeVisible = false, initialView = true, appliedSetup;
+let selectedContext = '', canMessage = false, selectedByUser = false;
+const canonical = (url) => notionPageId(url) ? `https://app.notion.com/p/${notionPageId(url)}` : url;
+const knownPages = new Map();
 
 function feedback(message, error = false) {
-  $('feedback').textContent = message;
-  $('feedback').dataset.error = String(error);
-  $('feedback').hidden = false;
+  $('feedback').textContent = message; $('feedback').dataset.error = String(error); $('feedback').hidden = false;
 }
 function theme(context) {
   if (context?.theme) applyDocumentTheme(context.theme);
   if (context?.styles?.variables) applyHostStyleVariables(context.styles.variables);
 }
-function showFallback(prompt) {
-  $('fallback-prompt').value = prompt;
-  $('fallback').hidden = false;
+function fallback(prompt) { $('fallback-prompt').value = prompt; $('fallback').hidden = false; }
+function addPage(page) {
+  if (!page || typeof page.title !== 'string' || classifyTarget(page.url)?.kind !== 'notion') throw new Error('Invalid page result');
+  knownPages.set(canonical(page.url), { ...page, url: canonical(page.url) });
 }
-function updateForm() {
+function fillSelect(id, empty, selected, extra = []) {
+  const list = [...knownPages.values()];
+  const counts = new Map(); list.forEach((p) => counts.set(p.title, (counts.get(p.title) || 0) + 1));
+  const items = [{ url: '', title: empty }, ...list.map((p) => ({ ...p, title: counts.get(p.title) > 1 ? `${p.title} · ${p.path || p.url}` : p.title })), ...extra];
+  if (selected && !items.some((p) => p.url === selected)) items.splice(1, 0, { url: selected, title: 'Current context' });
+  $(id).replaceChildren(...items.map((p) => new Option(p.title, p.url)));
+  $(id).value = selected;
+}
+function choices() {
+  fillSelect('context-choice', 'Choose with Codex', selectedContext, [{ url: 'new', title: 'New context page' }, { url: 'manual', title: 'Use a link…' }]);
+  for (const role of roles) fillSelect(role, role === 'teamSkills' ? 'No team skills yet' : 'Choose with Codex', $(role).value);
+}
+function target() {
+  if ($('provider').value !== 'notion' || selectedContext === 'manual') return $('target').value;
+  return ['new', ''].includes(selectedContext) ? '' : selectedContext;
+}
+function form() {
   const notion = $('provider').value === 'notion';
-  const route = classifyTarget($('target').value);
-  if (edited) $('home-detail').textContent = 'This selection is used for setup. Codex verifies it before making changes.';
-  $('notion-step').hidden = !notion;
-  $('home-number').textContent = notion ? '2' : '1';
-  $('outcome').textContent = notion ? 'Setup checks access, reuses your Docs, Skills and Memory, and helps with one useful task.' : 'Setup checks your selected home, keeps its existing structure and helps with one useful task.';
-  $('target-label').textContent = notion ? 'Notion page link' : 'Context link or folder path';
-  $('target').placeholder = notion ? 'https://notion.so/…' : 'https://… or /path/to/context';
-  $('open-home').hidden = !route || route.kind === 'path' || !app.getHostCapabilities()?.openLinks;
-  $('start').textContent = sending ? 'Starting…' : sent ? 'Started in Codex' : status?.context?.state === 'configured' ? 'Continue setup' : 'Start setup';
-  $('start').disabled = sending || sent;
-  $('provider').disabled = sending;
-  $('target').disabled = sending;
-  $('refresh').disabled = refreshing || sending || !app.getHostCapabilities()?.serverTools;
+  const setupPending = picker?.request?.kind === 'setup' && picker.request.state === 'pending';
+  const locked = sending || setupPending;
+  $('notion-step').hidden = !notion; $('notion-context').hidden = !notion; $('docs-field').hidden = !notion;
+  $('manual').hidden = notion && selectedContext !== 'manual';
+  $('start').textContent = sending ? 'Working…' : sent ? 'Continue in chat' : 'Continue';
+  $('home').hidden = !homeVisible;
+  $('setup').hidden = homeVisible || !status;
+  $('progress').textContent = notion ? `${step + 1} of 4` : `${step === 0 ? 1 : 2} of 2`;
+  $('step-title').textContent = ['Get started', 'Choose your context', 'Your skills', 'Your memory'][step];
+  for (const section of document.querySelectorAll('[data-step]')) section.hidden = Number(section.dataset.step) !== step;
+  $('back').hidden = step === 0;
+  $('home-status').textContent = status ? connectionCopy[status.notion.state][0] : '';
+  $('home-status').dataset.state = status?.notion.state || 'unknown';
+  $('load-home').disabled = locked || status?.notion.state !== 'connected';
+  $('edit-setup').disabled = locked;
+  if (homeVisible) dashboard();
+  for (const el of document.querySelectorAll('#setup input, #setup select, #setup button')) el.disabled = locked;
+  $('start').disabled = locked || sent;
+  $('check-result').hidden = picker?.request?.state !== 'pending';
+  $('check-result').disabled = sending;
+  const server = Boolean(app.getHostCapabilities()?.serverTools);
+  $('refresh').disabled = refreshing || sending || !server;
+  $('find').disabled = locked || !server || !picker || status?.notion.state !== 'connected';
+  $('read-sources').hidden = !target() || classifyTarget(target())?.kind !== 'notion' || Boolean(appliedMap && canonical(picker?.context?.url) === canonical(target()));
+  $('read-sources').disabled = locked || !server || !picker || status?.notion.state !== 'connected';
 }
 function render(result) {
+  if (result?.isError) throw new Error(result.content?.find((c) => c.type === 'text')?.text || 'The panel request failed.');
   const next = result?._meta?.['aios/status'];
-  if (!next || !Object.hasOwn(connectionCopy, next.notion?.state)
-    || !['configured', 'missing', 'unavailable', 'ambiguous'].includes(next.context?.state)
-    || (next.context.state === 'configured' && !classifyTarget(next.context.target))) throw new Error('Invalid status');
-  status = next;
-  $('version').textContent = `v${__AIOS_VERSION__}`;
-  const [label, detail] = connectionCopy[next.notion.state];
-  $('connection-label').textContent = label;
-  $('connection-label').dataset.state = next.notion.state;
-  $('connection-detail').textContent = detail;
-  $('connect').hidden = !['not_connected', 'unknown'].includes(next.notion.state);
-  $('connect').disabled = !app.getHostCapabilities()?.openLinks;
-  if (!edited && !sending && !sent) {
-    const route = next.context.state === 'configured' ? classifyTarget(next.context.target) : null;
-    $('target').value = route?.target || '';
-    $('provider').value = route && route.kind !== 'notion' ? 'other' : 'notion';
+  if (next) {
+    if (!Object.hasOwn(connectionCopy, next.notion?.state) || !['configured', 'missing', 'unavailable', 'ambiguous'].includes(next.context?.state)
+      || next.context.state === 'configured' && !classifyTarget(next.context.target)) throw new Error('Invalid connection status');
+    status = next;
+    if (initialView) { homeVisible = next.context.state === 'configured'; initialView = false; }
+    $('connection-label').textContent = connectionCopy[next.notion.state][0];
+    $('connection-label').dataset.state = next.notion.state;
+    $('connect').hidden = next.notion.state === 'connected';
+    $('connect').textContent = next.notion.state === 'not_installed' ? 'Install Notion' : next.notion.state === 'plugin_disabled' ? 'Enable Notion' : next.notion.state === 'not_connected' ? 'Connect Notion' : 'Check Notion';
+    if (!edited) {
+      const route = next.context.state === 'configured' ? classifyTarget(next.context.target) : null;
+      $('provider').value = route && route.kind !== 'notion' ? 'other' : 'notion';
+      selectedContext = route?.kind === 'notion' ? canonical(route.target) : '';
+      $('target').value = route?.target || '';
+    }
+    if (next.notion.state === 'disabled') feedback('Enable Notion in Codex Plugins, then refresh.');
+    if (next.notion.state === 'unavailable') feedback('Notion tools are unavailable. Continue in chat to check access.');
   }
-  $('home-detail').textContent = next.context.state === 'configured' ?
-    'Your saved context home is below. Setup resumes from what is already there.' :
-    ['unavailable', 'ambiguous'].includes(next.context.state) ?
-      'The saved context route could not be read clearly. Choose a home here; Codex will check it with you.' :
-      'Start with a page you already use. Setup will help organise what is needed.';
-  $('loading').hidden = true;
-  $('setup').hidden = false;
-  updateForm();
+  const state = result?._meta?.['aios/picker'];
+  if (state && (!picker || state.panelId === picker.panelId)) {
+    picker = state;
+    if (state.request?.kind === 'pages' && state.request.state === 'complete' && appliedPages !== state.request.id) {
+      const retained = new Set([selectedContext, ...roles.map((role) => $(role).value)]);
+      for (const url of knownPages.keys()) if (!retained.has(url)) knownPages.delete(url);
+      appliedPages = state.request.id;
+    }
+    for (const page of state.pages) addPage(page);
+    if (state.context && state.mapRequestId !== appliedMap) {
+      addPage(state.context);
+      // A response may open a fresh view; a running view only applies its selected map.
+      if (!edited || canonical(target()) === canonical(state.context.url)) {
+        selectedContext = canonical(state.context.url);
+        for (const role of roles) if (state.sources?.[role]) addPage(state.sources[role]);
+        choices();
+        for (const role of roles) $(role).value = state.sources?.[role]?.url ? canonical(state.sources[role].url) : '';
+        $('space').replaceChildren(new Option('All relevant Spaces', ''), ...(state.sources?.spaces || []).map((name) => new Option(name, name)));
+        appliedMap = state.mapRequestId;
+      }
+    }
+    choices();
+    if (state.setup && state.request?.kind === 'setup' && appliedSetup !== state.request.id) {
+      appliedSetup = state.request.id;
+      sent = state.setup.outcome === 'ready';
+      if (sent) homeVisible = true;
+      if (sent) $('feedback').hidden = true; else feedback(state.setup.outcome === 'plan' ? 'Plan prepared in the chat.' : 'Continue setup in the chat.');
+    }
+    if (state.request) {
+      $('picker-status').hidden = false;
+      $('picker-status').textContent = state.request.state === 'pending' ? state.request.kind === 'setup' ? 'Continue setup in the chat.' : 'Finding choices in the chat…' : state.request.state === 'error' ? state.request.error : state.request.kind === 'setup' ? 'Setup checked in the chat' : state.request.kind === 'pages' ? `${state.pages.length} pages found` : 'Linked sources loaded';
+      if (state.request.state === 'error' && state.request.kind === 'setup') sent = false;
+      if (state.request.state !== 'pending') clearTimeout(pollTimer);
+    }
+  }
+  if (status) { choices(); $('loading').hidden = true; $('setup').hidden = false; }
+  $('version').textContent = `v${__AIOS_VERSION__}`;
+  form();
 }
-function unavailableStatus(message) {
-  render({ _meta: { 'aios/status': { notion: { state: 'unknown' }, context: status?.context || { state: 'unavailable' } } } });
-  feedback(message, true);
+async function poll() {
+  clearTimeout(pollTimer);
+  if (!picker || picker.request?.state !== 'pending') return;
+  if (Date.now() > pollUntil) {
+    $('picker-status').textContent = 'Still waiting. Continue in the chat, then check the result.';
+    return;
+  }
+  try { render(await app.callServerTool({ name: 'aios_picker_read', arguments: { panelId: picker.panelId } }, { timeout: 8000 })); }
+  catch (error) { feedback(error.message, true); return; }
+  if (picker.request?.state === 'pending') pollTimer = setTimeout(poll, 2000);
 }
-
-app.ontoolresult = (result) => {
-  try { render(result); } catch { unavailableStatus('Setup status could not be read. Refresh or continue setup with Codex.'); }
-};
-app.addEventListener('hostcontextchanged', theme);
-for (const event of ['input', 'change']) $('setup').addEventListener(event, () => {
-  edited = true; sent = false;
-  $('validation').hidden = true;
-  $('fallback').hidden = true;
-  $('feedback').hidden = true;
-  updateForm();
-});
-
-$('refresh').addEventListener('click', async () => {
-  if (refreshing || sending) return;
-  refreshing = true;
-  $('refresh').disabled = true;
-  $('refresh').textContent = 'Checking…';
+async function send(prompt) {
+  if (!canMessage) { fallback(prompt); return false; }
+  const params = { role: 'user', content: [{ type: 'text', text: prompt }] };
+  const result = extensions.message ? await extensions.message.send(params, { timeout: 15000 }) : await app.sendMessage(params, { timeout: 15000 });
+  if (result.isError) throw new Error('Codex did not accept the request.');
+  return true;
+}
+async function request(kind, selections) {
+  if (sending || !picker) return;
+  sending = true; form(); $('feedback').hidden = true; $('fallback').hidden = true;
+  let prompt;
   try {
-    const result = await app.callServerTool({ name: 'aios_status', arguments: {} }, { timeout: 20000 });
-    if (result.isError) throw new Error('Status unavailable');
-    render(result);
-    feedback('Status refreshed.');
-  } catch { unavailableStatus('Could not refresh the connection. You can still continue setup with Codex.'); }
-  finally { refreshing = false; $('refresh').textContent = 'Refresh status'; updateForm(); }
+    const result = await app.callServerTool({ name: 'aios_picker_request', arguments: { panelId: picker.panelId, kind,
+      ...(kind === 'setup' ? { setup: selections } : kind === 'pages' ? { query: $('query').value.trim() } : { context: target() }) } }, { timeout: 8000 });
+    if (result.isError) throw new Error(result.content?.[0]?.text || 'Could not prepare the request.');
+    const prepared = result._meta?.['aios/request'];
+    if (!prepared?.picker || typeof prepared.prompt !== 'string') throw new Error('Invalid picker request.');
+    render({ _meta: { 'aios/picker': prepared.picker } }); prompt = prepared.prompt;
+    if (kind === 'setup') sent = true;
+    await send(prompt);
+    pollUntil = Date.now() + 120000; pollTimer = setTimeout(poll, 1000);
+  } catch (error) { feedback(`${error.message} Check the chat before trying again.`, true); if (prompt) { if (kind === 'setup') sent = true; fallback(prompt); pollUntil = Date.now() + 120000; pollTimer = setTimeout(poll, 2000); } }
+  finally { sending = false; form(); }
+}
+app.ontoolresult = (result) => { try { render(result); } catch (error) { feedback(error.message, true); } };
+app.addEventListener('hostcontextchanged', theme);
+$('setup').addEventListener('change', () => { edited = true; sent = false; $('validation').hidden = true; $('feedback').hidden = true; form(); });
+$('context-choice').addEventListener('change', () => {
+  const next = $('context-choice').value;
+  selectedByUser = true; edited = true;
+  if (next !== selectedContext) {
+    selectedContext = next; appliedMap = undefined;
+    for (const role of roles) $(role).value = '';
+    $('space').replaceChildren(new Option('All relevant Spaces', ''));
+    $('picker-status').hidden = true;
+    if (next === 'manual') $('target').value = '';
+  }
+  form();
 });
-
+$('client').addEventListener('change', () => {
+  if ($('client').checked && !selectedByUser) {
+    selectedContext = ''; $('target').value = ''; appliedMap = undefined;
+    for (const role of roles) $(role).value = '';
+    $('space').replaceChildren(new Option('All relevant Spaces', ''));
+    $('picker-status').hidden = true; choices(); form();
+  }
+});
+$('provider').addEventListener('change', () => { $('target').value = ''; form(); });
+$('target').addEventListener('input', () => {
+  edited = true; selectedByUser = true; sent = false; appliedMap = undefined;
+  for (const role of roles) $(role).value = '';
+  $('space').replaceChildren(new Option('All relevant Spaces', ''));
+  $('picker-status').hidden = true; form();
+});
+$('find').addEventListener('click', () => request('pages'));
+$('query').addEventListener('keydown', (event) => { if (event.key === 'Enter') { event.preventDefault(); if (!$('find').disabled) request('pages'); } });
+$('read-sources').addEventListener('click', () => request('sources'));
+$('check-result').addEventListener('click', async () => { pollUntil = Date.now() + 120000; await poll(); });
+$('refresh').addEventListener('click', async () => {
+  if (sending || refreshing) return;
+  refreshing = true; form();
+  try { render(await app.callServerTool({ name: 'aios_status', arguments: {} }, { timeout: 20000 })); pollUntil = Date.now() + 120000; await poll(); }
+  catch (error) { feedback(error.message, true); }
+  finally { refreshing = false; form(); }
+});
 async function openLink(url) {
   try {
-    if (!app.getHostCapabilities()?.openLinks) throw new Error('Unsupported');
+    if (!app.getHostCapabilities()?.openLinks) throw new Error();
     const result = await app.openLink({ url }, { timeout: 10000 });
-    if (result.isError) throw new Error('Not opened');
-    return true;
-  } catch { feedback('Codex could not open the link. Please try again from the conversation.', true); return false; }
+    if (result.isError) throw new Error();
+  } catch { feedback('Could not open the link. Continue in the chat.', true); }
 }
 $('connect').addEventListener('click', async () => {
-  // Fixed verified destination; never open an arbitrary URL from tool output.
-  if (await openLink('https://chatgpt.com/apps/notion/asdk_app_69c18c28f1188191bf5b8445c4ab0a2e')) {
-    feedback('Finish connecting Notion in the opened window, then refresh the status here.');
-  }
+  if (status?.notion.state === 'not_connected') return openLink('https://chatgpt.com/apps/notion/asdk_app_69c18c28f1188191bf5b8445c4ab0a2e');
+  if (sending) return;
+  const prompt = 'Help me install, enable or connect the official Notion plugin for AIOS: [@Notion](plugin://notion@openai-curated-remote). Check its current state first. Use the native plugin installation/connection flow and Plugin Management if available. Keep Notion separate from AIOS; do not add another MCP server or OAuth client. Preserve the current account and permissions; guide me through any required sign-in. Then refresh the AIOS panel.';
+  sending = true; form();
+  try { if (await send(prompt)) feedback('Continue in the chat, then refresh here.'); }
+  catch { feedback('Check the chat before sending again.', true); fallback(prompt); }
+  finally { sending = false; form(); }
 });
 $('guide').addEventListener('click', () => openLink('https://resources.onlinesourdough.com/resource/notion-context-home'));
-$('open-home').addEventListener('click', () => {
-  const route = classifyTarget($('target').value);
-  if (route && route.kind !== 'path') openLink(route.target);
-});
-
+function selections() {
+  return { provider: $('provider').value, target: target(),
+    ...Object.fromEntries(roles.filter((role) => $(role).value).map((role) => [role, $(role).value])),
+    ...($('space').value ? { space: $('space').value } : {}),
+    create: selectedContext === 'new', client: $('client').checked, planOnly: $('plan-only').checked };
+}
+function dashboard() {
+  const ready = picker?.setup?.outcome === 'ready' ? picker.setup : null;
+  const entry = ready?.entry || (picker?.context ? { title: picker.context.title, target: picker.context.url } :
+    status?.context.state === 'configured' ? { title: 'Context', target: status.context.target } : null);
+  const sources = classifyTarget(entry?.target || '')?.kind === 'notion' ? ready ? ready.sources : picker?.sources : null;
+  $('home-provider').hidden = !entry || classifyTarget(entry.target)?.kind !== 'notion';
+  $('home-links').replaceChildren();
+  const links = [...(entry ? [{ label: 'Context', title: entry.title, url: entry.target }] : []),
+    ...roles.filter((role) => sources?.[role]).map((role) => ({ label: {docs:'Docs',skills:'Personal skills',teamSkills:'Team skills',memory:'Memory'}[role], ...sources[role] }))];
+  for (const link of links) {
+    const button = document.createElement('button'); button.type = 'button'; button.className = 'home-link';
+    const label = document.createElement('span'); label.textContent = link.label;
+    const value = document.createElement('span'); value.textContent = link.title === link.label ? 'Open ↗' : `${link.title} ↗`;
+    button.append(label, value); button.addEventListener('click', () => {
+      if (classifyTarget(link.url)?.kind === 'path') feedback(link.url); else openLink(link.url);
+    }); $('home-links').append(button);
+  }
+  $('load-home').hidden = !entry || classifyTarget(entry.target)?.kind !== 'notion' || Boolean(sources);
+  $('home-state').hidden = !ready;
+  $('home-state').textContent = ready ? 'Context verified' : '';
+}
+$('edit-setup').addEventListener('click', () => { homeVisible = false; step = 0; sent = false; $('feedback').hidden = true; form(); });
+$('load-home').addEventListener('click', () => request('sources'));
+$('back').addEventListener('click', () => { if (!sending && step > 0) { step--; sent = false; form(); } });
 $('setup').addEventListener('submit', async (event) => {
-  event.preventDefault();
-  if (sending || sent) return;
-  let prompt;
-  try { prompt = setupPrompt($('provider').value, $('target').value); }
-  catch (error) { $('validation').textContent = error.message; $('validation').hidden = false; $('target').focus(); return; }
-  if (!canMessage) { showFallback(prompt); return; }
-  sending = true; updateForm();
-  try {
-    const params = { role: 'user', content: [{ type: 'text', text: prompt }] };
-    const result = extensions.message ? await extensions.message.send(params, { timeout: 15000 }) : await app.sendMessage(params, { timeout: 15000 });
-    if (result.isError) throw new Error('Message not accepted');
-    sent = true;
-    feedback('Setup started in this conversation. Continue with Codex.');
-  } catch {
-    feedback('Could not confirm that setup started. Check the conversation before sending again.', true);
-    showFallback(prompt);
-  } finally { sending = false; updateForm(); }
+  event.preventDefault(); if (sending || sent) return;
+  const notion = $('provider').value === 'notion';
+  if (step === 0 && notion && status?.notion.state !== 'connected') { $('connect').click(); return; }
+  if (step < (notion ? 3 : 1)) { step++; $('picker-status').hidden = true; form(); return; }
+  const input = selections();
+  try { setupPrompt(input.provider, input.target, input); }
+  catch (error) { $('validation').textContent = error.message; $('validation').hidden = false; return; }
+  await request('setup', input);
 });
-
 try {
-  await app.connect(undefined, { timeout: 12000 });
-  theme(app.getHostContext());
-  canMessage = Boolean(app.getHostCapabilities()?.message?.text);
-  $('refresh').disabled = !app.getHostCapabilities()?.serverTools;
-  if (status) updateForm();
+  await app.connect(undefined, { timeout: 12000 }); theme(app.getHostContext());
+  canMessage = Boolean(app.getHostCapabilities()?.message?.text); form();
   const context = app.getHostContext();
   if (context?.displayMode === 'inline' && context.availableDisplayModes?.includes('fullscreen')) {
-    try { await app.requestDisplayMode({ mode: 'fullscreen' }); } catch { /* Placement is the host's choice. */ }
+    try { await app.requestDisplayMode({ mode: 'fullscreen' }); } catch { /* The host owns placement. */ }
   }
 } catch {
-  $('loading').hidden = true;
-  feedback('This panel needs to be opened through the AIOS plugin in Codex.', true);
-  showFallback('Use AIOS Setup to start or resume my context setup.');
+  $('loading').hidden = true; feedback('Open this panel through AIOS in Codex.', true);
+  fallback('Use AIOS Setup to start or resume my context setup.');
 }

@@ -5,7 +5,7 @@ import { PassThrough } from 'node:stream';
 import { mkdtemp, readFile, writeFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { NOTION_ID, notionState, readNotionConnection } from './codex-status.mjs';
+import { NOTION_ID, notionState, readNotionConnection, resolveCodexCommand } from './codex-status.mjs';
 import { parseContextRoute, readContextRoute } from './context-route.mjs';
 import { classifyTarget, setupPrompt } from './ui-model.mjs';
 
@@ -15,6 +15,15 @@ test('connection availability never implies page access, enablement or missing e
   assert.equal(notionState({ callable: false, enabled: true }), 'unavailable');
   assert.equal(notionState({ enabled: true }), 'unknown');
   assert.equal(notionState({ callable: true }), 'unknown');
+});
+
+test('desktop CLI discovery respects PATH and finds Homebrew without a login shell', async () => {
+  const seen = [];
+  const executable = async (path) => { seen.push(path); if (path !== '/opt/homebrew/bin/codex') throw new Error('missing'); };
+  assert.equal(await resolveCodexCommand({ path: '/usr/bin:/bin', platform: 'darwin', executable }), '/opt/homebrew/bin/codex');
+  assert.deepEqual(seen, ['/usr/bin/codex', '/bin/codex', '/opt/homebrew/bin/codex']);
+  assert.equal(await resolveCodexCommand({ path: '/custom', platform: 'linux', executable: async () => {} }), '/custom/codex');
+  assert.equal(await resolveCodexCommand({ path: '', platform: 'linux', executable }), 'codex');
 });
 
 function fixture(replies, initialize = { result: {} }) {
@@ -110,7 +119,7 @@ test('links and prompts reject credentials, unsafe schemes, control characters a
   assert.equal(classifyTarget('https://notion.so.attacker.test').kind, 'url');
   assert.throws(() => setupPrompt('notion', 'https://notion.so.attacker.test'));
   assert.throws(() => setupPrompt('other', 'relative/path'));
-  assert.match(setupPrompt('other', '/work/my vault'), /Do not change my personal default/);
+  assert.match(setupPrompt('other', '/work/my vault'), /Keep my existing personal default/);
   assert.match(setupPrompt('notion', ''), /Help me choose/);
-  assert.match(setupPrompt('notion', 'https://app.notion.com/p/example'), /Reuse the existing setup/);
+  assert.match(setupPrompt('notion', 'https://app.notion.com/p/example'), /Reuse useful existing data/);
 });

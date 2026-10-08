@@ -1,117 +1,130 @@
-# Codex sidebar — 0.21.0
+# Codex sidebar — 0.22.0
 
-Accepted outcome: a small AIOS sidebar entry and setup panel, using the host's
-theme and the existing Setup skill. Keep the company home in Notion or the
-selected provider. Use onlinesourdough in visible publisher labels. This extends
-the earlier [0.20.0 delivery](issue-38-onboarding.md), whose scope excluded a UI.
-
-## Customer journey
+Accepted outcome: a simple Get started panel, lowercase onlinesourdough topbar,
+Context selection and Continue into the existing Setup procedure. Notion stays
+an independently installed official plugin. Preserve other clients, owner data,
+Spaces, personal/team skills, account permissions and unrelated instructions.
 
 ```text
-Install AIOS → Open AIOS in the sidebar
-                     ↓
-             Connect Notion, if needed
-                     ↓
-          Choose an existing page or home
-                     ↓
-          Start setup / Continue setup
-                     ↓
-       Same Setup skill in the conversation
-                     ↓
-      Check access → reuse Docs / Skills / Memory
-                     ↓
-        Verify the entry → first useful task
+Install AIOS → Open AIOS
+                  ↓
+        Check official Notion plugin
+          ├ missing → Install Notion
+          ├ disabled → Enable Notion
+          ├ disconnected → Connect Notion
+          └ ready → ✓ Connected
+                  ↓
+      Find pages → agent reads Notion → choose Context
+                  ↓
+      Context + Docs → Personal / Team skills → Memory
+                  ↓
+          Continue → existing AIOS Setup
+                  ↓
+        Relevant questions → verify → source-link overview
+                  ↓
+                   First useful task
 ```
 
-The native plugin **Set up** entry remains available and starts the same skill.
-No second onboarding policy or generated personal skill is added. The panel
-does not create or rename pages, save instructions or mark a home ready.
-Those actions belong to Setup and its existing Context procedure.
+The public MCP Apps bridge calls only its originating server, not another
+plugin's tools. Page/source lookup therefore sends a visible read-only message
+to the current conversation. This is an agent-assisted picker, not an instant
+cross-plugin API. The global entrypoint supplies a conversation on desktop
+according to the pinned Extensions specification. No hidden thread, duplicate
+Notion MCP server, OAuth client, token store or private Codex endpoint is used.
 
-**Connected** means the exact Notion app is enabled and has callable tools in the
-refreshed Codex connector snapshot. It does not prove page access or token freshness at the
-provider. **Disabled** asks the user to enable it through Codex; installed but
-non-callable tools show **Needs attention**, without assuming reauthentication
-is the answer. **Could not verify** stays an explicit gap. **Connect Notion** opens the official app connection
-page in the browser, then the user refreshes. The panel never resets auth or
-opens an invented OAuth endpoint. A user click on Start/Continue sends one visible
-request to the active conversation. An unconfirmed send remains unconfirmed.
+## Connection and setup boundaries
 
-## Implementation and ownership
+- The native **Set up** entry and **Continue** invoke the same Setup skill.
+  The wizard separates Context/Docs, Personal/optional Team skills and Memory.
+  More options holds Space, client scope and plan-only; another provider is
+  available at the connection step. Missing sources are resolved in Setup.
+  Shared native Skills can serve both audiences when permissions fit. Separate
+  sources preserve private/team access where needed; tags never grant access.
+- AIOS ships no `.app.json` or `apps` binding. It reads `codex plugin list --json`
+  for exact `notion@openai-curated-remote` installation/enablement, and public
+  `app/installed` for the exact Notion app's callable connection state. Bounded
+  subprocesses use the normal account configuration without reading credentials.
+- Missing/disabled plugin buttons ask the visible chat to use the native plugin
+  flow. Connect opens the official Notion app connection page. Refresh rechecks.
+  Failed discovery is unknown, never disconnected or connected by assumption.
+- Connected means installed, enabled and callable in the refreshed snapshot.
+  It does not prove access to a selected page or freshness at the provider.
+- Setup owns any authorized home or pointer edits. Browsing creates no Notion
+  pages, changes no permissions and never marks the company setup ready.
+  Client scope preserves personal defaults; plan-only remains read-only.
 
-- `apps/sidebar` owns source, pinned SDKs, build, synthetic fixture and tests.
-  `runtime/sidebar` is a reproducible bundle, including dependency notices.
-- `.codex-plugin/mcp.json` explicitly registers one local stdio MCP server.
-  `aios_open` has an official global entrypoint; `aios_status` is app-only.
-  The HTML declares fullscreen only. The MCP server icon is monochrome and
-  theme-aware; SDK 1.31 uses the documented server-icon fallback.
-- Node.js 22+ must be on the execution host's PATH. Consumers do not run npm,
-  Docker or a separate hosted service. Codex owns the process lifecycle.
-- The panel uses the installed Codex CLI's public `app/installed` protocol with
-  `forceRefresh`. A short-lived app-server reads the compact connector snapshot,
-  returns only the exact Notion state and terminates. Missing CLI, timeout or a
-  malformed response returns `unknown`. The broader app catalog is not loaded.
-- The only owner file read is the bounded `AIOS:BEGIN/END` routing block in
-  `$CODEX_HOME/AGENTS.md` (default `~/.codex`). It returns only one validated
-  `Context:` link/path. Duplicate or old blocks require clarification. No legacy
-  home, project, chat or history scanning occurs. This is the personal saved
-  default, not an inference about every project; the selected task can override it.
-- Connection metadata and the route travel in the tool result's UI-only `_meta`.
-  The HTML uses the initial result rather than making a duplicate check. There is
-  no local business-data store, credentials file, telemetry or persisted setup state.
-  Refreshes are explicit and simultaneous checks share only their in-flight work.
-- The iframe has no network/resource domains. Links use the host bridge; inputs
-  reject credentials, unsafe schemes and control characters. Personal/default
-  instructions are not changed by a customer or project selection.
-- Non-Codex client manifests remain skill-only. The shared method has no sidebar
-  dependency. Recovery is the native Set up entry or a conversational request;
-  a package rollback to 0.20.0 leaves the home and pointer intact.
+## Runtime and data
 
-This uses the public MCP Apps and OpenAI Extensions SDKs, not proprietary
-Meetings implementation. The technology adds a real navigation responsibility;
-a website alone cannot register a sidebar entry. A cloud app would add deployment
-and account ownership without helping this local Codex setup.
+`apps/sidebar` owns source, pinned SDKs, tests and synthetic fixture.
+`runtime/sidebar` is the reproducible consumer bundle with dependency notices.
+Codex manages the declared Node.js 22+ stdio process. No consumer npm or Docker.
+The HTML has no network/resource CSP domains and uses the host theme.
 
-## Verification
+`aios_open` is the global/model entrypoint and accepts a reply to an outstanding
+picker request. `aios_status`, `aios_picker_request` and `aios_picker_read` are
+app-only. Starting a request only prepares it; the panel sends the visible
+message after the user's action. Initial status is reused. Polling lasts at
+most two minutes and never calls Notion; Check result retrieves a delayed reply.
+Setup inputs stay locked while a submitted outcome is pending, including an
+uncertain send. The conversation can return ready, plan or needs_input. Only
+a verified entry/destination outcome marks the overview Context verified; it
+does not claim the first business task has been tested.
 
-```sh
-npm ci --prefix apps/sidebar --ignore-scripts
-npm run build --prefix apps/sidebar
-npm test --prefix apps/sidebar
-python3 tests/onboarding-rehearsal.py --native
-```
+A random panel/request pair, exact source identity, ten-minute discovery expiry
+(one hour for setup), twelve
+panel limit and at most thirty metadata choices bound temporary state. A new
+request invalidates the old request; identical replies are idempotent, different
+replies and crossed source maps are rejected. No business page bodies, auth data,
+telemetry or setup state are saved to disk. Source errors remain explicit.
 
-CI rebuilds and compares the committed runtime. Source checks protect the exact
-declared server, the common skill source, optional Notion binding, isolated
-consumer inventory and absence of hooks/implicit servers in other clients.
-Unit tests cover connection classification, exact identity, process cleanup, malformed
-protocol frames and inventories, timeouts, bounded route reads, duplicate routes,
-round-trips from the shipped bridge for URLs/paths and provider input validation.
-The bundled-server smoke check uses an isolated empty Codex home. No real account
-is connected or business page changed by those tests.
+The only owner file read is the bounded AIOS routing block in `$CODEX_HOME/AGENTS.md`.
+Ambiguous/old blocks are not guessed. Other files, chats and histories are not
+scanned. Source names and locations are rendered as text. Other providers keep
+their existing route and do not inherit hidden Notion source selections.
 
-The browser fixture (`npm run preview --prefix apps/sidebar`) supplies a real
-MCP App handshake with synthetic state. Observed: first run and existing home,
-connection link, explicit refresh, setup message, duplicate-click prevention,
-denied message, delayed response with locked inputs, malformed initial status,
-alternative provider, light/dark themes and narrow layout. The fixture exposes
-delay and malformed-status controls so those regressions can be repeated.
-These checks prove the panel and bridge behavior in that fixture. Actual local
-connection metadata, installed bytes and host tool discovery are separate
-readbacks during adoption.
+## Verification and recovery
 
-Desktop computer use is unavailable in this environment. Neither the fixture
-nor `plugin/read` proves actual sidebar placement in the running desktop app.
-New-account OAuth is not exercised by resetting an existing connection. These
-remain explicit pilot limits. No claim of an exact Meetings implementation or
-automatic setup completion is made.
+Run the bundle build, `npm test --prefix apps/sidebar`, native onboarding
+rehearsal and required source/package checks. Tests cover independent plugin
+and connection states, malformed replies, process cleanup, pointer parsing,
+scoped/expired/replayed replies, duplicate identities, unsafe URLs and prompt
+scope. The stdio smoke exercises a full request/reply/read round trip.
+
+`npm run preview --prefix apps/sidebar` starts a clearly labeled synthetic host
+on loopback. Its pages are test data. Browser checks and protocol checks are
+separate from actual desktop placement and live Notion round-trip evidence.
+Live read-only verification and installed-byte proof belong to adoption; never
+claim them merely from an HTML preview. No new-account OAuth reset is needed.
+
+If a request expires or the process reloads, reopen AIOS and issue a new request.
+If the bridge cannot send a message, a copyable request is shown. The native Set
+up entry and conversational Setup remain available. Roll back through the native
+package manager to reviewed 0.21.0; preserve the separate Notion plugin and all
+owner content. Do not edit cache databases or credentials to force a refresh.
 
 ## Sources
 
-- [MCP Extensions 0.1.0 — entrypoints](https://github.com/openai/mcp-extensions/blob/node-v0.1.0/docs/spec.md#mcp-app-entrypoints)
-- [SDK styling and messages](https://github.com/openai/mcp-extensions/blob/node-v0.1.0/typescript/README.md)
-- [Official plugin packaging](https://developers.openai.com/plugins/build/plugins)
-- [Codex app-server](https://developers.openai.com/codex/app-server)
+- [MCP Extensions 0.1.0](https://github.com/openai/mcp-extensions/blob/node-v0.1.0/docs/spec.md)
+- [MCP Apps SDK 1.7.5](https://github.com/modelcontextprotocol/ext-apps)
+- [Codex app-server](https://learn.chatgpt.com/docs/app-server)
 
-The selected SDK release was checked on 2026-10-07. CLI compatibility is observed
-against Codex 0.160.1; experimental API drift is surfaced as unknown status.
+Checked with the pinned SDKs and Codex 0.160.1. Unsupported or changed host
+capabilities are surfaced as explicit gaps.
+
+## 2026-10-08 candidate observations
+
+- 23 Node tests and the bundled stdio request/reply/read smoke pass. Native Codex
+  parsing finds Setup, 26 skills, one AIOS server and no embedded app binding.
+- The synthetic browser host exercises duplicate page names, pasted-link source
+  mapping, the four steps, shared Personal/Team source selection, a delayed
+  outcome with locked inputs, and return to the overview. Dark 320px rendering
+  has no horizontal overflow. Failure/client/plan-only cases have
+  bounded fixture evidence; this is not a live Notion UI round trip.
+- The public CLI reports the independently installed official Notion plugin
+  enabled and its account callable. Live official Notion reads verify the
+  selected guide and destinations; authorized Personal/Team schema/default
+  changes are read back without replacing sources, content or icons.
+- The already-running desktop tool remains 0.21.0 after candidate installation.
+  Reloading the new runtime and testing the complete desktop picker → agent →
+  returned panel remains pending. This pilot must not be described as having
+  that end-to-end acceptance or a new-account OAuth test.

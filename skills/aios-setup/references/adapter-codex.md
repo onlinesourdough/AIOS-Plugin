@@ -13,9 +13,9 @@ for a tracking install or the requested reviewed immutable ref for a fixed
 version; never substitute a branch for that ref.
 
 `.codex-plugin/plugin.json` declares the shared skills, native Setup entry and
-optional Notion app connection. Codex owns authentication and its connection UI;
-Setup verifies access to the selected home before proceeding. No custom MCP,
-auth wrapper or background process is installed.
+AIOS sidebar server. Notion stays a separate official plugin; Codex owns its
+authentication and connection UI. Setup verifies selected-home access. AIOS
+ships no Notion app binding, auth wrapper or second Notion server.
 `.agents/plugins/marketplace.json` points to this same package root. For an authorized local pilot, substitute the
 verified repository path:
 

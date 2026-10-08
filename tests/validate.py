@@ -68,7 +68,7 @@ FORBIDDEN_BOUNDARY_TEXT = {
 }
 FORBIDDEN_SHIPPED_PATTERNS = (r"\bnpx skills\b", r"\bskills\.sh\b")
 DOMAIN_SKILLS = {"design", "review-design", "openpencil-workbench", "content", "diffusion-studio"}
-PRODUCT_PATHS = (".app.json", ".codex-plugin", ".claude-plugin", ".cursor-plugin",
+PRODUCT_PATHS = (".codex-plugin", ".claude-plugin", ".cursor-plugin",
                  "gemini-extension.json", "skills", "assets/icon.png", "LICENSE",
                  "docs/aios.md", "runtime/sidebar")
 FORBIDDEN_KEYS = {"scripts", "dependencies", "devDependencies", "peerDependencies"}

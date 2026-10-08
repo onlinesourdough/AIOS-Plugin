@@ -32,7 +32,7 @@ class OnboardingTest(unittest.TestCase):
         self.root = Path(self.temp.name)
         for name in (".codex-plugin", ".claude-plugin", ".cursor-plugin", "skills", "runtime", ".agents/plugins"):
             shutil.copytree(ROOT / name, self.root / name)
-        for name in (".app.json", "package.json", "gemini-extension.json"):
+        for name in ("package.json", "gemini-extension.json"):
             shutil.copy2(ROOT / name, self.root / name)
 
     def edit(self, name, edit):
@@ -49,13 +49,10 @@ class OnboardingTest(unittest.TestCase):
         with self.assertRaisesRegex(AssertionError, "shadows"):
             validate_native(self.root, require)
 
-    def test_no_required_or_substituted_provider(self):
-        for field, value in (("required", True), ("id", "unverified-app")):
-            with self.subTest(field=field):
-                shutil.copy2(ROOT / ".app.json", self.root / ".app.json")
-                self.edit(".app.json", lambda d: d["apps"]["notion"].update({field: value}))
-                with self.assertRaisesRegex(AssertionError, "optional native app"):
-                    validate_native(self.root, require)
+    def test_no_embedded_provider(self):
+        (self.root / ".app.json").write_text('{"apps":{"notion":{}}}')
+        with self.assertRaisesRegex(AssertionError, "separate plugin"):
+            validate_native(self.root, require)
 
     def test_no_external_or_different_onboarding(self):
         self.edit(".codex-plugin/plugin.json", lambda d: d["extensions"]["com.openai"].update(
@@ -113,16 +110,14 @@ def native_check():
             "marketplacePath": str(ROOT / ".agents/plugins/marketplace.json"),
             "pluginName": "aios",
         })["plugin"]
-        app_id = json.loads((ROOT / ".app.json").read_text())["apps"]["notion"]["id"]
-        require([app["id"] for app in detail["apps"]] == [app_id],
-                "Codex did not recognize the native Notion connection")
+        require(not detail["apps"], "AIOS must not embed Notion or another connector")
         setup = detail.get("onboardingSkill")
         require(setup and setup["enabled"] and
                 Path(setup["path"]) == ROOT / "skills/aios-setup/SKILL.md",
                 "Codex did not expose the selected Setup entry; check plugin enablement")
         require(len(detail["skills"]) == 26 and detail["mcpServers"] == ["aios"] and not detail["hooks"],
                 "Unexpected native inventory")
-        print("PASS: Codex recognizes Notion, Setup, 26 skills and the declared AIOS sidebar server; no hooks")
+        print("PASS: Codex recognizes separate providers, Setup, 26 skills and the declared AIOS sidebar server; no hooks")
     finally:
         selector.close()
         process.terminate()
