@@ -1,45 +1,36 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><title>AIOS sidebar test host</title>
-<style>
-body {margin:0;background:#ececec;font:12px system-ui}header {padding:10px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}iframe {display:block;border:0;width:100%;height:820px;margin:auto}pre {white-space:pre-wrap;overflow-wrap:anywhere;padding:10px;max-height:160px;overflow:auto}label {display:flex;gap:5px}
-</style>
-<header><strong>Synthetic host · no real messages</strong>
-<label>Scenario <select id="scenario"><option value="new">Not installed</option><option value="disconnected">Not connected</option><option value="existing">Existing setup</option><option value="disabled">Notion disabled</option><option value="unknown">Status unavailable</option><option value="ambiguous">Ambiguous pointer</option><option value="malformed">Malformed status</option></select></label>
+<!doctype html><html lang="en"><meta charset="utf-8"><title>AIOS preview</title>
+<style>body{margin:0;background:#ececec;font:12px system-ui}header{padding:10px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}iframe{display:block;border:0;width:100%;height:650px;margin:auto}pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:10px;max-height:160px;overflow:auto}body.preview>header,body.preview>#events{display:none}body.preview iframe{height:100vh}body.preview{background:white}</style><body class="/*HOST_MODE*/">
+<header><strong>Synthetic host · no chat capability</strong>
+<label>Scenario <select id="scenario"><option value="new">New context</option><option value="existing">Existing context</option><option value="missing">Notion missing</option><option value="disconnected">Disconnected</option><option value="disabled">Disabled</option><option value="unknown">Unknown</option><option value="ambiguous">Ambiguous pointer</option></select></label>
 <label>Theme <select id="theme"><option>light</option><option>dark</option></select></label>
 <label>Width <select id="width"><option value="100%">Full</option><option value="320px">320px</option></select></label>
-<label>Result <select id="result"><option value="ok">Accepted</option><option value="denied">Denied</option><option value="error">RPC error</option></select></label>
-<label><input id="delayed" type="checkbox">Delay reply 5 seconds</label>
-<label><input id="unsupported" type="checkbox">No messages</label><button id="reset">Reset panel</button></header>
-<iframe title="AIOS panel" src="/app"></iframe><pre id="events" aria-label="Protocol events">Waiting for connection</pre>
+<label><input id="fail" type="checkbox">Fail requests</label><label><input id="delay" type="checkbox">Delay save</label><button id="reset">Reset</button><button id="reload">Reopen</button></header>
+<iframe title="AIOS panel" src="/app"></iframe><pre id="events" aria-label="Protocol events">Waiting</pre>
 <script>
-const frame=document.querySelector('iframe'), events=document.querySelector('#events');
-let trace=[], panel;
-async function rpc(action,args){const r=await fetch('/rpc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action,args})});const value=await r.json();if(!r.ok)throw new Error(value.error);return value}
+const frame=document.querySelector('iframe'), events=document.querySelector('#events'), scenario=document.querySelector('#scenario');
+let trace=[];
+async function rpc(action,args){const r=await fetch('/rpc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action,args,scenario:scenario.value})});const value=await r.json();if(!r.ok)throw new Error(value.error);return value}
 function send(message){frame.contentWindow.postMessage({jsonrpc:'2.0',...message},location.origin)}
-function context(){const dark=document.querySelector('#theme').value==='dark';return {theme:dark?'dark':'light',displayMode:'fullscreen',availableDisplayModes:['fullscreen'],styles:{variables:{'--font-sans':'system-ui','--color-background-primary':dark?'#181818':'#ffffff','--color-background-secondary':dark?'#282828':'#f5f5f5','--color-text-primary':dark?'#efefef':'#202020','--color-text-secondary':dark?'#aaa':'#666','--color-border-primary':dark?'#383838':'#e6e6e6','--color-text-info':dark?'#eee':'#222','--color-text-inverse':dark?'#111':'#fff'}}}}
-function status(){const value=document.querySelector('#scenario').value;if(value==='malformed')return {content:[]};return {content:[],_meta:{'aios/status':{version:'0.22.0',notion:{state:value==='new'?'not_installed':value==='disconnected'?'not_connected':value==='disabled'?'disabled':value==='unknown'?'unknown':'connected'},context:value==='new'?{state:'missing'}:value==='ambiguous'?{state:'ambiguous'}:{state:'configured',target:'https://app.notion.com/p/00000000000000000000000000000001',kind:'notion'},checkedAt:new Date().toISOString()},'aios/picker':panel}}}
-document.querySelector('#scenario').onchange=()=>send({method:'ui/notifications/tool-result',params:status()});
+function context(){return {theme:document.querySelector('#theme').value,displayMode:'fullscreen',availableDisplayModes:['fullscreen']}}
+async function reset(){await rpc('reset');trace=[];frame.src='/app'}
+scenario.onchange=reset;document.querySelector('#reset').onclick=reset;
+document.querySelector('#reload').onclick=()=>{frame.src='/app'};
 document.querySelector('#theme').onchange=()=>send({method:'ui/notifications/host-context-changed',params:context()});
-document.querySelector('#width').onchange=(event)=>{frame.style.width=event.target.value};
-document.querySelector('#reset').onclick=()=>{trace=[];events.textContent='Waiting for connection';frame.src='/app'};
+document.querySelector('#width').onchange=e=>{frame.style.width=e.target.value};
 window.addEventListener('message',async event=>{
  if(event.source!==frame.contentWindow||event.origin!==location.origin)return;
  const {id,method,params}=event.data;if(!method)return;
  if(!method.includes('size-changed')){trace.push({method,params});events.textContent=JSON.stringify(trace,null,2)}
- if(method==='ui/initialize')send({id,result:{protocolVersion:'2026-01-26',hostInfo:{name:'AIOS synthetic host',version:'1'},hostCapabilities:{serverTools:{},openLinks:{},...(!document.querySelector('#unsupported').checked?{message:{text:{}},experimental:{'openai/message':{}}}:{})},hostContext:context()}});
- else if(method==='ui/notifications/initialized'){panel=await rpc('open');send({method:'ui/notifications/tool-result',params:status()})}
+ if(method==='ui/initialize')send({id,result:{protocolVersion:'2026-01-26',hostInfo:{name:'AIOS synthetic host',version:'2'},hostCapabilities:{serverTools:{},openLinks:{}},hostContext:context()}});
+ else if(method==='ui/notifications/initialized')send({method:'ui/notifications/tool-result',params:await rpc('status')});
  else if(method==='tools/call'){
  try{
-  let result=status();
-  if(params.name==='aios_picker_request'){const prepared=await rpc('begin',params.arguments);panel=prepared.picker;result={content:[],_meta:{'aios/request':prepared}}}
-  if(params.name==='aios_picker_read'){panel=await rpc('read',params.arguments);result={content:[],_meta:{'aios/picker':panel}}}
-  send({id,result});
+  if(document.querySelector('#fail').checked)throw new Error('Synthetic request failure');
+  if(!['aios_status','aios_save_context'].includes(params.name))throw new Error('Unsupported tool');
+  if(params.name==='aios_save_context'&&document.querySelector('#delay').checked)await new Promise(r=>setTimeout(r,3000));
+  const result=await rpc(params.name==='aios_save_context'?'save':'status',params.arguments);send({id,result});
  }catch(error){send({id,result:{isError:true,content:[{type:'text',text:error.message}]}})}
- }
- else if(method==='ui/message'||method==='ui/open-link'){
-  const mode=document.querySelector('#result').value;
-  const reply=mode==='error'?{id,error:{code:-32000,message:'Synthetic host failure'}}:{id,result:{isError:mode==='denied'}};
-  const respond=async()=>{send(reply);if(method==='ui/message'&&mode==='ok'&&(params.content?.[0]?.text.startsWith('Read-only AIOS picker request.')||params.content?.[0]?.text.startsWith('Use AIOS Setup'))){panel=await rpc('reply',{panelId:panel.panelId});send({method:'ui/notifications/tool-result',params:status()})}};
-  if(method==='ui/message'&&document.querySelector('#delayed').checked)setTimeout(respond,5000);else await respond();
- }else if(id!==undefined)send({id,result:{}});
+ }else if(method==='ui/open-link')send({id,result:{}});
+ else if(id!==undefined)send({id,error:{code:-32601,message:'No conversation or other capabilities in this host'}});
 });
 </script></html>

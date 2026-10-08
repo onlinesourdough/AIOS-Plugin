@@ -3,50 +3,34 @@
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>AIOS</title><style>/*APP_CSS*/</style></head>
 <body>
 <main>
-  <header><strong>onlinesourdough</strong><span>AIOS</span></header>
-  <p id="loading" role="status">Checking connection…</p>
-  <div id="home" hidden>
-    <h1 id="home-title" tabindex="-1">Your AIOS</h1>
-    <div id="home-provider" class="provider-card"><strong>Notion</strong><span id="home-status" class="status"></span></div>
-    <div id="home-links" class="home-links"></div>
-    <p id="home-state" role="status" hidden></p>
-    <div class="actions"><button id="load-home" class="btn btn-secondary" type="button">Load sources</button><button id="edit-setup" class="btn btn-ghost" type="button">Edit setup</button></div>
+  <header><strong>AIOS</strong><span>by onlinesourdough</span></header>
+  <h1 id="heading" tabindex="-1">Get started</h1>
+  <p id="intro" class="intro">Connect Notion and choose your context.</p>
+  <p id="loading" role="status">Checking your setup…</p>
+  <div id="content" hidden>
+    <section id="notion" aria-labelledby="notion-title">
+      <div class="step-title"><span class="step-number" aria-hidden="true">1</span><h2 id="notion-title">Connect Notion</h2><span id="connection-label" class="status" role="status"></span></div>
+      <p id="connection-help" hidden></p>
+      <div class="actions"><button id="connect" class="btn btn-secondary cursor-interaction" type="button" hidden>Connect Notion</button><button id="refresh" class="btn btn-ghost cursor-interaction" type="button" aria-label="Refresh Notion connection">Refresh status</button></div>
+    </section>
+    <form id="setup" hidden>
+      <section id="context-form" aria-labelledby="context-title">
+        <div class="step-title"><span id="context-number" class="step-number" aria-hidden="true">2</span><h2 id="context-title">Choose your context</h2></div>
+        <label for="provider" class="form-label">Where does your context live?</label>
+        <select id="provider" class="form-control"><option value="notion">Notion</option><option value="other">Another provider</option></select>
+        <label id="target-label" for="target" class="form-label">Context link</label>
+        <input id="target" class="form-control" type="text" maxlength="2048" autocomplete="off" required placeholder="https://notion.so/…" aria-describedby="scope">
+        <p id="scope" class="hint">Your default context for new Codex chats.</p>
+      </section>
+      <button id="continue" class="btn btn-primary cursor-interaction" type="submit">Continue</button><button id="cancel" class="btn btn-ghost cursor-interaction" type="button" hidden>Cancel</button>
+    </form>
+    <section id="home" hidden aria-labelledby="home-title">
+      <div class="step-title"><h2 id="home-title">Context</h2></div>
+      <div class="context-row"><div><button id="open-context" class="context-link cursor-interaction" type="button">Open context ↗</button><span id="context-path" class="hint" hidden></span></div><button id="change" class="btn btn-ghost icon cursor-interaction" type="button" aria-label="Change context" title="Change context"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="m12 4 4 4M4 12 13 3a2.8 2.8 0 0 1 4 4l-9 9-5 1 1-5Z"/></svg></button></div>
+    </section>
   </div>
-  <form id="setup" hidden>
-    <div class="step-heading"><p id="progress" class="eyebrow"></p><h1 id="step-title" tabindex="-1">Get started</h1></div>
-    <section id="connect-step" data-step="0">
-      <div id="notion-step" class="provider-card"><strong>Notion</strong><span id="connection-label" class="status"></span></div>
-      <div id="notion-actions" class="actions"><button id="connect" class="btn btn-secondary" type="button">Connect Notion</button><button id="refresh" class="btn btn-ghost" type="button">Refresh</button></div>
-      <details><summary>Another provider</summary><label for="provider" class="form-label">Context provider</label><select id="provider" class="form-control"><option value="notion">Notion</option><option value="other">Another provider</option></select></details>
-    </section>
-    <section data-step="1" hidden>
-      <div id="notion-context"><label for="context-choice" class="form-label">Context</label><select id="context-choice" class="form-control"></select>
-        <div class="search-row"><input id="query" class="form-control" type="search" maxlength="160" placeholder="Search Notion" aria-label="Search Notion"><button id="find" class="btn btn-secondary" type="button">Find pages</button></div>
-        <button id="read-sources" class="btn btn-ghost" type="button" hidden>Find linked sources</button>
-      </div>
-      <div id="manual" hidden><label for="target" class="form-label">Context link or folder</label><input id="target" class="form-control" type="text" maxlength="2048" autocomplete="off" placeholder="https://… or /path/to/context"></div>
-      <div id="docs-field"><label for="docs" class="form-label spaced">Docs</label><select id="docs" class="form-control"></select></div>
-      <details id="options"><summary>More options</summary>
-        <label for="space" class="form-label">Space</label><select id="space" class="form-control"><option value="">All relevant Spaces</option></select>
-        <label class="check"><input id="client" type="checkbox"> Client or project setup</label>
-        <label class="check"><input id="plan-only" type="checkbox"> Plan only</label>
-      </details>
-    </section>
-    <section data-step="2" hidden>
-      <label for="skills" class="form-label">Personal skills</label><select id="skills" class="form-control"></select>
-      <label for="teamSkills" class="form-label spaced">Team skills <span class="muted">(optional)</span></label><select id="teamSkills" class="form-control"></select>
-    </section>
-    <section data-step="3" hidden>
-      <label for="memory" class="form-label">Memory</label><select id="memory" class="form-control"></select>
-    </section>
-    <p id="picker-status" role="status" aria-live="polite" hidden></p>
-    <p id="validation" class="error" role="alert" hidden></p>
-    <div class="wizard-actions"><button id="back" class="btn btn-ghost" type="button" hidden>Back</button><button id="start" class="btn btn-primary" type="submit">Continue</button></div>
-  </form>
-  <button id="check-result" class="btn btn-ghost" type="button" hidden>Check result</button>
   <p id="feedback" role="status" aria-live="polite" hidden></p>
-  <div id="fallback" hidden><label for="fallback-prompt">Send this in the Codex chat:</label><textarea id="fallback-prompt" class="form-control" readonly></textarea></div>
-  <footer><button id="guide" class="btn btn-ghost" type="button">Setup guide ↗</button><span id="version"></span></footer>
+  <footer><span id="version"></span></footer>
 </main>
 <script type="module">/*APP_JS*/</script>
 </body>
