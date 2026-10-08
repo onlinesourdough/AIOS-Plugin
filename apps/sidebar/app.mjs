@@ -40,7 +40,7 @@ function render() {
   $('connect').hidden = !notion || !['not_connected', 'disabled', 'unavailable'].includes(state);
   $('connect').disabled = saving;
   $('cancel').hidden = !configured; $('cancel').disabled = saving;
-  $('continue').disabled = saving || !status.context.revision || ['ambiguous', 'unavailable'].includes(status.context.state);
+  $('continue').disabled = saving || refreshing || !status.context.revision || ['ambiguous', 'unavailable'].includes(status.context.state);
   $('continue').textContent = saving ? 'Saving…' : configured ? 'Save' : 'Continue';
   $('target').disabled = saving;
   if (configured) {
@@ -94,7 +94,7 @@ $('cancel').addEventListener('click', () => { editing = false; feedback(''); ren
 $('target').addEventListener('input', render);
 $('provider').addEventListener('change', render);
 $('setup').addEventListener('submit', async (event) => {
-  event.preventDefault(); if (saving || !status?.context?.revision) return;
+  event.preventDefault(); if (saving || refreshing || !status?.context?.revision) return;
   const route = classifyTarget($('target').value);
   if (!route || /[<>]/.test(route.target) || ($('provider').value !== 'other' && route.kind !== 'notion')) { feedback($('provider').value !== 'other' ? 'Enter a Notion link, or choose another provider.' : 'Enter an HTTPS context link or an absolute folder path.', true); $('target').focus(); return; }
   saving = true; feedback(''); render();

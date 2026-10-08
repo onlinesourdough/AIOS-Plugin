@@ -12,8 +12,9 @@ export function parseContextRoute(text) {
   const ends = [...text.matchAll(/<!-- AIOS:END -->/g)];
   if (!starts.length && !ends.length) return { state: 'missing' };
   if (starts.length !== 1 || ends.length !== 1 || starts[0].index >= ends[0].index) return { state: 'ambiguous' };
+  if (!/^<!-- AIOS:BEGIN -->\r?$/m.test(text) || !/^<!-- AIOS:END -->\r?$/m.test(text)) return { state: 'ambiguous' };
   const block = text.slice(starts[0].index + starts[0][0].length, ends[0].index);
-  const routes = [...block.matchAll(/^Context:[ \t]*(.+)$/gm)];
+  const routes = [...block.matchAll(/^Context:[ \t]*(.*)$/gm)];
   if (routes.length !== 1) return { state: 'ambiguous' };
   const route = classifyTarget(routes[0][1].trim().replace(/\.$/, ''));
   return route ? { state: 'configured', ...route } : { state: 'ambiguous' };
@@ -30,7 +31,7 @@ async function snapshot(codexHome) {
     const buffer = Buffer.alloc(LIMIT + 1);
     const { bytesRead } = await handle.read(buffer, 0, buffer.length, 0);
     if (bytesRead > LIMIT) throw new Error('too large');
-    const text = new TextDecoder('utf-8', { fatal: true }).decode(buffer.subarray(0, bytesRead));
+    const text = new TextDecoder('utf-8', { fatal: true, ignoreBOM: true }).decode(buffer.subarray(0, bytesRead));
     return { text, revision: revision(text), mode: info.mode & 0o777 };
   } catch (error) {
     if (error.code === 'ENOENT') return { text: null, revision: revision(null), mode: 0o600 };
@@ -52,8 +53,10 @@ export function replaceContext(text, target, bridge) {
   const original = text || '';
   if (current.state === 'configured') {
     // Preserve every rule; replace only the owned location inside the single routing block.
-    return original.replace(/<!-- AIOS:BEGIN -->[\s\S]*?<!-- AIOS:END -->/, (block) =>
+    const next = original.replace(/<!-- AIOS:BEGIN -->[\s\S]*?<!-- AIOS:END -->/, (block) =>
       block.replace(/^Context:[^\r\n]*/m, () => `Context: ${route.target}.`));
+    if (parseContextRoute(next).target !== route.target) throw new Error('Existing context instructions need attention. They have been left unchanged.');
+    return next;
   }
   const addition = bridge.replace('<verified-context-entry-url-or-absolute-path>', () => route.target);
   if (parseContextRoute(addition).target !== route.target) throw new Error('Invalid packaged context template.');

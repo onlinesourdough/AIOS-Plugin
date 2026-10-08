@@ -79,3 +79,13 @@ test('malformed status removes the Connected claim and leaves a working retry', 
   assert.equal(u.nodes.get('refresh').disabled, false);
   await u.click('refresh'); assert.equal(u.nodes.get('connection-label').textContent, '✓ Connected');
 });
+
+test('refresh in progress blocks a new save until the current snapshot arrives', async () => {
+  const u = await ui(); u.input(target); u.delay();
+  const refreshing = u.click('refresh');
+  assert.equal(u.nodes.get('continue').disabled, true);
+  await u.submit(); assert.deepEqual(u.calls.map(call => call.name), ['aios_status']);
+  u.release(); await refreshing;
+  assert.equal(u.nodes.get('continue').disabled, false);
+  await u.submit(); assert.equal(u.nodes.get('home').hidden, false);
+});
