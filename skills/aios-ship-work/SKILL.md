@@ -2,7 +2,7 @@
 name: aios-ship-work
 description: Deliver a reviewed result under existing action and destination authority, then verify readback.
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # AIOS:ship-work
@@ -28,6 +28,11 @@ Before any public or customer-facing effect, including a Git publication, run
 [publish safety](references/publish-safety.md) last. Perform only the reviewed action,
 read back the actual destination and compare it with the accepted artifact.
 An uncertain result requires readback before any retry, never blind replay.
+
+Keep Build's [human review handoff](../aios-build-work/references/review-handoff.md)
+current at the destination. Verify the published rendering and evidence links;
+update the same summary for changed delivery state instead of adding another
+process recap. Preserve visible limits and existing decision authority.
 
 Keep three results distinct: delivery PASS/FAIL, recovery PASS/FAIL/NOT
 APPLICABLE and outcome PASS/FAIL/PENDING with its measurement owner/window.

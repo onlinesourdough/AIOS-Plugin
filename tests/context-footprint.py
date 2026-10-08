@@ -293,6 +293,9 @@ def main():
     handoff = ROOT / "skills/aios/references/continuation.md"
     print(f"conditional_whole_task_handoff_extra_bytes={handoff.stat().st_size}")
     print("NOTE: portable/whole-task transfer adds that reference, not worker orchestration; no matched legacy transfer path is claimed")
+    review_handoff = ROOT / "skills/aios-build-work/references/review-handoff.md"
+    print(f"conditional_human_review_handoff_extra_bytes={review_handoff.stat().st_size}")
+    print("NOTE: substantive human handoff adds this reference; visual capture can add the existing Design comparison guide and difficult explanation can add Clarify. The worker-build benchmark stops before handoff; no matched legacy or runtime saving is claimed")
     notion = sum((ROOT / path).stat().st_size for path in (
         "skills/aios/SKILL.md",
         "skills/aios-context/SKILL.md",

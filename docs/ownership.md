@@ -4,6 +4,7 @@
 | --- | --- |
 | Product instructions, declarations, and neutral assets | AIOS maintainer in this repository |
 | Implementation and local verification | Current repository task or deliberately selected worker |
+| Human review presentation | Build's [review handoff](../skills/aios-build-work/references/review-handoff.md); Review checks claims and Ship verifies the destination. Domain proof remains with its existing owner |
 | Requirement tracking SOP | `skills/aios/references/lifecycle.md` for all phases and repository tasks; local records hold evidence, not a copied procedure |
 | Task deliverable, continuation and whole-task handoff | Shared AIOS lifecycle; Spec clarifies the contract and Select Model supplies model/reasoning evidence |
 | Exploratory interview and shared question procedure | Interview owns activation, adaptive questioning, waiting and resumption; Setup and Spec reuse accepted answers |

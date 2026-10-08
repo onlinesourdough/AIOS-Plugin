@@ -2,6 +2,8 @@
 
 ## 0.24.0 — 2026-10-08
 
+- Include the reviewed Build/Review/Ship handoff guidance from main (#42).
+
 - Restore complete numbered source setup with section dividers, Continue, Back
   and a final dashboard. Remove the provider dropdown; alternatives stay available.
 - Open saved Context, Docs, Personal/Team Skills and Memory destinations from
