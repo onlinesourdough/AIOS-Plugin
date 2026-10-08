@@ -2,7 +2,7 @@
 name: aios-build-work
 description: Implement and verify accepted work through in-scope fixes and Review.
 metadata:
-  version: "1.1.1"
+  version: "1.1.2"
 ---
 
 # AIOS:build-work
@@ -54,11 +54,12 @@ current. Add runtime layers only for an actual responsibility. Follow the
 accepted [security contract](../aios/references/security.md) when its boundary
 applies; ordinary work gains no scan ritual.
 
-Prove the final bytes through the real interface or an appropriate validator,
+Prove final bytes through the real interface or an appropriate validator,
 including relevant failure, denial, duplicate and recovery behavior. Fix in-scope
-findings and rerun affected checks. Once sufficient checks pass, repeat or broaden
-verification only for a relevant change, failure or unresolved concern. Report
-unavailable required proof honestly; continue work that does not depend on it.
+findings and rerun affected checks. Repeat or broaden sufficient verification
+only for a relevant change, failure or unresolved concern. Report unavailable
+required proof honestly; continue independent work.
+For substantive results, prepare a concise [human review handoff](references/review-handoff.md).
 Continue to [Review](../aios-review-work/SKILL.md) within this task; a phase label
 or the first successful test is not a completion boundary.
 

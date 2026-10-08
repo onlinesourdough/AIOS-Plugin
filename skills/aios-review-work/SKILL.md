@@ -2,7 +2,7 @@
 name: aios-review-work
 description: Review a result against its accepted outcome, or audit requested repository drift, without editing.
 metadata:
-  version: "1.2.1"
+  version: "1.2.2"
 ---
 
 # AIOS:review-work
@@ -43,6 +43,12 @@ For skill/procedure changes, check that each shared procedure has one canonical
 owner and callers link to it with their trigger and required result. Flag copied
 step lists, competing acceptance rules and circular delegation without an
 executable owner; do not merge distinct responsibilities just to reduce files.
+
+For a human-facing result or PR, inspect Build's
+[review handoff](../aios-build-work/references/review-handoff.md) against the actual
+candidate and evidence. Check the rendered comparison and useful links; keep
+decision-relevant failures visible and distinguish illustration from observation.
+This is part of the current review, not another approval step.
 
 For code review, including scripts, shell snippets, SQL, tests and automation,
 use [Write code](../write-code/SKILL.md) in read-only review mode. Apply its shared
