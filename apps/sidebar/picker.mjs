@@ -48,7 +48,7 @@ export function createPickerStore({ now = Date.now, id = randomUUID } = {}) {
   function open() {
     prune();
     if (panels.size >= 12) panels.delete(panels.keys().next().value);
-    const panel = { panelId: id(), expires: now() + ttl, pages: [], sources: null, context: null, mapRequestId: null, setup: null, request: null };
+    const panel = { panelId: id(), revision: 0, expires: now() + ttl, pages: [], sources: null, context: null, mapRequestId: null, setup: null, request: null };
     panels.set(panel.panelId, panel);
     return view(panel);
   }
@@ -57,6 +57,7 @@ export function createPickerStore({ now = Date.now, id = randomUUID } = {}) {
     if (args.kind === 'sources' && !args.context) throw new Error('Choose a context page first.');
     if (args.kind === 'setup' && !args.setup) throw new Error('Setup selections are missing.');
     const panel = get(args.panelId);
+    panel.revision++;
     // Discovery is short; an interview/setup may reasonably take longer.
     panel.expires = now() + (args.kind === 'setup' ? 60 * 60 * 1000 : ttl);
     panel.request = { id: id(), kind: args.kind, state: 'pending', ...(args.context ? { context: args.context } : {}),
@@ -104,6 +105,7 @@ export function createPickerStore({ now = Date.now, id = randomUUID } = {}) {
       panel.request.state = 'complete';
     }
     panel.response = JSON.stringify(reply);
+    panel.revision++;
     return view(panel);
   }
   return { open, begin, publish, read: (panelId) => view(get(panelId)) };

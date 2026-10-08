@@ -92,7 +92,10 @@ function render(result) {
     if (next.notion.state === 'unavailable') feedback('Notion tools are unavailable. Continue in chat to check access.');
   }
   const state = result?._meta?.['aios/picker'];
-  if (state && (!picker || state.panelId === picker.panelId)) {
+  // Tool notifications and polling can arrive out of order, including after
+  // a new setup request. Never let an older snapshot unlock that request.
+  if (state && Number.isSafeInteger(state.revision) && state.revision >= 0 &&
+      (!picker || state.panelId === picker.panelId && state.revision >= picker.revision)) {
     picker = state;
     if (state.request?.kind === 'pages' && state.request.state === 'complete' && appliedPages !== state.request.id) {
       const retained = new Set([selectedContext, ...roles.map((role) => $(role).value)]);
@@ -103,7 +106,7 @@ function render(result) {
     if (state.context && state.mapRequestId !== appliedMap) {
       addPage(state.context);
       // A response may open a fresh view; a running view only applies its selected map.
-      if (!edited || canonical(target()) === canonical(state.context.url)) {
+      if ($('provider').value === 'notion' && (!edited || canonical(target()) === canonical(state.context.url))) {
         selectedContext = canonical(state.context.url);
         for (const role of roles) if (state.sources?.[role]) addPage(state.sources[role]);
         choices();
@@ -149,7 +152,7 @@ async function send(prompt) {
   return true;
 }
 async function request(kind, selections) {
-  if (sending || !picker) return;
+  if (sending || !picker || picker.request?.kind === 'setup' && picker.request.state === 'pending') return;
   sending = true; form(); $('feedback').hidden = true; $('fallback').hidden = true;
   let prompt;
   try {
@@ -188,7 +191,13 @@ $('client').addEventListener('change', () => {
     $('picker-status').hidden = true; choices(); form();
   }
 });
-$('provider').addEventListener('change', () => { $('target').value = ''; form(); });
+$('provider').addEventListener('change', () => {
+  selectedContext = ''; selectedByUser = false; appliedMap = undefined;
+  $('target').value = '';
+  for (const role of roles) $(role).value = '';
+  $('space').replaceChildren(new Option('All relevant Spaces', ''));
+  $('picker-status').hidden = true; choices(); form();
+});
 $('target').addEventListener('input', () => {
   edited = true; selectedByUser = true; sent = false; appliedMap = undefined;
   for (const role of roles) $(role).value = '';
@@ -203,7 +212,10 @@ $('refresh').addEventListener('click', async () => {
   if (sending || refreshing) return;
   refreshing = true; form();
   try { render(await app.callServerTool({ name: 'aios_status', arguments: {} }, { timeout: 20000 })); pollUntil = Date.now() + 120000; await poll(); }
-  catch (error) { feedback(error.message, true); }
+  catch (error) {
+    if (status) render({ _meta: { 'aios/status': { ...status, notion: { ...status.notion, state: 'unknown' } } } });
+    feedback(error.message, true);
+  }
   finally { refreshing = false; form(); }
 });
 async function openLink(url) {
@@ -227,7 +239,7 @@ function selections() {
   return { provider: $('provider').value, target: target(),
     ...Object.fromEntries(roles.filter((role) => $(role).value).map((role) => [role, $(role).value])),
     ...($('space').value ? { space: $('space').value } : {}),
-    create: selectedContext === 'new', client: $('client').checked, planOnly: $('plan-only').checked };
+    create: $('provider').value === 'notion' && selectedContext === 'new', client: $('client').checked, planOnly: $('plan-only').checked };
 }
 function dashboard() {
   const ready = picker?.setup?.outcome === 'ready' ? picker.setup : null;

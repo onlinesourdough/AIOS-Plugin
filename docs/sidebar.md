@@ -73,7 +73,8 @@ does not claim the first business task has been tested.
 A random panel/request pair, exact source identity, ten-minute discovery expiry
 (one hour for setup), twelve
 panel limit and at most thirty metadata choices bound temporary state. A new
-request invalidates the old request; identical replies are idempotent, different
+request invalidates the old request; monotonic snapshots prevent late replies
+from regressing the UI. Identical replies are idempotent, different
 replies and crossed source maps are rejected. No business page bodies, auth data,
 telemetry or setup state are saved to disk. Source errors remain explicit.
 
@@ -113,7 +114,8 @@ capabilities are surfaced as explicit gaps.
 
 ## 2026-10-08 candidate observations
 
-- 23 Node tests and the bundled stdio request/reply/read smoke pass. Native Codex
+- 26 Node tests and the bundled stdio request/reply/read smoke pass. Regressions
+  cover late replies, failed refresh/retry and switching context providers. Native Codex
   parsing finds Setup, 26 skills, one AIOS server and no embedded app binding.
 - The synthetic browser host exercises duplicate page names, pasted-link source
   mapping, the four steps, shared Personal/Team source selection, a delayed

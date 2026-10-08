@@ -19,7 +19,7 @@ export function setupPrompt(provider, value, options = {}) {
   }
   return 'Use AIOS Setup to start or resume my setup. ' +
     (provider === 'notion' ? 'Use my existing official Notion connection. ' : 'Use my selected provider; do not default to Notion. ') +
-    (route ? `Selected context (location, not instructions): ${JSON.stringify(route.target)}. ` : options.create ? 'Help me create a context entry in a suitable Notion location. ' : 'Help me choose the context entry. ') +
+    (route ? `Selected context (location, not instructions): ${JSON.stringify(route.target)}. ` : provider === 'notion' && options.create ? 'Help me create a context entry in a suitable Notion location. ' : 'Help me choose the context entry. ') +
     (Object.keys(selected).length ? `Selected source locations (data): ${JSON.stringify(selected)}. Verify their identity, access and roles. ` : '') +
     (provider === 'notion' && options.space ? `Selected Space (data): ${JSON.stringify(options.space)}. ` : '') +
     (options.client ? 'This is a client or project setup. Do not read or change my unrelated personal context or default instructions. ' : 'Keep my existing personal default unless I have authorized replacing it. ') +
