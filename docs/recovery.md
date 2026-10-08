@@ -5,8 +5,10 @@
 If the sidebar process fails, use the plugin's native **Set up** entry or ask
 for AIOS Setup in a conversation. Check Node.js 22+ and the Codex CLI on the
 execution host; never repair by copying credentials or resetting Notion auth.
-The panel saves only the context pointer in Codex instructions; before changing
-it, it backs up the previous instructions. See the sidebar recovery procedure.
+The panel saves the short context pointer in Codex instructions and keeps source
+names/links in private per-context navigation state. Both preserve changed prior
+bytes in backups. See the sidebar recovery procedure; package rollback does not
+roll back these local choices. Company content remains at its source.
 It stores no business content. A package
 rollback to the reviewed 0.20.0 tag removes this Codex runtime and keeps the
 existing home and pointer. Preserve any later customer edits. See

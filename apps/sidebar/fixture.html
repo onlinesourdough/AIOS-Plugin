@@ -1,7 +1,7 @@
 <!doctype html><html lang="en"><meta charset="utf-8"><title>AIOS preview</title>
 <style>body{margin:0;background:#ececec;font:12px system-ui}header{padding:10px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}iframe{display:block;border:0;width:100%;height:650px;margin:auto}pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:10px;max-height:160px;overflow:auto}body.preview>header,body.preview>#events{display:none}body.preview iframe{height:100vh}body.preview{background:white}</style><body class="/*HOST_MODE*/">
 <header><strong>Synthetic host · no chat capability</strong>
-<label>Scenario <select id="scenario"><option value="new">New context</option><option value="existing">Existing context</option><option value="missing">Notion missing</option><option value="disconnected">Disconnected</option><option value="disabled">Disabled</option><option value="unknown">Unknown</option><option value="ambiguous">Ambiguous pointer</option></select></label>
+<label>Scenario <select id="scenario"><option value="new">New context</option><option value="existing">Existing context</option><option value="dashboard">Dashboard</option><option value="missing">Notion missing</option><option value="disconnected">Disconnected</option><option value="disabled">Disabled</option><option value="unknown">Unknown</option><option value="ambiguous">Ambiguous pointer</option></select></label>
 <label>Theme <select id="theme"><option>light</option><option>dark</option></select></label>
 <label>Width <select id="width"><option value="100%">Full</option><option value="320px">320px</option></select></label>
 <label><input id="fail" type="checkbox">Fail requests</label><label><input id="delay" type="checkbox">Delay save</label><button id="reset">Reset</button><button id="reload">Reopen</button></header>
@@ -26,9 +26,9 @@ window.addEventListener('message',async event=>{
  else if(method==='tools/call'){
  try{
   if(document.querySelector('#fail').checked)throw new Error('Synthetic request failure');
-  if(!['aios_status','aios_save_context'].includes(params.name))throw new Error('Unsupported tool');
-  if(params.name==='aios_save_context'&&document.querySelector('#delay').checked)await new Promise(r=>setTimeout(r,3000));
-  const result=await rpc(params.name==='aios_save_context'?'save':'status',params.arguments);send({id,result});
+  if(!['aios_status','aios_save_context','aios_save_sources'].includes(params.name))throw new Error('Unsupported tool');
+  if(params.name.startsWith('aios_save_')&&document.querySelector('#delay').checked)await new Promise(r=>setTimeout(r,3000));
+  const result=await rpc(params.name==='aios_save_context'?'save':params.name==='aios_save_sources'?'sources':'status',params.arguments);send({id,result});
  }catch(error){send({id,result:{isError:true,content:[{type:'text',text:error.message}]}})}
  }else if(method==='ui/open-link')send({id,result:{}});
  else if(id!==undefined)send({id,error:{code:-32601,message:'No conversation or other capabilities in this host'}});

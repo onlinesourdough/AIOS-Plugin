@@ -1,6 +1,6 @@
 {
   "name": "aios",
-  "version": "0.23.0",
+  "version": "0.24.0",
   "description": "Portable context and skills for planning, design, content and reviewed delivery.",
   "skills": "./skills"
 }

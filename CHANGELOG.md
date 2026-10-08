@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.24.0 — 2026-10-08
+
+- Restore complete numbered source setup with section dividers, Continue, Back
+  and a final dashboard. Remove the provider dropdown; alternatives stay available.
+- Open saved Context, Docs, Personal/Team Skills and Memory destinations from
+  three simple dashboard sections. Hide unused Team skills for solo setups.
+- Save only navigation names and links locally, scoped to context identity.
+  Preserve revisions and backups; never inherit another context's destinations.
+- Let explicit Setup register verified destinations through AIOS MCP, reusing the
+  separate official Notion connector. No panel-triggered chat or content mirror.
+- Cover source isolation, stale drafts, failed saves, optional sources, reopened
+  dashboards, direct links and the complete no-chat onboarding flow.
+
 ## 0.23.0 — 2026-10-08
 
 - Restore the 0.21.0 visual layout and SDK controls.

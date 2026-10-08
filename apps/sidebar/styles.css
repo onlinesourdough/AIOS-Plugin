@@ -41,3 +41,27 @@ footer { justify-content: flex-end; }
 .icon { padding: 6px; line-height: 1; }
 #context-path, #feedback { overflow-wrap: anywhere; }
 h1:focus { outline: none; }
+/* Shared shell and divided sections retain the early setup's visual rhythm. */
+header .icon { margin-left: auto; }
+.icon { display: inline-flex; align-items: center; justify-content: center; }
+#notion[data-mode="home"] { padding: 18px 0; margin-top: 26px; }
+#notion[data-mode="home"] h2 { font-weight: 500; }
+#connect { margin-top: 14px; }
+.optional { float: right; color: var(--color-text-secondary, light-dark(#666, #aaa)); font-size: 12px; font-weight: 400; }
+.form-foot { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.text-button { border: 0; background: none; color: var(--color-text-secondary, light-dark(#666, #aaa)); font: inherit; font-size: 12px; padding: 0; cursor: pointer; }
+.text-button:hover { color: var(--color-text-primary, light-dark(#202020, #ececec)); text-decoration: underline; }
+.add-team { margin-top: 16px; }
+.done { margin-left: auto; color: var(--color-text-success, light-dark(#287844, #75cc97)); }
+.wizard-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+#cancel { margin-left: auto; font-size: 12px; }
+#home section { padding: 22px 0 8px; }
+#home h2 { margin-bottom: 10px; }
+.destination { display: flex; width: 100%; align-items: center; gap: 18px; padding: 14px 10px; margin: 0 -10px; width: calc(100% + 20px); border: 0; border-radius: 8px; color: inherit; background: transparent; text-align: left; font: inherit; cursor: pointer; }
+.destination:hover { background: var(--color-background-secondary, light-dark(#f5f5f5, #282828)); }
+.destination-body { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 3px; }
+.destination strong { font-size: 14px; font-weight: 500; overflow-wrap: anywhere; }
+.destination-body > span { font-size: 12px; color: var(--color-text-secondary, light-dark(#666, #aaa)); overflow-wrap: anywhere; }
+.arrow { color: var(--color-text-secondary, light-dark(#666, #aaa)); font-size: 15px; }
+.destination:disabled { opacity: .6; cursor: default; }
+@media (max-width: 440px) { #notion[data-mode="home"] .status { margin-left: auto; width: auto; } }

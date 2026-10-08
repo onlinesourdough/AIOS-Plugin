@@ -15,11 +15,11 @@ const transport = new StdioClientTransport({
 try {
   await client.connect(transport);
   const { tools } = await client.listTools();
-  assert.deepEqual(tools.map((tool) => tool.name), ['aios_open', 'aios_status', 'aios_save_context']);
+  assert.deepEqual(tools.map((tool) => tool.name), ['aios_open', 'aios_status', 'aios_save_context', 'aios_sources', 'aios_save_sources']);
   assert.deepEqual(tools[0]._meta['openai/ui'].entrypoints, [{ type: 'global' }]);
   assert.deepEqual(tools[1]._meta.ui.visibility, ['app']);
   assert.ok(client.getServerVersion().icons[0].src.startsWith('data:image/svg+xml;base64,'));
-  const view = await client.readResource({ uri: 'ui://aios/home-v2' });
+  const view = await client.readResource({ uri: 'ui://aios/home-v3' });
   assert.equal(view.contents[0].mimeType, 'text/html;profile=mcp-app');
   assert.deepEqual(view.contents[0]._meta['openai/ui'], { preferredDisplayMode: 'fullscreen', availableDisplayModes: ['fullscreen'] });
   assert.ok(view.contents[0].text.includes('onlinesourdough'));
@@ -36,5 +36,11 @@ try {
   assert.equal(read._meta['aios/status'].context.target, target);
   assert.equal(tools[2].annotations.readOnlyHint, false);
   assert.deepEqual(tools[2]._meta.ui.visibility, ['app']);
+  const links = { memory: { title: 'Decisions', target: 'https://example.com/memory' } };
+  const sources = await client.callTool({ name: 'aios_save_sources', arguments: { target, expectedContextRevision: read._meta['aios/status'].context.revision, expectedRevision: read._meta['aios/status'].sources.revision, title: 'My AIOS', links } });
+  assert.equal(sources.isError, undefined);
+  assert.deepEqual(sources._meta['aios/status'].sources.links, links);
+  const metadata = await client.callTool({ name: 'aios_sources', arguments: {} });
+  assert.deepEqual(JSON.parse(metadata.content[0].text).sources.links, links);
   console.log('PASS: bundled stdio server, global entrypoint, fullscreen resource and isolated first run.');
 } finally { await client.close(); await rm(scratch, { recursive: true, force: true }); }

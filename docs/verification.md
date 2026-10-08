@@ -1,6 +1,6 @@
 # Verification
 
-For AIOS 0.23.0, see [Codex sidebar verification](sidebar.md#verification).
+For AIOS 0.24.0, see [Codex sidebar verification](sidebar.md#verification-and-recovery).
 Build and test the pinned author dependencies, check generated runtime equality,
 then run the existing source and native onboarding checks. A protocol fixture
 does not establish rendered sidebar placement or a new-account OAuth grant.

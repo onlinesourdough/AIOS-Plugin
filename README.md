@@ -258,16 +258,18 @@ sub-brands within one home. Start with a real workflow, even in a messy workspac
 classify only the context it needs. No local mirror, hosted server or daily task
 is required. Maintenance happens during useful work.
 
-After installing AIOS in Codex, open **AIOS** in the sidebar. The panel shows
-Notion connection status and opens your saved context. On first use, paste your
-context link and choose **Continue**. This saves your personal default for new
-Codex chats directly, preserving other instructions. A small edit control lets
-you change that link. It does not start a conversation or create a Notion home.
-Docs, Skills, Memory and Spaces are routed inside the context entry, not selected
-again in the panel. Notion stays a separate official plugin and connection.
+After installing AIOS in Codex, open **AIOS** in the sidebar. The numbered
+setup checks the separate official Notion connection, then saves your Context
+and optional Docs, Personal/Team Skills and Memory links. Continue saves each
+step directly; the last step opens your dashboard. An existing context opens
+there immediately. The dashboard groups your named destinations under Context,
+Skills and Memory; one Settings control edits them. No panel click starts a chat.
 
-An existing context opens immediately. A saved link is not proof of page access
-or a complete business setup; Context checks relevant sources when needed.
+AIOS stores only navigation names/links locally, scoped to the selected context.
+The company data stays at its source. Shared AIOS methods stay in the plugin.
+This is a link-based dashboard, not live record browsing or a second Notion
+connector. Empty optional sources remain addable; solo users need no Team source.
+
 For a new or messy workspace, explicitly use the plugin's **Set up** skill or ask:
 
 > Use AIOS Setup to set up my Notion. Start here: [page link]. Help me choose
