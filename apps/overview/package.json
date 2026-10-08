@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "node build.mjs",
-    "test": "node --test context-status.test.mjs git-status.test.mjs && node smoke.mjs"
+    "test": "node --test context-status.test.mjs git-status.test.mjs skill-inventory.test.mjs && node smoke.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/ext-apps": "1.7.5",

@@ -6,18 +6,23 @@ guide. Codex is the acceptance target; unavailable Pi model behavior does not
 hold completed Codex work open. Preserve the actual limits of other clients.
 
 The 0.16.0 local release checks pass: source/SemVer against remote main
-`14ae7c9`, documentation, layout, continuity, footprint, 16 overview/Git
-cases, stdio metadata, three archive checks, 18 Design and 41 Content checks.
+`14ae7c9`, documentation, layout, continuity, footprint, 19 overview/Git/global
+skill cases, stdio metadata and three archive checks. Unchanged Design and
+Content helpers retain their earlier 18 and 41 passing cases.
 Codex CLI 0.159.2 installed the extracted Codex ZIP in isolated settings,
 reported all 24 skills, preserved every installed byte, ran its bundled stdio
 server, and removed the cache while preserving a synthetic owner and bridge.
-The dependency audit reported zero known runtime advisories. The release PR
-owns remote CI/readback. Native desktop sidebar/editor/login and independent
+The dependency audit reported zero known runtime advisories. Those isolated
+installation results and the release PR's green remote CI belong to the earlier
+commit `0056927b`, before the latest local UI/link refinement. Native desktop
+sidebar/editor/login and independent
 release acceptance remain outstanding; none of these checks simulates a model.
 The final bundled 0.16.0 UI also completed a synthetic SDK handshake, displayed
 the generated 24-skill catalog, sent the expected editor path, showed three
 green steps for matching Git, and displayed/sent the Setup request for a missing
-home. These are browser protocol fixtures, not real native editor/chat execution.
+home. The refined UI fits compact desktop heights with contained list scrolling;
+it also reports an unavailable global link in red, without an editor target.
+These are browser protocol fixtures, not real native editor/chat execution.
 
 For the 0.15.0 Interview/local-trial change, see
 [intent and local trials](intent-and-trials.md) for the accepted boundaries,

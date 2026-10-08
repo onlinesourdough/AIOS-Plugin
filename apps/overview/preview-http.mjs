@@ -1,7 +1,7 @@
 import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
-import { contextStatus } from './context-status.mjs';
-export function servePreview(port,readStatus=(checkRemote=false)=>contextStatus(undefined,{includeInventory:true,checkRemote}),htmlUrl=new URL('./index.html',import.meta.url)){
+import { overviewStatus } from './overview-status.mjs';
+export function servePreview(port,readStatus=(checkRemote=false)=>overviewStatus({checkRemote}),htmlUrl=new URL('./index.html',import.meta.url)){
  const server=createServer(async(req,res)=>{
   // Only the loopback origin can use this status endpoint. No writes or CORS.
   const host=`127.0.0.1:${port}`;

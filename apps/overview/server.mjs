@@ -3,7 +3,7 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { registerAppResource, registerAppTool, RESOURCE_MIME_TYPE } from '@modelcontextprotocol/ext-apps/server';
 import { OpenAIExtensions } from '@openai/mcp-extensions/server';
 import { readFile } from 'node:fs/promises';
-import { contextStatus } from './context-status.mjs';
+import { overviewStatus } from './overview-status.mjs';
 import { servePreview } from './preview-http.mjs';
 
 const uri = 'ui://aios/overview';
@@ -19,7 +19,7 @@ registerAppResource(server, 'aios', uri, {}, async () => ({
 }));
 
 async function statusResult(checkRemote=false){
- const {fileTargets={},inventory={},gitDetails={},...status}=await contextStatus(undefined,{includeTargets:true,includeInventory:true,checkRemote});
+ const {fileTargets={},inventory={},gitDetails={},...status}=await overviewStatus({includeTargets:true,checkRemote});
  return {content:[],structuredContent:status,_meta:{'aios/fileTargets':fileTargets,'aios/inventory':inventory,'aios/git':gitDetails}};
 }
 

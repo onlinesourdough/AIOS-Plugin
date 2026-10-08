@@ -2,7 +2,7 @@
 
 Manage Skills owns this personal-owner procedure. Use it when an authorized
 conversation creates, imports, edits, renames or removes a personal owner
-skill, and when Setup installs or moves an owner home. Callers link here; do
+skill, and when Setup installs, restores or moves an owner home. Callers link here; do
 not copy these steps into another skill. It keeps personal placement,
 registration and discovery in the same capability-management lifecycle as
 installation, update, removal and rollback. Owner facts and configured Git
@@ -41,6 +41,18 @@ together and verify the obsolete name is no longer discovered. Naming alone
 does not move personal methods or facts into the distributed plugin.
 
 ## Reconcile this skill's registration
+
+Run this reconciliation in the same authorized change that creates, imports,
+edits, renames, moves or removes a personal skill. For a home move or reviewed
+restore, check all personal skills in the selected home. A body edit preserves
+the existing exact link; it still needs readback. Source sync alone does not
+install skills, and ordinary conversation is not a whole-library audit.
+
+When checking registrations, use `lstat` and `readlink` as well as resolved
+targets: a dangling link must be reported, not disappear from an `exists()`
+filter. Repair or remove it only when its old identity and AIOS ownership are
+proved by the accepted source/change map. Preserve unknown links and same-name
+directories or copies; report the collision instead of silently replacing them.
 
 1. Inspect the canonical body and the same name in relevant native, plugin and
    user discovery locations. Compare the skill's declared name as well as its
@@ -87,6 +99,11 @@ Deleting a registration does not authorize deleting its body or history.
   referenced resources from its canonical location.
 - Read back the link/native registration and prove its canonical target. Replay
   reconciliation: it must be a no-op, not another copy or registration.
+- Account for every affected old registration: correct, repaired, removed or
+  blocked with its identity. Do not finish a rename/move while an owned obsolete
+  link is silently left behind. No watcher or package-install hook is implied;
+  manual filesystem changes are found by a requested Check or later relevant
+  owner-skill maintenance.
 - Use supported native discovery or a fresh session to confirm the final name
   and source appear once. After rename, confirm the obsolete name is absent;
   after removal, confirm the registration is absent without deleting the body

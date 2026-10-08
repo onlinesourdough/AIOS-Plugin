@@ -2,7 +2,7 @@
 name: aios-maintain-context
 description: Curate confirmed owner facts, corrections and source routes from ordinary conversation, or perform explicitly requested AIOS continuity Sync.
 metadata:
-  version: "1.2.0"
+  version: "1.2.1"
 ---
 
 # AIOS-maintain-context

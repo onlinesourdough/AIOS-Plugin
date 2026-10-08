@@ -21,12 +21,13 @@ try{
   assert.ok(status.structuredContent.checkedAt);
   assert.equal(status.structuredContent.fileTargets,undefined);
   assert.ok(status._meta?.['aios/fileTargets']);
-  assert.ok(Object.keys(status._meta['aios/fileTargets']).every(key=>['index','memory','connections'].includes(key)||key.startsWith('context/')||key.startsWith('skills/')));
+  assert.ok(Object.keys(status._meta['aios/fileTargets']).every(key=>['index','memory','connections'].includes(key)||key.startsWith('context/')||key.startsWith('skills/')||key.startsWith('global/')));
   assert.equal(status.structuredContent.inventory,undefined);
   assert.equal(status.structuredContent.gitDetails,undefined);
   assert.ok(status._meta?.['aios/git']);
   assert.deepEqual(tools.find(t=>t.name==='aios_git_check')._meta.ui.visibility,['app']);
   assert.ok(status._meta?.['aios/inventory']);
+  assert.ok(status._meta['aios/inventory'].globalSkills);
   assert.ok(!JSON.stringify(status.structuredContent).includes('/Users/'));
   const resource=await client.readResource({uri:'ui://aios/overview'});
   assert.match(resource.contents[0].text,/AIOS views/);

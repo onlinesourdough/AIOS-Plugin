@@ -17,9 +17,18 @@
   and historical evidence. The package now has 24 skills.
 - Bundle the accepted English Setup, Overview, Skills and Sync in Codex using
   a local stdio companion. Other harnesses retain the instruction-only route.
+- Match neutral host surfaces, remove decorative borders and keep compact
+  desktop pages within the viewport, with the bread identity and brown footer.
+- Use one Skills source selector for plugin methods, personal AIOS sources and
+  global files. Identify links to the same originals and flag unavailable links;
+  do not read skill bodies or enumerate sidebar projects.
+- Make Manage Skills reconcile owned registrations with personal-skill changes
+  and reviewed restores. Preserve collisions and unknown links; source Sync
+  remains separate from machine-local registration and native activation.
 - Build verified Codex/portable ZIPs with checksums in CI. Manual CD prepares
   draft GitHub releases; public publication is a separate approved action.
 - Codex acceptance does not wait for Pi model runs.
+
 ## 0.15.0 — 2026-10-01
 
 - Make Interview 1.1.0 explicitly restate goals and the underlying problem for

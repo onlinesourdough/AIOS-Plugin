@@ -165,7 +165,11 @@ and separately maintained skills are independent of the package release.
 The Codex package includes a local Setup, Overview, Skills and Sync panel.
 It lists the context files actually found in your AIOS home, explains the index,
 memory, connections and spaces, and opens files through the supported editor.
-Shared plugin skills and your personal skills have separate sources and update
-paths. Setup and Sync actions show the request before sending it to your agent
+The Skills selector separates plugin methods, personal AIOS source files and
+user-wide files in `~/.agents/skills`. Links to AIOS originals are identified;
+the lists do not prove agent activation. Personal sources travel with AIOS
+Sync, while each harness's registrations stay on its machine. Built-in and
+project skills belong to their harness or project. Sidebar projects are not
+enumerated by this panel. Setup and Sync actions show the request before sending it to your agent
 chat. The panel checks Git status; it never commits or uploads your context.
 The local companion requires Node.js 22+. The portable skills ZIP omits it.

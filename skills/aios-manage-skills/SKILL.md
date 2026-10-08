@@ -2,7 +2,7 @@
 name: aios-manage-skills
 description: Manage an authorized skill creation, edit, installation, update, removal or rollback.
 metadata:
-  version: "1.0.4"
+  version: "1.0.5"
 ---
 
 # AIOS-manage-skills
@@ -13,7 +13,8 @@ without AIOS, a plugin, a personal skill or a central run-history store.
 This AIOS skill owns the reviewed lifecycle for capabilities and personal
 skills: creation/import/edit/rename/removal decisions, canonical placement,
 registration and discovery, plus adoption, update and rollback. Follow the
-[personal skill lifecycle](references/owner-skills.md) for owner methods. The
+[personal skill lifecycle](references/owner-skills.md) for owner methods and
+their native links, including after rename, home move or reviewed restore. The
 native Skill Creator owns authoring mechanics; Maintain context owns durable
 owner facts and configured Git sync. Neither takes back this lifecycle.
 
@@ -95,4 +96,5 @@ source, version, changed scope, recovery and material limits.
 Fix authorized local defects and rerun affected checks. Failed activation holds
 further activation and preserves the prior version; uncertain effects require
 readback before retry. Report any remaining required proof or authority gap.
-Never update skills automatically.
+No automatic third-party acquisition or skill-content updates. Registration
+repairs stay within the authorized owner-maintenance scope.

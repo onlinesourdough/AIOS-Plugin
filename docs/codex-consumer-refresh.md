@@ -27,13 +27,35 @@ Upstream 0.15.0 Interview intent and conditional local trials remain intact.
 ## Local overview
 
 The accepted Setup, Overview, Skills and Sync UI uses the onlinesourdough bread,
-warm branding, English agent-neutral copy and prominent status circles. It
+neutral host-compatible surfaces, a brown footer, English agent-neutral copy
+and prominent status circles. It
 finds an explicit home or AIOS_HOME, the managed Codex route, then the standard
 home. A missing explicit route never creates another home. Supported formats
 1 and 2 are read-only. Actual bounded filenames come from the owner home;
 a filename alone does not claim an inferred topic, route or authenticated tool.
 Shared AIOS skills are generated from the canonical source; personal skills
-come from the home and stay separate from plugin releases.
+come from the home and stay separate from plugin releases. A single Skills
+source selector also lists immediate regular `SKILL.md` entry files in the
+documented user-wide `~/.agents/skills` location. Directory links are resolved;
+an exact match to an inventoried AIOS source is labelled as the same original,
+not another copy. This is a bounded file inventory, not proof of activation.
+Bodies, arbitrary projects, plugin caches and Codex databases are not read.
+The current Extensions API does not document sidebar-project enumeration.
+
+Personal skills live with context so one owner Git repository can sync the
+reviewed source. Native registrations are machine-local: Codex can link to the
+original through `~/.agents/skills`, while other harnesses need their own
+verified adapter. External global skills stay with their distributor. Built-in
+skills belong to the harness. Syncing source files does not install or activate
+them; [Manage Skills](../skills/aios-manage-skills/references/owner-skills.md)
+owns registration and fresh-session verification.
+
+Manage Skills reconciles affected links in the same authorized personal-skill
+change, including rename, removal, home move and reviewed restore. It checks
+unresolved links as well as live targets, preserves foreign or unknown entries,
+and accounts for obsolete owned registrations. The panel reports unavailable
+global links without changing them. Manual filesystem changes need a requested
+Check or later relevant maintenance; no filesystem watcher is promised.
 
 File opening uses the host editor capability. Conversation actions show the
 exact request and explain that sending starts a new chat, with duplicate-send
@@ -57,6 +79,16 @@ Codex sidebar, actual editor opening, active uninstall or first-account login.
 The computer-use surface previously refused native Codex access; that remains
 an explicit acceptance gap rather than a reason to simulate a PASS.
 
-The release PR records current CI and extracted-package results. Independent
-review and native host acceptance remain separate publication gates. No new
-model comparisons, workers or writes to a real owner home are required here.
+The latest local refinement passes 19 context/Git/global-skill cases, stdio
+protocol and three archive checks, plus affected source, documentation,
+continuity, skill-version and footprint checks. Matching pages fit 1280 × 720
+and 1024 × 640; Setup/Sync failures and an unavailable global link also fit the
+compact view. Narrow 390 × 780 pages permit vertical scrolling without horizontal
+overflow. White and dark synthetic hosts preserve the bread identity. The
+unavailable-link case displays a red warning and has no file-open target.
+
+The release PR and green remote CI still describe commit `0056927b`; the latest
+refinement is local and has not been pushed. Historical extracted-package
+results do not accept these new bytes. Independent review and native host
+acceptance remain separate publication gates. No new model comparisons, workers
+or writes to a real owner home are required here.
