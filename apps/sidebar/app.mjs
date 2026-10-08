@@ -11,6 +11,7 @@ let status, picker, appliedMap, appliedPages, pollTimer, pollUntil = 0;
 let edited = false, sending = false, sent = false, refreshing = false;
 let step = 0, homeVisible = false, initialView = true, appliedSetup;
 let selectedContext = '', canMessage = false, selectedByUser = false;
+let statusCheckedAt = -Infinity;
 const canonical = (url) => notionPageId(url) ? `https://app.notion.com/p/${notionPageId(url)}` : url;
 const knownPages = new Map();
 
@@ -46,7 +47,8 @@ function form() {
   const notion = $('provider').value === 'notion';
   const setupPending = picker?.request?.kind === 'setup' && picker.request.state === 'pending';
   const locked = sending || setupPending;
-  $('notion-step').hidden = !notion; $('notion-context').hidden = !notion; $('docs-field').hidden = !notion;
+  $('notion-step').hidden = !notion; $('notion-actions').hidden = !notion;
+  $('notion-context').hidden = !notion; $('docs-field').hidden = !notion;
   $('manual').hidden = notion && selectedContext !== 'manual';
   $('start').textContent = sending ? 'Working…' : sent ? 'Continue in chat' : 'Continue';
   $('home').hidden = !homeVisible;
@@ -73,10 +75,15 @@ function form() {
 function render(result) {
   if (result?.isError) throw new Error(result.content?.find((c) => c.type === 'text')?.text || 'The panel request failed.');
   const next = result?._meta?.['aios/status'];
-  if (next) {
+  const checkedAt = next ? Date.parse(next.checkedAt) : null;
+  if (next && !Number.isFinite(checkedAt)) throw new Error('Invalid connection status');
+  let focusOverview = false;
+  // Account checks have their own ordering: a delayed notification must not
+  // restore Connected after a newer failed refresh, even if its picker is valid.
+  if (next && checkedAt > statusCheckedAt) {
     if (!Object.hasOwn(connectionCopy, next.notion?.state) || !['configured', 'missing', 'unavailable', 'ambiguous'].includes(next.context?.state)
       || next.context.state === 'configured' && !classifyTarget(next.context.target)) throw new Error('Invalid connection status');
-    status = next;
+    status = next; statusCheckedAt = checkedAt;
     if (initialView) { homeVisible = next.context.state === 'configured'; initialView = false; }
     $('connection-label').textContent = connectionCopy[next.notion.state][0];
     $('connection-label').dataset.state = next.notion.state;
@@ -119,11 +126,12 @@ function render(result) {
     if (state.setup && state.request?.kind === 'setup' && appliedSetup !== state.request.id) {
       appliedSetup = state.request.id;
       sent = state.setup.outcome === 'ready';
-      if (sent) homeVisible = true;
+      if (sent) { focusOverview = !homeVisible; homeVisible = true; }
       if (sent) $('feedback').hidden = true; else feedback(state.setup.outcome === 'plan' ? 'Plan prepared in the chat.' : 'Continue setup in the chat.');
     }
     if (state.request) {
-      $('picker-status').hidden = false;
+      $('picker-status').hidden = state.request.kind === 'setup' && state.request.state === 'complete';
+      $('picker-status').dataset.error = String(state.request.state === 'error');
       $('picker-status').textContent = state.request.state === 'pending' ? state.request.kind === 'setup' ? 'Continue setup in the chat.' : 'Finding choices in the chat…' : state.request.state === 'error' ? state.request.error : state.request.kind === 'setup' ? 'Setup checked in the chat' : state.request.kind === 'pages' ? `${state.pages.length} pages found` : 'Linked sources loaded';
       if (state.request.state === 'error' && state.request.kind === 'setup') sent = false;
       if (state.request.state !== 'pending') clearTimeout(pollTimer);
@@ -132,12 +140,14 @@ function render(result) {
   if (status) { choices(); $('loading').hidden = true; $('setup').hidden = false; }
   $('version').textContent = `v${__AIOS_VERSION__}`;
   form();
+  if (focusOverview) $('home-title').focus();
 }
 async function poll() {
   clearTimeout(pollTimer);
   if (!picker || picker.request?.state !== 'pending') return;
   if (Date.now() > pollUntil) {
     $('picker-status').textContent = 'Still waiting. Continue in the chat, then check the result.';
+    if (homeVisible) $('home-state').textContent = $('picker-status').textContent;
     return;
   }
   try { render(await app.callServerTool({ name: 'aios_picker_read', arguments: { panelId: picker.panelId } }, { timeout: 8000 })); }
@@ -211,9 +221,15 @@ $('check-result').addEventListener('click', async () => { pollUntil = Date.now()
 $('refresh').addEventListener('click', async () => {
   if (sending || refreshing) return;
   refreshing = true; form();
-  try { render(await app.callServerTool({ name: 'aios_status', arguments: {} }, { timeout: 20000 })); pollUntil = Date.now() + 120000; await poll(); }
+  try {
+    const result = await app.callServerTool({ name: 'aios_status', arguments: {} }, { timeout: 20000 });
+    if (!result._meta?.['aios/status']) throw new Error('Could not verify the connection. Try Refresh again.');
+    render(result); $('feedback').hidden = true;
+    pollUntil = Date.now() + 120000; await poll();
+  }
   catch (error) {
-    if (status) render({ _meta: { 'aios/status': { ...status, notion: { ...status.notion, state: 'unknown' } } } });
+    if (status) render({ _meta: { 'aios/status': { ...status, notion: { ...status.notion, state: 'unknown' },
+      checkedAt: new Date(Math.max(statusCheckedAt + 1, Date.now())).toISOString() } } });
     feedback(error.message, true);
   }
   finally { refreshing = false; form(); }
@@ -259,17 +275,19 @@ function dashboard() {
     }); $('home-links').append(button);
   }
   $('load-home').hidden = !entry || classifyTarget(entry.target)?.kind !== 'notion' || Boolean(sources);
-  $('home-state').hidden = !ready;
-  $('home-state').textContent = ready ? 'Context verified' : '';
+  const request = picker?.request?.kind === 'sources' ? picker.request : null;
+  $('home-state').textContent = request?.state === 'pending' ? 'Loading sources in the chat…' : request?.state === 'error' ? request.error : ready ? 'Context verified' : '';
+  $('home-state').dataset.error = String(request?.state === 'error');
+  $('home-state').hidden = !$('home-state').textContent;
 }
-$('edit-setup').addEventListener('click', () => { homeVisible = false; step = 0; sent = false; $('feedback').hidden = true; form(); });
+$('edit-setup').addEventListener('click', () => { homeVisible = false; step = 0; sent = false; $('feedback').hidden = true; form(); $('step-title').focus(); });
 $('load-home').addEventListener('click', () => request('sources'));
-$('back').addEventListener('click', () => { if (!sending && step > 0) { step--; sent = false; form(); } });
+$('back').addEventListener('click', () => { if (!sending && step > 0) { step--; sent = false; form(); $('step-title').focus(); } });
 $('setup').addEventListener('submit', async (event) => {
   event.preventDefault(); if (sending || sent) return;
   const notion = $('provider').value === 'notion';
   if (step === 0 && notion && status?.notion.state !== 'connected') { $('connect').click(); return; }
-  if (step < (notion ? 3 : 1)) { step++; $('picker-status').hidden = true; form(); return; }
+  if (step < (notion ? 3 : 1)) { step++; $('picker-status').hidden = true; form(); $('step-title').focus(); return; }
   const input = selections();
   try { setupPrompt(input.provider, input.target, input); }
   catch (error) { $('validation').textContent = error.message; $('validation').hidden = false; return; }

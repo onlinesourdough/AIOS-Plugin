@@ -6,17 +6,17 @@
   <header><strong>onlinesourdough</strong><span>AIOS</span></header>
   <p id="loading" role="status">Checking connection…</p>
   <div id="home" hidden>
-    <h1>Your AIOS</h1>
+    <h1 id="home-title" tabindex="-1">Your AIOS</h1>
     <div id="home-provider" class="provider-card"><strong>Notion</strong><span id="home-status" class="status"></span></div>
     <div id="home-links" class="home-links"></div>
     <p id="home-state" role="status" hidden></p>
     <div class="actions"><button id="load-home" class="btn btn-secondary" type="button">Load sources</button><button id="edit-setup" class="btn btn-ghost" type="button">Edit setup</button></div>
   </div>
   <form id="setup" hidden>
-    <div class="step-heading"><p id="progress" class="eyebrow"></p><h1 id="step-title">Get started</h1></div>
+    <div class="step-heading"><p id="progress" class="eyebrow"></p><h1 id="step-title" tabindex="-1">Get started</h1></div>
     <section id="connect-step" data-step="0">
       <div id="notion-step" class="provider-card"><strong>Notion</strong><span id="connection-label" class="status"></span></div>
-      <div class="actions"><button id="connect" class="btn btn-secondary" type="button">Connect Notion</button><button id="refresh" class="btn btn-ghost" type="button">Refresh</button></div>
+      <div id="notion-actions" class="actions"><button id="connect" class="btn btn-secondary" type="button">Connect Notion</button><button id="refresh" class="btn btn-ghost" type="button">Refresh</button></div>
       <details><summary>Another provider</summary><label for="provider" class="form-label">Context provider</label><select id="provider" class="form-control"><option value="notion">Notion</option><option value="other">Another provider</option></select></details>
     </section>
     <section data-step="1" hidden>

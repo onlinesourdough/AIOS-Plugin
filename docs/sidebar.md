@@ -114,14 +114,19 @@ capabilities are surfaced as explicit gaps.
 
 ## 2026-10-08 candidate observations
 
-- 26 Node tests and the bundled stdio request/reply/read smoke pass. Regressions
-  cover late replies, failed refresh/retry and switching context providers. Native Codex
+- 28 Node tests and the bundled stdio request/reply/read smoke pass. Regressions
+  cover late picker/status replies, failed refresh/retry, provider changes,
+  visible source errors and heading focus after navigation. Native Codex
   parsing finds Setup, 26 skills, one AIOS server and no embedded app binding.
 - The synthetic browser host exercises duplicate page names, pasted-link source
   mapping, the four steps, shared Personal/Team source selection, a delayed
   outcome with locked inputs, and return to the overview. Dark 320px rendering
   has no horizontal overflow. Failure/client/plan-only cases have
   bounded fixture evidence; this is not a live Notion UI round trip.
+- A read-only Claude Code Opus 5.5 / xhigh UI review identified four small
+  interaction fixes: overview loading/errors, heading focus, provider actions
+  and non-contradictory setup outcomes. These are implemented; host typography
+  and theme tokens remain the visual source.
 - The public CLI reports the independently installed official Notion plugin
   enabled and its account callable. Live official Notion reads verify the
   selected guide and destinations; authorized Personal/Team schema/default
