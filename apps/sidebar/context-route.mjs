@@ -8,6 +8,7 @@ const LIMIT = 64 * 1024;
 const defaultHome = () => process.env.CODEX_HOME || join(homedir(), '.codex');
 const revision = (text) => createHash('sha256').update(text === null ? 'missing' : 'file:' + text).digest('hex');
 export function parseContextRoute(text) {
+  text = text.replace(/^\uFEFF/, '');
   const starts = [...text.matchAll(/<!-- AIOS:BEGIN -->/g)];
   const ends = [...text.matchAll(/<!-- AIOS:END -->/g)];
   if (!starts.length && !ends.length) return { state: 'missing' };

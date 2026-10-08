@@ -79,3 +79,16 @@ test('BOM and CRLF bytes survive both backup and context replacement', async (t)
   assert.deepEqual(await readFile(path), Buffer.from(original.toString().replace(target, nextTarget)));
   assert.deepEqual(await readFile(join(options.codexHome, 'backups/aios-context', before.revision + '.md')), original);
 });
+test('a BOM immediately before the context block is read and preserved on save', async (t) => {
+  const options = await fixture(t), path = join(options.codexHome, 'AGENTS.md');
+  const original = Buffer.from('\uFEFF' + bridge.replace('<verified-context-entry-url-or-absolute-path>', target));
+  await writeFile(path, original);
+  const before = await readContextRoute(options);
+  assert.equal(before.state, 'configured');
+  assert.equal(before.target, target);
+  const nextTarget = 'https://example.com/context';
+  const after = await saveContextRoute({ target: nextTarget, expectedRevision: before.revision }, options);
+  assert.equal(after.target, nextTarget);
+  assert.deepEqual(await readFile(path), Buffer.from(original.toString().replace(target, nextTarget)));
+  assert.deepEqual(await readFile(join(options.codexHome, 'backups/aios-context', before.revision + '.md')), original);
+});
