@@ -6,8 +6,8 @@ import { classifyTarget, connectionCopy } from './ui-model.mjs';
 const source = await readFile(new URL('./app.mjs', import.meta.url), 'utf8');
 const template = await readFile(new URL('./index.html', import.meta.url), 'utf8');
 const target = 'https://app.notion.com/p/00000000000000000000000000000001';
-async function ui(context = { state: 'missing', revision: 'a'.repeat(64) }, sources = { state: 'missing', revision: 'c'.repeat(64), title: '', links: {} }) {
-  let focused, time = 100000, host, fail = false, delay, release;
+async function ui(context = { state: 'missing', revision: 'a'.repeat(64) }, sources = { state: 'missing', revision: 'c'.repeat(64), title: '', links: {} }, options = {}) {
+  let focused, time = 100000, host, fail = Boolean(options.initialFailure), delay, release;
   const calls = [], links = [], nodes = new Map();
   for (const match of template.matchAll(/<(\w+)\b([^>]*\bid="([^"]+)"[^>]*)>/g)) {
     const el = { id: match[3], value: '', hidden: /\bhidden\b/.test(match[2]), disabled: false, dataset: {}, textContent: '', listeners: {},
@@ -18,13 +18,13 @@ async function ui(context = { state: 'missing', revision: 'a'.repeat(64) }, sour
   class App {
     constructor() { host = this; }
     getHostContext() { return {}; }
-    async connect() { this.ontoolresult({ _meta: { 'aios/status': status } }); }
+    async connect() { if (options.initial === 'none') return; this.ontoolresult(options.initial === 'malformed' ? {} : { _meta: { 'aios/status': status } }); }
     async openLink(args) { links.push(args.url); return {}; }
     async callServerTool({ name, arguments: args }) {
       calls.push({ name, args }); if (delay) await delay;
       if (fail) throw new Error('Request failed');
       time += 10;
-      if (name === 'aios_save_context') { status.context = { state: 'configured', ...classifyTarget(args.target), revision: 'b'.repeat(64) }; status.sources = {state:'missing', revision:'c'.repeat(64), title:'', links:{}}; }
+      if (name === 'aios_save_context') { status.context = { state: 'configured', ...classifyTarget(args.target), revision: 'b'.repeat(64) }; status.sources = options.recoveredSources || {state:'missing', revision:'c'.repeat(64), title:'', links:{}}; }
       if (name === 'aios_save_sources') status.sources = {state:'saved', revision:'d'.repeat(64), title:args.title, links:args.links};
       return { _meta: { 'aios/status': { ...status, checkedAt: new Date(time).toISOString() } } };
     }
@@ -123,4 +123,44 @@ test('refresh while editing cannot apply an old draft to newly observed source l
  assert.deepEqual(u.calls.map(c=>c.name),['aios_status']);
  assert.equal(u.nodes.get('feedback').dataset.error,'true');
  assert.equal(u.nodes.get('docs').value,'https://example.com/draft');
+});
+
+
+test('restoring a missing pointer loads the existing source map before any source write', async () => {
+ const saved = {state:'saved',revision:'e'.repeat(64),title:'My AIOS',links:{personalSkills:{title:'My methods',target:'https://example.com/skills'},memory:{title:'Decisions',target:'https://example.com/memory'}}};
+ const u=await ui(undefined,undefined,{recoveredSources:saved});
+ u.input(target); await u.submit();
+ assert.deepEqual(u.calls.map(c=>c.name),['aios_save_context']);
+ assert.equal(u.nodes.get('context-fields').hidden,false);
+ assert.equal(u.nodes.get('personalSkills').value,saved.links.personalSkills.target);
+ assert.equal(u.nodes.get('memory').value,saved.links.memory.target);
+ await u.submit();
+ assert.equal(u.calls[1].args.title,'My AIOS');
+ assert.deepEqual(JSON.parse(JSON.stringify(u.calls[1].args.links)),saved.links);
+});
+test('a failed initial read has a visible retry and recovers to a usable form', async () => {
+ const u=await ui(undefined,undefined,{initial:'none',initialFailure:true});
+ assert.equal(u.nodes.get('retry-load').hidden,false);
+ assert.equal(u.nodes.get('loading').hidden,true);
+ u.fail(false); await u.click('retry-load');
+ assert.equal(u.nodes.get('retry-load').hidden,true);
+ u.input(target); await u.submit();
+ assert.equal(u.nodes.get('skills-fields').hidden,false);
+});
+test('a malformed initial tool result recovers with valid draft revisions', async () => {
+ const u=await ui(undefined,undefined,{initial:'malformed'});
+ assert.equal(u.nodes.get('refresh').disabled,false);
+ await u.click('refresh'); u.input(target); await u.submit();
+ assert.equal(u.nodes.get('skills-fields').hidden,false);
+});
+test('changed instructions during first setup can be reconciled without unavailable Settings', async () => {
+ const u=await ui(); u.input(target);
+ u.status.context={state:'missing',revision:'f'.repeat(64)};
+ await u.click('refresh'); await u.submit();
+ assert.deepEqual(u.calls.map(c=>c.name),['aios_status']);
+ assert.equal(u.nodes.get('target').value,target);
+ assert.equal(u.nodes.get('context-fields').hidden,false);
+ await u.submit();
+ assert.equal(u.calls[1].args.expectedRevision,'f'.repeat(64));
+ assert.equal(u.nodes.get('skills-fields').hidden,false);
 });

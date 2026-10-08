@@ -25,7 +25,8 @@ function fillDraft() {
 function begin(index = 0) { fillDraft(); editing = true; step = index; feedback(''); render(); focusStep(); }
 function focusStep() { $(['target', 'personalSkills', 'memory'][step]).focus(); }
 function render() {
-  if (!status) return;
+  $('retry-load').hidden = Boolean(status) || refreshing;
+  if (!status) { $('loading').hidden = !refreshing; return; }
   const configured = status.context.state === 'configured';
   const form = editing || !configured;
   const notion = form ? !other : status.context.kind === 'notion';
@@ -80,7 +81,7 @@ function apply(result) {
       || !['saved','missing','unavailable'].includes(value?.sources?.state) || !value.sources.links
       || roles.some(role => value.sources.links[role] && !classifyTarget(value.sources.links[role].target))) throw new Error('Could not read setup. Refresh to try again.');
   if (timestamp < checkedAt) return false;
-  const first = !status;
+  const first = !draftContext;
   checkedAt = timestamp; status = value;
   if (first) fillDraft();
   render();
@@ -131,6 +132,7 @@ app.ontoolresult = result => { try { apply(result); } catch (error) {
 } };
 app.onhostcontextchanged = theme;
 $('refresh').addEventListener('click', refresh);
+$('retry-load').addEventListener('click', refresh);
 $('connect').addEventListener('click', () => open(connectUrl));
 $('open-context').addEventListener('click', () => open(status.context.target));
 $('settings').addEventListener('click', () => begin());
@@ -147,7 +149,14 @@ $('setup').addEventListener('submit', async event => {
   if (saving || refreshing || !status?.context?.revision || status.sources.state === 'unavailable' || ['ambiguous','unavailable'].includes(status.context.state)) return;
   const route = classifyTarget($('target').value);
   if (!route || /[<>]/.test(route.target) || (!other && route.kind !== 'notion')) { feedback(other ? 'Enter an HTTPS link or an absolute folder path.' : 'Enter a Notion link, or choose another provider.', true); $('target').focus(); return; }
-  if (draftContext.revision !== status.context.revision || draftSourcesRevision !== status.sources.revision) { feedback('Your setup changed. Go back to AIOS and reopen Settings to load the latest links.', true); return; }
+  if (!draftContext || draftContext.revision !== status.context.revision || draftSourcesRevision !== status.sources.revision) {
+    if (status.context.state !== 'configured') {
+      const target = $('target').value, provider = other;
+      fillDraft(); $('target').value = target; other = provider; step = 0;
+      render(); focusStep(); feedback('Setup changed. Review your context link and continue again.', true);
+    } else feedback('Your setup changed. Go back to AIOS and reopen Settings to load the latest links.', true);
+    return;
+  }
   try { linksFromDraft(); } catch (error) { feedback(error.message, true); return; }
   let focusAfterSave;
   saving = true; editing = true; feedback(''); render();
@@ -157,8 +166,8 @@ $('setup').addEventListener('submit', async event => {
       const result = await app.callServerTool({ name: 'aios_save_context', arguments: { target: route.target, expectedRevision: status.context.revision } });
       if (!apply(result)) throw new Error('Your context changed. Refresh before trying again.');
       targetSaved = true; draftContext = { ...status.context }; draftSourcesRevision = status.sources.revision;
-      // A different context must never inherit the previous customer's links.
-      if (changed) { fillDraft(); focusAfterSave = 'step'; feedback('Context saved. Choose the sources for this context.'); return; }
+      // Load recovered maps as well as switched contexts before any replacement.
+      if (changed || status.sources.state === 'saved') { fillDraft(); focusAfterSave = 'step'; feedback('Context saved. Choose the sources for this context.'); return; }
     }
     await saveLinks();
     if (step < 2) { editing = true; step++; focusAfterSave = 'step'; }

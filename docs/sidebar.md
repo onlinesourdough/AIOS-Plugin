@@ -63,7 +63,10 @@ Writes use bounded reads, file identity checks, a per-map lock, context/source
 revision checks, backups and atomic rename. Invalid or symlinked state fails
 closed. A context pointer save and source save are distinct steps; a failed
 source save does not roll back a successful pointer save. A stale draft cannot
-adopt new revision tokens after Refresh; reopen Settings to reconcile it.
+adopt new revision tokens after Refresh; reopen Settings to reconcile it. During
+first setup, a changed instruction file reloads the form and keeps the typed
+context link for review. Restoring a pointer loads any existing source map before
+allowing a replacement. Failed initial reads expose Retry.
 
 ## Verification and recovery
 

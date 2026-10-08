@@ -7,6 +7,7 @@
   <h1 id="heading" tabindex="-1">Get started</h1>
   <p id="intro" class="intro">Connect your context, skills and memory.</p>
   <p id="loading" role="status">Checking your setup…</p>
+  <button id="retry-load" class="btn btn-secondary cursor-interaction" type="button" hidden>Retry</button>
   <div id="content" hidden>
     <section id="notion" aria-labelledby="notion-title">
       <div class="step-title"><span id="connection-number" class="step-number" aria-hidden="true">1</span><h2 id="notion-title">Connect Notion</h2><span id="connection-label" class="status" role="status"></span><button id="refresh" class="btn btn-ghost icon cursor-interaction" type="button" aria-label="Refresh Notion connection" title="Refresh connection"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M16 7a6.5 6.5 0 1 0 .3 5M16 3v4h-4"/></svg></button></div>
@@ -19,9 +20,9 @@
         <div id="context-fields">
           <label id="target-label" for="target" class="form-label">Context link</label>
           <input id="target" class="form-control" type="text" maxlength="2048" autocomplete="off" placeholder="https://notion.so/…">
+          <div class="form-foot"><span class="hint">Your default for new Codex chats.</span><button id="provider" class="text-button cursor-interaction" type="button">Use another provider</button></div>
           <label for="docs" class="form-label">Docs <span class="optional">Optional</span></label>
           <input id="docs" class="form-control" type="text" maxlength="2048" autocomplete="off" placeholder="Link to your documents">
-          <div class="form-foot"><span class="hint">Your default for new Codex chats.</span><button id="provider" class="text-button cursor-interaction" type="button">Use another provider</button></div>
         </div>
       </section>
       <section id="skills-section" aria-labelledby="skills-title" hidden>
