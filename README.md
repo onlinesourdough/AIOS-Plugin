@@ -258,20 +258,17 @@ sub-brands within one home. Start with a real workflow, even in a messy workspac
 classify only the context it needs. No local mirror, hosted server or daily task
 is required. Maintenance happens during useful work.
 
-After installing AIOS in Codex, open **AIOS** in the sidebar. **Get started**
-checks the separate official Notion plugin and its connection. Install, enable
-or connect Notion only if needed; return and **Refresh**. AIOS does not include
-Notion's app binding, server or authentication.
+After installing AIOS in Codex, open **AIOS** in the sidebar. The panel shows
+Notion connection status and opens your saved context. On first use, paste your
+context link and choose **Continue**. This saves your personal default for new
+Codex chats directly, preserving other instructions. A small edit control lets
+you change that link. It does not start a conversation or create a Notion home.
+Docs, Skills, Memory and Spaces are routed inside the context entry, not selected
+again in the panel. Notion stays a separate official plugin and connection.
 
-Choose **Context**. **Find pages** asks the agent in the visible chat to return
-actual Notion page choices; **Find linked sources** reads the chosen entry's
-Docs, personal/team Skills, Memory and Spaces. Follow **Continue** through
-**Context + Docs → Skills → Memory**. Leave missing sources for Setup to resolve.
-**More options** holds Space, client scope and plan-only mode; another provider
-is available at the connection step. The final **Continue** starts AIOS Setup.
-Verified setup returns an overview with links to your actual sources.
-The plugin's native **Set up** entry starts the same skill. If your client has
-no sidebar or Set up entry, say:
+An existing context opens immediately. A saved link is not proof of page access
+or a complete business setup; Context checks relevant sources when needed.
+For a new or messy workspace, explicitly use the plugin's **Set up** skill or ask:
 
 > Use AIOS Setup to set up my Notion. Start here: [page link]. Help me choose
 > the first useful task and reuse what I already have.

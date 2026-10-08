@@ -7,7 +7,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { NOTION_ID, notionState, readNotionConnection, resolveCodexCommand } from './codex-status.mjs';
 import { parseContextRoute, readContextRoute } from './context-route.mjs';
-import { classifyTarget, setupPrompt } from './ui-model.mjs';
+import { classifyTarget } from './ui-model.mjs';
 
 test('connection availability never implies page access, enablement or missing evidence', () => {
   assert.equal(notionState({ callable: true, enabled: true }), 'connected');
@@ -107,19 +107,37 @@ test('the shipped context bridge round-trips web, Unix and Windows locations', a
 test('route read does not fall back to another home; bounded files only', async (t) => {
   const folder = await mkdtemp(join(tmpdir(), 'aios-route-'));
   t.after(() => rm(folder, { recursive: true, force: true }));
-  assert.deepEqual(await readContextRoute({ codexHome: folder }), { state: 'missing' });
+  assert.equal((await readContextRoute({ codexHome: folder })).state, 'missing');
   await writeFile(join(folder, 'AGENTS.md'), block('https://example.com'));
   assert.equal((await readContextRoute({ codexHome: folder })).target, 'https://example.com/');
   await writeFile(join(folder, 'AGENTS.md'), 'x'.repeat(65537));
   assert.deepEqual(await readContextRoute({ codexHome: folder }), { state: 'unavailable' });
 });
 
-test('links and prompts reject credentials, unsafe schemes, control characters and lookalike Notion hosts', () => {
+test('links reject credentials, unsafe schemes, control characters and lookalike Notion hosts', () => {
   for (const input of ['javascript:alert(1)', 'http://example.com', 'https://user:secret@example.com', '/tmp/a\nb', 'x'.repeat(2049)]) assert.equal(classifyTarget(input), null);
   assert.equal(classifyTarget('https://notion.so.attacker.test').kind, 'url');
-  assert.throws(() => setupPrompt('notion', 'https://notion.so.attacker.test'));
-  assert.throws(() => setupPrompt('other', 'relative/path'));
-  assert.match(setupPrompt('other', '/work/my vault'), /Keep my existing personal default/);
-  assert.match(setupPrompt('notion', ''), /Help me choose/);
-  assert.match(setupPrompt('notion', 'https://app.notion.com/p/example'), /Reuse useful existing data/);
+});
+
+import { notionPluginState, NOTION_PLUGIN_ID, setupState, readNotionPlugin } from './codex-status.mjs';
+test('installation and connection are independent; neither falsely implies ready', () => {
+  assert.equal(notionPluginState({ installed: [] }), 'missing');
+  const p = { pluginId: NOTION_PLUGIN_ID, installed: true, enabled: true };
+  assert.equal(notionPluginState({ installed: [p] }), 'enabled');
+  assert.equal(notionPluginState({ installed: [{ ...p, enabled: false }] }), 'disabled');
+  for (const inventory of [{}, { installed: [null] }, { installed: [p, p] }]) assert.equal(notionPluginState(inventory), 'unknown');
+  assert.equal(notionPluginState({ installed: [{ ...p, pluginId: 'notion@lookalike' }] }), 'missing');
+  assert.equal(setupState('missing', 'connected'), 'not_installed');
+  assert.equal(setupState('disabled', 'connected'), 'plugin_disabled');
+  assert.equal(setupState('unknown', 'connected'), 'unknown');
+  assert.equal(setupState('enabled', 'not_connected'), 'not_connected');
+  assert.equal(setupState('enabled', 'connected'), 'connected');
+});
+test('plugin detection uses bounded native CLI and hides raw errors', async () => {
+  const state = await readNotionPlugin({ run: async (cmd, args, opts) => {
+    assert.equal(cmd, 'codex'); assert.deepEqual(args, ['plugin', 'list', '--json']); assert.ok(opts.timeout <= 12000);
+    return { stdout: JSON.stringify({ installed: [] }) };
+  } });
+  assert.equal(state, 'missing');
+  assert.equal(await readNotionPlugin({ run: async () => { throw new Error('secret'); } }), 'unknown');
 });

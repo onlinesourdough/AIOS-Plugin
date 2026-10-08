@@ -5,11 +5,10 @@ import { OpenAIExtensions } from '@openai/mcp-extensions/server';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { readNotionSetup } from './codex-status.mjs';
-import { readContextRoute } from './context-route.mjs';
+import { readContextRoute, saveContextRoute } from './context-route.mjs';
 import { z } from 'zod';
-import { createPickerStore, replySchema, requestSchema } from './picker.mjs';
 
-const uri = 'ui://aios/setup';
+const uri = 'ui://aios/home-v2';
 const icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="14" height="14" rx="3"/><path d="M3 8h14M8 8v9"/></svg>';
 // MCP SDK 1.31 does not serialize tool icons. The spec's server-icon fallback
 // supplies the same theme-aware navigation icon without patching SDK internals.
@@ -26,57 +25,41 @@ registerAppResource(server, 'aios-setup', uri, {}, async () => ({ contents: [{
   },
 }] }));
 
-// Join simultaneous refreshes. Do not persist or reuse account state between checks.
-let pending;
-function status() {
-  if (!pending) pending = Promise.all([readNotionSetup(), readContextRoute()])
-    .then(([notion, context]) => ({ version: __AIOS_VERSION__, notion, context, checkedAt: new Date().toISOString() }))
-    .finally(() => { pending = undefined; });
-  return pending;
+// Each snapshot carries its start time so delayed reads cannot undo a newer save.
+let lastCheck = 0;
+async function status() {
+  lastCheck = Math.max(lastCheck + 1, Date.now());
+  const checkedAt = new Date(lastCheck).toISOString();
+  const [notion, context] = await Promise.all([readNotionSetup(), readContextRoute()]);
+  return { version: __AIOS_VERSION__, notion, context, checkedAt };
 }
-const picker = createPickerStore();
-async function result(reply, includePicker = true) {
-  let selection;
-  try { if (includePicker) selection = reply ? picker.publish(reply) : picker.open(); }
-  catch (error) { return { isError: true, content: [{ type: 'text', text: error.message }] }; }
-  return {
-    content: [{ type: 'text', text: reply?.outcome ? 'Setup outcome returned to the AIOS panel.' : reply ? 'Notion choices returned to the AIOS panel. Wait for the user to select and continue.' : 'AIOS setup panel. Page browsing runs through the official Notion tools in the visible conversation. The panel still needs the user to continue setup.' }],
-    _meta: { 'aios/status': await status(), ...(selection ? { 'aios/picker': selection } : {}) },
-  };
+async function result() {
+  return { content: [{ type: 'text', text: 'AIOS context panel. Connection status and the saved context location; no business pages are read.' }],
+    _meta: { 'aios/status': await status() } };
 }
-
 registerAppTool(server, 'aios_open', {
-  title: 'AIOS', description: 'Open AIOS setup or return official Notion metadata to a pending picker request. With no reply, reads connection metadata and the saved context pointer only. For a picker request, use the existing Notion tools, then pass its exact requestId and bounded page choices or source map. Never invent titles, locations, permissions or missing sources. A reply updates only the temporary panel; it does not configure the home.',
-  inputSchema: { reply: replySchema.optional() },
-  annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true },
-  _meta: { ui: { resourceUri: uri }, 'openai/ui': { entrypoints: [{ type: 'global' }] } },
-}, ({ reply }) => result(reply));
-
-registerAppTool(server, 'aios_status', {
-  title: 'Refresh AIOS setup', description: 'Refresh connection metadata and the saved context pointer without reading business pages or changing configuration.',
+  title: 'AIOS', description: 'Open the AIOS panel with connection status and the saved context location. No page search, conversation request or Notion write.',
   inputSchema: {},
   annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true },
-  _meta: { ui: { resourceUri: uri, visibility: ['app'] } },
-}, () => result(undefined, false));
-
-registerAppTool(server, 'aios_picker_request', {
-  title: 'Prepare a Notion page request', description: 'Prepare a read-only request for the visible conversation. Does not call Notion or send a message.',
-  inputSchema: requestSchema.shape,
-  annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: false },
+  _meta: { ui: { resourceUri: uri }, 'openai/ui': { entrypoints: [{ type: 'global' }] } },
+}, result);
+registerAppTool(server, 'aios_status', {
+  title: 'Refresh AIOS', description: 'Refresh Notion connection metadata and the saved context location.',
+  inputSchema: {},
+  annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true },
   _meta: { ui: { visibility: ['app'] } },
-}, (args) => {
-  try { return { content: [], _meta: { 'aios/request': picker.begin(args) } }; }
-  catch (error) { return { isError: true, content: [{ type: 'text', text: error.message }] }; }
-});
-
-registerAppTool(server, 'aios_picker_read', {
-  title: 'Read Notion page choices', description: 'Read a temporary picker result for this panel; never calls Notion.',
-  inputSchema: { panelId: z.string().uuid() },
-  annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
+}, result);
+registerAppTool(server, 'aios_save_context', {
+  title: 'Save your context', description: 'Save the user-entered personal default context location in the AIOS block of Codex instructions. Preserve other rules and back up changed instructions. This does not verify access or create business sources.',
+  inputSchema: { target: z.string().min(1).max(2048), expectedRevision: z.string().regex(/^[a-f0-9]{64}$/) },
+  annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false },
   _meta: { ui: { visibility: ['app'] } },
-}, ({ panelId }) => {
-  try { return { content: [], _meta: { 'aios/picker': picker.read(panelId) } }; }
-  catch (error) { return { isError: true, content: [{ type: 'text', text: error.message }] }; }
+}, async (args) => {
+  try {
+    const bridge = await readFile(join(__dirname, '../../skills/aios-context/assets/bridge.md'), 'utf8');
+    await saveContextRoute(args, { bridge });
+    return await result();
+  } catch (error) { return { isError: true, content: [{ type: 'text', text: error.message }] }; }
 });
 
 server.connect(new StdioServerTransport()).catch(() => {

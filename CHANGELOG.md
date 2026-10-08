@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.23.0 — 2026-10-08
+
+- Restore the 0.21.0 visual layout and SDK controls.
+- Replace the conversation-driven wizard with Notion status and one context link.
+  Existing context opens directly; Continue saves a new personal default without
+  sending a message. Remove source pickers, polling, Setup guide and Edit setup.
+- Keep official Notion separate. Docs, Personal/Team Skills, Memory and Spaces
+  remain in the customer's home. Explicit Setup still handles business onboarding.
+- Preserve instructions with bounded reads, stale-write checks, private backups
+  and atomic saves. A saved link does not imply source access or setup readiness.
+- Replace mailbox tests with direct persistence, no-chat interaction, failure,
+  concurrency and recovery checks; retain independent connection-state coverage.
+
 ## 0.22.0 — 2026-10-08
 
 - Keep AIOS and the official Notion plugin separate; remove the embedded app
