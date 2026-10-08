@@ -21,11 +21,13 @@ Your AI operating system. Start here to find what we know, how we work and what 
 | Open | What belongs here | Example |
 | --- | --- | --- |
 | [Docs page mention] | Company knowledge, original sources and useful documents | An offer, customer brief or finished proposal |
-| [Skills page mention] | Our reusable ways of doing a task | How we prepare and check a proposal |
+| [Skills page mention] | Personal and team ways of doing a task | How we prepare and check a proposal |
 | [Memory page mention] | Decisions and lasting corrections, with their reasons | Why we changed the scope of an offer |
 
 Use the database's **New** menu to create an item. Choose its Space and use an
 existing template where helpful. The agent can help fill in the details.
+Skills can be Personal or Team. Space says where a method applies; Audience says
+who it is for. Team methods have a responsible owner. Access stays in Notion.
 Memory grows through real decisions and corrections; it can start empty.
 
 ## Business context
@@ -55,7 +57,7 @@ own workspaces. Spaces organize information; Notion permissions control access.
 1. Ask for a useful result. Mention the Space when it is not clear from the task.
 2. The agent reads the relevant facts, methods and decisions, and flags gaps.
 3. Review the result. Keep a lasting correction in the existing document or
-   Memory when authorized. Change a personal method deliberately in Skills.
+   Memory when authorized. Change a method deliberately with its responsible owner in Skills.
 
 [One real starting task, its source links, output destination and reviewer.
 If still unresolved, say what remains to be chosen; do not invent an offer,
@@ -76,6 +78,8 @@ description. Their systems keep the live records. Omit if no extra routes matter
 	- Workspace and home: [verified identity and home link].
 	- Queries: [exact data source/view identities, actual field mappings and any
 	  parent view rules; metadata first, then relevant bodies].
+	- Skills: [personal source/view; optional team source/view; Audience/Owner mapping
+	  and agreed change authority. Omit unused team routes; filters do not grant access].
 	- Updates: [accepted scope; absent a standing grant, current-task authorization
 	  only]. Reconcile existing records, preserve sources and dates, and read back
 	  changes. No new knowledge means no write. Skill and policy changes need their

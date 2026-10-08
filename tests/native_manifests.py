@@ -17,15 +17,12 @@ def validate_native(root, require):
     require(not (root / 'plugin.json').exists(), 'root manifest shadows native app binding')
     require(all(isinstance(codex[k], str) and codex[k] for k in common - {'author'}) and
             codex['author'] == {'name': 'onlinesourdough'}, 'native metadata types')
-    require(set(codex) == common | {'skills', 'interface', 'apps', 'extensions', 'mcpServers'} and
+    require(set(codex) == common | {'skills', 'interface', 'extensions', 'mcpServers'} and
             set(claude) == common | {'skills'} and
             set(cursor) == {'name', 'version', 'description', 'skills'} and
             set(gemini) == {'name', 'version', 'description'}, 'unexpected native component field')
-    require(codex['apps'] == './.app.json' and
-            read('.app.json') == {'apps': {'notion': {
-                'id': 'asdk_app_69c18c28f1188191bf5b8445c4ab0a2e',
-                'required': False, 'category': 'Context'}}},
-            'Notion must remain the verified optional native app')
+    require('apps' not in codex and not (root / '.app.json').exists(),
+            'Notion must remain a separate plugin, with no embedded app binding')
     require(codex['extensions'] == {'com.openai': {
                 'onboardingSkill': './skills/aios-setup/SKILL.md'}},
             'onboarding must use the packaged Setup skill')

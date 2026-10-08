@@ -1,9 +1,20 @@
-# Personal skills in Notion
+# Personal and team skills in Notion
 
 Manage Skills owns the lifecycle. Resolve the approved operating guide before
 authoring. Owner-specific, cross-project methods belong as native Notion skills;
 shared AIOS methods belong in this plugin, and project-specific methods in the
 project. Reuse a sufficient existing method before creating another.
+
+Resolve Personal/Team audience separately from the business Space. Prefer a
+single native Skills source with approved Audience views when permissions fit;
+reuse separate private/team sources when needed. Record the team method's
+accountable owner and change authority. Reading a shared method does not grant
+permission to edit, promote, publish or change its automatic-use policy. A
+personal preference cannot silently override the approved team procedure;
+clarify a material conflict with the responsible owner. Keep retrieval within
+the actual connected user's access. Notion permissions enforce access, not labels.
+Promoting a personal skill to Team requires explicit scope, review of private
+content/references and verified permissions; ordinary onboarding grants no sharing.
 
 Use the native Skill Creator for authoring mechanics and validation. Notion is
 the canonical destination for this provider; any local authoring directory is
@@ -41,7 +52,7 @@ For creation or promotion to Current, use the approved owner's mapping and the
    reuse the existing page. Re-read before changing an existing skill; preserve
    concurrent edits and source provenance. Keep previous snapshots recoverable.
 5. Test a bounded representative use with the actual available tools. Future
-   authorized personal-skill creations and edits follow this same destination
+   authorized personal/team-skill creations and edits follow this same destination
    policy. Do not turn ordinary facts into skills or update skills on a timer.
 
 ## Discovery and execution

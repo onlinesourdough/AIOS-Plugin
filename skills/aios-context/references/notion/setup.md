@@ -1,7 +1,7 @@
 # Set up a Notion context home
 
 Use when the owner chooses Notion as the context home. AIOS supplies methods;
-Notion holds company knowledge and personal skills; the harness supplies tools
+Notion holds company knowledge and personal/team skills; the harness supplies tools
 and permissions. Code and operational records keep their existing source.
 No server, custom MCP, database service or local owner folder is required.
 
@@ -15,8 +15,8 @@ Use [operating boundaries](operating.md) throughout the setup.
 AIOS Setup leads this route. Accept an ordinary request such as
 “Use AIOS Setup to set up my Notion; start at [URL].” Stay in this flow; the owner
 need not invoke Context, Manage Skills or Check separately.
-Codex declares Notion as an optional native app connection. Use the host's
-connection status and available tools; do not create a second MCP, login page,
+AIOS and the official Notion plugin are separate. Use native installation,
+enablement and connection status plus available tools; do not create a second MCP, login page,
 token store or connection tracker. If status is unavailable, say unknown and
 try the selected page through the existing tool. An installed plugin is not
 proof of a connection, and a connection is not proof of page access.
@@ -92,7 +92,12 @@ distributed plugin. Deduplicate by source identity and destination, not title
 alone. If a write's result is uncertain, read the destination before retrying.
 Changed source or destination requires reconciliation; never overwrite blindly.
 
-Migrate selected personal methods through [Manage Skills](../../../aios-manage-skills/SKILL.md)
+For skills, distinguish Personal from Team and record the accountable owner.
+Reuse one native Skills database with Audience views when its permissions fit;
+keep private/team destinations separate when access differs. A solo setup needs
+no empty team database. Do not infer sharing consent from a Team label.
+
+Migrate selected personal or team methods through [Manage Skills](../../../aios-manage-skills/SKILL.md)
 and the [Notion skill lifecycle](personal-skills.md). Preserve every
 supporting file and repair references before retiring an old registration.
 

@@ -16,13 +16,17 @@ saved views to select metadata before fetching page bodies. Shared context is
 selected when relevant, not preloaded wholesale. A Space is an organizational
 scope; views reuse the same records. Keep knowledge at its owning topic and
 memory as durable decisions/corrections with provenance, avoiding a shadow copy.
-Docs own knowledge and deliverables, native Skills own personal methods, and
+Docs own knowledge and deliverables, native Skills own personal/team methods, and
 memory owns decisions and corrections. Map these roles onto suitable existing
 destinations; names and database count need not be identical across companies.
 Native skill designation and required references must remain intact even when
 an existing workspace presents them together.
 Use the approved [schema contract](schema-and-templates.md) when creating or
 promoting managed records, checking metadata or changing Spaces/templates.
+
+Select skill metadata by Audience, accountable Owner, Space and Current status.
+Team methods follow the agreed review authority; personal corrections do not
+silently replace team procedures. Use the actual identity and permission scope.
 
 Use Notion permissions for page access and the native connection's identity.
 AIOS prompts do not enforce per-user access control. Validate actual access
@@ -44,7 +48,7 @@ an uncertain result is inspected first. With no transactional compare-and-swap,
 re-fetch before mutation and stop a conflicting write rather than claiming a
 lock. Do not replace a truncated page or erase unknown blocks.
 
-Personal methods use [the skill lifecycle](personal-skills.md). Shared AIOS
+Personal and team methods use [the skill lifecycle](personal-skills.md). Shared AIOS
 methods are updated in the plugin, not copied into the owner's workspace.
 Local exports are dated recovery artifacts or disposable execution caches;
 they do not become a second editable source of truth. Nothing silently merges

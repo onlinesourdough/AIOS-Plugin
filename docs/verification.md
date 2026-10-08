@@ -17,7 +17,7 @@ supplied observations; they did not execute repairs, inspect media, establish
 native discovery or prove a general improvement over the previous method.
 Release and installed behavior remain separate from this source candidate.
 
-For AIOS 0.21.0, see [Codex sidebar verification](sidebar.md#verification).
+For AIOS 0.22.0, see [Codex sidebar verification](sidebar.md#verification).
 Build and test the pinned author dependencies, check generated runtime equality,
 then run the existing source and native onboarding checks. A protocol fixture
 does not establish rendered sidebar placement or a new-account OAuth grant.

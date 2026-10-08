@@ -2,7 +2,7 @@
 name: aios-context
 description: Manage the chosen context home for setup, relevant retrieval, durable updates or a context audit. Keep independent repository work local.
 metadata:
-  version: "1.3.0"
+  version: "1.4.0"
 ---
 
 # AIOS:context
@@ -39,7 +39,7 @@ templates and source responsibilities in the owner's guide, outside this plugin.
 | Set up or move the home | [Notion setup](references/notion/setup.md), [managed-file Setup](../aios-setup/SKILL.md) or [existing-home adaptation](references/existing-home.md); Setup also owns native installation |
 | Save a durable fact, decision or correction | [Maintain Context](../aios-maintain-context/SKILL.md) using the resolved provider; unchanged information produces no write |
 | Inspect context health | [Check](../aios-check/SKILL.md) using the home contract and selected provider checks; read-only unless repair is separately authorized |
-| Create or change a personal skill | [Manage Skills](../aios-manage-skills/SKILL.md); preserve its canonical body, references and actual discovery mechanism |
+| Create or change a personal/team skill | [Manage Skills](../aios-manage-skills/SKILL.md); preserve its canonical body, references and actual discovery mechanism |
 
 For a provider outage or uncertain destination, hold dependent changes and
 report the exact gap. Do not fall back to another provider or an old local home.
