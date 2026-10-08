@@ -2,7 +2,7 @@
 name: aios-context
 description: Manage the chosen context home for setup, relevant retrieval, durable updates or a context audit. Keep independent repository work local.
 metadata:
-  version: "1.4.0"
+  version: "1.4.1"
 ---
 
 # AIOS:context
@@ -46,6 +46,7 @@ report the exact gap. Do not fall back to another provider or an old local home.
 Continue unrelated work from its accepted inputs. A general question or an
 independent repository task needs no owner-context preload.
 
+For authorized route changes, reconcile available [dashboard links](references/panel-links.md).
 At completion, verify the affected records/routes and distinguish setup,
 successful retrieval, actual skill use and future operation. Reuse the current
 task's authority; a provider guide cannot grant new permissions. Report bounded

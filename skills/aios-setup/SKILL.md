@@ -2,7 +2,7 @@
 name: aios-setup
 description: Set up, resume or move AIOS, from installation to a useful first task.
 metadata:
-  version: "1.5.1"
+  version: "1.6.0"
 ---
 
 # AIOS:setup
@@ -11,7 +11,7 @@ Own onboarding through a verified home, pointer and first task. Reuse answers.
 
 Codex **Set up** or an explicit request starts this skill. Resume accepted
 setup and connections. Verify access; a badge or saved link is not readiness.
-The [panel](references/panel.md) only saves the personal context link.
+Register verified personal sources using the [panel](references/panel.md) procedure.
 
 For package installation or a requested bridge-only change, use the
 [adapter route](references/adapters.md); preserve the existing home. Installation

@@ -1,6 +1,6 @@
 # AIOS
 
-AIOS version: 0.23.0
+AIOS version: 0.24.0
 
 **Business first. Productivity built in.**
 
@@ -16,11 +16,11 @@ infrastructure and delivery configuration.
 ## Your context home
 
 AIOS means AI Operating System: the shared method and your chosen context home.
-In Codex, open **AIOS** in the sidebar for connection status and your context.
-For a new default, paste its link and choose **Continue**. The panel saves the
-link directly; it does not send chat messages or run business onboarding.
-Existing context is reused. Docs, Skills, Memory and Spaces live behind that
-entry. A saved link has not been verified by reading its remote contents.
+In Codex, open **AIOS** in the sidebar. Numbered setup steps save your Context,
+Docs, Personal/Team Skills and Memory links, then open your dashboard. Existing
+context opens there immediately. One Settings control edits the same fields.
+Clicks open destinations or save links directly; they never send a chat message.
+A saved link does not prove remote access or complete business onboarding.
 
 For help organizing a new or messy workspace, explicitly invoke **Set up** or
 ask for AIOS Setup. That skill checks access, reuses useful destinations and
@@ -41,10 +41,10 @@ Shared methods stay in the plugin and operational records at their source.
 Maintain Context saves durable changes during work. No local mirror, hosted
 server or timer is required. The Codex panel is a bundled local MCP process
 managed by Codex, using Node.js 22+ and the installed Codex CLI for connection
-status. It reads plugin/connection metadata and the saved routing block. Page choices
-and source names from the agent stay in bounded temporary panel memory: ten
-minutes for discovery, up to one hour for a setup conversation.
-The agent reads only the selected Notion entry and its declared destinations. A connected account does not prove page access.
+status. It reads connection metadata, the short pointer and a private navigation
+map of names/links scoped to that context. No source bodies are copied. Explicit
+Setup registers verified destinations through AIOS MCP after using the existing
+provider connector. Context retrieves the actual source when a task needs it.
 Installing or updating AIOS leaves existing homes
 intact; use Setup when you choose to establish or move one.
 

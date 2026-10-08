@@ -6,9 +6,10 @@ import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { readNotionSetup } from './codex-status.mjs';
 import { readContextRoute, saveContextRoute } from './context-route.mjs';
+import { readSources, saveSources } from './sources.mjs';
 import { z } from 'zod';
 
-const uri = 'ui://aios/home-v2';
+const uri = 'ui://aios/home-v3';
 const icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="14" height="14" rx="3"/><path d="M3 8h14M8 8v9"/></svg>';
 // MCP SDK 1.31 does not serialize tool icons. The spec's server-icon fallback
 // supplies the same theme-aware navigation icon without patching SDK internals.
@@ -31,10 +32,11 @@ async function status() {
   lastCheck = Math.max(lastCheck + 1, Date.now());
   const checkedAt = new Date(lastCheck).toISOString();
   const [notion, context] = await Promise.all([readNotionSetup(), readContextRoute()]);
-  return { version: __AIOS_VERSION__, notion, context, checkedAt };
+  const sources = context.state === 'configured' ? await readSources(context.target) : { state: 'missing', title: '', links: {} };
+  return { version: __AIOS_VERSION__, notion, context, sources, checkedAt };
 }
 async function result() {
-  return { content: [{ type: 'text', text: 'AIOS context panel. Connection status and the saved context location; no business pages are read.' }],
+  return { content: [{ type: 'text', text: 'AIOS dashboard. Connection status and saved links to Context, Docs, Skills and Memory; no business records are copied.' }],
     _meta: { 'aios/status': await status() } };
 }
 registerAppTool(server, 'aios_open', {
@@ -58,6 +60,30 @@ registerAppTool(server, 'aios_save_context', {
   try {
     const bridge = await readFile(join(__dirname, '../../skills/aios-context/assets/bridge.md'), 'utf8');
     await saveContextRoute(args, { bridge });
+    return await result();
+  } catch (error) { return { isError: true, content: [{ type: 'text', text: error.message }] }; }
+});
+
+server.registerTool('aios_sources', {
+  title: 'Read AIOS source links',
+  description: 'Read the current personal context location and its saved navigation links with revision tokens. Use only for requested setup or source-link maintenance. These are saved links, not live Notion records or proof of access.',
+  inputSchema: {},
+  annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
+}, async () => {
+  const context = await readContextRoute();
+  const sources = context.state === 'configured' ? await readSources(context.target) : { state: 'missing', title: '', links: {} };
+  return { content: [{ type: 'text', text: JSON.stringify({ context, sources }) }] };
+});
+const sourceLink = z.object({ title: z.string().min(1).max(100), target: z.string().min(1).max(2048) }).strict();
+registerAppTool(server, 'aios_save_sources', {
+  title: 'Save AIOS source links',
+  description: 'Save only navigation names and links for the selected personal context. Setup uses verified destinations; the panel accepts user-entered links. Does not read or write Notion content, store skills or memories, verify access, or change the context pointer. Replaces the whole link map; include every role to keep. Read aios_sources for current revision tokens first. Never use the personal default for a different client.',
+  inputSchema: { target: z.string().min(1).max(2048), expectedContextRevision: z.string().regex(/^[a-f0-9]{64}$/), expectedRevision: z.string().regex(/^[a-f0-9]{64}$/), title: z.string().max(100), links: z.object({ docs: sourceLink.optional(), personalSkills: sourceLink.optional(), teamSkills: sourceLink.optional(), memory: sourceLink.optional() }).strict() },
+  annotations: { readOnlyHint: false, destructiveHint: true, idempotentHint: false, openWorldHint: false },
+  _meta: { ui: { visibility: ['app', 'model'] } },
+}, async args => {
+  try {
+    await saveSources(args);
     return await result();
   } catch (error) { return { isError: true, content: [{ type: 'text', text: error.message }] }; }
 });
