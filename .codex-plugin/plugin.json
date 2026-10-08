@@ -1,12 +1,11 @@
 {
   "name": "aios",
-  "version": "0.21.0",
+  "version": "0.22.0",
   "description": "Portable context and skills for planning, design, content and reviewed delivery.",
   "author": {
     "name": "onlinesourdough"
   },
   "skills": "./skills/",
-  "apps": "./.app.json",
   "extensions": {
     "com.openai": {
       "onboardingSkill": "./skills/aios-setup/SKILL.md"
@@ -14,11 +13,10 @@
   },
   "interface": {
     "displayName": "AIOS",
-    "brandColor": "#b86f36",
     "composerIcon": "./assets/icon.png",
     "logo": "./assets/icon.png",
     "shortDescription": "Your AI operating system",
-    "longDescription": "Open AIOS from the Codex sidebar. Check your Notion connection, choose a context home and continue with AIOS Setup. Notion is optional; established context homes remain supported. Twenty-six shared skills help with writing, code, design and reviewed delivery.",
+    "longDescription": "Open AIOS from the Codex sidebar. Check the separate official Notion plugin, choose context and continue with AIOS Setup. Established alternative providers remain supported. Twenty-six shared skills help with writing, code, design and reviewed delivery.",
     "developerName": "onlinesourdough",
     "category": "Productivity",
     "capabilities": [

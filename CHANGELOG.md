@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.22.0 — 2026-10-08
+
+- Keep AIOS and the official Notion plugin separate; remove the embedded app
+  binding. Distinguish missing plugin, disabled plugin, disconnected account
+  and callable connection without resetting any account.
+- Follow the Codex host theme and Meetings control style: Notion, Context/Docs,
+  Skills and Memory steps, then a source-link overview. Keep secondary choices
+  under More options.
+- Support Personal and Team skills through Setup, Context, Manage Skills and
+  Notion templates. Reuse suitable sources, preserve real access boundaries
+  and avoid an empty team database for solo owners.
+- Add agent-assisted Notion page choices and source-map readback through the
+  visible conversation, with bounded temporary results and no second auth.
+- Route selected inputs to the same Setup skill; no new business-data store,
+  background sync, hidden chat or automatic context migration.
+
 ## 0.21.0 — 2026-10-07
 
 - Add a small host-themed Codex sidebar app with Notion connection status, the

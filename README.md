@@ -258,10 +258,18 @@ sub-brands within one home. Start with a real workflow, even in a messy workspac
 classify only the context it needs. No local mirror, hosted server or daily task
 is required. Maintenance happens during useful work.
 
-After installing AIOS in Codex, open **AIOS** in the sidebar. The small panel
-shows Notion connection status, your saved context link and **Start setup** or
-**Continue setup**. **Connect Notion** opens the official account connection
-page; return and refresh its status. Setup then continues in the Codex conversation.
+After installing AIOS in Codex, open **AIOS** in the sidebar. **Get started**
+checks the separate official Notion plugin and its connection. Install, enable
+or connect Notion only if needed; return and **Refresh**. AIOS does not include
+Notion's app binding, server or authentication.
+
+Choose **Context**. **Find pages** asks the agent in the visible chat to return
+actual Notion page choices; **Find linked sources** reads the chosen entry's
+Docs, personal/team Skills, Memory and Spaces. Follow **Continue** through
+**Context + Docs → Skills → Memory**. Leave missing sources for Setup to resolve.
+**More options** holds Space, client scope and plan-only mode; another provider
+is available at the connection step. The final **Continue** starts AIOS Setup.
+Verified setup returns an overview with links to your actual sources.
 The plugin's native **Set up** entry starts the same skill. If your client has
 no sidebar or Set up entry, say:
 
@@ -282,6 +290,11 @@ The Codex panel uses a bundled local MCP process managed by Codex. It needs Node
 status. No Docker, consumer `npm install`, account database or service to host.
 Other clients retain the same skills without the Codex panel. See
 [sidebar behavior and tested limits](docs/sidebar.md).
+
+Skills can be Personal or Team. Reuse one native Skills database when permissions
+fit, or separate private/team sources when access differs. Audience and Space
+are filters, not permissions. Team methods need a responsible owner and agreed
+review; a solo owner needs no empty team database.
 
 The page uses a shared layout for Docs, Skills, Memory and everyday work.
 Its links, Space map and source/review choices are yours. Later plugin updates

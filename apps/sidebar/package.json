@@ -1,6 +1,6 @@
 {
   "name": "aios-sidebar-build",
-  "version": "0.21.0",
+  "version": "0.22.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -11,8 +11,13 @@
   "dependencies": {
     "@modelcontextprotocol/ext-apps": "1.7.5",
     "@modelcontextprotocol/sdk": "1.31.0",
-    "@openai/mcp-extensions": "0.1.0"
+    "@openai/mcp-extensions": "0.1.0",
+    "zod": "4.4.3"
   },
-  "devDependencies": { "esbuild": "0.25.12" },
-  "engines": { "node": ">=22" }
+  "devDependencies": {
+    "esbuild": "0.25.12"
+  },
+  "engines": {
+    "node": ">=22"
+  }
 }

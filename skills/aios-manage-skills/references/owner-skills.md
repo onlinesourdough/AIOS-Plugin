@@ -1,7 +1,7 @@
-# Personal skill lifecycle and discovery
+# Personal and team skill lifecycle and discovery
 
-Manage Skills owns this personal-owner procedure. Use it when an authorized
-conversation creates, imports, edits, renames or removes a personal owner
+Manage Skills owns this owner-method procedure. Use it when an authorized
+conversation creates, imports, edits, renames or removes a personal or team
 skill, and when Setup installs or moves an owner home. Callers link here; do
 not copy these steps into another skill. It keeps personal placement,
 registration and discovery in the same capability-management lifecycle as
@@ -13,10 +13,14 @@ watcher or permission to audit unrelated skill libraries on every message.
 
 Use the resolved [provider selection](../../aios-context/references/providers.md),
 resolving it first only if unknown. For Notion use the
-[Notion personal-skill route](../../aios-context/references/notion/personal-skills.md).
+[Notion skill route](../../aios-context/references/notion/personal-skills.md).
 For another document/vault home use [existing-home methods](../../aios-context/references/existing-home.md#personal-methods-and-checks).
 Return to Manage Skills for review. Apply the file registration below only to
 a managed AIOS file home; do not create AIOS_ROOT to satisfy another provider.
+
+For a team method, resolve the actual team-owned source, maintainer and change
+authority first. Do not place a shared method in an individual global folder or
+promote a personal skill by changing its label. Preserve actual access controls.
 
 Resolve the configured home and supported format through
 [data compatibility](../../aios-setup/references/data-format.md). Personal

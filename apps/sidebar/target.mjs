@@ -10,3 +10,13 @@ export function classifyTarget(value) {
     return { target: url.href, kind: notion ? 'notion' : 'url' };
   } catch { return null; }
 }
+
+export function notionPageId(value) {
+  try {
+    const url = new URL(value);
+    if (url.protocol !== 'https:' || url.username || url.password ||
+      !['app.notion.com', 'notion.so', 'www.notion.so'].includes(url.hostname) && !url.hostname.endsWith('.notion.site')) return null;
+    const match = url.pathname.match(/([a-f0-9]{32}|[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})\/?$/i);
+    return match?.[1].replaceAll('-', '').toLowerCase() || null;
+  } catch { return null; }
+}

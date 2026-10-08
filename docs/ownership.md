@@ -13,7 +13,7 @@
 | Acceptance and delivery instruction | Reviewer bound to an exact artifact; independent caller acceptance for delegated work |
 | Private Git destination and release | Authorized AIOS maintainer or Ship worker |
 | Owner context, personal facts, and access decisions | Client in the chosen context home and authoritative source systems |
-| Provider setup and personal-skill routing | Context's selected setup procedure and Manage Skills; client owns content/permissions, harness owns access |
+| Provider setup and personal/team-skill routing | Context's selected setup procedure and Manage Skills; client owns content/permissions, harness owns access |
 | Owner continuity scope | Client under explicit consent; Maintain Context owns named-source reconciliation, with Git Sync only for managed AIOS file homes |
 | Customer or externally owned documentation | Its source system; AIOS may retain only a scoped pointer and freshness boundary |
 | Native installation, connections, and cutover | Authorized client or lead using native controls and readback |
