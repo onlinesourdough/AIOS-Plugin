@@ -1,6 +1,6 @@
 # AIOS
 
-AIOS version: 0.22.0
+AIOS version: 0.23.0
 
 **Business first. Productivity built in.**
 
@@ -16,17 +16,17 @@ infrastructure and delivery configuration.
 ## Your context home
 
 AIOS means AI Operating System: the shared method and your chosen context home.
-In Codex, open **AIOS** in the sidebar, or use the plugin’s **Set up** entry.
-The panel checks the separate official Notion plugin and its connection. It
-helps install or connect that plugin when needed. **Find pages** returns actual
-choices through the agent in the visible conversation. **Find linked sources**
-reads the selected entry's source map. Continue through **Context + Docs →
-Skills → Memory**, then into the same Setup skill. Space and client/plan-only
-scope are under **More options**. Verified setup returns a source-link overview.
-Skills support Personal and optional Team, with a responsible owner and actual
-permissions; a filtered view alone does not make personal skills private.
-Setup checks access, reuses useful destinations and helps with the first task.
-The Notion entry is called **AIOS** by default; customer names remain theirs.
+In Codex, open **AIOS** in the sidebar for connection status and your context.
+For a new default, paste its link and choose **Continue**. The panel saves the
+link directly; it does not send chat messages or run business onboarding.
+Existing context is reused. Docs, Skills, Memory and Spaces live behind that
+entry. A saved link has not been verified by reading its remote contents.
+
+For help organizing a new or messy workspace, explicitly invoke **Set up** or
+ask for AIOS Setup. That skill checks access, reuses useful destinations and
+helps with the first task. Personal and Team skills retain actual permissions;
+Audience and Space are not access control. The Notion entry is called **AIOS**
+by default; customer names remain theirs.
 
 [Context](../skills/aios-context/SKILL.md) owns the common home contract and selects
 one provider. The host keeps a short pointer to an approved entry; the agent reads

@@ -1,137 +1,95 @@
-# Codex sidebar — 0.22.0
+# Codex sidebar — 0.23.0
 
-Accepted outcome: a simple Get started panel, lowercase onlinesourdough topbar,
-Context selection and Continue into the existing Setup procedure. Notion stays
-an independently installed official plugin. Preserve other clients, owner data,
-Spaces, personal/team skills, account permissions and unrelated instructions.
+The panel is deliberately small: Notion status and one context location.
+It uses Codex theme tokens, neutral controls, a green Connected badge and a
+AIOS / by onlinesourdough header. The layout, type scale, section dividers,
+numbered steps and SDK controls come directly from 0.21.0; the newer card layout
+is removed. No setup guide, multi-source wizard or chat
+handoff is exposed in the panel.
 
 ```text
-Install AIOS → Open AIOS
-                  ↓
-        Check official Notion plugin
-          ├ missing → Install Notion
-          ├ disabled → Enable Notion
-          ├ disconnected → Connect Notion
-          └ ready → ✓ Connected
-                  ↓
-      Find pages → agent reads Notion → choose Context
-                  ↓
-      Context + Docs → Personal / Team skills → Memory
-                  ↓
-          Continue → existing AIOS Setup
-                  ↓
-        Relevant questions → verify → source-link overview
-                  ↓
-                   First useful task
+Open AIOS
+  ├ Existing context → Open context
+  └ First use → Context link → Continue → Open context
 ```
 
-The public MCP Apps bridge calls only its originating server, not another
-plugin's tools. Page/source lookup therefore sends a visible read-only message
-to the current conversation. This is an agent-assisted picker, not an instant
-cross-plugin API. The global entrypoint supplies a conversation on desktop
-according to the pinned Extensions specification. No hidden thread, duplicate
-Notion MCP server, OAuth client, token store or private Codex endpoint is used.
+## Boundaries
 
-## Connection and setup boundaries
+- Continue saves the user-entered **personal default for new Codex chats**.
+  It does not search or write Notion, invoke an agent or claim business readiness.
+  The link is a user-provided location; Context checks access and guidance when
+  that context is actually needed. Remote contents remain untrusted source data.
+- Docs, Personal/Team Skills, Memory and Spaces remain in the customer's entry.
+  No second routing database or local business-content mirror is introduced.
+- Requested business onboarding stays in the existing Setup skill, including
+  client scope, plan-only, Interview, source reuse and first-task proof. The
+  panel neither triggers nor replaces it. A blank Notion still needs that work.
+- The live cross-plugin dropdown is removed. Public MCP Apps tools/call routes
+  to the originating server; no supported direct Notion route is established.
+  The former agent mailbox, page picker, chat messages and polling are deleted.
+- The official Notion plugin and account connection stay independent. Exact
+  native plugin inventory plus the public app/installed result determine the
+  badge. Unknown is not Connected. Missing/disabled plugins get a short native
+  Plugins instruction; disconnected accounts link to the official connection
+  page. Refresh reads status without starting a conversation.
+- HTTPS links and absolute paths support alternative context providers. An
+  existing non-Notion route does not show Notion controls. Local paths display
+  as text; this panel does not invent a host file-opening capability.
 
-- The native **Set up** entry and **Continue** invoke the same Setup skill.
-  The wizard separates Context/Docs, Personal/optional Team skills and Memory.
-  More options holds Space, client scope and plan-only; another provider is
-  available at the connection step. Missing sources are resolved in Setup.
-  Shared native Skills can serve both audiences when permissions fit. Separate
-  sources preserve private/team access where needed; tags never grant access.
-- AIOS ships no `.app.json` or `apps` binding. It reads `codex plugin list --json`
-  for exact `notion@openai-curated-remote` installation/enablement, and public
-  `app/installed` for the exact Notion app's callable connection state. Bounded
-  subprocesses use the normal account configuration without reading credentials.
-- Missing/disabled plugin buttons ask the visible chat to use the native plugin
-  flow. Connect opens the official Notion app connection page. Refresh rechecks.
-  Failed discovery is unknown, never disconnected or connected by assumption.
-- Connected means installed, enabled and callable in the refreshed snapshot.
-  It does not prove access to a selected page or freshness at the provider.
-- Setup owns any authorized home or pointer edits. Browsing creates no Notion
-  pages, changes no permissions and never marks the company setup ready.
-  Client scope preserves personal defaults; plan-only remains read-only.
+## Runtime and persistence
 
-## Runtime and data
+Codex manages the packaged Node.js 22+ stdio server; no consumer npm or Docker.
+`apps/sidebar` owns source, tests and the synthetic browser host.
+`runtime/sidebar` is built from locked dependencies. No UI network domains,
+telemetry, credentials or custom OAuth. Tool metadata stays out of model-visible
+content; context location and status reach the panel in `_meta`.
 
-`apps/sidebar` owns source, pinned SDKs, tests and synthetic fixture.
-`runtime/sidebar` is the reproducible consumer bundle with dependency notices.
-Codex manages the declared Node.js 22+ stdio process. No consumer npm or Docker.
-The HTML has no network/resource CSP domains and uses the host theme.
+`aios_open` is the global/model entrypoint. `aios_status` is app-only and
+read-only. `aios_save_context` is app-only and correctly annotated as a write.
+The new resource URI is `ui://aios/home-v2`; old picker replies are unsupported.
+There is no ui/message, hidden chat, background agent or prompt-copy fallback.
 
-`aios_open` is the global/model entrypoint and accepts a reply to an outstanding
-picker request. `aios_status`, `aios_picker_request` and `aios_picker_read` are
-app-only. Starting a request only prepares it; the panel sends the visible
-message after the user's action. Initial status is reused. Polling lasts at
-most two minutes and never calls Notion; Check result retrieves a delayed reply.
-Setup inputs stay locked while a submitted outcome is pending, including an
-uncertain send. The conversation can return ready, plan or needs_input. Only
-a verified entry/destination outcome marks the overview Context verified; it
-does not claim the first business task has been tested.
+The only active owner file is `$CODEX_HOME/AGENTS.md`. A save appends the shipped
+bridge when absent, or changes only Context: inside one unambiguous AIOS block.
+Other instructions, including custom rules in that block, remain byte-for-byte.
+An observed-file hash rejects stale saves; a per-file lock serializes panel
+writers. Atomic replacement prevents partial writes. Existing bytes are saved
+privately under `$CODEX_HOME/backups/aios-context/<revision>.md` before a change.
+Unchanged saves are no-ops. Unsupported files, symlinks, multiple links, oversized
+files, duplicate/malformed blocks and detected concurrent edits stop the write.
+Other editors do not share this lock; readback detects a later changed result.
 
-A random panel/request pair, exact source identity, ten-minute discovery expiry
-(one hour for setup), twelve
-panel limit and at most thirty metadata choices bound temporary state. A new
-request invalidates the old request; monotonic snapshots prevent late replies
-from regressing the UI. Identical replies are idempotent, different
-replies and crossed source maps are rejected. No business page bodies, auth data,
-telemetry or setup state are saved to disk. Source errors remain explicit.
+The UI keeps drafts on save failure, locks pending controls and prevents double
+submit. Ordered status timestamps reject late snapshots, including after a
+failed refresh; failed status removes Connected. Headings/inputs receive focus
+on transitions. Titles, errors and paths are rendered as text.
 
-The only owner file read is the bounded AIOS routing block in `$CODEX_HOME/AGENTS.md`.
-Ambiguous/old blocks are not guessed. Other files, chats and histories are not
-scanned. Source names and locations are rendered as text. Other providers keep
-their existing route and do not inherit hidden Notion source selections.
+## Verification
 
-## Verification and recovery
+Run the locked build, `npm test --prefix apps/sidebar`, native onboarding
+rehearsal and existing package checks. Replacement coverage tests direct save,
+readback/reopen, cancellation, no message capability, stale/conflicting writes,
+backup preservation, malformed inputs and connection failure/retry. The stdio
+smoke exercises the built server against a disposable Codex home.
 
-Run the bundle build, `npm test --prefix apps/sidebar`, native onboarding
-rehearsal and required source/package checks. Tests cover independent plugin
-and connection states, malformed replies, process cleanup, pointer parsing,
-scoped/expired/replayed replies, duplicate identities, unsafe URLs and prompt
-scope. The stdio smoke exercises a full request/reply/read round trip.
+`npm run preview --prefix apps/sidebar` serves the actual bundled UI on loopback
+with synthetic connection metadata and the real pointer writer restricted to a
+temporary directory. It has no conversation capability. Browser rendering and
+protocol proof are separate from desktop plugin adoption and live source access.
+Do not claim a new-account OAuth flow or automatic company provisioning.
 
-`npm run preview --prefix apps/sidebar` starts a clearly labeled synthetic host
-on loopback. Its pages are test data. Browser checks and protocol checks are
-separate from actual desktop placement and live Notion round-trip evidence.
-Live read-only verification and installed-byte proof belong to adoption; never
-claim them merely from an HTML preview. No new-account OAuth reset is needed.
+## Recovery
 
-If a request expires or the process reloads, reopen AIOS and issue a new request.
-If the bridge cannot send a message, a copyable request is shown. The native Set
-up entry and conversational Setup remain available. Roll back through the native
-package manager to reviewed 0.21.0; preserve the separate Notion plugin and all
-owner content. Do not edit cache databases or credentials to force a refresh.
+Use the supported plugin manager to restore an earlier reviewed tag if needed;
+keep the official Notion plugin and customer sources. Package rollback does not
+restore instruction edits. To undo a pointer save, restore only its owned change
+from the backup after checking for later edits. A lock left by a crashed writer
+requires confirming that writer stopped before removing that exact lock file.
+An already open Codex panel may still serve old code; reopen Codex to load the
+new release. Never edit plugin caches or credentials to force a refresh.
 
 ## Sources
 
+- [MCP UI](https://developers.openai.com/plugins/build/chatgpt-ui)
 - [MCP Extensions 0.1.0](https://github.com/openai/mcp-extensions/blob/node-v0.1.0/docs/spec.md)
-- [MCP Apps SDK 1.7.5](https://github.com/modelcontextprotocol/ext-apps)
 - [Codex app-server](https://learn.chatgpt.com/docs/app-server)
-
-Checked with the pinned SDKs and Codex 0.160.1. Unsupported or changed host
-capabilities are surfaced as explicit gaps.
-
-## 2026-10-08 candidate observations
-
-- 28 Node tests and the bundled stdio request/reply/read smoke pass. Regressions
-  cover late picker/status replies, failed refresh/retry, provider changes,
-  visible source errors and heading focus after navigation. Native Codex
-  parsing finds Setup, 26 skills, one AIOS server and no embedded app binding.
-- The synthetic browser host exercises duplicate page names, pasted-link source
-  mapping, the four steps, shared Personal/Team source selection, a delayed
-  outcome with locked inputs, and return to the overview. Dark 320px rendering
-  has no horizontal overflow. Failure/client/plan-only cases have
-  bounded fixture evidence; this is not a live Notion UI round trip.
-- A read-only Claude Code Opus 5.5 / xhigh UI review identified four small
-  interaction fixes: overview loading/errors, heading focus, provider actions
-  and non-contradictory setup outcomes. These are implemented; host typography
-  and theme tokens remain the visual source.
-- The public CLI reports the independently installed official Notion plugin
-  enabled and its account callable. Live official Notion reads verify the
-  selected guide and destinations; authorized Personal/Team schema/default
-  changes are read back without replacing sources, content or icons.
-- The already-running desktop tool remains 0.21.0 after candidate installation.
-  Reloading the new runtime and testing the complete desktop picker → agent →
-  returned panel remains pending. This pilot must not be described as having
-  that end-to-end acceptance or a new-account OAuth test.
