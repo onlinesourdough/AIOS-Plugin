@@ -2,7 +2,7 @@
 name: aios-review-work
 description: Review a result against its accepted outcome, or audit requested repository drift, without editing.
 metadata:
-  version: "1.2.2"
+  version: "1.2.3"
 ---
 
 # AIOS:review-work
@@ -46,7 +46,8 @@ executable owner; do not merge distinct responsibilities just to reduce files.
 
 For a human-facing result or PR, inspect Build's
 [review handoff](../aios-build-work/references/review-handoff.md) against the actual
-candidate and evidence. Check the rendered comparison and useful links; keep
+candidate and evidence. Check that the format answers the reader's question about
+the change; flag decorative or redundant visuals. Check rendering and useful links; keep
 decision-relevant failures visible and distinguish illustration from observation.
 This is part of the current review, not another approval step.
 

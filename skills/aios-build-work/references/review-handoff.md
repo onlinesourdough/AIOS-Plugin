@@ -15,7 +15,11 @@ Return the handoff itself, without narrating compliance with this method. Combin
 problem, example and checks in a short paragraph when sufficient; do not add a
 separate heading for every fact or repeat the same limitation in several places.
 
-Choose the clearest evidence for the result. For visible changes, real captures
+Choose the format for what the reviewer needs to understand about this change;
+there is no visual slot to fill. For a difficult explanation, use
+[Clarify](../../clarify/SKILL.md) to choose the concrete example and relationship;
+it owns explanatory judgment. Plain text can be sufficient.
+For visible changes, real captures
 or an action/result sequence can help; reuse the relevant baseline and capture
 guidance in [visual comparison](../../design/references/before-after.md).
 For behavior, use a small observed input/output pair or measured result.
@@ -23,6 +27,11 @@ For instructions, documents or architecture, exact excerpts or a labelled
 explanatory diagram may be more useful than a screenshot. These are explanations
 unless actual behavior was exercised; do not claim a measured improvement from
 a diagram, a rewritten prompt or an untested example.
+
+A diagram should explain a concrete mechanism, boundary, decision or tradeoff.
+Phase names alone rarely explain the change unless their relationships changed.
+Check what understanding the reader gains; omit a visual that merely repeats
+the prose. These are choices, not mandatory screenshots, tables or diagrams.
 
 Identify the source revision/artifact and relevant comparison conditions. State
 an unavailable baseline or check rather than manufacture evidence. Preserve

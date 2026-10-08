@@ -17,6 +17,14 @@ supplied observations; they did not execute repairs, inspect media, establish
 native discovery or prove a general improvement over the previous method.
 Release and installed behavior remain separate from this source candidate.
 
+A subsequent visual-relevance revision conditionally reuses Clarify and asks
+Review to flag visuals that add no understanding. A fresh tool-free Opus context
+chose an action/result explanation, a README excerpt and a credential-boundary
+diagram for different supplied tasks, and omitted an unchanged phase chart.
+This verifies bounded format choices, not real screenshots, interactions or
+security behavior. Its recorded input precedes the final wording that Review
+flags concerns rather than editing the subject; source review covers that wording.
+
 For AIOS 0.22.0, see [Codex sidebar verification](sidebar.md#verification).
 Build and test the pinned author dependencies, check generated runtime equality,
 then run the existing source and native onboarding checks. A protocol fixture
