@@ -1,5 +1,30 @@
 # Verification
 
+The human-review handoff candidate (2026-10-08) links Build, Review and Ship to
+one proportional presentation guide and reuses Design's existing visual comparison
+method. Source checks cover links, skill versions, layout and context footprint;
+the latter reports the conditional guide cost separately from worker launch.
+Fresh tool-free Opus 5.5 medium exercises covered a small CLI change with delegated
+delivery and a published handoff with inaccessible/mislabelled media and stale
+checks. After a brevity refinement, the CLI response used two short paragraphs;
+the publication response proposed an in-place repair but still repeated details.
+Both publication responses also labelled the removed excerpt “Before (d7)” even
+though d7 identified only the old test revision. Independent review caught this
+unsupported baseline; use “removed text from the d9 diff” unless its revision is
+verified. This is a residual failure, not an all-pass result.
+The PR retains actual inputs, outputs, hashes and review. These exercises used
+supplied observations; they did not execute repairs, inspect media, establish
+native discovery or prove a general improvement over the previous method.
+Release and installed behavior remain separate from this source candidate.
+
+A subsequent visual-relevance revision conditionally reuses Clarify and asks
+Review to flag visuals that add no understanding. A fresh tool-free Opus context
+chose an action/result explanation, a README excerpt and a credential-boundary
+diagram for different supplied tasks, and omitted an unchanged phase chart.
+This verifies bounded format choices, not real screenshots, interactions or
+security behavior. Its recorded input precedes the final wording that Review
+flags concerns rather than editing the subject; source review covers that wording.
+
 For AIOS 0.23.0, see [Codex sidebar verification](sidebar.md#verification).
 Build and test the pinned author dependencies, check generated runtime equality,
 then run the existing source and native onboarding checks. A protocol fixture
