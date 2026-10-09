@@ -1,5 +1,6 @@
 import { shortTarget } from './setup-state.mjs';
 import { classifyTarget } from './ui-model.mjs';
+import { sourceLabel } from './source-label.mjs';
 
 // Saved choices work offline. When enabled, the same picker browses navigation
 // metadata from the existing Notion connector; it never loads page bodies.
@@ -62,6 +63,7 @@ export function createPicker({ id, label, optional = true, menuLabel = 'Saved so
       for (const choice of [...choices, ...fetched]) {
         const previous = unique.get(linkKey(choice));
         if (!previous || previous.placeholder) unique.set(linkKey(choice), choice);
+        else if (Object.hasOwn(choice, 'icon')) unique.set(linkKey(choice), { ...previous, icon: choice.icon });
       }
       choices = [...unique.values()];
     }
@@ -70,8 +72,10 @@ export function createPicker({ id, label, optional = true, menuLabel = 'Saved so
   function paint() {
     const selected = options.findIndex(option => option.link ? sameLink(option.link, state.value) : option.none && !state.value);
     items = options.map((option, index) => {
+      const title = node('span', { className: 'option-title' });
+      if (option.link) sourceLabel(title, option.link);
       const item = node('div', { id: `${id}-opt-${index}`, role: 'option', title: option.link?.target || '', className: option.edit ? 'option option-action' : 'option', 'aria-selected': String(index === selected) },
-        option.link ? [node('span', { className: 'option-title' }, option.link.title), node('span', { className: 'option-meta' }, option.link.path || shortTarget(option.link.target))]
+        option.link ? [title, node('span', { className: 'option-meta' }, option.link.path || shortTarget(option.link.target))]
           : option.none ? 'None' : editText[state.value ? 1 : 0]);
       item.addEventListener('mousedown', event => event.preventDefault());
       item.addEventListener('click', () => choose(index));
@@ -206,7 +210,7 @@ export function createPicker({ id, label, optional = true, menuLabel = 'Saved so
 
   function render(next) {
     state = next;
-    value.textContent = next.value?.title || (browsing() ? 'Choose a page' : optional ? 'None' : 'Not set');
+    sourceLabel(value, next.value || { title: browsing() ? 'Choose a page' : optional ? 'None' : 'Not set' });
     button.dataset.empty = String(!next.value);
     button.disabled = next.disabled;
     for (const control of [link, name, cancel, apply]) control.disabled = next.disabled;

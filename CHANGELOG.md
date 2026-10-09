@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.26.1 — 2026-10-09
+
+- Display Notion emoji and built-in page/database icons consistently in setup,
+  Settings and the dashboard, including existing saved destinations. Avoid
+  duplicate emoji in older labels and keep navigation usable if icons fail.
+- Read missing icons only for selected pages through the existing Notion
+  connector. Return only identity/icon metadata and keep source maps unchanged.
+  Custom/uploaded icons retain their label; external tracking hosts are excluded.
+- Show the Docs name once when it matches its Notion source; keep destination
+  hints for manual links.
+- Use the same bundled Geist Pixel Square font as onlinesourdough for a simple
+  onlinesourdough wordmark at the lower left, with the font license included. Keep native typography for controls.
+
 ## 0.26.0 — 2026-10-09
 
 - Choose Context, Docs, Skills and Memory from searchable Notion page dropdowns

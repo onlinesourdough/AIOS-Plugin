@@ -2,6 +2,8 @@ import { App, applyDocumentTheme, applyHostStyleVariables } from '@modelcontextp
 import { classifyTarget, connectionCopy } from './ui-model.mjs';
 import { sourceRoles, roleLabels, readStatus, draftFrom, isDirty, isCurrent, setLink, linksPayload, linkFromInput, shortTarget } from './setup-state.mjs';
 import { createPicker } from './picker.mjs';
+import { pageIcon, notionPageId } from './page-icons.mjs';
+import { sourceLabel, sourceTitle } from './source-label.mjs';
 
 const app = new App({ name: 'aios', version: __AIOS_VERSION__ }, { availableDisplayModes: ['fullscreen'] });
 const $ = id => document.getElementById(id);
@@ -16,12 +18,38 @@ let onboarding = false, openStep = 0, other = false, confirmSwitch = false, sett
 let message = { text: '', error: false };
 let selectedContext = null;
 const canBrowse = () => Boolean(status?.features?.notionPages && status.notion.state === 'connected');
+// Icons decorate navigation only. Keep them in this panel, never in company
+// context or source-map revisions. Missing metadata cannot block setup.
+const icons = new Map(), requestedIcons = new Set();
+let loadingIcons = false, iconGeneration = 0;
+const displayed = link => link ? { ...link, icon: icons.get(notionPageId(link.target)) ?? pageIcon(link.icon) } : link;
+async function loadSelectedIcons() {
+  if (!canBrowse() || !status.features.notionIcons || loadingIcons || refreshing) return;
+  const links = [{ target: status.context.target }, { target: draft.contextTarget }, selectedContext, ...Object.values(draft.links), ...Object.values(status.sources.links)];
+  const targets = [...new Map(links.filter(Boolean).filter(link => notionPageId(link.target)).map(link => [notionPageId(link.target), link.target])).entries()]
+    .filter(([id]) => !icons.has(id) && !requestedIcons.has(id)).slice(0, 6);
+  if (!targets.length) return;
+  for (const [id] of targets) requestedIcons.add(id);
+  loadingIcons = true;
+  const generation = iconGeneration;
+  try {
+    const result = await app.callServerTool({ name: 'aios_notion_icons', arguments: { targets: targets.map(([, target]) => target) } });
+    const values = result?._meta?.['aios/icons']?.icons;
+    if (generation !== iconGeneration || result?.isError || !Array.isArray(values)) return;
+    for (const item of values) {
+      const id = notionPageId(item.target);
+      if (targets.some(([expected]) => expected === id)) icons.set(id, pageIcon(item.icon));
+    }
+  } catch { /* Keep saved navigation usable. Refresh retries icon metadata. */ }
+  finally { loadingIcons = false; render(); }
+}
 async function loadPages(query) {
   const result = await app.callServerTool({ name: 'aios_notion_pages', arguments: { query } });
   const data = result?._meta?.['aios/pages'];
   if (result?.isError) throw new Error(result.content?.find(item => item.type === 'text')?.text || 'Could not load Notion pages.');
   if (!Array.isArray(data?.pages)) throw new Error('Could not load Notion pages.');
   const pages = data.pages.filter(page => typeof page.title === 'string' && page.title.length <= 100 && classifyTarget(page.target)?.kind === 'notion');
+  for (const page of pages) if (Object.hasOwn(page, 'icon')) icons.set(notionPageId(page.target), pageIcon(page.icon));
   return { pages, hasMore: Boolean(data.hasMore), partial: Boolean(data.partial) };
 }
 
@@ -95,6 +123,7 @@ function render() {
   if (dashboard) renderDashboard(locked); else renderSetup(locked);
   if (settingsOpen) renderSettings(locked);
   paintFeedback();
+  void loadSelectedIcons();
 }
 function renderConnection(dashboard, locked) {
   const state = status.notion.state, label = refreshing ? 'Checking…' : connectionCopy[state];
@@ -146,16 +175,22 @@ function renderSetup(locked) {
   $('setup-context').hidden = !nativePicker; $('context-link-field').hidden = nativePicker;
   const notionTarget = classifyTarget(contextInput())?.kind === 'notion' ? contextInput() : null;
   const selected = notionTarget ? selectedContext?.target === notionTarget ? selectedContext : { title: 'Selected page', target: notionTarget, placeholder: true } : null;
-  setupContextPicker.render({ value: selected, choices: [], browse: canBrowse(), disabled: locked });
-  for (const role of sourceRoles) setupPickers[role].render({ value: draft.links[role], choices: [draft.saved[role]], browse: canBrowse() && !other, disabled: locked || !ready });
+  setupContextPicker.render({ value: displayed(selected), choices: [], browse: canBrowse(), disabled: locked });
+  for (const role of sourceRoles) setupPickers[role].render({ value: displayed(draft.links[role]), choices: [displayed(draft.saved[role])], browse: canBrowse() && !other, disabled: locked || !ready });
 }
 function renderDashboard(locked) {
-  $('context-name').textContent = status.sources.title || 'Context';
+  sourceLabel($('context-name'), displayed({ title: status.sources.title || 'Context', target: status.context.target }));
   $('open-context').title = status.context.target;
   $('open-context').disabled = locked;
   for (const role of sourceRoles) {
     const link = status.sources.links[role], row = $(`open-${role}`);
-    $(`${role}-meta`).textContent = link ? (link.title === roleLabels[role] ? shortTarget(link.target) : link.title) : 'Add';
+    const value = displayed(link);
+    if (role === 'docs') {
+      sourceLabel($('docs-name'), { title: 'Docs', icon: value?.icon });
+      const title = sourceTitle(value);
+      sourceLabel($('docs-meta'), { title: link ? (title === 'Docs' ? notionPageId(link.target) ? '' : shortTarget(link.target) : title) : 'Add' });
+    } else sourceLabel($(`${role}-meta`), link ? { ...value, title: link.title === roleLabels[role] && !notionPageId(link.target) ? shortTarget(link.target) : link.title } : { title: 'Add' });
+    row.title = link?.target || '';
     row.dataset.empty = String(!link);
     row.disabled = locked || status.sources.state === 'unavailable';
     row.setAttribute('aria-label', link ? `Open ${roleLabels[role]}: ${link.title}` : `Add ${roleLabels[role]}`);
@@ -165,9 +200,9 @@ function renderSettings(locked) {
   const dirty = isDirty(draft);
   const ready = status.context.state === 'configured' && draft.contextTarget === status.context.target && status.sources.state !== 'unavailable';
   const current = { title: draft.title || 'Context', target: draft.contextTarget };
-  contextPicker.render({ value: current, choices: [current], browse: canBrowse(), disabled: locked,
+  contextPicker.render({ value: displayed(current), choices: [displayed(current)], browse: canBrowse(), disabled: locked,
     applyText: sourceChanges() ? 'Discard and switch' : 'Switch context', note: sourceChanges() ? 'Unsaved source changes will be discarded.' : '' });
-  for (const role of sourceRoles) settingsPickers[role].render({ value: draft.links[role], choices: [draft.saved[role]], browse: canBrowse(), disabled: locked || !ready });
+  for (const role of sourceRoles) settingsPickers[role].render({ value: displayed(draft.links[role]), choices: [displayed(draft.saved[role])], browse: canBrowse(), disabled: locked || !ready });
   $('drawer-save').disabled = locked || !dirty || !ready;
   $('drawer-save').textContent = saving ? 'Saving…' : 'Save';
   $('drawer-cancel').disabled = saving; $('drawer-close').disabled = saving;
@@ -203,6 +238,7 @@ async function open(target) {
 }
 async function refresh() {
   if (refreshing || saving) return;
+  ++iconGeneration; icons.clear(); requestedIcons.clear();
   refreshing = true; feedback(''); render();
   try { apply(await app.callServerTool({ name: 'aios_status', arguments: {} })); }
   catch {
@@ -342,7 +378,7 @@ async function switchContext(value, title) {
 function reload() { fillDraft(); feedback(''); render(); }
 
 app.ontoolresult = result => {
-  if (result?._meta?.['aios/pages'] || result?._meta?.['aios/kind'] === 'pages') return;
+  if (result?._meta?.['aios/pages'] || ['pages', 'icons'].includes(result?._meta?.['aios/kind'])) return;
   try { apply(result); if (result?._meta?.['aios/view'] === 'settings') openSettings(); }
   catch (error) {
     checkedAt = Math.max(checkedAt + 1, Date.now());

@@ -4,11 +4,12 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { NOTION_ID, notionState, readNotionPlugin, resolveCodexCommand } from './codex-status.mjs';
 import { classifyTarget } from './ui-model.mjs';
+import { pageIcon, notionPageId, fetchedPageIcon } from './page-icons.mjs';
 
 const serverName = 'codex_apps';
 const browseTools = ['notion.notion-list-favorite-pages', 'notion.notion-list-private-pages', 'notion.notion-list-shared-pages'];
 const searchTool = 'notion.search';
-const allowedTools = new Set([...browseTools, searchTool]);
+const allowedTools = new Set([...browseTools, searchTool, 'notion.fetch']);
 const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 const unavailable = () => new Error('Could not load Notion pages. Refresh the connection and try again.');
 
@@ -39,14 +40,19 @@ export function pageToolAllowed(config, name, annotations) {
 
 // Only navigation metadata reaches the panel. Source content and credentials
 // remain with the official connector; nothing from this catalog is persisted.
-export function pageLinks(result) {
+function resultData(result) {
   if (result?.isError) throw unavailable();
   let data = result?.structuredContent;
   if (!data) {
     try { data = JSON.parse(result?.content?.find(item => item.type === 'text')?.text); }
     catch { throw unavailable(); }
   }
-  if (!Array.isArray(data?.results)) throw unavailable();
+  if (!record(data)) throw unavailable();
+  return data;
+}
+export function pageLinks(result) {
+  const data = resultData(result);
+  if (!Array.isArray(data.results)) throw unavailable();
   const pages = new Map();
   for (const item of data.results.slice(0, 200)) {
     if (!record(item) || typeof item.title !== 'string' || typeof item.url !== 'string') continue;
@@ -57,7 +63,7 @@ export function pageLinks(result) {
     if (!id) continue;
     const title = item.title.replace(/[\x00-\x1f\x7f]/g, ' ').trim().slice(0, 100) || 'Untitled';
     const path = typeof item.path === 'string' ? item.path.replace(/[\x00-\x1f\x7f]/g, ' ').slice(0, 200) : '';
-    pages.set(id, { id, title, target: `${url.origin}${url.pathname}`, ...(path ? { path } : {}) });
+    pages.set(id, { id, title, target: `${url.origin}${url.pathname}`, ...(path ? { path } : {}), ...(Object.hasOwn(item, 'icon') ? { icon: pageIcon(item.icon) } : {}) });
   }
   return { pages: [...pages.values()], hasMore: Boolean(data.nextCursor || data.next_cursor || data.has_more) };
 }
@@ -143,14 +149,13 @@ export class NotionPages {
     } finally { clearTimeout(timer); this.pending.delete(id); }
   }
 
-  async tool(name, args, config = {}) {
+  async tool(name, args, config = {}, decode = pageLinks) {
     if (!allowedTools.has(name) || this.tools?.[name]?.annotations?.readOnlyHint !== true || this.tools[name].annotations.destructiveHint === true) throw unavailable();
     if (!pageToolAllowed(config, name, this.tools[name].annotations)) throw new Error('Notion page browsing needs permission in Codex’s Notion tool settings.');
-    return pageLinks(await this.call('mcpServer/tool/call', { threadId: this.threadId, server: serverName, tool: name, arguments: args }));
+    return decode(await this.call('mcpServer/tool/call', { threadId: this.threadId, server: serverName, tool: name, arguments: args }));
   }
 
-  async list(query = '') {
-    if (typeof query !== 'string' || query.length > 160 || /[\x00-\x1f\x7f]/.test(query)) throw new Error('Use a shorter page name.');
+  async connected(operation) {
     if (this.users >= 3) throw new Error('Page search is busy. Try again in a moment.');
     clearTimeout(this.idle); this.users++;
     try {
@@ -161,21 +166,38 @@ export class NotionPages {
       if (plugin !== 'enabled' || matches?.length !== 1 || notionState(matches[0]) !== 'connected') {
         await this.close(); throw new Error('Connect the official Notion plugin in Codex first.');
       }
-      const text = query.trim();
-      if (text) {
-        const result = await this.tool(searchTool, { query: text, query_type: 'internal', page_size: 30, max_highlight_length: 0 }, settings.config);
-        return { ...result, hasMore: result.hasMore || result.pages.length === 30 };
-      }
-      const available = browseTools.filter(name => this.tools?.[name]);
-      const results = await Promise.allSettled(available.map(name => this.tool(name, { limit: 20 }, settings.config)));
-      const successful = results.filter(result => result.status === 'fulfilled').map(result => result.value);
-      if (!successful.length) throw results.find(result => result.status === 'rejected')?.reason || unavailable();
-      const pages = [...new Map(successful.flatMap(result => result.pages).map(page => [page.id, page])).values()];
-      return { pages, hasMore: true, partial: successful.length !== available.length };
+      return await operation(settings.config);
     } finally {
       this.users--;
       if (!this.users && this.child) { this.idle = setTimeout(() => void this.close(), this.idleMs); this.idle.unref?.(); }
     }
+  }
+
+  async list(query = '') {
+    if (typeof query !== 'string' || query.length > 160 || /[\x00-\x1f\x7f]/.test(query)) throw new Error('Use a shorter page name.');
+    return this.connected(async config => {
+      const text = query.trim();
+      if (text) {
+        const result = await this.tool(searchTool, { query: text, query_type: 'internal', page_size: 30, max_highlight_length: 0 }, config);
+        return { ...result, hasMore: result.hasMore || result.pages.length === 30 };
+      }
+      const available = browseTools.filter(name => this.tools?.[name]);
+      const results = await Promise.allSettled(available.map(name => this.tool(name, { limit: 20 }, config)));
+      const successful = results.filter(result => result.status === 'fulfilled').map(result => result.value);
+      if (!successful.length) throw results.find(result => result.status === 'rejected')?.reason || unavailable();
+      const pages = [...new Map(successful.flatMap(result => result.pages).map(page => [page.id, page])).values()];
+      return { pages, hasMore: true, partial: successful.length !== available.length };
+    });
+  }
+
+  async icons(targets) {
+    if (!Array.isArray(targets) || !targets.length || targets.length > 6 || targets.some(target => !notionPageId(target))) throw new Error('Choose up to six Notion pages.');
+    const unique = [...new Map(targets.map(target => [notionPageId(target), target])).values()];
+    return this.connected(async config => {
+      const results = await Promise.allSettled(unique.map(target => this.tool('notion.fetch', { id: target }, config,
+        result => fetchedPageIcon(resultData(result), target))));
+      return { icons: results.flatMap(result => result.status === 'fulfilled' ? [result.value] : []), partial: results.some(result => result.status === 'rejected') };
+    });
   }
 
   async close() {

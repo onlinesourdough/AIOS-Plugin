@@ -7,7 +7,7 @@ import { NOTION_ID } from './codex-status.mjs';
 
 const url = 'https://app.notion.com/p/00000000000000000000000000000001';
 const result = (items = [{ title: 'AIOS', url }]) => ({ structuredContent: { results: items } });
-const names = ['notion.search', 'notion.notion-list-private-pages', 'notion.notion-list-shared-pages', 'notion.notion-list-favorite-pages'];
+const names = ['notion.search', 'notion.notion-list-private-pages', 'notion.notion-list-shared-pages', 'notion.notion-list-favorite-pages', 'notion.fetch'];
 const tools = Object.fromEntries(names.map(name => [name, { name, annotations: { readOnlyHint: true, destructiveHint: false } }]));
 
 test('page results retain only safe Notion navigation metadata and deduplicate page identity', () => {
@@ -133,4 +133,29 @@ test('one slow browse source cannot cancel the successful sources', async t => {
   assert.equal(got.partial, true); assert.equal(got.pages.length, 1);
   assert.equal(f.children[0].exitCode, null); assert.equal(f.pages.pending.size, 0);
   assert.equal((await f.pages.list('AIOS')).pages.length, 1);
+});
+
+test('selected icon reads are bounded, identity-checked and never return fetched page bodies', async t => {
+  const f = fixture({ respond: request => request.params?.tool === 'notion.fetch' ? { result: { structuredContent: { id: request.params.arguments.id, text: '<database icon="/icons/copy_lightgray.svg">private knowledge</database>' } } } : undefined });
+  t.after(() => f.pages.close());
+  const got = await f.pages.icons([url, url + '?source=copy_link']);
+  assert.equal(got.icons.length, 1); assert.equal(got.icons[0].icon, 'https://www.notion.so/icons/copy_lightgray.svg');
+  assert.equal(JSON.stringify(got).includes('private knowledge'), false);
+  assert.equal(f.requests.filter(r => r.method === 'mcpServer/tool/call').length, 1);
+  await assert.rejects(f.pages.icons(Array(7).fill(url)), /six/);
+  await assert.rejects(f.pages.icons(['https://example.com/']), /Notion/);
+  f.disconnect(); await assert.rejects(f.pages.icons([url]), /Connect the official/);
+});
+
+test('Notion list icon metadata is retained independently of the title', () => {
+  assert.equal(pageLinks(result([{ title: 'Docs', url, icon: '/icons/copy_lightgray.svg' }])).pages[0].icon, 'https://www.notion.so/icons/copy_lightgray.svg');
+  assert.equal(pageLinks(result([{ title: 'Memory', url, icon: '🧠' }])).pages[0].icon, '🧠');
+});
+
+test('denied icon fetches do not call the connector or stop navigation', async t => {
+  const f = fixture({ respond: request => request.method === 'config/read' ? { result: { config: { apps: { [NOTION_ID]: { tools: { fetch: { enabled: false } } } } } } } : undefined });
+  t.after(() => f.pages.close());
+  assert.deepEqual(await f.pages.icons([url]), { icons: [], partial: true });
+  assert.equal(f.requests.some(r => r.method === 'mcpServer/tool/call'), false);
+  assert.equal((await f.pages.list('Docs')).pages[0].title, 'AIOS');
 });

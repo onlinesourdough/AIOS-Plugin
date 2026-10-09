@@ -1,4 +1,4 @@
-# Codex sidebar — 0.26.0
+# Codex sidebar — 0.26.1
 
 The Meetings-inspired layout uses a compact header, one Context card and simple
 Personal/Team rows for Skills and Memory. Missing destinations stay visible with
@@ -20,6 +20,23 @@ its sources remain separate. Optional slots offer None. Add/Edit link remains
 available. Page discovery establishes visible navigation metadata, not business
 readiness or access to every linked destination.
 
+Selected Notion destinations display their original emoji or built-in icon in
+setup, Settings and the dashboard. Icons already supplied by the page listing
+are reused. Missing icons are read only for selected destinations, in batches
+of at most six, and cached for the current panel until Refresh. Existing saved
+maps work without a migration or a navigation write. The official fetch tool
+returns a page/database response; AIOS checks its identity, extracts only the
+icon metadata and discards the rest before returning to the UI. AIOS does not
+persist these responses; the Codex host owns its own logging. Opening a connected
+panel can start the temporary transport for this read, even without a page search. Search results
+are not individually fetched. Unsupported custom/uploaded icons and failed
+icon reads retain a usable text label; no arbitrary external image host is loaded.
+Icon failure does not affect the connection badge or saved source choices.
+
+The lower-left footer shows only onlinesourdough in Geist Pixel Square. The font is
+embedded in the packaged HTML with its SIL Open Font License in the notices;
+body text and controls continue to use the Codex theme.
+
 ## Boundaries
 
 The official Notion plugin/account stays separate. Native CLI inventory and
@@ -36,7 +53,7 @@ changing installed settings. Each request checks current plugin/account availabi
 and effective Notion tool restrictions. Required confirmation stays in Codex;
 the picker cannot grant it. Searches coalesce while a prior request is running,
 and a timed-out read does not cancel other successful reads. It never reads credentials,
-accepts approvals or uses private HTTP APIs. Only page names, identities, paths and
+accepts approvals or uses private HTTP APIs. Only page names, identities, icons, paths and
 links reach the UI; result bodies/highlights are excluded. Company knowledge, personal/team methods, Memory and Spaces
 stay in their chosen home. The panel displays destinations, not live records or
 counts. Source entry does not create a workspace or establish business readiness.
@@ -51,11 +68,13 @@ job is introduced. Context remains provider-agnostic and retrieves only needed d
 
 Codex runs the packaged Node.js 22+ stdio server. Page selection requires Codex
 CLI 0.161.0+ supporting the documented direct MCP tool call. No consumer npm, Docker, hosted
-service, telemetry or UI network domains. Source: apps/sidebar. Locked bundles:
+service or telemetry. The UI may load built-in icons from www.notion.so; no
+external font service is used. Source: apps/sidebar. Locked bundles:
 runtime/sidebar. Resource: ui://aios/home-v5. Tools:
 
 - aios_open: read-only global app entry; status and links are UI metadata.
 - aios_status: app-only read-only refresh.
+- aios_notion_icons: app-only bounded icon reads for selected destinations.
 - aios_notion_pages: app-only bounded read-only navigation listing/search; UI metadata only.
 - aios_settings: app-only native settings entry, opening the same drawer.
 - aios_save_context: app-only owned AGENTS pointer save.
