@@ -89,7 +89,7 @@ export class NotionPages {
     const cwd = await mkdtemp(join(tmpdir(), 'aios-notion-pages-'));
     if (generation !== this.generation) { await rm(cwd, { recursive: true, force: true }); throw unavailable(); }
     this.cwd = cwd;
-    const child = this.child = this.launch(this.executable, ['app-server', '--stdio'], { stdio: ['pipe', 'pipe', 'ignore'], windowsHide: true });
+    const child = this.child = this.launch(this.executable, ['app-server', '--stdio'], { cwd, stdio: ['pipe', 'pipe', 'ignore'], windowsHide: true });
     let buffer = '';
     const fail = () => { if (this.child === child) void this.close(); };
     child.on('error', fail); child.on('exit', fail); child.stdin.on('error', fail); child.stdout.on('error', fail);

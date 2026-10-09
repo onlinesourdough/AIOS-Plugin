@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.26.2 — 2026-10-09
+
+- Keep Notion connection, page and icon reads working after Codex refreshes an
+  installed plugin. CLI helpers use a stable temporary directory instead of
+  inheriting the replaceable plugin cache as their working directory.
+
 ## 0.26.1 — 2026-10-09
 
 - Display Notion emoji and built-in page/database icons consistently in setup,

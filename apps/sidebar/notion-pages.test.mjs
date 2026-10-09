@@ -29,8 +29,9 @@ test('page results retain only safe Notion navigation metadata and deduplicate p
 function fixture({ respond, plugin = 'enabled', timeoutMs = 1000 } = {}) {
   const requests = [], children = [];
   let connected = true;
-  const launch = () => {
+  const launch = (_command, _args, options) => {
     const child = new EventEmitter(); children.push(child);
+    child.cwd = options.cwd;
     child.stdin = new PassThrough(); child.stdout = new PassThrough(); child.exitCode = null;
     child.kill = () => { child.exitCode = 0; child.emit('exit', 0); };
     child.stdin.on('data', chunk => {
@@ -65,6 +66,7 @@ test('search reuses the existing connector, strips highlights and never starts a
   const starts = f.requests.filter(r => r.method === 'thread/start');
   assert.equal(starts.length, 1); assert.equal(starts[0].params.ephemeral, true);
   assert.equal(starts[0].params.sandbox, 'read-only');
+  assert.equal(f.children[0].cwd, starts[0].params.cwd, 'transport uses its owned temporary directory, never the replaceable plugin cache');
   assert.equal(f.requests.some(r => /turn\/|thread\/(list|read|resume)|oauth|config\/.*write/.test(r.method)), false);
   const calls = f.requests.filter(r => r.method === 'mcpServer/tool/call');
   assert.deepEqual(calls.map(r => r.params.tool), ['notion.search', 'notion.search']);
