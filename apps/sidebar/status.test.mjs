@@ -38,7 +38,7 @@ function fixture(replies, initialize = { result: {} }) {
       if (response) child.stdout.write((response.raw ?? JSON.stringify({ id: request.id, ...response })) + '\n');
     });
   });
-  return { requests, child, launch: () => child };
+  return { requests, child, launch: (_command, _args, options) => { assert.equal(options.cwd, tmpdir()); return child; } };
 }
 
 test('native status selects exact Notion identity and closes its process', async () => {
@@ -136,6 +136,7 @@ test('installation and connection are independent; neither falsely implies ready
 test('plugin detection uses bounded native CLI and hides raw errors', async () => {
   const state = await readNotionPlugin({ run: async (cmd, args, opts) => {
     assert.equal(cmd, 'codex'); assert.deepEqual(args, ['plugin', 'list', '--json']); assert.ok(opts.timeout <= 12000);
+    assert.equal(opts.cwd, tmpdir());
     return { stdout: JSON.stringify({ installed: [] }) };
   } });
   assert.equal(state, 'missing');

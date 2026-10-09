@@ -1,4 +1,4 @@
-# Codex sidebar — 0.26.1
+# Codex sidebar — 0.26.2
 
 The Meetings-inspired layout uses a compact header, one Context card and simple
 Personal/Team rows for Skills and Memory. Missing destinations stay visible with
@@ -48,6 +48,8 @@ AIOS MCP serves this panel and stores only navigation labels/links. Its app-only
 page picker calls an allowlist of read-only Notion tools through the documented
 Codex app-server protocol. It creates one temporary in-memory transport context,
 never a model turn or persisted conversation, and closes it after a minute idle.
+CLI helpers use stable temporary directories: Codex may replace an installed
+plugin cache while reloading configuration.
 The ephemeral context disables unrelated configured local MCPs/plugins without
 changing installed settings. Each request checks current plugin/account availability
 and effective Notion tool restrictions. Required confirmation stays in Codex;

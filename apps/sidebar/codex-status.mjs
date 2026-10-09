@@ -2,6 +2,7 @@ import { spawn, execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { access, constants } from 'node:fs/promises';
 import { delimiter, join } from 'node:path';
+import { tmpdir } from 'node:os';
 
 // Use the public app-server protocol, never Codex's auth files or private HTTP APIs.
 export const NOTION_ID = 'asdk_app_69c18c28f1188191bf5b8445c4ab0a2e';
@@ -30,7 +31,7 @@ export async function resolveCodexCommand({ path = process.env.PATH || '', platf
 
 export async function readNotionPlugin({ run = promisify(execFile), command = 'codex' } = {}) {
   try {
-    const { stdout } = await run(command, ['plugin', 'list', '--json'], { timeout: 12000, maxBuffer: 4 * 1024 * 1024, windowsHide: true });
+    const { stdout } = await run(command, ['plugin', 'list', '--json'], { cwd: tmpdir(), timeout: 12000, maxBuffer: 4 * 1024 * 1024, windowsHide: true });
     return notionPluginState(JSON.parse(stdout));
   } catch { return 'unknown'; }
 }
@@ -70,7 +71,9 @@ export async function readNotionConnection({ launch = spawn, timeoutMs = 12000, 
       };
       child = launch(command, ['app-server', '--stdio'], {
         // Keep the user's actual account/config. No shell and no auth material in output.
-        stdio: ['pipe', 'pipe', 'ignore'], windowsHide: true,
+        // Plugin refresh can replace the installed cache directory. A child
+        // must not inherit that directory as its configuration reload root.
+        cwd: tmpdir(), stdio: ['pipe', 'pipe', 'ignore'], windowsHide: true,
       });
       timer = setTimeout(() => finish('unknown', 'timeout'), timeoutMs);
       child.on('error', (error) => finish('unknown', error.code === 'ENOENT' ? 'cli_missing' : 'cli_error'));
