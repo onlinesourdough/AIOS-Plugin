@@ -10,10 +10,10 @@ const port = Number(process.env.PORT || 43195);
 const liveNotion = process.env.AIOS_PREVIEW_LIVE_NOTION === '1';
 const notionPages = new NotionPages();
 const examplePages = [
-  { title: 'Studio AIOS', target: 'https://app.notion.com/p/00000000000000000000000000000001' },
-  { title: 'Company docs', target: 'https://app.notion.com/p/00000000000000000000000000000002' },
-  { title: 'Writing & delivery', target: 'https://app.notion.com/p/00000000000000000000000000000003' },
-  { title: 'Decisions', target: 'https://app.notion.com/p/00000000000000000000000000000004' },
+  { icon: '👾', title: 'Studio AIOS', target: 'https://app.notion.com/p/00000000000000000000000000000001' },
+  { icon: 'https://www.notion.so/icons/copy_lightgray.svg', title: 'Company docs', target: 'https://app.notion.com/p/00000000000000000000000000000002' },
+  { icon: '🤹', title: 'Writing & delivery', target: 'https://app.notion.com/p/00000000000000000000000000000003' },
+  { icon: '🧠', title: 'Decisions', target: 'https://app.notion.com/p/00000000000000000000000000000004' },
 ];
 const scratch = await mkdtemp(join(tmpdir(), 'aios-ui-test-'));
 const roots = Object.fromEntries(['home','setup','test'].map(key=>[key,join(scratch,key)]));
@@ -27,7 +27,7 @@ async function reset(codexHome, scenario) {
   if (['dashboard','team'].includes(scenario)) {
     const context = await readContextRoute({ codexHome });
     const current = await readSources(context.target, { codexHome });
-    const links = {docs:{title:'Company docs',target:'https://example.com/docs'},personalSkills:{title:'Writing & delivery',target:'https://example.com/skills'},memory:{title:'Decisions',target:'https://example.com/memory'}};
+    const links = {docs:{title:'Company docs',target:examplePages[1].target},personalSkills:{title:'Writing & delivery',target:examplePages[2].target},memory:{title:'Decisions',target:examplePages[3].target}};
     if (scenario === 'team') Object.assign(links,{teamSkills:{title:'Team playbook',target:'https://example.com/team-skills'},teamMemory:{title:'Team decisions',target:'https://example.com/team-memory'}});
     await saveSources({target:context.target,expectedContextRevision:context.revision,expectedRevision:current.revision,title:'Studio AIOS',links},{codexHome});
   }
@@ -50,6 +50,10 @@ const server = createServer(async (req, res) => {
     const { action, args, scenario, workspace } = JSON.parse(body);
     if (!Object.hasOwn(roots,workspace)) throw new Error('Unknown preview');
     const codexHome=roots[workspace];
+    if (action === 'icons') {
+      const data = liveNotion ? await notionPages.icons(args.targets) : { icons: args.targets.map(target => ({ target, icon: examplePages.find(page => page.target === target)?.icon || null })), partial: false };
+      res.setHeader('Content-Type','application/json'); return res.end(JSON.stringify({ content: [], _meta: { 'aios/kind': 'icons', 'aios/icons': data } }));
+    }
     if (action === 'pages') {
       const data = liveNotion ? await notionPages.list(args?.query || '') : { pages: examplePages.filter(page=>page.title.toLowerCase().includes((args?.query || '').toLowerCase())), hasMore: false };
       res.setHeader('Content-Type','application/json'); return res.end(JSON.stringify({ content: [], _meta: { 'aios/kind': 'pages', 'aios/pages': data } }));
@@ -63,7 +67,7 @@ const server = createServer(async (req, res) => {
     const context = await readContextRoute({ codexHome });
     const sources = context.state === 'configured' ? await readSources(context.target, { codexHome }) : {state:'missing', title:'', links:{}};
     const notion = liveNotion ? await readNotionSetup() : { state };
-    res.setHeader('Content-Type', 'application/json'); res.end(JSON.stringify({ content: [], _meta: { 'aios/status': { version, features: { notionPages: true }, notion, context, sources, checkedAt: new Date(lastCheck).toISOString() } } }));
+    res.setHeader('Content-Type', 'application/json'); res.end(JSON.stringify({ content: [], _meta: { 'aios/status': { version, features: { notionPages: true, notionIcons: true }, notion, context, sources, checkedAt: new Date(lastCheck).toISOString() } } }));
   } catch (error) { res.writeHead(400); res.end(JSON.stringify({ error: error.message })); }
 }).listen(port, '127.0.0.1', () => console.log(`AIOS preview (sample workspace): http://127.0.0.1:${port}/ — /setup — /settings`));
 for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => server.close(async () => { await notionPages.close(); await rm(scratch, { recursive: true, force: true }); process.exit(0); }));

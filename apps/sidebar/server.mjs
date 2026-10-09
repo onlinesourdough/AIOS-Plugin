@@ -23,7 +23,7 @@ new OpenAIExtensions(server);
 registerAppResource(server, 'aios-setup', uri, {}, async () => ({ contents: [{
   uri, mimeType: RESOURCE_MIME_TYPE, text: await readFile(join(__dirname, 'index.html'), 'utf8'),
   _meta: {
-    ui: { csp: { connectDomains: [], resourceDomains: [] }, prefersBorder: false },
+    ui: { csp: { connectDomains: [], resourceDomains: ['https://www.notion.so'] }, prefersBorder: false },
     'openai/ui': { preferredDisplayMode: 'fullscreen', availableDisplayModes: ['fullscreen'] },
   },
 }] }));
@@ -35,7 +35,7 @@ async function status() {
   const checkedAt = new Date(lastCheck).toISOString();
   const [notion, context] = await Promise.all([readNotionSetup(), readContextRoute()]);
   const sources = context.state === 'configured' ? await readSources(context.target) : { state: 'missing', title: '', links: {} };
-  return { version: __AIOS_VERSION__, features: { notionPages: true }, notion, context, sources, checkedAt };
+  return { version: __AIOS_VERSION__, features: { notionPages: true, notionIcons: true }, notion, context, sources, checkedAt };
 }
 async function result() {
   return { content: [{ type: 'text', text: 'AIOS dashboard. Connection status and saved links to Context, Docs, Skills and Memory; no business records are copied.' }],
@@ -55,6 +55,15 @@ registerAppTool(server, 'aios_notion_pages', {
 }, async ({ query }) => {
   try { return { content: [], _meta: { 'aios/kind': 'pages', 'aios/pages': await notionPages.list(query) } }; }
   catch (error) { return { isError: true, content: [{ type: 'text', text: error.message }], _meta: { 'aios/kind': 'pages' } }; }
+});
+registerAppTool(server, 'aios_notion_icons', {
+  title: 'Read selected page icons', description: 'Read icons for up to six selected Notion destinations. The official fetch response is reduced to page identity and icon; page bodies are discarded, never returned or stored.',
+  inputSchema: { targets: z.array(z.string().max(2048)).min(1).max(6) },
+  annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true },
+  _meta: { ui: { visibility: ['app'] } },
+}, async ({ targets }) => {
+  try { return { content: [], _meta: { 'aios/kind': 'icons', 'aios/icons': await notionPages.icons(targets) } }; }
+  catch { return { isError: true, content: [{ type: 'text', text: 'Page icons are unavailable.' }], _meta: { 'aios/kind': 'icons' } }; }
 });
 registerAppTool(server, 'aios_status', {
   title: 'Refresh AIOS', description: 'Refresh Notion connection metadata and the saved context location.',

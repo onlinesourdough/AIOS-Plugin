@@ -1,6 +1,6 @@
 # AIOS
 
-AIOS version: 0.26.0
+AIOS version: 0.26.1
 
 **Business first. Productivity built in.**
 
@@ -21,7 +21,8 @@ Docs, Personal/Team Skills and Memory destinations, then open your dashboard.
 All setup sections remain visible and revisitable. Existing context opens the
 dashboard immediately; Settings opens a separate drawer. Connected Notion
 selectors list accessible pages by name and support search. Saved sources and
-manual links remain available; the picker fetches no page bodies.
+manual links remain available; page listings fetch no page bodies. Selected destinations can read icon
+metadata via the official fetch tool; the remaining response is discarded.
 Clicks open destinations or save links directly; they never send a chat message.
 A saved link does not prove remote access or complete business onboarding.
 

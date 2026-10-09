@@ -13,7 +13,7 @@ const out = resolve(process.argv[2] || join(root, 'runtime/sidebar'));
 await mkdir(out, { recursive: true });
 const options = { absWorkingDir: source, bundle: true, minify: true, metafile: true, define: { __AIOS_VERSION__: JSON.stringify(version) } };
 const app = await build({ ...options, entryPoints: ['app.mjs'], platform: 'browser', format: 'esm', write: false });
-const css = await build({ ...options, entryPoints: ['styles.css'], write: false });
+const css = await build({ ...options, entryPoints: ['styles.css'], loader: { '.woff2': 'dataurl' }, write: false });
 const server = await build({ ...options, entryPoints: ['server.mjs'], platform: 'node', format: 'cjs', target: 'node22', outfile: join(out, 'server.cjs') });
 const template = await readFile(join(source, 'index.html'), 'utf8');
 await writeFile(join(out, 'index.html'), template.replace('/*APP_CSS*/', () => css.outputFiles[0].text)
@@ -25,6 +25,7 @@ for (const meta of [app.metafile, css.metafile, server.metafile]) for (const inp
   if (index >= 0) packageRoots.add(parts.slice(0, index + (parts[index + 1].startsWith('@') ? 3 : 2)).join('/'));
 }
 let notices = '# Third-party notices\n\nThe bundled sidebar includes the following open-source packages.\n';
+notices += '\n## Geist Pixel Square\n\n' + await readFile(join(source, 'licenses/geist-OFL.txt'), 'utf8');
 for (const path of [...packageRoots].sort()) {
   const folder = join(source, path);
   const info = JSON.parse(await readFile(join(folder, 'package.json'), 'utf8'));

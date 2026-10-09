@@ -6,7 +6,7 @@ import { classifyTarget, connectionCopy } from './ui-model.mjs';
 import { createDocument } from './test-dom.mjs';
 // The browser modules share one VM realm with a small DOM; imports become globals.
 const read = name => readFile(new URL(name, import.meta.url), 'utf8');
-const source = (await Promise.all(['setup-state.mjs', 'picker.mjs', 'app.mjs'].map(read)))
+const source = (await Promise.all(['page-icons.mjs', 'source-label.mjs', 'setup-state.mjs', 'picker.mjs', 'app.mjs'].map(read)))
   .map(text => text.replace(/^import .*;\n/gm, '').replace(/^export /gm, '')).join('\n');
 const template = await read('index.html');
 const target = 'https://app.notion.com/p/00000000000000000000000000000001';
@@ -18,7 +18,7 @@ const plain = value => JSON.parse(JSON.stringify(value));
 async function ui(context = { state: 'missing', revision: 'a'.repeat(64) }, sources = { state: 'missing', revision: 'c'.repeat(64), title: '', links: {} }, options = {}) {
   let time = 100000, host, fail = Boolean(options.initialFailure), delay, release, revision = 0;
   const calls = [], links = [], document = createDocument(template);
-  const status = { features: { notionPages: Boolean(options.pages) }, notion: { state: options.notion || 'connected' }, context, sources, checkedAt: new Date(time).toISOString() };
+  const status = { features: { notionPages: Boolean(options.pages), notionIcons: Boolean(options.icons) }, notion: { state: options.notion || 'connected' }, context, sources, checkedAt: new Date(time).toISOString() };
   const snapshot = () => ({ _meta: { 'aios/status': structuredClone({ ...status, checkedAt: new Date(time).toISOString() }) } });
   const rejected = text => ({ isError: true, content: [{ type: 'text', text }] });
   class App {
@@ -36,6 +36,7 @@ async function ui(context = { state: 'missing', revision: 'a'.repeat(64) }, sour
       calls.push({ name, args: plain(args) }); if (delay) await delay;
       if (fail) throw new Error('Request failed');
       if (name === 'aios_notion_pages') return { _meta: { 'aios/pages': await options.pages(args.query) } };
+      if (name === 'aios_notion_icons') return { _meta: { 'aios/kind': 'icons', 'aios/icons': await options.icons(args.targets) } };
       time += 10;
       if (name === 'aios_save_context') {
         if (args.expectedRevision !== status.context.revision) return rejected('Your context changed. Refresh before trying again.');
@@ -500,4 +501,51 @@ test('choosing another page in Settings asks before switching and does not carry
   assert.equal(u.text('settings-context-picker'),'Client B');
   assert.equal(u.text('settings-docs-picker'),'Choose a page');
   assert.deepEqual(u.calls.at(-1).args.links,{});
+});
+
+test('saved destinations receive their real icons without rewriting navigation or duplicating title emojis', async () => {
+  const original = saved({ docs: { title: 'Docs', target: other }, memory: { title: '🧠 Memory', target: target + '?memory' } });
+  const u = await ui(configured(), original, { pages: async () => ({ pages: [] }), icons: async targets => ({ icons: targets.map(value => ({ target: value, icon: value === other ? 'https://www.notion.so/icons/copy_lightgray.svg' : '🧠' })) }) });
+  await settled();
+  assert.equal(u.get('docs-name').children[0].tagName, 'IMG');
+  assert.equal(u.get('docs-name').children[0].src, 'https://www.notion.so/icons/copy_lightgray.svg');
+  assert.equal((u.text('memory-meta').match(/🧠/g) || []).length, 1);
+  assert.deepEqual(u.names(), ['aios_notion_icons']);
+  assert.deepEqual(plain(u.status.sources), original);
+  await u.click('settings');
+  assert.equal(u.get('settings-docs-picker').children[0].children[0].tagName, 'IMG');
+  assert.equal(u.get('drawer-save').disabled, true);
+  assert.deepEqual(u.names(), ['aios_notion_icons']);
+});
+
+test('failed or late icon metadata cannot break setup, change connection state, or overwrite another source', async () => {
+  let finish;
+  const u = await ui(configured(), saved({ docs: { title: 'Docs', target: other } }), { pages: async () => ({ pages: [] }), icons: () => new Promise(resolve => { finish = resolve; }) });
+  await settled();
+  await u.notify({ isError: true, _meta: { 'aios/kind': 'icons' }, content: [{ type: 'text', text: 'unavailable' }] });
+  assert.equal(u.shown('dashboard'), true); assert.equal(u.shown('badge'), true);
+  finish({ icons: [{ target: 'https://app.notion.com/p/00000000000000000000000000000003', icon: '💀' }] });
+  await settled();
+  assert.equal(u.text('docs-name'), 'Docs');
+  assert.equal(u.get('docs-name').children.some(node => node.tagName === 'IMG'), false);
+  await u.click('settings'); assert.equal(u.get('drawer-save').disabled, true);
+});
+
+test('Docs uses one icon, wraps its long name for truncation and keeps manual destination hints', async () => {
+  const u = await ui(configured(), saved({ docs: { title: '📄 Company documentation', target: other } }), { pages: async () => ({ pages: [] }), icons: async targets => ({ icons: targets.map(value => ({ target: value, icon: '📄' })) }) });
+  await settled();
+  assert.equal((u.text('docs-name').match(/📄/g) || []).length, 1);
+  assert.equal(u.text('docs-meta'), 'Company documentation');
+  assert.equal(u.get('docs-meta').children[0].className, 'source-title');
+  const manual = await ui(configured(), saved({ docs: { title: 'Docs', target: 'https://example.com/docs' } }));
+  assert.equal(manual.text('docs-meta'), 'example.com/docs');
+});
+
+test('choosing a page with an icon saves only the source title and target', async () => {
+  const u = await ui(configured(), saved({}), { pages: async () => ({ pages: [{ title: 'Docs', target: other, icon: '📄', id: 'opaque', path: 'Workspace' }] }) });
+  await u.click('settings'); await u.click('settings-docs-picker'); await settled();
+  await u.options('settings-docs-picker').find(option => option.title === other).dispatch('click');
+  await u.click('drawer-save');
+  const write = u.calls.find(call => call.name === 'aios_save_sources');
+  assert.deepEqual(write.args.links, { docs: { title: 'Docs', target: other } });
 });

@@ -15,9 +15,9 @@ const transport = new StdioClientTransport({
 try {
   await client.connect(transport);
   const { tools } = await client.listTools();
-  assert.deepEqual(tools.map((tool) => tool.name), ['aios_open', 'aios_notion_pages', 'aios_status', 'aios_settings', 'aios_save_context', 'aios_sources', 'aios_save_sources']);
+  assert.deepEqual(tools.map((tool) => tool.name), ['aios_open', 'aios_notion_pages', 'aios_notion_icons', 'aios_status', 'aios_settings', 'aios_save_context', 'aios_sources', 'aios_save_sources']);
   assert.deepEqual(tools[0]._meta['openai/ui'].entrypoints, [{ type: 'global' }]);
-  for (const name of ['aios_notion_pages', 'aios_status']) {
+  for (const name of ['aios_notion_pages', 'aios_notion_icons', 'aios_status']) {
     assert.deepEqual(tools.find(tool => tool.name === name)._meta.ui.visibility, ['app']);
     assert.equal(tools.find(tool => tool.name === name).annotations.openWorldHint, true);
   }
