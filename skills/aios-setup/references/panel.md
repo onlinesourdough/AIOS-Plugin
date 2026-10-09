@@ -11,8 +11,11 @@ a discard choice. Switching context loads that context's own sources.
 
 AIOS and the official Notion plugin remain separate. Native status checks
 installation, enablement and connection; Connected does not prove page access
-or a complete business setup. Source selectors list already registered sources
-for the current context and accept a new link. They do not search Notion pages.
+or a complete business setup. Once connected, choose the Context page from the
+searchable dropdown. Docs, Skills and Memory use the same page selector. Initial
+suggestions include favorites and top-level pages; search finds other accessible
+destinations. Only names and navigation metadata are fetched. Existing saved
+sources and manual links remain available when useful.
 Panel buttons never start a chat or agent.
 
 For requested business onboarding, this skill verifies the home, reuses Docs,

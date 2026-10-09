@@ -18,7 +18,7 @@ const plain = value => JSON.parse(JSON.stringify(value));
 async function ui(context = { state: 'missing', revision: 'a'.repeat(64) }, sources = { state: 'missing', revision: 'c'.repeat(64), title: '', links: {} }, options = {}) {
   let time = 100000, host, fail = Boolean(options.initialFailure), delay, release, revision = 0;
   const calls = [], links = [], document = createDocument(template);
-  const status = { notion: { state: 'connected' }, context, sources, checkedAt: new Date(time).toISOString() };
+  const status = { features: { notionPages: Boolean(options.pages) }, notion: { state: options.notion || 'connected' }, context, sources, checkedAt: new Date(time).toISOString() };
   const snapshot = () => ({ _meta: { 'aios/status': structuredClone({ ...status, checkedAt: new Date(time).toISOString() }) } });
   const rejected = text => ({ isError: true, content: [{ type: 'text', text }] });
   class App {
@@ -35,6 +35,7 @@ async function ui(context = { state: 'missing', revision: 'a'.repeat(64) }, sour
     async callServerTool({ name, arguments: args }) {
       calls.push({ name, args: plain(args) }); if (delay) await delay;
       if (fail) throw new Error('Request failed');
+      if (name === 'aios_notion_pages') return { _meta: { 'aios/pages': await options.pages(args.query) } };
       time += 10;
       if (name === 'aios_save_context') {
         if (args.expectedRevision !== status.context.revision) return rejected('Your context changed. Refresh before trying again.');
@@ -42,6 +43,7 @@ async function ui(context = { state: 'missing', revision: 'a'.repeat(64) }, sour
         status.sources = options.recoveredSources || { state: 'missing', revision: 'c'.repeat(64), title: '', links: {} };
       }
       if (name === 'aios_save_sources') {
+        if (options.failSources) return rejected('Could not save source names.');
         if (args.target !== status.context.target || args.expectedContextRevision !== status.context.revision
           || args.expectedRevision !== status.sources.revision) return rejected('Source links changed. Refresh before saving again.');
         status.sources = { state: 'saved', revision: String(++revision).padStart(64, 'd'), title: args.title, links: args.links };
@@ -50,7 +52,7 @@ async function ui(context = { state: 'missing', revision: 'a'.repeat(64) }, sour
     }
   }
   const sandbox = { App, classifyTarget, connectionCopy, __AIOS_VERSION__: 'test', applyDocumentTheme() {}, applyHostStyleVariables() {},
-    document, URL, structuredClone, Date: class extends Date { static now() { return time; } } };
+    document, URL, structuredClone, setTimeout, clearTimeout, Date: class extends Date { static now() { return time; } } };
   await vm.runInNewContext(`(async () => {${source}})()`, sandbox);
   const get = id => document.getElementById(id);
   const u = {
@@ -213,7 +215,7 @@ test('switching context explicitly discards unapplied editors as well as applied
   assert.equal(u.text('settings-context-picker-apply'), 'Discard and switch');
   u.get('settings-context-picker-link').value = other;
   await u.click('settings-context-picker-apply');
-  assert.equal(u.get('settings-memory-picker-link').parentNode.hidden, true);
+  assert.equal(u.get('settings-memory-picker-link').parentNode.parentNode.hidden, true);
   assert.equal(u.get('settings-memory-picker').textContent, 'None');
   assert.deepEqual(u.names(), ['aios_save_context']);
 });
@@ -360,4 +362,142 @@ test('the native settings entrypoint opens the drawer only for a configured cont
   assert.equal(u.get('drawer').open, true); assert.equal(u.shown('dashboard'), true);
   const fresh = await ui(undefined, undefined, { view: 'settings' });
   assert.equal(fresh.get('drawer').open, false); assert.equal(fresh.shown('setup'), true);
+});
+
+const settled = () => new Promise(resolve => setTimeout(resolve, 0));
+test('connected onboarding selects real page metadata and keeps its title without pasted links', async () => {
+  const pages = [{ title: 'Studio AIOS', target }, { title: 'Company docs', target: other }];
+  const u = await ui(undefined, undefined, { pages: async () => ({ pages, hasMore: false }) });
+  assert.equal(u.shown('context-link-field'), false); assert.equal(u.shown('setup-context'), true);
+  await u.submit(); assert.equal(u.text('feedback-text'), 'Choose a Notion page.');
+  assert.equal(u.focused(), 'setup-context-picker');
+  await u.click('setup-context-picker'); await settled();
+  assert.equal(u.focused(), 'setup-context-picker-search');
+  await u.key('setup-context-picker-search', 'Enter');
+  assert.equal(u.get('target').value, target); assert.equal(u.text('setup-context-picker'), 'Studio AIOS');
+  await u.submit();
+  assert.deepEqual(u.names(), ['aios_notion_pages', 'aios_save_context', 'aios_save_sources']);
+  assert.equal(u.calls[2].args.title, 'Studio AIOS');
+  await u.click('setup-docs-picker'); await settled();
+  await u.options('setup-docs-picker').find(item=>item.textContent.startsWith('Company docs')).dispatch('click');
+  await u.submit(); await u.submit(); await u.submit();
+  assert.equal(u.shown('dashboard'), true); assert.equal(u.text('context-name'), 'Studio AIOS');
+  assert.equal(u.text('docs-meta'), 'Company docs');
+  assert.equal(u.calls.some(call => /chat|turn|message/.test(call.name)), false);
+});
+
+test('slow searches coalesce to the newest query and late results cannot replace it or a closed picker', async () => {
+  let first, second;
+  const u = await ui(undefined, undefined, { pages: query => new Promise(resolve => { if (query) second = resolve; else first = resolve; }) });
+  await u.click('setup-context-picker'); await settled();
+  const search = u.get('setup-context-picker-search'); search.value = 'new'; await search.dispatch('input');
+  await new Promise(resolve=>setTimeout(resolve,320));
+  assert.equal(second, undefined);
+  search.value = 'newest'; await search.dispatch('input');
+  await new Promise(resolve=>setTimeout(resolve,320));
+  first({ pages: [{ title: 'Old result', target }], hasMore: false }); await settled();
+  assert.equal(u.options('setup-context-picker').some(option=>option.textContent.startsWith('Old result')), false);
+  assert.deepEqual(u.calls.filter(call=>call.name==='aios_notion_pages').map(call=>call.args.query), ['', 'newest']);
+  second({ pages: [{ title: 'New context', target: other }], hasMore: false }); await settled();
+  assert.equal(u.options('setup-context-picker')[0].textContent.startsWith('New context'), true);
+  await u.key('setup-context-picker-search','Escape');
+  assert.equal(u.get('setup-context-picker').getAttribute('aria-expanded'), 'false');
+  assert.equal(u.focused(), 'setup-context-picker');
+  await u.click('setup-context-picker'); await settled();
+  await u.key('setup-context-picker-search','Escape');
+  first({ pages: [{ title: 'Late closed result', target }], hasMore: false }); await settled();
+  assert.equal(u.get('setup-context-picker').getAttribute('aria-expanded'), 'false');
+  assert.equal(u.options('setup-context-picker').some(option=>option.textContent.startsWith('Late closed result')),false);
+});
+
+test('a disconnected or unknown connection still allows a manual Notion page', async () => {
+  for (const notion of ['not_connected', 'unknown', 'plugin_disabled']) {
+    const u = await ui(undefined, undefined, { notion, pages: async () => { throw new Error('Must not search'); } });
+    await u.click('step-1');
+    assert.equal(u.get('setup-context-picker').disabled, false);
+    await u.addLink('setup-context-picker', target); await u.submit();
+    assert.deepEqual(u.names(), ['aios_save_context']);
+    assert.equal(u.status.context.target, target);
+  }
+});
+
+test('changing provider discards its hidden unfinished editor and leaves setup usable', async () => {
+  const u = await ui(undefined, undefined, { pages: async () => ({ pages: [] }) });
+  await u.choose('setup-context-picker', 'Add link…');
+  u.get('setup-context-picker-link').value = other;
+  await u.get('setup-context-picker-link').dispatch('input');
+  await u.provider(); await u.input('https://example.com/context'); await u.submit();
+  assert.equal(u.status.context.target, 'https://example.com/context');
+  assert.equal(u.text('feedback-text'), 'Context saved.');
+});
+
+test('a successful switch with a failed name save reports the partial success visibly', async () => {
+  const u = await ui(configured(), saved({}), { failSources: true,
+    pages: async () => ({ pages: [{ title: 'New company', target: other }] }),
+  });
+  await u.click('settings'); await u.click('settings-context-picker'); await settled();
+  await u.options('settings-context-picker').find(item=>item.textContent.startsWith('New company')).dispatch('click');
+  await u.click('settings-context-picker-apply');
+  assert.equal(u.status.context.target, other);
+  assert.equal(u.shown('drawer-feedback'), true);
+  assert.match(u.text('drawer-feedback-text'), /Context saved, but its name/);
+  assert.equal(u.get('settings-context-picker-link').parentNode.parentNode.hidden, true);
+});
+
+test('page identity preserves a saved label and avoids an unnecessary context switch', async () => {
+  const legacy = 'https://notion.so/Old-title-00000000000000000000000000000001';
+  const u = await ui({ ...configured(), target: legacy }, saved({ docs: { title: 'Our docs', target: legacy } }), {
+    pages: async () => ({ pages: [{ title: 'Renamed in Notion', target, id: 'opaque', path: 'Team navigation' }] }),
+  });
+  await u.click('settings'); await u.click('settings-context-picker'); await settled();
+  const options = u.options('settings-context-picker');
+  assert.equal(options.length, 2); assert.equal(options[0].getAttribute('aria-selected'), 'true');
+  assert.equal(options[0].textContent.startsWith('Our AIOS'), true);
+  await options[0].dispatch('click');
+  assert.equal(u.calls.some(call=>call.name==='aios_save_context'), false);
+  await u.click('settings-docs-picker'); await settled();
+  assert.equal(u.options('settings-docs-picker')[0].textContent.startsWith('Our docs'), true);
+  assert.equal(u.get('drawer-save').disabled, true);
+});
+
+test('a manually entered page never persists its placeholder and can adopt a discovered title', async () => {
+  for (const fetched of [[], [{ title: 'Real company title', target }]]) {
+    const u = await ui(undefined, undefined, { pages: async () => ({ pages: fetched }) });
+    await u.addLink('setup-context-picker', target);
+    await u.click('setup-context-picker'); await settled();
+    await u.options('setup-context-picker')[0].dispatch('click'); await u.submit();
+    const naming = u.calls.find(call=>call.name==='aios_save_sources');
+    if (fetched.length) assert.equal(naming.args.title, 'Real company title');
+    else assert.equal(naming, undefined);
+  }
+});
+
+test('switching back from a folder does not list that folder as a Notion page', async () => {
+  const u = await ui(undefined, undefined, { pages: async () => ({ pages: [] }) });
+  await u.provider(); await u.input('/workspace/context'); await u.provider();
+  assert.equal(u.text('setup-context-picker'), 'Choose a page');
+  await u.click('setup-context-picker'); await settled();
+  assert.equal(u.options('setup-context-picker').some(option=>option.title==='/workspace/context'),false);
+});
+
+test('an echoed picker failure does not overwrite the connection or current setup', async () => {
+  const u = await ui(configured(), saved({}));
+  await u.notify({ isError: true, content: [{ type: 'text', text: 'Could not load pages.' }], _meta: { 'aios/kind': 'pages' } });
+  assert.equal(u.shown('badge'), true); assert.equal(u.shown('dashboard'), true);
+  assert.equal(u.text('feedback-text'), '');
+});
+
+test('choosing another page in Settings asks before switching and does not carry sources across', async () => {
+  const u = await ui(configured(), saved({ docs: { title: 'Old docs', target: 'https://example.com/private' } }), {
+    pages: async () => ({ pages: [{ title: 'Client B', target: other }], hasMore: false }),
+  });
+  await u.click('settings'); await u.click('settings-context-picker'); await settled();
+  await u.options('settings-context-picker').find(item=>item.textContent.startsWith('Client B')).dispatch('click');
+  assert.equal(u.calls.some(call=>call.name==='aios_save_context'),false);
+  assert.equal(u.get('settings-context-picker-link').parentNode.hidden,true);
+  assert.equal(u.focused(),'settings-context-picker-apply');
+  await u.click('settings-context-picker-apply');
+  assert.equal(u.text('settings-context-picker'),'Client B');
+  assert.equal(u.text('settings-docs-picker'),'Choose a page');
+  assert.deepEqual(u.calls.at(-1).args.links,{});
 });

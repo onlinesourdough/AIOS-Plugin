@@ -8,8 +8,10 @@ import { readNotionSetup } from './codex-status.mjs';
 import { readContextRoute, saveContextRoute } from './context-route.mjs';
 import { readSources, saveSources } from './sources.mjs';
 import { z } from 'zod';
+import { NotionPages } from './notion-pages.mjs';
 
-const uri = 'ui://aios/home-v4';
+const uri = 'ui://aios/home-v5';
+const notionPages = new NotionPages();
 const icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="14" height="14" rx="3"/><path d="M3 8h14M8 8v9"/></svg>';
 // MCP SDK 1.31 does not serialize tool icons. The spec's server-icon fallback
 // supplies the same theme-aware navigation icon without patching SDK internals.
@@ -33,7 +35,7 @@ async function status() {
   const checkedAt = new Date(lastCheck).toISOString();
   const [notion, context] = await Promise.all([readNotionSetup(), readContextRoute()]);
   const sources = context.state === 'configured' ? await readSources(context.target) : { state: 'missing', title: '', links: {} };
-  return { version: __AIOS_VERSION__, notion, context, sources, checkedAt };
+  return { version: __AIOS_VERSION__, features: { notionPages: true }, notion, context, sources, checkedAt };
 }
 async function result() {
   return { content: [{ type: 'text', text: 'AIOS dashboard. Connection status and saved links to Context, Docs, Skills and Memory; no business records are copied.' }],
@@ -45,6 +47,15 @@ registerAppTool(server, 'aios_open', {
   annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true },
   _meta: { ui: { resourceUri: uri }, 'openai/ui': { entrypoints: [{ type: 'global' }] } },
 }, result);
+registerAppTool(server, 'aios_notion_pages', {
+  title: 'Choose a Notion page', description: 'List or search accessible Notion page names through the separate official Notion connection. Returns navigation metadata only. No page bodies, model turn, second connection or Notion write.',
+  inputSchema: { query: z.string().max(160).default('') },
+  annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true },
+  _meta: { ui: { visibility: ['app'] } },
+}, async ({ query }) => {
+  try { return { content: [], _meta: { 'aios/kind': 'pages', 'aios/pages': await notionPages.list(query) } }; }
+  catch (error) { return { isError: true, content: [{ type: 'text', text: error.message }], _meta: { 'aios/kind': 'pages' } }; }
+});
 registerAppTool(server, 'aios_status', {
   title: 'Refresh AIOS', description: 'Refresh Notion connection metadata and the saved context location.',
   inputSchema: {},
@@ -102,3 +113,5 @@ server.connect(new StdioServerTransport()).catch(() => {
   console.error('AIOS sidebar could not start. Check the Node runtime and plugin installation.');
   process.exitCode = 1;
 });
+process.stdin.on('end', () => void notionPages.close());
+for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, async () => { await notionPages.close(); process.exit(0); });

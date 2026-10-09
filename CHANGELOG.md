@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.26.0 — 2026-10-09
+
+- Choose Context, Docs, Skills and Memory from searchable Notion page dropdowns
+  using the already-connected official Notion plugin. No second login or model turn.
+- Keep discovered page names and links as UI metadata only; preserve manual
+  provider entry, source isolation and explicit context-switch confirmation.
+- Bound page requests, discard stale searches, reject automatic approvals and
+  close idle transports. Require Codex CLI 0.161.0+ for direct connector calls.
+- Update shared Setup 1.8.0 and Context 1.6.0 guidance with the real page-picker flow.
+
 ## 0.25.0 — 2026-10-09
 
 - Refine the sidebar around Meetings: a quiet dashboard, named source selectors

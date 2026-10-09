@@ -29,10 +29,13 @@ If the panel tools are unavailable, the verified context home still works.
 Report the missing panel registration; do not claim that a fresh install has
 loaded new tools. Reopen Codex when its old runtime is still active.
 
-Source selectors show saved names and accept direct link entry without proving remote access. Setup's
-verified source mapping is a separate observation. Connection Refresh checks
-the official plugin/account, not every destination. Panel clicks open sources;
-they never send chat messages, run an agent or query Notion in the background.
+Connected Notion selectors browse and search accessible page names through the
+existing official connector. They fetch navigation metadata, not page bodies.
+Saved names and direct links remain available. Setup's verified business source
+mapping is a separate observation. Connection Refresh checks the official
+plugin/account, not every destination. Picker interaction triggers bounded reads;
+there is no background sync, chat message or agent run. Other panel clicks open
+sources or save navigation.
 
 Storage is per context identity under `$CODEX_HOME/aios/panel/`, not in the
 system prompt. A new context cannot inherit another context's links. The

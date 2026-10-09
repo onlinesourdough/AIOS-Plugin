@@ -1,6 +1,6 @@
 # AIOS
 
-AIOS version: 0.25.0
+AIOS version: 0.26.0
 
 **Business first. Productivity built in.**
 
@@ -19,8 +19,9 @@ AIOS means AI Operating System: the shared method and your chosen context home.
 In Codex, open **AIOS** in the sidebar. Numbered setup steps save your Context,
 Docs, Personal/Team Skills and Memory destinations, then open your dashboard.
 All setup sections remain visible and revisitable. Existing context opens the
-dashboard immediately; Settings opens a separate drawer. Source selectors show
-saved names and let you add links; they do not browse Notion pages.
+dashboard immediately; Settings opens a separate drawer. Connected Notion
+selectors list accessible pages by name and support search. Saved sources and
+manual links remain available; the picker fetches no page bodies.
 Clicks open destinations or save links directly; they never send a chat message.
 A saved link does not prove remote access or complete business onboarding.
 

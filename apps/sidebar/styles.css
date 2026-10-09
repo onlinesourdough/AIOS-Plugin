@@ -69,6 +69,8 @@ h1:focus, .drawer-head h2:focus { outline: none; }
 .picker:disabled { opacity: .5; cursor: not-allowed; }
 .menu { position: absolute; z-index: 10; top: calc(100% + 4px); left: 0; right: 0; padding: 4px; border: 1px solid var(--aios-line-strong); border-radius: 10px; background: var(--aios-surface); box-shadow: 0 8px 24px rgb(0 0 0 / .08); }
 .menu[data-side="up"] { top: auto; bottom: calc(100% + 4px); }
+.picker-search { width: calc(100% - 8px); margin: 4px; }
+.picker-options { max-height: 240px; overflow-y: auto; overscroll-behavior: contain; }
 .menu-label { padding: 6px 8px 2px; font-size: 11px; color: var(--aios-muted); }
 .option { position: relative; display: flex; align-items: center; gap: 8px; min-height: 32px; padding: 0 28px 0 8px; border-radius: 6px; cursor: pointer; }
 .option[aria-selected="true"]::after { content: '✓'; position: absolute; right: 10px; font-size: 12px; }
