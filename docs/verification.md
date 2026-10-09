@@ -25,7 +25,7 @@ This verifies bounded format choices, not real screenshots, interactions or
 security behavior. Its recorded input precedes the final wording that Review
 flags concerns rather than editing the subject; source review covers that wording.
 
-For AIOS 0.24.0, see [Codex sidebar verification](sidebar.md#verification-and-recovery).
+For AIOS 0.25.0, see [Codex sidebar verification](sidebar.md#verification-and-recovery).
 Build and test the pinned author dependencies, check generated runtime equality,
 then run the existing source and native onboarding checks. A protocol fixture
 does not establish rendered sidebar placement or a new-account OAuth grant.

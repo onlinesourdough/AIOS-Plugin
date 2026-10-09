@@ -63,3 +63,17 @@ test('corrupt files and symlinked state directories stop writes without replacin
   assert.equal((await readSources(target,options)).state,'unavailable');
   await assert.rejects(saveSources(args,options));
 });
+
+test('optional team memory can be added without changing personal memory or instructions', async t => {
+  const {options,args}=await fixture(t);
+  const before=await readFile(join(options.codexHome,'AGENTS.md'));
+  const personal=await saveSources(args,options);
+  const team={title:'Team decisions',target:'https://example.com/team-memory'};
+  const both=await saveSources({...args,expectedRevision:personal.revision,links:{...personal.links,teamMemory:team}},options);
+  assert.deepEqual(both.links.memory,links.memory);
+  assert.deepEqual((await readSources(target,options)).links.teamMemory,team);
+  const removed=await saveSources({...args,expectedRevision:both.revision},options);
+  assert.equal(removed.links.teamMemory,undefined);
+  assert.deepEqual(removed.links.memory,links.memory);
+  assert.deepEqual(await readFile(join(options.codexHome,'AGENTS.md')),before);
+});

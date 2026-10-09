@@ -1,7 +1,8 @@
 <!doctype html><html lang="en"><meta charset="utf-8"><title>AIOS preview</title>
-<style>body{margin:0;background:#ececec;font:12px system-ui}header{padding:10px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}iframe{display:block;border:0;width:100%;height:650px;margin:auto}pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:10px;max-height:160px;overflow:auto}body.preview>header,body.preview>#events{display:none}body.preview iframe{height:100vh}body.preview{background:white}</style><body class="/*HOST_MODE*/">
+<style>body{margin:0;background:#ececec;font:12px system-ui}header{padding:10px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}iframe{display:block;border:0;width:100%;height:650px;margin:auto}pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:10px;max-height:160px;overflow:auto}body.preview>header,body.preview>#events{display:none}body.preview iframe{height:calc(100vh - 38px)}.preview-nav{display:none;height:38px;align-items:center;gap:16px;padding:0 20px;font:12px system-ui;background:#f8f8f8;color:#777;border-bottom:1px solid #eee}.preview-nav a{color:#444;text-decoration:none}.preview-nav a:hover{text-decoration:underline}body.preview .preview-nav{display:flex}body.preview{background:white}</style><body class="/*HOST_MODE*/">
+<nav class="preview-nav"><span>Preview · sample workspace</span><a href="/setup">Setup</a><a href="/">Dashboard</a><a href="/settings">Settings</a></nav>
 <header><strong>Synthetic host · no chat capability</strong>
-<label>Scenario <select id="scenario"><option value="new">New context</option><option value="existing">Existing context</option><option value="dashboard">Dashboard</option><option value="missing">Notion missing</option><option value="disconnected">Disconnected</option><option value="disabled">Disabled</option><option value="unknown">Unknown</option><option value="ambiguous">Ambiguous pointer</option></select></label>
+<label>Scenario <select id="scenario"><option value="new">New context</option><option value="existing">Existing context</option><option value="dashboard">Dashboard</option><option value="team">Team workspace</option><option value="missing">Notion missing</option><option value="disconnected">Disconnected</option><option value="disabled">Disabled</option><option value="unknown">Unknown</option><option value="ambiguous">Ambiguous pointer</option></select></label>
 <label>Theme <select id="theme"><option>light</option><option>dark</option></select></label>
 <label>Width <select id="width"><option value="100%">Full</option><option value="320px">320px</option></select></label>
 <label><input id="fail" type="checkbox">Fail requests</label><label><input id="delay" type="checkbox">Delay save</label><button id="reset">Reset</button><button id="reload">Reopen</button></header>
@@ -9,7 +10,8 @@
 <script>
 const frame=document.querySelector('iframe'), events=document.querySelector('#events'), scenario=document.querySelector('#scenario');
 let trace=[];
-async function rpc(action,args){const r=await fetch('/rpc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action,args,scenario:scenario.value})});const value=await r.json();if(!r.ok)throw new Error(value.error);return value}
+const workspace='/*HOST_WORKSPACE*/',initialView='/*HOST_VIEW*/';scenario.value='/*HOST_SCENARIO*/';
+async function rpc(action,args){const r=await fetch('/rpc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action,args,scenario:scenario.value,workspace})});const value=await r.json();if(!r.ok)throw new Error(value.error);return value}
 function send(message){frame.contentWindow.postMessage({jsonrpc:'2.0',...message},location.origin)}
 function context(){return {theme:document.querySelector('#theme').value,displayMode:'fullscreen',availableDisplayModes:['fullscreen']}}
 async function reset(){await rpc('reset');trace=[];frame.src='/app'}
@@ -22,11 +24,11 @@ window.addEventListener('message',async event=>{
  const {id,method,params}=event.data;if(!method)return;
  if(!method.includes('size-changed')){trace.push({method,params});events.textContent=JSON.stringify(trace,null,2)}
  if(method==='ui/initialize')send({id,result:{protocolVersion:'2026-01-26',hostInfo:{name:'AIOS synthetic host',version:'2'},hostCapabilities:{serverTools:{},openLinks:{}},hostContext:context()}});
- else if(method==='ui/notifications/initialized')send({method:'ui/notifications/tool-result',params:await rpc('status')});
+ else if(method==='ui/notifications/initialized'){const result=await rpc('status');if(initialView==='settings')result._meta['aios/view']='settings';send({method:'ui/notifications/tool-result',params:result})}
  else if(method==='tools/call'){
  try{
   if(document.querySelector('#fail').checked)throw new Error('Synthetic request failure');
-  if(!['aios_status','aios_save_context','aios_save_sources'].includes(params.name))throw new Error('Unsupported tool');
+  if(!['aios_status','aios_settings','aios_save_context','aios_save_sources'].includes(params.name))throw new Error('Unsupported tool');
   if(params.name.startsWith('aios_save_')&&document.querySelector('#delay').checked)await new Promise(r=>setTimeout(r,3000));
   const result=await rpc(params.name==='aios_save_context'?'save':params.name==='aios_save_sources'?'sources':'status',params.arguments);send({id,result});
  }catch(error){send({id,result:{isError:true,content:[{type:'text',text:error.message}]}})}

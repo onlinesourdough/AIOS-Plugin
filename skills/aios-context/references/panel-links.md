@@ -8,7 +8,7 @@ permissions or company policy. It is not a context home or synchronization.
 After authorized personal onboarding or a requested source-route change:
 
 1. Verify the selected entry and the actual Docs, Personal Skills, optional
-   Team Skills and Memory destinations through the existing provider tools.
+   Team Skills, default/personal Memory and optional Team Memory destinations through the existing provider tools.
    Reuse IDs and source names; do not create a database for the panel.
 2. If `aios_sources` is available, read its current context and source revisions.
    Compare the selected context identity. A client task must not overwrite the
@@ -17,7 +17,9 @@ After authorized personal onboarding or a requested source-route change:
 3. Call `aios_save_sources` with the selected target, `expectedContextRevision`,
    `expectedRevision`, short context `title`, and `links`. Each link is
    `{ title, target }`; role keys are `docs`, `personalSkills`, `teamSkills`,
-   `memory`. Preserve existing roles unless their removal is authorized. Omit
+   `memory`, `teamMemory`. `memory` remains the existing default; only add a
+   separate team source when verified and needed. Labels do not grant access.
+   Preserve existing roles unless their removal is authorized. Omit
    an unused Team source; never infer a team's sharing permissions.
 4. Read back with `aios_sources`. Repeating unchanged metadata makes no write.
    A revision conflict requires fresh inspection, not a blind retry. Do not
@@ -27,7 +29,7 @@ If the panel tools are unavailable, the verified context home still works.
 Report the missing panel registration; do not claim that a fresh install has
 loaded new tools. Reopen Codex when its old runtime is still active.
 
-The panel accepts direct link entry without proving remote access. Setup's
+Source selectors show saved names and accept direct link entry without proving remote access. Setup's
 verified source mapping is a separate observation. Connection Refresh checks
 the official plugin/account, not every destination. Panel clicks open sources;
 they never send chat messages, run an agent or query Notion in the background.
