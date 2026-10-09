@@ -1,91 +1,170 @@
 import { App, applyDocumentTheme, applyHostStyleVariables } from '@modelcontextprotocol/ext-apps';
 import { classifyTarget, connectionCopy } from './ui-model.mjs';
+import { sourceRoles, roleLabels, readStatus, draftFrom, isDirty, isCurrent, setLink, linksPayload, linkFromInput, shortTarget } from './setup-state.mjs';
+import { createPicker } from './picker.mjs';
 
 const app = new App({ name: 'aios', version: __AIOS_VERSION__ }, { availableDisplayModes: ['fullscreen'] });
 const $ = id => document.getElementById(id);
-const roles = ['docs', 'personalSkills', 'teamSkills', 'memory'];
-const labels = { docs: 'Docs', personalSkills: 'Personal skills', teamSkills: 'Team skills', memory: 'Memory' };
-const notes = { docs: 'Company knowledge and documents', personalSkills: 'Personal skills', teamSkills: 'Team skills', memory: 'Decisions and lasting corrections' };
 const connectUrl = 'https://chatgpt.com/apps/notion/asdk_app_69c18c28f1188191bf5b8445c4ab0a2e';
-let status, editing = false, step = 0, other = false, saving = false, refreshing = false, checkedAt = -Infinity;
-let targetSaved = false, draftTitle = '', teamVisible = false, draftContext, draftSourcesRevision;
-function feedback(text, error = false) { $('feedback').textContent = text; $('feedback').dataset.error = String(error); $('feedback').hidden = !text; }
+const slotLabels = { docs: 'Docs', personalSkills: 'Personal', teamSkills: 'Team', memory: 'Personal', teamMemory: 'Team' };
+const stepRoles = [[], ['docs'], ['personalSkills', 'teamSkills'], ['memory', 'teamMemory']];
+const connectable = ['not_connected', 'disabled', 'unavailable'];
+// status is the latest accepted snapshot. draft holds pending source edits with
+// the revisions they were read from; only an explicit reload replaces edits.
+let status, draft, checkedAt = -Infinity, firstStatus = true, saving = false, refreshing = false, stale = false;
+let onboarding = false, openStep = 0, other = false, confirmSwitch = false, settingsOpen = false, discardPrompt = false;
+let message = { text: '', error: false };
+
+function sourcePicker(id, role) {
+  return createPicker({ id, label: slotLabels[role],
+    onEdit: () => { feedback(''); render(); },
+    onSelect: link => { setLink(draft, role, link); feedback(''); render(); },
+    onApply: ({ target, name }) => {
+      try { setLink(draft, role, linkFromInput(role, target, name, draft.saved[role])); } catch (error) { return error.message; }
+      feedback(''); render();
+    } });
+}
+const setupPickers = {}, settingsPickers = {};
+for (const role of sourceRoles) {
+  setupPickers[role] = sourcePicker(`setup-${role}-picker`, role); $(`setup-${role}`).append(setupPickers[role].root);
+  settingsPickers[role] = sourcePicker(`settings-${role}-picker`, role); $(`settings-${role}`).append(settingsPickers[role].root);
+}
+const contextPicker = createPicker({ id: 'settings-context-picker', label: 'Context', optional: false, menuLabel: 'Current context',
+  editText: ['Switch context…', 'Switch context…'], applyText: 'Switch context', nameField: false,
+  placeholder: 'https://notion.so/… or /path/to/context', onSelect() {}, onEdit: () => render(), onApply: ({ target }) => switchContext(target) });
+$('settings-context').append(contextPicker.root);
+
+function feedback(text, error = false) { message = { text, error }; paintFeedback(); }
+function paintFeedback() {
+  for (const [box, text, reload, active] of [['feedback', 'feedback-text', 'reload-draft', !settingsOpen], ['drawer-feedback', 'drawer-feedback-text', 'drawer-reload', settingsOpen]]) {
+    $(box).hidden = !active || !message.text; $(box).dataset.error = String(message.error);
+    $(text).textContent = active ? message.text : ''; $(reload).hidden = !stale;
+  }
+}
 function theme(context) {
   if (context?.theme) applyDocumentTheme(context.theme);
   if (context?.styles?.variables) applyHostStyleVariables(context.styles.variables);
 }
 function fillDraft() {
-  draftContext = { ...status.context }; draftSourcesRevision = status.sources.revision;
+  draft = draftFrom(status); stale = false; confirmSwitch = false;
+  for (const picker of [contextPicker, ...Object.values(setupPickers), ...Object.values(settingsPickers)]) picker.reset();
   $('target').value = status.context.target || '';
-  other = Boolean(status.context.kind && status.context.kind !== 'notion');
-  draftTitle = status.sources.title || '';
-  for (const role of roles) $(role).value = status.sources.links[role]?.target || '';
-  teamVisible = Boolean($('teamSkills').value); targetSaved = status.context.state === 'configured';
+  if (status.context.kind) other = status.context.kind !== 'notion';
 }
-function begin(index = 0) { fillDraft(); editing = true; step = index; feedback(''); render(); focusStep(); }
-function focusStep() { $(['target', 'personalSkills', 'memory'][step]).focus(); }
+const contextInput = () => classifyTarget($('target').value)?.target ?? $('target').value.trim();
+const contextEdited = () => onboarding && contextInput() !== draft.contextTarget;
+const unfinishedSources = () => [...Object.values(setupPickers), ...Object.values(settingsPickers)].some(picker => picker.hasEdits());
+const sourceChanges = () => isDirty(draft) || unfinishedSources();
+const pending = () => sourceChanges() || contextEdited() || contextPicker.hasEdits();
+const blocked = () => !status.context.revision || ['ambiguous', 'unavailable'].includes(status.context.state) || status.sources.state === 'unavailable';
+const sourcesReady = () => status.context.state === 'configured' && draft.contextTarget === status.context.target
+  && status.sources.state !== 'unavailable' && !contextEdited();
+
 function render() {
   $('retry-load').hidden = Boolean(status) || refreshing;
   if (!status) { $('loading').hidden = !refreshing; return; }
-  const configured = status.context.state === 'configured';
-  const form = editing || !configured;
-  const notion = form ? !other : status.context.kind === 'notion';
+  const dashboard = status.context.state === 'configured' && !onboarding;
   const locked = saving || refreshing;
-  $('loading').hidden = true; $('content').hidden = false;
-  $('heading').textContent = form ? 'Get started' : 'Your AIOS';
-  $('intro').hidden = !form; $('settings').hidden = form;
-  $('settings').disabled = locked; $('version').textContent = `v${__AIOS_VERSION__}`;
-  $('home').hidden = form; $('setup').hidden = !form;
-  $('notion').hidden = !notion; $('notion').dataset.mode = form ? 'setup' : 'home';
-  $('notion-title').textContent = form ? 'Connect Notion' : 'Notion';
-  $('connection-number').hidden = !form;
-  $('connection-label').textContent = refreshing ? 'Checking…' : connectionCopy[status.notion.state];
-  $('connection-label').dataset.state = refreshing ? 'unknown' : status.notion.state;
-  $('refresh').disabled = locked;
-  const install = ['not_installed', 'plugin_disabled'].includes(status.notion.state);
-  $('connection-help').hidden = !install;
-  $('connection-help').textContent = status.notion.state === 'not_installed' ? 'Install Notion in Codex → Plugins, then refresh.' : 'Enable Notion in Codex → Plugins, then refresh.';
-  $('connect').hidden = !['not_connected', 'disabled', 'unavailable'].includes(status.notion.state);
-  $('connect').disabled = locked;
-  $('context-number').textContent = notion ? '2' : '1';
-  $('skills-number').textContent = notion ? '3' : '2';
-  $('memory-number').textContent = notion ? '4' : '3';
-  $('target-label').textContent = notion ? 'Context link' : 'Context link or folder';
-  $('target').placeholder = notion ? 'https://notion.so/…' : 'https://… or /path/to/context';
-  $('provider').textContent = other ? 'Use Notion' : 'Use another provider';
-  $('context-fields').hidden = step !== 0; $('context-done').hidden = step === 0;
-  $('skills-section').hidden = step < 1; $('skills-fields').hidden = step !== 1; $('skills-done').hidden = step !== 2;
-  $('memory-section').hidden = step !== 2;
-  $('team-field').hidden = !teamVisible; $('add-team').hidden = teamVisible;
-  for (const id of ['target', ...roles, 'provider', 'add-team', 'back', 'cancel']) $(id).disabled = locked;
-  $('back').hidden = step === 0; $('cancel').hidden = !configured;
-  $('continue').disabled = locked || !status.context.revision || ['ambiguous', 'unavailable'].includes(status.context.state) || status.sources.state === 'unavailable';
-  $('continue').textContent = saving ? 'Saving…' : step === 2 ? 'Open AIOS' : 'Continue';
-  $('context-name').textContent = status.sources.title || 'Your context';
-  $('context-note').textContent = status.context.kind === 'path' ? status.context.target : 'Start here';
-  for (const role of roles) {
-    const link = status.sources.links[role];
-    $(`${role}-name`).textContent = link?.title || labels[role];
-    $(`${role}-note`).textContent = link ? (classifyTarget(link.target)?.kind === 'path' ? link.target : link.title === labels[role] && role === 'personalSkills' ? 'Your reusable ways of working' : link.title === labels[role] && role === 'teamSkills' ? 'Shared ways of working' : notes[role]) : 'Add a link';
-    $(`${role}-action`).textContent = link ? '↗' : '+';
-    $(`open-${role}`).disabled = locked || status.sources.state === 'unavailable';
-  }
-  $('open-teamSkills').hidden = !status.sources.links.teamSkills;
+  $('loading').hidden = true;
+  $('heading').textContent = dashboard ? 'AIOS' : 'Get started';
+  $('setup').hidden = dashboard; $('dashboard').hidden = !dashboard;
+  $('settings').hidden = !dashboard; $('settings').disabled = locked;
+  $('version').textContent = `v${__AIOS_VERSION__}`;
+  renderConnection(dashboard, locked);
+  if (dashboard) renderDashboard(locked); else renderSetup(locked);
+  if (settingsOpen) renderSettings(locked);
+  paintFeedback();
 }
+function renderConnection(dashboard, locked) {
+  const state = status.notion.state, label = refreshing ? 'Checking…' : connectionCopy[state];
+  const help = state === 'not_installed' ? 'Install Notion in Codex → Plugins, then refresh.' : state === 'plugin_disabled' ? 'Enable Notion in Codex → Plugins, then refresh.' : '';
+  for (const [text, hint, refresh, connect] of [['connection-label', 'connection-help', 'refresh', 'connect'], ['drawer-connection', 'drawer-help', 'drawer-refresh', 'drawer-connect']]) {
+    $(text).textContent = label; $(text).dataset.state = refreshing ? 'unknown' : state;
+    $(hint).textContent = help; $(hint).hidden = !help;
+    $(refresh).disabled = locked; $(connect).disabled = locked;
+    $(connect).hidden = !connectable.includes(state) || connect === 'connect' && other;
+  }
+  const notion = status.context.kind === 'notion';
+  $('badge').hidden = !dashboard || !notion || refreshing || state !== 'connected';
+  $('notice').hidden = !dashboard || !notion || refreshing || state === 'connected';
+  $('notice-text').textContent = help || `Notion · ${label}`;
+  $('notice-connect').hidden = !connectable.includes(state); $('notice-connect').disabled = locked;
+}
+function summary(step) {
+  if (step === 0) return other ? 'Not needed' : refreshing ? 'Checking…' : connectionCopy[status.notion.state].replace('✓ ', '');
+  const roles = stepRoles[step];
+  if (step === 1) {
+    if (contextEdited() && contextInput() || isDirty(draft, roles)) return draft.contextTarget ? 'Edited' : 'Not saved';
+    return draft.contextTarget ? draft.title || 'Saved' : 'Not set';
+  }
+  if (isDirty(draft, roles)) return 'Edited';
+  return roles.filter(role => draft.links[role]).map(role => slotLabels[role]).join(' · ') || 'None';
+}
+function renderSetup(locked) {
+  const ready = sourcesReady(), stop = blocked();
+  const reason = status.sources.state === 'unavailable' ? 'Saved source links need attention.' : 'Sources are saved per context. Save the context first.';
+  for (let step = 0; step < 4; step++) {
+    $(`step-${step}`).setAttribute('aria-expanded', String(openStep === step));
+    $(`step-${step}`).setAttribute('aria-disabled', String(openStep === step));
+    $(`step-${step}`).disabled = saving;
+    $(`panel-${step}`).hidden = openStep !== step;
+    $(`summary-${step}`).textContent = summary(step);
+    const next = $(`continue-${step}`);
+    next.disabled = locked || step > 0 && stop;
+    next.textContent = saving && openStep === step ? 'Saving…' : step === 3 ? 'Finish' : step === 1 && confirmSwitch ? 'Discard and continue' : 'Continue';
+    if (step) {
+      $(`reason-${step}`).hidden = ready;
+      $(`reason-${step}`).textContent = step === 1 && status.sources.state !== 'unavailable' ? 'Continue to save the context, then add Docs.' : reason;
+    }
+  }
+  $('target-label').textContent = other ? 'Context link or folder' : 'Context link';
+  $('target').placeholder = other ? 'https://… or /path/to/context' : 'https://notion.so/…';
+  $('provider').textContent = other ? 'Use Notion' : 'Use a folder or other link';
+  $('target').disabled = locked; $('provider').disabled = locked;
+  for (const role of sourceRoles) setupPickers[role].render({ value: draft.links[role], choices: [draft.saved[role]], disabled: locked || !ready });
+}
+function renderDashboard(locked) {
+  $('context-name').textContent = status.sources.title || 'Context';
+  $('open-context').title = status.context.target;
+  $('open-context').disabled = locked;
+  for (const role of sourceRoles) {
+    const link = status.sources.links[role], row = $(`open-${role}`);
+    $(`${role}-meta`).textContent = link ? (link.title === roleLabels[role] ? shortTarget(link.target) : link.title) : 'Add';
+    row.dataset.empty = String(!link);
+    row.disabled = locked || status.sources.state === 'unavailable';
+    row.setAttribute('aria-label', link ? `Open ${roleLabels[role]}: ${link.title}` : `Add ${roleLabels[role]}`);
+  }
+}
+function renderSettings(locked) {
+  const dirty = isDirty(draft);
+  const ready = status.context.state === 'configured' && draft.contextTarget === status.context.target && status.sources.state !== 'unavailable';
+  const current = { title: draft.title || 'Context', target: draft.contextTarget };
+  contextPicker.render({ value: current, choices: [current], disabled: locked,
+    applyText: sourceChanges() ? 'Discard and switch' : 'Switch context', note: sourceChanges() ? 'Unsaved source changes will be discarded.' : '' });
+  for (const role of sourceRoles) settingsPickers[role].render({ value: draft.links[role], choices: [draft.saved[role]], disabled: locked || !ready });
+  $('drawer-save').disabled = locked || !dirty || !ready;
+  $('drawer-save').textContent = saving ? 'Saving…' : 'Save';
+  $('drawer-cancel').disabled = saving; $('drawer-close').disabled = saving;
+  $('foot-edit').hidden = discardPrompt; $('foot-discard').hidden = !discardPrompt;
+}
+
 function apply(result) {
   if (result?.isError) throw new Error(result.content?.find(c => c.type === 'text')?.text || 'Could not complete the request.');
-  const value = result?._meta?.['aios/status'];
-  const timestamp = Date.parse(value?.checkedAt);
-  if (!Object.hasOwn(connectionCopy, value?.notion?.state) || !['configured','missing','ambiguous','unavailable'].includes(value?.context?.state)
-      || value.context.state === 'configured' && !classifyTarget(value.context.target) || !Number.isFinite(timestamp)
-      || !['saved','missing','unavailable'].includes(value?.sources?.state) || !value.sources.links
-      || roles.some(role => value.sources.links[role] && !classifyTarget(value.sources.links[role].target))) throw new Error('Could not read setup. Refresh to try again.');
+  const value = result?._meta?.['aios/status'], timestamp = readStatus(value);
+  if (timestamp === null) throw new Error('Could not read setup. Refresh to try again.');
   if (timestamp < checkedAt) return false;
-  const first = !draftContext;
   checkedAt = timestamp; status = value;
-  if (first) fillDraft();
+  if (status.context.state !== 'configured') onboarding = true;
+  if (firstStatus) { firstStatus = false; openStep = status.notion.state === 'connected' ? 1 : 0; }
+  // A draft without pending edits follows the latest snapshot; pending edits never do.
+  if (!draft || !saving && !pending()) fillDraft();
+  else if (!saving && !isCurrent(draft, status)) {
+    stale = true;
+    feedback('Setup changed elsewhere. Your edits are kept; load the latest setup to continue.', true);
+  }
+  if (settingsOpen && status.context.state !== 'configured') closeSettings();
   render();
-  if (['ambiguous','unavailable'].includes(status.context.state)) feedback('Existing context instructions need attention. They have been left unchanged.', true);
+  if (['ambiguous', 'unavailable'].includes(status.context.state)) feedback('Existing context instructions need attention. They have been left unchanged.', true);
   else if (status.sources.state === 'unavailable') feedback('Saved source links need attention. They have been left unchanged.', true);
   return true;
 }
@@ -106,75 +185,159 @@ async function refresh() {
     feedback('Could not check the connection. Try refreshing again.', true);
   } finally { refreshing = false; render(); }
 }
-function linksFromDraft() {
-  const links = {};
-  for (const role of roles) {
-    const value = $(role).value.trim(); if (!value) continue;
-    const route = classifyTarget(value);
-    if (!route || /[<>]/.test(route.target)) { $(role).focus(); throw new Error(`Enter a valid ${labels[role]} link or leave it empty.`); }
-    const existing = status.sources.links[role];
-    links[role] = { target: route.target, title: existing?.target === route.target ? existing.title : labels[role] };
+
+// Writes never rebase a draft read from older revisions. Before a context
+// exists there are no source edits to lose, so the typed link is kept instead.
+function current() {
+  if (isCurrent(draft, status)) return true;
+  if (status.context.state !== 'configured' && !isDirty(draft)) {
+    const value = $('target').value, provider = other;
+    fillDraft(); $('target').value = value; other = provider;
+    feedback('Setup changed. Review your context link and continue again.', true);
+  } else { stale = true; feedback('Setup changed elsewhere. Your edits are kept; load the latest setup to continue.', true); }
+  render(); return false;
+}
+async function writeContext(target) {
+  const result = await app.callServerTool({ name: 'aios_save_context', arguments: { target, expectedRevision: draft.contextRevision } });
+  if (!apply(result)) throw new Error('Your context changed. Refresh before trying again.');
+  fillDraft(); // The new context's own map; earlier source edits never carry over.
+}
+async function saveDraft() {
+  if (unfinishedSources()) { feedback('Apply or cancel the open link first.'); return false; }
+  if (!current()) return false;
+  saving = true; feedback(''); render();
+  try {
+    const result = await app.callServerTool({ name: 'aios_save_sources', arguments: {
+      target: draft.contextTarget, expectedContextRevision: draft.contextRevision,
+      expectedRevision: draft.sourcesRevision, title: draft.title, links: linksPayload(draft),
+    } });
+    if (!apply(result)) throw new Error('Your setup changed. Refresh before saving again.');
+    fillDraft(); return true;
+  } catch (error) { feedback(error.message || 'Could not save. Try again.', true); return false; }
+  finally { saving = false; render(); }
+}
+
+function focusStep(step, docs = false) {
+  const first = docs ? 'setup-docs-picker' : ['refresh', 'target', 'setup-personalSkills-picker', 'setup-memory-picker'][step];
+  ($(first).disabled ? $(`continue-${step}`) : $(first)).focus();
+}
+function goTo(step) { openStep = step; confirmSwitch = false; render(); focusStep(step); }
+async function saveContext(target) {
+  if (!current()) return;
+  if (sourceChanges() && !confirmSwitch) { confirmSwitch = true; feedback('Unsaved source changes for this context will be discarded.', true); render(); return; }
+  let saved = false;
+  saving = true; feedback(''); render();
+  try { await writeContext(target); saved = true; feedback(status.sources.state === 'saved' ? 'Context saved. Its saved sources are loaded.' : 'Context saved.'); }
+  catch (error) { feedback(error.message || 'Could not save the context. Try again.', true); }
+  finally { saving = false; render(); if (saved) focusStep(1, true); }
+}
+async function continueStep() {
+  if (saving || refreshing || !status) return;
+  if (openStep === 0) return goTo(1);
+  if (blocked()) return;
+  if (openStep === 1) {
+    const route = classifyTarget($('target').value);
+    if (!route || /[<>]/.test(route.target) || (!other && route.kind !== 'notion')) {
+      feedback(other ? 'Enter an HTTPS link or an absolute folder path.' : 'Enter a Notion link, or use a folder or other link.', true); $('target').focus(); return;
+    }
+    if (route.target !== draft.contextTarget || status.context.state !== 'configured') return saveContext(route.target);
+  } else if (!sourcesReady()) {
+    if (openStep === 2 && !isDirty(draft)) return goTo(3);
+    if (!isCurrent(draft, status)) return void current();
+    feedback('Save the context first.'); return goTo(1);
   }
-  return links;
+  if (unfinishedSources()) { feedback('Apply or cancel the open link first.'); return; }
+  if (isDirty(draft) && !await saveDraft()) return;
+  if (openStep < 3) return goTo(openStep + 1);
+  onboarding = false; openStep = 0; feedback(''); render(); $('heading').focus();
 }
-async function saveLinks() {
-  const result = await app.callServerTool({ name: 'aios_save_sources', arguments: {
-    target: draftContext.target, expectedContextRevision: draftContext.revision,
-    expectedRevision: draftSourcesRevision, title: draftTitle, links: linksFromDraft(),
-  } });
-  if (!apply(result)) throw new Error('Your setup changed. Reopen Settings before saving again.');
-  draftSourcesRevision = status.sources.revision;
+
+function openSettings(role) {
+  if (!status || saving || refreshing || settingsOpen || onboarding || status.context.state !== 'configured') return;
+  fillDraft(); settingsOpen = true; discardPrompt = false;
+  feedback(status.sources.state === 'unavailable' ? 'Saved source links need attention. They have been left unchanged.' : '', status.sources.state === 'unavailable');
+  $('drawer').showModal(); render();
+  if (role && status.sources.state !== 'unavailable') settingsPickers[role].openEditor(); else $('drawer-title').focus();
 }
-app.ontoolresult = result => { try { apply(result); } catch (error) {
-  checkedAt = Math.max(checkedAt + 1, Date.now());
-  status = { ...(status || { context: { state: 'unavailable' }, sources: { state: 'unavailable', links: {} } }), notion: { state: 'unknown' } };
-  render(); feedback(error.message, true);
-} };
+function requestClose() {
+  if (saving) return;
+  if (!pending()) return closeSettings();
+  discardPrompt = true; render(); $('keep-editing').focus();
+}
+function keepEditing() {
+  discardPrompt = false; render();
+  const editing = [contextPicker, ...Object.values(settingsPickers)].find(picker => picker.hasEdits());
+  if (editing) editing.focusEditor();
+  else ($('drawer-save').disabled ? $('drawer-title') : $('drawer-save')).focus();
+}
+function closeSettings() {
+  if (!settingsOpen) return;
+  settingsOpen = false; discardPrompt = false;
+  for (const picker of [contextPicker, ...Object.values(settingsPickers)]) picker.reset();
+  if ($('drawer').open) $('drawer').close();
+  fillDraft(); feedback(''); render(); $('settings').focus();
+}
+async function saveSettings() {
+  if (saving || refreshing || !isDirty(draft)) return;
+  if (await saveDraft()) closeSettings();
+}
+async function switchContext(value) {
+  const route = classifyTarget(value);
+  if (!route || /[<>]/.test(route.target)) return 'Enter a Notion or HTTPS link, or an absolute folder path.';
+  if (route.target === draft.contextTarget) return;
+  if (saving || refreshing) return 'Wait for the current request to finish.';
+  if (draft.contextRevision !== status.context.revision) {
+    stale = true; feedback('Setup changed elsewhere. Load the latest setup to continue.', true); render();
+    return 'Setup changed elsewhere.';
+  }
+  saving = true; feedback(''); render();
+  try { await writeContext(route.target); feedback('Switched context. Showing its saved sources.'); }
+  catch (error) { return error.message || 'Could not switch context. Try again.'; }
+  finally { saving = false; render(); }
+}
+function reload() { fillDraft(); feedback(''); render(); }
+
+app.ontoolresult = result => {
+  try { apply(result); if (result?._meta?.['aios/view'] === 'settings') openSettings(); }
+  catch (error) {
+    checkedAt = Math.max(checkedAt + 1, Date.now());
+    status = { ...(status || { context: { state: 'unavailable' }, sources: { state: 'unavailable', links: {} } }), notion: { state: 'unknown' } };
+    if (!draft) fillDraft();
+    render(); feedback(error.message, true);
+  }
+};
 app.onhostcontextchanged = theme;
-$('refresh').addEventListener('click', refresh);
-$('retry-load').addEventListener('click', refresh);
-$('connect').addEventListener('click', () => open(connectUrl));
+for (const id of ['refresh', 'drawer-refresh', 'retry-load']) $(id).addEventListener('click', refresh);
+for (const id of ['connect', 'drawer-connect', 'notice-connect']) $(id).addEventListener('click', () => open(connectUrl));
+for (const id of ['reload-draft', 'drawer-reload']) $(id).addEventListener('click', reload);
 $('open-context').addEventListener('click', () => open(status.context.target));
-$('settings').addEventListener('click', () => begin());
-for (const role of roles) $(`open-${role}`).addEventListener('click', () => {
-  const link = status.sources.links[role]; if (link) return open(link.target);
-  begin(role === 'docs' ? 0 : role === 'memory' ? 2 : 1);
+for (const role of sourceRoles) $(`open-${role}`).addEventListener('click', () => {
+  const link = status.sources.links[role];
+  return link ? open(link.target) : openSettings(role);
+});
+// One step is always open, so Continue is always reachable.
+for (let step = 0; step < 4; step++) $(`step-${step}`).addEventListener('click', () => {
+  if (openStep === step) return;
+  if (confirmSwitch) feedback('');
+  openStep = step; confirmSwitch = false; render();
 });
 $('provider').addEventListener('click', () => { other = !other; render(); });
-$('add-team').addEventListener('click', () => { teamVisible = true; render(); $('teamSkills').focus(); });
-$('cancel').addEventListener('click', () => { editing = false; feedback(''); render(); $('heading').focus(); });
-$('back').addEventListener('click', () => { step = Math.max(0, step - 1); feedback(''); render(); focusStep(); });
-$('setup').addEventListener('submit', async event => {
+$('target').addEventListener('input', () => { if (confirmSwitch) feedback(''); confirmSwitch = false; render(); });
+$('setup').addEventListener('submit', event => { event.preventDefault(); return continueStep(); });
+$('settings').addEventListener('click', () => openSettings());
+$('drawer-close').addEventListener('click', requestClose);
+$('drawer-cancel').addEventListener('click', requestClose);
+$('keep-editing').addEventListener('click', keepEditing);
+$('discard').addEventListener('click', closeSettings);
+$('drawer-save').addEventListener('click', saveSettings);
+// Escape closes an open menu first (the picker stops it), then asks before discarding.
+$('drawer').addEventListener('keydown', event => {
+  if (event.key !== 'Escape') return;
   event.preventDefault();
-  if (saving || refreshing || !status?.context?.revision || status.sources.state === 'unavailable' || ['ambiguous','unavailable'].includes(status.context.state)) return;
-  const route = classifyTarget($('target').value);
-  if (!route || /[<>]/.test(route.target) || (!other && route.kind !== 'notion')) { feedback(other ? 'Enter an HTTPS link or an absolute folder path.' : 'Enter a Notion link, or choose another provider.', true); $('target').focus(); return; }
-  if (!draftContext || draftContext.revision !== status.context.revision || draftSourcesRevision !== status.sources.revision) {
-    if (status.context.state !== 'configured') {
-      const target = $('target').value, provider = other;
-      fillDraft(); $('target').value = target; other = provider; step = 0;
-      render(); focusStep(); feedback('Setup changed. Review your context link and continue again.', true);
-    } else feedback('Your setup changed. Go back to AIOS and reopen Settings to load the latest links.', true);
-    return;
-  }
-  try { linksFromDraft(); } catch (error) { feedback(error.message, true); return; }
-  let focusAfterSave;
-  saving = true; editing = true; feedback(''); render();
-  try {
-    if (step === 0 && (!targetSaved || route.target !== status.context.target)) {
-      const changed = status.context.state === 'configured';
-      const result = await app.callServerTool({ name: 'aios_save_context', arguments: { target: route.target, expectedRevision: status.context.revision } });
-      if (!apply(result)) throw new Error('Your context changed. Refresh before trying again.');
-      targetSaved = true; draftContext = { ...status.context }; draftSourcesRevision = status.sources.revision;
-      // Load recovered maps as well as switched contexts before any replacement.
-      if (changed || status.sources.state === 'saved') { fillDraft(); focusAfterSave = 'step'; feedback('Context saved. Choose the sources for this context.'); return; }
-    }
-    await saveLinks();
-    if (step < 2) { editing = true; step++; focusAfterSave = 'step'; }
-    else { editing = false; focusAfterSave = 'home'; }
-  } catch (error) { feedback(error.message || 'Could not save setup. Try again.', true); }
-  finally { saving = false; render(); if (focusAfterSave === 'step') focusStep(); else if (focusAfterSave === 'home') $('heading').focus(); }
+  if (discardPrompt) keepEditing(); else requestClose();
 });
+$('drawer').addEventListener('cancel', event => { event.preventDefault(); if (!discardPrompt) requestClose(); });
+$('drawer').addEventListener('close', closeSettings);
 try {
   await app.connect(undefined, { timeout: 12000 }); theme(app.getHostContext());
   if (!status) await refresh();

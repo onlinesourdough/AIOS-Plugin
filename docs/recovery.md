@@ -72,3 +72,8 @@ Use the [Notion recovery route](../skills/aios-context/references/notion/operati
 Restore only the previous owned bridge, plugin selections and personal-skill
 registrations after checking current identities. Preserve Notion pages and any
 new work; reconcile post-cutover decisions before resuming old memory.
+
+The optional Team Memory navigation slot introduced in 0.25 is rejected by older
+panel versions. Before downgrading, clear that slot in 0.25 Settings and save, or
+restore a reviewed earlier map backup after inspecting later edits. This only
+changes local navigation; keep the actual Notion records and permissions.

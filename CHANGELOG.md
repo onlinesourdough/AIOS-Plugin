@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.25.0 — 2026-10-09
+
+- Refine the sidebar around Meetings: a quiet dashboard, named source selectors
+  and a separate Settings drawer. Use consistent controls, spacing and hover.
+- Keep all numbered setup sections visible and revisitable; preserve drafts
+  while navigating, with explicit save and discard behavior.
+- Show optional Personal and Team slots for Skills and Memory. Preserve the
+  existing Memory destination; add `teamMemory` only when selected.
+- Expose a native settings entrypoint using the same configuration interface.
+  Source selectors use saved destinations, without cross-plugin page discovery.
+- Older releases reject the optional `teamMemory` field. Clear that navigation
+  slot with 0.25 before downgrading, or restore a reviewed earlier map backup.
+
 ## 0.24.0 — 2026-10-08
 
 - Include the reviewed Build/Review/Ship handoff guidance from main (#42).

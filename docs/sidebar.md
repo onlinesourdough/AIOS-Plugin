@@ -1,22 +1,21 @@
-# Codex sidebar — 0.24.0
+# Codex sidebar — 0.25.0
 
-AIOS uses the early numbered, divided setup layout and Codex theme controls.
-The actual v0.20 tag had no native sidebar; v0.21 introduced that shell.
-A completed setup now opens a useful dashboard instead of a single context link.
+The Meetings-inspired layout uses a compact header, one Context card and simple
+Personal/Team rows for Skills and Memory. Missing destinations stay visible with
+Add. Source actions open their links; no repeated external-arrow icons or
+full-width divider bands. Local paths display their location.
 
-```text
-Connect Notion → Context + Docs → Personal / Team skills → Memory → Your AIOS
-                                                                  ├ Context + Docs
-                                                                  ├ Personal / Team skills
-                                                                  └ Memory
-```
+New setups show all four numbered sections from the beginning: Notion, Context,
+Skills, Memory. Sections are independently revisitable and keep drafts. The first
+context save enables Docs; Continue then saves source edits and advances.
+Finish opens the dashboard. Existing contexts open there
+directly. Settings is a separate drawer with explicit Save and discard handling.
+The same interface is exposed through a native settings entrypoint.
 
-Continue saves each step. Back navigates without undoing saved progress. A failed
-later step preserves earlier saves. Optional sources may be empty and added from
-the dashboard; unused Team skills stay hidden. Existing context opens the home.
-One Settings icon opens the same fields. Source actions open their exact links.
-Local paths display their location rather than inventing a host file opener.
-There are no panel chat messages, hidden agents, source-search dropdowns or polling.
+Source selectors show saved names for the current context. Optional slots offer
+None; Add/Edit link allows a new location and an optional display name. This is
+navigation configuration, not live Notion page search. Neither a selected link
+nor a saved map proves source access or business readiness.
 
 ## Boundaries
 
@@ -40,49 +39,54 @@ job is introduced. Context remains provider-agnostic and retrieves only needed d
 
 Codex runs the packaged Node.js 22+ stdio server. No consumer npm, Docker, hosted
 service, telemetry or UI network domains. Source: apps/sidebar. Locked bundles:
-runtime/sidebar. Resource: ui://aios/home-v3. Tools:
+runtime/sidebar. Resource: ui://aios/home-v4. Tools:
 
 - aios_open: read-only global app entry; status and links are UI metadata.
 - aios_status: app-only read-only refresh.
+- aios_settings: app-only native settings entry, opening the same drawer.
 - aios_save_context: app-only owned AGENTS pointer save.
 - aios_sources: explicit model read of the context and navigation with revisions.
-- aios_save_sources: app/model navigation write, scoped to current context.
+- aios_save_sources: app/model navigation replacement, scoped to current context.
 
 The short pointer lives in CODEX_HOME/AGENTS.md. Pointer saves keep unrelated
 bytes and custom rules, back up prior bytes, and reject ambiguous blocks,
 symlinks, oversized files and detected edits. Unchanged saves make no write.
 
-Navigation is separate private app state at CODEX_HOME/aios/panel/<identity-hash>.json.
-It stores a context title and up to four role names/links. Notion page identity
-normalizes copied URL variants; other providers use their exact location.
-Another context never inherits the prior map. No source bodies, credentials,
-policy, access claims or permissions are stored. This state is not preloaded as
-agent context and is not a second source of business truth.
+Navigation is private state at CODEX_HOME/aios/panel/<identity-hash>.json. It
+contains a context title and up to five roles: docs, personalSkills, teamSkills,
+memory and teamMemory. The existing memory key remains the default/personal
+source. A team slot is optional; labels imply no permissions and create no
+remote databases. The actual context guide owns which sources apply to a task.
 
-Writes use bounded reads, file identity checks, a per-map lock, context/source
-revision checks, backups and atomic rename. Invalid or symlinked state fails
-closed. A context pointer save and source save are distinct steps; a failed
-source save does not roll back a successful pointer save. A stale draft cannot
-adopt new revision tokens after Refresh; reopen Settings to reconcile it. During
-first setup, a changed instruction file reloads the form and keeps the typed
-context link for review. Restoring a pointer loads any existing source map before
-allowing a replacement. Failed initial reads expose Retry.
+Notion identity normalizes copied URL variants; other providers use their exact
+location. A changed context loads its own map, never the previous one's sources.
+No source bodies, credentials, policy or access claims are stored. The map is
+not preloaded as agent context or used as a second source of business truth.
+
+Writes use bounded reads, file identity checks, per-map locking, context/source
+revisions, backups and atomic rename. Invalid or symlinked state fails closed.
+Pointer and source saves remain separate durable steps. Failed later writes
+preserve earlier success; stale drafts cannot silently adopt refreshed revisions.
+Restoring a context pointer loads an existing map before allowing replacement.
 
 ## Verification and recovery
 
 Run the locked build, Node tests and bundled stdio smoke, package checks and
-repository rehearsals. Browser coverage includes setup, optional team, empty
-sources, reopen, settings, keyboard/focus, failure/retry, light/dark and narrow
-views in a synthetic host without chat capability. Verify installed bytes and
-native runtime separately; neither proves new-account OAuth or source access.
+repository rehearsals. Browser proof covers initial setup, revisiting sections,
+source pickers, optional slots, settings Save/discard, failed saves, retry,
+keyboard/focus, light/dark and 320px. Synthetic host results are distinct from
+native installed-runtime adoption and do not prove new-account OAuth.
 
-The loopback fixture writes only to a temporary Codex home. /test has labelled
-scenario/theme controls; / is the clean preview. Source-link open requests are
-recorded in the fixture, not sent to those synthetic destinations.
+The loopback fixture uses temporary isolated Codex homes. /setup is fresh setup,
+/ is a sample dashboard, /settings opens the sample settings and /test exposes
+labelled scenario/theme/error controls. Setup and dashboard are separate fixtures;
+refreshing either does not alter real instructions or company sources. Source-link
+open requests are recorded, not sent to fictional destinations.
 
-Rollback the package using the supported plugin manager and an earlier reviewed
-tag; keep Notion and its sources. Instruction backups remain under
-CODEX_HOME/backups/aios-context. Navigation writes keep the earlier map alongside
-it as <file>.<revision>.bak. Inspect later edits before restoring either. A lock
-left by a crashed writer needs proof that writer stopped before removing it.
-An old open Codex panel may need the app reopened to load the new runtime.
+Rollback with the supported plugin manager to an earlier reviewed tag; keep
+Notion and its sources. Clear a selected teamMemory navigation slot before a
+0.24 downgrade: older validation rejects this unknown role. Alternatively restore
+a reviewed earlier map, preserving any later edits. Pointer backups are under
+CODEX_HOME/backups/aios-context; map backups sit alongside the JSON file as
+<file>.<revision>.bak. Prove a crashed writer stopped before removing its lock.
+An already-open Codex panel may require an app reopen to load the new runtime.

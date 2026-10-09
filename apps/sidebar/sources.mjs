@@ -5,7 +5,7 @@ import { join } from 'node:path';
 import { classifyTarget } from './target.mjs';
 import { readContextRoute } from './context-route.mjs';
 
-export const roles = ['docs', 'personalSkills', 'teamSkills', 'memory'];
+export const roles = ['docs', 'personalSkills', 'teamSkills', 'memory', 'teamMemory'];
 const home = () => process.env.CODEX_HOME || join(homedir(), '.codex');
 const digest = text => createHash('sha256').update(text).digest('hex');
 const revision = text => digest(text === null ? 'missing' : 'file:' + text);

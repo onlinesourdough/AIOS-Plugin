@@ -1,35 +1,46 @@
 import { createServer } from 'node:http';
-import { readFile, mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { readFile, mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { readContextRoute, saveContextRoute } from './context-route.mjs';
 import { readSources, saveSources } from './sources.mjs';
-const port = Number(process.env.PORT || 43194);
-const codexHome = await mkdtemp(join(tmpdir(), 'aios-ui-test-'));
+const port = Number(process.env.PORT || 43195);
+const scratch = await mkdtemp(join(tmpdir(), 'aios-ui-test-'));
+const roots = Object.fromEntries(['home','setup','test'].map(key=>[key,join(scratch,key)]));
+await Promise.all(Object.values(roots).map(path=>mkdir(path)));
 const bridge = await readFile(new URL('../../skills/aios-context/assets/bridge.md', import.meta.url), 'utf8');
 const version = JSON.parse(await readFile(new URL('./package.json', import.meta.url))).version;
+async function reset(codexHome, scenario) {
+  await rm(join(codexHome, 'AGENTS.md'), { force: true });
+  await rm(join(codexHome, 'aios'), { recursive: true, force: true });
+  if (['existing', 'dashboard', 'team'].includes(scenario)) await writeFile(join(codexHome, 'AGENTS.md'), bridge.replace('<verified-context-entry-url-or-absolute-path>', 'https://app.notion.com/p/00000000000000000000000000000001'));
+  if (['dashboard','team'].includes(scenario)) {
+    const context = await readContextRoute({ codexHome });
+    const current = await readSources(context.target, { codexHome });
+    const links = {docs:{title:'Company docs',target:'https://example.com/docs'},personalSkills:{title:'Writing & delivery',target:'https://example.com/skills'},memory:{title:'Decisions',target:'https://example.com/memory'}};
+    if (scenario === 'team') Object.assign(links,{teamSkills:{title:'Team playbook',target:'https://example.com/team-skills'},teamMemory:{title:'Team decisions',target:'https://example.com/team-memory'}});
+    await saveSources({target:context.target,expectedContextRevision:context.revision,expectedRevision:current.revision,title:'Studio AIOS',links},{codexHome});
+  }
+  if (scenario === 'ambiguous') await writeFile(join(codexHome, 'AGENTS.md'), '<!-- AIOS:BEGIN -->old instructions');
+}
+await reset(roots.home,'dashboard');
 let lastCheck = 0;
+const pages = {'/':['preview','home','dashboard'], '/setup':['preview','setup','new'], '/settings':['preview','home','dashboard'], '/test':['debug','test','new']};
 const server = createServer(async (req, res) => {
   try {
     if (req.method === 'GET') {
-      const path = { '/': './fixture.html', '/test': './fixture.html', '/app': '../../runtime/sidebar/index.html' }[req.url];
-      if (!path) { res.writeHead(404); return res.end(); }
-      res.setHeader('Content-Type', 'text/html; charset=utf-8'); return res.end((await readFile(new URL(path, import.meta.url), 'utf8')).replace('/*HOST_MODE*/', req.url === '/test' ? 'debug' : 'preview'));
+      if (req.url === '/app') {res.setHeader('Content-Type','text/html; charset=utf-8');return res.end(await readFile(new URL('../../runtime/sidebar/index.html',import.meta.url)));}
+      const page=pages[req.url]; if (!page) {res.writeHead(404);return res.end();}
+      const body=(await readFile(new URL('./fixture.html',import.meta.url),'utf8')).replace('/*HOST_MODE*/',page[0]).replace('/*HOST_WORKSPACE*/',page[1]).replace('/*HOST_SCENARIO*/',page[2]).replace('/*HOST_VIEW*/',req.url==='/settings'?'settings':'home');
+      res.setHeader('Content-Type', 'text/html; charset=utf-8'); return res.end(body);
     }
     if (req.method !== 'POST' || req.url !== '/rpc' || req.headers.origin !== `http://127.0.0.1:${port}`) { res.writeHead(403); return res.end(); }
     let body = ''; for await (const chunk of req) { body += chunk; if (body.length > 16384) throw new Error('Too large'); }
-    const { action, args, scenario } = JSON.parse(body);
-    if (action === 'reset') {
-      await rm(join(codexHome, 'AGENTS.md'), { force: true });
-      await rm(join(codexHome, 'aios'), { recursive: true, force: true });
-      if (['existing', 'dashboard'].includes(scenario)) await writeFile(join(codexHome, 'AGENTS.md'), bridge.replace('<verified-context-entry-url-or-absolute-path>', 'https://app.notion.com/p/00000000000000000000000000000001'));
-      if (scenario === 'dashboard') {
-        const context = await readContextRoute({ codexHome });
-        const current = await readSources(context.target, { codexHome });
-        await saveSources({ target: context.target, expectedContextRevision: context.revision, expectedRevision: current.revision, title: 'Studio AIOS', links: { docs: {title:'Docs',target:'https://example.com/docs'}, personalSkills: {title:'Writing & delivery',target:'https://example.com/skills'}, memory: {title:'Memory',target:'https://example.com/memory'} } }, { codexHome });
-      }
-      if (scenario === 'ambiguous') await writeFile(join(codexHome, 'AGENTS.md'), '<!-- AIOS:BEGIN -->old instructions');
-    } else if (action === 'save') await saveContextRoute(args, { codexHome, bridge });
+    const { action, args, scenario, workspace } = JSON.parse(body);
+    if (!Object.hasOwn(roots,workspace)) throw new Error('Unknown preview');
+    const codexHome=roots[workspace];
+    if (action === 'reset') await reset(codexHome,scenario);
+    else if (action === 'save') await saveContextRoute(args, { codexHome, bridge });
     else if (action === 'sources') await saveSources(args, { codexHome });
     else if (action !== 'status') throw new Error('Unsupported test operation');
     lastCheck = Math.max(lastCheck + 1, Date.now());
@@ -38,5 +49,5 @@ const server = createServer(async (req, res) => {
     const sources = context.state === 'configured' ? await readSources(context.target, { codexHome }) : {state:'missing', title:'', links:{}};
     res.setHeader('Content-Type', 'application/json'); res.end(JSON.stringify({ content: [], _meta: { 'aios/status': { version, notion: { state }, context, sources, checkedAt: new Date(lastCheck).toISOString() } } }));
   } catch (error) { res.writeHead(400); res.end(JSON.stringify({ error: error.message })); }
-}).listen(port, '127.0.0.1', () => console.log(`Synthetic AIOS host: http://127.0.0.1:${port}/`));
-for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => server.close(async () => { await rm(codexHome, { recursive: true, force: true }); process.exit(0); }));
+}).listen(port, '127.0.0.1', () => console.log(`AIOS preview (sample workspace): http://127.0.0.1:${port}/ — /setup — /settings`));
+for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => server.close(async () => { await rm(scratch, { recursive: true, force: true }); process.exit(0); }));
