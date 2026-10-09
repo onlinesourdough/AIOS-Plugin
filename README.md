@@ -264,11 +264,15 @@ Team destinations are optional and visible in both Skills and Memory. Continue
 saves progress and Finish opens the dashboard. An existing context opens there
 immediately, with named sources and quiet Add actions for missing destinations.
 
-Settings opens a separate drawer. Source selectors show registered names for
-the current context and accept pasted links; they do not browse all Notion pages.
+Settings opens a separate drawer. With Notion connected, choose Context, Docs,
+Skills and Memory from searchable page dropdowns. The initial list shows favorites
+and top-level private/shared pages; search finds other accessible pages. Direct
+link entry remains available for other providers or a known destination.
 There are no panel chat calls, hidden agents or new Notion credentials. AIOS's
-local MCP owns the panel and navigation metadata. Company information stays in
-Notion, accessed through the separate official connector.
+local MCP owns the panel and navigation metadata, using Codex's direct tool-call
+protocol for the page picker. Company information stays in Notion, accessed
+through the separate official connector. The picker requires Codex CLI 0.161.0+
+with that protocol; an unavailable search reports an error rather than inventing pages.
 
 For a new or messy workspace, explicitly use the plugin's **Set up** skill or ask:
 

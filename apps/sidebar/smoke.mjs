@@ -15,17 +15,20 @@ const transport = new StdioClientTransport({
 try {
   await client.connect(transport);
   const { tools } = await client.listTools();
-  assert.deepEqual(tools.map((tool) => tool.name), ['aios_open', 'aios_status', 'aios_settings', 'aios_save_context', 'aios_sources', 'aios_save_sources']);
+  assert.deepEqual(tools.map((tool) => tool.name), ['aios_open', 'aios_notion_pages', 'aios_status', 'aios_settings', 'aios_save_context', 'aios_sources', 'aios_save_sources']);
   assert.deepEqual(tools[0]._meta['openai/ui'].entrypoints, [{ type: 'global' }]);
-  assert.deepEqual(tools[1]._meta.ui.visibility, ['app']);
+  for (const name of ['aios_notion_pages', 'aios_status']) {
+    assert.deepEqual(tools.find(tool => tool.name === name)._meta.ui.visibility, ['app']);
+    assert.equal(tools.find(tool => tool.name === name).annotations.openWorldHint, true);
+  }
   assert.ok(client.getServerVersion().icons[0].src.startsWith('data:image/svg+xml;base64,'));
-  const view = await client.readResource({ uri: 'ui://aios/home-v4' });
+  const view = await client.readResource({ uri: 'ui://aios/home-v5' });
   assert.equal(view.contents[0].mimeType, 'text/html;profile=mcp-app');
   assert.deepEqual(view.contents[0]._meta['openai/ui'], { preferredDisplayMode: 'fullscreen', availableDisplayModes: ['fullscreen'] });
   assert.ok(view.contents[0].text.includes('onlinesourdough'));
   const settings = await client.callTool({ name: 'aios_settings', arguments: {} });
   assert.equal(settings._meta['aios/view'], 'settings');
-  assert.equal(tools[2]._meta['openai/ui'].entrypoints[0].type, 'settings');
+  assert.equal(tools.find(tool=>tool.name==='aios_settings')._meta['openai/ui'].entrypoints[0].type, 'settings');
   const result = await client.callTool({ name: 'aios_open', arguments: {} });
   assert.equal(result.isError, undefined);
   assert.equal(result._meta['aios/status'].context.state, 'missing');
@@ -37,8 +40,8 @@ try {
   assert.equal(saved._meta['aios/status'].context.target, target);
   const read = await client.callTool({ name: 'aios_status', arguments: {} });
   assert.equal(read._meta['aios/status'].context.target, target);
-  assert.equal(tools[3].annotations.readOnlyHint, false);
-  assert.deepEqual(tools[3]._meta.ui.visibility, ['app']);
+  assert.equal(tools.find(tool=>tool.name==='aios_save_context').annotations.readOnlyHint, false);
+  assert.deepEqual(tools.find(tool=>tool.name==='aios_save_context')._meta.ui.visibility, ['app']);
   const links = { memory: { title: 'Decisions', target: 'https://example.com/memory' }, teamMemory: { title: 'Team decisions', target: 'https://example.com/team-memory' } };
   const sources = await client.callTool({ name: 'aios_save_sources', arguments: { target, expectedContextRevision: read._meta['aios/status'].context.revision, expectedRevision: read._meta['aios/status'].sources.revision, title: 'My AIOS', links } });
   assert.equal(sources.isError, undefined);

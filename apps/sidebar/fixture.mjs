@@ -4,7 +4,17 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { readContextRoute, saveContextRoute } from './context-route.mjs';
 import { readSources, saveSources } from './sources.mjs';
+import { readNotionSetup } from './codex-status.mjs';
+import { NotionPages } from './notion-pages.mjs';
 const port = Number(process.env.PORT || 43195);
+const liveNotion = process.env.AIOS_PREVIEW_LIVE_NOTION === '1';
+const notionPages = new NotionPages();
+const examplePages = [
+  { title: 'Studio AIOS', target: 'https://app.notion.com/p/00000000000000000000000000000001' },
+  { title: 'Company docs', target: 'https://app.notion.com/p/00000000000000000000000000000002' },
+  { title: 'Writing & delivery', target: 'https://app.notion.com/p/00000000000000000000000000000003' },
+  { title: 'Decisions', target: 'https://app.notion.com/p/00000000000000000000000000000004' },
+];
 const scratch = await mkdtemp(join(tmpdir(), 'aios-ui-test-'));
 const roots = Object.fromEntries(['home','setup','test'].map(key=>[key,join(scratch,key)]));
 await Promise.all(Object.values(roots).map(path=>mkdir(path)));
@@ -31,7 +41,8 @@ const server = createServer(async (req, res) => {
     if (req.method === 'GET') {
       if (req.url === '/app') {res.setHeader('Content-Type','text/html; charset=utf-8');return res.end(await readFile(new URL('../../runtime/sidebar/index.html',import.meta.url)));}
       const page=pages[req.url]; if (!page) {res.writeHead(404);return res.end();}
-      const body=(await readFile(new URL('./fixture.html',import.meta.url),'utf8')).replace('/*HOST_MODE*/',page[0]).replace('/*HOST_WORKSPACE*/',page[1]).replace('/*HOST_SCENARIO*/',page[2]).replace('/*HOST_VIEW*/',req.url==='/settings'?'settings':'home');
+      const body=(await readFile(new URL('./fixture.html',import.meta.url),'utf8')).replace('/*HOST_MODE*/',page[0]).replace('/*HOST_WORKSPACE*/',page[1]).replace('/*HOST_SCENARIO*/',page[2]).replace('/*HOST_VIEW*/',req.url==='/settings'?'settings':'home')
+        .replace('Preview · sample workspace',liveNotion ? 'Preview · live Notion · setup saved only here' : 'Preview · sample workspace');
       res.setHeader('Content-Type', 'text/html; charset=utf-8'); return res.end(body);
     }
     if (req.method !== 'POST' || req.url !== '/rpc' || req.headers.origin !== `http://127.0.0.1:${port}`) { res.writeHead(403); return res.end(); }
@@ -39,6 +50,10 @@ const server = createServer(async (req, res) => {
     const { action, args, scenario, workspace } = JSON.parse(body);
     if (!Object.hasOwn(roots,workspace)) throw new Error('Unknown preview');
     const codexHome=roots[workspace];
+    if (action === 'pages') {
+      const data = liveNotion ? await notionPages.list(args?.query || '') : { pages: examplePages.filter(page=>page.title.toLowerCase().includes((args?.query || '').toLowerCase())), hasMore: false };
+      res.setHeader('Content-Type','application/json'); return res.end(JSON.stringify({ content: [], _meta: { 'aios/kind': 'pages', 'aios/pages': data } }));
+    }
     if (action === 'reset') await reset(codexHome,scenario);
     else if (action === 'save') await saveContextRoute(args, { codexHome, bridge });
     else if (action === 'sources') await saveSources(args, { codexHome });
@@ -47,7 +62,8 @@ const server = createServer(async (req, res) => {
     const state = ({ missing: 'not_installed', disconnected: 'not_connected', disabled: 'plugin_disabled', unknown: 'unknown' })[scenario] || 'connected';
     const context = await readContextRoute({ codexHome });
     const sources = context.state === 'configured' ? await readSources(context.target, { codexHome }) : {state:'missing', title:'', links:{}};
-    res.setHeader('Content-Type', 'application/json'); res.end(JSON.stringify({ content: [], _meta: { 'aios/status': { version, notion: { state }, context, sources, checkedAt: new Date(lastCheck).toISOString() } } }));
+    const notion = liveNotion ? await readNotionSetup() : { state };
+    res.setHeader('Content-Type', 'application/json'); res.end(JSON.stringify({ content: [], _meta: { 'aios/status': { version, features: { notionPages: true }, notion, context, sources, checkedAt: new Date(lastCheck).toISOString() } } }));
   } catch (error) { res.writeHead(400); res.end(JSON.stringify({ error: error.message })); }
 }).listen(port, '127.0.0.1', () => console.log(`AIOS preview (sample workspace): http://127.0.0.1:${port}/ — /setup — /settings`));
-for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => server.close(async () => { await rm(scratch, { recursive: true, force: true }); process.exit(0); }));
+for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => server.close(async () => { await notionPages.close(); await rm(scratch, { recursive: true, force: true }); process.exit(0); }));

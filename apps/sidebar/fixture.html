@@ -28,10 +28,10 @@ window.addEventListener('message',async event=>{
  else if(method==='tools/call'){
  try{
   if(document.querySelector('#fail').checked)throw new Error('Synthetic request failure');
-  if(!['aios_status','aios_settings','aios_save_context','aios_save_sources'].includes(params.name))throw new Error('Unsupported tool');
+  if(!['aios_status','aios_settings','aios_save_context','aios_save_sources','aios_notion_pages'].includes(params.name))throw new Error('Unsupported tool');
   if(params.name.startsWith('aios_save_')&&document.querySelector('#delay').checked)await new Promise(r=>setTimeout(r,3000));
-  const result=await rpc(params.name==='aios_save_context'?'save':params.name==='aios_save_sources'?'sources':'status',params.arguments);send({id,result});
- }catch(error){send({id,result:{isError:true,content:[{type:'text',text:error.message}]}})}
+  const result=await rpc(params.name==='aios_save_context'?'save':params.name==='aios_save_sources'?'sources':params.name==='aios_notion_pages'?'pages':'status',params.arguments);send({id,result});
+ }catch(error){send({id,result:{isError:true,content:[{type:'text',text:error.message}],...(params.name==='aios_notion_pages'?{_meta:{'aios/kind':'pages'}}:{})}})}
  }else if(method==='ui/open-link')send({id,result:{}});
  else if(id!==undefined)send({id,error:{code:-32601,message:'No conversation or other capabilities in this host'}});
 });

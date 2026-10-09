@@ -27,11 +27,12 @@
       <section class="step">
         <h2><button id="step-1" class="step-head cursor-interaction" type="button" aria-expanded="false" aria-controls="panel-1"><span class="step-number" aria-hidden="true">2</span><span class="step-label">Context</span><span id="summary-1" class="summary"></span></button></h2>
         <div id="panel-1" class="step-panel" role="region" aria-labelledby="step-1" hidden>
-          <div class="field">
+          <div id="setup-context" hidden></div>
+          <div class="field" id="context-link-field">
             <label id="target-label" for="target" class="field-label">Context link</label>
             <input id="target" class="form-control" type="text" maxlength="2048" autocomplete="off" placeholder="https://notion.so/…">
-            <button id="provider" class="btn btn-ghost link-toggle cursor-interaction" type="button">Use a folder or other link</button>
           </div>
+          <button id="provider" class="btn btn-ghost link-toggle cursor-interaction" type="button">Use a folder or other link</button>
           <div id="setup-docs"></div>
           <p id="reason-1" class="hint" hidden></p>
           <div class="step-actions"><button id="continue-1" class="btn btn-primary cursor-interaction" type="submit">Continue</button></div>

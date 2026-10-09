@@ -1,4 +1,4 @@
-# Codex sidebar — 0.25.0
+# Codex sidebar — 0.26.0
 
 The Meetings-inspired layout uses a compact header, one Context card and simple
 Personal/Team rows for Skills and Memory. Missing destinations stay visible with
@@ -12,10 +12,13 @@ Finish opens the dashboard. Existing contexts open there
 directly. Settings is a separate drawer with explicit Save and discard handling.
 The same interface is exposed through a native settings entrypoint.
 
-Source selectors show saved names for the current context. Optional slots offer
-None; Add/Edit link allows a new location and an optional display name. This is
-navigation configuration, not live Notion page search. Neither a selected link
-nor a saved map proves source access or business readiness.
+Connected Notion selectors show page names, starting with favorites and top-level
+private/shared pages. Search finds other accessible pages; results are bounded
+and do not claim to enumerate the workspace. Context uses the same searchable
+dropdown in setup and Settings. A Settings context change requires confirmation;
+its sources remain separate. Optional slots offer None. Add/Edit link remains
+available. Page discovery establishes visible navigation metadata, not business
+readiness or access to every linked destination.
 
 ## Boundaries
 
@@ -24,8 +27,17 @@ public app/installed metadata determine installation, enablement and connection.
 Unknown is not Connected; Connected does not prove page access. Refresh checks
 that metadata. AIOS has no Notion server, credential store or custom OAuth.
 
-AIOS MCP serves this panel and stores only navigation labels/links. It does not
-proxy Notion content. Company knowledge, personal/team methods, Memory and Spaces
+AIOS MCP serves this panel and stores only navigation labels/links. Its app-only
+page picker calls an allowlist of read-only Notion tools through the documented
+Codex app-server protocol. It creates one temporary in-memory transport context,
+never a model turn or persisted conversation, and closes it after a minute idle.
+The ephemeral context disables unrelated configured local MCPs/plugins without
+changing installed settings. Each request checks current plugin/account availability
+and effective Notion tool restrictions. Required confirmation stays in Codex;
+the picker cannot grant it. Searches coalesce while a prior request is running,
+and a timed-out read does not cancel other successful reads. It never reads credentials,
+accepts approvals or uses private HTTP APIs. Only page names, identities, paths and
+links reach the UI; result bodies/highlights are excluded. Company knowledge, personal/team methods, Memory and Spaces
 stay in their chosen home. The panel displays destinations, not live records or
 counts. Source entry does not create a workspace or establish business readiness.
 
@@ -37,12 +49,14 @@ job is introduced. Context remains provider-agnostic and retrieves only needed d
 
 ## Runtime and storage
 
-Codex runs the packaged Node.js 22+ stdio server. No consumer npm, Docker, hosted
+Codex runs the packaged Node.js 22+ stdio server. Page selection requires Codex
+CLI 0.161.0+ supporting the documented direct MCP tool call. No consumer npm, Docker, hosted
 service, telemetry or UI network domains. Source: apps/sidebar. Locked bundles:
-runtime/sidebar. Resource: ui://aios/home-v4. Tools:
+runtime/sidebar. Resource: ui://aios/home-v5. Tools:
 
 - aios_open: read-only global app entry; status and links are UI metadata.
 - aios_status: app-only read-only refresh.
+- aios_notion_pages: app-only bounded read-only navigation listing/search; UI metadata only.
 - aios_settings: app-only native settings entry, opening the same drawer.
 - aios_save_context: app-only owned AGENTS pointer save.
 - aios_sources: explicit model read of the context and navigation with revisions.
@@ -77,11 +91,27 @@ source pickers, optional slots, settings Save/discard, failed saves, retry,
 keyboard/focus, light/dark and 320px. Synthetic host results are distinct from
 native installed-runtime adoption and do not prove new-account OAuth.
 
+Page-picker proof includes a real read-only Notion listing and AIOS search via
+Codex 0.161.0, zero-turn transport inspection, title/URL validation, disabled
+connection, prompt rejection, timeout cleanup, stale searches and explicit
+context-switch confirmation. Test fixtures use invented page identities. The
+live preview reads actual page metadata only when requested; its pointer and
+source saves remain isolated in a temporary home.
+
+Pilot verification covers a standard connected account and normal shutdown.
+Enterprise-managed policies, abrupt process termination and every Codex approval
+mode have not been exercised. Codex can briefly start native helper processes;
+the panel does not promise a process-free lookup.
+
 The loopback fixture uses temporary isolated Codex homes. /setup is fresh setup,
 / is a sample dashboard, /settings opens the sample settings and /test exposes
 labelled scenario/theme/error controls. Setup and dashboard are separate fixtures;
 refreshing either does not alter real instructions or company sources. Source-link
 open requests are recorded, not sent to fictional destinations.
+Opt in to actual read-only Notion page browsing with
+`AIOS_PREVIEW_LIVE_NOTION=1 npm run preview --prefix apps/sidebar`. Its visible
+label distinguishes live Notion from sample data. No preview writes to Notion
+or to the owner's Codex instructions.
 
 Rollback with the supported plugin manager to an earlier reviewed tag; keep
 Notion and its sources. Clear a selected teamMemory navigation slot before a

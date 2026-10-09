@@ -14,9 +14,19 @@ const connectable = ['not_connected', 'disabled', 'unavailable'];
 let status, draft, checkedAt = -Infinity, firstStatus = true, saving = false, refreshing = false, stale = false;
 let onboarding = false, openStep = 0, other = false, confirmSwitch = false, settingsOpen = false, discardPrompt = false;
 let message = { text: '', error: false };
+let selectedContext = null;
+const canBrowse = () => Boolean(status?.features?.notionPages && status.notion.state === 'connected');
+async function loadPages(query) {
+  const result = await app.callServerTool({ name: 'aios_notion_pages', arguments: { query } });
+  const data = result?._meta?.['aios/pages'];
+  if (result?.isError) throw new Error(result.content?.find(item => item.type === 'text')?.text || 'Could not load Notion pages.');
+  if (!Array.isArray(data?.pages)) throw new Error('Could not load Notion pages.');
+  const pages = data.pages.filter(page => typeof page.title === 'string' && page.title.length <= 100 && classifyTarget(page.target)?.kind === 'notion');
+  return { pages, hasMore: Boolean(data.hasMore), partial: Boolean(data.partial) };
+}
 
 function sourcePicker(id, role) {
-  return createPicker({ id, label: slotLabels[role],
+  return createPicker({ id, label: slotLabels[role], loadOptions: loadPages,
     onEdit: () => { feedback(''); render(); },
     onSelect: link => { setLink(draft, role, link); feedback(''); render(); },
     onApply: ({ target, name }) => {
@@ -30,9 +40,19 @@ for (const role of sourceRoles) {
   settingsPickers[role] = sourcePicker(`settings-${role}-picker`, role); $(`settings-${role}`).append(settingsPickers[role].root);
 }
 const contextPicker = createPicker({ id: 'settings-context-picker', label: 'Context', optional: false, menuLabel: 'Current context',
+  loadOptions: loadPages, confirmSelection: true,
   editText: ['Switch context…', 'Switch context…'], applyText: 'Switch context', nameField: false,
-  placeholder: 'https://notion.so/… or /path/to/context', onSelect() {}, onEdit: () => render(), onApply: ({ target }) => switchContext(target) });
+  placeholder: 'https://notion.so/… or /path/to/context', onSelect() {}, onEdit: () => render(), onApply: ({ target, name }) => switchContext(target, name) });
 $('settings-context').append(contextPicker.root);
+const setupContextPicker = createPicker({ id: 'setup-context-picker', label: 'Page', optional: false, loadOptions: loadPages,
+  nameField: false, onSelect: link => {
+    selectedContext = link.placeholder ? null : link; $('target').value = link.target; confirmSwitch = false; feedback(''); render();
+  }, onApply: ({ target }) => {
+    const route = classifyTarget(target);
+    if (route?.kind !== 'notion') return 'Enter a Notion page link.';
+    selectedContext = null; $('target').value = route.target; confirmSwitch = false; feedback(''); render();
+  }, onEdit: () => render() });
+$('setup-context').append(setupContextPicker.root);
 
 function feedback(text, error = false) { message = { text, error }; paintFeedback(); }
 function paintFeedback() {
@@ -47,7 +67,8 @@ function theme(context) {
 }
 function fillDraft() {
   draft = draftFrom(status); stale = false; confirmSwitch = false;
-  for (const picker of [contextPicker, ...Object.values(setupPickers), ...Object.values(settingsPickers)]) picker.reset();
+  for (const picker of [setupContextPicker, contextPicker, ...Object.values(setupPickers), ...Object.values(settingsPickers)]) picker.reset();
+  selectedContext = status.context.target && status.sources.title ? { title: status.sources.title, target: status.context.target } : null;
   $('target').value = status.context.target || '';
   if (status.context.kind) other = status.context.kind !== 'notion';
 }
@@ -55,7 +76,7 @@ const contextInput = () => classifyTarget($('target').value)?.target ?? $('targe
 const contextEdited = () => onboarding && contextInput() !== draft.contextTarget;
 const unfinishedSources = () => [...Object.values(setupPickers), ...Object.values(settingsPickers)].some(picker => picker.hasEdits());
 const sourceChanges = () => isDirty(draft) || unfinishedSources();
-const pending = () => sourceChanges() || contextEdited() || contextPicker.hasEdits();
+const pending = () => sourceChanges() || contextEdited() || contextPicker.hasEdits() || setupContextPicker.hasEdits();
 const blocked = () => !status.context.revision || ['ambiguous', 'unavailable'].includes(status.context.state) || status.sources.state === 'unavailable';
 const sourcesReady = () => status.context.state === 'configured' && draft.contextTarget === status.context.target
   && status.sources.state !== 'unavailable' && !contextEdited();
@@ -121,7 +142,12 @@ function renderSetup(locked) {
   $('target').placeholder = other ? 'https://… or /path/to/context' : 'https://notion.so/…';
   $('provider').textContent = other ? 'Use Notion' : 'Use a folder or other link';
   $('target').disabled = locked; $('provider').disabled = locked;
-  for (const role of sourceRoles) setupPickers[role].render({ value: draft.links[role], choices: [draft.saved[role]], disabled: locked || !ready });
+  const nativePicker = Boolean(status.features?.notionPages && !other);
+  $('setup-context').hidden = !nativePicker; $('context-link-field').hidden = nativePicker;
+  const notionTarget = classifyTarget(contextInput())?.kind === 'notion' ? contextInput() : null;
+  const selected = notionTarget ? selectedContext?.target === notionTarget ? selectedContext : { title: 'Selected page', target: notionTarget, placeholder: true } : null;
+  setupContextPicker.render({ value: selected, choices: [], browse: canBrowse(), disabled: locked });
+  for (const role of sourceRoles) setupPickers[role].render({ value: draft.links[role], choices: [draft.saved[role]], browse: canBrowse() && !other, disabled: locked || !ready });
 }
 function renderDashboard(locked) {
   $('context-name').textContent = status.sources.title || 'Context';
@@ -139,9 +165,9 @@ function renderSettings(locked) {
   const dirty = isDirty(draft);
   const ready = status.context.state === 'configured' && draft.contextTarget === status.context.target && status.sources.state !== 'unavailable';
   const current = { title: draft.title || 'Context', target: draft.contextTarget };
-  contextPicker.render({ value: current, choices: [current], disabled: locked,
+  contextPicker.render({ value: current, choices: [current], browse: canBrowse(), disabled: locked,
     applyText: sourceChanges() ? 'Discard and switch' : 'Switch context', note: sourceChanges() ? 'Unsaved source changes will be discarded.' : '' });
-  for (const role of sourceRoles) settingsPickers[role].render({ value: draft.links[role], choices: [draft.saved[role]], disabled: locked || !ready });
+  for (const role of sourceRoles) settingsPickers[role].render({ value: draft.links[role], choices: [draft.saved[role]], browse: canBrowse(), disabled: locked || !ready });
   $('drawer-save').disabled = locked || !dirty || !ready;
   $('drawer-save').textContent = saving ? 'Saving…' : 'Save';
   $('drawer-cancel').disabled = saving; $('drawer-close').disabled = saving;
@@ -197,10 +223,20 @@ function current() {
   } else { stale = true; feedback('Setup changed elsewhere. Your edits are kept; load the latest setup to continue.', true); }
   render(); return false;
 }
-async function writeContext(target) {
+async function writeContext(target, title) {
   const result = await app.callServerTool({ name: 'aios_save_context', arguments: { target, expectedRevision: draft.contextRevision } });
   if (!apply(result)) throw new Error('Your context changed. Refresh before trying again.');
   fillDraft(); // The new context's own map; earlier source edits never carry over.
+  if (title && !draft.title) {
+    try {
+      const named = await app.callServerTool({ name: 'aios_save_sources', arguments: {
+        target: draft.contextTarget, expectedContextRevision: draft.contextRevision,
+        expectedRevision: draft.sourcesRevision, title, links: linksPayload(draft),
+      } });
+      if (!apply(named)) throw new Error();
+      fillDraft();
+    } catch { return 'Context saved, but its name could not be saved. Refresh to check the setup.'; }
+  }
 }
 async function saveDraft() {
   if (unfinishedSources()) { feedback('Apply or cancel the open link first.'); return false; }
@@ -218,7 +254,7 @@ async function saveDraft() {
 }
 
 function focusStep(step, docs = false) {
-  const first = docs ? 'setup-docs-picker' : ['refresh', 'target', 'setup-personalSkills-picker', 'setup-memory-picker'][step];
+  const first = docs ? 'setup-docs-picker' : ['refresh', status.features?.notionPages && !other ? 'setup-context-picker' : 'target', 'setup-personalSkills-picker', 'setup-memory-picker'][step];
   ($(first).disabled ? $(`continue-${step}`) : $(first)).focus();
 }
 function goTo(step) { openStep = step; confirmSwitch = false; render(); focusStep(step); }
@@ -227,7 +263,10 @@ async function saveContext(target) {
   if (sourceChanges() && !confirmSwitch) { confirmSwitch = true; feedback('Unsaved source changes for this context will be discarded.', true); render(); return; }
   let saved = false;
   saving = true; feedback(''); render();
-  try { await writeContext(target); saved = true; feedback(status.sources.state === 'saved' ? 'Context saved. Its saved sources are loaded.' : 'Context saved.'); }
+  try {
+    const warning = await writeContext(target, selectedContext?.target === target ? selectedContext.title : undefined);
+    saved = true; feedback(warning || (status.sources.state === 'saved' ? 'Context saved. Its saved sources are loaded.' : 'Context saved.'), Boolean(warning));
+  }
   catch (error) { feedback(error.message || 'Could not save the context. Try again.', true); }
   finally { saving = false; render(); if (saved) focusStep(1, true); }
 }
@@ -236,9 +275,12 @@ async function continueStep() {
   if (openStep === 0) return goTo(1);
   if (blocked()) return;
   if (openStep === 1) {
+    if (setupContextPicker.hasEdits()) { feedback('Apply or cancel the open link first.'); return; }
     const route = classifyTarget($('target').value);
     if (!route || /[<>]/.test(route.target) || (!other && route.kind !== 'notion')) {
-      feedback(other ? 'Enter an HTTPS link or an absolute folder path.' : 'Enter a Notion link, or use a folder or other link.', true); $('target').focus(); return;
+      const picker = status.features?.notionPages && !other;
+      feedback(other ? 'Enter an HTTPS link or an absolute folder path.' : picker ? 'Choose a Notion page.' : 'Enter a Notion link, or use a folder or other link.', true);
+      (picker ? setupContextPicker.button : $('target')).focus(); return;
     }
     if (route.target !== draft.contextTarget || status.context.state !== 'configured') return saveContext(route.target);
   } else if (!sourcesReady()) {
@@ -257,7 +299,9 @@ function openSettings(role) {
   fillDraft(); settingsOpen = true; discardPrompt = false;
   feedback(status.sources.state === 'unavailable' ? 'Saved source links need attention. They have been left unchanged.' : '', status.sources.state === 'unavailable');
   $('drawer').showModal(); render();
-  if (role && status.sources.state !== 'unavailable') settingsPickers[role].openEditor(); else $('drawer-title').focus();
+  if (role && status.sources.state !== 'unavailable') {
+    if (canBrowse()) settingsPickers[role].open(); else settingsPickers[role].openEditor();
+  } else $('drawer-title').focus();
 }
 function requestClose() {
   if (saving) return;
@@ -281,7 +325,7 @@ async function saveSettings() {
   if (saving || refreshing || !isDirty(draft)) return;
   if (await saveDraft()) closeSettings();
 }
-async function switchContext(value) {
+async function switchContext(value, title) {
   const route = classifyTarget(value);
   if (!route || /[<>]/.test(route.target)) return 'Enter a Notion or HTTPS link, or an absolute folder path.';
   if (route.target === draft.contextTarget) return;
@@ -291,13 +335,14 @@ async function switchContext(value) {
     return 'Setup changed elsewhere.';
   }
   saving = true; feedback(''); render();
-  try { await writeContext(route.target); feedback('Switched context. Showing its saved sources.'); }
+  try { const warning = await writeContext(route.target, title); feedback(warning || 'Switched context. Showing its saved sources.', Boolean(warning)); }
   catch (error) { return error.message || 'Could not switch context. Try again.'; }
   finally { saving = false; render(); }
 }
 function reload() { fillDraft(); feedback(''); render(); }
 
 app.ontoolresult = result => {
+  if (result?._meta?.['aios/pages'] || result?._meta?.['aios/kind'] === 'pages') return;
   try { apply(result); if (result?._meta?.['aios/view'] === 'settings') openSettings(); }
   catch (error) {
     checkedAt = Math.max(checkedAt + 1, Date.now());
@@ -321,7 +366,7 @@ for (let step = 0; step < 4; step++) $(`step-${step}`).addEventListener('click',
   if (confirmSwitch) feedback('');
   openStep = step; confirmSwitch = false; render();
 });
-$('provider').addEventListener('click', () => { other = !other; render(); });
+$('provider').addEventListener('click', () => { setupContextPicker.reset(); other = !other; render(); });
 $('target').addEventListener('input', () => { if (confirmSwitch) feedback(''); confirmSwitch = false; render(); });
 $('setup').addEventListener('submit', event => { event.preventDefault(); return continueStep(); });
 $('settings').addEventListener('click', () => openSettings());
