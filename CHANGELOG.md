@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.27.0 — 2026-10-10
+
+- Add Help and feedback to the sidebar header in setup and on the dashboard,
+  with links to the user guide and release notes.
+- Open feedback as a GitHub issue draft that the person reviews and submits
+  on GitHub, where it becomes public. The draft URL carries only the typed title
+  and text to GitHub; AIOS does not save, log or send it to its tools. Feedback
+  is limited to 2,000 characters and over-long encoded drafts ask for shorter
+  text. The text is kept after a failed open or closing the drawer until Clear.
+- Group Docs under a Context heading in Settings and note that a context switch
+  applies immediately while Docs, Skills and Memory changes apply with Save.
+
 ## 0.26.2 — 2026-10-09
 
 - Keep Notion connection, page and icon reads working after Codex refreshes an

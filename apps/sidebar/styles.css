@@ -114,7 +114,13 @@ footer { display: flex; align-items: baseline; justify-content: space-between; g
 .drawer-body { flex: 1; overflow-y: auto; padding: 4px 20px 20px; }
 .drawer-body section { margin-top: 20px; }
 .drawer-body h3 { margin: 0 0 8px; font-size: 13px; font-weight: 600; }
-#settings-context > .field > .field-label { font-weight: 600; }
+.drawer-body h3 + .hint { margin: 0 0 8px; }
+/* The Context heading names the picker; keep its label for assistive technology only. */
+#settings-context > .field > .field-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.help-links .row { width: calc(100% + 24px); margin: 0 -12px; }
+textarea.form-control { height: auto; min-height: 120px; padding: 6px 10px; font: inherit; line-height: 1.5; resize: vertical; }
+.issue-status:empty { margin: 0; }
+.issue-status[data-error="true"] { color: var(--aios-danger); }
 .drawer-body #drawer-connect { margin-top: 8px; }
 .drawer-foot { padding: 12px 20px; border-top: 1px solid var(--aios-line); }
 .foot-row { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
