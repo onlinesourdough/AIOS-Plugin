@@ -111,6 +111,7 @@ const sourcesReady = () => status.context.state === 'configured' && draft.contex
 
 function render() {
   $('retry-load').hidden = Boolean(status) || refreshing;
+  $('help').disabled = saving || refreshing;
   if (!status) { $('loading').hidden = !refreshing; return; }
   const dashboard = status.context.state === 'configured' && !onboarding;
   const locked = saving || refreshing;
@@ -229,12 +230,14 @@ function apply(result) {
   else if (status.sources.state === 'unavailable') feedback('Saved source links need attention. They have been left unchanged.', true);
   return true;
 }
+async function openUrl(url) {
+  try { const result = await app.openLink({ url }); return !result?.isError; } catch { return false; }
+}
 async function open(target) {
   const route = classifyTarget(target);
   if (!route) return;
   if (route.kind === 'path') { feedback(route.target); return; }
-  try { const result = await app.openLink({ url: route.target }); if (result?.isError) throw new Error(); }
-  catch { feedback('Could not open the link. ' + route.target, true); }
+  if (!await openUrl(route.target)) feedback('Could not open the link. ' + route.target, true);
 }
 async function refresh() {
   if (refreshing || saving) return;
@@ -377,6 +380,47 @@ async function switchContext(value, title) {
 }
 function reload() { fillDraft(); feedback(''); render(); }
 
+// Help and feedback. Draft text lives only in this open panel: it is never
+// stored, logged or sent to AIOS tools. Opening the draft passes the typed title
+// and text to GitHub in its URL; the issue becomes public only if submitted there.
+const repository = 'https://github.com/onlinesourdough/AIOS-plugin';
+const maxDraftUrl = 7500;
+let openingDraft = false;
+function issueStatus(text, error = false) { $('issue-status').textContent = text; $('issue-status').dataset.error = String(error); }
+function issueError(text) {
+  $('issue-error').textContent = text; $('issue-error').hidden = !text;
+  if (text) $('issue-body').setAttribute('aria-invalid', 'true'); else $('issue-body').removeAttribute('aria-invalid');
+}
+// Only the person's own text; the cap applies to the final encoded URL.
+function draftUrl(title, body) {
+  const encode = text => encodeURIComponent(text.toWellFormed());
+  return `${repository}/issues/new?${title ? `title=${encode(title)}&` : ''}body=${encode(body)}`;
+}
+function openHelp() {
+  if (saving || refreshing || $('help-drawer').open) return;
+  issueStatus(''); issueError('');
+  $('help-drawer').showModal(); $('help-title').focus();
+}
+function closeHelp() { if ($('help-drawer').open) $('help-drawer').close(); }
+async function openHelpLink(url) {
+  issueStatus('');
+  if (!await openUrl(url)) issueStatus('Couldn’t open the link. Try again.', true);
+}
+async function openDraft() {
+  if (openingDraft) return;
+  const title = $('issue-title').value.trim(), body = $('issue-body').value.trim();
+  issueStatus('');
+  if (!body) { issueError('Enter your feedback.'); $('issue-body').focus(); return; }
+  const url = draftUrl(title, body);
+  if (url.length > maxDraftUrl) { issueError('Too long for a GitHub draft. Shorten the text and try again.'); $('issue-body').focus(); return; }
+  issueError(''); openingDraft = true; $('issue-open').disabled = true;
+  try {
+    if (await openUrl(url)) issueStatus('Draft opened on GitHub. Review and submit it there.');
+    else issueStatus('Couldn’t open GitHub. Your text is kept. Try again.', true);
+  } finally { openingDraft = false; $('issue-open').disabled = false; }
+}
+function clearDraft() { $('issue-title').value = ''; $('issue-body').value = ''; issueError(''); issueStatus(''); $('issue-body').focus(); }
+
 app.ontoolresult = result => {
   if (result?._meta?.['aios/pages'] || ['pages', 'icons'].includes(result?._meta?.['aios/kind'])) return;
   try { apply(result); if (result?._meta?.['aios/view'] === 'settings') openSettings(); }
@@ -419,6 +463,17 @@ $('drawer').addEventListener('keydown', event => {
 });
 $('drawer').addEventListener('cancel', event => { event.preventDefault(); if (!discardPrompt) requestClose(); });
 $('drawer').addEventListener('close', closeSettings);
+$('help').addEventListener('click', openHelp);
+$('help-close').addEventListener('click', closeHelp);
+$('help-guide').addEventListener('click', () => openHelpLink(`${repository}#readme`));
+$('help-releases').addEventListener('click', () => openHelpLink(`${repository}/releases`));
+$('issue-open').addEventListener('click', openDraft);
+$('issue-clear').addEventListener('click', clearDraft);
+for (const id of ['issue-title', 'issue-body']) $(id).addEventListener('input', () => { issueError(''); issueStatus(''); });
+// Escape closes Help and keeps the draft text; focus returns to its button.
+$('help-drawer').addEventListener('keydown', event => { if (event.key === 'Escape') { event.preventDefault(); closeHelp(); } });
+$('help-drawer').addEventListener('cancel', event => { event.preventDefault(); closeHelp(); });
+$('help-drawer').addEventListener('close', () => $('help').focus());
 try {
   await app.connect(undefined, { timeout: 12000 }); theme(app.getHostContext());
   if (!status) await refresh();

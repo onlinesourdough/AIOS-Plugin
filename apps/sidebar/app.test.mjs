@@ -16,7 +16,7 @@ const saved = (links, title = 'Our AIOS') => ({ state: 'saved', revision: 'c'.re
 const plain = value => JSON.parse(JSON.stringify(value));
 
 async function ui(context = { state: 'missing', revision: 'a'.repeat(64) }, sources = { state: 'missing', revision: 'c'.repeat(64), title: '', links: {} }, options = {}) {
-  let time = 100000, host, fail = Boolean(options.initialFailure), delay, release, revision = 0;
+  let time = 100000, host, fail = Boolean(options.initialFailure), delay, release, revision = 0, linkFailure = false;
   const calls = [], links = [], document = createDocument(template);
   const status = { features: { notionPages: Boolean(options.pages), notionIcons: Boolean(options.icons) }, notion: { state: options.notion || 'connected' }, context, sources, checkedAt: new Date(time).toISOString() };
   const snapshot = () => ({ _meta: { 'aios/status': structuredClone({ ...status, checkedAt: new Date(time).toISOString() }) } });
@@ -30,7 +30,11 @@ async function ui(context = { state: 'missing', revision: 'a'.repeat(64) }, sour
       if (options.view) result._meta['aios/view'] = options.view;
       this.ontoolresult(result);
     }
-    async openLink(args) { links.push(args.url); return {}; }
+    async openLink(args) {
+      links.push(args.url);
+      if (linkFailure === 'throw') throw new Error('Link blocked');
+      return linkFailure === 'error' ? { isError: true } : {};
+    }
     // Mirrors the server contract: revision and context checks, whole-map replacement.
     async callServerTool({ name, arguments: args }) {
       calls.push({ name, args: plain(args) }); if (delay) await delay;
@@ -59,7 +63,7 @@ async function ui(context = { state: 'missing', revision: 'a'.repeat(64) }, sour
   const u = {
     get, calls, links, status, names: () => calls.map(call => call.name), focused: () => document.activeElement?.id,
     text: id => get(id).textContent, shown: id => !get(id).hidden,
-    notify: value => host.ontoolresult(value), fail: value => { fail = value; },
+    notify: value => host.ontoolresult(value), fail: value => { fail = value; }, failLinks: value => { linkFailure = value; },
     delay() { delay = new Promise(resolve => { release = resolve; }); }, release() { release(); delay = undefined; },
     click: id => get(id).dispatch('click'),
     key: (id, key) => get(id).dispatch('keydown', { key }),
@@ -548,4 +552,96 @@ test('choosing a page with an icon saves only the source title and target', asyn
   await u.click('drawer-save');
   const write = u.calls.find(call => call.name === 'aios_save_sources');
   assert.deepEqual(write.args.links, { docs: { title: 'Docs', target: other } });
+});
+
+const issues = 'https://github.com/onlinesourdough/AIOS-plugin/issues/new';
+const opened = 'Draft opened on GitHub. Review and submit it there.';
+async function draft(u, title, body) { u.get('issue-title').value = title; u.get('issue-body').value = body; await u.click('issue-open'); }
+
+test('Help is reachable in setup and on the dashboard, beside Settings, and waits for running requests', async () => {
+  const u = await ui();
+  assert.equal(u.shown('setup'), true); assert.equal(u.shown('help'), true); assert.equal(u.shown('settings'), false);
+  await u.click('help');
+  assert.equal(u.get('help-drawer').open, true); assert.equal(u.focused(), 'help-title');
+  await u.click('help-close');
+  assert.equal(u.get('help-drawer').open, false); assert.equal(u.focused(), 'help');
+  const d = await ui(configured(), saved({}));
+  assert.equal(d.shown('dashboard'), true); assert.equal(d.shown('help'), true); assert.equal(d.shown('settings'), true);
+  d.delay(); const refreshing = d.click('refresh');
+  assert.equal(d.get('help').disabled, true);
+  await d.click('help'); assert.equal(d.get('help-drawer').open, false);
+  d.release(); await refreshing;
+  assert.equal(d.get('help').disabled, false);
+  await d.click('help'); await d.click('help-guide'); await d.click('help-releases');
+  assert.deepEqual(d.links, ['https://github.com/onlinesourdough/AIOS-plugin#readme', 'https://github.com/onlinesourdough/AIOS-plugin/releases']);
+  assert.deepEqual(d.names(), ['aios_status']);
+});
+
+test('the GitHub draft carries only the typed text and omits an empty title', async () => {
+  const u = await ui(configured(), saved({ docs: { title: 'Private docs', target: 'https://example.com/private' } }));
+  await u.click('help');
+  assert.equal(u.get('issue-title').getAttribute('maxlength'), '80');
+  await draft(u, '   ', '  Pickers & search: 50% slower?\nThanks  ');
+  assert.deepEqual(u.links, [`${issues}?body=Pickers%20%26%20search%3A%2050%25%20slower%3F%0AThanks`]);
+  assert.equal(u.text('issue-status'), opened); assert.doesNotMatch(u.text('issue-status'), /\bsent\b/i);
+  await draft(u, 'Icons #2', 'Hi');
+  assert.equal(u.links[1], `${issues}?title=Icons%20%232&body=Hi`);
+  assert.deepEqual([...new URL(u.links[1]).searchParams.keys()], ['title', 'body']);
+  assert.deepEqual(u.calls, []);
+});
+
+test('Unicode counts at its encoded length and an over-long draft opens nothing', async () => {
+  const u = await ui(configured(), saved({}));
+  await u.click('help');
+  assert.equal(u.get('issue-body').getAttribute('maxlength'), '2000');
+  await draft(u, '', '😀'.repeat(700)); // 1,400 UTF-16 units; 8,400 once encoded.
+  await draft(u, '', 'é'.repeat(1250)); // 1,250 characters; 7,500 once encoded.
+  assert.deepEqual(u.links, []);
+  assert.equal(u.shown('issue-error'), true); assert.match(u.text('issue-error'), /Shorten the text/);
+  assert.equal(u.get('issue-body').getAttribute('aria-invalid'), 'true'); assert.equal(u.focused(), 'issue-body');
+  assert.equal(u.get('issue-body').value, 'é'.repeat(1250));
+  await u.get('issue-body').dispatch('input');
+  assert.equal(u.shown('issue-error'), false); assert.equal(u.get('issue-body').getAttribute('aria-invalid'), null);
+  await draft(u, '', 'é'.repeat(1200) + '😀');
+  assert.equal(u.links.length, 1); assert.ok(u.links[0].length <= 7500);
+  assert.equal(new URL(u.links[0]).searchParams.get('body'), 'é'.repeat(1200) + '😀');
+});
+
+test('empty feedback shows an inline error on the field and moves focus there', async () => {
+  const u = await ui();
+  await u.click('help'); await draft(u, 'Only a title', '  \n ');
+  assert.deepEqual(u.links, []);
+  assert.equal(u.text('issue-error'), 'Enter your feedback.');
+  assert.equal(u.get('issue-body').getAttribute('aria-invalid'), 'true');
+  assert.match(u.get('issue-body').getAttribute('aria-describedby'), /\bissue-error\b/);
+  assert.equal(u.focused(), 'issue-body'); assert.equal(u.text('issue-status'), '');
+});
+
+test('a failed GitHub open keeps the text and its status; the same button retries', async () => {
+  for (const failure of ['throw', 'error']) {
+    const u = await ui(configured(), saved({}));
+    await u.click('help'); u.failLinks(failure); await draft(u, 'Idea', 'Make Docs easier to find');
+    assert.equal(u.text('issue-status'), 'Couldn’t open GitHub. Your text is kept. Try again.');
+    assert.equal(u.get('issue-status').dataset.error, 'true');
+    assert.equal(u.get('issue-title').value, 'Idea'); assert.equal(u.get('issue-body').value, 'Make Docs easier to find');
+    assert.equal(u.get('issue-open').disabled, false);
+    u.failLinks(false); await u.click('issue-open');
+    assert.equal(u.links.length, 2); assert.equal(u.links[0], u.links[1]);
+    assert.equal(u.text('issue-status'), opened); assert.equal(u.get('issue-status').dataset.error, 'false');
+  }
+});
+
+test('closing and reopening Help keeps the draft text; only Clear empties it', async () => {
+  const u = await ui(configured(), saved({}));
+  await u.click('help'); u.get('issue-title').value = 'Title'; u.get('issue-body').value = 'Draft text';
+  await u.key('help-drawer', 'Escape');
+  assert.equal(u.get('help-drawer').open, false); assert.equal(u.focused(), 'help');
+  await u.click('help');
+  assert.equal(u.focused(), 'help-title');
+  assert.equal(u.get('issue-title').value, 'Title'); assert.equal(u.get('issue-body').value, 'Draft text');
+  await u.click('help-close'); await u.click('help');
+  assert.equal(u.get('issue-body').value, 'Draft text');
+  await u.click('issue-clear');
+  assert.equal(u.get('issue-title').value, ''); assert.equal(u.get('issue-body').value, '');
+  assert.equal(u.focused(), 'issue-body'); assert.deepEqual(u.links, []); assert.deepEqual(u.calls, []);
 });
